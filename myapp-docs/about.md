@@ -8,4 +8,4 @@ Import <https://github.com/Archbee/demo-docs> in your Archbee Account and see it
 
 [Links](Links)&#x20;
 
-[toc](./toc.md)
+- [hints](directives/hints.md)
