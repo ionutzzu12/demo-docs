@@ -7,3 +7,5 @@ Import <https://github.com/Archbee/demo-docs> in your Archbee Account and see it
 [./petstore-2.0.yaml](./petstore-2.0.yaml)
 
 [Links](Links)&#x20;
+
+[toc](./toc.md)
