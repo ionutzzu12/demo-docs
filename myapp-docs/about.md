@@ -10,8 +10,10 @@ Import <https://github.com/Archbee/demo-docs> in your Archbee Account and see it
 
 - [hintssss](directives/hints.md)
 
-[Hints]()&#x20;
+[Hints](#)&#x20;
 
 [Lists 2](../syntax/lists-1.md)&#x20;
 
 bla2
+
+[Hints](./directives/hints.md)&#x20;
