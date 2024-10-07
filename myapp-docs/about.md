@@ -17,3 +17,5 @@ Import <https://github.com/Archbee/demo-docs> in your Archbee Account and see it
 bla2
 
 [Hints](./directives/hints.md)&#x20;
+
+[Code Editor](./syntax/code-editor.md)&#x20;
