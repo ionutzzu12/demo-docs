@@ -4,18 +4,21 @@ Import <https://github.com/Archbee/demo-docs> in your Archbee Account and see it
 
 !!!
 
+[Create a pet]()&#x20;
+
 [bla](./petstore-2.0.yaml)
 
-[Linkfffs](Links)&#x20;
+[Linkfffs]()&#x20;
 
 - [hintssss](directives/hints.md)
 
-[Hints](#)&#x20;
+[Hints]()&#x20;
 
-[Lists 2](../syntax/lists-1.md)&#x20;
+[Lists 2]()&#x20;
 
 bla2
 
 [Hints](./directives/hints.md)&#x20;
 
 [Code Editor](./syntax/code-editor.md)&#x20;
+
