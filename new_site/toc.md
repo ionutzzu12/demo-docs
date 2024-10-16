@@ -1,4 +1,4 @@
-- [About2](about.md)
+
 
 ## Syntax 2
 
