@@ -1,5 +1,5 @@
 - [About](about.md)
 
-## Syntax
+## Syntax 2
 
 - [Headings](syntax/headings.md)
