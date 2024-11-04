@@ -1,6 +1,6 @@
 # Archbee github repo
 
-Import <https://github.com/Archbee/demo-docs> in your Archbee Account and see it how it works!
+Import [https://github.com/Archbee/demo-docs](https://github.com/Archbee/demo-docs) in your Archbee Account and see it how it works!
 
 !!!
 
@@ -21,4 +21,12 @@ bla2
 [Hints](./directives/hints.md)&#x20;
 
 [Code Editor](./syntax/code-editor.md)&#x20;
+
+[Tables](./syntax/tables.md)&#x20;
+
+| link                          |   |   |
+| ----------------------------- | - | - |
+| [Tables](./syntax/tables.md)  |   |   |
+|                               |   |   |
+|                               |   |   |
 
