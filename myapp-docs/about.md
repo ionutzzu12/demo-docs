@@ -40,3 +40,21 @@ bla2
 :::
 ::::
 
+![](https://5096255.fs1.hubspotusercontent-na1.net/hubfs/5096255/clave1.png)
+
+
+
+![](https://archbee-image-uploads.s3.amazonaws.com/BbT7KQqqvz3LSYn2rwmao/fgNCDXhXccuHzQLkBcTZ6_image.png)
+
+***
+
+::::vertical-split{layout="middle"}
+:::vertical-split-item
+bla
+:::
+
+:::vertical-split-item
+bla bla
+:::
+::::
+
