@@ -8,53 +8,11 @@ Import [https://github.com/Archbee/demo-docs](https://github.com/Archbee/demo-do
 
 [bla](./petstore-2.0.yaml)
 
-[Linkfffs]()&#x20;
+:::expandable-heading
+# expand me
 
-- [hintssss](directives/hints.md)
-
-[Hints]()&#x20;
-
-[Lists 2]()&#x20;
-
-bla2
-
-[Hints](./directives/hints.md)&#x20;
-
-[Code Editor](./syntax/code-editor.md)&#x20;
-
-[Tables](./syntax/tables.md)&#x20;
-
-| link                          |   |   |
-| ----------------------------- | - | - |
-| [Tables](./syntax/tables.md)  |   |   |
-|                               |   |   |
-|                               |   |   |
-
-::::link-array
-:::link-array-item{headerImage headerColor}
-[Model: Error]()&#x20;
+hiiii
 :::
 
-:::link-array-item{headerImage headerColor}
-[Model: Error]()&#x20;
-:::
-::::
 
-![](https://5096255.fs1.hubspotusercontent-na1.net/hubfs/5096255/clave1.png)
-
-
-
-![](https://archbee-image-uploads.s3.amazonaws.com/BbT7KQqqvz3LSYn2rwmao/fgNCDXhXccuHzQLkBcTZ6_image.png)
-
-***
-
-::::vertical-split{layout="middle"}
-:::vertical-split-item
-bla
-:::
-
-:::vertical-split-item
-bla bla
-:::
-::::
 
