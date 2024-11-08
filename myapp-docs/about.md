@@ -17,7 +17,7 @@ hiiii
 
 :::
 
-:::cta-button{label="bla button" docId docAnchorId externalHref openInNewTab="true"}
+:::cta-button{label="bla button" docId docAnchorId externalHref="https://bla.com" openInNewTab="true"}
 
 :::
 
