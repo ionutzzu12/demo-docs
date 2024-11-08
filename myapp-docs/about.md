@@ -8,11 +8,17 @@ Import [https://github.com/Archbee/demo-docs](https://github.com/Archbee/demo-do
 
 [bla](./petstore-2.0.yaml)
 
-:::expandable-heading
+::::expandable-heading
 # expand me
 
 hiiii
+
+:::hint{type="info"}
+callout in ex heading
 :::
+
+
+::::
 
 
 
