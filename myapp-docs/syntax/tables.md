@@ -12,19 +12,11 @@
 | Header    |    Title    | Here's this |
 | Paragraph |     Text    |    And more |
 
-:::drop-list{data="{&#x22;columns&#x22;:[{&#x22;id&#x22;:&#x22;1&#x22;,&#x22;name&#x22;:&#x22;Doing &#x22;,&#x22;items&#x22;:[{&#x22;id&#x22;:&#x22;VfscKkg6S8IMmp44S2M0E&#x22;,&#x22;content&#x22;:&#x22;&#x22;,&#x22;justAdded&#x22;:true}]},{&#x22;id&#x22;:&#x22;2&#x22;,&#x22;name&#x22;:&#x22;Testing&#x22;,&#x22;items&#x22;:[]},{&#x22;id&#x22;:&#x22;3&#x22;,&#x22;name&#x22;:&#x22;Done&#x22;,&#x22;items&#x22;:[]}]}"}
+:::api-method-v2{data="{&#x22;name&#x22;:&#x22;Get Cakes&#x22;,&#x22;method&#x22;:&#x22;GET&#x22;,&#x22;url&#x22;:&#x22;https://api.cakes.com&#x22;,&#x22;description&#x22;:&#x22;Get a cake by its ID&#x22;,&#x22;tab&#x22;:&#x22;examples&#x22;,&#x22;examples&#x22;:{&#x22;languages&#x22;:[{&#x22;id&#x22;:&#x22;YWnCxVcGsfXoF8PW3pt71&#x22;,&#x22;language&#x22;:&#x22;javascript&#x22;,&#x22;code&#x22;:&#x22;var myHeaders = new Headers();\nmyHeaders.append(\&#x22;Accept\&#x22;, \&#x22;application/json\&#x22;);\nmyHeaders.append(\&#x22;Content-Type\&#x22;, \&#x22;application/json\&#x22;);\n\nvar raw = JSON.stringify({\n   \&#x22;id\&#x22;: \&#x22;String\&#x22;\n});\n\nvar requestOptions = {\n   method: 'GET',\n   headers: myHeaders,\n   body: raw,\n   redirect: 'follow'\n};\n\nfetch(\&#x22;https://api.cakes.com\&#x22;, requestOptions)\n   .then(response => response.text())\n   .then(result => console.log(result))\n   .catch(error => console.log('error', error));&#x22;,&#x22;customLabel&#x22;:&#x22;&#x22;}],&#x22;selectedLanguageId&#x22;:&#x22;YWnCxVcGsfXoF8PW3pt71&#x22;},&#x22;results&#x22;:{&#x22;languages&#x22;:[{&#x22;id&#x22;:&#x22;UpZGqUJhoOMqzL9wbv0W_&#x22;,&#x22;language&#x22;:&#x22;200&#x22;,&#x22;customLabel&#x22;:&#x22;&#x22;,&#x22;code&#x22;:&#x22;{\n  \&#x22;name\&#x22;: \&#x22;Cake's name\&#x22;,\n}&#x22;},{&#x22;id&#x22;:&#x22;3VLBlNTUPMkekx7fGjTE6&#x22;,&#x22;language&#x22;:&#x22;404&#x22;,&#x22;customLabel&#x22;:&#x22;&#x22;,&#x22;code&#x22;:&#x22;{\n  \&#x22;message\&#x22;: \&#x22;Ain't no cake like that.\&#x22;\n}&#x22;}],&#x22;selectedLanguageId&#x22;:&#x22;UpZGqUJhoOMqzL9wbv0W_&#x22;},&#x22;request&#x22;:{&#x22;pathParameters&#x22;:[],&#x22;queryParameters&#x22;:[],&#x22;headerParameters&#x22;:[],&#x22;bodyDataParameters&#x22;:[{&#x22;name&#x22;:&#x22;id&#x22;,&#x22;kind&#x22;:&#x22;required&#x22;,&#x22;type&#x22;:&#x22;string&#x22;,&#x22;description&#x22;:&#x22;id of the cake to get&#x22;}],&#x22;formDataParameters&#x22;:[]},&#x22;currentNewParameter&#x22;:{&#x22;label&#x22;:&#x22;Body Parameter&#x22;,&#x22;value&#x22;:&#x22;bodyDataParameters&#x22;}}"}
 
 :::
 
-:::swagger{data="{&#x22;jsonFileLocation&#x22;:&#x22;https://petstore.swagger.io/v2/swagger.json&#x22;,&#x22;headers&#x22;:[]}"}
-
-:::
-
-:::graphiql{data="{&#x22;endpoint&#x22;:&#x22;https://app.archbee.com/api/graphql&#x22;,&#x22;query&#x22;:&#x22;{\n  status,\n  people\n}&#x22;}"}
-
-:::
-
-:::map{data="{&#x22;center&#x22;:[37.638744054600984,-122.45532989501955],&#x22;zoom&#x22;:12,&#x22;markerPositions&#x22;:[[37.65043351686625,-122.41790771484376],[37.657500671360346,-122.45121002197267],[37.63385024514714,-122.47283935546876]]}"}
+:::iframe{code="<!-- <p>paste iframe code here</p> -->"}
 
 :::
 
