@@ -16,7 +16,5 @@
 
 :::
 
-:::iframe{code="<!-- <p>paste iframe code here</p> -->"}
-
-:::
+::embed[]{embedUrl="https://www.codejourney.net/how-to-fix-visual-studio-code-intellisense-loading-infinitely/" html="<div class=&#x22;iframely-embed&#x22;><div class=&#x22;iframely-responsive&#x22; style=&#x22;padding-bottom: 42.3497%; padding-top: 120px;&#x22;><a href=&#x22;https://www.codejourney.net/how-to-fix-visual-studio-code-intellisense-loading-infinitely/&#x22; data-iframely-url=&#x22;//cdn.iframe.ly/api/iframe?url=https%3A%2F%2Fwww.codejourney.net%2Fhow-to-fix-visual-studio-code-intellisense-loading-infinitely%2F&key=4c0a82cc3c6a5d4fcd08607ae370bd79&#x22;></a></div></div><script async src=&#x22;//cdn.iframe.ly/embed.js&#x22; charset=&#x22;utf-8&#x22;></script>" originalUrl="https://www.codejourney.net/how-to-fix-visual-studio-code-intellisense-loading-infinitely/" title="How To Fix Visual Studio Code IntelliSense Loading Infinitely - CodeJourney.net"}
 
