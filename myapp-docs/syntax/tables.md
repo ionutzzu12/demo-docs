@@ -5,7 +5,7 @@
 | Header    | Title       |
 | Paragraph | Text        |
 
-## Alignment 2
+## Alignment 3
 
 | Syntax    | Description | Test Text   |
 | --------- | ----------- | ----------- |
