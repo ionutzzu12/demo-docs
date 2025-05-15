@@ -1,7 +1,7 @@
 # About
 
 :::expandable-heading
-# Expandable heading 12
+# Expandable heading 123
 
 **text text**
 :::
