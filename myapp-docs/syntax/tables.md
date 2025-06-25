@@ -122,3 +122,4 @@
   </tr>
 </table>
 
+[Heading 1 used as a title point links here](./headings.md)&#x20;
