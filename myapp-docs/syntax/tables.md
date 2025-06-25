@@ -49,7 +49,6 @@
     <td selected="false" align="left">
       <p>January, 2025</p>
     </td>
-
     <td selected="false" align="left">
       <p>: the max length of the <em>sessionContext.browserParameters.accept</em> parameter has been changed from 100 to 2000 symbols.</p>
     </td>
