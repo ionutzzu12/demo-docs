@@ -36,4 +36,4 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus mi erat, soda
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus mi erat, sodales sed cursus at, condimentum at neque. Vivamus sollicitudin felis nec commodo semper.
 
-[Heading 2 used as a title point links here]()&#x20;
+[Heading 2 used as a title point links here](./#heading-3)&#x20;
