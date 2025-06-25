@@ -68,6 +68,8 @@
   </tr>
 </table>
 
+## second table
+
 <table isTableHeaderOn="true" selectedColumns="" selectedRows="" selectedTable="false">
   <tr>
     <td selected="false" align="left">
@@ -110,9 +112,9 @@
     <td selected="false" align="left">
     </td>
     <td selected="false" align="left">
-      <ul class="contains-task-list">
-      <li class="task-list-item"><input type="checkbox" disabled> a</li>
-      <li class="task-list-item"><input type="checkbox" checked disabled> b</li>
+      <ul>
+      <li>a</li>
+      <li>b</li>
       </ul>
     </td>
     <td selected="false" align="left">
