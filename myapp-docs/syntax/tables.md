@@ -1,6 +1,6 @@
 # Tables
 
-<table isTableHeaderOn="false" selectedColumns="" selectedRows="" selectedTable="false" columnWidths="121">
+<table isTableHeaderOn="true" selectedColumns="" selectedRows="" selectedTable="false" columnWidths="121">
   <tr>
     <td selected="false" align="left">
       <p>Date</p>
