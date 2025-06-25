@@ -99,8 +99,8 @@
     </td>
     <td selected="false" align="left">
       <ul>
-      <li><a href="./lists-1.md">Lists 1</a> </li>
-      <li><a href="./../directives/link-arrays.md">Link arrays</a> </li>
+      <li><a href="">Lists 1</a></li>
+      <li><a href="./../directives/link-arrays.md">Link arrays</a></li>
       </ul>
     </td>
     <td selected="false" align="left">
@@ -110,6 +110,10 @@
     <td selected="false" align="left">
     </td>
     <td selected="false" align="left">
+      <ul class="contains-task-list">
+      <li class="task-list-item"><input type="checkbox" disabled> a</li>
+      <li class="task-list-item"><input type="checkbox" checked disabled> b</li>
+      </ul>
     </td>
     <td selected="false" align="left">
     </td>
