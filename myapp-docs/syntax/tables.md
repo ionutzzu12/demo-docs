@@ -5,17 +5,14 @@
     <td selected="false" align="left">
       <p>Date</p>
     </td>
-
     <td selected="false" align="left">
       <p>Changes</p>
     </td>
   </tr>
-
   <tr>
     <td selected="false" align="left">
       <p>April, 2025</p>
     </td>
-
     <td selected="false" align="left">
       <p>New methods were added:</p>
       <ul>
@@ -24,12 +21,10 @@
       </ul>
     </td>
   </tr>
-
   <tr>
     <td selected="false" align="left">
       <p>March, 2025</p>
     </td>
-
     <td selected="false" align="left">
       <p>API callback messages are now sent with the status <code>actionRequired</code> in case of additional processing/checking period by the bank. For the status <code>actionRequired</code> are now sent action.type and action.details as well.</p>
       <p>The generating and checking message token process has changed due to a new structure of API callback message. New methods were added:</p>
@@ -39,12 +34,10 @@
       </ul>
     </td>
   </tr>
-
   <tr>
     <td selected="false" align="left">
       <p>February, 2025</p>
     </td>
-
     <td selected="false" align="left">
       <p>For the <strong>applepay</strong> payment method, the following parameters are now <strong>required</strong>: <em>session.order.customer.personsData.country</em></p>
       <p><em>session.order.customer.personsData.firstName</em></p>
@@ -52,7 +45,6 @@
       <p>in the <a href="">Start Payment Session</a> method. - <em>customer.address.country</em> in the <a href="">Create Payment</a> method.</p>
     </td>
   </tr>
-
   <tr>
     <td selected="false" align="left">
       <p>January, 2025</p>
@@ -62,12 +54,10 @@
       <p>: the max length of the <em>sessionContext.browserParameters.accept</em> parameter has been changed from 100 to 2000 symbols.</p>
     </td>
   </tr>
-
   <tr>
     <td selected="false" align="left">
       <p>January, 2025</p>
     </td>
-
     <td selected="false" align="left">
       <ol>
       <li><em><strong>Upi</strong></em> payment method: the max length of the first name and last name parameters in the <a href="">Start Payment Session</a> and <a href="">Create Payment</a> methods is now <strong>40</strong>.</li>
