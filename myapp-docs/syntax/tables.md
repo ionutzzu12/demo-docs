@@ -2,12 +2,12 @@
 
 <table isTableHeaderOn="true" selectedColumns="" selectedRows="" selectedTable="false">
   <tr>
-    <td selected="false" align="left">
+    <th selected="false" align="left">
       <p>Date</p>
-    </td>
-    <td selected="false" align="left">
+    </th>
+    <th selected="false" align="left">
       <p>Changes</p>
-    </td>
+    </th>
   </tr>
   <tr>
     <td selected="false" align="left">
