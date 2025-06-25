@@ -19,7 +19,7 @@
       <li>JazzCash (Pakistan) - GAPI payment method</li>
       <li>Interac (Canada) - MAPI payout method</li>
       </ul>
-      <p><img src="https://archbee-image-uploads-qa.s3.amazonaws.com/BbT7KQqqvz3LSYn2rwmao/okImeFmr_F9thLy7w2hcj_image.png" alt=""></p>
+      <img src="https://archbee-image-uploads-qa.s3.amazonaws.com/BbT7KQqqvz3LSYn2rwmao/okImeFmr_F9thLy7w2hcj_image.png" alt="">
     </td>
   </tr>
   <tr>
