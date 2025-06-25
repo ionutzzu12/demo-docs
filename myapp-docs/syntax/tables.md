@@ -19,7 +19,7 @@
       <li>JazzCash (Pakistan) - GAPI payment method</li>
       <li>Interac (Canada) - MAPI payout method</li>
       </ul>
-      <img src="https://archbee-image-uploads-qa.s3.amazonaws.com/BbT7KQqqvz3LSYn2rwmao/okImeFmr_F9thLy7w2hcj_image.png" alt="">
+      <p><img src="https://archbee-image-uploads-qa.s3.amazonaws.com/BbT7KQqqvz3LSYn2rwmao/okImeFmr_F9thLy7w2hcj_image.png" alt=""></p>
     </td>
   </tr>
   <tr>
@@ -64,6 +64,45 @@
       <li>Every <a href="">Get Payment Status</a> response now includes the <em>session.payment.amount</em> parameter, regardless of the current payment status.</li>
       <li>New payment/payout status, <code>cancelledByCustomer</code> , has been added to <a href="">Operation statuses</a>. The status means that a customer declined the payment or payout attempt and returned to the merchant page.</li>
       </ol>
+    </td>
+  </tr>
+</table>
+
+<table isTableHeaderOn="true" selectedColumns="" selectedRows="" selectedTable="false">
+  <tr>
+    <td selected="false">
+      <p>a</p>
+    </td>
+    <td selected="false">
+      <p>b</p>
+    </td>
+    <td selected="false">
+      <p>c</p>
+    </td>
+  </tr>
+  <tr>
+    <td selected="false">
+      <p>a</p>
+    </td>
+    <td selected="false">
+    </td>
+    <td selected="false">
+    </td>
+  </tr>
+  <tr>
+    <td selected="false">
+    </td>
+    <td selected="false">
+    </td>
+    <td selected="false">
+    </td>
+  </tr>
+  <tr>
+    <td selected="false">
+    </td>
+    <td selected="false">
+    </td>
+    <td selected="false">
     </td>
   </tr>
 </table>
