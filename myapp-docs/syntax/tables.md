@@ -1,13 +1,13 @@
 # Tables
 
-<table isTableHeaderOn="true" selectedColumns="" selectedRows="" selectedTable="false">
+<table isTableHeaderOn="false" selectedColumns="" selectedRows="" selectedTable="false" columnWidths="121">
   <tr>
-    <th selected="false" align="left">
+    <td selected="false" align="left">
       <p>Date</p>
-    </th>
-    <th selected="false" align="left">
+    </td>
+    <td selected="false" align="left">
       <p>Changes</p>
-    </th>
+    </td>
   </tr>
   <tr>
     <td selected="false" align="left">
@@ -19,6 +19,7 @@
       <li>JazzCash (Pakistan) - GAPI payment method</li>
       <li>Interac (Canada) - MAPI payout method</li>
       </ul>
+      <p><img src="https://archbee-image-uploads-qa.s3.amazonaws.com/BbT7KQqqvz3LSYn2rwmao/okImeFmr_F9thLy7w2hcj_image.png" alt=""></p>
     </td>
   </tr>
   <tr>
