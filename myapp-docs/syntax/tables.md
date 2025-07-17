@@ -1,6 +1,6 @@
 # Tables
 
-<table selectedColumns="" selectedRows="" selectedTable="false" columnWidths="121" isTableHeaderOn="true">
+<table isTableHeaderOn="true" selectedColumns="" selectedRows="" selectedTable="false" columnWidths="121">
   <tr>
     <td selected="false" align="left">
       <p>Date</p>
@@ -70,7 +70,7 @@
 
 ## second table
 
-<table selectedColumns="" selectedRows="" selectedTable="false" isTableHeaderOn="true">
+<table isTableHeaderOn="true" selectedColumns="" selectedRows="" selectedTable="false">
   <tr>
     <td selected="false" align="left">
       <p>a</p>
@@ -125,3 +125,4 @@
 [Heading 1 used as a title point links here](./headings.md#heading-3)&#x20;
 
 yes
+
