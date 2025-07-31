@@ -1,6 +1,6 @@
 # Tables
 
-<table selectedColumns="" selectedRows="" selectedTable="false" columnWidths="121" isTableHeaderOn="true">
+<table isTableHeaderOn="true" selectedColumns="" selectedRows="" selectedTable="false" columnWidths="121">
   <tr>
     <td selected="false" align="left">
       <p>Date</p>
@@ -17,6 +17,7 @@
       <p>New methods were added:</p>
       <ul>
       <li>JazzCash (Pakistan) - GAPI payment method</li>
+      <li></li>
       <li>Interac (Canada) - MAPI payout method</li>
       </ul>
       <p><img src="https://archbee-image-uploads-qa.s3.amazonaws.com/BbT7KQqqvz3LSYn2rwmao/okImeFmr_F9thLy7w2hcj_image.png" alt=""></p>
@@ -70,7 +71,7 @@
 
 ## second table
 
-<table selectedColumns="" selectedRows="" selectedTable="false" isTableHeaderOn="true">
+<table isTableHeaderOn="true" selectedColumns="" selectedRows="" selectedTable="false">
   <tr>
     <td selected="false" align="left">
       <p>a</p>
