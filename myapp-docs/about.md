@@ -1,7 +1,7 @@
 # About
 
 :::expandable-heading
-# Expandable heading 12345
+# Expandable heading 123456
 
 **text text**
 :::
