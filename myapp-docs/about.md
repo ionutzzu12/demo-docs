@@ -1,14 +1,16 @@
 # About
 
-:::expandable-heading
+:::ExpandableHeading
 # Expandable heading 1
 
 **text text**
 :::
 
-[](assets/bla.txt)
+[**assets/bla.txt**](assets/bla.txt)
 
-::::expandable-heading
+::File[]{src="https://archbee-doc-uploads-qa.s3.us-east-1.amazonaws.com/BbT7KQqqvz3LSYn2rwmao/0Du8N6r_pquaIdkTafCXB_space-links-3.md" signedSrc="https://archbee-doc-uploads-qa.s3.us-east-1.amazonaws.com/BbT7KQqqvz3LSYn2rwmao/0Du8N6r_pquaIdkTafCXB_space-links-3.md" label="space-links-3.md"}
+
+::::ExpandableHeading
 ## Expandable Heading 2
 
 :::hint{type="info"}
@@ -16,23 +18,23 @@ asdsadasdasdas
 :::
 ::::
 
-:::expandable-heading
-### :comment[Expandable heading 3]{resolved="false" docCommentId="1dmTOsK3BiPES9SIGMSjH"}
+:::ExpandableHeading
+### \:comment
 
 - [ ] dsfsdfdsfdsf
 - [x] sdfdsfsdfds
 :::
 
-:::cta-button{label="Custom text" docId docAnchorId externalHref="https://www.google.com" openInNewTab="true"}
+:::CtaButton{label="Custom text" docId docAnchorId externalHref="https://www.google.com" openInNewTab="true"}
 
 :::
 
-:::::vertical-split{layout="left"}
-:::vertical-split-item
+:::::VerticalSplit{layout="left"}
+:::VerticalSplitItem
 Test random
 :::
 
-::::vertical-split-item
+::::VerticalSplitItem
 :::hint{type="warning"}
 callout
 :::
@@ -43,59 +45,89 @@ callout
 int_0^infty x^2 dx
 ```
 
-:::iframe{iframeHeight="500" code="test iframe1"}
+:::Iframe{iframeHeight="500" code="test iframe1"}
 
 :::
 
-::::::workflow-block
-:::workflow-block-item
+::::::WorkflowBlock
+:::WorkflowBlockItem
 Test 1
 :::
 
-:::workflow-block-item
+:::WorkflowBlockItem
 Test2&#x20;
 
-| a  | b  | c  |
-| :- | :- | :- |
-|    |    |    |
-|    |    |    |
-|    |    |    |
+<table isTableHeaderOn="true" columnWidths="[object Object]">
+  <tr>
+    <td align="left">
+      <p>a</p>
+    </td>
+    <td align="left">
+      <p>b</p>
+    </td>
+    <td align="left">
+      <p>c</p>
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    </td>
+    <td align="left">
+    </td>
+    <td align="left">
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    </td>
+    <td align="left">
+    </td>
+    <td align="left">
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    </td>
+    <td align="left">
+    </td>
+    <td align="left">
+    </td>
+  </tr>
+</table>
 :::
 
-:::workflow-block-item
+:::WorkflowBlockItem
 Test 3
 :::
 
-:::::workflow-block-item
-::::link-array
-:::link-array-item{headerType="COLOR" headerColor="#06963d"}
-[Item separator list](./syntax/an-item.md)&#x20;
+:::::WorkflowBlockItem
+::::LinkArray{contentSource="CUSTOM"}
+:::LinkArrayItem{headerType="COLOR" headerColor="#06963d"}
+[**Item separator list**](./syntax/an-item.md)&#x20;
 :::
 
-:::link-array-item{headerType="COLOR" headerColor="#23982b"}
+:::LinkArrayItem{headerType="COLOR" headerColor="#23982b"}
 
 :::
 ::::
 
-:::image{src="https://archbee-image-uploads.s3.amazonaws.com/511c8QBH-VHiwWnyzIwUb/pMGtTv-_k8UMEPPzTtL7X_image.png" signedSrc="https://archbee-image-uploads.s3.amazonaws.com/511c8QBH-VHiwWnyzIwUb/pMGtTv-_k8UMEPPzTtL7X_image.png" size="10" width="150" height="136" position="flex-start" caption="Andrei" alt="Blondu"}
-
-:::
+::Image[]{src="https://archbee-image-uploads.s3.amazonaws.com/511c8QBH-VHiwWnyzIwUb/pMGtTv-_k8UMEPPzTtL7X_image.png" signedSrc="https://archbee-image-uploads.s3.amazonaws.com/511c8QBH-VHiwWnyzIwUb/pMGtTv-_k8UMEPPzTtL7X_image.png" size="10" width="150" height="136" position="flex-start" caption="Andrei" alt="Blondu"}
 :::::
 ::::::
 
 ***
 
-::::tabs
-:::tab{title="Tab Name"}
+::::Tabs
+:::Tab{title="Tab Name"}
 Test tab aici
 :::
 
-:::tab{title="Andu2"}
+:::Tab{title="Andu2"}
 test tab2
 :::
 ::::
 
-:::codeblocktabs
+:::CodeblockTabs
 ```javascript
 test
 ```
@@ -105,23 +137,11 @@ if something
 ```
 :::
 
-::embed[]{url="https://www.loom.com/embed/f2d56eab6a304c83a367d7e529948e33"}
+::loom[]{url="https://www.loom.com/embed/f2d56eab6a304c83a367d7e529948e33"}
 
+::codepen[]{url="https://codepen.io/DragosBulugean/embed/vqrgYq"}
 
+::typeform[]{url="https://ko8vze9nzlr.typeform.com/to/IaAyThBA"}
 
-
-
-
-
-
-
-::embed[]{url="https://codepen.io/DragosBulugean/embed/vqrgYq"}
-
-
-
-::embed[]{url="https://ko8vze9nzlr.typeform.com/to/IaAyThBA"}
-
-
-
-::embed[]{url="https://docs.google.com/document/d/1jTM4gUFIjvxpC88HNsAI-hWDkf7EscDzQh1r_QFlvV8/edit#heading=h.f1pso1jruysd"}
+::google-docs[]{url="https://docs.google.com/document/d/1jTM4gUFIjvxpC88HNsAI-hWDkf7EscDzQh1r_QFlvV8/edit#heading=h.f1pso1jruysd"}
 
