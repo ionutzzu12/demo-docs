@@ -6,6 +6,8 @@
 **text text**
 :::
 
+[](assets/bla.txt)
+
 ::::expandable-heading
 ## Expandable Heading 2
 
