@@ -1,14 +1,14 @@
 # About
 
 :::ExpandableHeading
-# Expandable heading 1
+# Expandable heading 2
 
 **text text**
 :::
 
 [**assets/bla.txt**](assets/bla.txt)
 
-::File[]{src="https://archbee-doc-uploads-qa.s3.us-east-1.amazonaws.com/BbT7KQqqvz3LSYn2rwmao/0Du8N6r_pquaIdkTafCXB_space-links-3.md" signedSrc="https://archbee-doc-uploads-qa.s3.us-east-1.amazonaws.com/BbT7KQqqvz3LSYn2rwmao/0Du8N6r_pquaIdkTafCXB_space-links-3.md" label="space-links-3.md"}
+::File[]{src="https://archbee-doc-uploads-qa.s3.us-east-1.amazonaws.com/BbT7KQqqvz3LSYn2rwmao/0Du8N6r_pquaIdkTafCXB_space-links-3.md" signedSrc="https://archbee-doc-uploads-qa.s3.us-east-1.amazonaws.com/BbT7KQqqvz3LSYn2rwmao/0Du8N6r_pquaIdkTafCXB_space-links-3.md" label="space-links-3.md" caption}
 
 ::::ExpandableHeading
 ## Expandable Heading 2
@@ -25,7 +25,7 @@ asdsadasdasdas
 - [x] sdfdsfsdfds
 :::
 
-:::CtaButton{label="Custom text" docId docAnchorId externalHref="https://www.google.com" openInNewTab="true"}
+:::CtaButton{label="Custom text" docId docAnchorId externalHref="https://www.google.com" openInNewTab="true" noFollow="false"}
 
 :::
 
@@ -45,7 +45,7 @@ callout
 int_0^infty x^2 dx
 ```
 
-:::Iframe{iframeHeight="500" code="test iframe1"}
+:::Iframe{code="test iframe1" iframeHeight="500"}
 
 :::
 
@@ -57,7 +57,7 @@ Test 1
 :::WorkflowBlockItem
 Test2&#x20;
 
-<table isTableHeaderOn="true" columnWidths="[object Object]">
+<table isTableHeaderOn="true" columnWidths="192,192,192">
   <tr>
     <td align="left">
       <p>a</p>
