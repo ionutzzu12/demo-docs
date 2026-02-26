@@ -10,8 +10,13 @@ adada
 :::WorkflowBlockItem
 daa
 
-dadadad3
+dadadad34
 :::
 ::::
 
-link to tables: [**Tables**](./syntax/tables.md)&#x20;
+link to tables: &#x20;
+
+:::CtaButton{label="TABLES" docId="k0ced6h6osSuRtxBC9lC8" docAnchorId noFollow="false" openInNewTab="false" externalHref}
+
+:::
+
