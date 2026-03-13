@@ -4,8 +4,8 @@ slug: lolot
 description: descccc
 image: blabla
 docTags: lol
-createdAt: Thu Mar 12 2026 12:07:29 GMT+0200 (Eastern European Standard Time)
-updatedAt: Thu Mar 12 2026 13:52:21 GMT+0200 (Eastern European Standard Time)
+createdAt: Fri Mar 13 2026 09:33:26 GMT+0200 (Eastern European Standard Time)
+updatedAt: Fri Mar 13 2026 09:34:08 GMT+0200 (Eastern European Standard Time)
 ---
 
 this is a paragraph from docs 2.7.1 a&#x20;
