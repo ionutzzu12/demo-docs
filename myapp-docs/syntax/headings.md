@@ -2,16 +2,16 @@
 title: Heading 2 used as a title point links here
 docTags: 
 createdAt: Wed Mar 25 2026 16:28:13 GMT+0200 (Eastern European Standard Time)
-updatedAt: Wed Mar 25 2026 16:28:40 GMT+0200 (Eastern European Standard Time)
+updatedAt: Wed Mar 25 2026 16:35:51 GMT+0200 (Eastern European Standard Time)
 ---
 
 # Another Heading 1
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus mi erat, sodales sed cursus at, condimentum at neque. Vivamus sollicitudin felis nec commodo semper.
 
-\{\{var0}}&#x20;
+## blea
 
-## Heading 2
+Heading 2
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus mi erat, sodales sed cursus at, condimentum at neque. Vivamus sollicitudin felis nec commodo semper.
 
@@ -43,7 +43,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus mi erat, soda
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus mi erat, sodales sed cursus at, condimentum at neque. Vivamus sollicitudin felis nec commodo semper.
 
-[**Heading 2 used as a title point links here**](./#heading-2)&#x20;
+[**Heading 2 used as a title point links here**](./#blea)&#x20;
 
 [**https://platform.openai.com/playground/prompts?models=gpt-4.1**](https://platform.openai.com/playground/prompts?models=gpt-4.1)
 
