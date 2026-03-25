@@ -1,0 +1,615 @@
+---
+title: /v2/budgets
+slug: fTy_m5lCK8zlvh73MD7aP
+docTags: 
+createdAt: Wed Mar 25 2026 15:49:58 GMT+0200 (Eastern European Standard Time)
+updatedAt: Wed Mar 25 2026 15:53:19 GMT+0200 (Eastern European Standard Time)
+---
+
+{
+  "id": "1_Ce2QpGO6k5ZAU78ICP9",
+  "type": "api-oas-v2",
+  "data": {
+    "method": "GET",
+    "url": "https://dev-api.cloudzero.com/v2/budgets",
+    "servers": [
+      {
+        "url": "https://dev-api.cloudzero.com/v2/budgets"
+      }
+    ],
+    "name": "",
+    "description": "Get a list of Budgets",
+    "contentType": "application/json",
+    "request": {
+      "pathParameters": [],
+      "headerParameters": [
+        {
+          "kind": "optional",
+          "name": "cloudzero-idempotency-key",
+          "type": "string",
+          "description": "<p>If passed, any subsequent operation with the same value for this header will return the exact same result.\nThis is true for all responses, i.e. successes and errors.</p>"
+        },
+        {
+          "kind": "optional",
+          "name": "cloudzero-test-key",
+          "type": "string",
+          "description": "<p>If passed, the operation executes in the namespace specified by this key.\nResource mutations in the namespace last for 1 hour.</p>"
+        }
+      ],
+      "queryParameters": [
+        {
+          "kind": "optional",
+          "name": "limit",
+          "type": "number<int32>",
+          "description": "Number of items to return per page",
+          "format": "int32"
+        },
+        {
+          "kind": "optional",
+          "name": "cursor",
+          "type": "string",
+          "description": "<p>Pass only this parameter to page forward or back; NOTE: remember to urlencode it!</p>"
+        },
+        {
+          "kind": "optional",
+          "name": "sort_key",
+          "type": "object",
+          "description": "Sortable Budget properties",
+          "customType": "budget_sort_keys",
+          "schema": [],
+          "modelRef": "#/components/schemas/budget_sort_keys"
+        },
+        {
+          "kind": "optional",
+          "name": "sort_order",
+          "type": "object",
+          "description": "ASC or DESC sort order",
+          "customType": "sort_order",
+          "schema": [],
+          "modelRef": "#/components/schemas/sort_order"
+        },
+        {
+          "kind": "optional",
+          "name": "expand",
+          "type": "object",
+          "description": "If passed, query will expand the properties specified.\nThis is a multi-value query parameter, pass it more than once to specify multiple values, e.g.\n  &expand=current&expand=history\n",
+          "customType": "budget_get_all_expand",
+          "schema": [],
+          "modelRef": "#/components/schemas/budget_get_all_expand"
+        }
+      ],
+      "bodyDataParameters": [],
+      "formDataParameters": [],
+      "oAuthParameters": [
+        {
+          "id": "APIKeyAuth",
+          "name": "Authorization",
+          "kind": "optional",
+          "type": "apiKey",
+          "in": "header"
+        }
+      ]
+    },
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": "Successful Operation",
+        "jsonExample": "",
+        "isExpanded": true,
+        "schema": [
+          {
+            "kind": "optional",
+            "type": "object",
+            "description": "",
+            "schema": [
+              {
+                "name": "pagination",
+                "kind": "optional",
+                "type": "object",
+                "description": "Supports programmatic pagination",
+                "modelRef": "#/components/schemas/pagination",
+                "customType": "pagination",
+                "schema": [
+                  {
+                    "name": "page_count",
+                    "kind": "optional",
+                    "type": "integer<int32>",
+                    "description": "",
+                    "example": 0,
+                    "format": "int32"
+                  },
+                  {
+                    "name": "item_count",
+                    "kind": "optional",
+                    "type": "integer<int32>",
+                    "description": "",
+                    "example": 0,
+                    "format": "int32"
+                  },
+                  {
+                    "name": "total_count",
+                    "kind": "optional",
+                    "type": "integer<int32>",
+                    "description": "",
+                    "example": 0,
+                    "format": "int32"
+                  },
+                  {
+                    "name": "cursor",
+                    "kind": "optional",
+                    "type": "object",
+                    "description": "",
+                    "example": "",
+                    "schema": [
+                      {
+                        "name": "next_cursor",
+                        "kind": "optional",
+                        "type": "string<nullable>",
+                        "description": "",
+                        "example": "",
+                        "format": "nullable"
+                      },
+                      {
+                        "name": "previous_cursor",
+                        "kind": "optional",
+                        "type": "string<nullable>",
+                        "description": "",
+                        "example": "",
+                        "format": "nullable"
+                      },
+                      {
+                        "name": "has_next",
+                        "kind": "optional",
+                        "type": "boolean",
+                        "description": "",
+                        "example": ""
+                      },
+                      {
+                        "name": "has_previous",
+                        "kind": "optional",
+                        "type": "boolean",
+                        "description": "",
+                        "example": ""
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "sorting",
+                "kind": "optional",
+                "type": "object",
+                "description": "",
+                "modelRef": "#/components/schemas/budget_sorting",
+                "customType": "budget_sorting",
+                "schema": [
+                  {
+                    "name": "available",
+                    "kind": "optional",
+                    "type": "object",
+                    "description": "",
+                    "example": "",
+                    "schema": [
+                      {
+                        "name": "sort_keys",
+                        "kind": "optional",
+                        "type": "array",
+                        "description": "Sortable Budget properties",
+                        "modelRef": "#/components/schemas/budget_sort_keys",
+                        "customType": "budget_sort_keys[]",
+                        "schema": []
+                      },
+                      {
+                        "name": "sort_orders",
+                        "kind": "optional",
+                        "type": "array",
+                        "description": "",
+                        "example": "[\"asc\",\"desc\"]",
+                        "modelRef": "#/components/schemas/sort_orders",
+                        "customType": "sort_orders",
+                        "schema": []
+                      }
+                    ]
+                  },
+                  {
+                    "name": "current",
+                    "kind": "optional",
+                    "type": "array",
+                    "description": "",
+                    "example": "",
+                    "itemType": "object",
+                    "customType": "object[]",
+                    "schema": [
+                      {
+                        "name": "sort_key",
+                        "kind": "optional",
+                        "type": "string",
+                        "description": "Sortable Budget properties",
+                        "modelRef": "#/components/schemas/budget_sort_keys",
+                        "customType": "budget_sort_keys",
+                        "schema": []
+                      },
+                      {
+                        "name": "sort_order",
+                        "kind": "optional",
+                        "type": "string",
+                        "description": "",
+                        "modelRef": "#/components/schemas/sort_order",
+                        "customType": "sort_order",
+                        "schema": []
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "budgets",
+                "kind": "optional",
+                "type": "object",
+                "description": "",
+                "modelRef": "#/components/schemas/budget_maybe_current_expanded",
+                "customType": "budget_maybe_current_expanded",
+                "schema": [],
+                "complexType": "anyOf",
+                "complexItems": [
+                  {
+                    "name": "budget",
+                    "description": "",
+                    "modelRef": "#/components/schemas/budget",
+                    "schema": [
+                      {
+                        "name": "name",
+                        "kind": "required",
+                        "type": "string",
+                        "description": "Budget name, must be unique within a View",
+                        "example": ""
+                      },
+                      {
+                        "name": "planned_limits",
+                        "kind": "required",
+                        "type": "object",
+                        "description": "Mapping of date to amount, where\n  date is an ISO Formatted string\n  amount is a Mapping of the literal string \"amount\" to a dollar amount\n",
+                        "example": "{\"monthly\":{\"2022-02-01T00:00:00+00:00\":{\"amount\":\"1000.00\"}}}",
+                        "modelRef": "#/components/schemas/budget_planned_limits",
+                        "customType": "budget_planned_limits",
+                        "schema": [
+                          {
+                            "name": "monthly",
+                            "kind": "required",
+                            "type": "map",
+                            "description": "Monthly planned limit as a mapping of month date to amount, where\n  month date is an ISO Formatted Date [Time] String that will be coerced to the first of the month\n  amount is a Mapping of the literal string \"amount\" to a dollar amount\n",
+                            "example": "",
+                            "customType": "map<string, object>",
+                            "schema": []
+                          }
+                        ]
+                      },
+                      {
+                        "name": "view",
+                        "kind": "required",
+                        "type": "object",
+                        "description": "View associated with this Budget",
+                        "modelRef": "#/components/schemas/with_id",
+                        "customType": "with_id",
+                        "schema": [
+                          {
+                            "name": "id",
+                            "kind": "required",
+                            "type": "string",
+                            "description": "",
+                            "example": ""
+                          }
+                        ]
+                      },
+                      {
+                        "name": "alerts",
+                        "kind": "optional",
+                        "type": "object",
+                        "description": "Mapping of 1-100 to Y/N, where\n  1-100 is the percentage of the budget at which to send an alert\n  Y/N is whether or not to send the alert\n",
+                        "example": "{\"alerts\":{\"80\":\"N\",\"100\":\"Y\"}}",
+                        "modelRef": "#/components/schemas/budget_alerts",
+                        "customType": "budget_alerts",
+                        "schema": []
+                      },
+                      {
+                        "name": "id",
+                        "kind": "required",
+                        "type": "string",
+                        "description": "",
+                        "example": ""
+                      },
+                      {
+                        "name": "created",
+                        "kind": "required",
+                        "type": "string",
+                        "description": "UTC timestamp for the creation of this entity",
+                        "modelRef": "#/components/schemas/epoch",
+                        "customType": "epoch",
+                        "schema": []
+                      },
+                      {
+                        "name": "last_updated",
+                        "kind": "required",
+                        "type": "string",
+                        "description": "UTC timestamp for the last update of this entity",
+                        "modelRef": "#/components/schemas/epoch",
+                        "customType": "epoch",
+                        "schema": []
+                      },
+                      {
+                        "name": "cost_type",
+                        "kind": "required",
+                        "type": "string",
+                        "description": "Type of charges included in the cost calculation, where\n  real_cost: filters your bill to only display charges directly related to consumption\n",
+                        "modelRef": "#/components/schemas/cost_type",
+                        "customType": "cost_type",
+                        "schema": []
+                      },
+                      {
+                        "name": "granularity",
+                        "kind": "required",
+                        "type": "string",
+                        "description": "Supported periods, e.g. \"monthly\"",
+                        "modelRef": "#/components/schemas/granularity",
+                        "customType": "granularity",
+                        "schema": []
+                      }
+                    ]
+                  },
+                  {
+                    "name": "budget_current_expanded",
+                    "description": "",
+                    "modelRef": "#/components/schemas/budget_current_expanded",
+                    "schema": [
+                      {
+                        "name": "name",
+                        "kind": "required",
+                        "type": "string",
+                        "description": "Budget name, must be unique within a View",
+                        "example": ""
+                      },
+                      {
+                        "name": "planned_limits",
+                        "kind": "required",
+                        "type": "object",
+                        "description": "Mapping of date to amount, where\n  date is an ISO Formatted string\n  amount is a Mapping of the literal string \"amount\" to a dollar amount\n",
+                        "example": "{\"monthly\":{\"2022-02-01T00:00:00+00:00\":{\"amount\":\"1000.00\"}}}",
+                        "modelRef": "#/components/schemas/budget_planned_limits",
+                        "customType": "budget_planned_limits",
+                        "schema": [
+                          {
+                            "name": "monthly",
+                            "kind": "required",
+                            "type": "map",
+                            "description": "Monthly planned limit as a mapping of month date to amount, where\n  month date is an ISO Formatted Date [Time] String that will be coerced to the first of the month\n  amount is a Mapping of the literal string \"amount\" to a dollar amount\n",
+                            "example": "",
+                            "customType": "map<string, object>",
+                            "schema": []
+                          }
+                        ]
+                      },
+                      {
+                        "name": "view",
+                        "kind": "required",
+                        "type": "object",
+                        "description": "View associated with this Budget",
+                        "modelRef": "#/components/schemas/with_id",
+                        "customType": "with_id",
+                        "schema": [
+                          {
+                            "name": "id",
+                            "kind": "required",
+                            "type": "string",
+                            "description": "",
+                            "example": ""
+                          }
+                        ]
+                      },
+                      {
+                        "name": "alerts",
+                        "kind": "required",
+                        "type": "object",
+                        "description": "Mapping of 1-100 to Y/N, where\n  1-100 is the percentage of the budget at which to send an alert\n  Y/N is whether or not to send the alert\n",
+                        "example": "{\"alerts\":{\"80\":\"N\",\"100\":\"Y\"}}",
+                        "modelRef": "#/components/schemas/budget_alerts",
+                        "customType": "budget_alerts",
+                        "schema": []
+                      },
+                      {
+                        "name": "id",
+                        "kind": "required",
+                        "type": "string",
+                        "description": "",
+                        "example": ""
+                      },
+                      {
+                        "name": "created",
+                        "kind": "required",
+                        "type": "string",
+                        "description": "UTC timestamp for the creation of this entity",
+                        "modelRef": "#/components/schemas/epoch",
+                        "customType": "epoch",
+                        "schema": []
+                      },
+                      {
+                        "name": "last_updated",
+                        "kind": "required",
+                        "type": "string",
+                        "description": "UTC timestamp for the last update of this entity",
+                        "modelRef": "#/components/schemas/epoch",
+                        "customType": "epoch",
+                        "schema": []
+                      },
+                      {
+                        "name": "cost_type",
+                        "kind": "required",
+                        "type": "string",
+                        "description": "Type of charges included in the cost calculation, where\n  real_cost: filters your bill to only display charges directly related to consumption\n",
+                        "modelRef": "#/components/schemas/cost_type",
+                        "customType": "cost_type",
+                        "schema": []
+                      },
+                      {
+                        "name": "granularity",
+                        "kind": "required",
+                        "type": "string",
+                        "description": "Supported periods, e.g. \"monthly\"",
+                        "modelRef": "#/components/schemas/granularity",
+                        "customType": "granularity",
+                        "schema": []
+                      },
+                      {
+                        "name": "current",
+                        "kind": "required",
+                        "type": "object",
+                        "description": "",
+                        "modelRef": "#/components/schemas/budget_current",
+                        "customType": "budget_current",
+                        "schema": [
+                          {
+                            "name": "actual",
+                            "kind": "required",
+                            "type": "string",
+                            "description": "",
+                            "example": ""
+                          },
+                          {
+                            "name": "planned",
+                            "kind": "required",
+                            "type": "string",
+                            "description": "",
+                            "example": ""
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "isExpanded": true
+          }
+        ]
+      },
+      {
+        "statusCode": "400",
+        "description": "Bad Request Error",
+        "jsonExample": "",
+        "isExpanded": true,
+        "schema": [
+          {
+            "kind": "optional",
+            "type": "object",
+            "description": "",
+            "schema": [
+              {
+                "name": "error",
+                "kind": "optional",
+                "type": "object",
+                "description": "",
+                "modelRef": "#/components/schemas/error",
+                "customType": "error",
+                "schema": [
+                  {
+                    "name": "message",
+                    "kind": "optional",
+                    "type": "string",
+                    "description": "",
+                    "example": ""
+                  },
+                  {
+                    "name": "type",
+                    "kind": "optional",
+                    "type": "string",
+                    "description": "",
+                    "example": ""
+                  }
+                ]
+              }
+            ],
+            "isExpanded": true
+          }
+        ]
+      },
+      {
+        "statusCode": "403",
+        "description": "Forbidden",
+        "jsonExample": "",
+        "isExpanded": true,
+        "schema": [
+          {
+            "kind": "optional",
+            "type": "object",
+            "description": "",
+            "schema": [
+              {
+                "name": "message",
+                "kind": "required",
+                "type": "string",
+                "description": "",
+                "example": ""
+              }
+            ],
+            "isExpanded": true
+          }
+        ]
+      }
+    ],
+    "hasXCodeSamples": false,
+    "examples": {
+      "languages": [
+        {
+          "id": "RWjFrZMhct77x2QDovqoO",
+          "language": "curl",
+          "label": "cURL",
+          "code": "curl --location 'https://dev-api.cloudzero.com/v2/budgets' \\\n--header 'Accept: application/json' \\\n--header 'Content-Type: application/json'"
+        },
+        {
+          "id": "qfe0mOAHU7h5m8Vdwsdus",
+          "language": "javascript",
+          "label": "javascript",
+          "code": "var myHeaders = new Headers();\nmyHeaders.append(\"Accept\", \"application/json\");\nmyHeaders.append(\"Content-Type\", \"application/json\");\n\nvar requestOptions = {\n   method: 'GET',\n   headers: myHeaders,\n   redirect: 'follow'\n};\n\nfetch(\"https://dev-api.cloudzero.com/v2/budgets\", requestOptions)\n   .then(response => response.text())\n   .then(result => console.log(result))\n   .catch(error => console.log('error', error));"
+        },
+        {
+          "id": "kHNi-1t_1nxTFlh0l-dVW",
+          "language": "ruby",
+          "label": "Ruby",
+          "code": "require \"uri\"\nrequire \"json\"\nrequire \"net/http\"\n\nurl = URI(\"https://dev-api.cloudzero.com/v2/budgets\")\n\nhttps = Net::HTTP.new(url.host, url.port)\nhttps.use_ssl = true\n\nrequest = Net::HTTP::Get.new(url)\nrequest[\"Accept\"] = \"application/json\"\nrequest[\"Content-Type\"] = \"application/json\"\n\nresponse = https.request(request)\nputs response.read_body\n"
+        },
+        {
+          "id": "xY2fF7wHalhKe3h3ZjPt5",
+          "language": "python",
+          "label": "Python",
+          "code": "import requests\nimport json\n\nurl = \"https://dev-api.cloudzero.com/v2/budgets\"\n\npayload = {}\nheaders = {\n   'Accept': 'application/json',\n   'Content-Type': 'application/json'\n}\n\nresponse = requests.request(\"GET\", url, headers=headers, data=payload)\n\nprint(response.text)\n"
+        }
+      ],
+      "selectedLanguageId": "RWjFrZMhct77x2QDovqoO"
+    },
+    "results": {
+      "languages": [
+        {
+          "id": "ho70tSqeIJpKODEUvl2gP",
+          "language": "200",
+          "code": "// Successful Operation \n{\n  \"pagination\": {\n    \"page_count\": \"\",\n    \"item_count\": \"\",\n    \"total_count\": \"\",\n    \"cursor\": {\n      \"next_cursor\": \"\",\n      \"previous_cursor\": \"\",\n      \"has_next\": false,\n      \"has_previous\": false\n    }\n  },\n  \"sorting\": {\n    \"available\": {\n      \"sort_keys\": [\n        \"\"\n      ],\n      \"sort_orders\": [\n        \"\"\n      ]\n    },\n    \"current\": [\n      {\n        \"sort_key\": \"\",\n        \"sort_order\": \"\"\n      }\n    ]\n  },\n  \"budgets\": {}\n}"
+        },
+        {
+          "id": "AozPvo7bGpvRb_NeckL3-",
+          "language": "400",
+          "code": "// Bad Request Error \n{\n  \"error\": {\n    \"message\": \"\",\n    \"type\": \"\"\n  }\n}"
+        },
+        {
+          "id": "7gSWbAMGXY9zl6pPdiWY2",
+          "language": "403",
+          "code": "// Forbidden \n{\n  \"message\": \"\"\n}"
+        }
+      ],
+      "selectedLanguageId": "ho70tSqeIJpKODEUvl2gP"
+    }
+  },
+  "children": [
+    {
+      "text": "",
+      "id": "CAvzsPAm5R2sOwfOfBzzp"
+    }
+  ]
+}

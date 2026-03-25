@@ -1,0 +1,444 @@
+---
+title: /v2/insights
+slug: 1AtQVnA20BxFjOHS9BniD
+docTags: 
+createdAt: Wed Mar 25 2026 15:49:58 GMT+0200 (Eastern European Standard Time)
+updatedAt: Wed Mar 25 2026 15:53:19 GMT+0200 (Eastern European Standard Time)
+---
+
+{
+  "id": "J4kpzeOUW9TowE8-tLwK1",
+  "type": "api-oas-v2",
+  "data": {
+    "method": "POST",
+    "url": "https://dev-api.cloudzero.com/v2/insights",
+    "servers": [
+      {
+        "url": "https://dev-api.cloudzero.com/v2/insights"
+      }
+    ],
+    "name": "",
+    "description": "Create a new Insight",
+    "contentType": "application/json",
+    "request": {
+      "pathParameters": [],
+      "headerParameters": [
+        {
+          "kind": "optional",
+          "name": "cloudzero-idempotency-key",
+          "type": "string",
+          "description": "<p>If passed, any subsequent operation with the same value for this header will return the exact same result.\nThis is true for all responses, i.e. successes and errors.</p>"
+        },
+        {
+          "kind": "optional",
+          "name": "cloudzero-test-key",
+          "type": "string",
+          "description": "<p>If passed, the operation executes in the namespace specified by this key.\nResource mutations in the namespace last for 1 hour.</p>"
+        }
+      ],
+      "queryParameters": [],
+      "bodyDataParameters": [
+        {
+          "kind": "optional",
+          "name": "body",
+          "type": "object",
+          "description": "",
+          "customType": "insight_new",
+          "schema": [
+            {
+              "name": "effort",
+              "kind": "optional",
+              "type": "string<not_set | low | medium | high>",
+              "description": "",
+              "example": "",
+              "enum": [
+                "not_set",
+                "low",
+                "medium",
+                "high"
+              ]
+            },
+            {
+              "name": "cost_impact",
+              "kind": "optional",
+              "type": "object",
+              "description": "String or float representation of a dollar amount",
+              "modelRef": "#/components/schemas/currency_in",
+              "customType": "currency_in",
+              "schema": [],
+              "complexType": "oneOf",
+              "complexItems": [
+                {
+                  "name": "currency",
+                  "description": "",
+                  "modelRef": "#/components/schemas/currency",
+                  "schema": []
+                },
+                {
+                  "name": "object",
+                  "description": "",
+                  "schema": []
+                }
+              ]
+            },
+            {
+              "name": "status",
+              "kind": "optional",
+              "type": "string<new | in_progress | on_hold | addressed | ignored>",
+              "description": "",
+              "example": "",
+              "enum": [
+                "new",
+                "in_progress",
+                "on_hold",
+                "addressed",
+                "ignored"
+              ]
+            },
+            {
+              "name": "category",
+              "kind": "optional",
+              "type": "string",
+              "description": "",
+              "example": ""
+            },
+            {
+              "name": "link",
+              "kind": "optional",
+              "type": "string",
+              "description": "",
+              "example": ""
+            },
+            {
+              "name": "description",
+              "kind": "optional",
+              "type": "string",
+              "description": "",
+              "example": ""
+            },
+            {
+              "name": "title",
+              "kind": "optional",
+              "type": "string",
+              "description": "",
+              "example": ""
+            }
+          ],
+          "modelRef": "#/components/schemas/insight_new",
+          "isExpanded": true
+        }
+      ],
+      "formDataParameters": [],
+      "oAuthParameters": [
+        {
+          "id": "APIKeyAuth",
+          "name": "Authorization",
+          "kind": "optional",
+          "type": "apiKey",
+          "in": "header"
+        }
+      ]
+    },
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": "Successful Operation",
+        "jsonExample": "",
+        "isExpanded": true,
+        "schema": [
+          {
+            "kind": "optional",
+            "type": "object",
+            "description": "",
+            "schema": [
+              {
+                "name": "insight",
+                "kind": "optional",
+                "type": "object",
+                "description": "",
+                "modelRef": "#/components/schemas/insight",
+                "customType": "insight",
+                "schema": [],
+                "complexType": "allOf",
+                "complexItems": [
+                  {
+                    "name": "insight_new",
+                    "description": "",
+                    "modelRef": "#/components/schemas/insight_new",
+                    "schema": [
+                      {
+                        "name": "effort",
+                        "kind": "optional",
+                        "type": "string<not_set | low | medium | high>",
+                        "description": "",
+                        "example": "",
+                        "enum": [
+                          "not_set",
+                          "low",
+                          "medium",
+                          "high"
+                        ]
+                      },
+                      {
+                        "name": "cost_impact",
+                        "kind": "optional",
+                        "type": "object",
+                        "description": "String or float representation of a dollar amount",
+                        "modelRef": "#/components/schemas/currency_in",
+                        "customType": "currency_in",
+                        "schema": [],
+                        "complexType": "oneOf",
+                        "complexItems": [
+                          {
+                            "name": "currency",
+                            "description": "",
+                            "modelRef": "#/components/schemas/currency",
+                            "schema": []
+                          },
+                          {
+                            "name": "object",
+                            "description": "",
+                            "schema": []
+                          }
+                        ]
+                      },
+                      {
+                        "name": "status",
+                        "kind": "optional",
+                        "type": "string<new | in_progress | on_hold | addressed | ignored>",
+                        "description": "",
+                        "example": "",
+                        "enum": [
+                          "new",
+                          "in_progress",
+                          "on_hold",
+                          "addressed",
+                          "ignored"
+                        ]
+                      },
+                      {
+                        "name": "category",
+                        "kind": "optional",
+                        "type": "string",
+                        "description": "",
+                        "example": ""
+                      },
+                      {
+                        "name": "link",
+                        "kind": "optional",
+                        "type": "string",
+                        "description": "",
+                        "example": ""
+                      },
+                      {
+                        "name": "description",
+                        "kind": "optional",
+                        "type": "string",
+                        "description": "",
+                        "example": ""
+                      },
+                      {
+                        "name": "title",
+                        "kind": "optional",
+                        "type": "string",
+                        "description": "",
+                        "example": ""
+                      }
+                    ]
+                  },
+                  {
+                    "name": "with_id",
+                    "description": "",
+                    "modelRef": "#/components/schemas/with_id",
+                    "schema": [
+                      {
+                        "name": "id",
+                        "kind": "required",
+                        "type": "string",
+                        "description": "",
+                        "example": ""
+                      }
+                    ]
+                  },
+                  {
+                    "name": "with_created",
+                    "description": "",
+                    "modelRef": "#/components/schemas/with_created",
+                    "schema": [
+                      {
+                        "name": "created",
+                        "kind": "required",
+                        "type": "string",
+                        "description": "UTC timestamp for the creation of this entity",
+                        "modelRef": "#/components/schemas/epoch",
+                        "customType": "epoch",
+                        "schema": []
+                      }
+                    ]
+                  },
+                  {
+                    "name": "with_last_updated",
+                    "description": "",
+                    "modelRef": "#/components/schemas/with_last_updated",
+                    "schema": [
+                      {
+                        "name": "last_updated",
+                        "kind": "required",
+                        "type": "string",
+                        "description": "UTC timestamp for the last update of this entity",
+                        "modelRef": "#/components/schemas/epoch",
+                        "customType": "epoch",
+                        "schema": []
+                      }
+                    ]
+                  },
+                  {
+                    "name": "object",
+                    "description": "",
+                    "schema": [
+                      {
+                        "name": "cost_impact",
+                        "kind": "optional",
+                        "type": "string",
+                        "description": "String representation of a dollar amount",
+                        "modelRef": "#/components/schemas/currency",
+                        "customType": "currency",
+                        "schema": [
+                          {
+                            "name": "",
+                            "description": "",
+                            "customType": "Max depth limit reached"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "isExpanded": true
+          }
+        ]
+      },
+      {
+        "statusCode": "400",
+        "description": "Bad Request Error",
+        "jsonExample": "",
+        "isExpanded": true,
+        "schema": [
+          {
+            "kind": "optional",
+            "type": "object",
+            "description": "",
+            "schema": [
+              {
+                "name": "error",
+                "kind": "optional",
+                "type": "object",
+                "description": "",
+                "modelRef": "#/components/schemas/error",
+                "customType": "error",
+                "schema": [
+                  {
+                    "name": "message",
+                    "kind": "optional",
+                    "type": "string",
+                    "description": "",
+                    "example": ""
+                  },
+                  {
+                    "name": "type",
+                    "kind": "optional",
+                    "type": "string",
+                    "description": "",
+                    "example": ""
+                  }
+                ]
+              }
+            ],
+            "isExpanded": true
+          }
+        ]
+      },
+      {
+        "statusCode": "403",
+        "description": "Forbidden",
+        "jsonExample": "",
+        "isExpanded": true,
+        "schema": [
+          {
+            "kind": "optional",
+            "type": "object",
+            "description": "",
+            "schema": [
+              {
+                "name": "message",
+                "kind": "required",
+                "type": "string",
+                "description": "",
+                "example": ""
+              }
+            ],
+            "isExpanded": true
+          }
+        ]
+      }
+    ],
+    "hasXCodeSamples": false,
+    "examples": {
+      "languages": [
+        {
+          "id": "4PoHRbGHBk4HlPDZzURs7",
+          "language": "curl",
+          "label": "cURL",
+          "code": "curl --location 'https://dev-api.cloudzero.com/v2/insights' \\\n--header 'Accept: application/json' \\\n--header 'Content-Type: application/json' \\\n--data '{\n  \"cost_impact\": {}\n}'"
+        },
+        {
+          "id": "kAzDf1c6Iwn7sR4whkFDP",
+          "language": "javascript",
+          "label": "javascript",
+          "code": "var myHeaders = new Headers();\nmyHeaders.append(\"Accept\", \"application/json\");\nmyHeaders.append(\"Content-Type\", \"application/json\");\n\nvar raw = JSON.stringify({\n   \"cost_impact\": {}\n});\n\nvar requestOptions = {\n   method: 'POST',\n   headers: myHeaders,\n   body: raw,\n   redirect: 'follow'\n};\n\nfetch(\"https://dev-api.cloudzero.com/v2/insights\", requestOptions)\n   .then(response => response.text())\n   .then(result => console.log(result))\n   .catch(error => console.log('error', error));"
+        },
+        {
+          "id": "iWbZ29f6xuJhhJXGhtwHj",
+          "language": "ruby",
+          "label": "Ruby",
+          "code": "require \"uri\"\nrequire \"json\"\nrequire \"net/http\"\n\nurl = URI(\"https://dev-api.cloudzero.com/v2/insights\")\n\nhttps = Net::HTTP.new(url.host, url.port)\nhttps.use_ssl = true\n\nrequest = Net::HTTP::Post.new(url)\nrequest[\"Accept\"] = \"application/json\"\nrequest[\"Content-Type\"] = \"application/json\"\nrequest.body = JSON.dump({\n   \"cost_impact\": {}\n})\n\nresponse = https.request(request)\nputs response.read_body\n"
+        },
+        {
+          "id": "LN-P299tvQJzoJnI6Jqn3",
+          "language": "python",
+          "label": "Python",
+          "code": "import requests\nimport json\n\nurl = \"https://dev-api.cloudzero.com/v2/insights\"\n\npayload = json.dumps({\n   \"cost_impact\": {}\n})\nheaders = {\n   'Accept': 'application/json',\n   'Content-Type': 'application/json'\n}\n\nresponse = requests.request(\"POST\", url, headers=headers, data=payload)\n\nprint(response.text)\n"
+        }
+      ],
+      "selectedLanguageId": "4PoHRbGHBk4HlPDZzURs7"
+    },
+    "results": {
+      "languages": [
+        {
+          "id": "1d7h9Al6Cjkl84ZSzxt57",
+          "language": "200",
+          "code": "// Successful Operation \n{\n  \"insight\": {}\n}"
+        },
+        {
+          "id": "On7uEaFof9sB6Imrw_6FA",
+          "language": "400",
+          "code": "// Bad Request Error \n{\n  \"error\": {\n    \"message\": \"\",\n    \"type\": \"\"\n  }\n}"
+        },
+        {
+          "id": "wca8gI_UYT6F7rpJ0A88e",
+          "language": "403",
+          "code": "// Forbidden \n{\n  \"message\": \"\"\n}"
+        }
+      ],
+      "selectedLanguageId": "1d7h9Al6Cjkl84ZSzxt57"
+    }
+  },
+  "children": [
+    {
+      "text": "",
+      "id": "V85Me4qXSByztoEVmv8sW"
+    }
+  ]
+}

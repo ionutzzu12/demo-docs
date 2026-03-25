@@ -1,0 +1,418 @@
+---
+title: /v2/budgets/{budget_id}
+slug: 2WTcXmryRC1n92T4CVmwD
+docTags: 
+createdAt: Wed Mar 25 2026 15:49:58 GMT+0200 (Eastern European Standard Time)
+updatedAt: Wed Mar 25 2026 15:53:19 GMT+0200 (Eastern European Standard Time)
+---
+
+{
+  "id": "QlOWfX3pH2gwM7USDxcxx",
+  "type": "api-oas-v2",
+  "data": {
+    "method": "PATCH",
+    "url": "https://dev-api.cloudzero.com/v2/budgets/{budget_id}",
+    "servers": [
+      {
+        "url": "https://dev-api.cloudzero.com/v2/budgets/{budget_id}"
+      }
+    ],
+    "name": "",
+    "description": "Update a single Budget",
+    "contentType": "application/json",
+    "request": {
+      "pathParameters": [
+        {
+          "kind": "required",
+          "name": "budget_id",
+          "type": "string",
+          "description": "Unique budget identifier"
+        }
+      ],
+      "headerParameters": [
+        {
+          "kind": "optional",
+          "name": "cloudzero-idempotency-key",
+          "type": "string",
+          "description": "<p>If passed, any subsequent operation with the same value for this header will return the exact same result.\nThis is true for all responses, i.e. successes and errors.</p>"
+        },
+        {
+          "kind": "optional",
+          "name": "cloudzero-test-key",
+          "type": "string",
+          "description": "<p>If passed, the operation executes in the namespace specified by this key.\nResource mutations in the namespace last for 1 hour.</p>"
+        }
+      ],
+      "queryParameters": [],
+      "bodyDataParameters": [
+        {
+          "kind": "optional",
+          "name": "body",
+          "type": "object",
+          "description": "",
+          "customType": "budget_new",
+          "schema": [
+            {
+              "name": "name",
+              "kind": "required",
+              "type": "string",
+              "description": "Budget name, must be unique within a View",
+              "example": ""
+            },
+            {
+              "name": "planned_limits",
+              "kind": "required",
+              "type": "object",
+              "description": "Mapping of date to amount, where\n  date is an ISO Formatted string\n  amount is a Mapping of the literal string \"amount\" to a dollar amount\n",
+              "example": "{\"monthly\":{\"2022-02-01T00:00:00+00:00\":{\"amount\":\"1000.00\"}}}",
+              "modelRef": "#/components/schemas/budget_planned_limits",
+              "customType": "budget_planned_limits",
+              "schema": [
+                {
+                  "name": "monthly",
+                  "kind": "required",
+                  "type": "map",
+                  "description": "Monthly planned limit as a mapping of month date to amount, where\n  month date is an ISO Formatted Date [Time] String that will be coerced to the first of the month\n  amount is a Mapping of the literal string \"amount\" to a dollar amount\n",
+                  "example": "",
+                  "customType": "map<string, object>",
+                  "schema": []
+                }
+              ]
+            },
+            {
+              "name": "view",
+              "kind": "required",
+              "type": "object",
+              "description": "View associated with this Budget",
+              "modelRef": "#/components/schemas/with_id",
+              "customType": "with_id",
+              "schema": [
+                {
+                  "name": "id",
+                  "kind": "required",
+                  "type": "string",
+                  "description": "",
+                  "example": ""
+                }
+              ]
+            },
+            {
+              "name": "alerts",
+              "kind": "optional",
+              "type": "object",
+              "description": "Mapping of 1-100 to Y/N, where\n  1-100 is the percentage of the budget at which to send an alert\n  Y/N is whether or not to send the alert\n",
+              "example": "{\"alerts\":{\"80\":\"N\",\"100\":\"Y\"}}",
+              "modelRef": "#/components/schemas/budget_alerts",
+              "customType": "budget_alerts",
+              "schema": []
+            }
+          ],
+          "modelRef": "#/components/schemas/budget_new",
+          "isExpanded": true
+        }
+      ],
+      "formDataParameters": [],
+      "oAuthParameters": [
+        {
+          "id": "APIKeyAuth",
+          "name": "Authorization",
+          "kind": "optional",
+          "type": "apiKey",
+          "in": "header"
+        }
+      ]
+    },
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": "Successful Operation",
+        "jsonExample": "",
+        "isExpanded": true,
+        "schema": [
+          {
+            "kind": "optional",
+            "type": "object",
+            "description": "",
+            "schema": [
+              {
+                "name": "budget",
+                "kind": "optional",
+                "type": "object",
+                "description": "",
+                "modelRef": "#/components/schemas/budget",
+                "customType": "budget",
+                "schema": [],
+                "complexType": "allOf",
+                "complexItems": [
+                  {
+                    "name": "budget_new",
+                    "description": "",
+                    "modelRef": "#/components/schemas/budget_new",
+                    "schema": [
+                      {
+                        "name": "name",
+                        "kind": "required",
+                        "type": "string",
+                        "description": "Budget name, must be unique within a View",
+                        "example": ""
+                      },
+                      {
+                        "name": "planned_limits",
+                        "kind": "required",
+                        "type": "object",
+                        "description": "Mapping of date to amount, where\n  date is an ISO Formatted string\n  amount is a Mapping of the literal string \"amount\" to a dollar amount\n",
+                        "example": "{\"monthly\":{\"2022-02-01T00:00:00+00:00\":{\"amount\":\"1000.00\"}}}",
+                        "modelRef": "#/components/schemas/budget_planned_limits",
+                        "customType": "budget_planned_limits",
+                        "schema": [
+                          {
+                            "name": "monthly",
+                            "kind": "required",
+                            "type": "map",
+                            "description": "Monthly planned limit as a mapping of month date to amount, where\n  month date is an ISO Formatted Date [Time] String that will be coerced to the first of the month\n  amount is a Mapping of the literal string \"amount\" to a dollar amount\n",
+                            "example": "",
+                            "customType": "map<string, object>",
+                            "schema": []
+                          }
+                        ]
+                      },
+                      {
+                        "name": "view",
+                        "kind": "required",
+                        "type": "object",
+                        "description": "View associated with this Budget",
+                        "modelRef": "#/components/schemas/with_id",
+                        "customType": "with_id",
+                        "schema": [
+                          {
+                            "name": "id",
+                            "kind": "required",
+                            "type": "string",
+                            "description": "",
+                            "example": ""
+                          }
+                        ]
+                      },
+                      {
+                        "name": "alerts",
+                        "kind": "optional",
+                        "type": "object",
+                        "description": "Mapping of 1-100 to Y/N, where\n  1-100 is the percentage of the budget at which to send an alert\n  Y/N is whether or not to send the alert\n",
+                        "example": "{\"alerts\":{\"80\":\"N\",\"100\":\"Y\"}}",
+                        "modelRef": "#/components/schemas/budget_alerts",
+                        "customType": "budget_alerts",
+                        "schema": []
+                      }
+                    ]
+                  },
+                  {
+                    "name": "with_id",
+                    "description": "",
+                    "modelRef": "#/components/schemas/with_id",
+                    "schema": [
+                      {
+                        "name": "id",
+                        "kind": "required",
+                        "type": "string",
+                        "description": "",
+                        "example": ""
+                      }
+                    ]
+                  },
+                  {
+                    "name": "with_created",
+                    "description": "",
+                    "modelRef": "#/components/schemas/with_created",
+                    "schema": [
+                      {
+                        "name": "created",
+                        "kind": "required",
+                        "type": "string",
+                        "description": "UTC timestamp for the creation of this entity",
+                        "modelRef": "#/components/schemas/epoch",
+                        "customType": "epoch",
+                        "schema": []
+                      }
+                    ]
+                  },
+                  {
+                    "name": "with_last_updated",
+                    "description": "",
+                    "modelRef": "#/components/schemas/with_last_updated",
+                    "schema": [
+                      {
+                        "name": "last_updated",
+                        "kind": "required",
+                        "type": "string",
+                        "description": "UTC timestamp for the last update of this entity",
+                        "modelRef": "#/components/schemas/epoch",
+                        "customType": "epoch",
+                        "schema": []
+                      }
+                    ]
+                  },
+                  {
+                    "name": "object",
+                    "description": "",
+                    "schema": [
+                      {
+                        "name": "cost_type",
+                        "kind": "required",
+                        "type": "string",
+                        "description": "Type of charges included in the cost calculation, where\n  real_cost: filters your bill to only display charges directly related to consumption\n",
+                        "modelRef": "#/components/schemas/cost_type",
+                        "customType": "cost_type",
+                        "schema": [
+                          {
+                            "name": "",
+                            "description": "",
+                            "customType": "Max depth limit reached"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "granularity",
+                        "kind": "required",
+                        "type": "string",
+                        "description": "Supported periods, e.g. \"monthly\"",
+                        "modelRef": "#/components/schemas/granularity",
+                        "customType": "granularity",
+                        "schema": [
+                          {
+                            "name": "",
+                            "description": "",
+                            "customType": "Max depth limit reached"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "isExpanded": true
+          }
+        ]
+      },
+      {
+        "statusCode": "400",
+        "description": "Bad Request Error",
+        "jsonExample": "",
+        "isExpanded": true,
+        "schema": [
+          {
+            "kind": "optional",
+            "type": "object",
+            "description": "",
+            "schema": [
+              {
+                "name": "error",
+                "kind": "optional",
+                "type": "object",
+                "description": "",
+                "modelRef": "#/components/schemas/error",
+                "customType": "error",
+                "schema": [
+                  {
+                    "name": "message",
+                    "kind": "optional",
+                    "type": "string",
+                    "description": "",
+                    "example": ""
+                  },
+                  {
+                    "name": "type",
+                    "kind": "optional",
+                    "type": "string",
+                    "description": "",
+                    "example": ""
+                  }
+                ]
+              }
+            ],
+            "isExpanded": true
+          }
+        ]
+      },
+      {
+        "statusCode": "403",
+        "description": "Forbidden",
+        "jsonExample": "",
+        "isExpanded": true,
+        "schema": [
+          {
+            "kind": "optional",
+            "type": "object",
+            "description": "",
+            "schema": [
+              {
+                "name": "message",
+                "kind": "required",
+                "type": "string",
+                "description": "",
+                "example": ""
+              }
+            ],
+            "isExpanded": true
+          }
+        ]
+      }
+    ],
+    "hasXCodeSamples": false,
+    "examples": {
+      "languages": [
+        {
+          "id": "Y9Sr_kRqHrQfacOdJoFtN",
+          "language": "curl",
+          "label": "cURL",
+          "code": "curl --location --globoff --request PATCH 'https://dev-api.cloudzero.com/v2/budgets/{budget_id}' \\\n--header 'Accept: application/json' \\\n--header 'Content-Type: application/json' \\\n--data '{\n  \"name\": \"\",\n  \"planned_limits\": {\n    \"monthly\": \"\"\n  },\n  \"view\": {\n    \"id\": \"\"\n  }\n}'"
+        },
+        {
+          "id": "dj-yGe1ywZlDdQcv7gChp",
+          "language": "javascript",
+          "label": "javascript",
+          "code": "var myHeaders = new Headers();\nmyHeaders.append(\"Accept\", \"application/json\");\nmyHeaders.append(\"Content-Type\", \"application/json\");\n\nvar raw = JSON.stringify({\n   \"name\": \"\",\n   \"planned_limits\": {\n      \"monthly\": \"\"\n   },\n   \"view\": {\n      \"id\": \"\"\n   }\n});\n\nvar requestOptions = {\n   method: 'PATCH',\n   headers: myHeaders,\n   body: raw,\n   redirect: 'follow'\n};\n\nfetch(\"https://dev-api.cloudzero.com/v2/budgets/{budget_id}\", requestOptions)\n   .then(response => response.text())\n   .then(result => console.log(result))\n   .catch(error => console.log('error', error));"
+        },
+        {
+          "id": "xOzafI0FVEZl0Duqm-7-Z",
+          "language": "ruby",
+          "label": "Ruby",
+          "code": "require \"uri\"\nrequire \"json\"\nrequire \"net/http\"\n\nurl = URI(\"https://dev-api.cloudzero.com/v2/budgets/{budget_id}\")\n\nhttps = Net::HTTP.new(url.host, url.port)\nhttps.use_ssl = true\n\nrequest = Net::HTTP::Patch.new(url)\nrequest[\"Accept\"] = \"application/json\"\nrequest[\"Content-Type\"] = \"application/json\"\nrequest.body = JSON.dump({\n   \"name\": \"\",\n   \"planned_limits\": {\n      \"monthly\": \"\"\n   },\n   \"view\": {\n      \"id\": \"\"\n   }\n})\n\nresponse = https.request(request)\nputs response.read_body\n"
+        },
+        {
+          "id": "GbsHOMPDrcn3oDO03Ljgc",
+          "language": "python",
+          "label": "Python",
+          "code": "import requests\nimport json\n\nurl = \"https://dev-api.cloudzero.com/v2/budgets/{budget_id}\"\n\npayload = json.dumps({\n   \"name\": \"\",\n   \"planned_limits\": {\n      \"monthly\": \"\"\n   },\n   \"view\": {\n      \"id\": \"\"\n   }\n})\nheaders = {\n   'Accept': 'application/json',\n   'Content-Type': 'application/json'\n}\n\nresponse = requests.request(\"PATCH\", url, headers=headers, data=payload)\n\nprint(response.text)\n"
+        }
+      ],
+      "selectedLanguageId": "Y9Sr_kRqHrQfacOdJoFtN"
+    },
+    "results": {
+      "languages": [
+        {
+          "id": "o1Ugbp2u8Kx5LQCCdx0QA",
+          "language": "200",
+          "code": "// Successful Operation \n{\n  \"budget\": {}\n}"
+        },
+        {
+          "id": "zQmuPBYE4kpP6ld7KijDZ",
+          "language": "400",
+          "code": "// Bad Request Error \n{\n  \"error\": {\n    \"message\": \"\",\n    \"type\": \"\"\n  }\n}"
+        },
+        {
+          "id": "l0y7lXxUSZibIun838tFd",
+          "language": "403",
+          "code": "// Forbidden \n{\n  \"message\": \"\"\n}"
+        }
+      ],
+      "selectedLanguageId": "o1Ugbp2u8Kx5LQCCdx0QA"
+    }
+  },
+  "children": [
+    {
+      "text": "",
+      "id": "4uqrZD7_WANoD-kNaBphZ"
+    }
+  ]
+}
