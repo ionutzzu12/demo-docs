@@ -1,0 +1,187 @@
+---
+title: /v2/insights/{insight_id}
+slug: -iQJot7sS_Q1Y0qyotpL5
+docTags: 
+createdAt: Wed Mar 25 2026 15:49:58 GMT+0200 (Eastern European Standard Time)
+updatedAt: Wed Mar 25 2026 15:50:05 GMT+0200 (Eastern European Standard Time)
+---
+
+{
+  "id": "QPAppKnKUisRGEChZh0OX",
+  "type": "api-oas-v2",
+  "data": {
+    "method": "DELETE",
+    "url": "https://dev-api.cloudzero.com/v2/insights/{insight_id}",
+    "servers": [
+      {
+        "url": "https://dev-api.cloudzero.com/v2/insights/{insight_id}"
+      }
+    ],
+    "name": "",
+    "description": "Delete a single Insight",
+    "contentType": "application/json",
+    "request": {
+      "pathParameters": [
+        {
+          "kind": "required",
+          "name": "insight_id",
+          "type": "string",
+          "description": "Unique Insight identifier"
+        }
+      ],
+      "headerParameters": [
+        {
+          "kind": "optional",
+          "name": "cloudzero-idempotency-key",
+          "type": "string",
+          "description": "<p>If passed, any subsequent operation with the same value for this header will return the exact same result.\nThis is true for all responses, i.e. successes and errors.</p>"
+        },
+        {
+          "kind": "optional",
+          "name": "cloudzero-test-key",
+          "type": "string",
+          "description": "<p>If passed, the operation executes in the namespace specified by this key.\nResource mutations in the namespace last for 1 hour.</p>"
+        }
+      ],
+      "queryParameters": [],
+      "bodyDataParameters": [],
+      "formDataParameters": [],
+      "oAuthParameters": [
+        {
+          "id": "APIKeyAuth",
+          "name": "Authorization",
+          "kind": "optional",
+          "type": "apiKey",
+          "in": "header"
+        }
+      ]
+    },
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": "Successful Operation",
+        "jsonExample": "",
+        "isExpanded": true
+      },
+      {
+        "statusCode": "400",
+        "description": "Bad Request Error",
+        "jsonExample": "",
+        "isExpanded": true,
+        "schema": [
+          {
+            "kind": "optional",
+            "type": "object",
+            "description": "",
+            "schema": [
+              {
+                "name": "error",
+                "kind": "optional",
+                "type": "object",
+                "description": "",
+                "modelRef": "#/components/schemas/error",
+                "customType": "error",
+                "schema": [
+                  {
+                    "name": "message",
+                    "kind": "optional",
+                    "type": "string",
+                    "description": "",
+                    "example": ""
+                  },
+                  {
+                    "name": "type",
+                    "kind": "optional",
+                    "type": "string",
+                    "description": "",
+                    "example": ""
+                  }
+                ]
+              }
+            ],
+            "isExpanded": true
+          }
+        ]
+      },
+      {
+        "statusCode": "403",
+        "description": "Forbidden",
+        "jsonExample": "",
+        "isExpanded": true,
+        "schema": [
+          {
+            "kind": "optional",
+            "type": "object",
+            "description": "",
+            "schema": [
+              {
+                "name": "message",
+                "kind": "required",
+                "type": "string",
+                "description": "",
+                "example": ""
+              }
+            ],
+            "isExpanded": true
+          }
+        ]
+      }
+    ],
+    "hasXCodeSamples": false,
+    "examples": {
+      "languages": [
+        {
+          "id": "pzSpOAjRUlBxnM1x0GNKf",
+          "language": "curl",
+          "label": "cURL",
+          "code": "curl --location --globoff --request DELETE 'https://dev-api.cloudzero.com/v2/insights/{insight_id}' \\\n--header 'Accept: application/json' \\\n--header 'Content-Type: application/json'"
+        },
+        {
+          "id": "TavWz-iLyMRq7bIV6K6Xe",
+          "language": "javascript",
+          "label": "javascript",
+          "code": "var myHeaders = new Headers();\nmyHeaders.append(\"Accept\", \"application/json\");\nmyHeaders.append(\"Content-Type\", \"application/json\");\n\nvar requestOptions = {\n   method: 'DELETE',\n   headers: myHeaders,\n   redirect: 'follow'\n};\n\nfetch(\"https://dev-api.cloudzero.com/v2/insights/{insight_id}\", requestOptions)\n   .then(response => response.text())\n   .then(result => console.log(result))\n   .catch(error => console.log('error', error));"
+        },
+        {
+          "id": "d9Q3ERjClPnRCoIulgS2D",
+          "language": "ruby",
+          "label": "Ruby",
+          "code": "require \"uri\"\nrequire \"json\"\nrequire \"net/http\"\n\nurl = URI(\"https://dev-api.cloudzero.com/v2/insights/{insight_id}\")\n\nhttps = Net::HTTP.new(url.host, url.port)\nhttps.use_ssl = true\n\nrequest = Net::HTTP::Delete.new(url)\nrequest[\"Accept\"] = \"application/json\"\nrequest[\"Content-Type\"] = \"application/json\"\n\nresponse = https.request(request)\nputs response.read_body\n"
+        },
+        {
+          "id": "3tUteh5UaIsSKbQqc_JLO",
+          "language": "python",
+          "label": "Python",
+          "code": "import requests\nimport json\n\nurl = \"https://dev-api.cloudzero.com/v2/insights/{insight_id}\"\n\npayload = {}\nheaders = {\n   'Accept': 'application/json',\n   'Content-Type': 'application/json'\n}\n\nresponse = requests.request(\"DELETE\", url, headers=headers, data=payload)\n\nprint(response.text)\n"
+        }
+      ],
+      "selectedLanguageId": "pzSpOAjRUlBxnM1x0GNKf"
+    },
+    "results": {
+      "languages": [
+        {
+          "id": "KaNgPqO4r7kZF9f9gwy1n",
+          "language": "200",
+          "code": "// Successful Operation \n"
+        },
+        {
+          "id": "uCXXJSKUd-ghHmGCDim--",
+          "language": "400",
+          "code": "// Bad Request Error \n{\n  \"error\": {\n    \"message\": \"\",\n    \"type\": \"\"\n  }\n}"
+        },
+        {
+          "id": "zcJ_7I30ARW9de9lHrDKU",
+          "language": "403",
+          "code": "// Forbidden \n{\n  \"message\": \"\"\n}"
+        }
+      ],
+      "selectedLanguageId": "KaNgPqO4r7kZF9f9gwy1n"
+    }
+  },
+  "children": [
+    {
+      "text": "",
+      "id": "RviXyapqxBZbWRHNrwwqH"
+    }
+  ]
+}
