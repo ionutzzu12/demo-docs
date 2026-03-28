@@ -1,0 +1,478 @@
+---
+title: /v2/insights
+slug: VUbxWnmFkXSJd_FbAIniR
+docTags: 
+createdAt: Wed Mar 25 2026 15:49:58 GMT+0200 (Eastern European Standard Time)
+updatedAt: Wed Mar 25 2026 15:50:05 GMT+0200 (Eastern European Standard Time)
+---
+
+{
+  "id": "9IspXnV2zazrBX__QJke2",
+  "type": "api-oas-v2",
+  "data": {
+    "method": "GET",
+    "url": "https://dev-api.cloudzero.com/v2/insights",
+    "servers": [
+      {
+        "url": "https://dev-api.cloudzero.com/v2/insights"
+      }
+    ],
+    "name": "",
+    "description": "Get a list of Insights",
+    "contentType": "application/json",
+    "request": {
+      "pathParameters": [],
+      "headerParameters": [
+        {
+          "kind": "optional",
+          "name": "cloudzero-idempotency-key",
+          "type": "string",
+          "description": "<p>If passed, any subsequent operation with the same value for this header will return the exact same result.\nThis is true for all responses, i.e. successes and errors.</p>"
+        },
+        {
+          "kind": "optional",
+          "name": "cloudzero-test-key",
+          "type": "string",
+          "description": "<p>If passed, the operation executes in the namespace specified by this key.\nResource mutations in the namespace last for 1 hour.</p>"
+        }
+      ],
+      "queryParameters": [
+        {
+          "kind": "optional",
+          "name": "limit",
+          "type": "number<int32>",
+          "description": "Number of items to return per page",
+          "format": "int32"
+        },
+        {
+          "kind": "optional",
+          "name": "cursor",
+          "type": "string",
+          "description": "<p>Pass only this parameter to page forward or back; NOTE: remember to urlencode it!</p>"
+        },
+        {
+          "kind": "optional",
+          "name": "sort_key",
+          "type": "object",
+          "description": "Sortable Insight properties",
+          "customType": "insight_sort_keys",
+          "schema": [],
+          "modelRef": "#/components/schemas/insight_sort_keys"
+        },
+        {
+          "kind": "optional",
+          "name": "sort_order",
+          "type": "object",
+          "description": "ASC or DESC sort order",
+          "customType": "sort_order",
+          "schema": [],
+          "modelRef": "#/components/schemas/sort_order"
+        }
+      ],
+      "bodyDataParameters": [],
+      "formDataParameters": [],
+      "oAuthParameters": [
+        {
+          "id": "APIKeyAuth",
+          "name": "Authorization",
+          "kind": "optional",
+          "type": "apiKey",
+          "in": "header"
+        }
+      ]
+    },
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": "Successful Operation",
+        "jsonExample": "",
+        "isExpanded": true,
+        "schema": [
+          {
+            "kind": "optional",
+            "type": "object",
+            "description": "",
+            "schema": [
+              {
+                "name": "pagination",
+                "kind": "optional",
+                "type": "object",
+                "description": "Supports programmatic pagination",
+                "modelRef": "#/components/schemas/pagination",
+                "customType": "pagination",
+                "schema": [
+                  {
+                    "name": "page_count",
+                    "kind": "optional",
+                    "type": "integer<int32>",
+                    "description": "",
+                    "example": 0,
+                    "format": "int32"
+                  },
+                  {
+                    "name": "item_count",
+                    "kind": "optional",
+                    "type": "integer<int32>",
+                    "description": "",
+                    "example": 0,
+                    "format": "int32"
+                  },
+                  {
+                    "name": "total_count",
+                    "kind": "optional",
+                    "type": "integer<int32>",
+                    "description": "",
+                    "example": 0,
+                    "format": "int32"
+                  },
+                  {
+                    "name": "cursor",
+                    "kind": "optional",
+                    "type": "object",
+                    "description": "",
+                    "example": "",
+                    "schema": [
+                      {
+                        "name": "next_cursor",
+                        "kind": "optional",
+                        "type": "string<nullable>",
+                        "description": "",
+                        "example": "",
+                        "format": "nullable"
+                      },
+                      {
+                        "name": "previous_cursor",
+                        "kind": "optional",
+                        "type": "string<nullable>",
+                        "description": "",
+                        "example": "",
+                        "format": "nullable"
+                      },
+                      {
+                        "name": "has_next",
+                        "kind": "optional",
+                        "type": "boolean",
+                        "description": "",
+                        "example": ""
+                      },
+                      {
+                        "name": "has_previous",
+                        "kind": "optional",
+                        "type": "boolean",
+                        "description": "",
+                        "example": ""
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "sorting",
+                "kind": "optional",
+                "type": "object",
+                "description": "",
+                "modelRef": "#/components/schemas/insight_sorting",
+                "customType": "insight_sorting",
+                "schema": [
+                  {
+                    "name": "available",
+                    "kind": "optional",
+                    "type": "object",
+                    "description": "",
+                    "example": "",
+                    "schema": [
+                      {
+                        "name": "sort_keys",
+                        "kind": "optional",
+                        "type": "array",
+                        "description": "Sortable Insight properties",
+                        "modelRef": "#/components/schemas/insight_sort_keys",
+                        "customType": "insight_sort_keys[]",
+                        "schema": []
+                      },
+                      {
+                        "name": "sort_orders",
+                        "kind": "optional",
+                        "type": "array",
+                        "description": "",
+                        "example": "[\"asc\",\"desc\"]",
+                        "modelRef": "#/components/schemas/sort_orders",
+                        "customType": "sort_orders",
+                        "schema": []
+                      }
+                    ]
+                  },
+                  {
+                    "name": "current",
+                    "kind": "optional",
+                    "type": "array",
+                    "description": "",
+                    "example": "",
+                    "itemType": "object",
+                    "customType": "object[]",
+                    "schema": [
+                      {
+                        "name": "sort_key",
+                        "kind": "optional",
+                        "type": "string",
+                        "description": "Sortable Insight properties",
+                        "modelRef": "#/components/schemas/insight_sort_keys",
+                        "customType": "insight_sort_keys",
+                        "schema": []
+                      },
+                      {
+                        "name": "sort_order",
+                        "kind": "optional",
+                        "type": "string",
+                        "description": "",
+                        "modelRef": "#/components/schemas/sort_order",
+                        "customType": "sort_order",
+                        "schema": []
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "filters",
+                "kind": "optional",
+                "type": "object",
+                "description": "",
+                "modelRef": "#/components/schemas/insight_filters",
+                "customType": "insight_filters",
+                "schema": [
+                  {
+                    "name": "hide_resolved",
+                    "kind": "optional",
+                    "type": "boolean",
+                    "description": "",
+                    "example": ""
+                  }
+                ]
+              },
+              {
+                "name": "insights",
+                "kind": "optional",
+                "type": "array",
+                "description": "",
+                "modelRef": "#/components/schemas/insights",
+                "customType": "insights",
+                "schema": [
+                  {
+                    "name": "effort",
+                    "kind": "required",
+                    "type": "string<not_set | low | medium | high>",
+                    "description": "",
+                    "example": "",
+                    "enum": [
+                      "not_set",
+                      "low",
+                      "medium",
+                      "high"
+                    ]
+                  },
+                  {
+                    "name": "cost_impact",
+                    "kind": "required",
+                    "type": "string",
+                    "description": "String representation of a dollar amount",
+                    "modelRef": "#/components/schemas/currency",
+                    "customType": "currency",
+                    "schema": []
+                  },
+                  {
+                    "name": "status",
+                    "kind": "required",
+                    "type": "string<new | in_progress | on_hold | addressed | ignored>",
+                    "description": "",
+                    "example": "",
+                    "enum": [
+                      "new",
+                      "in_progress",
+                      "on_hold",
+                      "addressed",
+                      "ignored"
+                    ]
+                  },
+                  {
+                    "name": "category",
+                    "kind": "required",
+                    "type": "string",
+                    "description": "",
+                    "example": ""
+                  },
+                  {
+                    "name": "link",
+                    "kind": "required",
+                    "type": "string",
+                    "description": "",
+                    "example": ""
+                  },
+                  {
+                    "name": "description",
+                    "kind": "required",
+                    "type": "string",
+                    "description": "",
+                    "example": ""
+                  },
+                  {
+                    "name": "title",
+                    "kind": "required",
+                    "type": "string",
+                    "description": "",
+                    "example": ""
+                  },
+                  {
+                    "name": "id",
+                    "kind": "required",
+                    "type": "string",
+                    "description": "",
+                    "example": ""
+                  },
+                  {
+                    "name": "created",
+                    "kind": "required",
+                    "type": "string",
+                    "description": "UTC timestamp for the creation of this entity",
+                    "modelRef": "#/components/schemas/epoch",
+                    "customType": "epoch",
+                    "schema": []
+                  },
+                  {
+                    "name": "last_updated",
+                    "kind": "required",
+                    "type": "string",
+                    "description": "UTC timestamp for the last update of this entity",
+                    "modelRef": "#/components/schemas/epoch",
+                    "customType": "epoch",
+                    "schema": []
+                  }
+                ]
+              }
+            ],
+            "isExpanded": true
+          }
+        ]
+      },
+      {
+        "statusCode": "400",
+        "description": "Bad Request Error",
+        "jsonExample": "",
+        "isExpanded": true,
+        "schema": [
+          {
+            "kind": "optional",
+            "type": "object",
+            "description": "",
+            "schema": [
+              {
+                "name": "error",
+                "kind": "optional",
+                "type": "object",
+                "description": "",
+                "modelRef": "#/components/schemas/error",
+                "customType": "error",
+                "schema": [
+                  {
+                    "name": "message",
+                    "kind": "optional",
+                    "type": "string",
+                    "description": "",
+                    "example": ""
+                  },
+                  {
+                    "name": "type",
+                    "kind": "optional",
+                    "type": "string",
+                    "description": "",
+                    "example": ""
+                  }
+                ]
+              }
+            ],
+            "isExpanded": true
+          }
+        ]
+      },
+      {
+        "statusCode": "403",
+        "description": "Forbidden",
+        "jsonExample": "",
+        "isExpanded": true,
+        "schema": [
+          {
+            "kind": "optional",
+            "type": "object",
+            "description": "",
+            "schema": [
+              {
+                "name": "message",
+                "kind": "required",
+                "type": "string",
+                "description": "",
+                "example": ""
+              }
+            ],
+            "isExpanded": true
+          }
+        ]
+      }
+    ],
+    "hasXCodeSamples": false,
+    "examples": {
+      "languages": [
+        {
+          "id": "9xyuJepJvLPXMixxxdIXr",
+          "language": "curl",
+          "label": "cURL",
+          "code": "curl --location 'https://dev-api.cloudzero.com/v2/insights' \\\n--header 'Accept: application/json' \\\n--header 'Content-Type: application/json'"
+        },
+        {
+          "id": "mZCx0AA2ZiBI0MKM1tFd4",
+          "language": "javascript",
+          "label": "javascript",
+          "code": "var myHeaders = new Headers();\nmyHeaders.append(\"Accept\", \"application/json\");\nmyHeaders.append(\"Content-Type\", \"application/json\");\n\nvar requestOptions = {\n   method: 'GET',\n   headers: myHeaders,\n   redirect: 'follow'\n};\n\nfetch(\"https://dev-api.cloudzero.com/v2/insights\", requestOptions)\n   .then(response => response.text())\n   .then(result => console.log(result))\n   .catch(error => console.log('error', error));"
+        },
+        {
+          "id": "7N_W39wvow6CSZ9fe7q8W",
+          "language": "ruby",
+          "label": "Ruby",
+          "code": "require \"uri\"\nrequire \"json\"\nrequire \"net/http\"\n\nurl = URI(\"https://dev-api.cloudzero.com/v2/insights\")\n\nhttps = Net::HTTP.new(url.host, url.port)\nhttps.use_ssl = true\n\nrequest = Net::HTTP::Get.new(url)\nrequest[\"Accept\"] = \"application/json\"\nrequest[\"Content-Type\"] = \"application/json\"\n\nresponse = https.request(request)\nputs response.read_body\n"
+        },
+        {
+          "id": "FtHjd8DcMWXGbG5hPwlUp",
+          "language": "python",
+          "label": "Python",
+          "code": "import requests\nimport json\n\nurl = \"https://dev-api.cloudzero.com/v2/insights\"\n\npayload = {}\nheaders = {\n   'Accept': 'application/json',\n   'Content-Type': 'application/json'\n}\n\nresponse = requests.request(\"GET\", url, headers=headers, data=payload)\n\nprint(response.text)\n"
+        }
+      ],
+      "selectedLanguageId": "9xyuJepJvLPXMixxxdIXr"
+    },
+    "results": {
+      "languages": [
+        {
+          "id": "26RrgML9nnPYBlNyYWKll",
+          "language": "200",
+          "code": "// Successful Operation \n{\n  \"pagination\": {\n    \"page_count\": \"\",\n    \"item_count\": \"\",\n    \"total_count\": \"\",\n    \"cursor\": {\n      \"next_cursor\": \"\",\n      \"previous_cursor\": \"\",\n      \"has_next\": false,\n      \"has_previous\": false\n    }\n  },\n  \"sorting\": {\n    \"available\": {\n      \"sort_keys\": [\n        \"\"\n      ],\n      \"sort_orders\": [\n        \"\"\n      ]\n    },\n    \"current\": [\n      {\n        \"sort_key\": \"\",\n        \"sort_order\": \"\"\n      }\n    ]\n  },\n  \"filters\": {\n    \"hide_resolved\": false\n  },\n  \"insights\": [\n    {\n      \"effort\": \"\",\n      \"cost_impact\": \"\",\n      \"status\": \"\",\n      \"category\": \"\",\n      \"link\": \"\",\n      \"description\": \"\",\n      \"title\": \"\",\n      \"id\": \"\",\n      \"created\": \"\",\n      \"last_updated\": \"\"\n    }\n  ]\n}"
+        },
+        {
+          "id": "8rpAwmIDWjNkltU6rgg0s",
+          "language": "400",
+          "code": "// Bad Request Error \n{\n  \"error\": {\n    \"message\": \"\",\n    \"type\": \"\"\n  }\n}"
+        },
+        {
+          "id": "uRuHfaWiIx_zEemc_Fz2F",
+          "language": "403",
+          "code": "// Forbidden \n{\n  \"message\": \"\"\n}"
+        }
+      ],
+      "selectedLanguageId": "26RrgML9nnPYBlNyYWKll"
+    }
+  },
+  "children": [
+    {
+      "text": "",
+      "id": "B05KIsBqCRlF516oAgejE"
+    }
+  ]
+}

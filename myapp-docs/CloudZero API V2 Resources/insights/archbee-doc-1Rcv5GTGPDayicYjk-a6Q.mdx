@@ -1,0 +1,322 @@
+---
+title: /v2/insights/{insight_id}/comments/{comment_id}
+slug: JW2AK9Qfz-r39XYgY28g9
+docTags: 
+createdAt: Wed Mar 25 2026 15:49:58 GMT+0200 (Eastern European Standard Time)
+updatedAt: Wed Mar 25 2026 15:50:05 GMT+0200 (Eastern European Standard Time)
+---
+
+{
+  "id": "4702ePq0vUqtQa8toiqks",
+  "type": "api-oas-v2",
+  "data": {
+    "method": "PATCH",
+    "url": "https://dev-api.cloudzero.com/v2/insights/{insight_id}/comments/{comment_id}",
+    "servers": [
+      {
+        "url": "https://dev-api.cloudzero.com/v2/insights/{insight_id}/comments/{comment_id}"
+      }
+    ],
+    "name": "",
+    "description": "Update one Comment for an Insight",
+    "contentType": "application/json",
+    "request": {
+      "pathParameters": [
+        {
+          "kind": "required",
+          "name": "insight_id",
+          "type": "string",
+          "description": "Unique Insight identifier"
+        },
+        {
+          "kind": "required",
+          "name": "comment_id",
+          "type": "string",
+          "description": "Unique Comment identifier"
+        }
+      ],
+      "headerParameters": [
+        {
+          "kind": "optional",
+          "name": "cloudzero-idempotency-key",
+          "type": "string",
+          "description": "<p>If passed, any subsequent operation with the same value for this header will return the exact same result.\nThis is true for all responses, i.e. successes and errors.</p>"
+        },
+        {
+          "kind": "optional",
+          "name": "cloudzero-test-key",
+          "type": "string",
+          "description": "<p>If passed, the operation executes in the namespace specified by this key.\nResource mutations in the namespace last for 1 hour.</p>"
+        }
+      ],
+      "queryParameters": [],
+      "bodyDataParameters": [
+        {
+          "kind": "optional",
+          "name": "body",
+          "type": "object",
+          "description": "",
+          "customType": "comment_new",
+          "schema": [
+            {
+              "name": "message",
+              "kind": "required",
+              "type": "string",
+              "description": "",
+              "example": ""
+            }
+          ],
+          "modelRef": "#/components/schemas/comment_new",
+          "isExpanded": true
+        }
+      ],
+      "formDataParameters": [],
+      "oAuthParameters": [
+        {
+          "id": "APIKeyAuth",
+          "name": "Authorization",
+          "kind": "optional",
+          "type": "apiKey",
+          "in": "header"
+        }
+      ]
+    },
+    "responses": [
+      {
+        "statusCode": "200",
+        "description": "Successful Operation",
+        "jsonExample": "",
+        "isExpanded": true,
+        "schema": [
+          {
+            "kind": "optional",
+            "type": "object",
+            "description": "",
+            "schema": [
+              {
+                "name": "comment",
+                "kind": "optional",
+                "type": "object",
+                "description": "",
+                "modelRef": "#/components/schemas/comment",
+                "customType": "comment",
+                "schema": [],
+                "complexType": "allOf",
+                "complexItems": [
+                  {
+                    "name": "comment_new",
+                    "description": "",
+                    "modelRef": "#/components/schemas/comment_new",
+                    "schema": [
+                      {
+                        "name": "message",
+                        "kind": "required",
+                        "type": "string",
+                        "description": "",
+                        "example": ""
+                      }
+                    ]
+                  },
+                  {
+                    "name": "with_id",
+                    "description": "",
+                    "modelRef": "#/components/schemas/with_id",
+                    "schema": [
+                      {
+                        "name": "id",
+                        "kind": "required",
+                        "type": "string",
+                        "description": "",
+                        "example": ""
+                      }
+                    ]
+                  },
+                  {
+                    "name": "with_created",
+                    "description": "",
+                    "modelRef": "#/components/schemas/with_created",
+                    "schema": [
+                      {
+                        "name": "created",
+                        "kind": "required",
+                        "type": "string",
+                        "description": "UTC timestamp for the creation of this entity",
+                        "modelRef": "#/components/schemas/epoch",
+                        "customType": "epoch",
+                        "schema": []
+                      }
+                    ]
+                  },
+                  {
+                    "name": "with_last_updated",
+                    "description": "",
+                    "modelRef": "#/components/schemas/with_last_updated",
+                    "schema": [
+                      {
+                        "name": "last_updated",
+                        "kind": "required",
+                        "type": "string",
+                        "description": "UTC timestamp for the last update of this entity",
+                        "modelRef": "#/components/schemas/epoch",
+                        "customType": "epoch",
+                        "schema": []
+                      }
+                    ]
+                  },
+                  {
+                    "name": "object",
+                    "description": "",
+                    "schema": [
+                      {
+                        "name": "author",
+                        "kind": "required",
+                        "type": "string",
+                        "description": "",
+                        "example": ""
+                      },
+                      {
+                        "name": "insight",
+                        "kind": "required",
+                        "type": "object",
+                        "description": "",
+                        "modelRef": "#/components/schemas/with_id",
+                        "customType": "with_id",
+                        "schema": [
+                          {
+                            "name": "",
+                            "description": "",
+                            "customType": "Max depth limit reached"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "isExpanded": true
+          }
+        ]
+      },
+      {
+        "statusCode": "400",
+        "description": "Bad Request Error",
+        "jsonExample": "",
+        "isExpanded": true,
+        "schema": [
+          {
+            "kind": "optional",
+            "type": "object",
+            "description": "",
+            "schema": [
+              {
+                "name": "error",
+                "kind": "optional",
+                "type": "object",
+                "description": "",
+                "modelRef": "#/components/schemas/error",
+                "customType": "error",
+                "schema": [
+                  {
+                    "name": "message",
+                    "kind": "optional",
+                    "type": "string",
+                    "description": "",
+                    "example": ""
+                  },
+                  {
+                    "name": "type",
+                    "kind": "optional",
+                    "type": "string",
+                    "description": "",
+                    "example": ""
+                  }
+                ]
+              }
+            ],
+            "isExpanded": true
+          }
+        ]
+      },
+      {
+        "statusCode": "403",
+        "description": "Forbidden",
+        "jsonExample": "",
+        "isExpanded": true,
+        "schema": [
+          {
+            "kind": "optional",
+            "type": "object",
+            "description": "",
+            "schema": [
+              {
+                "name": "message",
+                "kind": "required",
+                "type": "string",
+                "description": "",
+                "example": ""
+              }
+            ],
+            "isExpanded": true
+          }
+        ]
+      }
+    ],
+    "hasXCodeSamples": false,
+    "examples": {
+      "languages": [
+        {
+          "id": "Cyj4xVhzTgmKiRdWuAebo",
+          "language": "curl",
+          "label": "cURL",
+          "code": "curl --location --globoff --request PATCH 'https://dev-api.cloudzero.com/v2/insights/{insight_id}/comments/{comment_id}' \\\n--header 'Accept: application/json' \\\n--header 'Content-Type: application/json' \\\n--data '{\n  \"message\": \"\"\n}'"
+        },
+        {
+          "id": "yTpOgPxgt9cNmmx9nPG3V",
+          "language": "javascript",
+          "label": "javascript",
+          "code": "var myHeaders = new Headers();\nmyHeaders.append(\"Accept\", \"application/json\");\nmyHeaders.append(\"Content-Type\", \"application/json\");\n\nvar raw = JSON.stringify({\n   \"message\": \"\"\n});\n\nvar requestOptions = {\n   method: 'PATCH',\n   headers: myHeaders,\n   body: raw,\n   redirect: 'follow'\n};\n\nfetch(\"https://dev-api.cloudzero.com/v2/insights/{insight_id}/comments/{comment_id}\", requestOptions)\n   .then(response => response.text())\n   .then(result => console.log(result))\n   .catch(error => console.log('error', error));"
+        },
+        {
+          "id": "--0QhUa7XGR4ug5K-g68Q",
+          "language": "ruby",
+          "label": "Ruby",
+          "code": "require \"uri\"\nrequire \"json\"\nrequire \"net/http\"\n\nurl = URI(\"https://dev-api.cloudzero.com/v2/insights/{insight_id}/comments/{comment_id}\")\n\nhttps = Net::HTTP.new(url.host, url.port)\nhttps.use_ssl = true\n\nrequest = Net::HTTP::Patch.new(url)\nrequest[\"Accept\"] = \"application/json\"\nrequest[\"Content-Type\"] = \"application/json\"\nrequest.body = JSON.dump({\n   \"message\": \"\"\n})\n\nresponse = https.request(request)\nputs response.read_body\n"
+        },
+        {
+          "id": "anbDHEpR9Tq6xrHR9qqEb",
+          "language": "python",
+          "label": "Python",
+          "code": "import requests\nimport json\n\nurl = \"https://dev-api.cloudzero.com/v2/insights/{insight_id}/comments/{comment_id}\"\n\npayload = json.dumps({\n   \"message\": \"\"\n})\nheaders = {\n   'Accept': 'application/json',\n   'Content-Type': 'application/json'\n}\n\nresponse = requests.request(\"PATCH\", url, headers=headers, data=payload)\n\nprint(response.text)\n"
+        }
+      ],
+      "selectedLanguageId": "Cyj4xVhzTgmKiRdWuAebo"
+    },
+    "results": {
+      "languages": [
+        {
+          "id": "NKktoz7o8dg9rnRY1HkBs",
+          "language": "200",
+          "code": "// Successful Operation \n{\n  \"comment\": {}\n}"
+        },
+        {
+          "id": "gU9W-XePDdNXQ3ymepI-4",
+          "language": "400",
+          "code": "// Bad Request Error \n{\n  \"error\": {\n    \"message\": \"\",\n    \"type\": \"\"\n  }\n}"
+        },
+        {
+          "id": "_TnGNNHQRB1jPiAZRxOrU",
+          "language": "403",
+          "code": "// Forbidden \n{\n  \"message\": \"\"\n}"
+        }
+      ],
+      "selectedLanguageId": "NKktoz7o8dg9rnRY1HkBs"
+    }
+  },
+  "children": [
+    {
+      "text": "",
+      "id": "-qUrrCMnsObK3ULIRBoIQ"
+    }
+  ]
+}
