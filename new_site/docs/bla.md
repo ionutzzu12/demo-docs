@@ -1,3 +1,0 @@
-# Images
-
-bla bla
