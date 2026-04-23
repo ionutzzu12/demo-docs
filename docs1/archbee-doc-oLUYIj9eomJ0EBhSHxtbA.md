@@ -1,9 +1,10 @@
 ---
 title: c
 slug: oLUY-c
+icon: 🤨
 docTags: 
-createdAt: Fri Apr 17 2026 14:53:07 GMT+0300 (Eastern European Summer Time)
-updatedAt: Fri Apr 17 2026 14:54:26 GMT+0300 (Eastern European Summer Time)
+createdAt: Thu Apr 23 2026 06:28:33 GMT+0000 (Coordinated Universal Time)
+updatedAt: Thu Apr 23 2026 06:29:25 GMT+0000 (Coordinated Universal Time)
 ---
 
 ccc 1
