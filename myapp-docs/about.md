@@ -1,7 +1,7 @@
 # About
 
 :::ExpandableHeading
-# Expandable heading 2
+# Expandable heading 3
 
 **text text**
 :::
