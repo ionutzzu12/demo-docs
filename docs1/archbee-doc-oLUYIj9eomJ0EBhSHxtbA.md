@@ -1,12 +1,12 @@
 ---
 title: c
 slug: oLUY-c
-icon: 🤨
+icon: {"lucideIcon":"🤨"}
 docTags: 
-createdAt: Thu Apr 23 2026 06:28:33 GMT+0000 (Coordinated Universal Time)
-updatedAt: Thu Apr 23 2026 06:29:25 GMT+0000 (Coordinated Universal Time)
+createdAt: Wed May 13 2026 09:02:17 GMT+0300 (Eastern European Summer Time)
+updatedAt: Wed May 13 2026 09:02:36 GMT+0300 (Eastern European Summer Time)
 ---
 
-ccc 1
+ccc 2
 
 @blablabla123
