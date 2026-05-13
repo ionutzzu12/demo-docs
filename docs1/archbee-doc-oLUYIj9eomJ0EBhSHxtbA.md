@@ -3,10 +3,10 @@ title: c
 slug: oLUY-c
 icon: {"lucideIcon":"🤨"}
 docTags: 
-createdAt: Wed May 13 2026 09:27:15 GMT+0300 (Eastern European Summer Time)
-updatedAt: Wed May 13 2026 09:27:33 GMT+0300 (Eastern European Summer Time)
+createdAt: Wed May 13 2026 06:27:59 GMT+0000 (Coordinated Universal Time)
+updatedAt: Wed May 13 2026 06:28:22 GMT+0000 (Coordinated Universal Time)
 ---
 
-ccc 3
+ccc 4
 
 @blablabla123
