@@ -1,0 +1,76 @@
+---
+title: About external authentication configuration
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:57 GMT+0300 (Eastern European Summer Time)
+---
+
+**Role**: \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+
+**Minimum Version**: \{\{Primary.Company}} \{\{Primary.Product}} 2024.2.
+
+You can configure the external authentication or third-party Single Sign On (SSO) users for \{\{Primary.Product}} to provide access levels as per the role.
+
+## About authentication providers
+
+An authentication provider is a way of linking \{\{FRS\_VARS.ProductName}} to a service that provides authentication services for you.
+
+Use the **Authentication Providers** workspace to manage multiple authentication providers for user accounts with authentication credentials that were already established elsewhere.
+
+There are two ways to add an authentication provider: either manually, as described in :Link[Adding an authentication provider manually]{label="Adding an authentication provider manually" overridedLabel="Adding an authentication provider manually" spaceId docId="475MAx1vPYWkNJJvqHAhj" version="v2" docAnchorId="#Adding" loadingMethod="dynamic" newTab="false" href="Authentication_Configura.mdx"}, and by using metadata, as described in :Link[Adding an Authentication Provider by Importing Metadata]{label="Adding an Authentication Provider by Importing Metadata" overridedLabel="Adding an Authentication Provider by Importing Metadata" spaceId docId="9Lz_ULb-0gfqtGeevv7qo" version="v2" docAnchorId="#Adding_anAuthentication_Provider_by_Importing_Metadata" loadingMethod="dynamic" newTab="false" githubPath="ADFS SAML.htm#Adding_anAuthentication_Provider_by_Importing_Metadata" href="ADFS SAML.mdx"}.
+
+<hint type="info">
+  To set up \{\{FRS\_VARS.ITSM}} users for authentication via the \{\{FRS\_VARS.Neurons\_platform}}, refer to [Setting up ITSM users for authentication via the Neurons Platform](../../../setting-up-itsm-users-for-authentication-via-the-neurons-platform.mdx) and [Authentication](https://help.ivanti.com/ht/help/en_US/CLOUD/vNow/authentication.htm). This feature is **Early Access** only and may not be available in your environment. For more information, please contact your Customer Success Manager.
+</hint>
+
+## Adding an authentication provider manually
+
+1. From the Configuration Console, click **Configure > Security Controls > Authentication Providers** to open the **Authentication Providers** workspace.
+2. From the **New Record Menu** drop-down list, choose an authentication provider:
+
+| Option                 | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| New ADFS/SAML          | The customer web portal site acts as the SAML identity provider, and the \{\{FRS\_VARS.ProductName}} web application server acts as the service provider. Refer to :Link[Setting Up ADFS Authentication in Ivanti Neurons for ITSM]{label="Setting Up ADFS Authentication in Ivanti Neurons for ITSM" overridedLabel="Setting Up ADFS Authentication in Ivanti Neurons for ITSM" spaceId docId="9Lz_ULb-0gfqtGeevv7qo" version="v2" docAnchorId="#Setting" loadingMethod="dynamic" newTab="false" githubPath="ADFS SAML.htm#Setting" href="ADFS SAML.mdx"}.                                                                                                                                                                                                                                                              |
+| New LDAP               | You can employ multiple LDAP providers. Refer to [Setting Up External Authentication with LDAP](<LDAP Synchronization.mdx>).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| New Open ID            | Open ID providers (Open ID site, Google, Yahoo, etc.) perform the authentication. When logging into \{\{FRS\_VARS.ProductName}} the first time, click the **Open ID** link. You are redirected to the Open ID site to authenticate. Upon authentication, you are redirected to \{\{FRS\_VARS.ProductName}}.<br />Refer to :Link[Setting Up Authentication for OpenID]{label="Setting Up Authentication for OpenID" overridedLabel="Setting Up Authentication for OpenID" spaceId docId="1rlPyCAacLSU8lyZkXsuh" version="v2" docAnchorId="#security_settings_1070403104_1211098" loadingMethod="dynamic" newTab="false" githubPath="Open ID.htm#security_settings_1070403104_1211098" href="Open ID.mdx"}. The application stores the cookie used for authentication, and subsequent login attempts skip the redirection. |
+| New OpenID Connect     | Creates an OpenID Connect for Google or Microsoft Azure. Refer to :Link[Setting Up Authentication for OpenID Connect with Google]{label="Setting Up Authentication for OpenID Connect with Google" overridedLabel="Setting Up Authentication for OpenID Connect with Google" spaceId docId="_rFBt3ptrKXfpPxmuypLl" version="v2" docAnchorId="#security_settings_1070403104_1211098Connect" loadingMethod="dynamic" newTab="false" githubPath="Open ID Connect.htm#security_settings_1070403104_1211098Connect" href="Open ID Connect.mdx"} and [Setting Up authentication for OpenID Connect with Microsoft Azure](<Open ID Connect Azure.mdx>).                                                                                                                                                                         |
+| New Windows Integrated | Allows you to directly set up AD authentication. Refer to .                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+
+## Setting Up Users for Authentication
+
+After you create an external authentication provider, you can select it when creating and updating employee records.
+
+Users can click a link on the \{\{FRS\_VARS.ProductName}} login page that directs them to their identity provider website and log in from there, or they can use authentication to log in from an URL sent via email, as described in [Logging in or Accessing Records Using URLs](../LogIn/Log_In_Using_URLs.mdx).
+
+If a user does not have an employee record and if auto provisioning is selected in the authentication provider record, the application creates an employee record for the user when they log in via ADFS/SAML, Open ID, or OpenID Connect. Refer to :Link[Setting Up Authentication for ADFS/SAML]{label="Setting Up Authentication for ADFS/SAML" overridedLabel="Setting Up Authentication for ADFS/SAML" spaceId docId="9Lz_ULb-0gfqtGeevv7qo" version="v2" docAnchorId="#security_settings_1070403104_1181173" loadingMethod="dynamic" newTab="false" githubPath="ADFS SAML.htm#security_settings_1070403104_1181173" href="ADFS SAML.mdx"}, [Setting Up Authentication for OpenID](<Open ID.mdx>), [Setting Up Authentication for OpenID Connect with Google](<Open ID Connect.mdx>), and [Setting Up authentication for OpenID Connect with Microsoft Azure](<Open ID Connect Azure.mdx>).
+
+If you are creating only a few users, you can set the authentication provider by following these steps:
+
+1. Log in to the Service Desk Console.
+2. Open the **Employee** workspace. The application displays a list of employees.
+3. Open the employee record to set up authentication for.
+4. From the **Details** tab, check **Enable External Auth**.
+5. For the **Login for External Auth** field, click **Add new\...**. The application displays the **New External Login** dialog box.
+6. Enter data into the fields.
+
+| Field                   | Description                                                                                                                                                                                 |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Login                   | The login ID for the tenant (UPN) on the domain. The the UPN (user principal name) of the Active Directory user from the ADFS server (for example, *firstname.lastName\@heatsoftware.com)*. |
+| Authentication Provider | The tenant ADFS that you created.                                                                                                                                                           |
+
+7. Click **Save**. The application closes the window.
+8. Click **Save**.
+
+<hint type="info" indent="1">
+  When setting up authentication, users must use their external authentication login when logging into \{\{FRS\_VARS.ProductName}}, not their internal login ID.
+</hint>
+
+## Disable Change Password for External Authentication Users
+
+While configuring the external users that uses Single Sign On (SSO) disable the Change Password feature to avoid security vulnerabilities.
+
+**To disable change password feature.**
+
+1. Log in to \{\{FRS\_VARS.ProductName}} as \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+2. Open the Configuration console and go to **Configure** > **User and Permissions** > **Roles and Permissions**.
+3. Select the required role for example **DiscoveryAnalyst**.
+4. Disable the **Change Password Button** under **Branding Options** and select **Save**.

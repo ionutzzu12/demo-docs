@@ -1,0 +1,122 @@
+---
+title: Configuring Approvers and Approval Workflows
+slug: configuring-approvers-and-approval-workflows
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:03 GMT+0300 (Eastern European Summer Time)
+---
+
+**Role**: \{\{FRS\_VARS.Neurons\_ITSM\_-\_Knowledge\_Manager}}, \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}
+
+**Minimum Version**: \{\{Primary.Company}} \{\{FRS\_VARS.ProductName}} 2023
+
+Knowledge articles follow a defined approval process driven by workflows. You can configure these workflows and create approver contact groups to streamline the approval process.
+
+## Approval Workflows
+
+Knowledge management provides an approval workflow for each knowledge article type.
+
+| Article Type         | Workflow Name                                   | Business Object                |
+| -------------------- | ----------------------------------------------- | ------------------------------ |
+| Document             | Knowledge Approval Process for Document         | FRS\_Knowledge.Document        |
+| Error Message        | Knowledge Approval Process for Error Message    | FRS\_Knowledge.ErrorMessage    |
+| Issue and Resolution | Knowledge Approval Process for Issue Resolution | FRS\_Knowledge.IssueResolution |
+| Patch                | Knowledge Approval Process for Patch            | FRS\_Knowledge.Patch           |
+| Q\&A                 | Knowledge Approval Process for Q and A          | FRS\_Knowledge.QandA           |
+| Reference            | Knowledge Approval Process for Reference        | FRS\_Knowledge.Reference       |
+
+Workflows mostly consist of the **Get Approval** and **Notification** workflow block. These define the approvers, the approval sequence and criteria, the notification recipients during the approval process, and the voting deadlines. These settings can be changed to customize the approval process as described in the following sections.
+
+See [Using Workflows](Content/Configure/Workflows/Using_Workflows.mdx) for information on workflows.
+
+## Configuring Approvers
+
+To configure approvers create a contact group and add the approvers group to the workflow.
+
+**To create the approvers contact group.**
+
+1. Log in to \{\{FRS\_VARS.ProductName}} as an \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+2. Open the Configuration console and go to **Configure** > **Users and Permissions** > **Groups**.
+3. Select **New Contact Group** and fill in the contact group details. Ensure to select **Knowledge Advisory Board** as **Group Type**.
+4. Select **Link** from the **Members** section and double-click the user's record to add it as a member of the groups
+
+**To add approvers in the workflow.**
+
+1. Log in to \{\{FRS\_VARS.ProductName}} as an \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+2. Open the Configuration console and go to **Build** > **Business Objects** > select the required business object such as **FRS\_Knowledge.Document**.
+3. Select the required workflow from the **Workflows** tab.
+4. Select the :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/AWliX6KDNbujn4PdTctOU_edit-icon-km-workflow.png" alt="Edit button to open worflow" caption="Edit button to open worflow" size="10" width="14" height="14"} edit icon of the version you are required to edit.
+5. Double-click the **Get Approval** block to reconfigure.
+6. In the **Approvers** area, select the required group as approver **From a Group** drop-down. Select **Save**.
+
+## Configuring the Approval Criteria
+
+1. Log in to \{\{FRS\_VARS.ProductName}} as an \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+2. Open the Configuration console and go to **Build** > **Business Objects** > select the required business object such as **FRS\_Knowledge.Document**.
+3. Select the required workflow from the **Workflows** tab.
+4. Select the :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/AWliX6KDNbujn4PdTctOU_edit-icon-km-workflow.png" alt="Edit button to open worflow" caption="Edit button to open worflow" size="10" width="14" height="14"} edit icon of the version you are required to edit.
+5. Double-click the **Get Approval** block to reconfigure.
+6. In the **Approval/Denial Criteria** area of the **Get Approval** block properties window, select an approval method.
+7. Select **Save**.
+
+Approval criteria are controlled by the information in the **Approval/Denial Criteria** area of the **Get Approval** block properties window.
+
+| **Configurable Criteria**       | **Conditions for Approval/Rejection**                                       |
+| ------------------------------- | --------------------------------------------------------------------------- |
+| Approve if all approved         | Every member of the approval group approves the request.                    |
+| Approve if any approved         | One member of the approval group must approve the request.                  |
+| Approve if at least N% approved | The specified percentage of the approval group members approve the request. |
+| Deny if any rejected            | One member of the approval group rejects the request.                       |
+| Deny if at least N% rejected    | The specified percentage of approval group members rejects the request.     |
+
+## Email Notifications
+
+Email notification occurs at two general stages in a knowledge approval workflow:
+
+- Approvers are notified when an article is ready for them to review.
+- The owner of an article is notified about the article status after it is reviewed or after a review deadline expires.
+
+### Configuring Approver Notifications
+
+The **KnowledgeApprovalVoteNotification** quick action (affiliated with the **FRS\_ApprovalVoteTracking** business object) sends email to approvers when an article is ready for them to review. By default, this notification is sent to $(OwnerEmail).
+
+To reconfigure this quick action:
+
+1. Log in to \{\{FRS\_VARS.ProductName}} as an \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+2. Open the Configuration console and go to **Build&#x20;**> **Automation Tools** > **Quick Actions**.
+3. Scroll to **FRS\_ApprovalVoteTracking** and select **Add/Edit**.
+4. Under **Your Actions**, double-click **KnowledgeApprovalVoteNotification** and reconfigure it as necessary.
+5. Select **Save**.
+
+To specify that another quick action be used:
+
+1. Log in to \{\{FRS\_VARS.ProductName}} as an \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+2. Open the Configuration console and go to **Build** > **Business Objects** > select the required business object such as **FRS\_Knowledge.Document**.
+3. Select the required workflow from the Workflows tab.
+4. Select the :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/AWliX6KDNbujn4PdTctOU_edit-icon-km-workflow.png" alt="Edit button to open worflow" caption="Edit button to open worflow" size="10" width="14" height="14"} edit icon of the version you are required to edit.
+5. Double-click the **Get Approval** block to reconfigure it.
+6. In the **Approval Notification Quick Action** area, use the drop-down list to select another quick action.
+7. Select **Save**.
+
+### Configuring Owner Notifications
+
+1. Log in to \{\{FRS\_VARS.ProductName}} as an \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+2. Open the Configuration console and go to **Build** > **Business Objects** > select the required business object such as **FRS\_Knowledge.Document**.
+3. Select the required workflow from the **Workflows** tab.
+4. Select the :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/AWliX6KDNbujn4PdTctOU_edit-icon-km-workflow.png" alt="Edit button to open worflow" caption="Edit button to open worflow" size="10" width="14" height="14"} edit icon of the version you are required to edit.
+5. Double-click the **Notification** block to reconfigure it. The **Notification** properties window opens.
+6. You can use the default template that appears, or modify it as needed.
+7. Select **Save** and then click **OK**.
+
+## Configuring a Voting Deadline for an Approval Request
+
+Voting deadlines for article approvers are configured through **Get Approval** workflow blocks. Deadlines can be based on a duration (in days, hours, and minutes) or on the date in a field that you specify.
+
+1. Log in to \{\{FRS\_VARS.ProductName}} as an \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+2. Open the Configuration console and go to **Build** > **Business Objects** > select the required business object such as **FRS\_Knowledge.Document**..
+3. Select the required workflow from the **Workflows** tab.
+4. Select the :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/AWliX6KDNbujn4PdTctOU_edit-icon-km-workflow.png" alt="Edit button to open worflow" caption="Edit button to open worflow" size="10" width="14" height="14"} edit icon of the version you are required to edit.
+5. Double-click the **Get Approval** workflow block that is labeled as default, to reconfigure it. The **Get Approval** properties window opens.
+6. In the **Approval Voting Deadline** area, do one of the following:
+   - Select a **Field** to specify a field name.
+   - Select **Duration** and specify the duration length in the provided fields. (The duration clock starts when the **Get Approval** workflow block is triggered; the deadline is reached when the duration ends).
+7. Select **Save** and then click **OK**.

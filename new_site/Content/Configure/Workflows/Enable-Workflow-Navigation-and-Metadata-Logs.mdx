@@ -1,0 +1,47 @@
+---
+title: Enable Workflow Navigation and Metadata in Logs
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:58 GMT+0300 (Eastern European Summer Time)
+---
+
+**Role**: Administrator
+
+**Minimum Version**: \{\{Primary.Company}} \{\{FRS\_VARS.ProductName}}*&#x20;2025.4*
+
+This feature enables display of the Workflow Definition business object for specific admin roles and enhances the Logs workspace with workflow-related navigation and metadata actions.
+
+If a log entry does not contain the necessary metadata or you require to modify the attached metadata, you can add or update using the **Edit Workflow Instance** and **Edit Workflow Definition** quick actions available (for *workflowservice* logs only) under the **Action Menu**.
+
+## Enable Workflow Definition Workspace for Roles
+
+To allow users to access the Workflow Definition workspace, update the roles configuration.
+
+1. Log in to \{\{Primary.Product}} as \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+2. Go to configuration console > **Configure** > **Users and Permissions** > **Roles and Permissions**.
+3. Select **Admin** role > **Top Level Tabs** > **Workflow Definition** business object > add *WorkflowDefinition.AdminWorkspace.DefaultLayout* as **Layout**.
+
+<hint type="info" indent="1">
+  You can configure the *WorkflowDefinition.AdminWorkspace.DefaultLayout* as **Layout** to the **Workflow Definition** business object for the - Administrator, AdminAUSpark, Asset Administrator, and Asset Administrator AU Spark roles.
+</hint>
+
+## Enhance Logs Workspace with Workflow Actions
+
+To enable navigation from log entries to workflow definitions and instances, update the Logs workspace layout.
+
+1. Log in to \{\{Primary.Product}} as \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+2. Go to configuration console > Build > Business Objects > search and select the **Logs** business object.
+
+<Paragraph indent="1">
+  *Searching the Logs business object*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/i6HYscDmul3uSbsR42MBh_logs-bo-search.png" alt="Searching the Logs business object" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/workflow-images/logs-BO-search.png" githubPath="Content/Resources/Images/workflow-images/logs-BO-search.png" showCaption="false"></Image>
+
+3. Select a layout under the **Layouts** tab.
+4. Select the **gridView** then in the **Toolbar** section select **Edit** and drag the **Action Menu**, **Go to Workflow Definition**, and **Go to Workflow Instance** to the **Toolbar Editor**, and **Save** the configuration.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/EMzq7xyvx3AdAcDeu2Dla_logs-toolbar-editor.png" alt="Adding the &#x22;Go to Workflow Definition&#x22; and &#x22;Go to Workflow Instance&#x22;" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/workflow-images/logs-toolbar-editor.png" githubPath="Content/Resources/Images/workflow-images/logs-toolbar-editor.png" showCaption="false"></Image>
+
+<hint type="info" indent="1">
+  Ensure that you add the **Action Menu**, **Go to Workflow Definition**, and **Go to Workflow Instance** for **formView** as well.
+</hint>

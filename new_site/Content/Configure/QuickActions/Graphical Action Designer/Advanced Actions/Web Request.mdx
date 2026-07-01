@@ -1,0 +1,91 @@
+---
+title: Web Request Quick Action
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:56 GMT+0300 (Eastern European Summer Time)
+---
+
+- :Link[About the Web Request Quick Action]{label="About the Web Request Quick Action" overridedLabel="About the Web Request Quick Action" spaceId docId="zmAqxxPgs8Z42CIDRFrmK" version="v2" docAnchorId="#AboutWebRequest" loadingMethod="dynamic" newTab="false" href="Web Request.mdx"}
+- :Link[Parameters]{label="Parameters" overridedLabel="Parameters" spaceId docId="zmAqxxPgs8Z42CIDRFrmK" version="v2" docAnchorId="#Parameters" loadingMethod="dynamic" newTab="false" href="Web Request.mdx"}
+- \{\{FRS\_VARS.Classic\_Action\_Designer}}: [Web Request Quick Action](<../../Classical Action Designer/templates/Web Request Quick Action.mdx>)
+
+You can use web requests to update fields in your business objects.
+
+Use the **Web Request** action when you need to customize and define inputs. The **Web Request&#x20;**\{\{FRS\_VARS.Quick\_Action}} uses open APIs to communicate with web servers, making it a flexible data gathering tool.
+
+## About the Web Request Quick Action
+
+Use the **Web Request&#x20;**\{\{FRS\_VARS.Quick\_Action}} block to gather data and update fields in one step.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/DBmII9NKuwhWZ4mTOukyI_qa-web-request-block-gad.png" alt="Image of the Web Request Quick Action block in the Graphical Action Designer" position="flex-start" size="40" initialPath="../../../../Resources/Images/help-images/qa web request block - gad.png" githubPath="Content/Resources/Images/help-images/qa web request block - gad.png" showCaption="false"></Image>
+
+## Parameters
+
+To access the parameters, select the **Action Block** to display them in the **Settings** pane.
+
+### Action Block Settings
+
+### General Settings
+
+**Block Label**: A unique name for the block. This is useful to identify each action when you have more than one of the same action block added or cloned in the design area.
+
+- **Method**:
+  - GET: Gathers data from a resource on the server.
+  - POST: Sends data to the server to create or update a resource. Multiple POST requests will result in compounded changes to the resource.
+  - PUT: Sends data to the server to create or update a resource. Multiple PUT requests will result in the same response with every request.
+  - PATCH: Applies partial modifications to a resource.
+  - DELETE: Deletes the specified resource.
+- **URL**: The target of your web request.
+- **Body**: Enter the payload you are sending with your web request.
+  - For example, $('\{"Status":"' + Status + '", "Subject":"' + Subject +'", "Description":"' + Symptom + '"}').
+
+### Header Settings
+
+The header settings contain metadata in key-value pairs that are sent along with HTTP requests. A request header is sent to the web server and contains information and instructions for the resource to respond to the request. You can find useful information on using HTTP headers at [https://blog.postman.com/what-are-http-headers/](https://blog.postman.com/what-are-http-headers/). You can specify one or more header key-value pairs in the **Header Settings**. See :Link[Example of Header Settings]{label="Example of Header Settings" overridedLabel="Example of Header Settings" spaceId docId="zmAqxxPgs8Z42CIDRFrmK" version="v2" docAnchorId="#Example_of_Header_Settings" loadingMethod="dynamic" newTab="false" href="Web Request.mdx"} for typical examples of defining the header settings.
+
+1. Click **Header Settings** to open the workspace in the **Graphical Action Designer**.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/ViNqAM1FF8Z6D28oxUjgi_webrequestheadersettings.png" position="flex-start" size="40" indent="2" initialPath="../../quick-actions-images/web_request_header_settings.png" githubPath="Content/Configure/QuickActions/quick-actions-images/web_request_header_settings.png" showCaption="false"></Image>
+
+2. Enter the required **Header Key** and **Header Value** pair.
+3. Click the **+** icon to add more pairs.
+
+### Example of Header Settings
+
+In this example, we define the header settings to pass an API key to a web server.
+
+Typically, this may be used to obtain data from the server, the header value API key being passed to the server as authorization to obtain the data.
+
+1. Set the **Web Request** action's **Method** field to 'GET', as we want to gather data from a resource on the server.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/_gh7OSsvPh1mg7ycSiqVL_webrequestmethoddrop-down.png" position="flex-start" size="40" indent="1" initialPath="../../quick-actions-images/web_request_method_drop-down.png" githubPath="Content/Configure/QuickActions/quick-actions-images/web_request_method_drop-down.png" showCaption="false"></Image>
+
+2. Enter tenant URL along with resource location in the **URL** field.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/j-wHEUcv7Vp_FYjXcnlg0_webrequesturlfield.png" position="flex-start" size="40" indent="1" initialPath="../../quick-actions-images/web_request_url_field.png" githubPath="Content/Configure/QuickActions/quick-actions-images/web_request_url_field.png" showCaption="false"></Image>
+
+<Paragraph indent="1">
+  For example, https\://\<tenant-url>/api/odata/businessobject/incidents('$(RecId)').
+</Paragraph>
+
+3. Enter "Authorization" for the **Header Key**, and the API key for the **Header Value**.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/t9f12fmgFw4G69k3m2ohk_webrequestheadersettingsexample2.png" position="flex-start" size="40" indent="1" initialPath="../../quick-actions-images/web_request_header_settings_example2.png" githubPath="Content/Configure/QuickActions/quick-actions-images/web_request_header_settings_example2.png" showCaption="false"></Image>
+
+4. Click **Add Header** :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/tz6ln1JEcq28-cRejFGYz_webrequestaddheaderrowbutton.png" alt caption size="10" width="29" height="29"} to add a second header key and value row.
+5. Enter "Content-Type" for the **Header Key**, and application/json for the **Header Value**.
+   This indicates that the request body contains JSON data.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/K8a6H_EQbd5Fu2wYHS6OB_webrequestheadersettingsexample3.png" position="flex-start" size="40" indent="1" initialPath="../../quick-actions-images/web_request_header_settings_example3.png" githubPath="Content/Configure/QuickActions/quick-actions-images/web_request_header_settings_example3.png" showCaption="false"></Image>
+
+### Response Settings
+
+- **Ignore Certificate Errors**: Check this box to have the Web Request \{\{FRS\_VARS.Quick\_Action}} ignore certificate errors (such as an expired certificate error) and continue processing the remaining steps in the \{\{FRS\_VARS.Quick\_Action}}.
+- **Store Response Code As**: Creates and populates a variable to store the response code for use in subsequent action steps.
+- **Store Response Body As**: Creates and populates a variable to store the response body for in subsequent action steps.
+- **Store Response Headers As**: Creates and populates a variable to store the response header for in subsequent action steps.
+
+Click **Save** to commit your settings.
+
+### Start Block Settings
+
+These settings are accessed by selecting the **Start Block**, refer to :Link[Start Block Settings]{label="Start Block Settings" overridedLabel="Start Block Settings" spaceId docId="T_2hq2qRJzWxiHLCfgn-7" version="v2" docAnchorId="#CommonTab" loadingMethod="dynamic" newTab="false" githubPath="../Using_the_Graphical_Action_Designer.htm#CommonTab" href="../Using_the_Graphical_Action_Designer.mdx"}.

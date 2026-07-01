@@ -1,0 +1,72 @@
+---
+title: CurrencyCode
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:59 GMT+0300 (Eastern European Summer Time)
+---
+
+Returns the currency code of a currency value. A currency value is a combination of the currency amount and the currency code, such as 3 USD.
+
+<hint type="info">
+  - Use this function to return the currency code portion of a currency value.
+  - Use the [CurrencyValue](CurrencyValue.mdx) function to return the currency amount portion of a currency value.
+</hint>
+
+## Syntax
+
+CurrencyCode(currencyValue)
+
+## Enabled For
+
+For a description of the business object categories, see :Link[Notes on "Enabled For"]{label="Notes on &#x22;Enabled For&#x22;" overridedLabel="Notes on &#x22;Enabled For&#x22;" spaceId docId="xObv2pIDrk60jkEIWs8mD" version="v2" docAnchorId="#Notes" loadingMethod="dynamic" newTab="false" githubPath="_Built_in_Functions.htm#Notes" href="_Built_in_Functions.mdx"}.
+
+| Business object category                                                                    | Yes/No |
+| ------------------------------------------------------------------------------------------- | ------ |
+| Business Rules: Before-Save Rules                                                           | Yes    |
+| Business Rules: Calculation Rules (After Save, with or without Also Recalculate on Load)    | Yes    |
+| Business Rules: Calculation Rules (Before Save or Always, without Also Recalculate On Load) | Yes    |
+| Business Rules: Calculation Rules (Before Save or Always, with Recalculate On Load)         | Yes    |
+| Business Rules: Editing Rules                                                               | Yes    |
+| Business Rules: Initialization Rules                                                        | Yes    |
+| Business Rules: Read Only Rules                                                             | Yes    |
+| Business Rules: Required Rules                                                              | Yes    |
+| Business Rules: Validation Rules                                                            | Yes    |
+| Client Expressions                                                                          | Yes    |
+| Object Permissions                                                                          | No     |
+| Services                                                                                    | Yes    |
+| LDAP                                                                                        | Yes    |
+| Mobile                                                                                      | Yes    |
+| Quick Actions (except UI Quick Actions)                                                     | Yes    |
+| UI Quick Actions                                                                            | Yes    |
+| Reports                                                                                     | Yes    |
+| Search/Dashboard without field references                                                   | Yes    |
+| Search/Dashboard with field references                                                      | No     |
+
+### Parameter
+
+| Parameter     | Description                                                                                                                             |
+| ------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| currencyValue | The currency value (a combination of the currency amount and the currency code, such as 3 USD) from which to extract the currency code. |
+
+## Return Value
+
+<Paragraph indent="1">
+  Text value. Returns the currency code of the currency value that was input. See [http://www.xe.com/iso4217.php](http://www.xe.com/iso4217.php) for a list of ISO 4217 currency codes.
+</Paragraph>
+
+<Paragraph indent="1">
+  Returns null if the **currencyValue** parameter is null.
+</Paragraph>
+
+## Examples
+
+$(CurrencyCode(44.2HKD)
+
+<Paragraph indent="1">
+  The example above returns "HKD", which is the currency code of the input.
+</Paragraph>
+
+$(CurrencyCode(Component\_Cost)
+
+<Paragraph indent="1">
+  If **Component\_Cost** is the name of a field that contains a currency value, this example returns the currency code of that field. If the **Component\_Cost** field contains "24 USD", this example returns USD.
+</Paragraph>

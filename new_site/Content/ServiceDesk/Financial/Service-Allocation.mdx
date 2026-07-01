@@ -1,0 +1,81 @@
+---
+title: Service Allocation
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:48 GMT+0300 (Eastern European Summer Time)
+---
+
+Service allocation shows subscribed services reserved for an organization from the dependent service point-of-view, and is automatically calculated based on the schedule called **Service Allocation Calculation Daily Schedule**.
+
+For example, data service might allocate 25% of its total services to the CRM service. The allocation appears in the **Data Service** record under the **Allocation** tab, and the distribution appears in the CRM service record under the **Distribution** tab. See [About Distribution](About-Distribution.mdx).
+
+This cost is automatically calculated each month for the CRM service. The schedule gathers information daily, but provides data at the end of the month. You can allocate the service cost to one or more organizations.
+
+## Viewing Allocations
+
+1. Log into the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Console}} console.
+2. Open the **CI Service** workspace. The list of services is displayed.
+3. Scroll right and click the **Allocation** tab.
+
+<Paragraph indent="1">
+  *Data Service Allocation - 25% of Costs are Allocated to CRM Service*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/C_ebmMVyYYmK_HF5Znnjy_allocation-data-service.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/allocation data service.png" githubPath="Content/Resources/Images/help-images/allocation data service.png" showCaption="false"></Image>
+
+<Paragraph indent="1">
+  *CRM Service Costs - 25% of Data Service Costs for May (11,936.25) are Charged to CRM Service*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Pr9kfU9LkCSJOR5NMIx2h_allocation-crm-service.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/allocation crm service.png" githubPath="Content/Resources/Images/help-images/allocation crm service.png" showCaption="false"></Image>
+
+## Establishing Service Allocation
+
+You can set the percentage of services consumed for each service provided. You can allocate multiple services. When the **Service Allocation Calculation Daily Schedule** is run, the total is listed under the **Cost Item** tab of the dependent service. The schedule is run daily (hence the name), but only the monthly totals appear under the tab.
+
+1. Log into the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Console}} console.
+2. Open the **CI Service** workspace.
+3. Open the service record for which to set allocations.
+4. From the **Allocation** tab, click **New Allocation**. The **New ITFM Recurring Service Subscription** dialog box opens.
+5. Enter information into the fields.
+
+| Field               | Description                                                                                                                                                                                                      |
+| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Status              | The status of the allocated service. Only the active status is used in cost calculations.                                                                                                                        |
+| Consuming Service   | The name of the consuming service.                                                                                                                                                                               |
+| Supporting Service  | This value is automatically entered corresponding to the service record you are in, but you can change this if needed.                                                                                           |
+| Allocation (%)      | A whole number for the percent of use the consuming service provides to the supporting service. The corresponding distribution amount appears under the receiving service record under the **Distribution** tab. |
+| Default Cost Driver | The default cost driver for this service.                                                                                                                                                                        |
+| Notes               | A description for this transaction.                                                                                                                                                                              |
+
+6. Click **Save**. The window closes.
+7. Repeat this process for additional consuming services.
+8. Click **Save**.
+
+## Setting the Service Allocation Calculation Daily Schedule
+
+This schedule is not set by default, to prevent it from running for users who do not need it.
+
+1. Log into the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Console}} console.
+2. Open the **Schedule Entry** workspace.
+3. Click **New Daily Schedule**. The form appears.
+
+<Paragraph indent="1">
+  *Service Allocation Calculation Daily Schedule*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/90AgpSusWRKh5s3bH9D1a_service-allocation-schedule.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/service allocation schedule.png" githubPath="Content/Resources/Images/help-images/service allocation schedule.png" showCaption="false"></Image>
+
+4. Enter information into the fields.
+
+| Field                    | Description                                                                                                                                                |
+| ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Name                     | A name for this schedule.                                                                                                                                  |
+| Start Time<br />End Time | The times for the schedule to start and end each day.                                                                                                      |
+| Start Date               | The date for the schedule to begin.                                                                                                                        |
+| No End Date              | Specifies whether to continuously run this schedule. By default, this option is not checked to prevent the schedule from running for users not needing it. |
+
+<Paragraph indent="1">
+  You can modify other fields as needed, or leave them as set.
+</Paragraph>
+
+5. Click **Save**.

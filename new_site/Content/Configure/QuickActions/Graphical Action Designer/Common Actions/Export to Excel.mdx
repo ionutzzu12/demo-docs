@@ -1,0 +1,85 @@
+---
+title: Export to Microsoft Excel Quick Action
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:56 GMT+0300 (Eastern European Summer Time)
+---
+
+- :Link[About the Export to Microsoft Excel Quick Action]{label="About the Export to Microsoft Excel Quick Action" overridedLabel="About the Export to Microsoft Excel Quick Action" spaceId docId="Ij1jPCKPf2mPdd2pIYDZG" version="v2" docAnchorId="#About_the_Export_toExcel_QuickAction" loadingMethod="dynamic" newTab="false" href="Export to Excel.mdx"}
+- :Link[Parameters]{label="Parameters" overridedLabel="Parameters" spaceId docId="Ij1jPCKPf2mPdd2pIYDZG" version="v2" docAnchorId="#Parameters" loadingMethod="dynamic" newTab="false" href="Export to Excel.mdx"}
+- \{\{FRS\_VARS.Classic\_Action\_Designer}}: [Export to Microsoft Excel Action](<../../Classical Action Designer/templates/Export to Excel.mdx>)
+
+## About the Export to Microsoft Excel Quick Action
+
+You can use the **Export to Microsoft Excel** action to export all or some of the field values from a business object in the these file formats:
+
+- Microsoft Excel 2007 and later (.xlsx)
+- Microsoft Excel 2003 and earlier (.xls)
+- Comma Separated Values (.csv)
+- XML (.xml)
+
+The output contains the rows from a query created within its action wizard. The list of columns exported is the same as shown in the list view by default, but you can override or expand them here. This action creates only one worksheet.
+
+<hint type="info">
+  You cannot use the **Export to Microsoft Excel** action in a composite action.
+</hint>
+
+\{\{FRS\_VARS.ProductName}} automatically applies sorting settings to any records that you export, including from the dashboard and the **Saved Searches Overview** page.
+
+When you use the **Export to Microsoft Excel** action, the spreadsheet file is sorted with both the simple sort order and the multi-sort settings that you previously set in the list.
+
+If you want to export the list data from user interface, export to browser. \{\{FRS\_VARS.ProductName}} saves the exported file to your local application. The export to browser option cannot be used in a composite action.
+
+If you want to run this action in the background through a workflow or schedule, export to a remote host connection. \{\{FRS\_VARS.ProductName}} saves the exported file to the specified remote host. You can automate the **Export to Microsoft Excel** action by scheduling the workflow that can run this action. See [Using Workflows](../../../Workflows/Using_Workflows.mdx).
+
+You can open an XML spreadsheet in Microsoft Excel 2007 and later.
+
+<hint type="info">
+  By default, this action limits processing to 50,000 records at one time. \{\{FRS\_VARS.ProductName}} on-premise customers can change this default value in the web.config file on the \{\{FRS\_VARS.ProductName}} application server. The value to change is \<add key="MaximumRowsForExcelExport" value = "50000"/>.
+</hint>
+
+## Parameters
+
+To access the parameters, select the **Action Block** to display them in the **Settings** pane.
+
+### Action Block Settings
+
+**Block Label**: A unique name for the block. This is useful to identify each action when you have more than one of the same action block added or cloned in the design area.
+
+Click th&#x65;**&#x20;Export Inputs** button to open the **Export Inputs** workspace in the \{\{FRS\_VARS.Graphical\_Action\_Designer}}.
+
+- **Export Format**: Use the dropdown menu to select your preferred output format:
+  - Excel - 2007 and Above
+  - Excel - lower version
+  - Comma separated values
+  - XML
+- **Column Header**: The name of the item whose value is given in the **Fields to Export** column or in the **Value Expression** column.
+- **Fields to Export**: The name of the field to export. Choose a value from the drop-down list.
+
+<hint type="info" indent="2">
+  You can specify either a value in the **Fields to Export** column or a value in the **Value Expression** column, but not both.
+</hint>
+
+- **Value Expression**: An expression that describes the column header item to export. For more information on expressions, see [About Expressions](../../../../Reference/Expressions/Expressions.mdx).
+
+<hint type="info" indent="2">
+  This action does not support the **FormatDate** built-in function.
+</hint>
+
+- :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/JtIxGMfjslfCSitXWBu4o_addgreen.png" alt caption size="10" width="17" height="15"} Adds fields to the export list.
+- :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/uN-MJlNAhdQXruh5k_EsW_delete.png" alt caption size="10" width="19" height="16"} Removes fields from the export list.
+- **Ok**: Saves your entries for Export Inputs.
+- **Cancel**: Exits the **Export Inputs** workspace without saving your entries.
+
+**Export To**: The destination for the data export. You can specify to a browser or to an external connection, if one exists. Click th&#x65;**&#x20;external connection** icon to specify an external connection. You must create the external connection before you can select it. See [Exporting Data](../../../ImportExportData/Data-Export.mdx) for more information.
+
+**Saved Search**: Runs a saved search against the values specified in the **Fields to Export** column or in the **Value Expression** column. To use this option, you must specify an external data connection.
+
+Click **Save** to commit your settings.
+
+### Start Block Settings
+
+These settings are accessed by selecting the **Start Block**, refer to :Link[Start Block Settings]{label="Start Block Settings" overridedLabel="Start Block Settings" spaceId docId="T_2hq2qRJzWxiHLCfgn-7" version="v2" docAnchorId="#CommonTab" loadingMethod="dynamic" newTab="false" githubPath="../Using_the_Graphical_Action_Designer.htm#CommonTab" href="../Using_the_Graphical_Action_Designer.mdx"}.
+
+<hint type="info">
+  This action does not respect the **Auto-save** checkbox option in the **Start Block** settings. It does save changes directly to the database, but please ensure that the behaviour you expect still occurs.
+</hint>

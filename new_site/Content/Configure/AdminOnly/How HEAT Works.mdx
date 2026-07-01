@@ -1,0 +1,79 @@
+---
+title: About Neurons for ITSM Deployment
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:49 GMT+0300 (Eastern European Summer Time)
+---
+
+Ivanti Neurons for ITSM communicates with a Microsoft SQL database to store and retrieve information, enabling multiple ways to enter and share data in a customizable, object-oriented environment. Neurons for ITSM supports Microsoft SQL Server.
+
+*Typical&#x20;*\{\{Primary.Company}} \{\{FRS\_VARS.ProductName}}*&#x20;Deployment*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/AWH_JUuREegfA4oLtGbfG_highavailabilitydeployment.png" alt="Image of a typical Neurons for ITSM deployment." position="flex-start" size="40" initialPath="../../Resources/Images/help-images/high_availability_deployment.png" githubPath="Content/Resources/Images/help-images/high_availability_deployment.png" showCaption="false"></Image>
+
+See the *Installation and Deployment Guide for Ivanti Neurons for ITSM* for complete information about the components used in Neurons for ITSM.
+
+## About Tenants
+
+- **Tenant**: A \{\{FRS\_VARS.ProductName}} application for a particular customer or application.
+- **Instance**: An instance of the tenant within a landscape. By default, each customer receives a production instance of the tenant and a staging instance of the tenant. Additional optional tenant instances are also available. The name and URL for each tenant instance must be unique.
+
+<hint type="info" indent="1">
+  The term "tenant instance" is NOT related to the term "database instance." The use of the word instance, when referring to a tenant, simply means one copy or version of it.
+</hint>
+
+The available tenant instances are:
+
+- **Production instance of a tenant**: A tenant instance containing your production database (including all configuration and transactional data). All customers have a production instance of their tenant, which resides in a hardened environment in the production landscape. We do not recommend making metadata or configuration changes directly to the production instance of the tenant during production usage. Instead, make those changes in the staging instance of the tenant, push them to the UAT instance of the tenant for testing, and then push them to the production instance of the tenant.
+
+<Paragraph indent="1">
+  You can make some changes to master data (such as adding employees, role assignments, and so on) directly to the production instance of the tenant.
+</Paragraph>
+
+- **Staging instance of a tenant**: A tenant instance for developing and configuring your application and business processes. This tenant instance is generally used for configuration and metadata changes (but not transactional data changes). It undergoes a baselining process, in which it is updated periodically or by customer request from the production instance of the tenant to ensure that it is in sync with the production instance of the tenant prior to configuration and metadata changes. It can also be used to test new releases, new capabilities, and for training. All customers have a staging instance of their tenant.
+- **UAT instance of a tenant**: A temporary tenant instance used for configuration testing and validation before the new configuration is pushed to an existing production tenant instance. The UAT instance of the tenant is required when reconfiguring an existing production instance of the tenant. It is optional when provisioning the production instance of the tenant for the first time or when upgrading to a new release.
+
+<Paragraph indent="1">
+  On-premise customers may or may not use a UAT instance of a tenant.
+</Paragraph>
+
+- **Pilot instance of a tenant**: During the upgrade process to a new release, an optional pilot instance of the tenant is made available to customers to allow early access to a new point release. The pilot instance of the tenant resides in the pilot landscape.
+- **Development instance of a tenant**: An optional development instance of the tenant for testing or development. The development instance of the tenant resides in the development landscape.
+- **Other instance of a tenant**: An optional instance of the tenant for testing or development. The other instance of the tenant resides in the other landscape.
+- **Tenant environment**: Infrastructure that ties together the production, staging, and UAT instances of a tenant. This infrastructure allows a complete Change Enablement process to manage and control the development and deployment lifecycles between these instances of the tenant.
+- **Tenant template**: A preconfigured ("out-of-the-box") tenant that is typically used to set up a new tenant. A template implements best practices according to ITIL standards, and optimizes processes to allow fast implementation.
+
+## About Landscapes
+
+**Landscape**: A landscape is a set of IT infrastructure components that support tenant instances of the same type (where type refers to production, staging, and UAT). The production landscape only contains the production instances of tenants, the staging landscape only contains the staging instances of tenants, and the UAT landscape only contains the UAT instances of tenants.
+
+The following shows a typical configuration for a production landscape. Components and their locations vary from customer to customer.
+
+*Typical Production Landscape*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/gpVTz6Zs4HHTFomlSLl9t_prodlandscape.png" alt="Image of a typical production landscape." position="flex-start" size="40" initialPath="../../Resources/Images/help-images/Prod_landscape.png" githubPath="Content/Resources/Images/help-images/Prod_landscape.png" showCaption="false"></Image>
+
+### Landscape Components
+
+At a minimum, a landscape contains these components:
+
+- An individual, isolated Microsoft SQL \{\{FRS\_VARS.ProductName}} Application Database (called HEATSM) in each tenant (each tenant instance has its own database, but not its own database instance).
+- A central \{\{FRS\_VARS.ProductName}} Configuration Database (called ConfigDB) containing information about all tenant instances in the landscape.
+- A shared pool of \{\{FRS\_VARS.ProductName}} Application Servers for all instances in the landscape.
+- A shared database cluster for the \{\{FRS\_VARS.ProductName}} Configuration and \{\{FRS\_VARS.ProductName}} Application databases.
+- A shared pool of workflow servers used by all instances in the landscape.
+- A shared pool of escalation engines used by all instances in the landscape. This is sometimes combined with the workflow server.
+- A shared pool of email listeners used by all instances in the landscape.
+- A shared pool of integration servers per function, such as survey, Discovery, \{\{FRS\_VARS.Company}} Desktop and Server Management (\{\{FRS\_VARS.Company}} DSM), and so on.
+
+### Types of Landscapes
+
+There are six types of landscapes:
+
+- **Production landscape**: Hosts the production instances of tenants. Used during the data migration lifecycle.
+- **Staging landscape**: Hosts the staging instances of tenants. Used during the data migration lifecycle.
+- **UAT landscape**: Hosts the UAT instances of tenants. Used during the data migration lifecycle.
+- **Pilot landscape**: Optional. A standalone landscape that hosts the pilot tenant to provide customers with early access to a new point release.
+- **Development landscape**: Optional. A standalone landscape that hosts tenant templates for demos, test drives, training, and so on.
+- **Other landscape**: Optional. A standalone landscape type that can be used for any purpose.
+
+Refer to the Operations Console Guide for \{\{FRS\_VARS.Company}} \{\{FRS\_VARS.ProductName}} for complete information about tenants and landscapes.

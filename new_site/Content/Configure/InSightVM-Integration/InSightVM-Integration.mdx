@@ -1,0 +1,57 @@
+---
+title: InSightVM and Ivanti Neurons for ITSM Integration
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:52 GMT+0300 (Eastern European Summer Time)
+---
+
+InsightVM and \{\{Primary.Company}} \{\{FRS\_VARS.ProductName}} integration helps in reducing security risk for your organization by early detection of security vulnerabilities through automated Workflow and Schedule Entry.
+
+<hint type="info">
+  The asset scan limit is set to 1500 assets at a time; the application re-scans if there are more assets until the scan is complete.
+</hint>
+
+## Integration Process
+
+<ExpandableHeading>
+  ## Prerequisites
+
+  - Install the Security Operations Package available in \{\{Primary.Company}} Marketplace.
+  - You should have InSightVM installed on your computer and have necessary data (assets and sites) in your InSightVM application that you will be integrating with \{\{FRS\_VARS.ProductName}}. For more information, refer to [InSightVM help](https://docs.rapid7.com/insightvm/).
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Configuring the workspace
+
+  1. Log in to \{\{FRS\_VARS.ProductName}} as an \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}} or Security \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+  2. Open th&#x65;**&#x20;Rapid7 Integration API Key** workspace.
+  3. Enter the region you are located in the **Region** field.
+  4. Enter the API key in the **Value** field. You need to get this information from your InSightVM account. For more information, refer to Managing API Keys documentation in [InSightVM help](https://docs.rapid7.com/insightvm/).
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Modify the Schedule Entry
+
+  With the Security Operations Package you installed, the Schedule Entry - **Integration Fetch New Vulnerabilities Daily** is available. You can modify this Schedule Entry as per your business need.
+
+  1. Log in to \{\{FRS\_VARS.ProductName}}.
+  2. Click **More**, search and open the **Schedule Entry Business Object**.
+  3. Open the **Integration Fetch New Vulnerabilities Daily** Schedule Entry.
+  4. Modify the following fields of the Schedule Entry as to when you would like to schedule the Workflow - **Rapid7 Integration Fetch Vulnerabilities** to scan security vulnerabilities:
+     - **Start Time** and **End Time**
+     - **Start Date** and **End Date**
+     - **Recur Every**
+  5. Click **Save**.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Publish the Workflow
+
+  With the Security Operations Package you installed, the workflow - **Rapid7 Integration Fetch Vulnerabilities** is available with all necessary Quick Actions and Web Services already configured. However, you need to publish the workflow for the first time for it to take effect.
+
+  1. Open the Configuration Console and select **Business Objects**.
+  2. Search and open the **Schedule Entry** Business Object.
+  3. Click **Workflows** tab and open the **Rapid7 Integration Fetch Vulnerabilities** workflow.
+  4. Click **Publish** and **OK** to confirm publishing the workflow.
+
+  The integration setup is complete. The workflow will be triggered as scheduled, and security threats and vulnerabilities will be detected and listed in the Site Configuration, Discovered Assets, and Vulnerabilities workspaces. Security Incidents are automatically created for vulnerabilities of high risk.
+</ExpandableHeading>

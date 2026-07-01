@@ -1,0 +1,267 @@
+---
+title: Configuring the Enterprise Self Service Welcome Page
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:50 GMT+0300 (Eastern European Summer Time)
+---
+
+The Enterprise Self Service Welcome page is a hub for all \{\{Primary.Product}} Self Service needs. It's the Self Service Mobile landing page from which you can navigate to different Self Service Mobile portals based on the category you need to access. You can tailor the content in a way that Self Service Mobile users who want to view and access content specific to HR, IT, or facilities, can choose and view content specific the selected category.
+
+For example, if the end user chooses the HR category in the Enterprise Self Service Welcome page, the user will be redirected to the Self Service Mobile portal where the content (Announcements, Alerts, Knowledge Articles, and Service Catalogs) specific to HR will be displayed. This way the Self Service Mobile content is organized and spares the end users from content they might not be interested in.
+
+For the end user to be able to log in to the Enterprise Self Service Welcome page and navigate from there to the Self Service Mobile portal based on the category and user persona (such as HR, Facilities, or IT), the Administrator has to configure the feature and curate the content based your the organization's business needs.
+
+*Configuring the Enterprise Self Service Welcome Page - Workflow*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/f5iLYZLxnURIW-hb0a95V_esm-workflow.png" alt="Work flow for configuring the Enterprise Self Service Welcome page." position="flex-start" size="40" initialPath="../../Resources/Images/Configure/Enterprise-Self-Service-Page/ESM-Workflow.png" githubPath="Content/Resources/Images/Configure/Enterprise-Self-Service-Page/ESM-Workflow.png" showCaption="false"></Image>
+
+<ExpandableHeading>
+  ## Enable the Global Constant
+
+  1. Open the Configuration Console and select **Global Constants**.
+  2. Set the **Config Home page for ESM** option as **True**.
+
+  <hint type="info" indent="1">
+    The global constant **Config Home page for ESM** is used to turn on or off the Enterprise Self Service Welcome page feature. If you do not want this feature, and wish to use just the Self Service Mobile portal, do not enable this global constant.
+  </hint>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Enable the Enterprise Self Service Welcome Page for Parent Role
+
+  You need to enable the Enterprise Self Service Welcome page for the parent Self Service Mobile role. Only that role will be able to access the Enterprise Self Service Welcome page as their Self Service Mobile landing page. Apart from the Self Service Mobile role you give access to, the Administrator will have access to the Enterprise Self Service Welcome page by default. This is because only an Administrator can configure the data, create extended roles, and set other permissions required to use this feature.
+
+  In this example, we are considering the Self Service Mobile role as the parent role and giving access to the Enterprise Self Service Welcome page to it. But you can choose any role based on your need.
+
+  1. Open the Configuration Console > **Users and Permissions** > **Roles and Permissions**.
+  2. Select the **Self Service Mobile** role and select the **New Self Service UI** checkbox.
+  3. Select the **Enterprise Self Service Welcome Page** checkbox. This option is enabled only when you select the **New Self Service UI** checkbox.
+  4. Click **Save**.
+
+  <Paragraph indent="1">
+    You have now allowed the Self Service Mobile role to access the Enterprise Self Service page, which serves as the parent role for all Self Service extended roles.
+  </Paragraph>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Create Self Service Extended Roles
+
+  You need to create one or more Self Service extended roles based on your business need. In this example, the Self Service HR role is created.
+
+  1. Open the Configuration Console > **Users and Permissions** > **Roles and Permissions**.
+  2. Click **Clone** for the **Self Service Mobile** role.
+  3. Type a name for the role, for example, **Human Resources** and click **Ok**.
+  4. Open the role you just created.
+  5. Select the **Self Service Extended Role** checkbox.
+
+  <Paragraph indent="1">
+    This role will be an extended/child role of the Self Service Mobile role.
+  </Paragraph>
+
+  6. Repeat steps 3 through 5 to created more extended roles.
+
+  <hint type="info" indent="1">
+    The Self Service extended roles are not available in the role selection page like other roles. They are only available in the Self Service Mobile portal as shown in the image below.
+  </hint>
+
+  *Extended Role in the Self Service Mobile Portal*
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/8XHQGviBv-iKuSLf9tLZs_extended-roles.png" alt="An extended role in the Self Service Mobile portal." position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/Configure/Enterprise-Self-Service-Page/Extended-Roles.png" githubPath="Content/Resources/Images/Configure/Enterprise-Self-Service-Page/Extended-Roles.png" showCaption="false"></Image>
+
+  You can switch to Self Service extended roles landing pages using the switcher next to the title. The switcher works only with the title. If the title is disabled, you cannot see it.
+
+  **To enable or disable the title**
+
+  1. Change your role in the Self Service portal from a Self Service user to Administrator in the Self Service portal. From the top right menu.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/VhQ2qYEPmAN-1qOy0LdJa_self-service-switch.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/Configure/Enterprise-Self-Service-Page/Self-service-switch.png" githubPath="Content/Resources/Images/Configure/Enterprise-Self-Service-Page/Self-service-switch.png" showCaption="false"></Image>
+
+  2. Turn on the edit mode using the vertical slider button :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/z2Voxvu1bLIRks2v92hFT_slider-button.png" alt caption size="10" width="15" height="15"}.
+  3. Go to **Settings** > **Application Settings** > **Branding** > **Header**.
+  4. Check the **Title** option to enable the title and click **Save**. You can also edit the title name here.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/bvdt9vGXcvrfwS0REXNSX_enable-title.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/Configure/Enterprise-Self-Service-Page/enable-title.png" githubPath="Content/Resources/Images/Configure/Enterprise-Self-Service-Page/enable-title.png" showCaption="false"></Image>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Link Users to the Self Service Extended Roles
+
+  Link users to the Self Service extended roles.
+
+  1. Open the Configuration Console > **Users and Permissions** > **Users**.
+  2. Open an existing user or create a new one by clicking **New Employee**.
+  3. Link one or more Self Service extended roles to the user.
+  4. Click **Save**.
+  5. Repeat steps 2 through 4 to link more users to the Self Service extended roles.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Configure Content for the Self Service Extended Roles
+
+  You now have to curate the content for the Self Service extended roles by adding appropriate filters. This step determines how the data should be segregated and what content should be displayed for the Self Service extended roles in the Self Service Mobile portal.
+
+  1. Open the Configuration Console > **Users and Permissions** > **Roles and Permissions**.
+  2. Open the Self Service extended role -**&#x20;Human Resources** that you created in the :Link[Create Self Service Extended Roles]{label="Create Self Service Extended Roles" overridedLabel="Create Self Service Extended Roles" spaceId docId="vfrTzeTm4u4pqd9oybtZs" version="v2" docAnchorId="#CreateExtendedRoles" loadingMethod="dynamic" newTab="false" href="Configuring-Enterprise-Self-Service-Page.mdx"} section.
+  3. Select **Object Permissions** and add necessary filters for the Business Objects based on the role and category.
+
+  <Paragraph indent="1">
+    The following Business Objects are supported for Self Service Mobile. You can add necessary filters for these Business Objects:
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    Alert
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    Announcements
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    FAQ
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    FRS\_Knowledge
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    ServiceReqCategory
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    FRS\_MyItems - This Business Object is configured in Saved Search. Following are the steps to configure:
+  </Paragraph>
+
+  <Paragraph indent="2">
+    a. From the Configuration Console select **Business Objects** > **FRS\_MyItems** > **Saved Searches**.
+  </Paragraph>
+
+  <Paragraph indent="2">
+    b. Edit an existing Saved Search.
+  </Paragraph>
+
+  <Paragraph indent="2">
+    c. Modify the Saved Search as need be and click **Save As** to save it as a new saved search.
+  </Paragraph>
+
+  <Paragraph listStyleType="decimal" listStart="4" listRestartPolite="4" indent="2">
+    Repeat steps 2 through 3 for all Self Service Extended roles.
+  </Paragraph>
+
+  <Paragraph indent="2">
+    For more information on filtering and configuring Business Objects and Saved Searches, refer to [Using Enhanced Object Permissions](../Roles/Enhanced-object-permission.mdx) and [Using a Saved Search](<../../ServiceDesk/Search/Saved Searches.mdx>).
+  </Paragraph>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Designing the Self Service Mobile Portal
+
+  After creating the Self Service extended roles, linking users, and curating content, you now have to configure the Self Service Mobile Portal for all the Self Service extended roles you have created.
+
+  1. Open the Configuration console, **User Interface Styles** > **Style Editor** > **Self Service**.
+  2. Select the role for which you wish to edit the Self Service Mobile portal and click **Edit Self Service Widgets**.
+
+
+
+  <hint type="info">
+    - Although this option is available for all roles, it is applicable only for Self Service Mobile and extended roles. As in, if you click the **Edit Self Service Widget** for a non Self Service Mobile role, the Self Service Mobile role opens in edit-mode for the Administrator role. But if you select the **Edit Self Service Widget** for a Self Service Mobile or extended role, the Self Service Mobile page opens in edit-mode for the selected role.
+    - You can also change the role in the Self Service Mobile portal.
+  </hint>
+
+
+
+  3. Design the Self Service Mobile portal for all the Self Service extended roles based on your business needs. For more information, refer to [Configuring the Self Service Mobile Portal](../SelfServiceSetup/Configuring-the-Self-Service-Mobile-Portal.mdx).
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Designing the Enterprise Self Service Welcome Page
+
+  Now you have to design the Enterprise Welcome page and add cards so that the end user can select the category and navigate to the Self Service Mobile portal (for the selected category) from this page.
+
+  1. Open the Configuration Console > **User Interface Styles** > **Style Editor** > **Self Service**.
+  2. Click **Edit Enterprise Self Service Page**. This option is available only for the Administrator role.
+
+  <Paragraph indent="1">
+    The Enterprise Self Service Welcome page opens in the edit-mode. For the first time, this page is displayed without any cards, logos, and images. You can design it as per your preference and business need.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    *Sample Image of the Self Service Welcome Page Before Designing*
+  </Paragraph>
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/3lBpEqPlbJFW72e75kM_Y_enterprise-welcome-page-blank.png" alt="Sample of the Enterprise Self Service Welcome Page before designing it." position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/Configure/Enterprise-Self-Service-Page/Enterprise-Welcome-page-Blank.png" githubPath="Content/Resources/Images/Configure/Enterprise-Self-Service-Page/Enterprise-Welcome-page-Blank.png" showCaption="false"></Image>
+
+  3. You can design the following elements for the page:
+     - Logo
+
+  <Paragraph indent="1">
+    *Sample of Uploading a Logo*
+  </Paragraph>
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/kSXn81eNcN_TXElUr-B4Y_uploading-logo.png" alt="Sample of uploading a logo for the Enterprise Self Service Welcome page." position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/Configure/Enterprise-Self-Service-Page/Uploading-Logo.png" githubPath="Content/Resources/Images/Configure/Enterprise-Self-Service-Page/Uploading-Logo.png" showCaption="false"></Image>
+
+  <Paragraph listStyleType="disc" indent="2">
+    Header Image
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    Sub-title
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    Tagline
+  </Paragraph>
+
+  <Paragraph indent="1">
+    *Sample Image of the Designing the Page Elements*
+  </Paragraph>
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/gMhR2QstVkiZLrTHAOMKH_changing-tagline.png" alt="Sample of designing the page elements for the Enterprise Self Service Welcome page." position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/Configure/Enterprise-Self-Service-Page/Changing-Tagline.png" githubPath="Content/Resources/Images/Configure/Enterprise-Self-Service-Page/Changing-Tagline.png" showCaption="false"></Image>
+
+  4. Click **Add Card** and select the role to be aligned to the card.
+
+  <Paragraph indent="1">
+    *Sample Image of Designing a Card*
+  </Paragraph>
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/WKYhOC5tV0SJH1taTE1US_card-designing.png" alt="Sample of designing a card for the Enterprise Self Service Welcome page." position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/Configure/Enterprise-Self-Service-Page/Card-Designing.png" githubPath="Content/Resources/Images/Configure/Enterprise-Self-Service-Page/Card-Designing.png" showCaption="false"></Image>
+
+  <hint type="info" indent="1">
+    A role cannot be aligned to more than one card.
+  </hint>
+
+  5. Add more cards based on the number of extended roles you have created.
+
+  <Paragraph indent="1">
+    *Image of the Enterprise Welcome Page after Designing all the Elements and Cards*
+  </Paragraph>
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/-3j2ZZPCIFXiLCkRB4Q33_enterprise-welcome-page-after-designing.png" alt="Sample of an Enterprise Self Service Welcome page with elements and cards." position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/Configure/Enterprise-Self-Service-Page/Enterprise-Welcome-page-After-Designing.png" githubPath="Content/Resources/Images/Configure/Enterprise-Self-Service-Page/Enterprise-Welcome-page-After-Designing.png" showCaption="false"></Image>
+
+  <Paragraph indent="1">
+    The following are the preferred sizes for the images:
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    Enterprise Self Service Welcome page background image:
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="3">
+    width 1920 x height 550 pixels.
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="3">
+    In case of using image with a different dimension, then use it in this ratio - width/height should be 3.50.
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    Images on Cards:
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="3">
+    width 976 x height 600 pixels.
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="3">
+    In case of using image with a different dimension, then use it in this ratio - width/height should be 1.63.
+  </Paragraph>
+</ExpandableHeading>

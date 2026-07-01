@@ -1,0 +1,50 @@
+---
+title: Run Program Quick Action
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:56 GMT+0300 (Eastern European Summer Time)
+---
+
+- :Link[About the Run Program Quick Action]{label="About the Run Program Quick Action" overridedLabel="About the Run Program Quick Action" spaceId docId="AkM50FIn09WT-4xSsiZ5R" version="v2" docAnchorId="#About_the_Run_Program_QuickAction" loadingMethod="dynamic" newTab="false" href="Run Program.mdx"}
+- :Link[Parameters]{label="Parameters" overridedLabel="Parameters" spaceId docId="AkM50FIn09WT-4xSsiZ5R" version="v2" docAnchorId="#Parameters" loadingMethod="dynamic" newTab="false" href="Run Program.mdx"}
+- \{\{FRS\_VARS.Classic\_Action\_Designer}}: [Run Program Action](<../../Classical Action Designer/templates/Run Program.mdx>)
+
+## About the Run Program Quick Action
+
+The **Run Program** action enables users to run a scheduled or unscheduled script to a remote data source.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/mrBq6kI2OUn4IeFhD_2mZ_qa-run-program-block.png" alt="An image of the Run Program Quick Action block in the Graphical Action Designer." position="flex-start" size="40" initialPath="../../../../Resources/Images/help-images/qa run program block.png" githubPath="Content/Resources/Images/help-images/qa run program block.png" showCaption="false"></Image>
+
+## Parameters
+
+To access the parameters, select the **Action Block** to display them in the **Settings** pane.
+
+### Action Block Settings
+
+- **Block Label**: A unique name for the block. This is useful to identify each action when you have more than one of the same action block added or cloned in the design area.
+- **Connection**: Select a pre-defined connection from the dropdown menu. See [Using the Run Program for the Remote Host](../../../ImportExportData/Run-Program.mdx).
+- **Program with Path**: Click the
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/4W5r0UaoDoTCCRpkzrpS3_qa-expression-editor-icon.png" alt="Function, or f(x) icon" position="flex-start" size="40" indent="2" initialPath="../../../../Resources/Images/help-images/qa expression editor icon.png" githubPath="Content/Resources/Images/help-images/qa expression editor icon.png" showCaption="false"></Image>
+
+<Paragraph indent="1">
+  icon to open the Expression Editor and enter the full path to the server, including the name of the batch file. For example: \\\MainServer\reports\reportprovisioning.exe.
+</Paragraph>
+
+<hint type="info" indent="2">
+  You must have access to the server.
+</hint>
+
+- **Arguments**: The parameters to pass. You can have a parameter with a current context expression. For example, to pass the current category, enter an expression into this field.
+- **Wait for the program to finish**: Runs the program completely before returning to the page (synchronous). This field is not selected by default, which means that the page appears immediately without waiting for the program to finish (asynchronous). If using asynchronous execution, disable the **Output Field** parameter.
+- **Show program output in message box**: Shows the output in a message box.
+- **Output Field**: Specifies the field name to populate with the return value after running the program. Disable this field if the program execution is asynchronous.
+
+<hint type="info" indent="2">
+  Only use this field if you checked **Wait for program to finish**.
+</hint>
+
+Click **Save** to commit your settings.
+
+### Start Block Settings
+
+These settings are accessed by selecting the **Start Block**, refer to :Link[Start Block Settings]{label="Start Block Settings" overridedLabel="Start Block Settings" spaceId docId="T_2hq2qRJzWxiHLCfgn-7" version="v2" docAnchorId="#CommonTab" loadingMethod="dynamic" newTab="false" githubPath="../Using_the_Graphical_Action_Designer.htm#CommonTab" href="../Using_the_Graphical_Action_Designer.mdx"}.

@@ -1,0 +1,487 @@
+---
+title: Advanced Email Monitoring Functions
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:58 GMT+0300 (Eastern European Summer Time)
+---
+
+Use these functions with Advanced Email Monitoring to return the specified value in an expression. These functions return only the defined value and do not accept any function-specific parameters. To learn more about email monitoring, refer to [Working with Email Inboxes](../../Configure/Email/Inbox_Configuration.mdx).
+
+Most of these functions are also available in the **Toolbox** of the **Expression Editor**, usable in \{\{FRS\_VARS.Quick\_Action}}s for **Advanced Email Monitoring**. When using these functions in the **Expression Editor**, ensure proper syntax is applied.
+
+## Enabled for
+
+Refer to :Link[Notes on "Enabled For"]{label="Notes on &#x22;Enabled For&#x22;" overridedLabel="Notes on &#x22;Enabled For&#x22;" spaceId docId="xObv2pIDrk60jkEIWs8mD" version="v2" docAnchorId="#Notes" loadingMethod="dynamic" newTab="false" githubPath="_Built_in_Functions.htm#Notes" href="_Built_in_Functions.mdx"} for detailed descriptions of the business object categories.
+
+| Business Object Category                                                                    | Yes/No |
+| ------------------------------------------------------------------------------------------- | ------ |
+| Business Rules: Before-Save Rules                                                           | Yes    |
+| Business Rules: Calculation Rules (After Save, with or without Also Recalculate on Load)    | Yes    |
+| Business Rules: Calculation Rules (Before Save or Always, without Also Recalculate On Load) | Yes    |
+| Business Rules: Calculation Rules (Before Save or Always, with Recalculate On Load)         | Yes    |
+| Business Rules: Editing Rules                                                               | Yes    |
+| Business Rules: Initialization Rules                                                        | Yes    |
+| Business Rules: Read Only Rules                                                             | Yes    |
+| Business Rules: Required Rules                                                              | Yes    |
+| Business Rules: Validation Rules                                                            | Yes    |
+| Client Expressions                                                                          | No     |
+| Object Permissions                                                                          | No     |
+| Services                                                                                    | Yes    |
+| LDAP                                                                                        | Yes    |
+| Mobile                                                                                      | No     |
+| Quick Actions (except UI Quick Actions)                                                     | Yes    |
+| UI Quick Actions                                                                            | No     |
+| Reports                                                                                     | Yes    |
+| Search/Dashboard without field references                                                   | No     |
+| Search/Dashboard with field references                                                      | No     |
+
+## Functions
+
+Following are the Email functions:
+
+<ExpandableHeading>
+  ## EmailAttachmentCount
+
+  **Description**
+
+  Counts the number of attachments in an incoming email.
+
+  **Returns**
+
+  Integer
+
+  **Example**:
+
+  Escalate if more than 3 files are attached.
+
+  IF($(EmailAttachmentCount()) > 3, "Escalate", "No Action")
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## EmailBodyHTML
+
+  **Description**
+
+  Fetches the complete HTML content of the email.
+
+  **Returns**
+
+  String (HTML)
+
+  **Example**
+
+  Check whether the body contains HTML tables.
+
+  REGEXMATCH($(EmailBodyHTML()), "\<table.\*?>")
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## EmailBodyPlainText
+
+  **Description**
+
+  Retrieves only the plain text content of the email.
+
+  **Returns**
+
+  String
+
+  **Example**
+
+  Check if the plain text contains the word "urgent".
+
+  CONTAINS(LOWER($(EmailBodyPlainText())), "urgent")
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## EmailCC
+
+  **Description**
+
+  A comma-separated list of all CC email addresses.
+
+  **Returns**
+
+  String
+
+  **Example**
+
+  Add CC list to a journal note.
+
+  ADDNOTE("CC List: " + $(EmailCC()))
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## EmailContactID
+
+  **Description**
+
+  Gets the Contact ID if the email sender matches a contact.
+
+  **Returns**
+
+  String (GUID)
+
+  **Example**
+
+  Auto-assign ticket to the matched contact.
+
+  SETFIELD("ContactID", $(EmailContactID()))
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## EmailContactType
+
+  **Description**
+
+  Indicates if the contact is internal or external.
+
+  **Returns**
+
+  String
+
+  **Example**
+
+  Route external requests to a specific group.
+
+  IF($(EmailContactType()) = "External", "SendToPartnerQueue", "")
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## EmailDateTimeReceived
+
+  **Description**
+
+  Timestamp when the system receives an email.
+
+  **Returns**
+
+  DateTime
+
+  **Example**
+
+  Calculate hours since email was received.
+
+  DATEDIFF("Hours", $(EmailDateTimeReceived()), NOW())
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## EmailDateTimeSent
+
+  **Description**
+
+  Timestamp when the email was sent by the sender.
+
+  **Returns**
+
+  DateTime
+
+  **Example**
+
+  Flag if the email is delayed more than 30 minutes.
+
+  IF(DATEDIFF("Minutes", $(EmailDateTimeSent()), $(EmailDateTimeReceived())) > 30, "Delayed", "On Time")
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## EmailEntireMessage
+
+  **Description**
+
+  Returns the complete email message, including headers.
+
+  **Returns**
+
+  String
+
+  **Example**
+
+  Log the raw email into audit trail.
+
+  SAVELOG("EmailBackup", $(EmailEntireMessage()))
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## EmailEntireMessageSubjectFirst
+
+  **Description**
+
+  Retrieves the subject of the first message in the email thread.
+
+  **Returns**
+
+  String
+
+  **Example**
+
+  Remove “RE:” or “FW:” prefixes.
+
+  TRIMSTART($(EmailEntireMessageSubjectFirst()), "RE: ")
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## EmailFirstCC
+
+  **Description**
+
+  Returns the contact object of the first user in the CC field.
+
+  **Returns**
+
+  Contact Object
+
+  **Example**
+
+  Assigns the ticket to the first CC user, if available.
+
+  ASSIGNTO($(EmailFirstCC()))
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## EmailFirstCCName
+
+  **Description**
+
+  Returns the display name of the first user in the CC field.
+
+  **Returns**
+
+  String
+
+  **Example**
+
+  Add a comment mentioning the CC'd user.
+
+  ADDNOTE("First CC’d user is " + $(EmailFirstCCName()))
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## EmailFrom
+
+  **Description**
+
+  Returns the sender as a Contact Object (if matched).
+
+  **Returns**
+
+  String
+
+  **Example**
+
+  Assign ticket to the email sender.
+
+  SETFIELD("Owner", $(EmailFrom().EmployeeID))
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## EmailFromJustAddress
+
+  **Description**
+
+  Extracts just the sender’s email address.
+
+  **Returns**
+
+  String
+
+  **Example**
+
+  Check if email is from vendor domain.
+
+  ENDSWITH($(EmailFromJustAddress()), "@vendor.com")
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## EmailFromJustName
+
+  **Description**
+
+  Extracts just the name part of the sender.
+
+  **Returns**
+
+  String
+
+  **Example**
+
+  Personalize a greeting.
+
+  CONCAT("Hello ", $(EmailFromJustName()))
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## EmailHasAttachments
+
+  **Returns**
+
+  Boolean
+
+  - **True**: Email has attachments.
+  - **False**: The email does not contain attachments.
+
+  **Example**
+
+  IF($(EmailHasAttachments()), "Process", "Skip")
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## EmailHasCCLine
+
+  **Returns**
+
+  Boolean
+
+  - **True**: Email has CC recipients.
+  - **False**: CC field is empty.
+
+  **Example**
+
+  IF($(EmailHasCCLine()), "DocumentCC", "No CC")
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## EmailHeader
+
+  **Description**
+
+  Returns raw header information of the email message.
+
+  **Returns**
+
+  String
+
+  **Example**
+
+  Check for SPF failures.
+
+  REGEXMATCH($(EmailHeader()), "spf=fail")
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## EmailPriority
+
+  **Description**
+
+  Retrieves the priority flag set in the incoming email (e.g., High, Normal).
+
+  **Returns**
+
+  String
+
+  **Example**
+
+  Auto-escalate high priority emails.
+
+  IF($(EmailPriority()) = "High", "Escalate", "Normal")
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## EmailSubject
+
+  **Description**
+
+  Retrieves the subject line of the email.
+
+  **Returns**
+
+  String
+
+  **Example**
+
+  Use subject for ticket title.
+
+  SETFIELD("Title", $(EmailSubject()))
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## EmailSubjectBodyCombined
+
+  **Description**
+
+  Merges the subject and body of the email into one string.
+
+  **Returns**
+
+  String
+
+  **Example**
+
+  Full-text search matching.
+
+  CONTAINS(LOWER($(EmailSubjectBodyCombined())), "reset password")
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## EmailTo
+
+  **Description**
+
+  Comma-separated list of all TO addresses.
+
+  **Returns**
+
+  String
+
+  **Example**
+
+  Validate routing addresses.
+
+  CONTAINS($(EmailTo()), "support\@company.com")
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## EmailToFirstEntry
+
+  **Description**
+
+  Retrieves the first recipient from the TO field.
+
+  **Returns**
+
+  String
+
+  **Example**
+
+  Assign ticket to first TO contact.
+
+  ASSIGNTO($(EmailToFirstEntry()))
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## EmailToFirstEntryJustAddress
+
+  **Description**
+
+  Retrieves only the email address of the first TO entry.
+
+  **Returns**
+
+  String
+
+  **Example**
+
+  Track emails sent to alias.
+
+  CONTAINS($(EmailToFirstEntryJustAddress()), "team\@domain.com")
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## EmailToFirstEntryJustName
+
+  **Description**
+
+  Retrieves the display name of the first recipient in the TO field.
+
+  **Returns**
+
+  String
+
+  **Example**
+
+  Personalize autoresponder message.
+
+  CONCAT("Hi ", $(EmailToFirstEntryJustName()), ", we got your message.")
+</ExpandableHeading>
+
+<hint type="info">
+  These functions are intended for use in quick actions used by the incoming email processor. These functions does not produce a value when used in other contexts. Additionally, these functions are not supported in services such as workflow and escalation. These limitations only apply if the expressions are evaluated by such services.
+</hint>

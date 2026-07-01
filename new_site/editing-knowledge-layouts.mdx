@@ -1,0 +1,58 @@
+---
+title: Editing Knowledge Layouts
+slug: editing-knowledge-layouts
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:03 GMT+0300 (Eastern European Summer Time)
+---
+
+You can edit layouts to enhance search options, enable or hide feedback buttons, or link related articles when articles are displayed.
+
+The default knowledge layouts allow users in the Self-Service Portal to only search articles that are in the published state. This setting can be changed to allow all articles to be listed regardless of status. You can search for or browse articles based on a status by selecting it from the **Custom Browsing** pane. See also [Knowledge State Transitions Reference](Knowledge-State-Transitions-Reference.htm).
+
+1. From the **Configuration** console, click **Build > Page Layouts** to open the **Page Layouts** workspace.
+2. Select **SelfService** from the list of roles.
+3. From the **Page Layouts** section, click **Advanced Options** for the Knowledge Center layout.
+4. In the Configuration dialog box, uncheck **View Published Knowledge Only**.
+5. Click **Save**.
+
+<Paragraph indent="1">
+  The system now displays and searches all knowledge articles, including those in the archived, draft, expired, in review, pending approval, published, rejected, and reviewed states.
+</Paragraph>
+
+### Removing and Adding a Knowledge Type from View
+
+To remove the ability for a role (such as Self Service) to view a specific category or type of document such as patch or error messages:
+
+1. From the **Configuration** console, click **Build > Page Layouts** to open the **Page Layouts** workspace.
+2. Select a role such as **SelfService** from the list of roles.
+3. From the **Page Layouts** section, click **Advanced Options** for the Knowledge Center layout.
+4. In the **Set configuration for fields** section, highlight **Display Name: Filter By Knowledge Type** and click **Edit**.
+5. From the **Set field configuration** dialog, highlight the document type (for example **Patch**) that you want to disable from the role view, and click **Delete**.
+6. To add the document type back:
+
+<Paragraph indent="1">
+  a. Click **Add**.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. In the **Name** field, enter the document type.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. In the **Condition** field, enter **Equal To**.
+</Paragraph>
+
+<Paragraph indent="1">
+  d. In the **Value** field, enter a value. Enter the pre-configured default value type *exactly* as seen in the **Enter Value Type** column or the new added condition may not work.
+</Paragraph>
+
+| For Document Type    | Enter Value Type    |
+| -------------------- | ------------------- |
+| Document             | **Document**        |
+| Patch                | **Patch**           |
+| Reference            | **Reference**       |
+| Q & A                | **QandA**           |
+| Error Message        | **ErrorMessage**    |
+| Issue and Resolution | **IssueResolution** |
+
+7. Click **Save**.

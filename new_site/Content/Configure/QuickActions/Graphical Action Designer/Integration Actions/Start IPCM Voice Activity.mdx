@@ -1,0 +1,49 @@
+---
+title: Start IPCM Voice Activity Quick Action
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:56 GMT+0300 (Eastern European Summer Time)
+---
+
+- :Link[About the Start IPCM Voice Activity Quick Action]{label="About the Start IPCM Voice Activity Quick Action" overridedLabel="About the Start IPCM Voice Activity Quick Action" spaceId docId="vQgvdwaCj_oDzIT1tmgXo" version="v2" docAnchorId="#About_the_Start_IPCMVoice_ActivityQuickAction" loadingMethod="dynamic" newTab="false" href="Start IPCM Voice Activity.mdx"}
+- :Link[Parameters]{label="Parameters" overridedLabel="Parameters" spaceId docId="vQgvdwaCj_oDzIT1tmgXo" version="v2" docAnchorId="#Parameters" loadingMethod="dynamic" newTab="false" href="Start IPCM Voice Activity.mdx"}
+- \{\{FRS\_VARS.Classic\_Action\_Designer}}: [Start Ivanti Voice Activity Action](<../../Classical Action Designer/templates/Start IPCM Voice Activity.mdx>)
+
+## About the Start IPCM Voice Activity Quick Action
+
+The **Start IPCM Voice Activity** action configures and calls a web service for the \{\{FRS\_VARS.Company}} Voice application. Before configuring this action, you must set up the \{\{Primary.Company}} Voice integration to \{\{FRS\_VARS.ProductName}}. See [Configuring Ivanti Voice Integration](../../../Voice/Configure_Voice_Integrat.mdx).
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/TKDFYpUuSvbGrcaJmZfwC_qa-start-voice-activity-block.png" alt="Image of the Start IPCM Voice Activity Quick Action block in the Graphical Action Designer." position="flex-start" size="40" initialPath="../../../../Resources/Images/help-images/qa start voice activity block.png" githubPath="Content/Resources/Images/help-images/qa start voice activity block.png" showCaption="false"></Image>
+
+## Parameters
+
+To access the parameters, select the **Action Block** to display them in the **Settings** pane.
+
+### Action Block Settings
+
+When the action executes, the \{\{FRS\_VARS.ProductName}} server calls the \{\{FRS\_VARS.Company}} Voice web service, which in turn launches the chosen Voice application and sends any parameters specified as properties available to the Voice application.
+
+<hint type="info">
+  When a Voice application is started via the web service, there is no active phone call; it is simply an interaction in \{\{FRS\_VARS.Company}} Voice terms. If the \{\{FRS\_VARS.Quick\_Action}} needs to initiate a phone call, use the **Make Call** action block to initiate the call.
+</hint>
+
+- **Block Label**: A unique name for the block. This is useful to identify each action when you have more than one of the same action block added or cloned in the design area.
+
+<hint type="info" indent="2">
+  You can have multiple **Start IPCM Voice Activity** action blocks, each running a separate report, in one composite action; therefore, you should populate this field with a unique, descriptive title. See [Composite Action](<../../Classical Action Designer/templates/Composite Action.mdx>) for more information.
+</hint>
+
+- **Voice Application Names**: Choose the name of the Voice application to be started from the dropdown menu.
+
+<hint type="info" indent="2">
+  If the \{\{FRS\_VARS.Company}} Voice web service is not configured correctly, \{\{FRS\_VARS.ProductName}} cannot retrieve the list of available Voice applications and displays an error message.
+</hint>
+
+- **Property Name**: The property name to pass to the Voice application.
+- **Property Value**: The property value to pass to the Voice application.
+- **+ Add Field**: Adds a second Property Name and Property Value to pass to the Voice application.
+
+Click **Save** to commit your settings.
+
+### Start Block Settings
+
+These settings are accessed by selecting the **Start Block**, refer to :Link[Start Block Settings]{label="Start Block Settings" overridedLabel="Start Block Settings" spaceId docId="T_2hq2qRJzWxiHLCfgn-7" version="v2" docAnchorId="#CommonTab" loadingMethod="dynamic" newTab="false" githubPath="../Using_the_Graphical_Action_Designer.htm#CommonTab" href="../Using_the_Graphical_Action_Designer.mdx"}.

@@ -1,0 +1,39 @@
+---
+title: Actions Required to Enable Viewing Survey Metric Results
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:46 GMT+0300 (Eastern European Summer Time)
+---
+
+<hint type="info">
+  The actions and procedure described in the topic apply to customers upgrading to \{\{FRS\_VARS.ProductName}} 2024.2 or \{\{FRS\_VARS.Neurons\_for\_ITSM\_Enterprise}} from earlier versions. If you already have version 2024.2 or above, this functionality is provided by default.
+</hint>
+
+To enable viewing of survey metric results, you need to enable the **Localized** checkbox for some business object fields if not already enabled bt default, and import the 13\_PBI\_1160392\_HRCaseSurvey\_SQL\_Doc\_Only package.
+
+**To enable the&#x20;****Localized****&#x20;checkbox for the business objects:**
+
+<hint type="info">
+  This checkbox may be enabled by default, however you need to check and confirm that it is enabled.
+</hint>
+
+1. Log in to \{\{FRS\_VARS.ProductName}} as Administrator.
+2. Open the Configuration Console, selec&#x74;**&#x20;Business Objects**, and then click **View All**.
+3. Open each of the business objects below, select **Fields**, open the fields listed and ensure that the **Localized** checkbox is selected:
+   - FRS\_SurveyAnswer business object **Category** field.
+   - FRS\_SurveySession business object **IdentifierType** field.
+   - CI business object **Name** field.
+4. Save any changes.
+
+**To obtain and import the package:**
+
+1. Contact :Link[Getting help]{label="Getting help" overridedLabel="Getting help" spaceId docId="lXpuJf0tM6wspRfw5bLY-" version="v2" docAnchorId="#Ivanti_Cloud_Operations" loadingMethod="dynamic" newTab="false" githubPath="../../More-Information.htm#Ivanti_Cloud_Operations" href="../../More-Information.mdx"} and request the 13\_PBI\_1160392\_HRCaseSurvey\_SQL\_Doc\_Only package.
+2. Save the package to a location where you can access it for import.
+3. Log in to \{\{FRS\_VARS.ProductName}} as Administrator.
+4. Open the Configuration console and navigate to **Build > Development Package > Packages**.
+5. Follow the steps in section *Importing a Package* in [Managing Packages](<../../Configure/Development Project/Managing-Packages.mdx>) to complete the import.
+
+If the import does not complete successfully, contact [https://www.ivanti.com/support](https://www.ivanti.com/support):Link[Getting help]{label="Getting help" overridedLabel="Getting help" spaceId docId="lXpuJf0tM6wspRfw5bLY-" version="v2" docAnchorId="#Ivanti_Cloud_Operations" loadingMethod="dynamic" newTab="false" githubPath="../../More-Information.htm#Ivanti_Cloud_Operations" href="../../More-Information.mdx"}.
+
+When you have successfully imported the package, the HR Case survey metrics are listed when you apply the **Incident, Change, Service Request And HR Case Surveys** saved search in the **Survey Metric View** workspace.
+
+You can filter the **Survey Metric View** workspace list to show only the HR Case metrics, refer to :Link[HR Case Survey]{label="HR Case Survey" overridedLabel="HR Case Survey" spaceId docId="K3W0R7jZz1ivE6GAO81F_" version="v2" docAnchorId="#HR_Case_Survey" loadingMethod="dynamic" newTab="false" githubPath="HR-Case.htm#HR_Case_Survey" href="HR-Case.mdx"}.

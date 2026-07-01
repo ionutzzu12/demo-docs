@@ -1,0 +1,40 @@
+---
+title: Create a recipe using webhook trigger action in iPaaS
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:52 GMT+0300 (Eastern European Summer Time)
+---
+
+**Role**: Administrators.
+
+**Minimum Version**: \{\{Primary.Company}} \{\{Primary.Product}} 2025.2.
+
+This section describes how to integrate \{\{FRS\_VARS.Product\_Name}} with Ivanti Neurons by setting up a webhook triggered recipe to automate tasks such as sending notifications, updating incidents, and running workflows.
+
+### Access iPaaS and create a recipe
+
+1. Log in to Ivanti Neurons for \{\{FRS\_VARS.ITSM}} as an \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+2. Open the Configuration console, select **Extend** > \{\{FRS\_VARS.Product\_Name}}**&#x20;Integration**.
+3. Open a project, select the **Create** dropdown list and then select **Create Recipe**.
+4. Enter a **Name** and set the **Location** where the recipe will be saved.
+5. Choose a **Starting Point**, select an option based on your requirement. For example:
+   - Select **Trigger from an App** to set the trigger based on an event in the app as the trigger.
+   - Select **Run on a Scheduler** to set the trigger at a scheduled time.
+6. Select **Start Guided Setup** to launch the wizard.
+
+### Configure and validate the webhook trigger
+
+1. Enter an **Event Name** which will be used as a suffix in the webhook URL.
+2. Copy the generated Webhook URL and use it in the previously created **Quick Action** and save the recipe.
+3. Run the **Quick Action** to send test data and initialize the webhook trigger.
+
+### Modify the recipe for incident processing
+
+1. Extract the **RecId** from the webhook query parameters to retrieve incident details using the RecId.
+2. Perform following actions as required:
+   - Send an email notification using the \{\{FRS\_VARS.Product\_Name}} Email Connector
+   - Update the incident record
+   - Execute automated workflows based on the incident data.
+
+For more information on \{\{FRS\_VARS.Product\_Name}} recipe creation and configuration and usage examples, see the [iPaaS](https://help.ivanti.com//iv/help/en_US/iPaaS/2025/Neurons-iPaaS/LandingPage.htm?_gl=1*smr8c*_gcl_au*MTY4MzY4MjQ2Mi4xNzQ0NzEwMTAx) documentation.
+
+##  

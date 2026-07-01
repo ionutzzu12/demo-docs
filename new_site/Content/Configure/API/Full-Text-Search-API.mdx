@@ -1,0 +1,106 @@
+---
+title: Full-Text Search
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:01 GMT+0300 (Eastern European Summer Time)
+---
+
+Executes a search based on the keyword in single or in multiple business objects.
+
+## Search in Single Business Object
+
+Executes search in the defined specific single business object.
+
+<ExpandableHeading>
+  ## Search in Single Business Object - Example
+
+  Here is an example to execute a search based on the search keyword in an incident business object.
+
+  | URL                                           | https\://\{tenant url}/api/rest/search/fulltext   |
+  | --------------------------------------------- | ------------------------------------------------- |
+  | <font color="#ffffff">Method</font>           | POST                                              |
+  | Header Name                                   | Authorization: JWT Token/Session Key/REST API Key |
+  | Status Code                                   | 200                                               |
+  | Request Payload                               |                                                   |
+  | <font color="#ffffff">Response Payload</font> |                                                   |
+</ExpandableHeading>
+
+### Unsuccessful Responses - Search in Single Business Object
+
+<ExpandableHeading>
+  ## Empty Search Parameter (Keyword)
+
+  Scenario: Executing a search without entering a search keyword.
+
+  https\://\{tenant url}/api/rest/search/fulltext
+
+  Header Name:
+
+  **Authorization: Sessionkey**
+
+  | Code                                          | ISM\_4000                                                          |
+  | --------------------------------------------- | ------------------------------------------------------------------ |
+  | Description                                   | Bad Request                                                        |
+  | Message                                       | "Search keyword cannot be blank, provide a keyword and try again". |
+  | <font color="#ffffff">HTTP STATUS CODE</font> | **400**                                                            |
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Empty Search Parameter (Business Object Type)
+
+  Scenario: Executing a search without defining the business object type in the request body.
+
+  https\://\{tenant url}/api/rest/search/fulltext
+
+  Header Name:
+
+  **Authorization: Sessionkey**
+
+  | Code                                          | ISM\_4000                                                                                                           |
+  | --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+  | Description                                   | Bad Request                                                                                                         |
+  | Message                                       | "ObjectType cannot be blank. Please provide the business object  <br />name in the ObjectType field and try again". |
+  | <font color="#ffffff">HTTP STATUS CODE</font> | **400**                                                                                                             |
+</ExpandableHeading>
+
+## Search in Multiple Business Objects
+
+Executes search in multiple business objects.
+
+<ExpandableHeading>
+  ## Search in Multiple Business Object - Example
+
+  <hint type="info">
+    The business objects on which search is executed is based on the search configurations.
+  </hint>
+
+  Here is an example to execute a search in multiple business objects.
+
+  | URL                                           | https\://\{tenant url}/api/rest/Search  |
+  | --------------------------------------------- | --------------------------------------- |
+  | <font color="#ffffff">Method</font>           | POST                                    |
+  | Header Name                                   | Authorization : Sessionkey/REST API Key |
+  | Status Code                                   | 200                                     |
+  | Request Payload                               |                                         |
+  | <font color="#ffffff">Response Payload</font> |                                         |
+</ExpandableHeading>
+
+### Unsuccessful Response - Search in Multiple Business Objects
+
+<ExpandableHeading>
+  ## Empty Search Parameter (Keyword)
+
+  Scenario: Executing a search without entering a search keyword.
+
+  https\://\{tenant url}/api/rest/Search
+
+  Header Name:
+
+  **Authorization: Sessionkey**
+
+  | Code                                          | ISM\_4000                                                          |
+  | --------------------------------------------- | ------------------------------------------------------------------ |
+  | Description                                   | Bad Request                                                        |
+  | Message                                       | "Search keyword cannot be blank, provide a keyword and try again". |
+  | <font color="#ffffff">HTTP STATUS CODE</font> | **400**                                                            |
+</ExpandableHeading>
+

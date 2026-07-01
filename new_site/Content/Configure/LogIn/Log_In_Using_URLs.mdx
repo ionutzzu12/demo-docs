@@ -1,0 +1,712 @@
+---
+title: Logging in or Accessing Records Using URLs
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:50 GMT+0300 (Eastern European Summer Time)
+---
+
+**Role**: Administrator.
+
+You can log into \{\{FRS\_VARS.ProductName}} directly by using a URL. This method allows you to:
+
+- Log in automatically
+- Open specific workspaces
+- Retrieve specific records
+
+You can use URLs in:
+
+- Emails
+- Browser address bars
+- Embedded links in web pages or intranet portals to access \{\{FRS\_VARS.ProductName}} with or without authentication. Refer to [Configuring anonymous user in Neurons for ITSM](Anonymous_Log_In.mdx).
+
+**How URL-Based Access Works**
+
+A URL can:
+
+- Authenticate a user through an identity provider
+- Assign a role
+- Open a workspace
+- Execute a command (for example, search or load a record)
+
+<ExpandableHeading>
+  ## URL syntax and definitions
+
+  In the use case examples, the URL syntax is as follows:
+
+  https\://tenant\_URL/Login.aspx?
+  ProviderName=authentication\_provider\_name
+  \&Role=role
+  \&Scope=workspace
+  \&CommandId=command
+  \&ObjectType=table\_name
+  \&CommandData=IncidentNumber,%3D,0,10647,string,AND|
+
+  Use an ampersand (&) in between syntax elements. The syntax elements after the URL can be in any order.
+
+  | Syntax                                                                                       | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+  | -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+  | https\://tenant\_URL/Login.aspx?                                                             | Specifies the URL for your tenant to access \{\{FRS\_VARS.ProductName}}.   This is usually followed by /Login.aspx?.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+  | ProviderName=authentication\_provider\_name                                                  | Specifies the name of the identity provider as named in the authentication provider record.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+  | Role=role                                                                                    | Specifies the login role for the user. Supported roles:  <br />SelfService  <br />SelfServiceMobile  <br />ServiceDeskManager  <br />ServiceDeskAnalyst  <br />Admin  <br />testanonymous  <br />  <br />Use the role name (not display name). If the user does not exist in the application, the application creates the user according to the default role specified for the authentication provider.  <br />  <br />Optional:  <br />If a user is only assigned to one role, the application automatically uses the default role.  <br />If the user is assigned to more than one role, the application uses the role information stored in the cookies on the application.                                                                                     |
+  | Scope=workspace                                                                              | Specifies the business object workspace to access after log in. Values:  <br />ObjectWorkspace  <br />SelfService  <br />SelfServiceMobile                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+  | CommandId=command                                                                            | Specifies the command.  Common commands:  <br />LoadRecord  <br />Search  <br />SearchOffering  <br />OpenMyItem  <br />CreateRecord  <br />ShowKnowledgeArticle  <br />ShowArticle  <br />ShowRequest  <br />New  <br />Open  <br />NewIssue  <br />ShowAll  <br />NewServiceRequestByOfferingId  <br />NewServiceRequest  <br />NewExternalRequest  <br />LoadServiceRequestDraft  <br />The RecID is used in the **Load Record** option to take the user to the record identified by the record identifier. Search searches for a record or records with a specific value, which in the examples provided are by incident owner and incident summary. If there are multiple records that match the search criteria, then those records appear in the list view. |
+  | ObjectType=table\_name                                                                       | Specifies the table name in the database. Must be followed by %23 which is the URL encoding for #. Can be any of the following:  <br />Incident  <br />Problem  <br />Change  <br />FAQ  <br />Task                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+  | \&CommandData=Field\_Name, Condition,Condition\_Type,Field\_Value, Field\_Type, Join\_Rule\| | Comma separated values. Contains the following items in order:  <br />Field name, for example, the owner or subject (summary)  <br />Condition  <br />Condition type  <br />Field value  <br />Field type  <br />Join rule  <br />Object ID                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+  | Condition                                                                                    | Escaped string.  <br />= Equal to  <br />!= Not Equal to  <br />> Greater than  <br />\< Less than  <br />>= Greater or Equal  <br />\<= Less or Equal  <br />-> Begin with  <br />\{} Contains  <br />!\{} Does Not Contain  <br />0 Is Empty  <br />!0 Is Not Empty  <br />() In List  <br />!() Not In list  <br />>\< In range                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+  | ConditionType                                                                                | By field = 0  <br />By text = 1                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+  | JoinRule                                                                                     | AND  <br />OR                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+  | Escaped condition strings                                                                    | escape('=') "%3D"  <br />escape('>') "%3E"  <br />escape('\<') "%3C"  <br />escape('=') "%3D"  <br />escape('!=') "%21%3D"  <br />escape('>') "%3E"  <br />escape('\<') "%3C"  <br />escape('>=') "%3E%3D"  <br />escape('\<=') "%3C%3D"  <br />escape('->') "-%3E"  <br />escape('\{}') "%7B%7D"  <br />escape('!\{}') "%21%7B%7D"  <br />escape('0') "0"  <br />escape('!0') "%210"  <br />escape('()') "%28%29"  <br />escape('!()') "%21%28%29"  <br />escape('>\<') "%3E%3C"                                                                                                                                                                                                                                                                                  |
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Accessing records and workspaces
+
+  Specific owner
+
+  In this example, the user is directed to the \{\{FRS\_VARS.ProductName}} login page. After logging in, the **Incident** workspace shows records in which the administrator or the specified user is the incident owner.
+
+  https\://tenant\_URL/Login.aspx?
+  Scope=ObjectWorkspace
+  \&CommandId=Search
+  \&ObjectType=Incident%23
+  \&CommandData=Owner,%3D,0,username,string,AND|
+
+  Summary Containing Specific Text
+
+  In this examples, the user is directed to the \{\{FRS\_VARS.ProductName}} login page. After logging in, the **Incident** workspace shows records in which the **Summary** field contains the specified words for an example "Printer not working".
+
+  https\://tenant\_URL/Login.aspx?
+
+  Scope=ObjectWorkspace&
+
+  CommandId=Search>
+
+  \&ObjectType=Incident%23>
+
+  \&CommandData=Summary,%7B%7D,0,Printer not working,string,AND|
+
+  Using a Specific Role
+
+  In this example, the user is directed to the \{\{FRS\_VARS.ProductName}} login page. After logging in, the incident record referenced in the URL appears. In this example, the record ID is 10475.
+
+  https\://tenant\_URL/Login.aspx?
+  \&Role=role
+  \&Scope=ObjectWorkspace
+  \&CommandId=Search
+  \&ObjectType=Incident%23
+  \&CommandData=IncidentNumber,%3D,0,10475,string,AND|#
+
+
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Open a Specific Workspace
+
+  Using a Specific Role
+
+  Example: 1 - This example shows opening a record in the Object Workspace in Service Desk role.
+
+  https\://tenant\_URL/Login.aspx?
+
+  ProviderName=authentication\_provider\_name
+
+  \&Role=ServiceDeskManager
+
+  \&Scope=ObjectWorkspace
+
+  \&CommandId=Search
+
+  \&ObjectType=Incident%23
+
+  \&CommandData=IncidentNumber,%3D,0,10647,string,AND|
+
+  Example: 2 - This example shows opening a record in the Self Service Mobile portal in Self Service Mobile role.
+
+  https\://tenant\_URL/Login.aspx?
+
+  ProviderName=authentication\_provider\_name
+
+  \&Scope=SelfServiceMobile
+
+  \&Role=SelfServiceMobile
+
+  \&CommandId=OpenMyItem
+
+  \&ItemType=Incident
+
+  \&ItemId=49C31F151AE8433797C12A867108D28E
+
+  In the above examples, the application directs the user to the login page of the provider where the user is logged in as a Service Desk Manager and Self Service Mobile. After logging in, the application redirects the user to the incident record that is referenced in the URL. If the user is not a Service Desk Manager or Self Service Mobile, the application logs the user in as the default role, which is admin. If the user is not an administrator, the application displays the role selection page.
+
+  Using \{\{FRS\_VARS.Self\_Service\_Portal-Self-Service}} Role
+
+  https\://tenant\_URL/Login.aspx?
+
+  ProviderName=authentication\_provider\_name
+
+  \&Role=SelfService>\&Scope=SelfService
+
+  \&CommandId=Search
+
+  \&ObjectType=Announcement%23
+
+  \&CommandData=Status,%3D,0,Published,string,AND|#
+
+  In this example, the application redirects the user to the \{\{FRS\_VARS.ProductName}} home page from the identity provider page and logs the user into \{\{FRS\_VARS.ProductName}} in the Self Service role. The Self-Service Portal displays the **Announcements** workspace with the published announcements.
+
+  Opening a Specific Record in a Specific Workspace in the Self Service Portal
+
+  https\://tenant\_URL/Login.aspx?>
+
+  ProviderName=authentication\_provider\_name
+
+  \&Scope=SelfService>\&Role=SelfService>
+
+  \&CommandId=OpenMyItem
+
+  \&ItemType=Incident
+
+  \&ItemId=49C31F151AE8433797C12A867108D28E
+
+  In this example, the application directs the user to the \{\{FRS\_VARS.ProductName}} home page from the identity provider page and logs the user into \{\{FRS\_VARS.ProductName}} in the Self Service role. The Self-Service Portal displays the **My Items** workspace with the incident record specified in the URL.
+
+  To open the same record in the Self-Service Portal using your identity provider, from a link sent via a **Send Email** quick action or any link embedded in the quick action definition, use this syntax:
+
+  $(ServerURL())/Login.aspx?
+
+  ProviderName=authentication\_provider\_name
+
+  \&Scope=SelfService>\&Role=SelfService
+
+  \&CommandId=OpenMyItem
+
+  \&ItemType=Incident
+
+  \&ItemId=$RecId
+
+  Confirm access from your identity provider page.
+
+  Opening a Specific Workspace in a Specific Role
+
+
+
+  https\://tenant\_URL/Login.aspx?
+
+  ProviderName=authentication\_provider\_name
+
+  \&Role=SelfService
+
+  \&Scope=SelfService
+
+  \&CommandId=Search
+
+  \&ObjectType=Announcement%23
+
+  \&CommandData=Status,%3D,0,Published,string,AND|#
+
+  In this example, the application redirects the user to the \{\{FRS\_VARS.ProductName}} home page from the identity provider page and logs the user into \{\{FRS\_VARS.ProductName}} in the Self Service role. The Self-Service Portal displays the **Announcements** workspace with the published announcements.
+
+  Opening a Specific Record in a Specific Workspace in the Self Service Portal>
+
+
+
+  https\://tenant\_URL/Login.aspx?
+
+  ProviderName=authentication\_provider\_name
+
+  \&Scope=SelfService
+
+  \&Role=SelfService
+
+  \&CommandId=OpenMyItem
+
+  \&ItemType=Incident
+
+  \&ItemId=49C31F151AE8433797C12A867108D28E
+
+  In this example, the application directs the user to the \{\{FRS\_VARS.ProductName}} home page from the identity provider page and logs the user into \{\{FRS\_VARS.ProductName}} in the Self Service role. The Self-Service Portal displays the **My Items** workspace with the incident record specified in the URL.
+
+  To open the same record in the Self-Service Portal using your identity provider, from a link sent via a **Send Email** quick action or any link embedded in the quick action definition, use this syntax:
+
+  $(ServerURL())/Login.aspx?
+
+  ProviderName=authentication\_provider\_name
+
+  \&Scope=SelfService
+
+  \&Role=SelfService
+
+  \&CommandId=OpenMyItem>\&ItemType=Incident
+
+  \&ItemId=$RecId
+
+  Confirm access from your identity provider page.
+</ExpandableHeading>
+
+## Logging In Using URLs with Authentication
+
+After you have configured authentication providers in \{\{FRS\_VARS.ProductName}}, users can log into \{\{FRS\_VARS.ProductName}} in various ways. Refer to [Working with ADFS/SAML](<../Security/ADFS SAML.mdx>).
+
+<ExpandableHeading>
+  ## Access ITSM from the provider sign-in page
+
+  In this example, the user is redirected to the \{\{FRS\_VARS.ProductName}} home page from the identity provider page and is logged into \{\{FRS\_VARS.ProductName}} in the default role specified in the authentication record.
+
+  https\://tenant\_URL/Login.aspx?
+  ProviderName=authentication\_provider\_name
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Sign in through your identity provider
+
+  You must already have an account with the third-party identity provider, for example, Google, Yahoo, Okta, and so on. You must have set up the authentication provider in \{\{FRS\_VARS.ProductName}}, as described in :Link[Setting Up Users for Authentication]{label="Setting Up Users for Authentication" overridedLabel="Setting Up Users for Authentication" spaceId docId="475MAx1vPYWkNJJvqHAhj" version="v2" docAnchorId="#Setting-Up-Users-for-Authentication" loadingMethod="dynamic" newTab="false" githubPath="../Security/Authentication_Configura.htm#Setting-Up-Users-for-Authentication" href="../Security/Authentication_Configura.mdx"}.
+
+  You can log into \{\{FRS\_VARS.ProductName}} via your identity provider page using your external login authentication.
+
+  If the user is not in the application, the application can create an employee record from a URL sent via email if you have selected auto provisioning in the identity provider record configuration. The application creates the user in the specified role, team, and status that you set up in the auto provisioning section of setting up identity providers.
+
+  1. Open the \{\{FRS\_VARS.ProductName}} login page. The links to the authentication providers you define appear.
+  2. Click the relevant provider link to go to the authentication provider login page (for example, Okta). The login page for your identity provider appears.
+  3. Enter your login name for the authentication provider. The \{\{FRS\_VARS.ProductName}} application login page appears, listing the roles assigned to you.
+  4. Select a role and click **Continue** to open the application.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Sign in through an embedded link
+
+  You must have an account with the third-party identity provider, for example, Google, Yahoo, Okta, and so on. For a sample ADFS configuration and SAML configuration using Okta, refer to [Working with ADFS/SAML](<../Security/ADFS SAML.mdx>). You must have already set up the authentication provider in \{\{FRS\_VARS.ProductName}}, as described in [Working with ADFS/SAML](<../Security/ADFS SAML.mdx>).
+
+  1. In your web page, enter the following:
+
+  \<asp\:Content ID="BodyContent" runat="server" ContentPlaceHolderID="MainContent">
+
+  \<h2>Welcome to My Sample Application\</h2>
+
+  \<p>Click the following link
+
+  \<a href="https\://tenant\_URL/Login.aspx?
+
+  ProviderName=Provider\_Name" title="ADFS HEATSoftware Login">HEAT Software \{\{FRS\_VARS.ProductName}} Login\</a>
+
+  \</p>
+
+  \</asp\:Content>
+
+  <Paragraph indent="1">
+    Replace the title with the link that the user will click to go to the provider page.
+  </Paragraph>
+
+  2. Click the link to view your account provider page.
+  3. From your account provider page, log into \{\{FRS\_VARS.ProductName}}.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Get a Record Identifier
+
+  You can get the unique record identifier (RecID) in the following ways:
+
+  - Enter the following Microsoft SQL query in your server:
+
+  select Business\_Object\_name.RecId from Business\_Object\_name where
+
+  Business\_Object\_name.Business\_Object\_namenumber='record\_number'
+
+  <Paragraph indent="1">
+    For example, to get the RecID of an incident record, for example, incident record 10002, enter:
+  </Paragraph>
+
+  select Incident.RecId from Incident where Incident.IncidentNumber='10002'
+
+  - In the **Quick Action Edit** window, click the **Insert a Field** tab, then click the **Fields** folder of a business object. Scroll down to where you see RecID, then drag and drop it into a **Send Email** quick action, for example.
+
+  When the email is sent as defined by a business rule, for example, the RecID is included in the email.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Accessing Neurons for ITSM from a Customer Website
+
+  <hint type="info">
+    The ability to present \{\{Primary.Company}}\{\{FRS\_VARS.ProductName}} within an iFrame is available only for on-premises customers. Due to the security risks associated with iFrame, if a web page contains event handlers that do not perform proper origin validation, a web page, or script from any origin, can communicate with it. If you are an on-premise customer, you need to understand the inherent risks associated with iFrame before enabling it in your environment.
+  </hint>
+
+  The following example describes how you can embed a link to the \{\{FRS\_VARS.ProductName}} login page in your intranet.
+
+  1. Open the page (with a text editor) where the login page reference needs to be embedded.
+  2. Create an iframe with the source pointing to https\://tenant\_URL/saaslogin.aspx.
+  3. In the query string, provide appropriate parameter values for the following (these are the only query string parameters that you can use):
+     - **refererURL**: The URL to which the user is redirected after logging out of \{\{FRS\_VARS.ProductName}}.
+     - **bg**: The background color for the login page.
+
+  <Paragraph indent="1">
+    For example:
+  </Paragraph>
+
+  https\://tenant\_URL/saaslogin.aspx?refererURL=
+  http\://www.*company\_name*.com\&bg=white
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Monitor and Log HTTP Traffic Using Fiddler
+
+  Fiddler is a third-party application that is used to capture and analyze network traffic for troubleshooting issues with HTTP and HTTPS communication. It helps to diagnose and resolve performance or connectivity problems by providing insights into the data exchanged between your application and the network.
+
+  To configure Fiddler:
+
+  <hint type="info">
+    Make sure to close all applications generating HTTP traffic, except the application that must be captured for network traffic.
+  </hint>
+
+  1. Download, install [Fiddler](https://www.telerik.com/download/fiddler) application, and then launch it.
+  2. To enable decrypt SSL traffic, do the following:
+
+  <Paragraph indent="1">
+    a. Open the **Fiddler** and go to **Tools** >**&#xA0;Options**.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    b. In the **Options** window, select the **HTTPS** tab, select the Decrypt **HTTPS** traffic checkbox, and click **Yes** when prompted.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    c. In the **Security Warning** window, click **Yes** to install the certificate.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    d. To add the certificate to the **Machine Root list**, click **Ok**. The confirmation window appears.
+  </Paragraph>
+
+  3. To start the capture process, open the application and navigate to the location where the issue occurs.
+  4. Perform the actions that causes the issue to capture the relevant network traffic.
+  5. To stop the capturing process, pres&#x73;**&#x20;F12** key or go to **File** >**&#xA0;Stop Capturing Traffic**.
+  6. To save the captured traffic, go to **File** > **Save** > **All Sessions**. Choose the required directory and save the file in **.saz** format, using the naming convention format (MachineName\_MMDDYYYY.saz).
+  7. To save the file, click **Yes**, when the privacy note appears.
+  8. If required, compress the file before attaching it to your support case or emailing it to the assigned Support Analyst.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Access URLs using Anonymous role
+
+  For a knowledge article:
+
+  https\://tenant\_URL/Login.aspx?
+
+  Scope=SelfService
+
+  \&Role=testanonymous
+
+  \&CommandId=ShowKnowledgeArticle
+
+  \&Id=$RecId
+
+  For an example:
+
+  https\://tenant\_URL/Login.aspx?
+
+  Scope=SelfService
+
+  \&Role=testanonymous
+
+  \&CommandId=ShowKnowledgeArticle
+
+  \&Id=A5407509EC9747E6BA1CC754E079B1D5
+
+  For FAQ:
+
+  https\://tenant\_URL/Login.aspx?
+
+  Scope=ObjectWorkspace
+
+  \&Role=testanonymous
+
+  \&CommandId=Search
+
+  \&ObjectType=FAQ%23
+
+  \&CommandData=RecID,%3D,0,$RecId,string,AND|#
+
+  For an example:
+
+  https\://tenant\_URL/Login.aspx?
+
+  Scope=ObjectWorkspace
+  \&Role=testanonymous
+  \&CommandId=Search
+  \&ObjectType=FAQ%23
+  \&CommandData=RecID,%3D,0,203F2655F6A8403D8160C49C01709073,string,AND|#
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Access URL using Admin Role
+
+  All Incidents when customer is Admin
+
+  https\://tenant\_URL/Login.aspx?
+
+  Role=role
+
+  \&Scope=ObjectWorkspace
+
+  \&CommandId=Search
+
+  \&ObjectType=Incident%23
+
+  \&CommandData=LoginId,%3D,0,Admin,string,AND|
+
+  All Incidents when Owner is Admin
+
+
+
+  https\://tenant\_URL/Login.aspx?
+
+  Role=role
+  \&Scope=ObjectWorkspace
+  \&CommandId=Search
+  \&ObjectType=Incident%23
+  \&CommandData=Owner,%3D,0,Admin,string,AND|#1349251100591
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Accessing URLs using Specific Conditions
+
+  Incident with Incident Number=10001
+
+
+
+  https\://tenant\_URL/Login.aspx?
+
+  Role=role
+
+  \&Scope=ObjectWorkspace
+
+  \&CommandId=Search
+
+  \&ObjectType=Incident%23
+
+  \&CommandData=IncidentNumber,%3D,0,10001,string,AND|#
+
+  All Incidents with VIP Set to True or False
+
+  Boolean value has to be 1 or 0 passed
+
+  VIP is true:
+
+  https\://tenant\_URL/Login.aspx?
+
+  Role=role
+
+  \&Scope=ObjectWorkspace
+
+  \&CommandId=Search
+
+  \&ObjectType=Incident%23
+
+  \&CommandData=IsVIP,%3D,0,1,Boolean,AND|
+
+  VIP is false:
+
+  https\://tenant\_URL/Login.aspx?
+
+  Role=role
+
+  \&Scope=ObjectWorkspace
+
+  \&CommandId=Search
+
+  \&ObjectType=Incident%23
+
+  \&CommandData=IsVIP,%3D,0,0,Boolean,AND|
+
+  Incident with CreatedDateTime Greater Than 1/1/12
+
+
+
+  https\://tenant\_URL/Login.aspx?
+
+  Role=role
+
+  \&Scope=ObjectWorkspace
+
+  \&CommandId=Search
+
+  \&ObjectType=Incident%23
+
+  \&CommandData=CreatedDateTime,%3E,0,1/1/2012,date,AND|
+
+  With OpenRecord Option - Search with RecID
+
+
+
+  https\://tenant\_URL/Login.aspx?
+
+  Scope=ObjectWorkspace
+
+  \&CommandId=LoadRecord
+
+  \&ObjectType=Incident%23
+
+  \&CommandData=RecId, 2A33CC809D96404F84B25A7780FD8F3A
+
+
+
+  https\://tenant\_URL/Login.aspx?
+
+  Role=role
+
+  \&Scope=ObjectWorkspace
+
+  \&CommandId=LoadRecord
+
+  \&ObjectType=Change%23
+
+  \&CommandData=RecId%2c7A0217065C074AC58195846CEF80F1A8
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Access records by using URLs
+
+  To view all Published Announcements
+
+
+
+  https\://tenant\_URL/Login.aspx?
+  Role=role
+  \&Scope=ObjectWorkspace
+  \&CommandId=Search
+  \&ObjectType=Announcement%23
+  \&CommandData=Status,%3D,0,Published,string,AND|#
+
+  To Open Incident 10450
+
+
+
+  https\://tenant\_URL/Login.aspx?
+  Scope=ObjectWorkspace
+  \&CommandId=LoadRecord
+  \&ObjectType=Incident%23
+  \&CommandData=RecId%2c2941423B6DD74476AC81159E103BCC49
+
+  Log In as a Service Desk Analyst and Open Incident 10450
+
+
+
+  https\://tenant\_URL/Login.aspx?
+  Scope=ObjectWorkspace
+  \&Role=ServiceDeskAnalyst
+  \&CommandId=LoadRecord
+  \&ObjectType=Incident%23
+  \&CommandData=RecId%2c2941423B6DD74476AC81159E103BCC49
+
+  Log In as a Service Desk Manager and Open Incidents with Priority Equal to 5
+
+
+
+  https\://tenant\_URL/Login.aspx?
+  Role=ServiceDeskManager
+  \&Scope=ObjectWorkspace
+  \&CommandId=Search
+  \&ObjectType=Incident%23
+  \&CommandData=Priority,%3D,0,5,string,AND|#
+
+  Log in as a Service Desk Manager and Open Incidents with Priority Not Equal to 5
+
+
+
+  https\://tenant\_URL/Login.aspx?
+  Role=ServiceDeskManager
+  \&Scope=ObjectWorkspace
+  \&CommandId=Search
+  \&ObjectType=Incident%23
+  \&CommandData=Priority,%21%3D,0,5,string,AND|#
+
+  Find Incidents with Active Status
+
+
+
+  https\://tenant\_URL/Login.aspx?
+  role=ServiceDeskManager
+  \&Scope=ObjectWorkspace
+  \&CommandId=Search
+  \&ObjectType=Incident%23
+  \&CommandData=Status,%3D,0,Active,string,AND|#
+
+  Open a Task
+
+
+
+  https\://tenant\_URL/Login.aspx?
+  Scope=ObjectWorkspace
+  \&CommandId=Search
+  \&ObjectType=Task%23Assignment
+  \&CommandData=AssignmentID,%3D,0,10946,string,AND|#
+
+  Log In as a Service Desk Analyst and Search for Task 10946
+
+
+
+  https\://tenant\_URL/Login.aspx?
+  role=ServiceDeskAnalyst
+  \&Scope=ObjectWorkspace
+  \&CommandId=Search
+  \&ObjectType=Task%23Assignment
+  \&CommandData=AssignmentID,%3D,0,10946,string,AND|#
+
+  Log In as a Service Desk Analyst and Open Task 11291 by its RecID
+
+
+
+  https\://tenant\_URL/Login.aspx?
+  role=ServiceDeskAnalyst
+  \&Scope=ObjectWorkspace
+  \&CommandId=LoadRecord
+  \&ObjectType=Task%23Assignment
+  \&CommandData=RecId%2c76C4321537DE46A194F5C226EC2D83F6
+
+  Log In as a Service Desk Analyst and Search for Task 11291 by Searching for its Parent ID 15577
+
+
+
+  https\://tenant\_URL/Login.aspx?
+  Role=ServiceDeskAnalyst
+  \&Scope=ObjectWorkspace
+  \&CommandId=Search
+  \&ObjectType=Task%23Assignment
+  \&CommandData=ParentObjectDisplayID,%3D,0,15576,string,AND|#
+
+  Use the Next Direct Links to Access Task Entries
+
+  Task is an assignment:
+
+  https\://tenant\_URL/Login.aspx?
+  Role=role
+  \&Scope=ObjectWorkspace
+  \&CommandId=Search
+  \&ObjectType=Task%23Assignment
+  \&CommandData=AssignmentID%2c%3d%2c0%2c%24%2810496%29%2cstring%2cAND|#
+
+  For example:
+
+  https\://tenant\_URL/Login.aspx?
+  Role=role
+  \&Scope=ObjectWorkspace
+  \&CommandId=Search
+  \&ObjectType=Task%23Assignment
+  \&CommandData=AssignmentID,%3D,0,10946,string,AND|#
+
+  Task is a work order (which represents the external task and is only accessible to administrators):
+
+  https\://tenant\_URL/Login.aspx?
+  Role=role
+  \&Scope=ObjectWorkspace
+  \&CommandId=Search
+  \&ObjectType=Task%23WorkOrder
+  \&CommandData=WorkOrderID%2c%3d%2c0%2c%24%2810496%29%2cstring%2cAND|#
+
+  Task is computer provisioning:
+
+  https\://tenant\_URL/Login.aspx?
+
+  Role=role
+  \&Scope=ObjectWorkspace
+  \&CommandId=Search
+  \&ObjectType=Task%23ComputerProvisioning
+  \&CommandData=ProvisionRequestID%2c%3d%2c0%2c%24%281025%29%2cstring%2cAND|#
+</ExpandableHeading>

@@ -1,0 +1,35 @@
+---
+title: Setting the Database Properties for DSM
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:49 GMT+0300 (Eastern European Summer Time)
+---
+
+<hint type="info">
+  The following procedure only applies to on-premise implementations.
+</hint>
+
+You can change a property for the \{\{FRS\_VARS.ProductName}} database to prevent an intermittent error when you open or refresh the **Managed Software** tab of the **CI Computer** business object.
+
+To view or change the database setting, do the following:
+
+1. On the database server, launch Microsoft SQL Server Management Studio.
+2. In the **Object Explorer** area, under **Databases**, right-click **HEATSM** and choose **Properties** from the drop-down list.
+
+<Paragraph indent="1">
+  *Selecting Properties*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/JwF4rU8TSa0bM60GrYah6_databasepropertiesheatsm.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/database_properties_HEATSM.png" githubPath="Content/Resources/Images/help-images/database_properties_HEATSM.png" showCaption="false"></Image>
+
+3. In the **Database Properties** dialog box, under **Select a page**, choose **Options**.
+4. In the **Other** list, scroll down to **Is Read Committed Snapshot On**.
+   - If the value is "False", change it to "True" and click **OK**.
+   - If the value is "True", click **Cancel**.
+
+<Paragraph indent="1">
+  *Database Properties*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/ThrnjWnz7MGwXWdf75E87_readcommitsnapshoton.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/read_commit_snapshot_on.png" githubPath="Content/Resources/Images/help-images/read_commit_snapshot_on.png" showCaption="false"></Image>
+
+5. Click **OK**.

@@ -1,0 +1,83 @@
+---
+title: Using the GetCategories Web Method
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:01 GMT+0300 (Eastern European Summer Time)
+---
+
+Returns the list of available categories for the Service Catalog.
+
+## Request Syntax
+
+publicFRSHEATGetCategoriesResponse GetCategories(string sessionKey, string tenantId)
+
+## Parameters
+
+- **sessionKey**: The session key from the **Connect** web method.
+- **tenantId**: The tenant for which the session key is authenticated.
+
+## Return Value
+
+**FRSHEATGetCategoriesResponse** object, defined as follows:
+
+public classFRSHEATGetCategoriesResponse
+
+    \{
+
+public string status \{ get; set; }
+
+public string exceptionReason \{ get; set; }
+
+public List\<FRSHEATServiceReqCategory> srCategories \{ get; set; }
+
+    }
+
+The **FRSHEATIntegrationFindBOResponse** class has the following fields:
+
+- **status**: Provides a status about the state of the connection. The table below contains a full description of the available status values.
+- **exceptionReason**: Contains exception information, if the application throws an exception when running this web method.
+- **srCategories**: Contains a list of **FRSHEATServiceReqCategory** objects, each of which represents the category value in the Service Catalog.
+
+The **FRSHEATServiceReqCategory** class is defined as follows:
+
+public class FRSHEATServiceReqCategory
+
+    \{
+
+public string strRecId;
+
+public string strName;
+
+public string strDescription;
+
+    }
+
+The **FRSHEATServiceReqCategory** class has the following fields:
+
+- **strRecId**: The RecID corresponding to the category value.
+- **strName**: The name of the category.
+- **strDescription**: The description for the category.
+
+The following table lists the available status values and describes how to interpret them.
+
+| <font color="#FFFFFF">Status</font> | <font color="#FFFFFF">Explanation</font>                                                                                                                           |
+| ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Success**                         | Successfully retrieved the list of categories in the Service Catalog. This list is available in the **srCategories** field.                                        |
+| **Error**                           | An error was encountered during the execution of this web method.  Inspect the corresponding **exceptionReason** field to determine why the web method has failed. |
+
+## Example
+
+FRSHEATGetCategoriesResponse getCategoriesResponse = frSvc.GetCategories(authSessionKey, tenantId);
+
+if (getCategoriesResponse.status == "Success")
+
+            \{
+
+foreach (FRSHEATServiceReqCategory srCategory in getCategoriesResponse.srCategories)
+
+                \{
+
+Console.WriteLine("Category: \{\{0}}", srCategory.strName);
+
+                }
+
+            }

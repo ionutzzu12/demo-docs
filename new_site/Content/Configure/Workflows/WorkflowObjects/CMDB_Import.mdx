@@ -1,0 +1,32 @@
+---
+title: CMDB Import Workflow Block
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:58 GMT+0300 (Eastern European Summer Time)
+---
+
+The **CMDB Import** workflow block performs the SCCM integration. It has a parameter that starts the import from SCCM to the \{\{FRS\_VARS.ProductName}} CMDB. This workflow block submits an integration job but does not keep track of the job status.
+
+*CMDB Import Workflow Block Properties*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/hE0PRnu9uv3HOyxBl2qJf_cmdbblock.png" position="flex-start" size="40" indent="1" initialPath="../../../Resources/Images/help-images/CMDB_block.png" githubPath="Content/Resources/Images/help-images/CMDB_block.png" showCaption="false"></Image>
+
+## Exit Ports
+
+| Exit Port | Description                                                                                          |
+| --------- | ---------------------------------------------------------------------------------------------------- |
+| Started   | Continue to the next block.                                                                          |
+| Failed    | General exit port for a failed integration action. A logical next step is to trigger a notification. |
+
+## Properties
+
+| Property  | Description                                                                                                                                                         |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Title     | A unique name for the workflow block.                                                                                                                               |
+| CMDB Name | The defined integration. Choose from the drop-down list. See [About Importing Data from SCCM into Neurons for ITSM](../../ImportExportData/SCCM-Configuration.mdx). |
+
+## Actions
+
+| Button | Action                 |
+| ------ | ---------------------- |
+| Save   | Commits your settings. |
+| Cancel | Exits without saving.  |

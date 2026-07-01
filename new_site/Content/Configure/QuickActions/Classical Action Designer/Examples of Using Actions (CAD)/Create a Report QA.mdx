@@ -1,0 +1,64 @@
+---
+title: Example: Creating a Report Action (CAD)
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:57 GMT+0300 (Eastern European Summer Time)
+---
+
+You can use the **Create Report** action to run an existing report against selected records. For example, you can create a printable report that lists selected items in a record.
+
+For the **Run Report** action, the application does not support user prompts.
+
+See [Run Report Action](<../templates/Run Report.mdx>).
+
+1. From the Configuration console, click **Build > Automation Tools > Quick Actions** to open the **Actions Manager** workspace. The list of business objects that have actions appears.
+2. Click **Add/Edit** for the **Incident** business object. The Actions Center appears.
+3. Click the **Create New Actions** tab.
+4. Select **Run Report**. The **Run Report** action appears.
+5. Enter information as needed in the following fields:
+
+*Report Action*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/dL4_0tnA80HUJjvMswbJL_qareportsettings.png" position="flex-start" size="40" indent="1" initialPath="../../../../Resources/Images/help-images/qa_report_settings.png" githubPath="Content/Resources/Images/help-images/qa_report_settings.png" showCaption="false"></Image>
+
+| Field                        | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| ---------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Enter action name            | A unique name for this action, such as Print My Report.                                                                                                                                                                                                                                                                                                                                                                                                           |
+| Enter action description     | Enter **report action**.                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| Enter category               | The category. From the drop-down list, select **Form Actions**.                                                                                                                                                                                                                                                                                                                                                                                                   |
+| Report Name                  | The name of the report. Select **Print Incident** from the drop-down list. The report parameters appear below. Only reports that are configured to run for actions are listed.  After you select a report, the application displays the corresponding report parameters.                                                                                                                                                                                          |
+| Can run for multiple records | Enables users to select multiple incident records and run the **Print** action. When enabled, you can select multiple records in the incident list view.<br />If you select this option, you must include the primary key field of the business object (for example, the RecID) as a report parameter. When running the report for multiple records, the application collects the RecID of the current business object and sends it to the report for processing. |
+
+6. Map the report parameters to the current business object fields by doing the following:
+
+<Paragraph indent="1">
+  a. Double-click the **Source Value** field for the **RecID** parameter to activate it. The **Edit Expression** window appears.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. In the Expression Editor, enter **RecID**. The application displays $(RecId).
+</Paragraph>
+
+*RecID Field*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/hhhyK_1f9Y-MZRKgrWNeG_qareportrecid.png" position="flex-start" size="40" indent="1" initialPath="../../../../Resources/Images/help-images/qa_report_recid.png" githubPath="Content/Resources/Images/help-images/qa_report_recid.png" showCaption="false"></Image>
+
+<Paragraph indent="1">
+  c. Click **Save**.
+</Paragraph>
+
+<Paragraph indent="1">
+  d. Double-click the **Source Value** field for **Show Journal**, then enter **yes**.
+</Paragraph>
+
+<Paragraph indent="1">
+  e. Double-click the **Source Value** field for **Show Assignment**, then enter **yes**.
+</Paragraph>
+
+7. From the **Actions Settings** tab, set the following:
+
+| Field      | Description                                                                                                                                          |
+| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Publish to | Click the drop-down menu and select the roles that need access to this template (such as administrator, Service Desk Analyst, Service Desk Manager). |
+| Hide in UI | Leave this option unchecked to make this template available to the \{\{FRS\_VARS.ProductName}} user roles that you publish to.                       |
+
+8. Click **Save**. The action now appears on the list of actions.

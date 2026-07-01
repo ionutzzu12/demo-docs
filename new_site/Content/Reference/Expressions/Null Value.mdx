@@ -1,0 +1,58 @@
+---
+title: About Null Values
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:58 GMT+0300 (Eastern European Summer Time)
+---
+
+- :Link[Initial Value for Fields]{label="Initial Value for Fields" overridedLabel="Initial Value for Fields" spaceId docId="DFEtZeMGBHrcwmhNBrP6m" version="v2" docAnchorId="#Initial" loadingMethod="dynamic" newTab="false" href="Null Value.mdx"}
+- :Link[Setting a Field Value to Null]{label="Setting a Field Value to Null" overridedLabel="Setting a Field Value to Null" spaceId docId="DFEtZeMGBHrcwmhNBrP6m" version="v2" docAnchorId="#Setting" loadingMethod="dynamic" newTab="false" href="Null Value.mdx"}
+- :Link[Null Value Comparison]{label="Null Value Comparison" overridedLabel="Null Value Comparison" spaceId docId="DFEtZeMGBHrcwmhNBrP6m" version="v2" docAnchorId="#Null" loadingMethod="dynamic" newTab="false" href="Null Value.mdx"}
+- :Link[Using Built-In Functions to Test for Null]{label="Using Built-In Functions to Test for Null" overridedLabel="Using Built-In Functions to Test for Null" spaceId docId="DFEtZeMGBHrcwmhNBrP6m" version="v2" docAnchorId="#Using" loadingMethod="dynamic" newTab="false" href="Null Value.mdx"}
+
+## Initial Value for Fields
+
+For all of the major field types (Boolean fields, number fields, DateTime fields, text fields, currency fields, and link fields), the initial value is null if the field is nullable. It remains as a null value when you save the record unless you manually set the value or the value is set by an available rule (such as an initialization rule or saving rule).
+
+## Setting a Field Value to Null
+
+In an expression, the single value null is represented by a case-insensitive keyword called null. To properly set a field value to null, use $(null), where null is case insensitive.
+
+## Null Value Comparison
+
+Null compared with anything is null.
+
+## Using Built-In Functions to Test for Null
+
+- :Link[About Testing for Null]{label="About Testing for Null" overridedLabel="About Testing for Null" spaceId docId="DFEtZeMGBHrcwmhNBrP6m" version="v2" docAnchorId="#About" loadingMethod="dynamic" newTab="false" href="Null Value.mdx"}
+- :Link[nvl Function]{label="nvl Function" overridedLabel="nvl Function" spaceId docId="DFEtZeMGBHrcwmhNBrP6m" version="v2" docAnchorId="#nvl" loadingMethod="dynamic" newTab="false" href="Null Value.mdx"}
+- :Link[IsNull Function]{label="IsNull Function" overridedLabel="IsNull Function" spaceId docId="DFEtZeMGBHrcwmhNBrP6m" version="v2" docAnchorId="#IsNull" loadingMethod="dynamic" newTab="false" href="Null Value.mdx"}
+
+### About Testing for Null
+
+You cannot test for null by entering the following:
+
+$(if TestBool == null then "The logical field is null" else "The logical field is not null")
+
+### nvl Function
+
+One way to approximately perform null comparisons is to use the [nvl](../Functions/nvl.mdx)() function. The syntax of the [nvl](../Functions/nvl.mdx)() function is as follows:
+
+nvl(expr1, expr2)
+
+If the value of the **expr1** parameter is null, the function returns the value of the **expr2** parameter; otherwise, the function returns the value of the **expr1** parameter. For example, the expression can be used as follows:
+
+nvl(TestBool, "")
+
+If the **TestBool** parameter has a value of null, the function returns an empty string; otherwise, the function returns the value of the **TestBool** parameter (in this case, true or false).
+
+### IsNull Function
+
+To test for a null value, we recommend using the [IsNull](../Functions/IsNull.mdx) function.  Here are two examples:
+
+IsNull("This is a test")
+
+In the above example, the application returns false, because the input parameter is not null.
+
+IsNull(null)
+
+In the above example, the application returns true, because the input parameter is null.

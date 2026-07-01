@@ -1,0 +1,273 @@
+---
+title: Ivanti Neurons for ITSM and Endpoint Manager Connector
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:51 GMT+0300 (Eastern European Summer Time)
+---
+
+Endpoint Manager allows you to import data from your Endpoint Manager database into the \{\{Primary.Company}} \{\{FRS\_VARS.ProductName}} configuration management database. This is a one-way import of data.
+
+## Prerequisites
+
+Following are the prerequisites for importing Endpoint Manager data into \{\{FRS\_VARS.ProductName}}.
+
+- **Roles**: The applicable user role is Administrator.
+- **Minimum Supported Version**: \{\{FRS\_VARS.ProductName}} - 2017.3 onwards
+
+## Endpoint Manager Configuration
+
+### Configure the Windows Firewall to Allow SQL Server Access
+
+You must configure the firewall on the computer that is running SQL Server. This enables you to import configuration items from the Endpoint Manager database into \{\{FRS\_VARS.ProductName}}.
+
+<ExpandableHeading>
+  ## To Turn on the SQL Server Browser Service
+
+  1. Open **Services** and right-click **SQL Server Browser Service** and select **Properties**.
+  2. Change **Start Type** to **Automatic** and click **Start**.
+  3. Confirm that SQL Server Browser service is up and running.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## To Enable Remote Connections
+
+  1. To enable remote connections on the Instance of SQL Server that you want to connect to from a remote computer, follow the below steps:
+  2. Open the **SQL Management Studio** and right-click the server name on the left pane and select **Properties**.
+  3. Select Connections on the left pane and select the **Allow remote connections to this server** checkbox.
+
+  <Paragraph indent="1">
+    a. Configure the SQL server ports for the instance.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    b. Go to **SQL Server Configuration Manager** for a specific instance of SQL Server.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    c. Enable the Named Pipes protocol.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    d. Right click on TCP/IP protocol, you will get the TCP/IP properties.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    e. Go to the IP Addresses tab and here you may edit or view the port configurations for a specific instance of SQL Server (IPALL – TCP Port 1433).
+  </Paragraph>
+
+  <Paragraph indent="1">
+    f. Restart the SQL server in the Services.
+  </Paragraph>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## To Configure the Windows Firewall
+
+  To allow network traffic that is related to SQL Server and to the SQL Server Browser service, follow these steps:
+
+  1. A port exception for **TCP Port 1433**. In the Windows Firewall with Advanced Security, in the left pane, right-click **Inbound Rules**, and then click **New Rule** in the **Action** pane.
+
+  <Paragraph indent="1">
+    Use the following information to create a port exception:
+  </Paragraph>
+
+  <Paragraph indent="1">
+    a. Select **Port**
+  </Paragraph>
+
+  <Paragraph indent="1">
+    b. Select **TCP** and specify port **1433**
+  </Paragraph>
+
+  <Paragraph indent="1">
+    c. Allow the connection
+  </Paragraph>
+
+  <Paragraph indent="1">
+    d. Choose all three profiles (Domain, Private & Public)
+  </Paragraph>
+
+  <Paragraph indent="1">
+    e. Name the rule “**SQL – TCP 1433**”
+  </Paragraph>
+
+  <Paragraph indent="1">
+    f. Click **Finish**
+  </Paragraph>
+
+  2. A port exception for **UDP Port 1434**. In the Windows Firewall with Advanced Security, in the left pane, right-click **Inbound Rules**, and then click **New Rule** in the **Action** pane.
+
+  <Paragraph indent="1">
+    Use the following information to create a port exception:
+  </Paragraph>
+
+  <Paragraph indent="1">
+    a. Select **Port**
+  </Paragraph>
+
+  <Paragraph indent="1">
+    b. Select **UDP** and specify port **1434**
+  </Paragraph>
+
+  <Paragraph indent="1">
+    c. Allow the connection
+  </Paragraph>
+
+  <Paragraph indent="1">
+    d. Choose all three profiles (Domain, Private & Public)
+  </Paragraph>
+
+  <Paragraph indent="1">
+    e. Name the rule “**SQL – UDP 1434**”
+  </Paragraph>
+
+  <Paragraph indent="1">
+    f. Click **Finish**
+  </Paragraph>
+
+  For more information, refer to this Microsoft article: [Configure the Windows Firewall to Allow SQL Server Access](https://docs.microsoft.com/en-us/previous-versions/sql/sql-server-2012/cc646023\(v=sql.110\))
+</ExpandableHeading>
+
+## Data Imported by the Neurons for ITSM Database
+
+The \{\{Primary.Company}} \{\{FRS\_VARS.ProductName}} database supports mapping objects for Business Objects - Monitor, Mobile Device, Printer, Router, Switch, UPS, Video Conference, and Phone from the Endpoint Manager database. However, the application is flexible and you can define other objects as well.
+
+Database import for the following Business Objects is supported:
+
+- [ObjectMappingComputer.htm](ObjectMappingComputer.mdx)[Object Mapping - Computer](ObjectMappingComputer.mdx)
+- [Object Mapping - Mobile Devices](ObjectMappingMobileDevices.mdx)
+- [ObjectMappingMonitor.htm](ObjectMappingMonitor.mdx)[Object Mapping - Monitor](ObjectMappingMonitor.mdx)
+- [ObjectMappingPrinter.htm](ObjectMappingPrinter.mdx)[Object Mapping - Printer](ObjectMappingPrinter.mdx)
+- [Object Mapping - Router, Switch, UPS, Phone, and Video Conference](ObjectMappingRouterSwitchUPSVideo.mdx)
+
+## Importing the Endpoint Manager Configuration Items into Neurons for ITSM
+
+The Endpoint Manager connector enables \{\{Primary.Company}} \{\{FRS\_VARS.ProductName}} to import Configuration Item (CI) information from the Endpoint Manager database in any of the SQL server instances. Refer to this Ivanti article: [Setting Up a Data Import Connection](https://insider.ivanti.com/external-link.jspa?url=https%3A%2F%2Fhelp.ivanti.com%2Fht%2Fhelp%2Fen_US%2FISM%2F2017%2FIndex.html%23Configure%2FImportExportData%2FData%2520Import.htm%23Setting).
+
+To enable data import from the Endpoint Manager database to \{\{FRS\_VARS.ProductName}}, you need to configure the firewall by opening the ports to allow an external remote connection to the Endpoint Manager Server.
+
+In case of any issues in connecting/reaching to the Endpoint Manager Server from Neurons for ITSM, On-Premise Endpoint Manager and Cloud Neurons for ITSM setup and infrastructure VPN tunnel must be configured for connectivity.
+
+1. Log in to \{\{FRS\_VARS.ProductName}} as an Administrator and click the **Settings** icon to open the **Settings** page.
+2. Click the **Integration Tools** > **Data Import Connections**.
+3. Double-click the newly imported package. e.g. **Endpoint Manager – Switch**.
+
+*Selecting the Endpoint Manager - Switch Package*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/RlaEogGPVAFd76kDrx_8b_configepmpackforimportingdatabase.png" alt="Selecting the End Point Manager - Switch imported package." position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/ConfigEPMPackForImportingDatabase.png" githubPath="Content/Resources/Images/help-images/ConfigEPMPackForImportingDatabase.png" showCaption="false"></Image>
+
+4. Enter the configuration details for the package. An example, is shown in the below image.
+
+*Entering Configuration Details*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/jWu6PjkRWZo632-v3A2fw_enterconfigdetailsempimport.png" alt="Entering the configuration details for a package." position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/EnterConfigDetailsEMPImport.png" githubPath="Content/Resources/Images/help-images/EnterConfigDetailsEMPImport.png" showCaption="false"></Image>
+
+5. Click the **Test Connection** button to perform a test once the configuration details are entered.
+
+*If the Test was Successful, the Following Window is Displayed*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Ww-3d7nWmv1rSvbNLzTna_testconnectionepm.png" alt="Image of a successful test connection." position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/TestConnectionEPM.png" githubPath="Content/Resources/Images/help-images/TestConnectionEPM.png" showCaption="false"></Image>
+
+6. Click the **Next** button to proceed to Object Mapping.
+
+<Paragraph indent="1">
+  By default, the below tables are selected, however, you can customize the mapping.
+</Paragraph>
+
+*Selecting Options in the Object Mapping Page*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/yl4-fx0NQj5CRpykwRDUx_objectmappingepm.png" alt="Image of the object mapping options." position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/ObjectMappingEPM.png" githubPath="Content/Resources/Images/help-images/ObjectMappingEPM.png" showCaption="false"></Image>
+
+7. Keep the default values and click **Next** to proceed to **Filter Settings**.
+8. If any specific filter is required, you can add mapping, else proceed to **Field Mappin**g page.
+9. Define any filters you need and click **Next** to proceed to the **Field Mapping** page.
+
+*Defining Filters in the Field Mapping Page*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/UAuSoZHcN5YFd1nHXqyDA_fieldmappingepm.JPG" alt="Image of the Field Mapping page." position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/Configure/FieldMappingEPM.JPG" githubPath="Content/Resources/Images/Configure/FieldMappingEPM.JPG" showCaption="false"></Image>
+
+10. Verify the mapping values and click **Next**.
+11. Skip the **Schedule Setting** step (optional).
+12. Click the **Preview** button before publishing.
+
+*Previewing Your Selections Before Publishing*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/MQPmWofSrhM0hf0VlrREp_previewepmimport.png" alt="Preview your selected options before publishing." position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/PreviewEPMImport.png" githubPath="Content/Resources/Images/help-images/PreviewEPMImport.png" showCaption="false"></Image>
+
+13. Click **Publish** to complete the Data Import Connection.
+
+*If the Import was Successful, the Following Message is Displayed*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/iTyXy6JFsWB1UqaLMidEp_epmimportsuccess.png" alt="Image of a successful import." position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/EPMImportSuccess.png" githubPath="Content/Resources/Images/help-images/EPMImportSuccess.png" showCaption="false"></Image>
+
+## Troubleshooting
+
+You can view if the job is running as scheduled or view if the job ran.
+
+<ExpandableHeading>
+  ## To view the Integration Queue
+
+  While the job is being processed, you can view the record from the **Integration Queue** workspace.
+
+  After the job is processed, the record will not be available from the **Integration Queue** workspace. You can then view it from the Integration Log workspace.
+
+  1. Log in to \{\{FRS\_VARS.ProductName}} as an Administrator.
+  2. Open the Integration Queue.
+  3. To open the workspace, click the and select **More** > **Integration Queue**.
+     - The workspace will be empty when there are no records to process.
+     - When the record appears in the Queued Status in the **Integration Log** workspace, then the record appears while it is being processed in the **Integration Queue** workspace.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## To view the Integration Log
+
+  The details of the processed job can be viewed in the **Integration Log** workspace by following the below steps:
+
+  1. Log in to the \{\{FRS\_VARS.ProductName}} as an Administrator.
+  2. Open the **Integration Log** workspace.
+  3. To open the workspace, click the and select **More** > **Integration Log**.
+  4. From the **Integration Log** workspace, view the information in the columns for the list of logs or open a record to view details.
+
+  <Paragraph indent="1">
+    The following information is available:
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    **Log Type** - Shows three log types:
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="3">
+    **Queued**: Indicates that the source ID from Endpoint Manager has been queued in the inventory management asset data processor.
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="3">
+    **Verified**: Indicates that the source ID from Endpoint Manager has been successfully created in the \{\{Primary.Company}}\{\{FRS\_VARS.ProductName}} database.
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="3">
+    **Stats**: Shows the statistics about the number of rows processed.
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    **Source ID** - Endpoint Manager root table key (Computer) shown on the Object Mapping page of the wizard.
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    **Target ID** - Asset ID that is derived from the asset identifier mapping function on the Field Mapping page of the wizard.
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    **Start Time** - Time when the job should run.
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    **End Time** - If applicable, the time by which the job should end.
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    **Total Processed** - Total number of records processed. If there are no new mappings added, there will probably be no records processed.
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    **Message** - Informational message, which varies according to the log type. While the job is being processed, you can view it from the Integration Queue workspace.
+  </Paragraph>
+</ExpandableHeading>

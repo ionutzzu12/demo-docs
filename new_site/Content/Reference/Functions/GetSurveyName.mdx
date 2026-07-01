@@ -1,0 +1,60 @@
+---
+title: GetSurveyName
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:59 GMT+0300 (Eastern European Summer Time)
+---
+
+Returns the survey ID associated with the survey name.
+
+## Syntax
+
+GetSurveyName(surveyName)
+
+## Enabled For
+
+For a description of the business object categories, see :Link[Notes on "Enabled For"]{label="Notes on &#x22;Enabled For&#x22;" overridedLabel="Notes on &#x22;Enabled For&#x22;" spaceId docId="xObv2pIDrk60jkEIWs8mD" version="v2" docAnchorId="#Notes" loadingMethod="dynamic" newTab="false" githubPath="_Built_in_Functions.htm#Notes" href="_Built_in_Functions.mdx"}.
+
+| Business Object Category                                                                    | Yes/No |
+| ------------------------------------------------------------------------------------------- | ------ |
+| Business Rules: Before-Save Rules                                                           | Yes    |
+| Business Rules: Calculation Rules (After Save, with or without Also Recalculate on Load)    | Yes    |
+| Business Rules: Calculation Rules (Before Save or Always, without Also Recalculate On Load) | Yes    |
+| Business Rules: Calculation Rules (Before Save or Always, with Recalculate On Load)         | Yes    |
+| Business Rules: Editing Rules                                                               | Yes1   |
+| Business Rules: Initialization Rules                                                        | Yes    |
+| Business Rules: Read Only Rules                                                             | No     |
+| Business Rules: Required Rules                                                              | Yes1   |
+| Business Rules: Validation Rules                                                            | Yes    |
+| Client Expressions                                                                          | No     |
+| Object Permissions                                                                          | No     |
+| Services                                                                                    | Yes    |
+| LDAP                                                                                        | Yes    |
+| Mobile                                                                                      | Yes    |
+| Quick Actions (except UI Quick Actions)                                                     | Yes    |
+| UI Quick Actions                                                                            | No     |
+| Reports                                                                                     | Yes    |
+| Search/Dashboard without field references                                                   | Yes    |
+| Search/Dashboard with field references                                                      | No     |
+| 1. Except when this field appears on a form or is triggered by such a field.                |        |
+
+## Parameters
+
+| Parameter  | Description                                                                                                                                                                   |
+| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| surveyName | The name of a survey. To see the default survey name, go to the Configuration Console and click **Build > Global Constants** and look for the **DefaultSurveyName** constant. |
+
+## Return Value
+
+<Paragraph indent="1">
+  Unicode text value.
+</Paragraph>
+
+## Example
+
+<Paragraph indent="1">
+  The application sends surveys automatically to certain users based on a business rule. To set the default survey name, open the **Notification** workflow block for the survey. In the **Properties** area, in the **Body** area, click the **source edit** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Nwt7lCmEFpFObm9aZTdYz_sourceedit.png" alt caption size="10" width="19" height="14"} to view the message in HTML format as seen below. In the following sample the **GetSurveyName** references the global constant. In this case, the global constant name is **DefaultSurveyName**:
+</Paragraph>
+
+<Paragraph indent="1">
+  \<font size="3">Hi $(ProfileFullName),\</font>\<br>\<br>\<font size="3">Please spend a few minutes to fill out the following survey. The feedback you provide\&nbsp;will be used to improve our level of service:\<br>\</font>\<font size="2">\<br>\</font>\<font size="3">\<a href="$(GetSurveyURL())\&amp;survey\_name=$(**GetSurveyName**(\&quot;DefaultSurveyName\&quot;))\&amp;customer\_id=$(GetApplicationId())\&amp;ot=Incident\&amp;oid=$(RecId)\&amp;page\_index=0">Click here to fill out survey\</a>\</font>\<br>\<br>\<font size="3">Thank you.\<br>\<br>--Service Desk\</font>
+</Paragraph>

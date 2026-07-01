@@ -1,0 +1,60 @@
+---
+title: Using Counters
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:57 GMT+0300 (Eastern European Summer Time)
+---
+
+- :Link[About Counters]{label="About Counters" overridedLabel="About Counters" spaceId docId="JhXOMs0y6PtyVDh7qs0rQ" version="v2" docAnchorId="#About-Counters" loadingMethod="dynamic" newTab="false" href="Counters.mdx"}
+- :Link[Viewing Counters]{label="Viewing Counters" overridedLabel="Viewing Counters" spaceId docId="JhXOMs0y6PtyVDh7qs0rQ" version="v2" docAnchorId="#Viewing" loadingMethod="dynamic" newTab="false" href="Counters.mdx"}
+- :Link[Resetting a Counter]{label="Resetting a Counter" overridedLabel="Resetting a Counter" spaceId docId="JhXOMs0y6PtyVDh7qs0rQ" version="v2" docAnchorId="#Resettin" loadingMethod="dynamic" newTab="false" href="Counters.mdx"}
+- :Link[Creating a Counter]{label="Creating a Counter" overridedLabel="Creating a Counter" spaceId docId="JhXOMs0y6PtyVDh7qs0rQ" version="v2" docAnchorId="#Creating" loadingMethod="dynamic" newTab="false" href="Counters.mdx"}
+- [Example: Using a Counter Name in an Initialization Rule](Ex_Using_Counter_Name_in_Init_Rule.mdx)
+
+## About Counters
+
+You can manage counters for existing business objects and set up counters for new business objects.
+
+Counters are usually used in association with a business object field, usually in an initialization business rule to set the initial value and then get the next specified incremental value, using the [GetNextCounter](../../Reference/Functions/GetNextCounter.mdx)() function.
+
+## Viewing Counters
+
+1. From the Configuration Console, click **Build > Business Objects** to open the **Business Objects** workspace.
+2. From the right pane, click **View Counters**. The application displays the list of existing business objects with counter values, with the following information:
+
+| Option        | Description                                                                                                           |
+| ------------- | --------------------------------------------------------------------------------------------------------------------- |
+| Name          | Name of the counter                                                                                                   |
+| Initial value | The first integer value for the counter. This could also be a negative number. Counter length is limited to 9 digits. |
+| Increment     | The incremental counter value for the next record.                                                                    |
+| Current value | The current value for the most recent record.                                                                         |
+| Last Modified | The time and date that this counter was modified.                                                                     |
+| Modified by   | The login name of the user who last modified the record.                                                              |
+
+3. Click the name of the counter to view the record and modify any values.
+
+## Resetting a Counter
+
+<hint type="info">
+  When resetting the counter or modifying counters for existing records, try not to create duplicate records. To prevent duplication, you can reset the counter to a value that is currently higher than the number shown in the **Current Value** field.
+</hint>
+
+1. From the Configuration Console, click **Build > Business Objects** to open the **Business Objects** workspace.
+2. From the right pane, click **View Counters**.
+3. Click a counter from the list. The application displays the counter details page.
+4. To set the counter number to 0, click **Reset counter** to start the counter at the new base value, and accept the confirmation message.
+5. Click **Save**.
+
+## Creating a Counter
+
+1. From the Configuration Console, click **Build > Business Objects** to open the **Business Objects** workspace.
+2. From the right pane, click **View Counters**.
+3. Click **Add new\...**. The application displays a blank counter form.
+4. Enter information into the fields.
+
+| Field      | Description                                                                                                                                   |
+| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| Name       | Name of the counter. This is the name that is used in the initialization business rule for the business object to get the next counter value. |
+| Base Value | The first or initial integer value for the counter. This could also be a negative number. Counter length is limited to 9 digits.              |
+| Increment  | The incremental counter value for the next record.                                                                                            |
+
+5. Click **Save**.

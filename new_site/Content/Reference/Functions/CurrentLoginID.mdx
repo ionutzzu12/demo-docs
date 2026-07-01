@@ -1,0 +1,70 @@
+---
+title: CurrentLoginId
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:58 GMT+0300 (Eastern European Summer Time)
+---
+
+Returns the login ID for the user associated with the current session. This is the **LoginID** field from the **Details** tab in the user profile.
+
+<hint type="info">
+  Use this function to return the login ID of the user.
+
+  Use the [CurrentUserDisplayName ](CurrentUserDisplayName.mdx)function to return the display name (usually first and last name) of the user.
+</hint>
+
+## Syntax
+
+CurrentLoginId()
+
+## Enabled For
+
+For a description of the business object categories, see :Link[Notes on "Enabled For"]{label="Notes on &#x22;Enabled For&#x22;" overridedLabel="Notes on &#x22;Enabled For&#x22;" spaceId docId="xObv2pIDrk60jkEIWs8mD" version="v2" docAnchorId="#Notes" loadingMethod="dynamic" newTab="false" githubPath="_Built_in_Functions.htm#Notes" href="_Built_in_Functions.mdx"}.
+
+| Business Object Category                                                                    | Yes/No |
+| ------------------------------------------------------------------------------------------- | ------ |
+| Business Rules: Before-Save Rules                                                           | Yes1   |
+| Business Rules: Calculation Rules (After Save, with or without Also Recalculate on Load)    | Yes1   |
+| Business Rules: Calculation Rules (Before Save or Always, without Also Recalculate On Load) | Yes1   |
+| Business Rules: Calculation Rules (Before Save or Always, with Recalculate On Load)         | Yes1   |
+| Business Rules: Editing Rules                                                               | Yes1   |
+| Business Rules: Initialization Rules                                                        | Yes1   |
+| Business Rules: Read Only Rules                                                             | Yes1   |
+| Business Rules: Required Rules                                                              | Yes1   |
+| Business Rules: Validation Rules                                                            | Yes1   |
+| Client Expressions                                                                          | Yes    |
+| Object Permissions                                                                          | Yes    |
+| Services                                                                                    | Yes    |
+| LDAP                                                                                        | Yes    |
+| Mobile                                                                                      | Yes    |
+| Quick Actions (except UI Quick Actions)                                                     | Yes1   |
+| UI Quick Actions                                                                            | Yes    |
+| Reports                                                                                     | Yes1   |
+| Search/Dashboard without field references                                                   | Yes1   |
+| Search/Dashboard with field references                                                      | Yes1   |
+| 1. Except in services.                                                                      |        |
+
+## Parameters
+
+None.
+
+## Return Value
+
+<Paragraph indent="1">
+  Unicode text value.
+</Paragraph>
+
+## Example
+
+<Paragraph indent="1">
+  To find all incident instances that are assigned to the user associated with the current session, in the **Advanced Search** page, select the **Owner** field and in the text box enter:
+</Paragraph>
+
+$(CurrentLoginId())
+
+<Paragraph indent="1">
+  See the following example:
+</Paragraph>
+
+*CurrentLoginId() Example*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/vdjXz5zzp75J-81kabvEA_currentloginid.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/currentLoginId.png" githubPath="Content/Resources/Images/help-images/currentLoginId.png" showCaption="false"></Image>

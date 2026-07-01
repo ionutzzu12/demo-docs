@@ -1,0 +1,76 @@
+---
+title: Summarization agent
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:45 GMT+0300 (Eastern European Summer Time)
+---
+
+The Summarization agent uses AI to automatically generate clear and concise summaries of key information from any business object, helping users quickly understand important information at a glance.
+
+To enable and configure the Summarization agent, do the following:
+
+1. Log in to \{\{FRS\_VARS.ProductName}} as an \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+2. Open the Configuration console and select **AI Configuration Hub** > **Agentic AI** > **Agent Settings**.
+3. Turn on the **Summarization Agent Configuration** toggle to enable the Summarization agent.
+4. Click **Configure** to further set up the agent.
+5. Under **General settings**, configure the following:
+   - **Enable Localization**: Turn on the toggle to enable localization. Enabling this option allows the AI create content in the language and style of the selected region or country. This ensures the generated content matches local language preferences, cultural tone, and formatting.
+   - **Audit History**: Audit History keeps a record of past actions or events. It helps track all actions or changes related to an item or process so you can review them later if needed. The setting is enabled by default and cannot be modified.
+   - **Activity History**: Activity History keeps a record of all changes made to data. It shows who made the change, when it was made, and what was changed, so you can easily review the full history of updates. The setting is enabled by default and cannot be modified.
+6. Under **Business Object Settings**, configure the following:
+   - **Select a Business Object**: Select the business object from the dropdown to configure the Summarization Agent feature.
+
+<hint type="danger" indent="2">
+  The agent returns an error when you request a summary for a business object that is not configured in this setting.
+</hint>
+
+<Paragraph listStyleType="disc" indent="2">
+  **Select form fields for reference**: Select relevant fields from the dropdown. You can use form fields to display additional information along with the AI-generated summary on the adaptive card of the chat.
+</Paragraph>
+
+<Paragraph indent="2">
+  The following image shows the form field settings:
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Ovv_mQ681zFuglpX58p-a_agentic-ai-form-fields.png" position="flex-start" size="40" indent="2" initialPath="../Resources/Images/Agentic-AI-Images/agentic-ai-form-fields.png" githubPath="Content/Resources/Images/Agentic-AI-Images/agentic-ai-form-fields.png" showCaption="false"></Image>
+
+- From each dropdown, you can select the desired business object fields that you want to define for Business Object ID/Name, Status, and Title respectively.
+- **Business Object ID/Name**: Select either ID or Name for identification, depending on the business object you are configuring. For example, for the Incident business object, you can define its Incident ID, whereas for CI business object, you can define its Name. Accordingly, modify the text in the rightmost text field (for example, Incident ID or CI Name). The agent displays the corresponding field value as ID or Name on the adaptive card in the chat.
+- **Status**: Select the business object field that you want to display as the Status. The agent displays the corresponding field value as Status on the adaptive card.
+- **Title**: Select the business object field that you want to display as the Title. The agent displays the corresponding field value as Title on the adaptive card.
+
+<hint type="info">
+
+</hint>
+
+- You can change the order of **Business Object ID/Name**, **Status**, and **Title**.
+- The **Status** and **Title** fields are mandatory and should not modify their text field names in the rightmost section.
+
+<Paragraph indent="2">
+  The following image shows an example of an adaptive card that agent displays when users asked for a business object summary. Along with the summary, you can see additional information displayed based on the form field settings.
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/JXl43etxvFVmYHNF3GC-K_agentic-ai-summarize-agent-example.png" position="flex-start" size="40" indent="2" initialPath="../Resources/Images/Agentic-AI-Images/agentic-ai-summarize-agent-example.png" githubPath="Content/Resources/Images/Agentic-AI-Images/agentic-ai-summarize-agent-example.png" showCaption="false"></Image>
+
+<Paragraph listStyleType="disc" indent="2">
+  **Select the fields to generate Al content**: The AI considers the fields you select here to generate the business object summary.
+</Paragraph>
+
+<Paragraph indent="2">
+  a. From the dropdowns, select the relevant fields of the business object to generate the summary.
+</Paragraph>
+
+<Paragraph indent="2">
+  b. Fill in the **Display name** and **Description**.
+</Paragraph>
+
+<Paragraph indent="2">
+  c. Click <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/n7jVffB7coo5bs3AuNfzI_add-icon.png" size="10" isUploading="false" initialPath="../Resources/Images/Add-icon.png" githubPath="Content/Resources/Images/Add-icon.png" width="17" height="16" showCaption="false"></Image> to add more fields for generating AI content.
+</Paragraph>
+
+The following image shows the configuration page of the Summarization agent:
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/N51jLAN7y89GWQXPblsDh_agentic-ai-summarize-agent.png" position="flex-start" size="40" initialPath="../Resources/Images/Agentic-AI-Images/agentic-ai-summarize-agent.png" githubPath="Content/Resources/Images/Agentic-AI-Images/agentic-ai-summarize-agent.png" showCaption="false"></Image>
+
+<hint type="success">
+  When users chat with the agent, it is mandatory to provide both the business object name and the business object ID to generate the summary.
+</hint>

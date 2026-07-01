@@ -1,0 +1,88 @@
+---
+title: Manage Advanced Request Offering Features
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:50 GMT+0300 (Eastern European Summer Time)
+---
+
+**Role**: Administrator
+
+***Minimum Version*** : \{\{Primary.Company}} \{\{Primary.Product}} *2025.2.*
+
+This section explains how to create and configure external request offerings, enable advanced features such as request cancellation, customize form behavior for Self Service users, and switch to the classic form UI in the Self Service portal V3. These configurations improve flexibility, control, and the user experience of service request workflows.
+
+<ExpandableHeading>
+  ## Delete the Close Incident button
+
+  Self Service forms allow users to raise incidents, requests, or tickets. You can remove the Close Incident button by deleting it from the form template or hiding it with a condition in the Visible Expression.
+
+  To delete from the template, perform the following:
+
+  1. Log in to Neurons for ITSM as **Administrator**,
+  2. Go to Configuration console > **Build** >**Business Objects**.
+  3. Select \{\{FRS\_VARS.Incident}} > **Forms** > **Incident (Incident.WebSelfService.Edit)**.
+  4. Select **Close** button element and click the **Delete Control** or press **Delete** on your keyboard.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/D1TMw8jmYMEJl8ru5Is6Y_form-web-ssm-cp.png" alt="Using Control Properties to edit the particular UI element" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/SelfServiceMgmt-images/form-web-ssm-cp.png" githubPath="Content/Resources/Images/SelfServiceMgmt-images/form-web-ssm-cp.png" showCaption="false"></Image>
+
+  5. Click **Save**.
+
+  <Paragraph indent="1">
+    *Preview of an Incident in Self Service portal without the Close Incident button*
+  </Paragraph>
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/dq4XsFY0LScUnvSPPzcC2_ssm-incident-preview-wocb.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/SelfServiceMgmt-images/SSM-incident-preview-wocb.png" githubPath="Content/Resources/Images/SelfServiceMgmt-images/SSM-incident-preview-wocb.png" showCaption="false"></Image>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Hide the button using Visible Expression
+
+  1. Log in to Neurons for ITSM as **Administrator**, go to Configuration console >**Build** >**Business Objects**.
+  2. Select \{\{FRS\_VARS.Incident}} > **Forms** > **Incident (Incident.WebSelfService.Edit)**.
+  3. Select **Close** button element and select the :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/eW706qSKw52kTUx2vLruJ_ve-fx-icon.png" alt caption size="10" width="14" height="13"} icon in the **Visible Expression** option under **Control Properties**.
+  4. Select a function from the Toolbox in the Edit expression to configure visibility based on a condition. For example, select ToUpperCase function and condition to convert the title to TITLE. If this condition is true the Close Incident button will appear in the Self Service's incident Form.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/m16km8UIHl3YaGEWGDon2_ve-edit-expression.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/SelfServiceMgmt-images/ve-edit-expression.png" githubPath="Content/Resources/Images/SelfServiceMgmt-images/ve-edit-expression.png" showCaption="false"></Image>
+
+  <Paragraph indent="1">
+    **Limitations with Visible Expression**
+  </Paragraph>
+
+  <Paragraph indent="1">
+    Currently Visible Expression supports only the following Functions:
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    Current User Functions
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    Numeric and Currency Functions
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    Regular Expression Functions
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    Text Functions
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    Type Conversions
+  </Paragraph>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Configuring note for an Incident
+
+  Starting from the 2026.1 release, the Notes text field in Self Service is not available by default and must be configured. To configuring the Notes text field, perform the following steps:
+
+  1. Log in to \{\{FRS\_VARS.ProductName}} as an \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+  2. Open the Configuration console > **Build** > **Business Objects** > \{\{FRS\_VARS.Incident}} >
+  3. Click **Business Rules** tab, select **Triggered Actions**, and turn on the **Add Notes for Self Service Incident** action in the **Status** column.
+
+  Limitations of Note text field:
+
+  - In UI v3, deleting the New Note or a custom Note field from **Form** > **Incident.WebSelfService.NewIncident**, does not remove the text box from the Self Service UI v3 interface. The field still appears for Self Service users. Submitting a note displays a success message, but the note is not saved and does not appear on the Incident record.
+  - If you add an additional note-related field (for example, **NewNotes**) above the existing Notes field in the form layout, the text field does not function as expected for Self Service users. To ensure proper functionality, update the configuration to reference the **Notes** field instead of **NewNotes**.
+</ExpandableHeading>

@@ -1,0 +1,99 @@
+---
+title: Working with PPM Resources
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:47 GMT+0300 (Eastern European Summer Time)
+---
+
+**Role**: \{\{FRS\_VARS.Neurons\_ITSM\_-\_Portfolio\_Manager}}, \{\{FRS\_VARS.Neurons\_ITSM\_-\_Project\_Manager}}, \{\{FRS\_VARS.Demand\_Manager}}
+
+\{\{Primary.Company}} \{\{FRS\_VARS.Neurons\_for\_PPM}} adds several enhancements to the Project, Demand, and Project Phase objects to help organizations manage Project Resourcing needs.
+
+- The **Resource Plans** tab is used for tracking high-level role resource needs for a Demand or Project, searching for Resources based on Project Role and Estimated Start or End Date, and enabling selection of Resources to commit to a Project based on Remaining Capacity.
+- Once you select Resources for a Resource Plan, you must commit the Resource Plan to add the Selected Resources to the Project or Project Phase.
+- You can use th&#x65;**&#x20;Resources** tab to view the Resources committed to the Project and to create Tasks for them.
+- Project Skills allow Project Managers to assign Skills to resources and make resourcing decisions based on skills necessary to complete a Project Task.
+
+<hint type="info">
+  Prior to using the resourcing features, set up PPM Roles in the \{\{FRS\_VARS.Configuration\_console}} using the Project Role object.
+</hint>
+
+## Create a Resource Plan
+
+You can create a Resource Plan to estimate role resources and effort required if the demand is approved and turned into a project. You can either use the **Resource Plan** tab or **Planning** tab in the Demand workspace.
+
+### **In the Resource Plan tab of a Demand**
+
+This section explains how to create a resource plan and add resources using the **Resource Plans** tab within a Demand workspace.
+
+**To create a Resource Plan**
+
+During the Evaluate phase of Demand, you can add a new Resource Plan as follows:
+
+1. In the **Resource Plans** tab of a Demand, click **New Resource Plan**.
+2. Enter the following information for the plan:
+
+| Field                                                                                                                                                                                                                                    | Description                                                                                                                              |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| **Status**                                                                                                                                                                                                                               | From the dropdown, select the appropriate status for the resource plan: **Initial**, **Committed**, or **Closed**.                       |
+| **Role**:inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/xmOk3Y_AvRY-im08UU6p__mandatoryfieldasterisk.png" alt="Mandatory field" caption size="10" width="8" height="11"}                     | Select the type of resource you need to execute the work.<br />Select a role that is already defined in the **Project Roles** workspace. |
+| **Estimated Effort Hours**:inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/UZ8LgF9d7mQFTRBuMxbTy_mandatoryfieldasterisk7x9.png" alt="Mandatory field" caption size="10" width="7" height="9"} | Enter the time required for a resource to complete the work.&#xA;The time should be in Hours.                                            |
+| **Estimated Start Date**                                                                                                                                                                                                                 | Enter the date when the resource is expected to begin work.                                                                              |
+| **Estimated End Date**                                                                                                                                                                                                                   | Enter the date when the resource is expected to complete their work.                                                                     |
+
+<hint type="info">
+  Fields marked with an asterisk (:inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/xmOk3Y_AvRY-im08UU6p__mandatoryfieldasterisk.png" alt="Mandatory field" caption size="10" width="8" height="11"}) are mandatory.
+</hint>
+
+<hint type="info">
+  When the status is set to **Closed**, all fields except **Status** change to read-only mode.
+</hint>
+
+3. Click **Save**.
+   You have now created a Resource Plan in a Demand. You can create multiple Resource Plans based on your requirement.
+   The status of the Resource Plan appears as **Initial**.
+
+**To add resources in Resource Plan**
+
+Next, you can add resources to the Resource Plan you just created.
+
+You can add required resources to the Resource Plan to meet the **Estimated Effort Hours** you defined earlier.
+
+1. Select the Resource Plan, and click th&#x65;**&#x20;Go to** option to open it.
+   Under **Available Resources** tab, you can see the available resources that match the **Project Role** selected during Resource Plan creation. The Resource search displays all Resources associated with the selected Project Role, regardless of whether they have Remaining Capacity or not.
+   Based on the **Remaining Capacity** of each resource available between the Estimated Start and End Date, you can add the required resources to meet the Estimated Effort that you defined earlier in the Resource Plan.
+2. Select the required resources from the **Available Resources** tab, and click **Select Resource**.
+   The selected resources will be added to the **Selected Resources** tab.
+   Once the Demand is approved as a Project, the Resource Plan and resource selections will be copied to the Project. Once the Resource Plan is Committed, the Selected Resources will be assigned to the Project or Phase under the Resources tab.
+   In the Project stage, you can further manage your Resource Plans.
+
+<hint type="info">
+  To calculate the remaining capacity of a resource under the **Available Resources** tab, refer to :Link[Calculate Resource Capacity]{label="Calculate Resource Capacity" overridedLabel="Calculate Resource Capacity" spaceId docId="GFDw3UWZa6cQmfDyGu1Kj" version="v2" docAnchorId="#Calculat" loadingMethod="dynamic" newTab="false" githubPath="Using_Resource_Capacity.htm#Calculat" href="Using_Resource_Capacity.mdx"}.
+</hint>
+
+## In the Planning tab of a Demand
+
+This section explains how to create a resource plan using the **Planning** tab within a Demand workspace.
+
+1. In the Planning tab of a Demand, select a Project Phase, then click **Go To**.
+
+The Project Phase record opens.
+
+2. In the **Resource Plans** tab, select **New Resource Plan**. Enter the information for the plan:
+
+| Field                                                                                                                                                                                                                                    | Description                                                                                                                              |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| **Status**                                                                                                                                                                                                                               | From the dropdown, select the appropriate status for the resource plan: **Initial**, **Committed**, or **Closed**.                       |
+| **Role**:inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/xmOk3Y_AvRY-im08UU6p__mandatoryfieldasterisk.png" alt="Mandatory field" caption size="10" width="8" height="11"}                     | Select the type of resource you need to execute the work.<br />Select a role that is already defined in the **Project Roles** workspace. |
+| **Estimated Effort Hours**:inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/UZ8LgF9d7mQFTRBuMxbTy_mandatoryfieldasterisk7x9.png" alt="Mandatory field" caption size="10" width="7" height="9"} | Enter the time required for a resource to complete the work.&#xA;The time should be in Hours.                                            |
+| **Estimated Start Date**                                                                                                                                                                                                                 | Enter the date when the resource is expected to begin work.                                                                              |
+| **Estimated End Date**                                                                                                                                                                                                                   | Enter the date when the resource is expected to complete their work.                                                                     |
+
+<hint type="info">
+  Fields marked with an asterisk (:inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/xmOk3Y_AvRY-im08UU6p__mandatoryfieldasterisk.png" alt="Mandatory field" caption size="10" width="8" height="11"}) are mandatory.
+</hint>
+
+<hint type="info">
+  When the status is set to **Closed**, all fields except **Status** change to read-only mode.
+</hint>
+
+3. Select **Save**.

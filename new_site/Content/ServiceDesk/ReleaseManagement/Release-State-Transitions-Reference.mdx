@@ -1,0 +1,19 @@
+---
+title: Release State Transitions Reference
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:48 GMT+0300 (Eastern European Summer Time)
+---
+
+The administrator can create additional statuses to meet the business needs of your organization.
+
+| From State | To State  | When ...                                                                                                                                       |
+| ---------- | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| -          | Draft     | Release is in draft state. The user creating the release is gathering information to add to the release record.                                |
+| Draft      | Requested | \{\{FRS\_VARS.Neurons\_ITSM\_-\_Change\_Manager}} updates a draft release to requested state when the release record is ready to be worked on. |
+| Requested  | Active    | \{\{FRS\_VARS.Neurons\_ITSM\_-\_Release\_Manager}} accepts the release request and starts working on the release.                              |
+| Active     | Waiting   | Release is on hold.                                                                                                                            |
+| Waiting    | Closed    | Release is completed, and has been validated by all linked milestones being completed.                                                         |
+| Draft      | Canceled  | \{\{FRS\_VARS.Neurons\_ITSM\_-\_Change\_Manager}} or \{\{FRS\_VARS.Neurons\_ITSM\_-\_Release\_Manager}} cancels the draft release.             |
+| Requested  | Canceled  | Release is canceled.                                                                                                                           |
+| Active     | Canceled  | Release is canceled.                                                                                                                           |
+| Waiting    | Canceled  | Release is canceled.                                                                                                                           |

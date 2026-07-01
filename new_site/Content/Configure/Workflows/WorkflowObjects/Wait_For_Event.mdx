@@ -1,0 +1,73 @@
+---
+title: Wait for Event Workflow Block
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:58 GMT+0300 (Eastern European Summer Time)
+---
+
+The **Wait for Event** workflow block waits for a specific event to occur before it executes and moves to the next step in the workflow. The **Wait for Event** workflow block looks for events at the business object, field, and related object levels. For each property you want evaluated, add a separate **Wait for Event** block.
+
+### Understanding Timeout Behavior
+
+The Wait for Event block has a timeout feature to allow the workflow to exit the block based on either a value- or field-based timer.
+
+If the timeout feature is specified by values, it operates as defined in the Value-Based Timer Table. If you set up the timeout feature based on fields, it operates as defined in the Field-Based Timer Table.
+
+### Value-Based Timer Table
+
+| days | ==  | null && hours == null && minutes == null, | then infinite timeout or never times out                                                                                                                                                                             |
+| ---- | --- | ----------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| days | ==  | -1 && hours == -1 && minutes == -1,       | then infinite timeout or never times out<br />Negative values are not allowed. If you enter a negative value and try saving, a validation error is displayed with the message - "Timeout values cannot be negative". |
+| days | \<= | 0 && hours \<= 0 && minutes \<= 0,        | then immediately times out and timeout exit is used                                                                                                                                                                  |
+| days | >   | 0 && hours > 0 && minutes > 0,            | then combined value is set as the timeout and exit timeout is used when the time passes.                                                                                                                             |
+
+<hint type="info">
+  The maximum number of days allowed is 30, if it exceeds 30, a validation error is displayed.
+</hint>
+
+### Field-Based Timer Table
+
+| fieldvalue | ==  | null,   | then infinite timeout or never times out                                                |
+| ---------- | --- | ------- | --------------------------------------------------------------------------------------- |
+| fieldvalue | \<= | UtcNow, | then immediately times out and timeout exit used                                        |
+| fieldvalue | >   | UtcNow, | then combined value is set as the timeout and exit timeout is used when the time passes |
+
+## Exit Ports
+
+You cannot define additional exit ports for the Wait for Event block.
+
+| Exit Port | Description                                                                                          |
+| --------- | ---------------------------------------------------------------------------------------------------- |
+| OK        | Continue to the next block.                                                                          |
+| Timed Out | General exit port for a failed integration action. A logical next step is to trigger a notification. |
+
+## Properties
+
+| Property             | Description                                                                                                                                                                                                                                                    |
+| -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Title                | A unique name for the workflow block.                                                                                                                                                                                                                          |
+| Timeout              |                                                                                                                                                                                                                                                                |
+| Field                | Generates the due date when you select the desired date field from the dropdown menu.                                                                                                                                                                          |
+| Duration             | Defines the due date according to the interval defined in the **Days**, **Hrs** (hours), and **Mins** (minutes) fields.                                                                                                                                        |
+| Specific Time        | Allows the user to define the point of execution in varying increments (Minutes, Hours, Days, Weeks, Quarters, and Years) relative to the date field selected.                                                                                                 |
+| Object Event         |                                                                                                                                                                                                                                                                |
+| None                 | The block will not execute based on the status of the business object.                                                                                                                                                                                         |
+| On Update            | The block will execute when you update the business object.                                                                                                                                                                                                    |
+| Field Event          |                                                                                                                                                                                                                                                                |
+| None                 | The block will not execute based on the status of the field.                                                                                                                                                                                                   |
+| On Update            | The block will execute when you update the field.                                                                                                                                                                                                              |
+| Fields               | Allows you to choose the specific field the block will monitor to look for the execution event.                                                                                                                                                                |
+| is changed           | When the selected field is changed, the block executes.                                                                                                                                                                                                        |
+| is changed to        | When the selected field is changed to meet the criteria chosen from the dropdown list, the block executes. The options available in this dropdown menu vary based on the field you previously chose.                                                           |
+| is changed from      | When the selected field is changed from the criteria chosen from the dropdown list, the block executes. The options available in this dropdown menu vary based on the field you previously chose.                                                              |
+| is changed from - to | When the selected field is changed from the criteria chosen from the first dropdown list to the criteria chosen from the second dropdown list, the block executes. The options available in these dropdown menus vary based on the field you previously chose. |
+| Relationship Event   |                                                                                                                                                                                                                                                                |
+| None                 | The block will not execute based on changes to the business object's relationships.                                                                                                                                                                            |
+| On Link              | The block executes when the business object is linked to the object you choose from the dropdown list.                                                                                                                                                         |
+| On Unlink            | The block executes when the business object is unlinked to the object you choose from the dropdown list.                                                                                                                                                       |
+
+## Actions
+
+| Button | Action                 |
+| ------ | ---------------------- |
+| Save   | Commits your settings. |
+| Cancel | Exits without saving.  |

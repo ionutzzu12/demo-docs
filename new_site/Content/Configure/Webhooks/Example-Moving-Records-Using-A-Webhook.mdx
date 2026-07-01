@@ -1,0 +1,154 @@
+---
+title: Example: Moving Records Using a Webhook
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:01 GMT+0300 (Eastern European Summer Time)
+---
+
+## Scenario
+
+A company uses \{\{FRS\_VARS.Cherwell\_Service\_Management}} (\{\{FRS\_VARS.CSM}}) to track the creation of records. However they want to replicate the creation of that small number of records in \{\{Primary.Company}} \{\{FRS\_VARS.ProductName}} automatically.
+
+There is an HTTP Request One-Step Action in \{\{FRS\_VARS.CSM}} that calls a webhook to automatically replicate any created records in \{\{FRS\_VARS.ITSM}}. \{\{FRS\_VARS.CSM}} then sends the request with no intermediate formatting required.
+
+### Prerequisites
+
+This example assumes you have administrator-level access to \{\{FRS\_VARS.CSM}} and are familiar with creating both business objects and One-Step Actions™. You also need an Administrator Role for \{\{FRS\_VARS.ITSM}}.
+
+<ExpandableHeading>
+  ## Setting up CSM
+
+  1. In \{\{FRS\_VARS.CSM}}, create a business object called **Laptop&#x20;**&#x74;hat mirrors one already created in \{\{FRS\_VARS.ITSM}}.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/7RUW5b7sIY9c2YfrAs5E7_csmcreatebo.png" position="flex-start" size="40" indent="1" initialPath="images/csm_create_bo.png" githubPath="Content/Configure/Webhooks/images/csm_create_bo.png" showCaption="false"></Image>
+
+  <Paragraph indent="1">
+    For help on creating business objects in \{\{FRS\_VARS.CSM}}, see: [Create or Edit a Business Object in CSM](https://help.cherwell.com/bundle/csm_features_10_5_help_only/page/content/suite_features/business_objects/create-edit_a_business_object.html).
+  </Paragraph>
+
+  2. In \{\{FRS\_VARS.CSM}}, create an **Automatic Action** for the **Laptop&#x20;**&#x62;usiness object called **Send Record to ISM**. This triggers an **HTTP Request One-Step Action** to send data to the \{\{FRS\_VARS.ITSM}} webhook.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/uWZpmVmwRSz6XL4khisqE_csm-create-action1.png" position="flex-start" size="40" indent="1" initialPath="images/csm-create-action1.png" githubPath="Content/Configure/Webhooks/images/csm-create-action1.png" showCaption="false"></Image>
+
+  3. Ensure that **Execute on First Save** is selected.
+
+  <Paragraph indent="1">
+    For help on creating One-Step Actions in \{\{FRS\_VARS.CSM}}, see: [Create or Edit a One-Step Action](https://help.cherwell.com/bundle/csm_features_10_5_help_only/page/content/suite_features/one-steps/create-edit_a_one-step.html).
+  </Paragraph>
+
+  4. Select the ellipsis on the right-hand-side of the action name followed by **Edit&#x20;**&#x69;n the right-click context menu to open th&#x65;**&#x20;One-Step Editor**.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Hu1hPtzAk759Rl_LBGL0C_csm-create-action2.png" position="flex-start" size="40" indent="1" initialPath="images/csm-create-action2.png" githubPath="Content/Configure/Webhooks/images/csm-create-action2.png" showCaption="false"></Image>
+
+  5. Enter these values in to the fields as follows:
+
+  | Field  | Value                                                                                             |
+  | ------ | ------------------------------------------------------------------------------------------------- |
+  | Name   | HTTP Request                                                                                      |
+  | Method | POST                                                                                              |
+  | URL    | https\://\{tenant url}/api/rest/Webhooks/Execute?extension=CreateLaptop                           |
+  | Body   | \{"cores" : LaptopCores, "ram" : Laptop.RAM(GB),"make" : "Laptop.Make", "model" : "Laptop.Model"} |
+
+  <hint type="info">
+    **Tip:** Data from the created record is embedded in the JSON to be sent.
+  </hint>
+
+  6. Select **Headers&#x20;**&#x61;nd add the necessary authorisation header. In this case, rest\_api\_key=\{your REST API key}.
+
+  <Paragraph indent="1">
+    To get a REST API key, see: [Using the REST API Key](../API/Using-REST-API-Key.mdx).
+  </Paragraph>
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/LBfMRl07ZOLVNiOa7bvaV_csm-create-action3.png" position="flex-start" size="40" indent="1" initialPath="images/csm-create-action3.png" githubPath="Content/Configure/Webhooks/images/csm-create-action3.png" showCaption="false"></Image>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Setting up ITSM
+
+  1. Ensure that an identical business object called **Laptop** exists in \{\{FRS\_VARS.ITSM}}.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/KzfwSC-4MY1chKVA_WqMl_csm-eg-itsm-bo.png" position="flex-start" size="40" indent="1" initialPath="images/csm-eg-itsm-bo.png" githubPath="Content/Configure/Webhooks/images/csm-eg-itsm-bo.png" showCaption="false"></Image>
+
+  2. Open the **Graphical Action Designer**.
+
+  <Paragraph indent="1">
+    See: [Using the Graphical Action Designer (GAD)](<../QuickActions/Graphical Action Designer/Using_the_Graphical_Action_Designer.mdx>).
+  </Paragraph>
+
+  <hint type="info">
+    **Tip:&#x20;**&#x59;ou can use the **Classic Action Designer** if you prefer.
+  </hint>
+
+  3. Create an Action using the **Update Stored Values and Variables** Action block type. This block updates the stored values and variables used in your Action.
+
+  <Paragraph indent="1">
+    For more help see: [Update Stored Values and Variables Quick Action](<../QuickActions/Graphical Action Designer/Advanced Actions/Update Stored Values and Variables.mdx>)
+  </Paragraph>
+
+  4. Configure the Action to store the JSON in the required variable **WebhookBody**. Create a new block using the **Update Variable and Stored Values** Action block type and edit the values as follows:
+
+  | Field         | Value                                                              |
+  | ------------- | ------------------------------------------------------------------ |
+  | Variable Type | Variable                                                           |
+  | Name          | WebhookBody                                                        |
+  | Data Type     | JSON                                                               |
+  | Value         | Will be populated by Simplified Expression Editor (see next step). |
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Wb_axOg4Vv-rjaI_NsF3t_csm-eg-itsm-qa1.png" position="flex-start" size="40" indent="1" initialPath="images/csm-eg-itsm-qa1.png" githubPath="Content/Configure/Webhooks/images/csm-eg-itsm-qa1.png" showCaption="false"></Image>
+
+  5. Create a new block using the **Create a New Record** block type and then create an expression using the Simplified Expression Editor to use that variable to populate the fields. Use this expression:
+
+  <Paragraph indent="1">
+    $(JSONPathValue(Variable("WebhookBody"), "$.cores"))
+  </Paragraph>
+
+  <Paragraph indent="1">
+    For help, see: [Using the Simplified Expression Editor](<../../Reference/Expressions/Simplified Expression Editor.mdx>)
+  </Paragraph>
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/T6jNhbr-osAGFQlKKTJM6_csm-eg-itsm-qa2.png" position="flex-start" size="40" indent="1" initialPath="images/csm-eg-itsm-qa2.png" githubPath="Content/Configure/Webhooks/images/csm-eg-itsm-qa2.png" showCaption="false"></Image>
+
+  6. Create a webhook to trigger this Action when data is sent to the appropriate endpoint. In the **Settings&#x20;**&#x6D;enu, click on **Webhooks Manager** in the **Build&#x20;**&#x73;ection.
+
+  <Paragraph indent="1">
+    The **Webhooks Manager** opens.
+  </Paragraph>
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/HuxjsOA-IYsC8Mf6Qn3qw_creatingwebhook.png" position="flex-start" size="40" indent="1" initialPath="images/creating_webhook.png" githubPath="Content/Configure/Webhooks/images/creating_webhook.png" showCaption="false"></Image>
+
+  7. Click **Add a Webhook**.
+  8. Enter information into the fields:
+
+  | Field                  | Value                                                                       |
+  | ---------------------- | --------------------------------------------------------------------------- |
+  | Name                   | Create a Laptop Record                                                      |
+  | Description            | Webhook for creating a record to mirror one created in \{\{FRS\_VARS.CSM}}. |
+  | Endpoint Extension     | CreateLaptop  <br />**Note:** The endpoint extension is case-sensitive.     |
+  | Full Endpoint          | https\://\{tenant url}/api/rest/Webhooks/Execute?extension=CreateLaptop     |
+  | Select Business Object | Laptop                                                                      |
+  | Select Action          | Create Laptop from JSON (Composite Action)                                  |
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/7R6xeRP0FTh3aL2GE2ong_addwebhook1blanks.png" position="flex-start" size="40" indent="1" initialPath="images/add_webhook1_blanks.png" githubPath="Content/Configure/Webhooks/images/add_webhook1_blanks.png" showCaption="false"></Image>
+
+  9. Click **Save**.
+
+  <Paragraph indent="1">
+    A confirmation message appears saying **Webhook successfully created**. Your webhook appears in the list and is enabled by default.
+  </Paragraph>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Using the Webhook
+
+  1. To see your webhook in action and/or test it, check there are no records in \{\{FRS\_VARS.ITSM}} for your **Laptop&#x20;**&#x62;usiness object:
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/bIUvi6IACKCGVYdGONMwM_csm-eg-test1.png" position="flex-start" size="40" indent="1" initialPath="images/csm-eg-test1.png" githubPath="Content/Configure/Webhooks/images/csm-eg-test1.png" showCaption="false"></Image>
+
+  2. Go to \{\{FRS\_VARS.CSM}} and create some new laptop records using a \{\{FRS\_VARS.CSM}} Client (Desktop Client shown):
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Rkuc381DxXXXUd4ewc85P_csm-eg-test2.png" position="flex-start" size="40" indent="1" initialPath="images/csm-eg-test2.png" githubPath="Content/Configure/Webhooks/images/csm-eg-test2.png" showCaption="false"></Image>
+
+  3. Go to \{\{FRS\_VARS.ITSM}} and select **Refresh**.
+  4. When the chosen trigger occurs, (in this case, records being created in \{\{FRS\_VARS.CSM}}), the webhook runs in the background and carries out its task. Your records are automatically replicated from \{\{FRS\_VARS.CSM}} into \{\{FRS\_VARS.ITSM}}.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/GFJ9qfX3P2OGxfAJZ9Iet_csm-eg-test3.png" position="flex-start" size="40" indent="1" initialPath="images/csm-eg-test3.png" githubPath="Content/Configure/Webhooks/images/csm-eg-test3.png" showCaption="false"></Image>
+</ExpandableHeading>

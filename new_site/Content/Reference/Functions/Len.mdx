@@ -1,0 +1,67 @@
+---
+title: Len
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:00 GMT+0300 (Eastern European Summer Time)
+---
+
+Returns an integer value that is the length of the text, including empty spaces.
+
+## Syntax
+
+Len(str)
+
+## Enabled For
+
+For a description of the business object categories, see :Link[Notes on "Enabled For"]{label="Notes on &#x22;Enabled For&#x22;" overridedLabel="Notes on &#x22;Enabled For&#x22;" spaceId docId="xObv2pIDrk60jkEIWs8mD" version="v2" docAnchorId="#Notes" loadingMethod="dynamic" newTab="false" githubPath="_Built_in_Functions.htm#Notes" href="_Built_in_Functions.mdx"}.
+
+| Business Object Category                                                                    | Yes/No |
+| ------------------------------------------------------------------------------------------- | ------ |
+| Business Rules: Before-Save Rules                                                           | Yes    |
+| Business Rules: Calculation Rules (After Save, with or without Also Recalculate on Load)    | Yes    |
+| Business Rules: Calculation Rules (Before Save or Always, without Also Recalculate On Load) | Yes    |
+| Business Rules: Calculation Rules (Before Save or Always, with Recalculate On Load)         | Yes    |
+| Business Rules: Editing Rules                                                               | Yes    |
+| Business Rules: Initialization Rules                                                        | Yes    |
+| Business Rules: Read Only Rules                                                             | Yes    |
+| Business Rules: Required Rules                                                              | Yes    |
+| Business Rules: Validation Rules                                                            | Yes    |
+| Client Expressions                                                                          | Yes    |
+| Object Permissions                                                                          | Yes    |
+| Services                                                                                    | Yes    |
+| LDAP                                                                                        | Yes    |
+| Mobile                                                                                      | Yes    |
+| Quick Actions (except UI Quick Actions)                                                     | Yes    |
+| UI Quick Actions                                                                            | Yes    |
+| Reports                                                                                     | Yes    |
+| Search/Dashboard without field references                                                   | Yes    |
+| Search/Dashboard with field references                                                      | Yes    |
+
+## Parameter
+
+| Parameter | Description                            |
+| --------- | -------------------------------------- |
+| str       | The text for which to find the length. |
+
+## Return Value
+
+<Paragraph indent="1">
+  Number value.
+</Paragraph>
+
+## Examples
+
+$(Len(Symptom))
+
+The above example returns the length of the contents of the **Symptom** field in the current instance.
+
+$(Len("This is an example "))
+
+<Paragraph indent="1">
+  The above example returns 20. Note the two trailing spaces in the text.
+</Paragraph>
+
+$(Len(Trim("This is an example ")))
+
+<Paragraph indent="1">
+  The above example returns 18 as the **Trim()** function trims off the two empty spaces at the end of the text.
+</Paragraph>

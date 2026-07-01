@@ -1,0 +1,80 @@
+---
+title: Example: Using a Cascading Validation List
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:48 GMT+0300 (Eastern European Summer Time)
+---
+
+This example illustrates how to trigger values from additional fields or a combo box (cascading validation list) by creating a service that uses a value based on the **OwnerTeam** field.
+
+Before configuring this option, ensure that you have a standard user team called **Desktop Support** that it is populated with active employee names.
+
+*Standard User Team - Desktop Support*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/JKB6awi1nIepo-s-a5lpb_cascading-validation-list-05.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/cascading validation list 05.png" githubPath="Content/Resources/Images/help-images/cascading validation list 05.png" showCaption="false"></Image>
+
+1. Log in to the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Console}} console.
+2. Open the **Request Offering** workspace. The list of request offerings is displayed.
+3. Enter **overnight** in the **Search Service Offerings** text box. The **Overnight Standby Request** offering opens.
+
+<Paragraph indent="1">
+  *Request Offering - Overnight Standby Request*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/msD6uA05Qpo8Lj-MKPJbG_request-offering-overnight-standby.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/request offering overnight standby.png" githubPath="Content/Resources/Images/help-images/request offering overnight standby.png" showCaption="false"></Image>
+
+4. Click **Overnight Standby Request**. The **Define Request Offering** page opens.
+5. Click the **Design Request Form** tab. The service request form opens.
+
+<Paragraph indent="1">
+  *Sample Request Offering - Design Request Form Page*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/a5PxdGVjh6xUmAtC9Slwz_cascading-validation-list-02.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/cascading validation list 02.png" githubPath="Content/Resources/Images/help-images/cascading validation list 02.png" showCaption="false"></Image>
+
+6. Click the **edit** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/WTLKbMa5PI7qeazzbj0FD_edit-old.png" alt caption size="10" width="16" height="16"} next to **Service**. The **Configuration Editor** appears. (See [Configuring the List Control](Configuring-the-List-Control.mdx) for more information.)
+
+<Paragraph indent="1">
+  *Sample Request Offering - Item Configuration Editor for Service*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/p-xPx7NHpKB-R3H6mgwc4_cascading-validation-list-03.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/cascading validation list 03.png" githubPath="Content/Resources/Images/help-images/cascading validation list 03.png" showCaption="false"></Image>
+
+7. Expand the **Pick List: Validation List** area, and in **Validation List to Use**, choose **Service Name List** from the drop-down list.
+8. In the **Additional fields** section, add the **Service** business object and choose the **OwnerTeam** field.
+
+<Paragraph indent="1">
+  Sample Request Offering - Service Business Object, OwnerTeam Field
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Xej9mP0M0BlhtsujHbZ0J_cascading-validation-list-04.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/cascading validation list 04.png" githubPath="Content/Resources/Images/help-images/cascading validation list 04.png" showCaption="false"></Image>
+
+9. Click **OK**.
+10. Click the **edit** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/WTLKbMa5PI7qeazzbj0FD_edit-old.png" alt caption size="10" width="16" height="16"} next to **Service Support Team Member**. The **Configuration Editor** opens.
+
+<Paragraph indent="1">
+  *Sample Request Offering - Item Configuration Editor for Service Support Team Member*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Cr_F0nY1jL8cAfx9rOJY5_cascading-validation-list-07.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/cascading validation list 07.png" githubPath="Content/Resources/Images/help-images/cascading validation list 07.png" showCaption="false"></Image>
+
+<Paragraph indent="1">
+  Ensure that the cascading validation definition shows **Standard User Team** object and the **OwnerTeam** field.
+</Paragraph>
+
+11. Click **OK**.
+
+<Paragraph indent="1">
+  When **Overnight Standby Request: Desktop Service** is selected from the Service Catalog, the **OwnerTeam** service field automatically populates the **Service Support Team Member** list from the **Employee Team: Desktop Support** list. The **OwnerTeam** field must be previously configured to include team members. (See [Working with Teams](../../Configure/Users/Teams.mdx).)
+</Paragraph>
+
+<Paragraph indent="1">
+  *Sample Service Catalog - Overnight Standby Request*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/WXhkqQ48Zalm88TD7VXq2_cascading-validation-list-06.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/cascading validation list 06.png" githubPath="Content/Resources/Images/help-images/cascading validation list 06.png" showCaption="false"></Image>
+
+<Paragraph indent="1">
+  *Sample Service Catalog - List Source*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/jbPR2IRJEye5LzPmnH7hg_cascading-validation-list-08.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/cascading validation list 08.png" githubPath="Content/Resources/Images/help-images/cascading validation list 08.png" showCaption="false"></Image>

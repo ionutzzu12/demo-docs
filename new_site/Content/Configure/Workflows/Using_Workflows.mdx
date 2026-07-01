@@ -1,0 +1,317 @@
+---
+title: Using Workflows
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:58 GMT+0300 (Eastern European Summer Time)
+---
+
+## Viewing a Workflow Instance
+
+A workflow instance is a triggered workflow. The application updates the status of the workflow instance whenever the workflow block is executed.
+
+1. From the Configuration Console, click **Build&#x20;**>**&#xA0;Workflow&#x20;**>**&#x20;Workflow Instances** to open the **Workflow Instance** workspace. The list of available workflows appears.
+2. Double-click a workflow instance to open the workflow record.
+
+<Paragraph indent="1">
+  *Workflow Record*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/VKA2gLS5iwoqGOSySqWo3_workflow-record.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/Workflow Record.png" githubPath="Content/Resources/Images/help-images/Workflow Record.png" showCaption="false"></Image>
+
+3. Click **View Instance** to see the workflow design.
+
+<Paragraph indent="1">
+  *Workflow Instance*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/eHgsuNCGd6-QEJGyxhlIF_workflow-instance.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/Workflow Instance.png" githubPath="Content/Resources/Images/help-images/Workflow Instance.png" showCaption="false"></Image>
+
+## Configuring High Priority Workflow
+
+<hint type="info">
+  As of version 2025.3, workflows initiated by Quick Actions and Triggers support the High Priority setting. Scheduled Entries continue to work as a regular priority.
+</hint>
+
+You can assign higher execution priority to specific workflows, so that they are processed before standard workflows in the queue using **High Priority** workflow option.
+
+This option is only for workflows triggered by changes to a business object record, which provides the ability to prioritize critical tasks. Workflows such as service requests, and schedule entry workflows are considered as regular priority workflows.
+
+To enable the high priority workflow option, follow the steps below:
+
+1. Log in to Ivanti Neurons for **ITSM** as Administrator.
+2. Navigate to the **Admin** > **Business Object** \[incident] > **Workflows** tab.
+3. Click the name of the workflow to set the priority.
+4. Select the **High Priority** checkbox.
+
+<Paragraph indent="1">
+  *Hight Priority Workflow*
+</Paragraph>
+
+<Paragraph indent="1">
+  ![](https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/nYejzMqztcesxJduQ4sTe_high-priority.png)
+</Paragraph>
+
+<hint type="info" indent="1">
+  Hover mouse over information **i** icon to know more information about high priority workflow.
+</hint>
+
+## Viewing a Workflow from the Configuration Console
+
+Viewing a Workflow from the Configuration Console
+
+1. From the Configuration Console, click **Build&#x20;**>**&#xA0;Business Objects** to open the **Business Objects** workspace.
+2. Open a Business Object.
+3. Click the **Workflows** tab. If this button is disabled (gray) or does not appear, then this business object is not part of a workflow.
+4. Click on the name of a workflow.
+5. Next to any workflow version, click the **edit**:inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/WTLKbMa5PI7qeazzbj0FD_edit-old.png" alt caption size="10" width="16" height="16"}icon.
+
+## Viewing a Workflow from the Action Menu
+
+Viewing a Workflow from the Action Menu
+
+1. Log into the Service Desk Console.
+2. Open any record.
+3. From the **Action Menu** drop-down list, click **View Workflow**.
+
+<Paragraph indent="1">
+  The item might be listed under a specific category such as form actions in this example.
+</Paragraph>
+
+<hint type="info" indent="1">
+  If **View Workflow** does not appear under the Action Menu, then it has not been set up to appear for your role.
+</hint>
+
+<Paragraph indent="1">
+  The **View workflow definition and instance** window appears.
+</Paragraph>
+
+4. Click **Show Definition** to view the approval workflow or click **Show Instance** to see where the approval process is at.
+5. Click **Close**.
+
+## Creating a Workflow
+
+1. From the Configuration Console, click **Build&#x20;**>**&#xA0;Workflow&#x20;**>**&#x20;Workflows** to open the **Workflows** workspace. The list of available workflows appears.
+2. Click **Add new\...**. The **Add New Workflow** page appears.
+
+<Paragraph indent="1">
+  *Adding a Workflow*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/bATbsfx9COshW_DDqONi7_addworkflow.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/add_workflow.png" githubPath="Content/Resources/Images/help-images/add_workflow.png" showCaption="false"></Image>
+
+3. Enter information into the fields.
+
+| Field           | Description                                                                         |
+| --------------- | ----------------------------------------------------------------------------------- |
+| Business Object | The business object to which this workflow applies. Choose from the drop-down list. |
+| List Name       | A unique name for the workflow.                                                     |
+| Display Name    | The name that appears in the interface.                                             |
+| Description     | A description of what the workflow does.                                            |
+
+4. Click **Save**. The workflow version page appears.
+5. Click **Add Version**. The Workflow Designer appears.
+6. Drag the blocks onto the designer as needed, and connect them. Be sure to include **Start** and **Stop** blocks.
+
+<Paragraph indent="1">
+  *Workflow Example with Start and Stop Blocks*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/zQa76fRTUj3fye7dB-k8i_workflow-example-with-start-and-stop-blocks.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/Workflow Example with Start and Stop Blocks.png" githubPath="Content/Resources/Images/help-images/Workflow Example with Start and Stop Blocks.png" showCaption="false"></Image>
+
+7. Configure the block properties as needed. See [Workflow Object Blocks](WorkflowObjects/Workflow_Object_Blocks.mdx).
+8. Select the **Validate before saving** check box to validate the workflow.
+9. Click **Save**.
+10. Click **back to version** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/cIIINOQM_qs3OozoN2Sv5_back2version.png" alt caption size="10" width="19" height="16"} to return to the workflow version page.
+11. Click the **publish** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/r6aoc-et0ImoZdV55y1aa_publish.jpg" alt caption size="10" width="15" height="16"} to activate the workflow.
+
+<hint type="info">
+  - To prevent workflows from executing in infinite loops, the system relies on two global constants:
+
+  <Paragraph indent="2">
+    **ThresholdForWorkflowInfiniteLoop** - Sets the maximum number of workflow instances allowed within a defined time window. Default: 50 instances.
+  </Paragraph>
+
+  <Paragraph indent="2">
+    **TimeFrameForWorkflowInfiniteLoop** - Defines the time window (in minutes) to evaluate the threshold. Default: 30 minutes.
+  </Paragraph>
+
+  - When a workflow is triggered, the system monitors each workflow run to detect potential infinite loops. If more than 50 instances of the same workflow are triggered for the same record within 30 minutes, the system blocks the new instance and marks its event for deletion. This prevents system overload from repetitive workflows.
+
+  <Paragraph indent="1">
+    The feature flag **ContainInfiniteLoopForWorkflow** enables this guardrail at the tenant configuration level and is turned on by default. To disable it, contact support.
+  </Paragraph>
+</hint>
+
+## Accessing the Workflow Designer
+
+1. From the Configuration Console, click **Build** >&#x20;**&#xA0;Workflow** >&#x20;**&#xA0;Workflows** to open the **Workflows** workspace.
+2. Click the name of a workflow.
+3. Next to any workflow version, click the **edit**:inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/WTLKbMa5PI7qeazzbj0FD_edit-old.png" alt caption size="10" width="16" height="16"}icon. The application displays the Workflow Designer.
+
+## Configuring a Trigger
+
+A trigger is what starts the workflow process.
+
+1. From the Workflow Designer, click **Configuration** from the toolbar. The **Workflow Configuration** window appears.
+2. Select the **Trigger Definition** tab.
+3. Enter information into the fields.
+
+| Option                                                                            | Description                                                                      |
+| --------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| Object Level Conditions                                                           |                                                                                  |
+| Created                                                                           | The workflow is sent to the process queue when the business object is created.   |
+| Updated                                                                           | The workflow is sent to the process queue when the business object is modified.  |
+| Field Level Conditions                                                            |                                                                                  |
+| Any field updated                                                                 | Triggers the workflow when any field is modified, except for application fields. |
+| Specific fields updated - at least one of the following fields should be updated. | Triggers the workflow when specific fields are modified.                         |
+| AND                                                                               | Choose the trigger the workflow based on all fields (AND).                       |
+| OR                                                                                | Choose the trigger the workflow based on any field (OR).                         |
+| Field                                                                             | Choose from the drop-down list.                                                  |
+| Operator                                                                          | Choose from the drop-down list.                                                  |
+| Value                                                                             | The value that triggers the workflow.                                            |
+
+4. Click the **add** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/TsW33ptQCQZi49zfSiIIi_add.png" alt caption size="10" width="20" height="16"} to add fields to the trigger.
+5. Click the **delete** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/uN-MJlNAhdQXruh5k_EsW_delete.png" alt caption size="10" width="19" height="16"} to remove a field from the trigger.
+6. Click **Save**.
+
+## Creating an Exception Notification
+
+\{\{FRS\_VARS.ProductName}} can send you an email every time it encounters an exception to the trigger.
+
+1. From the Workflow Designer, click **Configuration** from the toolbar. The **Workflow Configuration** window appears.
+2. Select the **Exception Notification** tab.
+3. From the left panel, select trigger fields, relationships, or functions.
+4. From the right panel, select an email template.
+5. Click **Save**.
+
+## Creating a Scheduled Workflow
+
+You can import scheduled workflows, such as LDAP synchronization or cost service, into the **ScheduleEntry** business object. When using a schedule workflow, do not use another business object as a trigger; only use the **ScheduleEntry** business object to create a workflow that runs at a specific time or interval. See [About the Schedule Entry and Scheduled Jobs Workspaces](../Schedules/Schedule_Entry.mdx).
+
+<hint type="info">
+  The maximum number of records a workflow updates in one session is 1000. Re-run the workflow to continue updating records.
+</hint>
+
+1. From the Configuration Console, click **Build&#x20;**>**&#xA0;Business Objects** to open the **Business Objects** workspace.
+2. In the **Find** window, enter **Schedule Entry** to open the **ScheduleEntry** business object. The **ScheduleEntry Details** page appears.
+3. Choose the **Workflows** tab. The list of current scheduled workflows appears.
+4. Click **Add New**. The **Add New Workflow:** page appears.
+5. Enter information into the fields.
+
+| Field           | Description                                                                                                 |
+| --------------- | ----------------------------------------------------------------------------------------------------------- |
+| Business Object | The name of the business object. Select the **ScheduleEntry** business object.                              |
+| List Name       | A unique name for the workflow. This is how it will appear in a list. Do not include spaces or punctuation. |
+| Display Name    | The name of the workflow as it will appear to users.                                                        |
+| Description     | A description of what the workflow does.                                                                    |
+
+<Paragraph indent="1">
+  The following is an example:
+</Paragraph>
+
+<Paragraph indent="1">
+  *Example Workflow*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/mObj1S6mGA_NqQJDG8mrF_schedwfsample.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/sched)wf_sample.png" githubPath="Content/Resources/Images/help-images/sched)wf_sample.png" showCaption="false"></Image>
+
+6. Click **Save**. The workflow version page appears.
+7. From the lower toolbar, click **Add Version**. The Workflow Designer appears.
+8. Click **Configuration** from the toolbar. The **Workflow Configuration** window appears.
+
+<Paragraph indent="1">
+  *Workflow Configuration Window*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/x8lniNer9LFXSNziSsvNO_workflow-configuration-window.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/Workflow Configuration Window.png" githubPath="Content/Resources/Images/help-images/Workflow Configuration Window.png" showCaption="false"></Image>
+
+9. Select the schedule definition from the drop-down list. This list is populated from the **ScheduleEntry** workspace.
+10. Enter an **Exception Notification** if needed. The following shows an example of an exception notification.
+
+<Paragraph indent="1">
+  *Exception Notification*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/wHJRU3V0vBOidIk_YKL8J_exception-notification.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/Exception Notification.png" githubPath="Content/Resources/Images/help-images/Exception Notification.png" showCaption="false"></Image>
+
+11. Click **Save**.
+12. Add business object blocks and edit your workflow in the design area as needed.
+13. Click **Save**.
+
+## Modifying a Workflow
+
+You can easily modify a workflow. You cannot modify a workflow that has been published or is active. You can, however, create a new version, modify it, then publish it. This procedure describes how to modify a workflow that has not been published.
+
+1. From the Configuration Console, click **Build&#x20;**>**&#xA0;Workflow&#x20;**>**&#x20;Workflows** to open the **Workflows** workspace. The list of available workflows appears.
+2. Select the workflow to change. The **Edit Workflow** page appears.
+3. From the list, click the **edit** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/WTLKbMa5PI7qeazzbj0FD_edit-old.png" alt caption size="10" width="16" height="16"} on the workflow to modify.
+4. Modify the workflow as needed, then click **Save**.
+
+## Publishing, Editing, and Locking Workflow Versions
+
+You can create different versions of a workflow; however, only one version can be active at a time. Once a workflow has been published, it cannot be changed. You can, however, create a new version from this workflow, then publish it.
+
+1. From the Configuration Console, click **Build&#x20;**>**&#xA0;Workflow&#x20;**>**&#x20;Workflows** to open the **Workflows** workspace. The list of available workflows appears.
+2. Choose a workflow from the list. The workflow version list appears. The active workflow is highlighted in green.
+3. Do one of the following:
+   - Click **Publish** to publish the workflow.
+   - Click **Edit** to edit the workflow.
+   - Click **Lock** to make the workflow read only.
+
+## Creating a Workflow Version
+
+You can create multiple versions of a workflow. This is useful when working on workflows as you might have a version that works well, then make some changes that do not work out as well, and want to revert to an earlier copy.
+
+1. From the Configuration Console, click **Build&#x20;**>**&#xA0;Workflow&#x20;**>**&#x20;Workflows** to open the **Workflows** workspace. The list of available workflows appears.
+2. Choose a workflow from the list. The workflow version list appears.
+3. From the version list, click **Add Version** on the toolbar. A blank workflow appears.
+
+## Publishing a Workflow
+
+When a workflow is activated, it is considered published. If the workflow is later deactivated, it is still considered published, although not active. Once a workflow has been published, it cannot be modified. You can, however, create a new version from a published workflow.
+
+1. From the Configuration Console, click **Build&#x20;**>**&#xA0;Workflow&#x20;**>**&#x20;Workflows** to open the **Workflows** workspace. The list of available workflows appears.
+2. Select the workflow to publish. The **Edit Workflow** page appears.
+3. Select the workflow version to publish, then click **Publish&#x20;**:inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/r6aoc-et0ImoZdV55y1aa_publish.jpg" alt caption size="10" width="15" height="16"} from the **Actions** column.
+
+<Paragraph indent="1">
+  *Actions Column*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Yf6xhbGqthSLF788M6jV6_workflow-actions.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/workflow actions.png" githubPath="Content/Resources/Images/help-images/workflow actions.png" showCaption="false"></Image>
+
+<Paragraph indent="1">
+  The workflow is now active.
+</Paragraph>
+
+## Deactivating a Workflow
+
+Use caution when deactivating a workflow, as related workflows and business objects might not operate as expected.
+
+1. From the Configuration Console, click **Build&#x20;**>**&#xA0;Workflow&#x20;**>**&#x20;Workflows** to open the **Workflows** workspace. The list of available workflows appears.
+2. Choose a workflow from the list. The workflow version list appears.
+3. Check the active workflow.
+4. Choose **More Actions&#x20;**>**&#x20;Deactivate Version**.
+
+<Paragraph indent="1">
+  *Deactivating a Workflow*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/3_j8uQwPB48shSSsqtNsu_workflow-deactivate.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/workflow deactivate.png" githubPath="Content/Resources/Images/help-images/workflow deactivate.png" showCaption="false"></Image>
+
+<Paragraph indent="1">
+  The workflow is no longer active or working.
+</Paragraph>
+
+## Deleting a Workflow
+
+Use caution when deleting a workflow, as related workflows and business objects might not operate as expected. This action is permanent and cannot be undone.
+
+1. From the Configuration Console, click **Build&#x20;**>**&#xA0;Business Objects** to open the **Business Objects** workspace.
+2. From the right-side panel under **Manage Object Workflows**, click **View Workflows**. The list of available workflows appears.
+3. Click the **delete** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/USPl9Egu4Y2Blx7HKC3mA_deleteredx.png" alt caption size="10" width="14" height="13"} next to the workflow to delete.
+
+<Paragraph indent="1">
+  *Deleting a Workflow*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/g4HCamWLgK0ZqKROCtNB0_workflow-delete.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/workflow delete.png" githubPath="Content/Resources/Images/help-images/workflow delete.png" showCaption="false"></Image>

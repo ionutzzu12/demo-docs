@@ -1,0 +1,78 @@
+---
+title: IfAllSiblings
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:58 GMT+0300 (Eastern European Summer Time)
+---
+
+Conditionally executes an expression based on the parent and siblings of the current business object. A sibling of the current business object is one that is also related to the parent business object by the relationship specified by the **parentRelationship** parameter.
+
+Executes the expression defined by the **trueAction** expression for each sibling of the current business object that is selected by the **siblingPredicate** parameter. The **parentRelationship** parameter identifies a parent (associated) business object of the current business object. If the **parentPredicate** evaluated for this business object is false, this function returns false and does nothing else. Otherwise, it evaluates the **siblingPredicate** expression for each sibling of the current business object
+
+## Syntax
+
+IfAllSiblings(parentRelationship, parentPredicate, siblingPredicate, trueAction)
+
+## Enabled For
+
+For a description of the business object categories, see :Link[Notes on "Enabled For"]{label="Notes on &#x22;Enabled For&#x22;" overridedLabel="Notes on &#x22;Enabled For&#x22;" spaceId docId="xObv2pIDrk60jkEIWs8mD" version="v2" docAnchorId="#Notes" loadingMethod="dynamic" newTab="false" githubPath="_Built_in_Functions.htm#Notes" href="_Built_in_Functions.mdx"}.
+
+| Business Object Category                                                                    | Yes/No |
+| ------------------------------------------------------------------------------------------- | ------ |
+| Business Rules: Before-Save Rules                                                           | Yes    |
+| Business Rules: Calculation Rules (After Save, with or without Also Recalculate on Load)    | Yes    |
+| Business Rules: Calculation Rules (Before Save or Always, without Also Recalculate On Load) | Yes    |
+| Business Rules: Calculation Rules (Before Save or Always, with Recalculate On Load)         | Yes    |
+| Business Rules: Editing Rules                                                               | Yes1   |
+| Business Rules: Initialization Rules                                                        | Yes    |
+| Business Rules: Read Only Rules                                                             | No     |
+| Business Rules: Required Rules                                                              | Yes1   |
+| Business Rules: Validation Rules                                                            | Yes    |
+| Client Expressions                                                                          | No     |
+| Object Permissions                                                                          | No     |
+| Services                                                                                    | Yes    |
+| LDAP                                                                                        | Yes    |
+| Mobile                                                                                      | Yes    |
+| Quick Actions (except UI Quick Actions)                                                     | Yes    |
+| UI Quick Actions                                                                            | No     |
+| Reports                                                                                     | Yes    |
+| Search/Dashboard without field references                                                   | Yes    |
+| Search/Dashboard with field references                                                      | No     |
+| 1. Except when this field appears on a form or is triggered by such a field.                |        |
+
+## Parameters
+
+| Parameter          | Description                                                                                                                                                                                               |
+| ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| parentRelationship | Identifies a parent (associated) object of the current object. A relationship specifier of the form object#subobject.tag.                                                                                 |
+| parentPredicate    | (Optional) Boolean expression. The predicate of the parent business object.  If the predicate returns false, this function returns false and does nothing else. This predicate is executed on the server. |
+| siblingPredicate   | Boolean expression. A predicate of the child business objects related to the parent business object by the reverse relationship of the **parentRelationship** parameter.                                  |
+| trueAction         | If the value of the **siblingPredicate** parameter is true, this is the expression that is evaluated for each sibling.                                                                                    |
+
+## Return Value
+
+<Paragraph indent="1">
+  Boolean value.
+</Paragraph>
+
+## Example
+
+<Paragraph indent="1">
+  The following example checks to see if the last task in an incident is closed and sends a message if it is:
+</Paragraph>
+
+$(IfAllSiblings("Incident#.Rev3",
+     "$(Status != 'Closed' && Status != 'Resolved')",
+    "$(Status == 'Completed' || Status == 'Canceled')",
+     "$(PromptAndExecuteAction('$(Parent(Incident#.Rev3))',
+     'Task belongs to an incident with no other unfinished tasks. Select \[Yes] to set incident to resolved, select \[No] to create a new task, or select \[Cancel] to cancel the task save operation.',
+     'Resolve incident',
+     'AddTask'))
+     "))
+
+<Paragraph indent="1">
+  In this example, the current business object is an incident.  The function checks to see if the incident is closed or resolved. If it is not, it checks to see if all of the children (for example, tasks) of the incident are completed or canceled. If the incident is not closed or resolved, and all of the tasks for that incident are either completed or canceled, it executes the [PromptAndExecuteAction](PromptAndExecuteAction.mdx) function which displays this message: "Task belongs to an incident with no other unfinished tasks...."
+</Paragraph>
+
+<Paragraph indent="1">
+  This function then returns a value of true.
+</Paragraph>

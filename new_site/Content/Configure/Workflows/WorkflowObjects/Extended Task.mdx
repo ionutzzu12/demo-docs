@@ -1,0 +1,55 @@
+---
+title: Extended Task Workflow Block
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:58 GMT+0300 (Eastern European Summer Time)
+---
+
+The **Extended Task** workflow block is an extension of the **Task** workflow block. It has the same functionality, except that there are additional fields that you can configure.
+
+*Extended Task Workflow Block Properties*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/GJcy0-GZORkr_fPWtsRHG_extendedtaskblock.png" position="flex-start" size="40" indent="1" initialPath="../../../Resources/Images/help-images/extended_task_block.png" githubPath="Content/Resources/Images/help-images/extended_task_block.png" showCaption="false"></Image>
+
+<hint type="info">
+  Previously, the **Owner** field displayed a user's first and last name when selecting a team in the extended task. The system now displays the user's login ID instead. This change reduces confusion caused by users with similar names and helps administrators accurately identify users when assigning tasks.
+</hint>
+
+## Exit Ports
+
+| Exit Port | Description                                                                                    |
+| --------- | ---------------------------------------------------------------------------------------------- |
+| Accepted  | The task status is set to accepted.                                                            |
+| Completed | The task status is set to completed.                                                           |
+| Cancelled | The task status is set to canceled.                                                            |
+| Timed Out | The workflow is terminated as incomplete because an event exceeded the defined length of time. |
+
+## Properties
+
+| Property                     | Description                                                                                                                                                                              |
+| ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Title                        | A unique name for the workflow block.                                                                                                                                                    |
+| Task Type                    | The task type.                                                                                                                                                                           |
+| Copy from predefined task    | Specifies if the task is copied from a predefined task.                                                                                                                                  |
+| Service (Optional)           | Optional. The service.                                                                                                                                                                   |
+| Team                         | The team.                                                                                                                                                                                |
+| Owner                        | The owner.                                                                                                                                                                               |
+| Relationship to Task         | The relationship to the task.                                                                                                                                                            |
+| Notification QuickAction     | The notification quick action.                                                                                                                                                           |
+| Timeout Duration             |                                                                                                                                                                                          |
+| Field                        | Sets a timeout based on a field.                                                                                                                                                         |
+| Duration                     | Sets a timeout based on duration. Enter the number of days, hours, and minutes.                                                                                                          |
+| Hours of Operation selection |                                                                                                                                                                                          |
+| Name                         | Sets a timeout constrained by hours of operation. Choose the name of your hours of operation from the list. See [Setting Up Hours of Operation](../../HoursOfOp/Hours_of_Operation.mdx). |
+| Hours of Operation Field     | Sets a timeout constrained by an hours of operation field.                                                                                                                               |
+| Target object fields         |                                                                                                                                                                                          |
+| Task Type                    | The task type. Enter a literal value or choose an object from the drop-down list. The available fields and target object fields appear based on the chosen object.                       |
+| Value                        | The value of the business object field.                                                                                                                                                  |
+| Overwrite                    | Overwrites the default values with this value.                                                                                                                                           |
+
+## Actions
+
+| Button             | Action                                                                                                                                                                                                                           |
+| ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Move Up, Move Down | Rearranges the items in the table. This changes the order in which they are processed. The order of processing can affect the creation or update of the business object, as specific values are determined to be correct or not. |
+| Save               | Commits your settings.                                                                                                                                                                                                           |
+| Cancel             | Exits without saving.                                                                                                                                                                                                            |

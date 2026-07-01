@@ -1,0 +1,194 @@
+---
+title: Fulfilling Multiple Software Service Requests
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:47 GMT+0300 (Eastern European Summer Time)
+---
+
+This topic describes how to fulfill a default multiple software service request submitted from the Service Catalog. You select which software items to install, then the installation is automatically deployed through HEAT DSM.
+
+1. Log in to the application as a service owner.
+2. Open the service request containing the **Multiple Software** service request. By default, the **Multiple Software** service request requires approval.
+
+<Paragraph indent="1">
+  If you are the approver and approval is still pending, the **Approval** tab in the service request details page contains **Approve** and **Deny** buttons.
+</Paragraph>
+
+3. Click one of these buttons to approve or deny the request.
+
+<Paragraph indent="1">
+  If you are not the approver, you must wait until approval is granted before continuing.
+</Paragraph>
+
+<hint type="info">
+  Approval can also be performed through email or the **My Items** workspace in the Self-Service Portal.
+</hint>
+
+4. In the **Service Request** workspace, open the **Fulfillment Item** tab. A list view showing the fulfillment items for this request displays.
+
+<Paragraph indent="1">
+  Each fulfillment item has at least one task associated with it. (Note that tasks associated with a fulfillment item are different from the tasks associated with the service request that contains the fulfillment item).
+</Paragraph>
+
+<Paragraph indent="1">
+  From here you can open a fulfillment item to monitor the progress of its tasks, and if necessary take action to manually complete its tasks:
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  Highlight a fulfillment item in the list view.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  Click the edit (pencil) button to open the fulfillment item in the **Fulfillment Item** workspace. The **Fulfillment Item** workspace opens to the **Task** list view showing the tasks associated with this fulfillment item.
+</Paragraph>
+
+5. A fulfillment item has two possible types of task: manual and automatic.
+   - A manual task requires you to take some type of action to fulfill the request.
+   - An automatic task pertains specifically to installing HEAT DSM-managed software. You do not need to take any action to execute an automatic task. Automatic tasks are displayed here so that you can monitor their progress.
+
+<Paragraph indent="1">
+  To determine whether a task is manual or automatic:
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  Highlight the task in the list view.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  Depending on task status, one or more of these controls displays for a manual task:
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="3">
+  Accept
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="3">
+  Reassign
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="3">
+  Complete
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="3">
+  Cancel
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="3">
+  Waiting
+</Paragraph>
+
+<Paragraph indent="1">
+  If you see any of these controls when you highlight a task, the task is manual. If you do not see any of these controls, the task is automatic.
+</Paragraph>
+
+6. If a task is automatic and does not contain parameters that need to be modified, the task status is accepted. Go to the next step and continue from there.
+
+<Paragraph indent="1">
+  If a task is manual:
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  Click a control (such as accept, reassign, and so on) to update the task as appropriate for the actions that you take to complete it.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  Click **Save**. Go to the next step and continue from there.
+</Paragraph>
+
+<Paragraph indent="1">
+  If a task is automatic and contains parameters that need to be modified, the task status is logged. Perform these steps:
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  Open the task.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  Change parameter fields as required.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  Click **Initiate Installation**. The task status changes to accepted.
+</Paragraph>
+
+7. To monitor task progress:
+   - In the **Fulfillment Item** workspace, highlight the task in the **Task** tab list view. The status of the task is shown in the list view.
+   - A manual task is updated to the completed status when you select the **Complete** control.
+   - An automatic task is updated to the completed status by the workflow that executes it after the specified HEAT DSM-managed software is installed.
+   - Click the edit (pencil) button. The task opens in the **Task** workspace.
+
+<Paragraph indent="1">
+  If the task is manual, this information displays:
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  Team and owner details.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  Task details, including priority, effort, and cost.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  Completion target escalations and breaches.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  Timestamps for task creation and modification.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  An **Activity History** tab displaying the activity history records for the task.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  An **Attachment** tab displaying attachments to the tab.
+</Paragraph>
+
+<Paragraph indent="1">
+  If the task is automatic, this information displays:
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  Team and owner details.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  Details (including status) of the HEAT DSM request that performs the software installation.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  Timestamps for task creation and last modification.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  Error messages generated by the task.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  An **Activity History** tab displaying the activity history records for the task.
+</Paragraph>
+
+8. Optionally review the workflow used for delivering a fulfillment item:
+
+<Paragraph indent="1">
+  a. In the **Fulfillment Item** workspace, open the **Workflow** tab.
+</Paragraph>
+
+<Paragraph indent="1">
+  The list view of workflows shows workflow status, completion date, lock information, and other information.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Highlight a workflow in the list view and click the edit icon. The **Workflow Instance** workspace opens, displaying additional information about the workflow (including the status of each workflow block).
+</Paragraph>
+
+9. Verify that all tasks and fulfillment items are completed, and that the service request is fulfilled.
+   - A fulfillment item is considered completed when all of its tasks are completed.
+   - A **Multiple Software** service request is considered completed when all of its fulfillment items are completed.
+10. In the **Service Request** workspace, select the **Fulfillment Item** tab.
+11. In the list view of fulfillment items, review the **Status** column for each fulfillment item. The status changes to completed as each fulfillment item completes.
+
+<Paragraph indent="1">
+  When all fulfillment items are completed, the service request status changes to fulfilled. Verify this by reviewing the **Status** field in the **Service Request** workspace.
+</Paragraph>

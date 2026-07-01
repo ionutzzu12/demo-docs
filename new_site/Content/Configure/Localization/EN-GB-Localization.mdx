@@ -1,0 +1,89 @@
+---
+title: English (United Kingdom) Language Settings
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:53 GMT+0300 (Eastern European Summer Time)
+---
+
+Option to localize the English (United Kingdom) is available. However, customers upgrading from an older version of the application to version 2021.1 or higher have to specifically enable it.
+
+<hint type="info">
+  This feature is available in \{\{FRS\_VARS.Company}}\{\{FRS\_VARS.ProductName}} from version - 2021.1 onwards.
+</hint>
+
+This feature works as explained below:
+
+- **For existing customers**
+
+<Paragraph indent="1">
+  When an existing customer upgrades to version 2021.1 or higher, this feature is available. However, they can choose to use English - United Kingdom as culture (date, time, number, and currency format) or as language (localized text and culture).
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  **As Culture:** When the default **Locale** is **English (United Kingdom)**, all culture elements such as, date, time, currency, and number format of United Kingdom is applied but localized text is not applied. You only need to set the Global Constant - **EnableUKEnglishLocalization** as **False**.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  **As Language:** When the default **Locale** is **English (United Kingdom)**, localization option for text for English (United Kingdom) is available and the culture elements is also applied. This has to be specifically configured, see the below section :Link[Setting-up the English (United Kingdom) language]{label="Setting-up the English (United Kingdom) language" overridedLabel="Setting-up the English (United Kingdom) language" spaceId docId="o5qTVpsFJeiGapOYgThfS" version="v2" docAnchorId="#SettingUpEnGB" loadingMethod="dynamic" newTab="false" href="EN-GB-Localization.mdx"}.
+</Paragraph>
+
+- **For new customers**
+
+<Paragraph indent="1">
+  New customers having a fresh installation of 2021.1 or later do not have the option to choose between culture and language. When the default **Locale** is set as **English (United Kingdom)**, the localized texts for English (United Kingdom) language along with the culture elements is applied. No spe
+</Paragraph>
+
+## Setting-up the English (United Kingdom) Language
+
+These settings are applicable only for existing customers upgrading from versions lower than 2021.1.
+
+<ExpandableHeading>
+  ## Enable the Global Constant
+
+  1. Log in to \{\{FRS\_VARS.ProductName}} as an Administrator.
+  2. Open the Configuration console > **Global Constant** > set the value for **EnableUKEnglishLocalization** as **True**.
+
+
+
+  <hint type="info">
+    - Existing customers who wish to continue using only the culture elements for English (United Kingdom) that is date, time, currency, and number format and not the localized texts, set the value for **EnableUKEnglishLocalization** as **False**. By default, this value will be set to **False**. You need not do any further settings, continue using the application as before.
+    - New customers using a fresh installation of \{\{FRS\_VARS.ProductName}} version 2021.1 or higher, the Global Constant is not available.
+  </hint>
+
+
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Remove English (United Kingdom) as Culture and add as Language
+
+  1. From the Configuration console, select **Languages**.
+  2. Delete **en-GB**, select **Yes** when prompted.
+  3. Click **Add New**. A list of all available languages is displayed.
+  4. Select **English (United Kingdom)**.
+
+  <Paragraph indent="1">
+    The application adds the required columns and table for English (United Kingdom) localization.
+  </Paragraph>
+
+  <hint type="info">
+    If the Global Constant - **EnableUKEnglishLocalization** is set as **False**, **English (United Kingdom)** in the language list would have a remark - **Not a new language, only culture will be added**. Which means only culture elements would be added and not the localized text.
+  </hint>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Localize English (United Kingdom) Language
+
+  Once the required tables and columns are added, the application is ready for you translate and localize the language.
+
+  1. From the Configuration console > **Languages** > **Translation Tool**.
+  2. Select **English (United Kingdom)** > choose the **Properties** which you want to translate > click **Search** and update the translation.
+
+  <Paragraph indent="1">
+    For more information, see [Using the Translation Tool](<Using the Translation Tool.mdx>).
+  </Paragraph>
+
+  3. You can also export the properties to an excel and update. For more information, see [Importing or Exporting a Translation Spreadsheet](<Importing Exporting Translation Spreadsheets.mdx>).
+
+  <hint type="info">
+    When updating using the excel sheet, ensure to update all the fields, partial update will result in an exception.
+  </hint>
+</ExpandableHeading>

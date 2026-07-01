@@ -1,0 +1,79 @@
+---
+title: Setting up Modern Survey for On-premise
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:54 GMT+0300 (Eastern European Summer Time)
+---
+
+**Role:** Administrators.
+
+**Minimum Version:** \{\{Primary.Company}}\{\{Primary.Product}}*&#x20;2024.2.*
+
+This feature is in Beta in \{\{FRS\_VARS.ITSM}} 2024.2.
+
+## Enabling Modern Survey for on-premise customers
+
+<hint type="info">
+  These settings are applicable only for version 2024.2.
+</hint>
+
+After installing/upgrading to \{\{FRS\_VARS.ITSM}} 2024.2 on-premise build, if you enable and use the Modern Survey feature and get errors such as, 'Invalid Session’ or blank screen in Preview Survey or Take Survey URL, do the following settings:
+
+1. Login to the virtual machine where the on-premise build is installed or upgraded and access the installation path.
+
+<Paragraph indent="1">
+  For example, C:\Program Files\HEAT Software\HEAT.
+</Paragraph>
+
+<Paragraph indent="1">
+  a. Copy the folder - websurveyclient from C:\Program Files\HEAT Software\HEAT to C:\Program Files\HEAT Software\HEAT\FRSSurvey.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Open the Web.config file from the location C:\Program Files\HEAT Software\HEAT\FRSSurvey\websurveyclient and add the following code under the section \<system.webserver>.
+</Paragraph>
+
+<CodeblockTabs indent="2">
+  ```bash
+  <handlers>
+  <remove name="aspNetCore" />
+  </handlers>
+  ```
+</CodeblockTabs>
+
+<Paragraph indent="1">
+  c. Remove the below code from Web.config and save it.
+</Paragraph>
+
+<CodeblockTabs indent="2">
+  ```bash
+  <handlers accessPolicy="Read, Script" />
+  ```
+</CodeblockTabs>
+
+<Paragraph indent="1">
+  d. Rename the folder websurveyclient in C:\Program Files\HEAT Software\HEAT to websurveyclientBackup.
+</Paragraph>
+
+<Paragraph indent="1">
+  e. Open index.html file from the location C:\Program Files\HEATSoftware\HEAT\FRSSurvey\websurveyclient and update \<base href="/websurveyclient/"> to \<base href="/HEATSurvey/websurveyclient/"> and save it.
+</Paragraph>
+
+<Paragraph indent="1">
+  f. Open main.js file (file name would be ending with alphanumeric characters such as main.c261549ebf4207fb.js) and search /api and replace with ../api.
+</Paragraph>
+
+<Paragraph indent="1">
+  a. Save the change.
+</Paragraph>
+
+<hint type="info" indent="2">
+  Ensure to replace all 3 occurrences of /api in the file.
+</hint>
+
+2. Restart IIS and check if you are able to Preview Survey and Take Survey URL for Modern Survey.
+
+<hint type="info">
+  Additional authorization is introduced for Take Survey URL in Modern survey configuration, requiring SQL user to be created with limited access. For more information, refer to [Modern Survey Connection - Take Survey URL](Getting-Survey-URL-Setting-up-Connection.mdx).
+</hint>
+
+[<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Y4WfYOm5SkWQaKIj8jTPB_transparent.gif" size="10" alt="Related Topics Link Icon" isUploading="false" initialPath="../../../Skins/Default/Stylesheets/Images/transparent.gif" githubPath="Skins/Default/Stylesheets/Images/transparent.gif" width="16" height="16" showCaption="false"></Image>Related Topics](javascript\:void\(0\);)

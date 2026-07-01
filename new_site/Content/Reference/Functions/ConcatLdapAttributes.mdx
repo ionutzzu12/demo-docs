@@ -1,0 +1,56 @@
+---
+title: ConcatLdapAttributes
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:59 GMT+0300 (Eastern European Summer Time)
+---
+
+Creates a text value using different values of the same attributes.  The different values are delimited. Use this function when you have a list of attributes with the same name but with different values.
+
+## Syntax
+
+ConcatLdapAttributes(attribute, delimiter)
+
+## Enabled For
+
+For a description of the business object categories, see :Link[Notes on "Enabled For"]{label="Notes on &#x22;Enabled For&#x22;" overridedLabel="Notes on &#x22;Enabled For&#x22;" spaceId docId="xObv2pIDrk60jkEIWs8mD" version="v2" docAnchorId="#Notes" loadingMethod="dynamic" newTab="false" githubPath="_Built_in_Functions.htm#Notes" href="_Built_in_Functions.mdx"}.
+
+| Business Object Category                                                                    | Yes/No |
+| ------------------------------------------------------------------------------------------- | ------ |
+| Business Rules: Before-Save Rules                                                           | No     |
+| Business Rules: Calculation Rules (After Save, with or without Also Recalculate on Load)    | No     |
+| Business Rules: Calculation Rules (Before Save or Always, without Also Recalculate On Load) | No     |
+| Business Rules: Calculation Rules (Before Save or Always, with Recalculate On Load)         | No     |
+| Business Rules: Editing Rules                                                               | No     |
+| Business Rules: Initialization Rules                                                        | No     |
+| Business Rules: Read Only Rules                                                             | No     |
+| Business Rules: Required Rules                                                              | No     |
+| Business Rules: Validation Rules                                                            | No     |
+| Client Expressions                                                                          | No     |
+| Object Permissions                                                                          | No     |
+| Services                                                                                    | Yes    |
+| LDAP                                                                                        | Yes    |
+| Mobile                                                                                      | Yes    |
+| Quick Actions (except UI Quick Actions)                                                     | No     |
+| UI Quick Actions                                                                            | No     |
+| Reports                                                                                     | Yes    |
+| Search/Dashboard without field references                                                   | No     |
+| Search/Dashboard with field references                                                      | No     |
+
+## Parameters
+
+| Parameter | Description                                                 |
+| --------- | ----------------------------------------------------------- |
+| attribute | (Optional) The name of the duplicate attribute.             |
+| delimiter | (Optional) The delimiter character. The default is a comma. |
+
+## Return Value
+
+Text value.
+
+## Example
+
+$(ConcatLdapAttributes("dSCorePropagationData", ";"))
+
+If you have two attributes, both called dSCorePropagationData, with these values: 01.01.1601 2:00:01 EET (16010101000001.0Z) and 21.08.2015 18:21:26 EEST (20150821152126.0Z), the result of the above is:
+
+01.01.1601 2:00:01 EET (16010101000001.0Z); 21.08.2015 18:21:26 EEST (20150821152126.0Z)

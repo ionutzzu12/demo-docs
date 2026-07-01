@@ -1,0 +1,79 @@
+---
+title: Example: Using Neurons Bot to Trigger Actions in Ivanti Neurons for ITSM
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:56 GMT+0300 (Eastern European Summer Time)
+---
+
+**Role**: Administrator
+
+**Minimum Version**: \{\{FRS\_VARS.Company}} \{\{FRS\_VARS.ProductName}} 2025.4
+
+**Prerequisites**:
+
+- To use the \{\{FRS\_VARS.Quick\_Action}}s, set the global constant **EnableActionService** to **True**.
+- App Registration is created in \{\{FRS\_VARS.Company}} \{\{FRS\_VARS.Neurons}} to generate the **Auth URL**, **Client ID**, and **Client Secret**.
+- A Client Registration is added in \{\{FRS\_VARS.ITSM}} using these credentials.
+
+This example shows how \{\{FRS\_VARS.Company}} \{\{FRS\_VARS.Neurons\_Bot}} can collect information from users and automatically create or update records in \{\{FRS\_VARS.ProductName}}.
+
+When you start a conversation with the Neurons Bot, you simply describe the issue you are experiencing. The bot then guides you with a few quick follow‑up questions to collect the information it needs. After it has everything, the bot securely sends your details to Ivanti Neurons for ITSM, where a pre‑configured Quick Action automatically creates or updates the appropriate record. Once ITSM processes your request, it returns important information, such as the newly created Incident Number back to the bot, which immediately shares the confirmation with you. This provides a smooth, effortless, and hands‑free experience from start to finish.
+
+<ExpandableHeading>
+  ## Step 1: Configuring Neurons Bot with ITSM
+
+  1. Log in to \{\{FRS\_VARS.ProductName}} as an \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+  2. Open the Configuration console > **Extend** > **Neurons Platform Integration&#x20;**.
+  3. Click **Setup Neurons Platform Connection** and enter the following details:
+     - Name of the connection
+     - Neurons Platform Tenant URL
+     - Neurons Platform Auth URL
+     - Client ID
+     - Client Secret
+
+  <hint type="info" indent="2">
+    For these details you need to create or use the details of an existing **App Registrations** in the \{\{FRS\_VARS.Neurons\_platform}} tenant.
+  </hint>
+
+  4. Enable the **Neurons Bot** option in the **Neuron Platform Integration**.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/fbaaLjQ8c5JGpNIckgr1N_enabled-neurons-bot.png" position="flex-start" size="40" indent="1" initialPath="../../quick-actions-images/Enabled-Neurons-Bot.png" githubPath="Content/Configure/QuickActions/quick-actions-images/Enabled-Neurons-Bot.png" showCaption="false"></Image>
+
+  For more information on Neurons Bot Configuration in ITSM refer to [Neurons Bots Integration for ITSM](../../../Neurons/Neurons-Bots-ITSM-Integration.mdx).
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Step 2- Create Neurons Bot quick action
+
+  1. Log in to \{\{FRS\_VARS.ProductName}} as an \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+  2. Select an incident from the **Incident** console.
+  3. Go to **More** menu > **Edit Actions** > \{\{FRS\_VARS.Graphical\_Action\_Designer}}.
+  4. Drag and drop the \{\{FRS\_VARS.Neurons\_Bot}} action block to the canvas and connect it to the **Start Block**.
+  5. Select the required bot in the **Bot** section from the side panel.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/s_Yb02EnJIAvXY588yP3q_selecting-bot.png" position="flex-start" size="40" indent="1" initialPath="../../quick-actions-images/selecting-bot.png" githubPath="Content/Configure/QuickActions/quick-actions-images/selecting-bot.png" showCaption="false"></Image>
+
+  6. Enter a **Name** for the action and click **Save**.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Step 3 - Connect CI record to an Incident record and execute the Bot
+
+  In order to run a Bot it has to connect with a CI record using an **Agent ID**.
+
+  1. Log in to \{\{FRS\_VARS.ProductName}} as an \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+  2. Select an incident from the **Incident** console.
+  3. Select **CI** option from the plus menu in the child panel.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/JhKjqYbUycuEnpyWQFWhh_bot-ci-option.png" position="flex-start" size="40" indent="1" initialPath="../../quick-actions-images/Bot-CI-Option.png" githubPath="Content/Configure/QuickActions/quick-actions-images/Bot-CI-Option.png" showCaption="false"></Image>
+
+  4. Select a CI record from the **Link** option in the **CI** tab, it automatically attaches the **Agent ID** of that CI record. If it fails to add the **Agent ID**, you can enter the **Agent ID** from the **Devices** console in the **Neurons Platform**.
+  5. Refresh the browser tab and run the Neuron Bot quick action.
+
+  <hint type="info" indent="1">
+    After the successful run of the Neuron Bot quick action ensure that it has the **Neurons Bot Invocations** tab lists the Bot. Bot changes status after 5 minutes so changes reflect later. You can also check the Bot status in the **Neurons Bots** console from the Neurons Platform tenant.
+  </hint>
+
+  <Paragraph indent="1">
+    You can also check **Ivanti Neurons Bot Results** workspace in the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Console}}. This list all the bot invocations for the particular tenant.
+  </Paragraph>
+</ExpandableHeading>

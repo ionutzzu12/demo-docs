@@ -1,0 +1,102 @@
+---
+title: Adding the ESX Business Object to the CI Layout
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:56 GMT+0300 (Eastern European Summer Time)
+---
+
+- :Link[About Adding the ESX Business Object to the CI Layout]{label="About Adding the ESX Business Object to the CI Layout" overridedLabel="About Adding the ESX Business Object to the CI Layout" spaceId docId="xBAzBiyrWuZqWn5YKwEtk" version="v2" docAnchorId="#About-Adding-the-ESX-Business-Object-to-the-CI-Layout" loadingMethod="dynamic" newTab="false" href="Editing_Layout_ESX.mdx"}
+- :Link[Editing the CI Layout]{label="Editing the CI Layout" overridedLabel="Editing the CI Layout" spaceId docId="xBAzBiyrWuZqWn5YKwEtk" version="v2" docAnchorId="#Editing-the-CI-Layout" loadingMethod="dynamic" newTab="false" href="Editing_Layout_ESX.mdx"}
+- :Link[Changing Views for the CI Layout]{label="Changing Views for the CI Layout" overridedLabel="Changing Views for the CI Layout" spaceId docId="xBAzBiyrWuZqWn5YKwEtk" version="v2" docAnchorId="#Changing-Views-for-the-CI-Layout" loadingMethod="dynamic" newTab="false" href="Editing_Layout_ESX.mdx"}
+
+## About Adding the ESX Business Object to the CI Layout
+
+If you are upgrading from \{\{FRS\_VARS.ProductName}} Release 2014.2 and earlier, you may receive an error when attempting to view the **ESX** business object through the **CI** workspace. You may also be unable to create a new record of type ESX since the option is unavailable. This occurs because the **CI** layout is not updated automatically during an upgrade, since there is a risk of affecting customer-specific changes to the layout.
+
+Edit the **CI** layout to add the **ESX** business object by using the following procedures.
+
+## Editing the CI Layout
+
+1. From the Configuration Console, click **Build > Business Objects** to open the **Business Objects** workspace.
+2. Open the **CI** business object.
+3. Click the **Layouts** tab.
+4. Open the **CI** layout.
+5. Click **Add New Form View**.
+6. Ensure that you are in the old view. If you are in the old view, the application displays a **Try our new look** icon.  For this procedure, you need to be in the old view.  If you are in the new view, click **Switch to old view** on the right.
+7. In the **Form view definition for** field, click **CI** and select **CI.ESX** from the drop-down list. Click **Yes** at the confirmation message.
+8. In the **Display name** field, enter **ESX**.
+9. In the **Main Form** field, click **not set** and enter **CIESXHeader**.
+10. To add the Action Menu for access to quick actions, do the following:
+
+<Paragraph indent="1">
+  a. Next to the toolbar, click **Edit**.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. In the **Toolbar Editor** dialog box, select **Action menu** from the list and drag it to the right pane of the toolbar section.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. Drag any other toolbar items as required, from the list to this space.
+</Paragraph>
+
+<Paragraph indent="1">
+  d. Remove all of the toolbar links from the left section of the toolbar.
+</Paragraph>
+
+<Paragraph indent="1">
+  e. Click **Save**.
+</Paragraph>
+
+11. Edit the child panels by doing the following:
+
+<Paragraph indent="1">
+  a. Click **Add Child Panel**.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. In the **Display Name** field, click **\<Not Set>** and enter **Details**.  
+</Paragraph>
+
+<Paragraph indent="1">
+  c. In the **Object** field, click **\<Not Set>**.
+</Paragraph>
+
+<Paragraph indent="1">
+  d. In the dialog box, for the **Direct Relationship** field, select **CI.ESX (via to itself)**.
+</Paragraph>
+
+<Paragraph indent="1">
+  e. Click **Save**.
+</Paragraph>
+
+<Paragraph indent="1">
+  f. In the **Form(s)** column, click **\<Not Set>** and from the **Form Selection** dialog box, for **CI.ESX** select **CI.ESX.Details**.
+</Paragraph>
+
+12. Click **Save**.
+13. Add the following child panels by following the process in step 11.
+
+| Display Name        | Business Object                             | Relationships                                      | List                                                              | Forms                                          |
+| ------------------- | ------------------------------------------- | -------------------------------------------------- | ----------------------------------------------------------------- | ---------------------------------------------- |
+| Details             | CI.ESX                                      | To Itself                                          | N/A                                                               | CI.ESX.Details                                 |
+| Event               | Frs\_EVT\_Event                             | CIAssocFrs\_EVT\_Event                             | Frs\_EVT\_Event.DefaultGrid                                       | Frs\_EVT\_Event.DefaultForm                    |
+| Availability Log    | Frs\_AVL\_CILog                             | CIAssocFrs\_AVL\_CILog                             | Frs\_AVL\_CILog.DefaultGrid                                       | Frs\_AVL\_CILog.DefaultForm                    |
+| Guest               | GuestHostRelationship                       | HostRelationshipAssocCIComputer                    | GuestComputers                                                    | GuestHostRelationship.Guest                    |
+| Cost Item           | Frs\_ITFM\_Transaction                      | CIAssocFrs\_ITFM\_Transaction                      | Frs\_ITFM\_Tranaction.DefaultGrid                                 | Frs\_ITFM\_Transaction.ManualEntryForm         |
+| Cost Allocation     | Frs\_ITFM\_Recurring\_Service\_Subscription | Frs\_ITFM\_Recurring\_Service\_SubscriptionAssocCI | Frs\_ITFM\_Recurring\_Service\_Subscription.ServiceAllocationGrid | Frs\_ITFM\_Recurring\_Service\_Subscription.CI |
+| Baseline Comparison | Plugin: Baseline Comparison                 |                                                    |                                                                   |                                                |
+
+14. After you have added all of the panels, click **OK**.
+
+## Changing Views for the CI Layout
+
+1. From the Configuration Console, click **Build > Business Objects** to open the **Business Objects** workspace.
+2. Open the **CI** business object.
+3. Click the **Layouts** tab.
+4. Open the **CI** layout.
+5. From the **Views in this layout** section, click **gridView**.
+6. Scroll to the **Navigation to other views** section and the **On request to create new object show** list.
+7. Find the **CI#ESX** entry, and in the **Use this form** column click **\<Not Set>** and select **ESX (CI.ESX)** from the drop-down list.
+8. Scroll to the **On request to edit or view existing objects show** list.
+9. Find the **CI#ESX** entry, and in the **Use this form** column click **\<Not Set>** and select **ESX (CI.ESX)** from the drop-down list.
+10. Click **Save**.

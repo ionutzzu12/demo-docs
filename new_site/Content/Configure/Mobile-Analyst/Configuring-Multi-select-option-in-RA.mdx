@@ -1,0 +1,53 @@
+---
+title: Enabling multi-select option for the Mobile Analyst portal
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:50 GMT+0300 (Eastern European Summer Time)
+---
+
+Mobile Analysts can create a task or add a memo for multiple records at once from any list view page. This saves them time and effort in performing repeated action. For this feature to be available, you need to add the required Quick Action to the respective \{\{FRS\_VARS.Mobile\_Analyst}} business object layout.
+
+For example, to select multiple records and create a memo for incidents, add the Quick Action - Memo to the \{\{FRS\_VARS.Mobile\_Analyst}} Incident layout.
+
+### Adding a Quick Action to a business object layout
+
+1. Log in to \{\{FRS\_VARS.ProductName}} as an Administrator.
+2. Open the Configuration console > **Business Objects** > **Incident** or any other business object that you want to configure.
+3. Select **Layout**, select the applicable layout for Responsive Analyst Incident business object and click **Grid View**.
+4. Click **Edit** in the **Toolbar** field.
+5. Drag and drop the required Quick Action and save. In this example, **Memo** is used.
+
+<hint type="info" indent="1">
+  Ensure the Quick Action you are using is enabled for the \{\{FRS\_VARS.Mobile\_Analyst}} user role. For information on editing the Quick Action, see [Working with Quick Actions](../QuickActions/Using_Quick_Actions.mdx).
+</hint>
+
+6. Click **Save**.
+
+<Paragraph indent="1">
+  *Multi-select option in the Incident page*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Ohjl-KlIR00Kw5O7YF7Dp_multi-select-in-ra.jpeg" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/Configure/Mobile-Analyst-Config/Multi-select-in-RA.jpeg" githubPath="Content/Resources/Images/Configure/Mobile-Analyst-Config/Multi-select-in-RA.jpeg" showCaption="false"></Image>
+
+<Paragraph indent="1">
+  ### Consolidating Quick Action buttons into a single button
+</Paragraph>
+
+<Paragraph indent="1">
+  To consolidate the quick action buttons:
+</Paragraph>
+
+<Paragraph listStyleType="decimal" indent="2">
+  Log in to Neurons \{\{FRS\_VARS.ITSM}} as an Administrator.
+</Paragraph>
+
+<Paragraph listStyleType="decimal" listStart="2" listRestartPolite="2" indent="2">
+  Click the Settings :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/iYSaSr9aEReOMXTxoOB5P_settingsicon-configure22x22.png" alt caption size="10" width="22" height="22"} icon and navigate to **Build** > **Global Constants**.
+</Paragraph>
+
+<Paragraph listStyleType="decimal" listStart="3" listRestartPolite="3" indent="2">
+  Set the **RAButtonsGroups** option as True.
+</Paragraph>
+
+<Paragraph listStyleType="decimal" listStart="4" listRestartPolite="4" indent="2">
+  Click **Save**.
+</Paragraph>

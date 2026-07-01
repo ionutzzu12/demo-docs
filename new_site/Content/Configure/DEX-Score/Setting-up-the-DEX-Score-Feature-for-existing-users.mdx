@@ -1,0 +1,221 @@
+---
+title: Setting-up the Dex Score feature for existing users
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:51 GMT+0300 (Eastern European Summer Time)
+---
+
+**Role:** \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+
+**Minimum Version:** \{\{Primary.Company}} \{\{Primary.Product}}*&#x20;2023.2.*
+
+**Prerequisite:** \{\{FRS\_VARS.ITSM}}*&#x20;should be integrated with&#x20;*\{\{Primary.Company}}*&#x20;Neurons.*
+
+**Software Requirements:** *SQL Server 2016 and above with compatability level 130.*
+
+**New users:** *The Dex Score setup explained in this topic is available by default for fresh installation of&#x20;*\{\{FRS\_VARS.ITSM}}*.* However, complete the following steps:
+
+- First step - Enable the Global Constant in the \{\{FRS\_VARS.ITSM}} Configuration console.
+- Second step - Raise a Service Ticket to \{\{Primary.Company}} Operations to configure the Dex Score feature in Config DB.
+- Lastly, Import users along with devices from \{\{FRS\_VARS.Neurons}}. See, :Link[Importing users along with devices]{label="Importing users along with devices" overridedLabel="Importing users along with devices" spaceId docId="LwemCDwJd8jo_JBUQzkYM" version="v2" docAnchorId="#ImportingUsers" loadingMethod="dynamic" newTab="false" githubPath="../ImportExportData/Scheduling Sync From Neurons Discovery to ISM.htm#ImportingUsers" href="../ImportExportData/Scheduling Sync From Neurons Discovery to ISM.mdx"}.
+
+**Existing users:** *Along with completing steps described for new users, you need to setup the Dex Score in Employee and Incident Business Object.*
+
+- First step - :Link[Setup the Dex Score]{label="Setup the Dex Score" overridedLabel="Setup the Dex Score" spaceId docId="QkzVFHid9l6jyEs9LYz37" version="v2" docAnchorId="#SettingUpDEXScore" loadingMethod="dynamic" newTab="false" href="Setting-up-the-DEX-Score-Feature-for-existing-users.mdx"} in the Employee and Incident Business Object described in this topic.
+- Second step - :Link[Enable the Global Constant]{label="Enable the Global Constant" overridedLabel="Enable the Global Constant" spaceId docId="QkzVFHid9l6jyEs9LYz37" version="v2" docAnchorId="#EnableGlobalConstant" loadingMethod="dynamic" newTab="false" href="Setting-up-the-DEX-Score-Feature-for-existing-users.mdx"} in the \{\{FRS\_VARS.ITSM}} Configuration console.
+- Third step - Raise a Service Ticket to \{\{Primary.Company}} Operations to configure the Dex Score feature in Config DB.
+- Lastly, Import users along with devices from \{\{FRS\_VARS.Neurons}}. See, :Link[Importing users along with devices]{label="Importing users along with devices" overridedLabel="Importing users along with devices" spaceId docId="LwemCDwJd8jo_JBUQzkYM" version="v2" docAnchorId="#ImportingUsers" loadingMethod="dynamic" newTab="false" githubPath="../ImportExportData/Scheduling Sync From Neurons Discovery to ISM.htm#ImportingUsers" href="../ImportExportData/Scheduling Sync From Neurons Discovery to ISM.mdx"}.
+
+<hint type="info">
+  This feature is not available for \{\{FRS\_VARS.ITSM}} On-premise customers.
+</hint>
+
+## Setting up the Dex Score
+
+<ExpandableHeading>
+  ## Add a Dex Score field to the Employee form view and list
+
+  1. From the Configuration console, navigate to **Build** > **Business Objects**.
+  2. Open the **Employee** Business Object.
+
+  **Configuring the Employee Form:**
+
+  1. From the **Employee** Business Object, click **Forms**.
+  2. Select the form used for the Employee Business Object. For example, select the **Profile.Employee** for the Admin role and **Profile.Employee.AM.Employee.Administrator** for Asset Admin role.
+  3. Expand the **Employee** section from the left panel and select **Fields**.
+  4. Drag and drop the **Dex Score** field into the third column of the header section.
+
+  <Paragraph indent="1">
+    The **Dex Score** field is created.
+  </Paragraph>
+
+  5. Clear the value in the **Dex Score** field.
+  6. Highlight the **Dex Score** you just dragged and dropped and configure the **Control Properties** as given below:
+     - Control Type: Read-only Text Field
+     - Field Name: Auto populated from the field you just dragged and dropped.
+     - Height: 0 em
+     - Label: Dex Score
+     - Label Pos: On the left
+     - Label Style Rule: RightAlign
+     - Style: Default
+     - Style Rule: Add the following and click **Save**:
+
+  <Paragraph indent="2">
+    $(if ToLowerCase(DexClass) == "red" then "RedBackgroundLabel" else if ToLowerCase(DexClass) == "green" then "GreenBackgroundLabel" else if ToLowerCase(DexClass) == "yellow" then "YellowBackgroundLabel" else "Default")
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    Tab InDex: 0
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    Visible Expression: Add the following and click Save:
+  </Paragraph>
+
+  <Paragraph indent="2">
+    $(DexScore > 0 && Boolean(GetGlobal("ImportUsersForDevices")))
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    Width: 4 em
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    Wrapping: Overflow
+  </Paragraph>
+
+  7. Configure **Cell Properties** as given below:
+     - Cell Layout: Vertical
+     - Cell Vertical Alignment: Middle
+     - Column Span: 2 columns
+     - Row Span: 1 row
+     - Section Break: False
+  8. Once complete, click Save.
+
+  **Configuring the Employee List:**
+
+  1. From the **Employee** Business Object, click Lists.
+  2. Select the List used for the Employee Business Object. For example, select the **Profile.Employee.Header** for the Admin role and **Profile.Employee.Header.AM.Employee.Administrator** for Asset Admin role.
+  3. Expand the **Employee** section from the left panel and click **Fields**.
+  4. Drag and drop the **Dex Score** into the middle pane.
+  5. Clear the value in the **Dex Score** field.
+  6. Th&#x65;**&#x20;Dex Score** column is created. The column position here will be the same in Employee list view. You can reposition the column as needed.
+  7. Highlight the **Dex Score** you just dragged and dropped and configure the properties in the right pane as given below:
+     - Title: Dex Score
+     - Width: 100
+     - Sortable: Yes
+     - Hidden Expression: add the following in the Edit Expression dialog, then click Save:
+
+  <Paragraph indent="2">
+    $(!Boolean(GetGlobal("ImportUsersForDevices")))
+  </Paragraph>
+
+  8. Style: select Expression from the drop-down list and add the following expression in the Edit Expression dialog box, then click **Save**:
+
+  <Paragraph indent="2">
+    $(if ToLowerCase(DexClass) == "red" then "RedBackgroundLabel" else if ToLowerCase(DexClass) == "green" then "GreenBackgroundLabel" else if ToLowerCase(DexClass) == "yellow" then "YellowBackgroundLabel" else "Default")
+  </Paragraph>
+
+  9. Once complete, click **Save**.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Add a Dex Score field to the Incident form and list
+
+  1. From the Configuration console, click **Build** > **Business Objects**.
+  2. Open the **Incident** Business Object.
+
+  **Configuring the Incident Form:**
+
+  1. Click **Forms**, scroll down and select **Incident.CustomerOwnershipForm**.
+  2. Click **Incident&#x20;**> **Relationships&#x20;**> **Frs\_CompositeContract\_Contact (IncidentAssociatedCustomer)**> **Fields** from the left panel.
+  3. Drag and drop th&#x65;**&#x20;Dex Score** into the middle pane.
+
+  <Paragraph indent="1">
+    The **Dex Score** field is created in the Incident form.
+  </Paragraph>
+
+  4. Clear the value in the **Dex Score** field.
+  5. Highlight the **Dex Score** you just dragged and dropped and configure the Control Properties as given below:
+     - Control Type: Read-only Text Field
+     - Height: 0 em
+     - Label Pos: On the left
+     - Label Style Rule: RightAlign
+     - Style: Default
+     - Style Rule: Add the following and click Save:
+
+  <Paragraph indent="2">
+    $(if ToLowerCase(\[Frs\_CompositeContract\_Contact#.IncidentAssociatedCustomer]DexClass) == "red" then "RedBackgroundLabel" else if ToLowerCase(\[Frs\_CompositeContract\_Contact#.IncidentAssociatedCustomer]DexClass) == "green" then "GreenBackgroundLabel" else if ToLowerCase(\[Frs\_CompositeContract\_Contact#.IncidentAssociatedCustomer]DexClass ) == "yellow" then "YellowBackgroundLabel" else "Default")
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    Visible Expression: Add the following and click Save:
+  </Paragraph>
+
+  <Paragraph indent="2">
+    $(\[Frs\_CompositeContract\_Contact#.IncidentAssociatedCustomer]DexScore > 0 && Boolean(GetGlobal("ImportUsersForDevices")))
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    Width: 4 em
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    Wrapping: Overflow
+  </Paragraph>
+
+  6. Configure the Cell Properties as shown below:
+     - Cell Layout: Vertical
+     - Cell Vertical Alignment: Top
+     - Column span: 1 column
+     - Margins: 5,0,0,0
+     - Row span: 1 row
+     - Section break: false
+  7. Once complete, click **Save**.
+
+  **Configuring the Incident List:**
+
+  1. From the **Incident&#x20;**&#x42;usiness Object, click **Lists**, scroll down and select **Incident**.
+  2. From the left pane, click **Incidents&#x20;**> **Relationships&#x20;**> **Frs\_CompositeContract\_Contact (IncidentAssociatedCustomer)**> **Fields**.
+  3. Drag and dro&#x70;**&#x20;Dex Score** element into the middle pane.
+
+  <Paragraph indent="1">
+    The **Dex Score** column is created. The column position here will be the same position in the Incident list view. You can reposition the column if needed.
+  </Paragraph>
+
+  4. Clear the value in th&#x65;**&#x20;Dex Score** field.
+  5. Highlight the **Dex Score** you just dragged and dropped and configure the properties in the right pane as given below:
+     - Title: Dex Score
+     - Width: 100
+     - Sortable: Yes
+     - For Hidden Expression, add the following in the Edit Expression dialog, then click Save
+
+  <Paragraph indent="2">
+    $(!Boolean(GetGlobal("ImportUsersForDevices")))
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    For Style, select Expression from the drop-down list, add the following in the Edit Expression dialog, then click Save:
+  </Paragraph>
+
+  <Paragraph indent="2">
+    $(if ToLowerCase(\[Frs\_CompositeContract\_Contact#.IncidentAssociatedCustomer]DexClass) == "red" then "RedBackgroundLabel" else if ToLowerCase(\[Frs\_CompositeContract\_Contact#.IncidentAssociatedCustomer]DexClass) == "green" then "GreenBackgroundLabel" else if ToLowerCase(\[Frs\_CompositeContract\_Contact#.IncidentAssociatedCustomer]DexClass ) == "yellow" then "YellowBackgroundLabel" else "Default")
+  </Paragraph>
+
+  6. Once complete, click **Save**.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Enable the Global Constant
+
+  1. From the Configuration console, navigate to **Build** > **Global Constants**.
+  2. Set the value of the **ImportUsersForDevices** Global Constant to True.
+  3. Click **Save**.
+</ExpandableHeading>
+
+## Related Topics:
+
+[Scheduling API Data Sync](<../ImportExportData/Scheduling Sync From Neurons Discovery to ISM.mdx>)
+
+[Prioritizing Incidents using Dex Score](../../ServiceDesk/Incidents/Prioritizing-Incidents-uing-DEX-Score.mdx)
+
+[Dex Score in Asset Manager](https://help.ivanti.com/iv/help/en_US/IAMC/vNow/DEX-scores.htm)

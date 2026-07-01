@@ -1,0 +1,130 @@
+---
+title: Configuring anonymous user in Neurons for ITSM
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:50 GMT+0300 (Eastern European Summer Time)
+---
+
+You can allow users to access specific records and information in Neurons for ITSM without requiring a login ID or password. These users are referred to as anonymous users. For example, anonymous users can submit selected request offerings or view Knowledge Base articles using a public link.
+
+Anonymous login enables access to the self service portal for external users, allowing them to submit service requests without authentication.
+
+<ExpandableHeading>
+  ## Creating a role and assign a workspace
+
+  You can create a new role for anonymous access or designate an existing role such as Self Service or Guests. Administrators can grant role creation permissions to other roles like Service Owner. For more information refer to [Working with Roles](../../ServiceDesk/Roles/roles.mdx).
+
+  1. Login to \{\{FRS\_VARS.ProductName}} as an administrator.
+  2. Go to \{\{FRS\_VARS.Configuration\_console}} > **Configure** > **Users and permissions** > **Roles and permissions**.
+  3. Select **Add New**, to create a new role.
+
+  <Paragraph indent="1">
+    The **Role: New record** workspace is displayed.
+  </Paragraph>
+
+  4. Enter a unique username (such as anonymous) in Role and Display Name text fields.
+
+  *Create anonymous role*
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/xPpdeQumokqkaqQTCta70_anonymous.png" alt="Select the Anonymous Submit check box on the Define Request Offering page." position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/login-Images/anonymous.png" githubPath="Content/Resources/Images/login-Images/anonymous.png" showCaption="false"></Image>
+
+  5. Click **Top Level Tabs**.
+  6. Select **Add new tab** and select the required tabs for anonymous user. For an example, select **Knowledge Self Service**.
+  7. Enter \{\{FRS\_VARS.Knowledge-Knowledge}} in **name** text field.
+  8. In **Search Tags** field enter **Knowledge** and click **Add this tab**.
+  9. Similarly, add other required tabs such as **Service catalog**, **Alerts**, **My Items** or **Self Service Favorite**. For more information, see [Workspace](<../Self Service Management/Manage Workspace.mdx>).
+
+  *Assign Workspace*
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/mMrF2cEOgKmYfWLdJbscK_anonymous-top-level-tab.png" alt="Select the Anonymous Submit check box on the Define Request Offering page." position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/login-Images/anonymous-top-level-tab.png" githubPath="Content/Resources/Images/login-Images/anonymous-top-level-tab.png" showCaption="false"></Image>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Creating an anonymous user
+
+  1. Login to \{\{FRS\_VARS.ProductName}} as an administrator.
+  2. Open the **Employee** workspace.
+  3. Click **New Employee**. To know more about employee, refer [Working with Employees](../Users/Working_with_employees.mdx).
+  4. Enter the information in the required fields.
+
+  | Field               | Description                                                                                           |
+  | ------------------- | ----------------------------------------------------------------------------------------------------- |
+  | First Name          | Enter a generic first name.                                                                           |
+  | Last Name           | Enter a generic last name.                                                                            |
+  | Primary Email       | Enter a valid email address. Refer to [Working with Email Inboxes](../Email/Inbox_Configuration.mdx). |
+  | Team                | (Optional) Select from the dropdown such as **Service Desk**.                                         |
+  | Login ID            | Enter generic login id.                                                                               |
+  | Internal Auth Pwd   | Set a password for the user.                                                                          |
+  | Organizational Unit | Assign the user to the appropriate organizational unit.                                               |
+
+  5. Click **Save**.
+  6. Go to **Roles** tab, select the user and click **link**.
+  7. In the workspace, link an existing unit or create a new one, and associate it with the user.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Enable anonymous access at the tenant level
+
+  1. Log in to the Neurons for ITSM configuration database (ConfigDB).
+  2. Open the **Tenants** workspace, and go to **Anonymous** tab.
+  3. Enter the login ID and select the **Anonymous Access** checkbox.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Configure permissions for the anonymous role
+
+  1. Login to \{\{FRS\_VARS.ProductName}} as an administrator.
+  2. In the \{\{FRS\_VARS.Configuration\_console}}, go to **Roles** > **Permissions**.
+  3. Select the anonymous role.
+  4. In **Object Permissions**, enable **View** or **Edit** required workspace for:
+     - **Alerts**
+     - **SelfServiceFavorite**
+  5. Click **Apply Enhanced Permission** and click **Save**.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Configure service catalog template
+
+  1. Login to \{\{FRS\_VARS.ProductName}} as an administrator.
+  2. Go to **Request Offering** workspace.
+  3. In the **Search request offering** field, find the desired template such as address change, account unlock, and select it.
+  4. In **Define Request Offering**, select the **Anonymous Submit** checkbox.
+  5. In the **Publish Action Access** tab, click the **Org. unit**, select the appropriate organization, and click **OK**.
+  6. Repeat above steps 2 to 5 to add other templates for anonymous users as required.
+
+  <hint type="info">
+    You can perform bulk updates for request offerings. For more information, see the Performing bulk updates on request offerings section in [About Request Offerings](<../Self Service Management/About Request Offerings.mdx>).
+  </hint>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Set up landing page for anonymous user
+
+  1. Login to \{\{FRS\_VARS.ProductName}} as an administrator.
+  2. Go to\{\{FRS\_VARS.Configuration\_console}} > **Build** > **User Interface Styles** > **Style Editor**.
+  3. In the **Exceptions / Custom Roles** section, click **Add Exception**.
+
+  <Paragraph indent="1">
+    The **Add Exceptions / Custom Roles** window is displayed.
+  </Paragraph>
+
+  4. In the **Role** dropdown, select **Anonymous** User.
+  5. In the **UI** dropdown, select **UI v3**, and click **Save**
+  6. In the **Action** column for the anonymous user, click the **Edit** icon to configure the page settings. For more information, refer to [Configuring the Enterprise Landing Page Using the Style Editor](<../Self Service Management/Configuring Enterprise Landing Page Style Editor.mdx>).
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Accessing Neurons for ITSM using Anonymous Login
+
+  Users can access Neurons for ITSM through a link you provide, such as in an email or on a web page. To enable anonymous login for your tenant
+
+  1. Contact Ivanti Support.
+  2. Provide the user ID assigned for anonymous access.
+
+  <Paragraph indent="1">
+    Ivanti Support will enable anonymous login for your tenant.
+  </Paragraph>
+
+  Once enabled, share the URL with users. The URL format is your tenant URL followed by **alp.aspx**, which is in the following format: https\://organization.saasit.com/alp.aspx.
+
+  This link opens the Request Offering workspace or a specific Knowledge Base article. Users can access the target content directly without logging in.
+</ExpandableHeading>

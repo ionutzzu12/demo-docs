@@ -1,0 +1,69 @@
+---
+title: Printing Reports
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:49 GMT+0300 (Eastern European Summer Time)
+---
+
+In general, you use the print function within your browser to print reports.
+
+- :Link[Printing a Report]{label="Printing a Report" overridedLabel="Printing a Report" spaceId docId="yQZUut59tGaDLu26hDiJN" version="v2" docAnchorId="#Printing" loadingMethod="dynamic" newTab="false" href="Printing_Reports.mdx"}
+- :Link[Creating a Custom Print Report]{label="Creating a Custom Print Report" overridedLabel="Creating a Custom Print Report" spaceId docId="yQZUut59tGaDLu26hDiJN" version="v2" docAnchorId="#Creating" loadingMethod="dynamic" newTab="false" href="Printing_Reports.mdx"}
+- :Link[Printing a Record]{label="Printing a Record" overridedLabel="Printing a Record" spaceId docId="yQZUut59tGaDLu26hDiJN" version="v2" docAnchorId="#PrintingRec" loadingMethod="dynamic" newTab="false" href="Printing_Reports.mdx"}
+- :Link[Seeing What is Included in the Print Quick Action]{label="Seeing What is Included in the Print Quick Action" overridedLabel="Seeing What is Included in the Print Quick Action" spaceId docId="yQZUut59tGaDLu26hDiJN" version="v2" docAnchorId="#Seeing" loadingMethod="dynamic" newTab="false" href="Printing_Reports.mdx"}
+
+### Printing a Report
+
+Follow these steps to print a report:
+
+1. Select a report and run it.
+2. Run the print option from your browser.
+
+For example, within Google Chrome, Mozilla Firefox, or Microsoft Internet Explorer, press **Ctrl + P** on your keyboard or click **Print** from the browser menu.
+
+<hint type="info">
+  Ensure that your browser allows pop-ups or you might not be able to print a report.
+</hint>
+
+### Creating a Custom Print Report
+
+To make a report available in the **Report Name** drop-down list within the **Run Report** quick action, do the following:
+
+1. Create a report template that contains all of the fields to print (see [Creating Reports and Report Templates](Creating_Custom_Reports.mdx)). Ensure that the RecID (or primary key of the object) is one of the parameters.
+2. Create a report using the report template that you just created. Be sure to do the following:
+   - Select **Can Run** from the **Run Report** quick action.
+   - Publish to the role that will be using the **Print Report** quick action.
+
+<hint type="info">
+  Sometimes the time in a report will be off by one hour from the time shown in a record. This is a known issue. See :Link[About Reports and Daylight Savings Time]{label="About Reports and Daylight Savings Time" overridedLabel="About Reports and Daylight Savings Time" spaceId docId="JefTZcnXeATKkK0BLSq06" version="v2" docAnchorId="#About" loadingMethod="dynamic" newTab="false" githubPath="Scheduling_a_Report.htm#About" href="Scheduling_a_Report.mdx"}.
+</hint>
+
+### Printing a Record
+
+Quick actions are used to print individual records. When you run the **Quick Action > Print** command, the system runs a report and sends it to the printer. Many default reports are included with \{\{FRS\_VARS.ProductName}}. For example, if you have customized the **Incident** business object to include other child business objects, then you need to customize that report to include additional data.
+
+1. Log into the Service Desk Console.
+2. Open a business object.
+3. From the Action Menu, select **Print**. The system displays a list of reports, depending on which business object you are in. See [Default Reports](Default_Reports.mdx) for a list of reports furnished with \{\{FRS\_VARS.ProductName}}.
+4. Select a report from the list.  The system runs the report.
+
+<hint type="info">
+  Ensure that your browser allows pop-ups or you might not be able to print a report.
+</hint>
+
+5. Do one of the following:
+   - From your browser menu, choose **Print**.
+   - Press **Ctrl+P** on your keyboard.
+
+### Seeing What is Included in the Print Quick Action
+
+1. Log into the Service Desk Console.
+2. Open a business object.
+3. From the Action Menu, select **Edit Actions**. The system displays the Quick Action Center.
+4. Click the **Your Actions** tab.
+5. Click the **Print** header and then select **Print&#x20;*****business object*** (such as incident, change, or knowledge). The system displays the parameters for this quick action. For example, the following shows the **Print Incident** parameters:
+
+<Paragraph indent="1">
+  *Print Incidents Quick Action Parameters*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/WS2fWw0LTa--EH400SANO_printincident.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/print_incident.png" githubPath="Content/Resources/Images/help-images/print_incident.png" showCaption="false"></Image>

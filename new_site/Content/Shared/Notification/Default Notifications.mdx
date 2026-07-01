@@ -1,0 +1,176 @@
+---
+title: Default Notifications
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:45 GMT+0300 (Eastern European Summer Time)
+---
+
+<ExpandableHeading>
+  ## Business Rules Notifications
+
+  | Business Object            | Location                                                        |
+  | -------------------------- | --------------------------------------------------------------- |
+  | Change#                    | Notify requester that change is closed.                         |
+  | Change#                    | Notify requester that change is Implemented.                    |
+  | Change#                    | Notify requester that change is pending approval.               |
+  | Change#                    | Notify requester that change is scheduled.                      |
+  | Change#                    | Prompt reason and create journal notes when change is canceled. |
+  | Change#                    | Prompt reason and create journal notes when change is deferred. |
+  | Change#                    | Prompt reason and create journal notes when change is denied.   |
+  | Change#                    | Send notification to owner when change is requested.            |
+  | Change#                    | Send notification when change is implemented.                   |
+  | FRS\_ApprovalVoteTracking# | Send cancellation notification to approver.                     |
+  | Incident#                  | Active notification.                                            |
+  | Incident#                  | For new incident notification.                                  |
+  | Incident#                  | Incident closure notification.                                  |
+  | Incident#                  | Incident priority 1 notification.                               |
+  | Incident#                  | Incident resolution notification.                               |
+  | Incident#                  | Owner assigned.                                                 |
+  | Incident#                  | Owner team assignment.                                          |
+  | Incident#                  | Priority changed.                                               |
+  | Incident#                  | Response time lapsed.                                           |
+  | Incident#                  | Send survey upon incident closure.                              |
+  | Incident#                  | Stop escalation clock.                                          |
+  | Incident#                  | VIP notification.                                               |
+  | Journal#                   | Email send email.                                               |
+  | PIR#                       | Notify change coordinator that PIR has failed.                  |
+  | PIR#                       | Notify change requester that PIR is failed.                     |
+  | Problem#                   | Active problem resolved status change notification.             |
+  | Problem#                   | Identified to active status change notification.                |
+  | Problem#                   | Logged to investigation status change notification.             |
+  | Problem#                   | New priority 1 notification.                                    |
+  | Problem#                   | New problem notification.                                       |
+  | Problem#                   | Problem resolved third party.                                   |
+  | Problem#                   | Waiting for third party to resolved status change notification. |
+  | Problem#                   | Waiting for resource to resolved status change notification.    |
+  | ReleaseMilestone#          | Active milestone notification.                                  |
+  | ReleaseMilestone#          | Completed milestone notification.                               |
+  | ServiceReq#                | Cancel service request.                                         |
+  | ServiceReq#                | Send survey upon service request closure.                       |
+  | Task#                      | Assignment send cancellation notification to assigner.          |
+  | Task#                      | Assignment send completed notification to assigner.             |
+  | Task#                      | Assignment send assigned notification.                          |
+  | Task#                      | Assignment send cancel notification.                            |
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Incident Notifications
+
+  | Condition for Notification                             | Email Sent To ...                                                            |
+  | ------------------------------------------------------ | ---------------------------------------------------------------------------- |
+  | Incident changed to active status                      | Incident owner                                                               |
+  | New incident is created                                | Requester (customer)  <br />User reporting the incident (reported by)        |
+  | Incident status changed to closed                      | Requester (customer)                                                         |
+  | Incident created, with a priority of 1                 | Incident owner  <br />Incident owner team manager  <br />Incident owner team |
+  | Incident status changed to resolved                    | Requester (customer)                                                         |
+  | Incident owner is assigned                             | Incident owner                                                               |
+  | Incident team is assigned                              | Incident owner team                                                          |
+  | Incident priority has changed                          | Requester (customer)                                                         |
+  | Incident response time has been breached               | Incident owner                                                               |
+  | Survey response upon incident closure                  | Requester (customer)                                                         |
+  | Incident requester updated to VIP requester (customer) | Incident owner  <br />Incident owner team manager  <br />Incident owner team |
+  | Incident owner is reassigned                           | Requester (customer)  <br />Incident owner                                   |
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Change Notifications
+
+  | Condition for Notification   | Email Sent To ...                          |
+  | ---------------------------- | ------------------------------------------ |
+  | A logged change is requested | Change Manager                             |
+  | A logged change is cancelled | Change Requester                           |
+  | A requested change is denied | Change Coordinator  <br />Change Manager   |
+  | Change is pending approval   | Change Requester  <br />Change Approvers   |
+  | Change is scheduled          | Change Requester                           |
+  | Change is implemented        | Change Requester                           |
+  | Change is deferred           | Change Requester                           |
+  | Change is closed             | Change Coordinator  <br />Change Requester |
+  | Change tasks completed       | Change Manager  <br />Task owners          |
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Quick Actions that Send Emails
+
+  | Business Object            | Location                                                                                   |
+  | -------------------------- | ------------------------------------------------------------------------------------------ |
+  | CI#                        | Notification of change baseline.                                                           |
+  | CI#                        | Notification to configuration item owner of change baseline.                               |
+  | Employee#                  | New self user notification.                                                                |
+  | Employee#                  | Welcome self registered user.                                                              |
+  | FRS\_ApprovalVoteTracking# | Approval vote tracking notification.                                                       |
+  | FRS\_ApprovalVoteTracking# | Approval vote tracking notification for incident.                                          |
+  | FRS\_ApprovalVoteTracking# | Knowledge approval vote notification.                                                      |
+  | FRS\_ApprovalVoteTracking# | Send notification for vote.                                                                |
+  | FRS\_ApprovalVoteTracking# | Send notification for vote for release milestone.                                          |
+  | FRS\_ApprovalVoteTracking# | Send notification to vote for software request.                                            |
+  | FRS\_ApprovalVoteTracking# | Service request approval notification.                                                     |
+  | Incident#                  | Stop clock.                                                                                |
+  | Incident#                  | "Waiting for customer" reminder.                                                           |
+  | Incident#                  | 1st escalation notification.                                                               |
+  | Incident#                  | 2nd escalation notification.                                                               |
+  | Incident#                  | 3rd escalation notification.                                                               |
+  | Incident#                  | Incident assigned notification.                                                            |
+  | Incident#                  | Incident closure notification.                                                             |
+  | Incident#                  | Incident priority 1 notification.                                                          |
+  | Incident#                  | Incident resolved notification.                                                            |
+  | Incident#                  | Incident update notification.                                                              |
+  | Incident#                  | New incident notification.                                                                 |
+  | Incident#                  | Problem workaround notification for incident owner.                                        |
+  | Incident#                  | Resolution threshold breach.                                                               |
+  | Incident#                  | Response threshold breach.                                                                 |
+  | Journal#                   | Email resend email.                                                                        |
+  | Problem#                   | Incident resolved notification.                                                            |
+  | Problem#                   | New notification.                                                                          |
+  | ServiceReq#                | 1st escalation notification email for service request.                                     |
+  | ServiceReq#                | 2nd escalation notification email for service request.                                     |
+  | ServiceReq#                | 3rd escalation notification email for service request.                                     |
+  | ServiceReq#                | New high urgency service request.                                                          |
+  | ServiceReq#                | New service request assigned to team.                                                      |
+  | ServiceReq#                | New service request received.                                                              |
+  | ServiceReq#                | Resolution threshold breach notification email for service request.                        |
+  | ServiceReq#                | Response threshold breach notification email for service request.                          |
+  | ServiceReq#                | Service request approval timeout notification.                                             |
+  | ServiceReq#                | Service request approved notification.                                                     |
+  | ServiceReq#                | Service request denial notification.                                                       |
+  | ServiceReq#                | Service request no approver notification.                                                  |
+  | ServiceReq#                | Service request - software Installation. Computer or installation package is not selected. |
+  | ServiceReq#                | Waiting threshold breach notification email for service request.                           |
+  | Task#                      | Assignment accept.                                                                         |
+  | Task#                      | Assignment complete.                                                                       |
+  | Task#                      | Assignment reassign.                                                                       |
+  | Task#                      | Assignment reject.                                                                         |
+  | Task#                      | Assignment waiting.                                                                        |
+  | Task#                      | Assignment resolution threshold warning notification email.                                |
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Workflows with Notification Blocks that Send Emails
+
+  | Business Object                      | Location                                                        |
+  | ------------------------------------ | --------------------------------------------------------------- |
+  | Change                               | Change approval workflow NULL.                                  |
+  | FRS\_data\_dsm\_sync\_request        | Ivanti Desktop and Server Management (Ivanti DSM) sync request. |
+  | FRS\_Knowledge.Document              | Knowledge approval process for document.                        |
+  | FRS\_Knowledge.ErrorMessage          | Knowledge approval process for error message.                   |
+  | FRS\_Knowledge.IssueResolution       | Knowledge approval process for issue resolution.                |
+  | FRS\_Knowledge.Patch                 | Knowledge approval process for patch.                           |
+  | FRS\_Knowledge.QandA                 | Knowledge approval process for Q and A.                         |
+  | FRS\_Knowledge.Reference             | Knowledge approval process for reference.                       |
+  | Incident                             | Approval incident detail workflow.                              |
+  | Incident                             | Incident survey.                                                |
+  | Knowledge                            | Knowledge approval process.                                     |
+  | Release Milestone                    | Build and test release milestone.                               |
+  | Release Milestone                    | Deployment milestone.                                           |
+  | Release Milestone                    | Deployment preparation milestone.                               |
+  | Release Milestone                    | Early life support milestone.                                   |
+  | Release Milestone                    | Release and deployment planning milestone.                      |
+  | Release Milestone                    | Release review and closure milestone.                           |
+  | Release Milestone                    | Service testing and pilot milestone.                            |
+  | ScheduleEntry                        | Ivanti DSM computer sync.                                       |
+  | ScheduleEntry                        | Ivanti DSM software sync.                                       |
+  | ServiceReq                           | Audio conferencing services.                                    |
+  | ServiceReq RequestWorkflowCompletion | Service request workflow completion block.                      |
+  | ServiceReq                           | Send survey notification.                                       |
+  | Task                                 | Assignment send notification team owner, if owner is empty.     |
+  | Task.DSM\_SoftwareActivation         | Ivanti DSM software activation.                                 |
+  | Task.SoftwareInstallation            | Software Installation request.                                  |
+</ExpandableHeading>

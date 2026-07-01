@@ -1,0 +1,60 @@
+---
+title: CurrentUserRelatedObjectFieldValues
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:58 GMT+0300 (Eastern European Summer Time)
+---
+
+Returns information that is related to the user associated with the current session based on related fields.
+
+## Syntax
+
+CurrentUserRelatedObjectFieldValues(relationshipKey, fieldName)
+
+## Enabled For
+
+For a description of the business object categories, see :Link[Notes on "Enabled For"]{label="Notes on &#x22;Enabled For&#x22;" overridedLabel="Notes on &#x22;Enabled For&#x22;" spaceId docId="xObv2pIDrk60jkEIWs8mD" version="v2" docAnchorId="#Notes" loadingMethod="dynamic" newTab="false" githubPath="_Built_in_Functions.htm#Notes" href="_Built_in_Functions.mdx"}.
+
+| Business Object Category                                                                     | Yes/No |
+| -------------------------------------------------------------------------------------------- | ------ |
+| Business Rules: Before-Save Rules                                                            | Yes1   |
+| Business Rules: Calculation Rules (After Save, with or without Also Recalculate on Load)     | Yes    |
+| Business Rules: Calculation Rules (Before Save or Always, without Also Recalculate On Load)  | Yes1   |
+| Business Rules: Calculation Rules (Before Save or Always, with Recalculate On Load)          | Yes    |
+| Business Rules: Editing Rules                                                                | Yes2   |
+| Business Rules: Initialization Rules                                                         | Yes1   |
+| Business Rules: Read Only Rules                                                              | No     |
+| Business Rules: Required Rules                                                               | Yes2   |
+| Business Rules: Validation Rules                                                             | Yes2   |
+| Client Expressions                                                                           | No     |
+| Object Permissions                                                                           | No     |
+| Services                                                                                     | Yes    |
+| LDAP                                                                                         | Yes    |
+| Mobile                                                                                       | Yes    |
+| Quick Actions (except UI Quick Actions)                                                      | Yes1   |
+| UI Quick Actions                                                                             | No     |
+| Reports                                                                                      | Yes1   |
+| Search/Dashboard without field references                                                    | Yes1   |
+| Search/Dashboard with field references                                                       | No     |
+| 1. Except in services.                                                                       |        |
+| 2. Except in services and when this field appears on a form or is triggered by such a field. |        |
+
+## Parameters
+
+| Parameter       | Description                               |
+| --------------- | ----------------------------------------- |
+| relationshipKey | The name of the related business object.  |
+| fieldName       | The field in the related business object. |
+
+## Return Value
+
+<Paragraph indent="1">
+  List of text values. Lists of text values are only valid in certain places that accept lists, such as the "in list" operator in saved searches.
+</Paragraph>
+
+## Example
+
+<Paragraph indent="1">
+  The following example returns the list of teams of which the current user is a member. You can use this in a search using the in-list operator:
+</Paragraph>
+
+$(CurrentUserRelatedObjectFieldValues("StandardUserTeam#.Rev2", "Team"))

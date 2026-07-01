@@ -1,0 +1,1182 @@
+---
+title: Get Business Object by Filter
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:00 GMT+0300 (Eastern European Summer Time)
+---
+
+Fetches business object records based on the defined filter values. For example, you can define to get only active incidents.
+
+**Base URL:**
+
+*https\://\{tenant url}/api/odata/businessobject/\{business object name}?$filter=\{filter field} eq \{field value}*
+
+<hint type="info">
+  Ensure the business object name is suffixed with an "s".
+</hint>
+
+## Supported Operators
+
+Only the following eight operators are supported when fetching business object records using the filter function:
+
+- eq - Returns true if the first value is equal to the second value.
+- ne - Returns true if the first value is not equal to the second value.
+- lt - Returns true if the first value is less than the second value.
+- le - Returns true if the first value is less than or equal to the second value.
+- gt - Returns true if the first value is greater than the second value.
+- ge - Returns true if the first value is greater than or equal to the second value.
+- or -Returns true if either one of its left or right sub-expressions evaluates to true.
+- and - Returns true if both its left and right sub-expressions evaluate to true.
+
+<ExpandableHeading>
+  ## Get Business Object by Filter example - fetch Incidents which has Status as Active
+
+  | URL                                           | https\://\{tenant url}/api/odata/businessobject/incidents?$filter=Status eq 'Active'                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+  | --------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | <font color="#ffffff">Method</font>           | GET                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+  | Header Name                                   | Authorization: JTW Token/Session Key/REST API Key                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+  | <font color="#ffffff">Status Code</font>      | 200                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+  | <font color="#ffffff">Response Payload</font> |   <ExpandableHeading>
+      ## Click to view the response payload
+
+      \{
+
+      "@odata.context": "\{tenant url}/
+
+      api/odata/$metadata#incidents",
+
+      "@odata.count": 53,
+
+      "value": \[
+
+      \{
+
+      "ActualCategory\_Valid": "05B8C5FC8DC64DA28A8776A8D8B2C986",
+
+      "ActualCategory": "Facility Security",
+
+      "Category\_Valid": "05B8C5FC8DC64DA28A8776A8D8B2C986",
+
+      "Category": "Facility Security",
+
+      "CauseCode\_Valid": "",
+
+      "CauseCode": "",
+
+      "ClosedBy": null,
+
+      "CreatedBy": "RThomas",
+
+      "Email": "RWright\@saasitdemo.com",
+
+      "FirstCallResolution": false,
+
+      "Impact\_Valid": "1AFFC174C7EA4AB79CCA6B15EB67006D",
+
+      "Impact": "Medium",
+
+      "IncidentNumber": 10435,
+
+      "IsNotification": true,
+
+      "IsVIP": false,
+
+      "IsWorkAround": false,
+
+      "LastModBy": "ATaylor",
+
+      "LastModDateTime": "2019-02-14T11:05:06Z",
+
+      "Phone": "+65.6829 2147",
+
+      "Priority\_Valid": "29CD5D78E16F4D82916C3E933A600096",
+
+      "Priority": "3",
+
+      "ProfileFullName": "Richard M Wright",
+
+      "ProfileLink\_Category": "Employee",
+
+      "ProfileLink\_RecID": "6EFAB27E9F164ECF96364EF18D233D26",
+
+      "ProfileLink": "6EFAB27E9F164ECF96364EF18D233D26",
+
+      "RecId": "05B5CD2DFAE54D86A04C74DBF616C1DE",
+
+      "Status\_Valid": "EAB221009EE34AB4BC1D14A42ED099AA",
+
+      "Status": "Active",
+
+      },
+
+      \{
+
+      "ActualCategory\_Valid": "FB7670462FF94B77AE72445E943F6A3C",
+
+      "ActualCategory": "Desktop Software",
+
+      "Category\_Valid": "FB7670462FF94B77AE72445E943F6A3C",
+
+      "Category": "Desktop Software",
+
+      "CauseCode\_Valid": "",
+
+      "CauseCode": "",
+
+      "ClosedBy": null,
+
+      "CreatedBy": "RThomas",
+
+      "Email": "PEmerson\@saasitdemo.com",
+
+      "FirstCallResolution": false,
+
+      "Impact\_Valid": "1AFFC174C7EA4AB79CCA6B15EB67006D",
+
+      "Impact": "Medium",
+
+      "IncidentNumber": 10409,
+
+      "IsNotification": true,
+
+      "IsVIP": false,
+
+      "IsWorkAround": false,
+
+      "LastModBy": "ATaylor",
+
+      "LastModDateTime": "2019-02-14T11:05:06Z",
+
+      "Phone": "+44 (0)1635 516700\r\n\r\n",
+
+      "Priority\_Valid": "29CD5D78E16F4D82916C3E933A600096",
+
+      "Priority": "3",
+
+      "ProfileFullName": "Pam J Emerson",
+
+      "ProfileLink\_Category": "Employee",
+
+      "ProfileLink\_RecID": "ACDA6CB0265D4C64A7F103AAF2906B2B",
+
+      "ProfileLink": "ACDA6CB0265D4C64A7F103AAF2906B2B",
+
+      "RecId": "0464AABB3FCF4EBC993D4CDC7C3EE8F4",
+
+      "Status\_Valid": "EAB221009EE34AB4BC1D14A42ED099AA",
+
+      "Status": "Active",
+
+      },
+    </ExpandableHeading> |
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Get Business Object by Filter example - fetch Incidents of Priority as 1
+
+  | URL                                           | https\://\{tenant url}/api/odata/businessobject/incidents?$filter=Priority eq '1'                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+  | --------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | <font color="#ffffff">Method</font>           | GET                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+  | Header Name                                   | Authorization: JTW Token/Session Key/REST API Key                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+  | <font color="#ffffff">Status Code</font>      | 200                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+  | <font color="#ffffff">Response Payload</font> |   <ExpandableHeading>
+      ## Click to view the response payload
+
+      \{
+
+      "@odata.context": "https\://ism-mastertest-tenant2.ivanticlouddev.com/api/odata/$metadata#incidents",
+
+      "@odata.count": 11,
+
+      "value": \[
+
+      \{
+
+      "ActualCategory\_Valid": "14348C1FFA044D8AB1E93005B4A0A287",
+
+      "ActualCategory": "Missing Item",
+
+      "Category\_Valid": "14348C1FFA044D8AB1E93005B4A0A287",
+
+      "Category": "Missing Item",
+
+      "CreatedBy": "JClerk",
+
+      "Email": "admin\@saasitdemo.com",
+
+      "Priority\_Valid": "CBB1D619A1BD452590E84E1B0DFC4F9B",
+
+      "Priority": "1",
+
+      "ProfileFullName": "Administrator Admin",
+
+      "ProfileLink\_Category": "Employee",
+
+      "ProfileLink\_RecID": "FB884D18F7B746A0992880F2DFFE749C",
+
+      "ProfileLink": "FB884D18F7B746A0992880F2DFFE749C",
+
+      "RecId": "0E275CE8B1AE42E18DE82C7E8B5C0920",
+
+      "Service": "Printing Service",
+
+      "SLA": "",
+
+      "SLALink\_Category": null,
+
+      "SLALink\_RecID": null,
+
+      "SLALink": null,
+
+      "Source\_Valid": "E76C6D4A52844E78950A9E703C3A8F61",
+
+      "Source": "Voice Mail",
+
+      "Status\_Valid": "2905321A3B12477A82E94E289F47786B",
+
+      "Status": "Active",
+
+      "Subject": "Print job has not arrived yet.",
+
+      "Symptom": "Print job has not arrived for board meeting. Needs to escalate this to high priority.",
+
+      "Urgency\_Valid": "6E4077D3FB6C44AA9DE3493422A27DC2",
+
+      "Urgency": "High",
+
+      "LoginId": "Admin",
+
+      "Owner\_Valid": "5918944FE08C4F088C5E02E27DB7C6E3",
+
+      "Owner": "JClerk",
+
+      "OwnerTeam\_Valid": "2E4BABD54FB9420D94F836F0D9B80C47",
+
+      "OwnerTeam": "Service Desk",
+
+      "OwnerType": "Profile.Employee",
+
+      },
+
+      \{
+
+      "ActualCategory\_Valid": "EED0A6F2E7EC44229752AE20578F7DFD",
+
+      "ActualCategory": "Performance",
+
+      "Category\_Valid": "EED0A6F2E7EC44229752AE20578F7DFD",
+
+      "Category": "Performance",
+
+      "ClosedBy": "JClerk",
+
+      "CreatedBy": "JClerk",
+
+      "Email": "FErnst\@saasitdemo.com",
+
+      "Priority\_Valid": "CBB1D619A1BD452590E84E1B0DFC4F9B",
+
+      "Priority": "1",
+
+      "ProfileFullName": "Frank T Ernst",
+
+      "ProfileLink\_Category": "Employee",
+
+      "ProfileLink\_RecID": "D8E9ECB03001437492B3BE453EDCBEE6",
+
+      "ProfileLink": "D8E9ECB03001437492B3BE453EDCBEE6",
+
+      "RecId": "23B46AE59E2D4109BE64F10463510009",
+
+      "Service\_Valid": "A0C7936D3B944D72901210F8151537D5",
+
+      "Service": "Financial Service",
+
+      "SLA": "",
+
+      "SLALink\_Category": null,
+
+      "SLALink\_RecID": null,
+
+      "SLALink": null,
+
+      "Source\_Valid": "B7065708DF4B449F8503621393B4A7AE",
+
+      "Source": "Self Service",
+
+      "Status\_Valid": "2905321A3B12477A82E94E289F47786B",
+
+      "Status": "Active",
+
+      "Subject": "ERP system seems to be really slow",
+
+      "Symptom": "System is slow to respond and appears to be hanging at times",
+
+      "Urgency\_Valid": "6E4077D3FB6C44AA9DE3493422A27DC2",
+
+      "Urgency": "High",
+
+      "LoginId": "FErnst",
+
+      "Owner\_Valid": "5918944FE08C4F088C5E02E27DB7C6E3",
+
+      "Owner": "JClerk",
+
+      "OwnerTeam\_Valid": "2E4BABD54FB9420D94F836F0D9B80C47",
+
+      "OwnerTeam": "Service Desk",
+
+      "OwnerType": "Profile.Employee",
+
+      },
+    </ExpandableHeading> |
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Get Business Object by Filter example - fetch Incidents created by JClerk
+
+  | URL                                           | https\://\{tenant url}/api/odata/businessobject/incidents?$filter=CreatedBy eq 'JClerk'                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+  | --------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | <font color="#ffffff">Method</font>           | GET                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+  | Header Name                                   | Authorization: JTW Token/Session Key/REST API Key                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+  | <font color="#ffffff">Status Code</font>      | 200                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+  | <font color="#ffffff">Response Payload</font> |   <ExpandableHeading>
+      ## Click to view the response payload
+
+      \{
+
+      "ActualCategory\_Valid": "EED0A6F2E7EC44229752AE20578F7DFD",
+
+      "ActualCategory": "Performance",
+
+      "Category\_Valid": "EED0A6F2E7EC44229752AE20578F7DFD",
+
+      "Category": "Performance",
+
+      "ClosedBy": "JClerk",
+
+      "CreatedBy": "JClerk",
+
+      "Email": "lmiller\@saasitdemo.com",
+
+      "FirstCallResolution": false,
+
+      "Impact\_Valid": "0ABE7B9E677D4A70BDC3BC5E9B19B258",
+
+      "Impact": "Low",
+
+      "IncidentNumber": 10315,
+
+      "IsNotification": true,
+
+      "IsVIP": true,
+
+      "LastModBy": "JClerk",
+
+      "Priority": "4",
+
+      "ProfileFullName": "Lisa K Miller",
+
+      "ProfileLink\_Category": "Employee",
+
+      "ProfileLink\_RecID": "0C530056F8E04831AC121ED5ABC50A90",
+
+      "ProfileLink": "0C530056F8E04831AC121ED5ABC50A90",
+
+      "RecId": "18E84A03F7C94C5C97524196AA9750F0",
+
+      "SLA": "",
+
+      "SLALink\_Category": null,
+
+      "SLALink\_RecID": null,
+
+      "SLALink": null,
+
+      "Source\_Valid": "FF0467C231124B2FA2DB2156632C8A92",
+
+      "Source": "Email",
+
+      "Status\_Valid": "2905321A3B12477A82E94E289F47786B",
+
+      "Status": "Active",
+
+      "Subject": "iPhone is running very slow.",
+
+      "Symptom": "iPhone is running very slowly after version upgrade.",
+
+      "Urgency\_Valid": "44021B6CC6E44E598868C4B3306053AE",
+
+      "Urgency": "Medium",
+
+      "LoginId": "LMiller",
+
+      "Owner\_Valid": "5918944FE08C4F088C5E02E27DB7C6E3",
+
+      "Owner": "JClerk",
+
+      },
+
+      \{
+
+      "ActualCategory\_Valid": "6C23103F9BFD4906801FE833AEF17CBB",
+
+      "ActualCategory": "How-To",
+
+      "Category\_Valid": "6C23103F9BFD4906801FE833AEF17CBB",
+
+      "Category": "How-To",
+
+      "CreatedBy": "JClerk",
+
+      "Email": "DJackson\@saasitdemo.com",
+
+      "Impact\_Valid": "1AFFC174C7EA4AB79CCA6B15EB67006D",
+
+      "Impact": "Medium",
+
+      "IncidentNumber": 10441,
+
+      "IsNotification": true,
+
+      "IsVIP": false,
+
+      "LastModBy": "JClerk",
+
+      "Phone": "+49.711.340190.0",
+
+      "Priority\_Valid": "29CD5D78E16F4D82916C3E933A600096",
+
+      "Priority": "3",
+
+      "ProfileFullName": "Dana L Jackson",
+
+      "ProfileLink\_Category": "Employee",
+
+      "ProfileLink\_RecID": "7C7671A8B5E34A60B0D5AFF4536D1020",
+
+      "ProfileLink": "7C7671A8B5E34A60B0D5AFF4536D1020",
+
+      "RecId": "197D122AA95643918CC9BD474A46BA62",
+
+      "Service\_Valid": "1A6C68571E6648E7A99305E1905C29B4",
+
+      "Service": "Benefits Management",
+
+      "SLA": "Benefits Management (Gold) for Sales and Marketing",
+
+      "SLALink\_Category": null,
+
+      "SLALink\_RecID": "ACDAE24F734C4812B584B0CF15A33194",
+
+      "SLALink": "ACDAE24F734C4812B584B0CF15A33194",
+
+      "Source\_Valid": "BB2A1F10810A439EB2F0DB745E55D1EE",
+
+      "Source": "Walk-In",
+
+      "Status\_Valid": "EAB221009EE34AB4BC1D14A42ED099AA",
+
+      "Status": "Active",
+
+      "Subject": "Unable to update information on Pension system",
+
+      "Symptom": "Needs instructions on how to access the system",
+
+      "Urgency\_Valid": "44021B6CC6E44E598868C4B3306053AE",
+
+      "Urgency": "Medium",
+
+      "LoginId": "DJackson",
+
+      "Owner\_Valid": "5918944FE08C4F088C5E02E27DB7C6E3",
+
+      "Owner": "JClerk",
+
+      },
+    </ExpandableHeading> |
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Get Business Object by Filter example - fetch Incidents which has created date and time greater than 2016-07-24T23:42:48Z
+
+  | URL                                           | https\://\{tenant url}/api/odata/businessobject/incidents?$filter=CreatedDateTime gt 2016-07-24T23:42:48Z                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+  | --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | <font color="#ffffff">Method</font>           | GET                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+  | Header Name                                   | Authorization: JTW Token/Session Key/REST API Key                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+  | <font color="#ffffff">Status Code</font>      | 200                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+  | <font color="#ffffff">Response Payload</font> |   <ExpandableHeading>
+      ## Click to view the response payload
+
+      \{
+
+      "@odata.context": "https\://ism-mastertest-tenant2.ivanticlouddev.com/api/odata/$metadata#incidents",
+
+      "@odata.count": 376,
+
+      "value": \[
+
+      \{
+
+      "ActualCategory\_Valid": "6C23103F9BFD4906801FE833AEF17CBB",
+
+      "ActualCategory": "How-To",
+
+      "Category\_Valid": "6C23103F9BFD4906801FE833AEF17CBB",
+
+      "Category": "How-To",
+
+      "CauseCode\_Valid": null,
+
+      "CauseCode": null,
+
+      "ClosedBy": null,
+
+      "ClosedDateTime": null,
+
+      "ClosedDuration": 0,
+
+      "CreatedBy": "ATaylor",
+
+      "CreatedDateTime": "2019-09-19T06:38:37Z",
+
+      "Email": "agreen\@saasitdemo.com",
+
+      "FirstCallResolution": false,
+
+      "Impact\_Valid": "1AFFC174C7EA4AB79CCA6B15EB67006D",
+
+      "Impact": "Medium",
+
+      "IncidentNumber": 11163,
+
+      "IsNotification": true,
+
+      "IsVIP": false,
+
+      "IsWorkAround": false,
+
+      "LastModBy": "ATaylor",
+
+      "LastModDateTime": "2019-09-19T06:39:04Z",
+
+      "Phone": "+61.2.8080.3300\r\n",
+
+      "Priority\_Valid": "29CD5D78E16F4D82916C3E933A600096",
+
+      "Priority": "3",
+
+      "ProfileFullName": "Aaron A Green",
+
+      "ProfileLink\_Category": "Employee",
+
+      "ProfileLink\_RecID": "2F851094BFE5437C97D19871D1C539C7",
+
+      "ProfileLink": "2F851094BFE5437C97D19871D1C539C7",
+
+      "RecId": "00C4C7922FE349BD8C251350FB9DC41E",
+
+      },
+
+      \{
+
+      "ActualCategory\_Valid": null,
+
+      "ActualCategory": null,
+
+      "Category\_Valid": null,
+
+      "Category": null,
+
+      "CauseCode\_Valid": null,
+
+      "CauseCode": null,
+
+      "ClosedBy": null,
+
+      "ClosedDateTime": null,
+
+      "ClosedDuration": 0,
+
+      "CreatedBy": "Email Listener",
+
+      "CreatedDateTime": "2019-07-05T09:25:41Z",
+
+      "Email": "Sai.Sagar\@ivanti.com",
+
+      "FirstCallResolution": false,
+
+      "Impact\_Valid": null,
+
+      "Impact": null,
+
+      "IncidentNumber": 11089,
+
+      "IsNotification": true,
+
+      "IsVIP": false,
+
+      "IsWorkAround": false,
+
+      "LastModBy": "InternalServices",
+
+      "LastModDateTime": "2019-07-05T09:25:53Z",
+
+      "Phone": null,
+
+      "Priority\_Valid": "29CD5D78E16F4D82916C3E933A600096",
+
+      "Priority": "3",
+
+      "ProfileFullName": "Sai Sagar",
+
+      "ProfileLink\_Category": "Employee",
+
+      "ProfileLink\_RecID": "85A6D0BF5C6345CA8AC9332FB1D347AB",
+
+      "ProfileLink": "85A6D0BF5C6345CA8AC9332FB1D347AB",
+
+      "RecId": "018089F51B0A4BC995F209A5D991742F",
+
+      },
+
+      \{
+
+      "ActualCategory\_Valid": "B30A0BC3F3174B22B328D742C24B59C4",
+
+      "ActualCategory": "Account Lockout",
+
+      "Category\_Valid": "B30A0BC3F3174B22B328D742C24B59C4",
+
+      "Category": "Account Lockout",
+
+      "CauseCode\_Valid": "E2489F3F7DA34B898CCD9569CA5541F2",
+
+      "CauseCode": "Other",
+
+      "ClosedBy": "JClerk",
+
+      "ClosedDateTime": "2018-09-29T15:04:00Z",
+
+      "ClosedDuration": 2966400,
+
+      "CreatedBy": "Admin",
+
+      "CreatedDateTime": "2018-09-20T08:42:00Z",
+
+      "Email": "mhendrics\@saasitdemo.com",
+
+      "FirstCallResolution": false,
+
+      "Impact\_Valid": "1AFFC174C7EA4AB79CCA6B15EB67006D",
+
+      "Impact": "Medium",
+
+      "IncidentNumber": 10325,
+
+      "IsNotification": true,
+
+      "IsVIP": true,
+
+      "IsWorkAround": false,
+
+      "LastModBy": "JClerk",
+
+      "LastModDateTime": "2018-09-29T15:04:00Z",
+
+      "Phone": "+1 719.531.5007\r\n",
+
+      "Priority\_Valid": "29CD5D78E16F4D82916C3E933A600096",
+
+      "Priority": "3",
+
+      "ProfileFullName": "Marcia S Hendric",
+
+      "ProfileLink\_Category": "Employee",
+
+      "ProfileLink\_RecID": "BB445711F9FF481DAA59ED0D8381A911",
+
+      "ProfileLink": "BB445711F9FF481DAA59ED0D8381A911",
+
+      "RecId": "019A1ED9C77C4210B7054F47D214C004",
+
+      },
+    </ExpandableHeading> |
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Get Business Object by Filter example - fetch Incidents which has created date and time lesser than 2011-07-24T23:42:48Z
+
+  | URL                                           | https\://\{tenant url}/api/odata/businessobject/incidents?$filter=CreatedDateTime lt 2011-07-24T23:42:48Z                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+  | --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+  | <font color="#ffffff">Method</font>           | GET                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+  | Header Name                                   | Authorization: JTW Token/Session Key/REST API Key                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+  | <font color="#ffffff">Status Code</font>      | 200                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+  | <font color="#ffffff">Response Payload</font> |   <ExpandableHeading>
+      ## Click to view the response payload
+
+      \{
+
+      "@odata.context": "https\://ism-mastertest-tenant2.ivanticlouddev.com/api/odata/$metadata#incidents",
+
+      "@odata.count": 243,
+
+      "value": \[
+
+      \{
+
+      "ActualCategory\_Valid": "4A550AD1778746FCBA65A19A630AC2C9",
+
+      "ActualCategory": "Printer Failure",
+
+      "Category\_Valid": "4A550AD1778746FCBA65A19A630AC2C9",
+
+      "Category": "Printer Failure",
+
+      "CauseCode\_Valid": "E2489F3F7DA34B898CCD9569CA5541F2",
+
+      "CauseCode": "Other",
+
+      "ClosedBy": "JClerk",
+
+      "ClosedDateTime": "2011-03-31T21:09:37Z",
+
+      "ClosedDuration": 6451200,
+
+      "CreatedBy": "Admin",
+
+      "CreatedDateTime": "2011-03-25T20:42:37Z",
+
+      "Email": "sharon.lowe\@saasitdemo.com",
+
+      "FirstCallResolution": true,
+
+      "Impact\_Valid": "1AFFC174C7EA4AB79CCA6B15EB67006D",
+
+      "Impact": "Medium",
+
+      "IncidentNumber": 10073,
+
+      "IsNotification": true,
+
+      "IsVIP": false,
+
+      "IsWorkAround": false,
+
+      "LastModBy": "JClerk",
+
+      "LastModDateTime": "2011-03-31T21:09:37Z",
+
+      "Phone": "+1 925.398.1800\r\n",
+
+      "Priority\_Valid": "29CD5D78E16F4D82916C3E933A600096",
+
+      "Priority": "3",
+
+      "ProfileFullName": "Sharon Lowe",
+
+      "ProfileLink\_Category": "Employee",
+
+      "ProfileLink\_RecID": "0B2C886035FB4A0D837273226EAE5DE4",
+
+      "ProfileLink": "0B2C886035FB4A0D837273226EAE5DE4",
+
+      "RecId": "030F0DA291EC46C9953817F0E22F188E",
+
+      "Resolution": "Resolved with user",
+
+      },
+
+      \{
+
+      "ActualCategory\_Valid": "B30A0BC3F3174B22B328D742C24B59C4",
+
+      "ActualCategory": "Account Lockout",
+
+      "Category\_Valid": "B30A0BC3F3174B22B328D742C24B59C4",
+
+      "Category": "Account Lockout",
+
+      "CauseCode\_Valid": "E2489F3F7DA34B898CCD9569CA5541F2",
+
+      "CauseCode": "Other",
+
+      "ClosedBy": "JClerk",
+
+      "ClosedDateTime": "2011-05-15T09:15:12Z",
+
+      "ClosedDuration": 5558400,
+
+      "CreatedBy": "Admin",
+
+      "CreatedDateTime": "2011-05-10T04:42:00Z",
+
+      "Email": "BLevitt\@saasitdemo.com",
+
+      "FirstCallResolution": false,
+
+      "Impact\_Valid": "1AFFC174C7EA4AB79CCA6B15EB67006D",
+
+      "Impact": "Medium",
+
+      "IncidentNumber": 10137,
+
+      "IsNotification": true,
+
+      "IsVIP": false,
+
+      "IsWorkAround": false,
+
+      "LastModBy": "JClerk",
+
+      "LastModDateTime": "2011-05-15T09:15:12Z",
+
+      "Phone": "+86 10 8520 0424",
+
+      "Priority\_Valid": "29CD5D78E16F4D82916C3E933A600096",
+
+      "Priority": "3",
+
+      "ProfileFullName": "Bob M Levitt",
+
+      "ProfileLink\_Category": "Employee",
+
+      "ProfileLink\_RecID": "2B2B4A6813D944B89A8E0F25078A3AB8",
+
+      "ProfileLink": "2B2B4A6813D944B89A8E0F25078A3AB8",
+
+      "RecId": "03C219DBC4EC49E6A5A320DE542AD591",
+
+      "Resolution": "Resolved with user",
+
+      },
+
+      \{
+
+      "ActualCategory\_Valid": "426ADE76BE9348C5B7304B6D76E0EFED",
+
+      "ActualCategory": "Facility Safety",
+
+      "Category\_Valid": "426ADE76BE9348C5B7304B6D76E0EFED",
+
+      "Category": "Facility Safety",
+
+      "CauseCode\_Valid": "E2489F3F7DA34B898CCD9569CA5541F2",
+
+      "CauseCode": "Other",
+
+      "ClosedBy": "JClerk",
+
+      "ClosedDateTime": "2011-05-15T21:38:00Z",
+
+      "ClosedDuration": 5558400,
+
+      "CreatedBy": "JClerk",
+
+      "CreatedDateTime": "2011-05-10T21:42:19Z",
+
+      "Email": "TJordan\@saasitdemo.com",
+
+      "FirstCallResolution": true,
+
+      "Impact\_Valid": "1AFFC174C7EA4AB79CCA6B15EB67006D",
+
+      "Impact": "Medium",
+
+      "IncidentNumber": 10138,
+
+      "IsNotification": true,
+
+      "IsVIP": false,
+
+      "IsWorkAround": false,
+
+      "LastModBy": "JClerk",
+
+      "LastModDateTime": "2011-05-15T21:38:00Z",
+
+      "Phone": "+61.2.8080.3300\r\n",
+
+      "Priority\_Valid": "29CD5D78E16F4D82916C3E933A600096",
+
+      "Priority": "3",
+
+      "ProfileFullName": "Tom G Jordan",
+
+      "ProfileLink\_Category": "Employee",
+
+      "ProfileLink\_RecID": "E9E9C300E3E442978DF40A35F39432C1",
+
+      "ProfileLink": "E9E9C300E3E442978DF40A35F39432C1",
+
+      "RecId": "03C7E9B0A56F4914B10028702DD52C7C",
+
+      "Resolution": "Resolved with user",
+
+      },
+    </ExpandableHeading> |
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Get Business Object by Filter example - fetch Incidents which has Owner value as null
+
+  | URL                                           | https\://\{tenant url}/api/odata/businessobject/incidents?$filter=Owner eq '$NULL'                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+  | --------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | <font color="#ffffff">Method</font>           | GET                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+  | Header Name                                   | Authorization: JTW Token/Session Key/REST API Key                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+  | <font color="#ffffff">Status Code</font>      | 200                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+  | <font color="#ffffff">Response Payload</font> |   <ExpandableHeading>
+      ## Click to view the response payload
+
+      \{
+
+      "@odata.context": "https\://ism-mastertest-tenant2.ivanticlouddev.com/api/odata/$metadata#incidents",
+
+      "@odata.count": 63,
+
+      "value": \[
+
+      \{
+
+      "ActualCategory\_Valid": null,
+
+      "ActualCategory": null,
+
+      "Category\_Valid": null,
+
+      "Category": null,
+
+      "CauseCode\_Valid": null,
+
+      "CauseCode": null,
+
+      "ClosedBy": null,
+
+      "ClosedDateTime": null,
+
+      "ClosedDuration": 0,
+
+      "CreatedBy": "Email Listener",
+
+      "CreatedDateTime": "2019-07-05T09:25:41Z",
+
+      "Email": "Sai.Sagar\@ivanti.com",
+
+      "FirstCallResolution": false,
+
+      "Impact\_Valid": null,
+
+      "Impact": null,
+
+      "IncidentNumber": 11089,
+
+      "IsNotification": true,
+
+      "IsVIP": false,
+
+      "IsWorkAround": false,
+
+      "LastModBy": "InternalServices",
+
+      "LastModDateTime": "2019-07-05T09:25:53Z",
+
+      "Phone": null,
+
+      "Status": "Logged",
+
+      "Subject": "plain customer 2",
+
+      "Urgency\_Valid": null,
+
+      "Urgency": null,
+
+      "LoginId": "Sai.Sagar\@ivanti.com",
+
+      "Owner\_Valid": null,
+
+      "Owner": null,
+
+      "OwnerTeam\_Valid": "2E4BABD54FB9420D94F836F0D9B80C47",
+
+      "OwnerTeam": "Service Desk",
+
+      "OwnerType": "Employee",
+
+      },
+
+      \{
+
+      "ActualCategory\_Valid": null,
+
+      "ActualCategory": null,
+
+      "Category\_Valid": null,
+
+      "Category": null,
+
+      "CauseCode\_Valid": null,
+
+      "CauseCode": null,
+
+      "ClosedBy": null,
+
+      "ClosedDateTime": null,
+
+      "ClosedDuration": 0,
+
+      "CreatedBy": "Email Listener",
+
+      "CreatedDateTime": "2019-07-08T04:04:17Z",
+
+      "Email": "Vishwanath.Kalavar\@ivanti.com",
+
+      "FirstCallResolution": false,
+
+      "Impact\_Valid": null,
+
+      "Impact": null,
+
+      "IncidentNumber": 11107,
+
+      "IsNotification": true,
+
+      "IsVIP": false,
+
+      "IsWorkAround": false,
+
+      "LastModBy": "InternalServices",
+
+      "LastModDateTime": "2019-07-08T04:04:38Z",
+
+      "Phone": null,
+
+      "Status": "Logged",
+
+      "Subject": "Cambridge email fix - 01",
+
+      "Urgency\_Valid": null,
+
+      "Urgency": null,
+
+      "LoginId": "Vishwanath.Kalavar\@ivanti.com",
+
+      "Owner\_Valid": null,
+
+      "Owner": null,
+
+      "OwnerTeam\_Valid": "2E4BABD54FB9420D94F836F0D9B80C47",
+
+      "OwnerTeam": "Service Desk",
+
+      "OwnerType": "Employee",
+
+      },
+
+      \{
+
+      "ActualCategory\_Valid": null,
+
+      "ActualCategory": null,
+
+      "Category\_Valid": null,
+
+      "Category": null,
+
+      "CauseCode\_Valid": null,
+
+      "CauseCode": null,
+
+      "ClosedBy": null,
+
+      "ClosedDateTime": null,
+
+      "ClosedDuration": 0,
+
+      "CreatedBy": "Email Listener",
+
+      "CreatedDateTime": "2019-10-11T06:03:20Z",
+
+      "Email": "Ritesh.Kumar\@ivanti.com",
+
+      "FirstCallResolution": false,
+
+      "Impact\_Valid": null,
+
+      "Impact": null,
+
+      "IncidentNumber": 11183,
+
+      "IsNotification": true,
+
+      "IsVIP": false,
+
+      "IsWorkAround": false,
+
+      "LastModBy": "InternalServices",
+
+      "LastModDateTime": "2019-10-11T06:03:21Z",
+
+      "Phone": null,
+
+      "Status": "Logged",
+
+      "Subject": "RE: Test",
+
+      "Urgency\_Valid": null,
+
+      "Urgency": null,
+
+      "LoginId": "Ritesh.Kumar\@ivanti.com",
+
+      "Owner\_Valid": null,
+
+      "Owner": null,
+
+      "OwnerTeam\_Valid": "2E4BABD54FB9420D94F836F0D9B80C47",
+
+      "OwnerTeam": "Service Desk",
+
+      "OwnerType": "Employee",
+    </ExpandableHeading> |
+</ExpandableHeading>
+
+<hint type="info">
+  The data displayed in the Response Payload is only a sample data, it does not contain the full list of responses but only a few are shown for sample.
+</hint>
+
+## Unsuccessful Responses
+
+<ExpandableHeading>
+  ## Empty Filter Value
+
+  Scenario: Trying to fetch incidents without defining the filter value.
+
+  https\://\{tenant url}/api/odata/businessobject/incidents?$filter=
+
+  Header Name:
+
+  **Authorization: Sessionkey**
+
+  | Code                                          | ISM\_5000                                                                                         |
+  | --------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+  | Description                                   | Invalid Request                                                                                   |
+  | Message                                       | \[  <br />"The Filter value cannot be empty. Provide a valid value and  <br />try again"  <br />] |
+  | <font color="#ffffff">HTTP STATUS CODE</font> | **500**                                                                                           |
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Invalid Filter Value
+
+  Scenario: Trying to fetch incident with invalid filter value.
+
+  https\://\{tenant url}/api/odata/businessobject/incidents?$filter=Status eq 'New'
+
+  Header Name:
+
+  **Authorization: Sessionkey**
+
+  | Code                                          | ISM\_4000                                                                             |
+  | --------------------------------------------- | ------------------------------------------------------------------------------------- |
+  | Description                                   | Invalid Request                                                                       |
+  | Message                                       | \[  <br />"Invalid Filter Value. Provide a valid Filter value and try again"  <br />] |
+  | <font color="#ffffff">HTTP STATUS CODE</font> | **400**                                                                               |
+</ExpandableHeading>

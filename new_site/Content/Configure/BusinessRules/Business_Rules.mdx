@@ -1,0 +1,508 @@
+---
+title: Using Business Rules
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:55 GMT+0300 (Eastern European Summer Time)
+---
+
+**Role**: Administrators.
+
+**Minimum Version**: \{\{Primary.Company}} \{\{Primary.Product}} 2024.2.
+
+\{\{FRS\_VARS.ProductName}} business rules implement domain-specific business logic. Rules are defined in metadata as part of business object definitions. Business rules automate or aid business object interactions with a user, with other business objects, and with various services, both internal and external. Notable internal services include the workflow service, email service and escalation watch.
+
+A domain model is defined as a set of interdependent business objects, where the dependencies are defined by relationships and business rules. For example, you can link an incident to a customer via a relationship defined in metadata. Once you have established the link between the incident and the customer, you can derive other information from it, such as the department of the customer and contact information, including email address, of the customer. Then you can assign an incident to the appropriate owner, based on the services of each department. After you have assigned an owner, the application sends an email to the customer with a status update and changes the status of the incident to active. You can then link the email to the incident via a relationship. The application starts the escalation watch and tracks metrics for the service level for the active incident. 
+
+These are all activities that are either automated by business rules, or are aided by them.
+
+<hint type="info">
+  Use the **Simplified Expression Editor** in the **Business Rules** console at all the Expression Editor placeholders with the :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/JxZJG390W_XzS7jR2toTX_fx-function.png" alt caption size="10" width="13" height="14"} icon. For more information refer to [Simplified Expression Editor](<../../Reference/Expressions/Simplified Expression Editor.mdx>).
+</hint>
+
+### About Business Rule Inheritance
+
+\{\{FRS\_VARS.ProductName}} does not support business rule inheritance. If a business rule applies to a group business object, it does not also apply to the children business objects (unless you specifically apply it to a child business object). For example, the **FRS\_knowledge** business object is a group business object and the **FAQ** business object is a child. Business rules for the **FRS\_knowledge** business object do not apply to the **FAQ** business object. Therefore, you must apply business rules to all of the business objects that they apply to.
+
+### Business Rule Types
+
+| Business Rule Type                  | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| ----------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Triggered Actions                   | Contain generic rules. They are executed during business object transactions, typically when you save a business object. The trigger is based on one of the events or a combination of events, such as business object events (insert, delete, or update), field events (initialize or update), or relationship events (link or unlink). You can also add an additional filter expression that if provided, is a predicate expression.<br />These rules are evaluated on the server side.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| Initialization Rules                | Business rules that the application executes when a business object is created.<br />The application executes the rules in the order listed. Therefore, the results of rules that are lower on the list can change depending on the returned values of the rules that are higher on the list. You can reorder the initialization rules. See :Link[Modifying Business Rules]{label="Modifying Business Rules" overridedLabel="Modifying Business Rules" spaceId docId="4XSn5lf-Ocn14fHU5D_yY" version="v2" docAnchorId="#6Modifying" loadingMethod="dynamic" newTab="false" href="Business_Rules.mdx"}.<br />These rules are evaluated on the server side.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| Editing and Calculation Rules       | Listed by condition. The calculation rules are listed under the **Whenever fields are changed set** condition.<br />Business rules that automatically populate the value of a field when a dependent field changes. These rules contain field references. For example, the rule called **IsReclassifiedForResolution** uses this expression: **$(if Category != ActualCategory then true else false)**. Whenever the value of either the **Category** field or the **ActualCategory** field changes, the application executes the **IsReclassifiedForResolution** rule.<br />Editing rules, also called autofill rules, can also include calculation fields allowing you to define calculations on the field.<br />For editing rules, use the **On Change** and **Set** drop-down lists to create a sequence. Add expressions in the field provided.<br />The results of these rules may also trigger additional business rules such as triggered actions.<br />These rules are evaluated on both the client side and the server side.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| Read-Only Rules                     | Adds read-only rules for entire business objects. For example, you can render a business object as read-only when the status field changes to resolved.<br />A business object must contain a read-only field to use this option.<br />When a form is opened for a read-only object, all controls (except those listed in the exception list) become read-only. When defining an exception list, it is important to understand which fields can be changed by business rules. These fields must be also be added to the exceptions list. Updating a field that is not part of the exception list generates an error message.<br />Child business objects are not affected when a business object is changed to a read-only state. However, you may not be able to link a new child business object to this business object.<br />These rules are evaluated on the client side, provided that the field is in the form that you are working on. Read-only business rules for fields that are not in the form that you are working on are evaluated on the server side.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| Required Rules                      | Determine when a field on a form must be filled out before you can save a record. You can choose whether the field is always required or conditionally required based on an expression. End users must provide the required values in the fields before saving the record.<br />If the field is available on the form, the rule is checked immediately on the client side. If the field is not shown on the form, the system evaluates the rule on the server side after the form is submitted.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| Before-save Rules                   | Rules that are executed just before a business object is saved. These business rules usually populate a field.<br />The application executes the rules in the order listed. Therefore, the results of rules that are lower on the list can change depending on the returned values of the rules that are higher on the list. You can reorder the before-save rules. See :Link[Modifying Business Rules]{label="Modifying Business Rules" overridedLabel="Modifying Business Rules" spaceId docId="4XSn5lf-Ocn14fHU5D_yY" version="v2" docAnchorId="#6Modifying" loadingMethod="dynamic" newTab="false" href="Business_Rules.mdx"}.<br />These rules are executed on the server side.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| Regular Expression Validation Rules | Add custom validation rules based on regular expressions (RegEx). These rules run when you save an object.<br />See [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular\_Expressions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions) and [http://stackoverflow.com/questions/46155/validate-email-address-in-javascript](http://stackoverflow.com/questions/46155/validate-email-address-in-javascript) for information about regular expressions.<br />The following regular expressions apply:<br />**Alphanumeric**: Contains the validation type: ^\[a-zA-Z0-9\s.\\-]+$<br />**Zip Code**: Contains the validation type: ^((\d\{\{5}}-\d\{\{4}})\|(\d\{\{5}})\|(\[A-Z]\d\[A-Z]\s\d\[A-Z]\d))$<br />**Email**: Contains the validation type: ^\[A-Za-z0-9]\((\[\_\\.\\-]?\[a-zA-Z0-9]+)\*)@(\[A-Za-z0-9]+)((\\\[\\.\\-]?\[a-zA-Z0-9]+)\*)\\.(\[A-Za-z]\{2,})$<br />**Phone US**: Contains the validation type: ^(\[0-9a-fA-F]\[0-9a-fA-F]:)\{\{5}}(\[0-9a-fA-F]\[0-9a-fA-F])$<br />**IP Address**: Contains the validation type: ^(\d\{1,2}\|1\d\d\|2\[0-4]\d\|25\[0-5])\\.(\d\{1,2}\|1\d\d\|2\[0-4]\d\|25\[0-5])\\.(\d\{1,2}\|1\d\d\|2\[0-4]\d\|25\[0-5])\\.(\d\{1,2}\|1\d\d\|2\[0-4] \d\|25\[0-5])$<br />**MAC Address**: Contains the validation type: ^\[01]?\[- .]?\\(?\[2-9]\d\{\{2}}\\)?\[- .]?\d\{\{3}}\[- .]? \d\{\{4}}$<br />**Percent**: Contains the validation type: ^100$\|^\s\*(\d\{0,2})((\\.\|\\,)(\d\*))?\s\*\\%?\s\*$<br />**Custom**: Requires the additional entry of a custom expression.<br />Enter the message to show when this validation encounters an error.<br />These rules are executed on the client side. This depends on the field references used in the rule. |
+| Validation Rules                    | Prevent users from saving a record unless the result of the validation rule is true. The validation rule calculates the result of an expression as a record is saved, and if the result of that calculation is false, the user cannot save the record. You can define the error message shown to the user if the rule prevents saving the record.<br />An example is the validation expression found in the **Incident** business object:<br />$(<br />((Status != "Closed") && (Status != "Resolved")) \|\|<br />IsTrueForAllChildren("Incident#", RecId, "Task#Assignment.Rev3", "$(Status == 'Completed' \|\| Status == 'Canceled')")<br />)<br />This expression prevents a user saving an incident with a status of resolved or closed unless all child Task#Assignment records have a status of completed or canceled.<br />These rules are executed on the client side. This depends on the field references used in the rule.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+
+### Business Rule Engine States
+
+All business rules go through several states, as shown in the figure below.
+
+*Business Rule Engine States*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/kvpwKB6O7CSSvoFCUSKTR_object-states.png" position="flex-start" size="40" initialPath="../../Resources/Images/help-images/object-states.png" githubPath="Content/Resources/Images/help-images/object-states.png" showCaption="false"></Image>
+
+| Business Rule Engine State | Description                                                                                                                                                                                                                                                                                                                                                                                      | Business Rules                                                                |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------- |
+| Initialization             | When you create a new instance of a business object. Typically the application displays a form with data in the fields.                                                                                                                                                                                                                                                                          | Initialization rules                                                          |
+| Load                       | When you are not creating a new instance of a business object, but are updating an existing business object.                                                                                                                                                                                                                                                                                     | Calculation rules                                                             |
+| Client Update              | When clients (such as the user interface, workforce engine, email listener, and so on) enter data about the business object instance. This is when the editing and calculation rules are executed to update the values. When you save, the required and read-only rules are executed on the client.<br />The client sends the data to the server.                                                | Editing rules<br />Calculation rules<br />Read-only rules<br />Required rules |
+| Server Update              | When the server fills the business object with the data that the client submitted. This is when the application executes editing and calculation rules. This is the only state when triggered actions execute.<br />Any of these business rules may cause the application to prompt the client for information. If the client enters information, the flow goes back to the client update state. | Editing rules<br />Calculation rules<br />Triggered actions                   |
+| Before-Save                | The state immediately before saving the business object.<br />Any of these business rules may cause the application to prompt the client for information. If the client enters information, the flow goes back to the client update state.                                                                                                                                                       | Before-save rules                                                             |
+| Validation                 | The business object is now in a read-only state on the server. This is when the application validates all of the required rules and ensures that all validated fields meet the validated conditions.<br />Any of these business rules may cause the application to prompt the client for information. If the client enters information, the flow goes back to the client update state.           | Validation rules<br />Regular expression validation rules<br />Required rules |
+| After-Commit               | When certain quick actions are executed, such as [Send Email Action](<../QuickActions/Classical Action Designer/templates/Send Email.mdx>). Note that this quick action was actually triggered in the server update state, but was not executed until this state.                                                                                                                                | Read-only rules                                                               |
+
+### Editing Business Rule Evaluation Order
+
+A business rule can have a trigger field and one or more expression field dependencies. There are two things that can cause a rule to execute: trigger fields and expression field dependencies.
+
+*Editing Rule*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/inh1yG-8b7d-BmfHRa1Pr_editing-rule.png" position="flex-start" size="40" initialPath="../../Resources/Images/help-images/editing-rule.png" githubPath="Content/Resources/Images/help-images/editing-rule.png" showCaption="false"></Image>
+
+In the figure above, the **Owner** field is the trigger field and **\[OtherObject]PrimaryEmail** is the expression field reference. The expression field reference can have more than one expression in it.
+
+The application activates a field reference dependency only after the editing rule has been triggered at least once by its trigger field.  Trigger fields are not necessarily referenced in the expression field references.
+
+### Business Rule Cycle Dependencies
+
+Some editing business rules may have cyclic dependencies.
+
+*Business Rule Cyclic Dependency*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/CIMF8iKCs8Pvl-30w402I_editing-rule2.png" position="flex-start" size="40" initialPath="../../Resources/Images/help-images/editing-rule2.png" githubPath="Content/Resources/Images/help-images/editing-rule2.png" showCaption="false"></Image>
+
+In the figure above, in the first editing business rule, whenever there is a change to field 1, field 2 changes. In the second editing business rule, whenever there is a change to field 2, field 1 changes. This results in a cyclic dependency that cannot be properly evaluated. In this case, there are no final values for field 1 and field 2 and the application cannot calculate the result. However, there are cases where recursive editing rules do produce a definite and useful result and you do not need to avoid these rules.
+
+When the application cannot evaluate recursive rules, the application stops re-evaluating them at a certain point and returns a result that may not be the intended result. We recommend that you avoid recursive business rules.
+
+If a business rule returns the same value that its target already has, the application does not re-evaluate its dependent rules.
+
+### &#xA;Using Business Rule Tracing
+
+To turn on the rule trace, do the following:
+
+1. From the Configuration Console, click **Monitor > Application Logs > Logging Configuration** to open the **Logging Configuration** workspace.
+2. Double-click the **AppServer\_RuleTrace** service to open it.
+3. In the **Log Level** field, select a log level, such as DEBUG, from the drop-down list.
+4. Click **Save**.
+
+After you create an instance of a business object, such as creating an incident, you can review the logs associated with the rule trace by doing the following:
+
+1. Log in to \{\{FRS\_VARS.ProductName}}.
+2. Open the **Logs** workspace.
+3. Select **Rule Trace** from the **Saved Search** drop-down list.
+4. Open a log entry, and view the data in the **Message** field.
+
+<Paragraph indent="1">
+  The **Message** field lists all of the actions that the application has taken, including when it executed each rule. At the beginning are the initialization rules, followed by editing and calculation rules. The information may be very long and there may be more than one entry for each action. It shows each and every rule that the application has executed.
+</Paragraph>
+
+## Viewing Business Rules
+
+You access the business rules from the Configuration console.
+
+1. From the Configuration Console, click **Build > Business Objects** to open the **Business Objects** workspace.
+2. Open a business object.
+3. Click the **Business Rules** tab. The application displays the **Business Rules** workspace. The business rules are displayed in category groups.
+4. To view all of the business rules in an expanded view, click **Expand Rules**.
+5. To view the business rules in category groups, click **Collapse Rules**.
+6. To view all of the business rules for a category in an expanded view, click the down arrow next to the category name.
+7. To view just the business rule category name, click the up arrow next to the category name.
+8. To reload the business rules, click **Reload**.
+9. To search for a term in a business rule, enter the term in the search area.
+10. To search for a field name in a business rule, enter the field name in the search area and click **Search field names only**.
+11. To show business rules only for a certain form, select a form from the **Show rules for form** drop-down list.
+
+## Creating a Business Rule
+
+<hint type="info">
+  Business rules apply to records that are created after the business rule was created, and do not apply to existing records.
+</hint>
+
+- :Link[Creating a Triggered Action]{label="Creating a Triggered Action" overridedLabel="Creating a Triggered Action" spaceId docId="4XSn5lf-Ocn14fHU5D_yY" version="v2" docAnchorId="#Creating_a_Triggered_Action" loadingMethod="dynamic" newTab="false" href="Business_Rules.mdx"}
+- :Link[Creating an Initialization Rule]{label="Creating an Initialization Rule" overridedLabel="Creating an Initialization Rule" spaceId docId="4XSn5lf-Ocn14fHU5D_yY" version="v2" docAnchorId="#Creating_an_InitializationRule" loadingMethod="dynamic" newTab="false" href="Business_Rules.mdx"}
+- :Link[Creating an Editing Rule]{label="Creating an Editing Rule" overridedLabel="Creating an Editing Rule" spaceId docId="4XSn5lf-Ocn14fHU5D_yY" version="v2" docAnchorId="#Creating_anEditing_and_CalculationRule" loadingMethod="dynamic" newTab="false" href="Business_Rules.mdx"}
+- :Link[Creating a Calculation Rule]{label="Creating a Calculation Rule" overridedLabel="Creating a Calculation Rule" spaceId docId="4XSn5lf-Ocn14fHU5D_yY" version="v2" docAnchorId="#Creating_a_CalculationRule" loadingMethod="dynamic" newTab="false" href="Business_Rules.mdx"}
+- :Link[Creating a Read-Only Rule]{label="Creating a Read-Only Rule" overridedLabel="Creating a Read-Only Rule" spaceId docId="4XSn5lf-Ocn14fHU5D_yY" version="v2" docAnchorId="#Creating_a_Read-Only_Rule" loadingMethod="dynamic" newTab="false" href="Business_Rules.mdx"}
+- :Link[Creating a Required Rule]{label="Creating a Required Rule" overridedLabel="Creating a Required Rule" spaceId docId="4XSn5lf-Ocn14fHU5D_yY" version="v2" docAnchorId="#Creating_a_Required_Rule" loadingMethod="dynamic" newTab="false" href="Business_Rules.mdx"}
+- :Link[Creating a Before-Save Rule]{label="Creating a Before-Save Rule" overridedLabel="Creating a Before-Save Rule" spaceId docId="4XSn5lf-Ocn14fHU5D_yY" version="v2" docAnchorId="#Creating_a_Before-Save_Rule" loadingMethod="dynamic" newTab="false" href="Business_Rules.mdx"}
+- :Link[Creating a Regular Expression Validation Rule]{label="Creating a Regular Expression Validation Rule" overridedLabel="Creating a Regular Expression Validation Rule" spaceId docId="4XSn5lf-Ocn14fHU5D_yY" version="v2" docAnchorId="#Creating_a_Regular_Expression_ValidationRule" loadingMethod="dynamic" newTab="false" href="Business_Rules.mdx"}
+- :Link[Creating a Validation Rule]{label="Creating a Validation Rule" overridedLabel="Creating a Validation Rule" spaceId docId="4XSn5lf-Ocn14fHU5D_yY" version="v2" docAnchorId="#Creating_a_ValidationRule" loadingMethod="dynamic" newTab="false" href="Business_Rules.mdx"}
+
+### Creating a Triggered Action
+
+1. From the Configuration Console, click **Build > Business Object** to open the **Business Objects** workspace.
+2. Open a business object.
+3. Select the **Business Rules** tab.
+4. Click **Triggered Actions**. The **Triggered Actions** window appears.
+
+<Paragraph indent="1">
+  *List of Triggered Actions*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/qyXtjhNZD54Yayr6YIEpp_addtrigger.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/add_trigger.png" githubPath="Content/Resources/Images/help-images/add_trigger.png" showCaption="false"></Image>
+
+5. Click **Add Trigger**. Select \{\{FRS\_VARS.Classic\_Action\_Designer}} in the **Create Triggered Action** window.
+
+<Paragraph indent="1">
+  *Create a Triggered Action*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/2ZOAI_PGnuvA3XDwOh1bb_createtrigger.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/create_trigger.png" githubPath="Content/Resources/Images/help-images/create_trigger.png" showCaption="false"></Image>
+
+6. Enter information into the fields.
+
+| Trigger                                                                                              | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| ---------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Trigger Name                                                                                         | Name of the triggered action.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| Description                                                                                          | Optional description of the triggered action.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| Select an event that will trigger this action                                                        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| Object Event: On Insert                                                                              | Runs when the business object is inserted.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| Object Event: On Delete                                                                              | Runs when the business object is deleted.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| Object Event: On Update                                                                              | Runs when the business object is modified and saved.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Field Event: On Initialize                                                                           | Runs when a specific field is initialized. Select the field from the drop-down list.<br />The following additional parameters appear when this option is selected, depending on the specified field:<br />**is changed** (runs when the field is modified)<br />**is set to** condition (runs when the field is modified to a specific string)                                                                                                                                                                                                                                                                                                                                                                                    |
+| Field Event: On Update                                                                               | Runs when a specific field is modified. Select the field from the drop-down list.<br />The following additional parameters appear when this option is selected, depending on the specified field:<br />**is changed** (runs when the field is modified)<br />**is changed to** condition (runs when the field is modified)<br />**is changed from** condition (runs when the field is modified from a specific string)<br />**is changed from** condition **to** other condition (runs when the field is modified from a specific string to a specific string)<br />**is set to** condition (runs when the field is modified to a specific string)<br />**LastModDatetime** and **LastModBy** fields are not supported on update. |
+| Relationship Event: On Link                                                                          | Runs when a specified relationship is linked. Select the relationship from the drop-down list.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| Relationship Event: On Unlink                                                                        | Runs when a specified relationship is unlinked. Select the relationship from the drop-down list.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| Conditional Expression                                                                               |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| In addition to the above criteria, the action will only trigger if the following expression is true: | Specifies a Boolean expression that allows the trigger to occur if this expression is true.<br />The action only triggers if both the selected event as specified above occurs and the expression specified in this field occur.<br />The action does not trigger if the expression specified in this field occurs but the selected event as specified above does not occur.<br />The action also does not trigger if the expression specified in this field does not occur but the selected event as specified above does occur.<br />Both must occur for the action to trigger.                                                                                                                                                 |
+| Disable Rule                                                                                         | Disables this triggered action. Select this option to create a read-only business rule.<br />You cannot disable triggered actions that contain calculations.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+
+7. Click **Next >>**.
+8. Select one of the following actions:
+
+<table isTableHeaderOn="true">
+  <tr>
+    <td>
+      Action
+    </td>
+    <td>
+      Description
+    </td>
+  </tr>
+  <tr>
+    <td>
+      New Action Type: Configure new action
+    </td>
+    <td>
+      Configures a new quick action. Select a quick action from the drop-down list. See [Using Quick Actions](../QuickActions/Using_Quick_Actions.mdx).
+      When creating a Triggered action, the following actions are removed from the drop-down list: Go to Record, Run for Collection, Go to Action, and Show a Popup. These actions cannot be used with triggers.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Select Action: Use copy of existing action
+    </td>
+    <td>
+      Uses a copy of an existing quick action. Select a quick action from the drop-down list. See [Using Quick Actions](../QuickActions/Using_Quick_Actions.mdx).
+      <hint type="info">
+        - When creating a Triggered action, the following actions are removed from the dropdown list: **Go to Record**, **Run for Collection**, **Go to Action**, and **Show a Popup**. These actions cannot be used with triggers.
+        - It lists the action names, which are associated with the following functions.
+        <ExpandableHeading>
+          ## Associated functions:
+          - Baseline
+          - Composite Action
+          - Create RFC for Variance
+          - Create Variance Report
+          - Delete Object
+          - Insert Child Object
+          - Insert Object
+          - Inventory Manager
+          - Mobile Push Notification
+          - Run Program
+          - Run Rest Web Service
+          - Run Web Service
+          - Run for Child
+          - Search and Link
+          - Search and Unlink
+          - Send Email
+          - Start IPCM Voice Activity
+          - Update Object
+          - Web Service Script
+          It also lists functions names of the following deprecated functions, if you still have these in your environment:
+          - License Manager
+          - Recognition Rule
+          - Send Mobile Notification
+          - Unlink Software Inventory
+          - Unlink Software Product
+        </ExpandableHeading>
+      </hint>
+    </td>
+  </tr>
+</table>
+
+1. Click **Next >>** to configure further or click **Save** to save the triggered action.
+
+<hint type="info" indent="1">
+  If you select **Next >>** for further configuration, the options that appear depend on the selected action type.
+</hint>
+
+### Creating an Initialization Rule
+
+1. From the Configuration Console, click **Build > Business Object** to open the **Business Objects** workspace.
+2. Open a business object.
+3. Select the **Business Rules** tab.
+4. Click **Initialization Rules**.
+5. Click **Add Initialization Rule**.
+
+<Paragraph indent="1">
+  *Add Initialization Rule*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/UNXJevTwIlWLVTdhlmiTJ_add-initialization-rule.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/add-initialization-rule.png" githubPath="Content/Resources/Images/help-images/add-initialization-rule.png" showCaption="false"></Image>
+
+6. Enter information into the fields.
+
+| Field             | Description                                                                             |
+| ----------------- | --------------------------------------------------------------------------------------- |
+| Field Name        | The field that the initialization rule applies to.                                      |
+| Name              | An optional name for the initialization rule.                                           |
+| Description       | An optional description for the initialization rule.                                    |
+| Expression Editor | The expression that specifies the value that the initialization rule sets the field to. |
+| Disable Rule      | Specifies if the initialization rule is disabled.                                       |
+
+7. Click **Save**.
+
+### Creating an Editing Rule
+
+1. From the Configuration Console, click **Build > Business Object** to open the **Business Object** workspace.
+2. Open a business object.
+3. Select the **Business Rules** tab.
+4. Click **Editing and Calculation Rules**.
+5. Click **Add Editing Rule**.
+
+<Paragraph indent="1">
+  *Add Editing Rule*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/1jk92eo857GAJYvR-Yz5r_add-editing-rule.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/add-editing-rule.png" githubPath="Content/Resources/Images/help-images/add-editing-rule.png" showCaption="false"></Image>
+
+6. Enter information into the fields.
+
+| Field                                                                              | Description                                                                                                                                                            |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| On Change                                                                          | The field which, when changed, triggers the rule to execute.                                                                                                           |
+| Set                                                                                | The field that gets changed when the field specified by the **On Change** parameter changes.                                                                           |
+| Assign only if target field is empty                                               | Specifies to only change the value of the field specified by the **Set** parameter if the value is empty. The value does not change if there is a value already there. |
+| Invoke editing rules for the dependent fields of the target field (cascade change) | Enables the cascading effect.                                                                                                                                          |
+| Name                                                                               | An optional name for the editing rule.                                                                                                                                 |
+| Description                                                                        | An optional description for the editing rule.                                                                                                                          |
+| Expression Editor                                                                  | The expression that specifies the value that the editing rule sets the field specified by the **Set** parameter to.                                                    |
+| Disable Rule                                                                       | Specifies if the editing rule is disabled.                                                                                                                             |
+
+7. Click **Save**.
+
+### Creating a Calculation Rule
+
+1. From the Configuration Console, click **Build > Business Object** to open the **Business Objects** workspace.
+2. Open a business object.
+3. Select the **Business Rules** tab.
+4. Click **Editing and Calculation Rules**.
+5. Click **Add Calculation Rule**.
+
+<Paragraph indent="1">
+  *Add Calculation Rule*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/OFfm5nJTldKWDZsbOLePI_add-calculation-rule.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/add-calculation-rule.png" githubPath="Content/Resources/Images/help-images/add-calculation-rule.png" showCaption="false"></Image>
+
+6. Enter information into the fields.
+
+| Field                    | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Field Name               | The field to change by this calculation business rule.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| Condition                | Specifies when the business rule is evaluated. Can be one of the following:<br />**Always**: The rule is not evaluated in the business rule engine state called Before-Save or in the business rule engine state called After-Commit. Evaluated on the client side.<br />**BeforeSave**: The rule is only evaluated in the business rule engine state called Before-Save, before the business object is saved. Evaluated on the server side.<br />**AfterSave**: The rule is only evaluated in the business rule engine state called After-Commit, after the business object is saved. Evaluated on the server side. |
+| Also Recalculate on Load | Calculates the field value when reading the record from the database.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Name                     | An optional name for the calculation rule.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| Description              | An optional description for the calculation rule.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| Expression Editor        | The expression that specifies the value that the calculation rule sets the field specified by the **Field Name** parameter to.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+
+7. Click **Save**.
+
+### Creating a Read-Only Rule
+
+1. From the Configuration Console, click **Build > Business Object** to open the **Business Objects** workspace.
+2. Open a business object.
+3. Select the **Business Rules** tab.
+4. Click **Read-only Rules**.
+5. Click **Add Read-only Rule**.
+
+<Paragraph indent="1">
+  *Add Read-Only Rule*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/7ufdPc4AM9TktoHwKzaXc_add-read-only-rule.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/add-read-only-rule.png" githubPath="Content/Resources/Images/help-images/add-read-only-rule.png" showCaption="false"></Image>
+
+6. Enter information into the fields.
+
+| Field                                                        | Description                                                                                                                                                                                                                            |
+| ------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Field Name                                                   | The field to change by this read-only business rule.                                                                                                                                                                                   |
+| This field is always read only                               | Specifies that the field specified by the **Field Name** parameter cannot be changed (that is, is read only).                                                                                                                          |
+| This field is conditionally read only based on an expression | Specifies that the field specified by the **Field Name** parameter cannot be changed (that is, is read only) depending on the value of the expression.                                                                                 |
+| Name                                                         | An optional name for the read-only rule.                                                                                                                                                                                               |
+| Description                                                  | An optional description for the read-only rule.                                                                                                                                                                                        |
+| Expression Editor                                            | Only used if you selected **This field is conditionally read only based on an expression**.<br />Specifies a Boolean expression that if evaluated to true, allows the field specified by the **Field Name** parameter to be read only. |
+| Disable Rule                                                 | Specifies if the read-only rule is disabled.                                                                                                                                                                                           |
+
+7. Click **Save**.
+
+### Creating a Required Rule
+
+1. From the Configuration Console, click **Build > Business Object** to open the **Business Objects** workspace.
+2. Open a business object.
+3. Select the **Business Rules** tab.
+4. Click **Required Rules**.
+5. Click **Add Required Rule**.
+
+<Paragraph indent="1">
+  *Add Required Rule*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/PtTRWevEsvDPL6fn-wvZE_add-required-rule.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/add-required-rule.png" githubPath="Content/Resources/Images/help-images/add-required-rule.png" showCaption="false"></Image>
+
+6. Enter information into the fields.
+
+| Field                                                       | Description                                                                                                                                                                                                                          |
+| ----------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Field Name                                                  | The field to change by this required business rule.                                                                                                                                                                                  |
+| This field is always required                               | Specifies that the field specified by the **Field Name** parameter is always required.                                                                                                                                               |
+| This field is conditionally required based on an expression | Specifies that the field specified by the **Field Name** parameter is always required depending on the value of the expression.                                                                                                      |
+| Name                                                        | An optional name for the required rule.                                                                                                                                                                                              |
+| Description                                                 | An optional description for the required rule.                                                                                                                                                                                       |
+| Expression Editor                                           | Only used if you selected **This field is conditionally required based on an expression**.<br />Specifies a Boolean expression that if evaluated to true, allows the field specified by the **Field Name** parameter to be required. |
+| Disable Rule                                                | Specifies if the required rule is disabled.                                                                                                                                                                                          |
+
+7. Click **Save**.
+
+### Creating a Before-Save Rule
+
+1. From the Configuration Console, click **Build > Business Object** to open the **Business Objects** workspace.
+2. Open a business object.
+3. Select the **Business Rules** tab.
+4. Click **Before-save Rules**.
+5. Click **Add Before-save Rule**.
+
+<Paragraph indent="1">
+  *Add Before-Save Rule*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/UmL3LFt_iujtZbby6VHsA_add-before-save-rule.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/add-before-save-rule.png" githubPath="Content/Resources/Images/help-images/add-before-save-rule.png" showCaption="false"></Image>
+
+6. Enter information into the fields.
+
+| Field        | Description                                                                                                                    |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------ |
+| Field Name   | The field to change by this before-save business rule.                                                                         |
+| Name         | An optional name for the before-save rule.                                                                                     |
+| Description  | An optional description for the before-save rule.                                                                              |
+| Expression   | The expression that specifies the value that the before-save rule sets the field specified by the **Field Name** parameter to. |
+| Disable Rule | Specifies if the before-save rule is disabled.                                                                                 |
+
+7. Click **Save**.
+
+### Creating a Regular Expression Validation Rule
+
+1. From the Configuration Console, click **Build > Business Object** to open the **Business Objects** workspace.
+2. Open a business object.
+3. Select the **Business Rules** tab.
+4. Click **Regular Expression Validation Rules**.
+5. Click **Add Regular Expression Validation Rule**.
+
+<Paragraph indent="1">
+  *Add Regular Expression Validation Rule*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/YF-_3hRIwiyOUeWLgJeVf_add-regex-validation-rule.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/add-regex-validation-rule.png" githubPath="Content/Resources/Images/help-images/add-regex-validation-rule.png" showCaption="false"></Image>
+
+6. Enter information into the fields.
+
+| Field           | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Field Name      | The field to check the expression type for.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| Expression Type | The expression type. Can be one of the following:<br />**Alphanumeric**: Contains the validation type: ^\[a-zA-Z0-9\s.\\-]+$<br />**Zip Code**: Contains the validation type: ^((\d\{\{5}}-\d\{\{4}})\|(\d\{\{5}})\|(\[A-Z]\d\[A-Z]\s\d\[A-Z]\d))$<br />**Email**: Contains the validation type: ^\[A-Za-z0-9]\((\[\_\\.\\-]?\[a-zA-Z0-9]+)\*)@(\[A-Za-z0-9]+)((\\\[\\.\\-]?\[a-zA-Z0-9]+)\*)\\.(\[A-Za-z]\{2,})$<br />**Phone US**: Contains the validation type: ^(\[0-9a-fA-F]\[0-9a-fA-F]:)\{\{5}}(\[0-9a-fA-F]\[0-9a-fA-F])$<br />**IP Address**: Contains the validation type: ^(\d\{1,2}\|1\d\d\|2\[0-4]\d\|25\[0-5])\\.(\d\{1,2}\|1\d\d\|2\[0-4]\d\|25\[0-5])\\.(\d\{1,2}\|1\d\d\|2\[0-4]\d\|25\[0-5])\\.(\d\{1,2}\|1\d\d\|2\[0-4] \d\|25\[0-5])$<br />**MAC Address**: Contains the validation type: ^\[01]?\[- .]?\\(?\[2-9]\d\{\{2}}\\)?\[- .]?\d\{\{3}}\[- .]? \d\{\{4}}$<br />**Percent**: Contains the validation type: ^100$\|^\s\*(\d\{0,2})((\\.\|\\,)(\d\*))?\s\*\\%?\s\*$<br />**Custom**: Requires the additional entry of a custom expression. |
+| Error Message   | The error message that the application displays if the field specified by the **Field Name** parameter is not the expression specified by the **Expression Type** parameter.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| Name            | An optional name for the regular expression validation rule.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| Description     | An optional description for the regular expression validation rule.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| Disable Rule    | Specifies if the regular expression validation rule is disabled.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+
+7. Click **Save**.
+
+### Creating a Validation Rule
+
+1. From the Configuration Console, click **Build > Business Object** to open the **Business Objects** workspace.
+2. Open a business object.
+3. Select the **Business Rules** tab.
+4. Click **Validation Rules**.
+5. Click **Add Validation Rule**.
+
+<Paragraph indent="1">
+  *Add Validation Rule*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/reUmOQAyFaLAt9IPGSt1Q_add-validation-rule.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/add-validation-rule.png" githubPath="Content/Resources/Images/help-images/add-validation-rule.png" showCaption="false"></Image>
+
+6. Enter information into the fields.
+
+| Field              | Description                                                                                                                                   |
+| ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| Validate on Insert | Runs the validation business rule the first time that you create and save the business object.                                                |
+| Validate on Update | Runs the validation business rule whenever you modify the business object.                                                                    |
+| Expression         | The expression that specifies the validation condition.                                                                                       |
+| Message            | The expression that specifies a validation message that is displayed if the expression specified by the **Expression** parameter is not true. |
+| Name               | An optional name for the validation rule.                                                                                                     |
+| Description        | An optional description for the validation rule.                                                                                              |
+| Disable Rule       | Disables the validation rule while it is being created.                                                                                       |
+
+7. Click **Save**.
+
+## Enabling and Disabling Business Rules
+
+You can enable or disable most business rules except for rules containing calculated fields. By default, the application enables business rules when they are created.
+
+1. From the Configuration Console, click **Build > Business Object** to open the **Business Object** workspace.
+2. Open a business object.
+3. Select the **Business Rules** tab.
+4. Open a category of business rules.
+5. To disable all of the business rules for a category, click **Disable All**.
+
+<hint type="info">
+  If you click **Disable All Read-only Rules**, the application displays a dialog box with information. Select an option:
+
+  **Disable and Clear**: Disables the rule and removes the read-only restriction from existing business objects.
+</hint>
+
+6. To enable all of the business rules for a category, click **Enable All**.
+7. To enable an individual business rule, click the **off** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/ZCX6XYU_v7yDDGNoKSVgS_off23x11.png" alt caption size="10" width="23" height="11"}. (The application shows the **off** icon because it is currently disabled.)
+8. To disable an individual business rule, click the **on** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/0y_bUFzky6XsO5FISpq_0_on23x10.png" alt caption size="10" width="23" height="10"}. (The application shows the **on** icon because it is currently enabled.)
+9. If you disable
+
+## Modifying Business Rules
+
+<hint type="info">
+  Business rules apply to records that are created after the business rule has been modified, and not retroactively to existing records.
+</hint>
+
+Use caution when modifying a business rule as it might affect dependent business objects.
+
+1. From the Configuration Console, click **Build > Business Object** to open the **Business Object** workspace.
+2. Open a business object.
+3. Select the **Business Rules** tab.
+4. Navigate to the business rule to modify.
+5. Click the **edit** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/WTLKbMa5PI7qeazzbj0FD_edit-old.png" alt caption size="10" width="16" height="16"}. The **Edit** window appears.
+6. Make changes.
+7. Click **Save**.
+8. You can also move the order of the initialization and before-save business rules by highlighting a business rule and clicking the up and down arrows on the right side of the list.
+
+## Deleting a Business Rule
+
+Use caution when deleting a business rule as it might affect dependent business objects.
+
+1. From the Configuration Console, click **Build > Business Object** to open the **Business Object** workspace.
+2. Open a business object.
+3. Select the **Business Rules** tab.
+4. Navigate to the business rule to delete.
+5. Click the **delete** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/USPl9Egu4Y2Blx7HKC3mA_deleteredx.png" alt caption size="10" width="14" height="13"}. The **Delete confirmation** window appears.
+6. Click **Yes** to delete the business rule.

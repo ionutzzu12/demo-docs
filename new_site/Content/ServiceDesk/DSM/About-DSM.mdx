@@ -1,0 +1,46 @@
+---
+title: About DSM
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:48 GMT+0300 (Eastern European Summer Time)
+---
+
+Desktop and Server Management (DSM) aids IT organizations with automating, regulating, and simplifying how desktops and servers are managed. By automating routine IT management tasks such as deploying applications, planning major operating system rollouts, provisioning new employees, applying patches, and modifying your settings, DSM can be the key to reducing IT expenditure.
+
+DSM also helps IT standardize software and hardware management and their processes across the entire organization. IT can uniformly and efficiently manage software and hardware from their initial deployment to daily operations, patches, maintenance, and compliance.
+
+<hint type="info">
+  DSM features are only available to those \{\{FRS\_VARS.ProductName}} customers who have purchased the DSM product.
+</hint>
+
+## User Roles in DSM
+
+\{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}s, \{\{FRS\_VARS.Neurons\_ITSM\_-\_Change\_Manager}}s, \{\{FRS\_VARS.Neurons\_ITSM\_-\_Configuration\_Manager}}s, and \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Analyst-Service-Desk-Analyst}}s can configure the DSM integration within \{\{FRS\_VARS.ProductName}}.
+
+## Configuring the DSM Integration
+
+\{\{FRS\_VARS.ProductName}} and DSM servers are configured as separate entities. While the DSM server is configured by default, you must configure the DSM integration within \{\{FRS\_VARS.ProductName}} to create an integrated \{\{FRS\_VARS.ProductName}}-DSM environment.
+
+## Software Uninstallation and Re-installation
+
+Software re-installation installs software on a managed computer to fix problems encountered after a previous installation. \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Analyst-Service-Desk-Analyst}}s can uninstall or reinstall software. In either case, you work directly through the installed software record and do not create a new incident or service request to handle the uninstallation or re-installation.
+
+## Software Properties in DSM
+
+The **Properties of the ITSM Integration** area of the **Software > Properties** tab in the DSM console allows you to set one of the following properties for a software package or set:
+
+- ITSM only
+- DSM and ITSM
+- DSM only
+
+You can only synchronize and manage through \{\{FRS\_VARS.ProductName}} those packages and sets that have a property of **ITSM only** or **DSM and ITSM**. Software that has a property of **DSM only** is synchronized, but cannot be activated or installed from \{\{FRS\_VARS.ProductName}}.
+
+## Types of DSM Integrations
+
+Starting in \{\{FRS\_VARS.ProductName}} Release 2015.2, the integration between \{\{FRS\_VARS.ProductName}} and DSM has changed. There are now two ways to integrate with DSM:
+
+- The original way, referred to as the DSM legacy integration.
+- The new way, referred to as the new DSM integration. See [New DSM Integration](Working-with-the-New-DSM-Integration.mdx).
+
+The new DSM integration was designed using the concept of external business objects and web services. See [Using Web Services with External Data Sources](../../Configure/ImportExportData/Using-Web-Services-with-External-Data-Sources.mdx) for complete information about using external business objects and web services in \{\{FRS\_VARS.ProductName}}.
+
+After you initially configure the new DSM integration, you do not need to synchronize or activate the software or computers. The system uses a web services script to synchronize the computers and software automatically. When you select a computer to update, the system checks DSM to see if it is a managed computer. If it is, DSM returns an ID associated with the computer.

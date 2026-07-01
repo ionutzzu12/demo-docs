@@ -1,0 +1,56 @@
+---
+title: Find and Replace Quick Action
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:56 GMT+0300 (Eastern European Summer Time)
+---
+
+- :Link[About the Find and Replace Quick Action]{label="About the Find and Replace Quick Action" overridedLabel="About the Find and Replace Quick Action" spaceId docId="68Yi9maS-v-3RFcVUgKSA" version="v2" docAnchorId="#About_the_Find_and_Replace_Quick_Action" loadingMethod="dynamic" newTab="false" href="Find and Replace.mdx"}
+- :Link[Suggestions for Use]{label="Suggestions for Use" overridedLabel="Suggestions for Use" spaceId docId="68Yi9maS-v-3RFcVUgKSA" version="v2" docAnchorId="#Suggesti" loadingMethod="dynamic" newTab="false" href="Find and Replace.mdx"}
+- :Link[Parameters]{label="Parameters" overridedLabel="Parameters" spaceId docId="68Yi9maS-v-3RFcVUgKSA" version="v2" docAnchorId="#Parameters" loadingMethod="dynamic" newTab="false" href="Find and Replace.mdx"}
+- \{\{FRS\_VARS.Classic\_Action\_Designer}}: [Find and Replace Quick Action](<../../Classical Action Designer/templates/Find and Replace.mdx>)
+
+## About the Find and Replace Quick Action
+
+The **Find and Replace** \{\{FRS\_VARS.Quick\_Action}} evaluates the selected records or all records for any instances of the specified field that contain the specified current value. When it finds that field and current value, it replaces the current value with the new value. You can replace values in an individual incident, multiple selected incidents, or all incidents simultaneously.
+
+<hint type="info">
+  The **Find and Replace** \{\{FRS\_VARS.Quick\_Action}} is not supported within composite actions, it can only be used as a stand-alone action. When creating a composite action, the **Find and Replace** \{\{FRS\_VARS.Quick\_Action}} template is disabled in the **New Actions** list on the Graphical Action Designer.
+  The **Find and Replace** \{\{FRS\_VARS.Quick\_Action}} function is limited to a maximum of 100 records.
+</hint>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/XWDo3oQJZUIUuaCr4ZY9C_qa-find-and-replace-block.png" alt="Image of the find and replaceQuick Action block in the Graphical Action Designer." position="flex-start" size="40" initialPath="../../../../Resources/Images/help-images/qa find and replace block.png" githubPath="Content/Resources/Images/help-images/qa find and replace block.png" showCaption="false"></Image>
+
+<hint type="info">
+  Some fields do not support **Find and Replace**.
+</hint>
+
+## Suggestions for Use
+
+Here are a few ways you can use the **Find and Replace** \{\{FRS\_VARS.Quick\_Action}}:
+
+- **Replacing the&#x20;**\{\{FRS\_VARS.Incident}}**&#x20;owner's name**: For example: If a technician leaves the company, you can find all issues currently assigned to him or her as owner, and replace the value in owner field with a new technician's name.
+- **Change the impact of incidents**: For example, you can make a change to a group of Incident records when Impact was previously Medium and it is now Low or High.
+
+## Parameters
+
+To access the parameters, select the **Action Block** to display them in the **Settings** pane.
+
+### Action Block Settings
+
+- **Block Label**: A unique name for the block. This is useful to identify each action when you have more than one of the same action block added or cloned in the design area.
+- Click :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/3s_8tAFVBxXPx_U4PGM4l_qa-find-and-replace-add-field-button.png" alt caption size="10" width="89" height="14"} to add two fields:
+  - **Field 1** where the user is prompted to enter a value to search for when running the **Find and Replace** \{\{FRS\_VARS.Quick\_Action}}.
+  - **Field 2** where the user is prompted to enter a value to replace.
+- To delete a field, click the **X** next to the field label.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/bc1-gSmpMcEBiz34edHnC_qa-find-and-replace-field-delete.png" position="flex-start" size="40" indent="2" initialPath="../../../../Resources/Images/help-images/qa find and replace field delete.png" githubPath="Content/Resources/Images/help-images/qa find and replace field delete.png" showCaption="false"></Image>
+
+Click **Save** to commit your changes.
+
+### Start Block Settings
+
+These settings are accessed by selecting the **Start Block**, refer to :Link[Start Block Settings]{label="Start Block Settings" overridedLabel="Start Block Settings" spaceId docId="T_2hq2qRJzWxiHLCfgn-7" version="v2" docAnchorId="#CommonTab" loadingMethod="dynamic" newTab="false" githubPath="../Using_the_Graphical_Action_Designer.htm#CommonTab" href="../Using_the_Graphical_Action_Designer.mdx"}.
+
+<hint type="info">
+  This action does not respect the **Auto-save** checkbox option in the **Start Block** settings. It does save changes directly to the database, but please ensure that the behaviour you expect still occurs.
+</hint>

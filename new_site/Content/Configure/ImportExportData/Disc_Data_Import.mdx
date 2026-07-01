@@ -1,0 +1,137 @@
+---
+title: Importing Data from Ivanti HEAT Discovery Release 9.3.x or Later
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:52 GMT+0300 (Eastern European Summer Time)
+---
+
+- :Link[About Importing Data from Ivanti HEAT Discovery Release 9.3 or Later]{label="About Importing Data from Ivanti HEAT Discovery Release 9.3 or Later" overridedLabel="About Importing Data from Ivanti HEAT Discovery Release 9.3 or Later" spaceId docId="NJE-lVptlvVRH-QH_7U4z" version="v2" docAnchorId="#About-Importing-Data-from-Ivanti-HEAT-Discovery-Release-9.x" loadingMethod="dynamic" newTab="false" href="Disc_Data_Import.mdx"}
+- :Link[About Object Mapping]{label="About Object Mapping" overridedLabel="About Object Mapping" spaceId docId="NJE-lVptlvVRH-QH_7U4z" version="v2" docAnchorId="#About-Object-Mapping" loadingMethod="dynamic" newTab="false" href="Disc_Data_Import.mdx"}
+- :Link[About Filter Settings]{label="About Filter Settings" overridedLabel="About Filter Settings" spaceId docId="NJE-lVptlvVRH-QH_7U4z" version="v2" docAnchorId="#About-Filter-Settings" loadingMethod="dynamic" newTab="false" href="Disc_Data_Import.mdx"}
+- :Link[About Field Mappings]{label="About Field Mappings" overridedLabel="About Field Mappings" spaceId docId="NJE-lVptlvVRH-QH_7U4z" version="v2" docAnchorId="#About-Field-Mappings" loadingMethod="dynamic" newTab="false" href="Disc_Data_Import.mdx"}
+- :Link[About Schedule Settings]{label="About Schedule Settings" overridedLabel="About Schedule Settings" spaceId docId="NJE-lVptlvVRH-QH_7U4z" version="v2" docAnchorId="#About-Schedule-Settings" loadingMethod="dynamic" newTab="false" href="Disc_Data_Import.mdx"}
+- :Link[Reviewing and Publishing]{label="Reviewing and Publishing" overridedLabel="Reviewing and Publishing" spaceId docId="NJE-lVptlvVRH-QH_7U4z" version="v2" docAnchorId="#Reviewing-and-Publishing" loadingMethod="dynamic" newTab="false" href="Disc_Data_Import.mdx"}
+- :Link[Field Mappings for Ivanti HEAT Discovery Release 9.x Data Imports]{label="Field Mappings for Ivanti HEAT Discovery Release 9.x Data Imports" overridedLabel="Field Mappings for Ivanti HEAT Discovery Release 9.x Data Imports" spaceId docId="hxl1X5OeD7hRW6ywI5Rx6" version="v2" docAnchorId="#Field-Mappings-for-Ivanti-HEAT-Discovery-Release-9.x-Data-Imports" loadingMethod="dynamic" newTab="false" githubPath="Field_Mappings_Disc_Data_Import.htm#Field-Mappings-for-Ivanti-HEAT-Discovery-Release-9.x-Data-Imports" href="Field_Mappings_Disc_Data_Import.mdx"}
+
+## About Importing Data from Ivanti HEAT Discovery Release 9.3 or Later
+
+After you have selected the Discovery 9.x connector from the **Connection Manager** workspace, entered configuration details, and clicked **Next**, you proceed to the next step in the workflow diagram. The application displays the workflow diagram at the top of each page to walk you through the steps.
+
+The following information describes the default settings or customizations available for each step when importing data into Discovery from a Discovery Release 9.3.x or later database.
+
+For information on how to select a connection using the connection manager, see [Configuring Data Import Connections](Data-Import-Connections.mdx).
+
+<hint type="info">
+  If you plan on using a gateway, see Working with Gateways before you begin migrating the data.
+</hint>
+
+## About Object Mapping
+
+Two import connections are available, one for Windows and one for UNIX. You cannot import devices that do not have a client agent installed.
+
+This page lists the source mapping tables needed to map your database to the Discovery database. You can click to deselect and shift-click to select the tables from the list. However, deselecting them is not recommended except in the following instances:
+
+- When importing to Windows devices or machines unselect **HEAT\_Export\_SoftwareFile** as it is specific to UNIX environments.
+- When importing to UNIX devices or machines unselect **HEAT\_Export\_SoftwarePackage** as it is specific to Windows environments.
+
+The following information is also listed and can be changed in certain cases:
+
+| Field              | Description                                                                                                                                                                                                                                                                                                                                                      |
+| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Batch Size         | Indicates the number of records that are processed simultaneously. The default setting is 50. The tool selects the designated number of records to process at one time, then moves on to the next batch.                                                                                                                                                         |
+| Max Size           | The number of records that are processed during a cycle. The default setting is 500. This figure can be changed based on the bandwidth available and your preferences. A cycle is the amount of time set or selected in the schedule setting. For example, after 500 records are processed, the tool waits until the next cycle to process the next 500 records. |
+| Root Table         | This information cannot be changed.                                                                                                                                                                                                                                                                                                                              |
+| Unique Key         | This information cannot be changed.                                                                                                                                                                                                                                                                                                                              |
+| Change‑Time Column | Select **LastContact**. This option remembers the last record processed and begins to process the next set of records from that point. If there were data changes to the Discovery Release 9.3.x or later database, the **LastContact** field is updated. The tool checks this field before continuing and the changed record is reprocessed.                    |
+
+Click **Next&#x20;**&#x74;o continue.
+
+## About Filter Settings
+
+The filter manager lists filters that process all type definitions from 1-128, except for types 64, 73, 76, and 77. These are excluded since there is no equivalent configuration item type in \{\{FRS\_VARS.ProductName}} to which they can be mapped. Customers can create their own CI types that are numbered beginning with 129. .
+
+Information about client type IDs is available in the client type table (dbo.ClientType) within the Discovery Release 9.3.x or later database.
+
+For Microsoft Windows devices that have a client installed, use the following values for filter settings:
+
+| Ivanti HEAT Discovery Field     | Operand   | Value |
+| ------------------------------- | --------- | ----- |
+| HEAT\_Export\_Client.ID         | IsNotNull | 0     |
+| HEAT\_Export\_Client.ClientType | NotIn     | 74,75 |
+
+For UNIX or Mac devices that have a client installed, use the following values for filter settings:
+
+| Ivanti HEAT Discovery Field     | Operand   | Value |
+| ------------------------------- | --------- | ----- |
+| HEAT\_Export\_Client.ID         | IsNotNull | 0     |
+| HEAT\_Export\_Client.ClientType | In        | 74,75 |
+
+Click **Next** to continue.
+
+## About Field Mappings
+
+Lists mapping for data that is imported from the Discovery Release 9.3.x or later database into **Target: Ivanti Software IM** \[Ivanti Database]. We recommend that you do not change the mappings.
+
+Click **Next** to continue.
+
+See the list of Microsoft Windows mappings at :Link[Windows Field Mappings]{label="Windows Field Mappings" overridedLabel="Windows Field Mappings" spaceId docId="hxl1X5OeD7hRW6ywI5Rx6" version="v2" docAnchorId="#Windows-Field-Mappings" loadingMethod="dynamic" newTab="false" githubPath="Field_Mappings_Disc_Data_Import.htm#Windows-Field-Mappings" href="Field_Mappings_Disc_Data_Import.mdx"}. See the list of UNIX mappings at :Link[Unix Field Mappings]{label="Unix Field Mappings" overridedLabel="Unix Field Mappings" spaceId docId="hxl1X5OeD7hRW6ywI5Rx6" version="v2" docAnchorId="#Unix-Field-Mappings" loadingMethod="dynamic" newTab="false" githubPath="Field_Mappings_Disc_Data_Import.htm#Unix-Field-Mappings" href="Field_Mappings_Disc_Data_Import.mdx"}.
+
+## About Schedule Settings
+
+Use the schedule manager to schedule the synchronization within one or more of the time frames listed in the schedule list, such as configuration management database import, which runs every day between 3:00 AM and 6:00 AM. Clicking an option displays information about the item in a table below the list.
+
+Each time the import runs, it processes the number of records entered in the **Max Size** field set in the object matching section. If the **Max Size** parameter is set to 500, then 500 records from the database are processed. The application then waits until the next scheduled time to continue processing the remaining records.
+
+You can elect to process more or fewer records than the settings provided. However, we recommend setting the **Max Size** parameter and the scheduled time for the import, appropriately, and so that it does not affect network resources.
+
+<hint type="success">
+  **Best Practice**: Run the import at a time when it will not affect network resources and consume bandwidth. While there is no limit to the **Max Size**, it is best to ensure that the number of records set in this parameter can be processed within the selected time frame. In general it is best to run it when it can use unlimited resources as opposed to consuming bandwidth.
+</hint>
+
+Click **Next** to save the mappings and continue.
+
+## Reviewing and Publishing
+
+From the **Review and Publish** page, click **Preview** to review your mappings. This selects a random item from the source database and displays the XML that is created by the mapping, and processed and imported into \{\{FRS\_VARS.ProductName}}. You can check these records for import errors before beginning the import.
+
+If you are satisfied with the output, select one of the following choices:
+
+- **Publish**: Runs the import at the next time on the import schedule.
+- **Publish and Run Now**: Runs the import immediately, then places it on the import schedule.
+- **Publish and Test Run**: Runs the import with a single batch (the number you set as a batch size on the **Object Mapping** page) and then at the next time on the import schedule. If errors or problems occur in this job, you can go back to your data and troubleshoot before running the rest of the import.
+
+The application automatically saves all field mappings even if they are not immediately published. After you publish the data, the job runs based on the selected schedule.
+
+When you preview the mappings generated in this step, check the **Software Packages** category for the following issues:
+
+1. The ID for Component Type="SoftwarePackage" is blank.
+2. There are multiple product details for each property. For example:
+
+\<Category Name="SoftwarePackages">
+
+\<Component Type="SoftwarePackage" Id="">
+
+\<Property Name="DisplayName">Juniper Networks, Inc. Setup Client Activex Control Security Update for Microsoft Office Security Update for Microsoft Office\</Property>
+
+\<Property Name="DisplayVersion">2.1.1.1 2010 (KB2810073) 32-Bit Edition 2010 (KB2850016) 32-Bit Edition 2.0 \</Property>
+
+\<Property Name="DSMInstalled">**False False False**\</Property>
+
+\<Property Name="Freq">**Never Never Never Never**\</Property>
+
+\<Property Name="FrequencyId">5 5 5 5\</Property>
+
+\<Property Name="Guid">\{\{CA67548A-5EBE-413A-B50C-4B9CEB6D66C6}} \{\{2318C2B1-4965-11D4-9B18-009027A5CD4F}}\</Property>
+
+.
+
+.
+
+.
+
+<Paragraph indent="1">
+  This happens when the field mapping for the software package ID is missing in the import. The following field mapping needs to be added to the **Discovery 9.x** connector:
+</Paragraph>
+
+<Paragraph indent="1">
+  HEAT\_Export\_SoftwarePackage.PackageAud -> Category.Component.Property-SoftwarePackages.SoftwarePackage.ID
+</Paragraph>

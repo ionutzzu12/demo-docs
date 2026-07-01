@@ -1,0 +1,25 @@
+---
+title: Using the GetAllSchemaForObject Web Method
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:01 GMT+0300 (Eastern European Summer Time)
+---
+
+Retrieves an XML version of the metadata behind an object, including all fields such as RecID.
+
+## Request Syntax
+
+string GetAllSchemaForObject(string sessionKey, string tenantId, string objectName)
+
+## Parameters
+
+- **sessionKey**: The session key from the **Connect** web method.
+- **tenantId**: The tenant for which the session key is authenticated.
+- **objectName**: Name of the business object, in object reference notation (such as "incident#").
+
+## Return Value
+
+A string value representing the schema for the specified business object, which is represented in XML.
+
+## Example
+
+string schemaDoc = frSvc.GetSchemaForObject(authSessionKey, tenantId, "Incident#");

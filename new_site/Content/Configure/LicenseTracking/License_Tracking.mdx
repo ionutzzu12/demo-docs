@@ -1,0 +1,50 @@
+---
+title: Tracking Licenses
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:49 GMT+0300 (Eastern European Summer Time)
+---
+
+- :Link[About License Tracking]{label="About License Tracking" overridedLabel="About License Tracking" spaceId docId="QN1rAt8J-krWSsf-KtNEN" version="v2" docAnchorId="#About-License-Tracking" loadingMethod="dynamic" newTab="false" href="License_Tracking.mdx"}
+- :Link[Assigning a Bundled License to a Role]{label="Assigning a Bundled License to a Role" overridedLabel="Assigning a Bundled License to a Role" spaceId docId="QN1rAt8J-krWSsf-KtNEN" version="v2" docAnchorId="#Assignin" loadingMethod="dynamic" newTab="false" href="License_Tracking.mdx"}
+- [Designating a User as a Named User for Licensing](Tracking_Named_Users.mdx)
+- [Viewing the License Usage Report](Viewing_the_License_Usag.mdx)
+- [About the LogonHistory API](LogonHistory_API.mdx)
+
+## About License Tracking
+
+\{\{FRS\_VARS.ProductName}} allows both named and concurrent user license types. This data is based on content in the **Frs\_ops\_logon\_history** business object.
+
+- :Link[Named Users]{label="Named Users" overridedLabel="Named Users" spaceId docId="QN1rAt8J-krWSsf-KtNEN" version="v2" docAnchorId="#Named" loadingMethod="dynamic" newTab="false" href="License_Tracking.mdx"}
+- :Link[Concurrent Users]{label="Concurrent Users" overridedLabel="Concurrent Users" spaceId docId="QN1rAt8J-krWSsf-KtNEN" version="v2" docAnchorId="#Concurrent" loadingMethod="dynamic" newTab="false" href="License_Tracking.mdx"}
+
+### Named Users
+
+To better support tracking and identification of named users, the **Employee** business object includes a Boolean field called **Is Named User**.
+
+### Concurrent Users
+
+Concurrent users are who are actively logged into the application but are not assigned named user licenses and do not access the system through the \{\{FRS\_VARS.Self\_Service\_Portal-Self-Service}} Portal. These users consume concurrent licenses, which are allocated based on the number of active sessions rather than individual user identities. To know more information about set up a \{\{FRS\_VARS.Self\_Service\_Portal-Self-Service}} role, see [Setting up Roles](../Roles/Setting-up-Roles.mdx).
+
+In reports, you can calculate the number of concurrent users with this expression:
+
+Select \* from Frs\_ops\_logon\_history where LoginTime > Timestamp and LogoutTime \< Timestamp and not (\{\{FRS\_VARS.Self\_Service\_Portal-Self-Service}} role or named user).
+
+When a user logs out, the system records it as an explicit log out. If the user closes the browser without logging out, the session remains active until it times out. If the user logs in again before the timeout, the user consumes an additional license. In this case, the system counts each active session separately, which may appear as multiple licenses in use by the same user.
+
+The system tracks sessions based on the user’s public IP address. However, \{\{FRS\_VARS.ProductName}} cannot identify multiple sessions from the same IP, so simultaneous logins from the same user may not be distinguishable by IP alone.
+
+## Assigning a Bundled License to a Role
+
+<hint type="info">
+  This process only applies to on-premise customers. Refer to the "Using the Ivanti License Manager" topic in the Installation and Deployment Guide for \{\{Primary.Company}} \{\{FRS\_VARS.ProductName}} for more information about tracking licenses.
+</hint>
+
+A license bundle restricts the access for a user, depending on which components are included in the license bundle. For example, a license bundle might contain the \{\{FRS\_VARS.Self\_Service\_Portal-Self-Service}} Portal only.  A user with that license bundle can then only access the \{\{FRS\_VARS.Self\_Service\_Portal-Self-Service}} Portal.
+
+To assign a bundle to a role, do the following:
+
+1. From the Configuration Console, click **Configure > Users and Permissions > Roles and Permissions** to open the **Groups** workspace.
+2. Click the name of a role. The application displays the **Role Details** page.
+3. Click the **Licensing** tab. The application displays the **License information** page.
+4. In the **Assigned bundle** field, select a bundle from the drop-down list.
+5. Click **Save**. The application assigns this license bundle to the role.

@@ -1,0 +1,33 @@
+---
+title: Logging in using a JWT
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:00 GMT+0300 (Eastern European Summer Time)
+---
+
+Use a JSON Web Token (JWT) to log into a tenant through Open ID Connect (OIDC) authorization.
+
+**Base URL:**
+
+https\://\{tenant url}/api/rest/authentication/login
+
+**Generating a JWT**
+
+Generate a JWT to log in to a tenant using OIDC authorization. A JWT does not contain a tenant URL while a session ID does.
+
+| URL             | https\://\{tenant url}/api/rest/authentication/login                                                                                                                                        |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Method          | POST                                                                                                                                                                                        |
+| Request Payload | \{<br />"tenant" :"\{tenant url}",<br />"username" :"\{name of the user}",<br />"password" :"\{password set for the user}",<br />"role" :"\{user role to log-in to the application}"<br />} |
+| Status Code     | 200                                                                                                                                                                                         |
+
+<hint type="info">
+  When providing the "role" parameter, you need to provide the internal name of the role and not the display name. For example, Admin is the internal name of the role \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+</hint>
+
+If the log-in API is executed successfully, the application generates a JWT. Follow the below steps to execute an endpoint:
+
+1. Create a new request in the **Postman** application.
+2. Enter the following information in the **Authorization** tab:
+   - Set the option as **Bearer Token** in the **Type field**.
+   - Enter the generated JWT in the **Token** field.
+3. Enter the endpoint request payload details and select **Send**.

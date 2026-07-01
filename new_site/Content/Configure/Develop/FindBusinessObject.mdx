@@ -1,0 +1,82 @@
+---
+title: Using the FindBusinessObject Web Method
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:01 GMT+0300 (Eastern European Summer Time)
+---
+
+Returns a single business object using its primary identifier (RecID field) in the database.
+
+## Request Syntax
+
+FRSHEATIntegrationFindBOResponse FindBusinessObject(string sessionKey, string tenantId, string boType, string recId)
+
+## Parameters
+
+- **sessionKey**: The session key from the **Connect** web method.
+- **tenantId**: The tenant for which the session key is authenticated.
+- **boType**: The type of business object to retrieve.  
+- **recId**:  The unique identifier for the business object.
+
+## Return Value
+
+**FRSHEATIntegrationFindBOResponse** object, defined as follows:
+
+public class FRSHEATIntegrationFindBOResponse
+
+    \{
+
+public string status \{ get; set; }
+
+public string exceptionReason \{ get; set; }
+
+public WebServiceBusinessObject obj \{ get; set; }
+
+    }
+
+The **FRSHEATIntegrationFindBOResponse** class has the following fields:
+
+- **status**: Provides a status value indicating whether the operation was successful. A full description of the available status values is provided in the table below.
+- **exceptionReason**: Contains exception information, if the application throws an exception when running the **Connect** web method.
+- **obj**: The field by which the business object can be accessed, if the exact record is found via the **FindBusinessObject** web method (that is, if the value of the **status** field is *success*).
+
+The following table lists the available status values and describes how to interpret them.
+
+| Status       | <font color="#FFFFFF">Explanation</font>                                                                                                                                                                                                                                                                                                                                                                                              |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Success**  | Successfully found the business object. Access the business object from the **obj** field.                                                                                                                                                                                                                                                                                                                                            |
+| **Error**    | Cannot find the business object. The **obj** field is null.  Inspect the corresponding **exceptionReason** field to determine why the web method failed.<br />One typical error is **Table not found**, which occurs when the specified business object does not exist in the tenant. Ensure that the name of the business object is spelled properly.                                                                                |
+| **NotFound** | The specified business object exists in the tenant, but the specified RecID does not match any of the existing records in the object.<br />Since this is not an exceptional condition, no exception is stored in the **exceptionReason** field but the **obj** field is null. Ensure that the RecID for the intended record exists in the tenant. Consider using a different web method, such as **FindSingleBusinessObjectByField**. |
+
+## Example
+
+FRSHEATIntegrationFindBOResponse res = frSvc.FindBusinessObject(authSessionKey, tenantId, "Incident", "A981FBEBAA8B4EE2820364505855ABC2");
+
+if (res.status == "Success")
+
+\{
+
+foreach (WebServiceFieldValue f in res.obj.FieldValues)
+
+\{
+
+if (string.Compare(f.Name, "LastModDateTime", true) == 0)
+
+\{
+
+DateTime lastMod;
+
+if (f.Value != null)
+
+\{
+
+lastMod = (DateTime)f.Value;
+
+Console.WriteLine("The LastModDateTime of the record is " + lastMod.ToString());
+
+}
+
+}
+
+}
+
+}

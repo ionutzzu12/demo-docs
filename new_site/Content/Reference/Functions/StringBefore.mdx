@@ -1,0 +1,91 @@
+---
+title: StringBefore
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:00 GMT+0300 (Eastern European Summer Time)
+---
+
+Finds a value before a particular word or phrase inside the token.
+
+## Syntax
+
+StringBefore(inputText, option, followingText)
+
+## Enabled For
+
+For a description of the business object categories, see :Link[Notes on "Enabled For"]{label="Notes on &#x22;Enabled For&#x22;" overridedLabel="Notes on &#x22;Enabled For&#x22;" spaceId docId="xObv2pIDrk60jkEIWs8mD" version="v2" docAnchorId="#Notes" loadingMethod="dynamic" newTab="false" githubPath="_Built_in_Functions.htm#Notes" href="_Built_in_Functions.mdx"}.
+
+| Business Object Category                                                                                                                                                                                           | Yes/No |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------ |
+| Business Rules: Before-Save Rules                                                                                                                                                                                  | Yes    |
+| Business Rules: Calculation Rules (After Save, with or without Also Recalculate on Load)                                                                                                                           | Yes1   |
+| Business Rules: Calculation Rules (Before Save or Always, without Also Recalculate On Load)                                                                                                                        | Yes    |
+| Business Rules: Calculation Rules (Before Save or Always, with Recalculate On Load)                                                                                                                                | Yes1   |
+| Business Rules: Editing Rules                                                                                                                                                                                      | Yes    |
+| Business Rules: Initialization Rules                                                                                                                                                                               | Yes    |
+| Business Rules: Read Only Rules                                                                                                                                                                                    | Yes    |
+| Business Rules: Required Rules                                                                                                                                                                                     | Yes    |
+| Business Rules: Validation Rules                                                                                                                                                                                   | Yes    |
+| Client Expressions                                                                                                                                                                                                 | Yes    |
+| Object Permissions                                                                                                                                                                                                 | No     |
+| Services                                                                                                                                                                                                           | No     |
+| LDAP                                                                                                                                                                                                               | No     |
+| Mobile                                                                                                                                                                                                             | No     |
+| Quick Actions (except UI Quick Actions)                                                                                                                                                                            | Yes    |
+| UI Quick Actions                                                                                                                                                                                                   | Yes    |
+| Reports                                                                                                                                                                                                            | Yes    |
+| Search/Dashboard without field references                                                                                                                                                                          | No     |
+| Search/Dashboard with field references                                                                                                                                                                             | No     |
+| 1. Not fully supported in calculation rules that have a condition of **After Save** or the **Also Recalculate on Load** option selected. It may fail if the rule's field is used in a grid, form, or saved search. |        |
+
+## Parameters
+
+<table isTableHeaderOn="true">
+  <tr>
+    <td>
+      Parameter
+    </td>
+    <td>
+      Description
+    </td>
+  </tr>
+  <tr>
+    <td>
+      inputText
+    </td>
+    <td>
+      Input string on which to perform StringBefore
+    </td>
+  </tr>
+  <tr>
+    <td>
+      option
+    </td>
+    <td>
+      Options available to perform StringBefore:
+      - **FromStart**: Returns the text that appears before the search text.
+      - **FromStartOfLine**: Returns all the text that appears before the search text, until the end of the line.
+      - **PreviousWord**: Displays the next word before the search text.
+      - **PreviousNumber**: Displays the next number before the search text.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      followingText
+    </td>
+    <td>
+      A particular text immediately after the value that needs to be found
+    </td>
+  </tr>
+</table>
+
+## Return Value
+
+Returns a string before a particular text.
+
+## Example
+
+$(StringBefore(': This is regarding Incident:1234 which is important', 'FromStart', 'Incident:'))
+
+Returns this value:
+
+: This is regarding

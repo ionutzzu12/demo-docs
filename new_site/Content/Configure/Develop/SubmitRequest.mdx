@@ -1,0 +1,240 @@
+---
+title: Using the SubmitRequest Web Method
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:01 GMT+0300 (Eastern European Summer Time)
+---
+
+Creates and submits a service request on behalf of a specified user.
+
+## Request Syntax
+
+public FRSHEATSubmitRequestResponse SubmitRequest(string sessionKey, string tenantId, string subscriptionId, List\<FRSHEATServiceReqParam> srparameters, string loginId)
+
+## Parameters
+
+- **sessionKey**: The session key from the **Connect** web method.
+- **tenantId**: The tenant for which the session key is authenticated.
+- **subscriptionId**: The subscription ID corresponding to the request offering for the current user.
+- **srparameters**: A list of **FRSHEATServiceReqParam** objects that represent the key values for the  parameters for submitting the service request.
+- **loginId**: The login ID of the user.
+
+The **FRSHEATServiceReqParam** class is defined as follows:
+
+public class FRSHEATServiceReqParam
+
+    \{
+
+public string strName;
+
+public string strValue;
+
+    }
+
+The **FRSHEATServiceReqParam** class has the following fields:
+
+- **strName**: Name of the parameter.
+- **strValue**: Value for the parameter.
+
+## Return Value
+
+**FRSHEATSubmitRequestResponse** object, defined as follows:
+
+public class FRSHEATSubmitRequestResponse
+
+    \{
+
+public string status \{ get; set; }
+
+public string exceptionReason \{ get; set; }
+
+public FRSHEATServiceReqRequest reqData \{ get; set; }
+
+    }
+
+The **FRSHEATSubmitRequestResponse** class has the following fields:
+
+- **status**: Provides a status about the state of the connection. The table below contains a full description of the available status values.
+- **exceptionReason**: Contains exception information, if the application throws an exception when running this web method.
+- **reqData**: Contains an **FRSHEATServiceReqRequest** object, containing the service request that is successfully submitted.
+
+The **FRSHEATServiceReqRequest** class is defined as follows:
+
+public class FRSHEATServiceReqRequest
+
+    \{
+
+public string strRequestRecId;
+
+public string strRequestNum;
+
+public decimal fTotalPrice;
+
+public decimal fTotalRecurPrice;
+
+public string strByEmployee;
+
+public string strFulfillmentPlanType;
+
+public string strUrgency;
+
+public DateTime? DateSubmitted;
+
+public DateTime? DateUpdated;
+
+public string strUpdatedBy;
+
+public DateTime? DateDelivery;
+
+public string strSubscriptionRecId;
+
+public bool isFulfilled;
+
+public string strName;
+
+public string strDescription;
+
+public decimal fPrice;
+
+public decimal fRecurPrice;
+
+public int nRecurPeriod;
+
+public int nDeliveryCommitment;
+
+public string strStatus;
+
+public string strCreatedBy;
+
+public string strRecId;
+
+public List\<FRSHEATServiceReqTemplateParam> lstParameters;
+
+}
+
+The **FRSHEATServiceReqRequest** class has the following fields:
+
+- **DateDelivery**: Delivery date for the service request.
+- **strSubscriptionRecId**: RecID of the subscription corresponding to the service request.
+- **isFulfilled**: Flag indicating whether the service request has been fulfilled or not.
+- **strName**: Name of the request offering from which the service request was created.
+- **strDescription**: Description of the service request.
+- **fPrice**: Price of the service request.
+- **fRecurPrice**: Recurring price of the service request.
+- **nRecurPeriod**: Recurrence period for the service request.
+- **nDeliveryCommitment**: Delivery commitment period for the service request.
+- **strStatus**: Status of the service request.
+- **strCreatedBy**: Login ID of the user who created the service request.
+- **strRecId**: RecID of the service request.
+- **lstParameters**: List of **FRSHEATServiceReqTemplateParam** objects, where each item in the list represents the parameter value for the service request.
+- **strRequestRecId**: RecID of the service request.
+- **strRequestNum**: ID of the service request.
+- **fTotalPrice**: Total non-recurring price of the service request.
+- **fTotalRecurPrice**: Total recurring price of the service request.
+- **strByEmployee**: Login ID of the user who requested the service request.
+- **strFulfillmentPlanType**: Type of fulfillment.
+- **strUrgency**: Urgency value of the service request.
+- **DateSubmitted**: Date when the service request was submitted.
+- **DateUpdated**: Date when the service request was last updated.
+- **strUpdatedBy**: Login ID of the user who last updated the service request.
+
+The following table lists the available status values and describes how to interpret them.
+
+| <font color="#FFFFFF">Status</font> | <font color="#FFFFFF">Explanation</font>                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Success**                         | Successfully retrieved the list of request offerings in the Service Catalog. This list is available in the **srtList** field.                                                                                                                                                                                                                                                                                                                                                                                 |
+| **UserNotFound**                    | The tenant does not contain a user record with the specified login ID. Ensure that the login ID is spelled correctly.                                                                                                                                                                                                                                                                                                                                                                                         |
+| **ReqParamsNotFilled**              | One or more required parameters are not filled out.<br />Check the **exceptionReason** field to determine which parameters were not filled out properly.                                                                                                                                                                                                                                                                                                                                                      |
+| **ValidationValuesMismatch**        | The value that was passed in for a drop-down selection parameter does not belong in the validation list.<br />For example, the web method returns this status if there is a drop-down selection parameter that is validated against the departments validation list and a value of "Billing" is supplied to the **SubmitRequest** web method, but "Billing" does not exist in the validation list.<br />Check the **exceptionReason** field to determine which parameters were not filled out properly. |
+| **ParameterTypeMismatch**           | One or more parameters were specified with values, which are inappropriate for the underlying parameter data type.<br />For example, the web method returns this status if there is a parameter that is a text field and the input is a number (non-text field).<br />Check the **exceptionReason** field to determine which parameters were specified incorrectly.                                                                                                                                           |
+| **Error**                           | An error was encountered during the execution of this web method.  Inspect the corresponding **exceptionReason** field to determine why the web method has failed.                                                                                                                                                                                                                                                                                                                                            |
+
+## About Service Request Submission Validation
+
+Before submitting the service request, the **SubmitRequest** web method performs three types of validation:
+
+- **Required Parameters**: Ensures that all parameters marked as required are filled out.
+
+<Paragraph indent="1">
+  Currently, the code handles unconditional required parameters and simple conditional required parameters. If one or more required parameters are not filled out properly, the **SubmitRequest** web method returns a status of **ReqParamsNotFilled**. Check the **exceptionReason** field to determine which parameters were not filled out properly.
+</Paragraph>
+
+- **Validation Values**: Ensures that the supplied values are allowable values, based on the existing records in the validation list table.
+
+<Paragraph indent="1">
+  Currently, the code handles regular validation (that is, validation against a single field) and simple constrained validation (that is, validation that is constrained based on the value of an earlier field). If there are one or more parameters that do not satisfy the validation, the **SubmitRequest** web method returns a status of **ValidationValuesMismatch**. Check the **exceptionReason** field to determine which parameters were not filled out properly.
+</Paragraph>
+
+- **Parameter Type Checking**: Ensures that the supplied value is appropriate for the data type of the specified parameter.
+
+<Paragraph indent="1">
+  If there are one or more values that do not match the corresponding parameter type, the **SubmitRequest** web method returns a status of **ParameterTypeMismatch**. Check the **exceptionReason** field to determine which parameters were specified incorrectly.
+</Paragraph>
+
+## Type Checking of Parameters in the Service Request
+
+Prior to submitting the service request, the **SubmitRequest** web method checks the data type of the values, against the data types of the respective parameters.
+
+The following table summarizes the various parameter types. If data type validation is performed, the details section will describe this information in greater detail.
+
+| Data Type              | Details                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Text                   | Currently not validated.  This matches the current Service Catalog behavior.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| CheckBox               | Allowed values are those that can be parsed as either true or false.<br />Uses the **Boolean.TryParse()** method in Microsoft .NET to determine if the value for checkbox is valid.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| Date / Time / DateTime | Allowed values are those that can be parsed as DateTime values.<br />Uses the **DateTime.TryParse()** method in Microsoft .NET to determine if the value for the date, time, or DateTime is valid.<br />To specify DateTime values, specify the string value using ISO 8601 format. The value must be relative to UTC. The DateTime value can be specified in one of the following two ways:<br />yyyy-mm-dd  hh\:mm<br />yyyy-mm-ddThh\:mm<br />Use either a space character or "T" character to separate the date and time values.<br />The following are two examples of specifying a DateTime value of March 26th, 2013, 18:38 UTC, using the above two formats:<br />2013-03-26 18:38<br />2013-03-26T18:38 |
+| Number / Money         | Allowed values are those that can be parsed as decimal values.<br />Uses the **Decimal.TryParse()** method in Microsoft .NET to determine if the numerical value is valid.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| Phone                  | Allowed values are phone numbers that match a US phone number such as (415) 555-1212.<br />This matches the current Service Catalog behavior. Do not use this parameter type for validating International phone numbers.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| SSN                    | Allowed values are numbers that match the US Social Security number format such as 123-45-6789.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| Email                  | Currently not validated. This matches the current Service Catalog behavior.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| URL                    | Currently not validated. This matches the current Service Catalog behavior.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+
+## Example
+
+string strSubscrRecId = frSvc.GetSubscriptionId(authSessionKey, tenantId, "Domain Password Reset").subscriptionId;
+
+List\<FRSHEATServiceReqParam> srparamListItems = newList\<FRSHEATServiceReqParam>();
+
+            srparamListItems.Add(newFRSHEATServiceReqParam
+
+            \{
+
+                strName = "RequesterDepartment",
+
+                strValue = "IT"
+
+            });
+
+            srparamListItems.Add(newFRSHEATServiceReqParam
+
+            \{
+
+                strName = "Requester",
+
+                strValue = "Ashley Simon"
+
+            });
+
+FRSHEATSubmitRequestResponse srResponse = frSvc.SubmitRequest(authSessionKey, tenantId, strSubscrRecId, srparamListItems.ToArray(), loginId);
+
+FRSHEATServiceReqRequest srres;
+
+if (srResponse.status == "Success")
+
+            \{
+
+                srres = srResponse.reqData;
+
+            }
+
+else
+
+            \{
+
+if (srResponse.exceptionReason != null)
+
+                \{
+
+Console.WriteLine("Error: " + srResponse.exceptionReason);
+
+                }
+
+            }

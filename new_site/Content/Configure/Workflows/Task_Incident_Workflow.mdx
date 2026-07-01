@@ -1,0 +1,72 @@
+---
+title: About the Task-Incident Workflow
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:58 GMT+0300 (Eastern European Summer Time)
+---
+
+- :Link[About the Task-Incident Workflow]{label="About the Task-Incident Workflow" overridedLabel="About the Task-Incident Workflow" spaceId docId="fVgQ7diiMgKWhg5e6Skld" version="v2" docAnchorId="#About" loadingMethod="dynamic" newTab="false" href="Task_Incident_Workflow.mdx"}
+- :Link[About the Task Workflow Quick Action]{label="About the Task Workflow Quick Action" overridedLabel="About the Task Workflow Quick Action" spaceId docId="fVgQ7diiMgKWhg5e6Skld" version="v2" docAnchorId="#About2" loadingMethod="dynamic" newTab="false" href="Task_Incident_Workflow.mdx"}
+- :Link[Enabling the Task-Incident Workflow]{label="Enabling the Task-Incident Workflow" overridedLabel="Enabling the Task-Incident Workflow" spaceId docId="fVgQ7diiMgKWhg5e6Skld" version="v2" docAnchorId="#Enabling" loadingMethod="dynamic" newTab="false" href="Task_Incident_Workflow.mdx"}
+
+## About the Task-Incident Workflow
+
+Before you can set an incident to closed, all of its tasks must be closed. Also, once all tasks within an incident are closed, the incident status should automatically change to resolved, or automatically create a new task. However, you can close an incident regardless of the status of its tasks. This automatically closes any open tasks within the incident.
+
+You cannot update an incident when it is in the logged status.
+
+## About the Task Workflow Quick Action
+
+The **Task Workflow** quick action category contains one default quick action: New TaskAssignment.
+
+*Task Workflow Quick Action*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/T_p29-b-E7T_a3vmAPvU1_taskworkflowqa.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/taskworkflow_qa.png" githubPath="Content/Resources/Images/help-images/taskworkflow_qa.png" showCaption="false"></Image>
+
+This quick action checks the incident-task workflow validation rule when the record is saved.
+
+## Enabling the Task-Incident Workflow
+
+The Task-Incident workflow is not enabled by default; you must manually enable this feature to use it. To enable this feature, you must set the Task.Assignment and incident validation on save rules.
+
+- :Link[Enabling the Incident Validation On Save Rule]{label="Enabling the Incident Validation On Save Rule" overridedLabel="Enabling the Incident Validation On Save Rule" spaceId docId="fVgQ7diiMgKWhg5e6Skld" version="v2" docAnchorId="#Enabling1" loadingMethod="dynamic" newTab="false" href="Task_Incident_Workflow.mdx"}
+- :Link[Enabling the Task.Assignment Validation On Save Rule]{label="Enabling the Task.Assignment Validation On Save Rule" overridedLabel="Enabling the Task.Assignment Validation On Save Rule" spaceId docId="fVgQ7diiMgKWhg5e6Skld" version="v2" docAnchorId="#Enabling2" loadingMethod="dynamic" newTab="false" href="Task_Incident_Workflow.mdx"}
+
+### Enabling the Incident Validation On Save Rule
+
+1. From the Configuration Console, click **Build > Business Objects** to open the **Business Objects** workspace.
+2. Click **Incident** to open the **Incident** workspace.
+3. Choose the **Business Rules** tab. The list of rules appears.
+4. At the bottom of this list is the **Validation On Save Rules** section. The only rule listed is shown crossed out (disabled).
+
+*Incident Validation On Save Rule*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Yw4HVHQskCWaBD5oHAMln_validationonsave.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/validationOnSave.png" githubPath="Content/Resources/Images/help-images/validationOnSave.png" showCaption="false"></Image>
+
+<Paragraph indent="1">
+  The full expression is:
+</Paragraph>
+
+$(((Status != "Closed") && (Status != "Resolved")) || IsTrueForAllChildren("Incident#", RecId, "Task#Assignment.Rev3", "$(Status == 'Completed' || Status == 'Cancelled' || Status == 'Rejected')"))
+
+5. Click the **enable** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/bWi-zca3qrtIgxFJBc9Iy_enable.png" alt caption size="10" width="18" height="16"} next to the rule. The rule is no longer crossed out.
+6. Click **Save**.
+
+### Enabling the Task.Assignment Validation On Save Rule
+
+1. From the Configuration Console, click **Build > Business Objects** to open the **Business Objects** workspace.
+2. Open the **Task.Assignment** business object.
+3. Choose the **Business Rules** tab. The list of rules appears.
+4. At the bottom of this list is the **Validation On Save Rules** section. The only rule listed is shown crossed out (disabled).
+
+*Task.Assignment Validation On Save Rule*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/gET0rHH6LxpqHNlATQtoS_taskassignmentvalidationrule.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/task_assignment_validation_rule.png" githubPath="Content/Resources/Images/help-images/task_assignment_validation_rule.png" showCaption="false"></Image>
+
+<Paragraph indent="1">
+  The full expression is:
+</Paragraph>
+
+$(IfAllSiblings("Incident#.Rev3", "$(Status != 'Closed' && Status != 'Resolved')", "$(Status == 'Completed' || Status == 'Cancelled' || Status == 'Rejected')", "$(PromptAndExecuteAction('$(Parent(Incident#.Rev3))', 'Task belongs to an Incident with no other unfinished Tasks. Select \[Yes] to set Incident resolved, select \[No] to create a new Task, or select \[Cancel] to cancel the Task save operation.', 'Resolve Incident', 'New TaskAssignment'))"))
+
+5. Click the **enable** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/bWi-zca3qrtIgxFJBc9Iy_enable.png" alt caption size="10" width="18" height="16"} next to the rule. The rule is no longer crossed out.
+6. Click **Save**.

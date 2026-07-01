@@ -1,0 +1,108 @@
+---
+title: Knowledge base agent
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:45 GMT+0300 (Eastern European Summer Time)
+---
+
+The Knowledge base agent searches knowledge sources to provide clear and helpful answers, allowing users to solve issues quickly and reduce ticket creation.
+
+To enable and configure the Knowledge base agent, do the following:
+
+1. Log in to \{\{FRS\_VARS.ProductName}} as an \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+2. Open the Configuration console and select **AI Configuration Hub** > **Agentic AI** > **Agent Settings**.
+3. Enable the Knowledge base agent using the toggle button.
+
+<hint type="info" indent="1">
+  An additional toggle button with the same function is available in the upper-right corner of the agent page.
+</hint>
+
+4. Click **Configure** to further set up the agent.
+5. Enable the **Use internal knowledge source** toggle button to allow Agentic AI to utilize internal Knowledge base for decision-making and providing responses to user queries.
+
+<Paragraph indent="1">
+  Click **View knowledge base** to view all the Knowledge business records, as shown in the following image.
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/rjCbGH-Ndsp99kVAzV1Wj_agentic-ai-kb.png" position="flex-start" size="40" indent="1" initialPath="../Resources/Images/Agentic-AI-Images/agentic-ai-KB.png" githubPath="Content/Resources/Images/Agentic-AI-Images/agentic-ai-KB.png" showCaption="false"></Image>
+
+6. Enable the **Use external sources** toggle button to allow Agentic AI to utilize external resources for decision-making and providing responses to user queries. The following image shows the dialog that appears when you click **Manage external sources**.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/xJFST8gkZ_Bv3vJl4uA1X_agentic-ai-ext-sources.png" position="flex-start" size="40" indent="1" initialPath="../Resources/Images/Agentic-AI-Images/agentic-ai-ext-sources.png" githubPath="Content/Resources/Images/Agentic-AI-Images/agentic-ai-ext-sources.png" showCaption="false"></Image>
+
+<Paragraph indent="1">
+  a. Click **Manage external sources** to add relevant links to external resources.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Enter the supported domains in the text field and click **Add**.
+</Paragraph>
+
+<Paragraph indent="2">
+  You can specify either a domain or a domain path. To include subpages in the search, the configured path can contain up to two subfolders. In this case, the search includes content at the specified path and all subordinate paths.
+</Paragraph>
+
+<Paragraph indent="2">
+  For example:
+</Paragraph>
+
+<Paragraph indent="2">
+  ww\.microsoft.com/windows/ → 1 subfolder
+</Paragraph>
+
+<Paragraph indent="2">
+  www\.microsoft.com/windows/security/ → 2 subfolders
+</Paragraph>
+
+<hint type="info" indent="2">
+  Only publicly accessible content that has already been indexed can be returned.
+</hint>
+
+<Paragraph indent="2">
+  If you specify a deeper path than supported, subpages are not included in the search for that path. As a result, child pages under that path are not searched. To search a section and its child pages, use a higher-level path that meets the two-subfolder limit, or specify an individual webpage if you want to target a single page.
+</Paragraph>
+
+<Paragraph indent="2">
+  For example:
+</Paragraph>
+
+<Paragraph indent="2">
+  www\.microsoft.com/windows/security/update/ → 3 subfolders, so subpages are excluded in the search.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. Click **Remove** to delete any URL from the added list.
+</Paragraph>
+
+7. Under **Conversation setup** > **Articles used in knowledge summarization**, enter the number of most relevant articles that should be used to generate the knowledge summary.
+8. Under **Conversation setup** > **Max response length**, set the maximum length of a response to a knowledge search article.
+9. **Allow transfer to live agent**: Enable the toggle button to transfer the interaction to your Service Desk Human Agent in case the Agentic AI bot cannot solve the user's request.
+
+<hint type="info" indent="1">
+  Along with this toggle, you must also enable the **Allow transfer to live agent** toggle in **Global Settings** > **Escalation Handling**.
+</hint>
+
+10. Under **Advanced settings** > **Knowledge base description**, define the scope of the Knowledge base agent by detailing the types of queries the agent can handle. You can also provide some example queries related to the Knowledge base to help the agent better understand the context. When users ask queries other than those defined here, the agent considers them out of context and replies to users accordingly.
+
+<hint type="danger" indent="1">
+  Modifying the intent description might result in unpredictable agent behavior. We recommend that only users with experience in LLM prompt engineering make these changes.
+</hint>
+
+The following image shows the configuration page of Knowledge base agent.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/foZS8QnK4QNDfvYtpDDq0_agentic-ai-kb-agent.png" position="flex-start" size="40" initialPath="../Resources/Images/Agentic-AI-Images/agentic-ai-kb-agent.png" githubPath="Content/Resources/Images/Agentic-AI-Images/agentic-ai-kb-agent.png" showCaption="false"></Image>
+
+<hint type="info">
+  Fields marked with an asterisk (\*) are mandatory.
+</hint>
+
+## Limitations
+
+- The Knowledge base agent does not support attachments associated with internal business objects. Therefore, the PDF and text files attached to knowledge business objects are excluded from knowledge search results.
+- When the **Use internal knowledge source** toggle is enabled, all internal knowledge business objects are referenced. However, only published internal sources are used.
+- During a Live Agent Transfer session, the **End Conversation** button is displayed only after the Live Analyst sends a response. Users can end the session only after the Live Agent has sent a response and the chat bot is waiting for input from the user. If the Live Agent does not respond, the session times out automatically, but the user cannot terminate the session.
+- During Live Agent Transfer, a conversation summary should be sent to the Live Agent at the beginning of the session. This functionality is currently not working.
+- At the end of a Live Agent Transfer session, users are not informed about what to do next. However, when the session ends, the Agentic AI is reset and users should initiate a new prompt, even if no live agent was available.
+- The Agentic AI handles only IT‑related issues. Other Line of Business (LoB) queries, such as HR, Facilities, and other non‑IT requests are not supported.
+- The Agentic AI does not fully support language translation. While it understands prompts in multiple languages, it currently responds using a combination of the user’s locale and English. The following image shows an example in which the user provides input in French, but the agent responds in English:
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Cipv3v3HqYoYMZI8DPW8d_agentic-ai-lang-transl-limit.png" position="flex-start" size="40" indent="1" initialPath="../Resources/Images/Agentic-AI-Images/agentic-ai-lang-transl-limit.png" githubPath="Content/Resources/Images/Agentic-AI-Images/agentic-ai-lang-transl-limit.png" showCaption="false"></Image>

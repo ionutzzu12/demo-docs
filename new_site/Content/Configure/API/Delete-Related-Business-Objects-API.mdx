@@ -1,0 +1,88 @@
+---
+title: Delete Linked Related Business Objects
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:01 GMT+0300 (Eastern European Summer Time)
+---
+
+You can delete related business objects that are linked.
+
+**Base URL:**
+
+https\://\{tenant url}/api/odata/businessobject/\{business object name}('\{business object RecID}')/\{business object relationship name}('\{RecID of the related business object}')/$Ref
+
+<hint type="info">
+  Ensure the business object name is suffixed with an "s".
+</hint>
+
+<ExpandableHeading>
+  ## Delete Links in Business - Example
+
+  Here is an example to delete a journal in an incident business object.
+
+  | URL                                 | https\://\{tenant url}/api/odata/businessobject/incidents('87168FCA6F0C46B2B5CDC5226FB7C773')/  <br />IncidentContainsJournal('4F34DB8563DF450CAE5381CDA9805B21')/$Ref                                                                |
+  | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | <font color="#ffffff">Method</font> | Delete                                                                                                                                                                                                                                |
+  | Header Name                         | Authorization: JWT Token/Session Key/REST API Key                                                                                                                                                                                     |
+  | Status Code                         | 204                                                                                                                                                                                                                                   |
+  | Response Payload                    |   <ExpandableHeading>
+      ## Click to view response payload
+
+      \{
+
+      "code": "ISM\_2000",
+
+      "description": "Ok",
+
+      "message": \[
+
+      "Successfully Deleted the link"
+
+      ],
+
+      "help": ""
+
+      }
+    </ExpandableHeading> |
+</ExpandableHeading>
+
+## Unsuccessful Responses
+
+<ExpandableHeading>
+  ## Invalid URL
+
+  Scenario: Trying to delete a link when the url is invalid.
+
+  Invalid URL:
+
+  https\://\{tenant url}/api/odata/businessobject/incident('87168FCA6F0C46B2B5CDC5226FB7C773')/IncidentContainsJournal('4F34DB8563DF450CAE5381CDA9805B21')/$Ref
+
+  Header Name:
+
+  **Authorization: Sessionkey**
+
+  | Code                                          | ISM\_4004                                                                                     |
+  | --------------------------------------------- | --------------------------------------------------------------------------------------------- |
+  | Description                                   | Bad Request                                                                                   |
+  | Message                                       | \[  <br />"No service for type 'Microsoft.OData.Edm.IEdmModel' has been registered."  <br />] |
+  | <font color="#ffffff">HTTP STATUS CODE</font> | 404                                                                                           |
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Invalid RecID
+
+  Scenario: Trying to delete a link when the RecID is invalid.
+
+  Example:
+
+  https\://\{tenant url}/api/odata/businessobject/incidentS('87168FCA6F0C46B2B5CDC5226FB7C773')/IncidentContainsJournal('1234')/$Ref
+
+  Header Name:
+
+  **Authorization: Sessionkey**
+
+  | Code                                          | ISM\_4000                                                                                   |
+  | --------------------------------------------- | ------------------------------------------------------------------------------------------- |
+  | Description                                   | Invalid Request                                                                             |
+  | Message                                       | \[  <br />"Record '1234' cannot be found in the related business object 'Journal#"  <br />] |
+  | <font color="#ffffff">HTTP STATUS CODE</font> | 400                                                                                         |
+</ExpandableHeading>

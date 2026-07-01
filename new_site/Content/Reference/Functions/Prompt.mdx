@@ -1,0 +1,133 @@
+---
+title: Prompt
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:59 GMT+0300 (Eastern European Summer Time)
+---
+
+Displays a text box for the user to enter text and returns the text that the user entered.
+
+## Syntax
+
+Prompt(message, pickList, fieldAreaWidth, fieldAreaHeight, password, required, defaultValue)
+
+## Enabled For
+
+For a description of the business object categories, see :Link[Notes on "Enabled For"]{label="Notes on &#x22;Enabled For&#x22;" overridedLabel="Notes on &#x22;Enabled For&#x22;" spaceId docId="xObv2pIDrk60jkEIWs8mD" version="v2" docAnchorId="#Notes" loadingMethod="dynamic" newTab="false" githubPath="_Built_in_Functions.htm#Notes" href="_Built_in_Functions.mdx"}.
+
+| Business Object Category                                                                     | Yes/No |
+| -------------------------------------------------------------------------------------------- | ------ |
+| Business Rules: Before-Save Rules                                                            | Yes1   |
+| Business Rules: Calculation Rules (After Save, with or without Also Recalculate on Load)     | Yes    |
+| Business Rules: Calculation Rules (Before Save or Always, without Also Recalculate On Load)  | Yes1   |
+| Business Rules: Calculation Rules (Before Save or Always, with Recalculate On Load)          | Yes    |
+| Business Rules: Editing Rules                                                                | Yes2   |
+| Business Rules: Initialization Rules                                                         | Yes1   |
+| Business Rules: Read Only Rules                                                              | No     |
+| Business Rules: Required Rules                                                               | Yes2   |
+| Business Rules: Validation Rules                                                             | Yes1   |
+| Client Expressions                                                                           | No     |
+| Object Permissions                                                                           | No     |
+| Services                                                                                     | Yes    |
+| LDAP                                                                                         | Yes    |
+| Mobile                                                                                       | Yes    |
+| Quick Actions (except UI Quick Actions)                                                      | Yes1   |
+| UI Quick Actions                                                                             | No     |
+| Reports                                                                                      | Yes1   |
+| Search/Dashboard without field references                                                    | Yes1   |
+| Search/Dashboard with field references                                                       | No     |
+| 1. Except in services.                                                                       |        |
+| 2. Except in services and when this field appears on a form or is triggered by such a field. |        |
+
+## Parameters
+
+<Paragraph indent="1">
+  This function takes at least one parameter and can take up to seven parameters. To enter a parameter without entering a value for a parameter before it, enter "" for the parameter for which you do not have a value.  For example, to enter the **message**, **pickList**, and **fieldAreaHeight** parameters, but no **fieldAreaWidth** parameter, enter **$(Prompt(message, pickList, "", 25))**.  In this example, the application uses 25 as the value of the **fieldAreaHeight** parameter and not the value of the **fieldAreaWidth** parameter.
+</Paragraph>
+
+| Parameter       | Description                                                                                                                                                                                               |
+| --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| message         | The message that shows as a prompt.                                                                                                                                                                       |
+| pickList        | (Optional) The name of a pick list that provides values for the user to select from.<br /><br />If this parameter is null or empty, the function does not specify a list but displays a text box instead. |
+| fieldAreaWidth  | (Optional) The width of the text area in pixels.                                                                                                                                                          |
+| fieldAreaHeight | (Optional) The height of the text area in pixels.                                                                                                                                                         |
+| password        | (Optional) Can be either true or false.<br /><br />If true, the application treats the entered text as a password and displays it as asterisks when entered.                                              |
+| required        | (Optional) Can be either true or false.<br /><br />If true, the user must enter or pick a value.                                                                                                          |
+| defaultValue    | (Optional) The text value to return if the user does not enter anything or select a value.                                                                                                                |
+
+## Return Value
+
+<Paragraph indent="1">
+  Text value.
+</Paragraph>
+
+## Examples
+
+<Paragraph indent="1">
+  The following is an example of using this function in a quick action:
+</Paragraph>
+
+$(Prompt("Select Cause Code", "Incident Cause Code", 400, 200, false, true))
+
+<Paragraph indent="1">
+  In this example, the **required** parameter is set to true, because the application prompts the user for a value that is required. This is to ensure that the user specifically chooses a proper value before the quick action is executed. In this example, there is no default value provided so there is no **defaultValue** parameter and therefore the function only has six parameters.
+</Paragraph>
+
+<Paragraph indent="1">
+  Add the following expression to the **Resolution** field of the **Update Object** quick action for an incident:
+</Paragraph>
+
+$(Prompt("Please enter resolution", "", 400, 200))
+
+<Paragraph indent="1">
+  This returns a prompt for a resolution note with an empty text area that is 400 pixels in width and 200 pixels in height.
+</Paragraph>
+
+<Paragraph indent="1">
+  Another example is in the Social Board where a quick action creates a business object.
+</Paragraph>
+
+$(Prompt("Summary", "", 350, 25, "", "", "\_ConversationTitle\_"))
+
+$(Prompt("Description", "", 400, 200, "", "", "\_ConversationContent\_"))
+
+<Paragraph indent="1">
+  In the first instance, the original post is included in the **Summary** field. In the second instance, the original post and the comments are included in the **Description** field.
+</Paragraph>
+
+<Paragraph indent="1">
+  You also can use this function in a saved search, to prompt an employee team when the search is being run.
+</Paragraph>
+
+<Paragraph indent="1">
+  You can use the Prompt() function in the context of the **Update Object** quick action to ask the user to fill out a value for a field in the business object. This is typically used when the underlying field is also validated.
+</Paragraph>
+
+$(Prompt(TitleInPrompt, ""))
+
+$(Prompt(TitleInPrompt, NamedValidationList))
+
+<Paragraph indent="1">
+  There are two variations of the Prompt() function:
+</Paragraph>
+
+<Paragraph indent="1">
+  If the second parameter is an empty string, you can enter any value for the field.
+</Paragraph>
+
+<Paragraph indent="1">
+  If the second parameter is a text value, the application assumes that this value is a named validation list and uses it to constrain the allowable values that you can enter for the field.
+</Paragraph>
+
+<Paragraph indent="1">
+  The following Prompt() function updates the owner team for an incident:
+</Paragraph>
+
+$(Prompt("Incident Owner Team", "Team of StandardUserTeam used in Incident"))
+
+<Paragraph indent="1">
+  The following example shows the syntax in the existing **Reassign Owner Team** quick action in for an incident:
+</Paragraph>
+
+*Prompting for a Value in a Quick Action Example*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/oaqBoehQ9onTKmCsiChRw_expressionownerteamqa.jpg" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/expression_owner_team_qa.jpg" githubPath="Content/Resources/Images/help-images/expression_owner_team_qa.jpg" showCaption="false"></Image>

@@ -1,0 +1,49 @@
+---
+title: About the Different Search Types
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:45 GMT+0300 (Eastern European Summer Time)
+---
+
+There are different types and ways to search in the \{\{FRS\_VARS.ProductName}} to find the information you need.
+
+## About Simple Text Search
+
+Simple search quickly searches all of the full-text indexed fields in each record of your database. Any attachment that is designated as "searchable" is included in a text search.
+
+Simple search examines each record in the database, matching the criteria entered in the **Search** text field.
+
+Starting in \{\{FRS\_VARS.ProductName}} Release 2017.1, the search has been updated to return the results sorted by relevance, showing the best matches first, unless you do one of the following:
+
+- Surround the search string in quotes.
+- Include one or more AND, OR, or NOT keywords. The keywords must be upper case.
+
+If the results are sorted by relevance, clicking on a column header changes the sort order as expected. To get the relevance sort order back, you must perform a new search.
+
+To perform a simple search, type the keyword(s) in the search box from any of the workspace and click the Search icon; the application displays the search results for the keyword.
+
+**Search in Self Service Mobile Portal**
+
+In \{\{FRS\_VARS.Self\_Service\_Mobile\_portal}} portal, searched keyword will be highlighted in the search results. This feature will help you to identify the more relevant records in search results. You can also change the default text in the search box by configuring the block templates. See [Customizing Block and Template Parts](../../Configure/SelfServiceSetup/Customizing-Block-and-Template-Parts.mdx).
+
+To clear the search field in \{\{FRS\_VARS.Self\_Service\_Mobile\_portal}} portal, click :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/8X7SsWPkThU6J5pbP_MBx_deletesearch.png" alt caption size="10" width="14" height="13"} icon.
+
+## About Type Ahead Search
+
+When type ahead search is enabled, you see a list of possible search matches as you type the word. A panel appears, listing results. Sometimes a result appears when a keyword is contained in a field that is not visible. Type ahead has two search options:
+
+- All full-text indexed fields. Searches text strings in all columns of a record.
+- Primary display field only. Searches for the record number only.
+
+## Working with Noise Words
+
+Noise words, also called *stop words*, are so common that they cause your search to return so many records that you cannot find what you were looking for. Noise words include *a*, *and*, *by*, *can*, *for*, *is*, *no*, *not*, *the*, *to*, and *with*. ITSM ignores noise words. For example, if you enter **"need to"**, the application only searches for **need** because **to** is a noise word. However, **to** is highlighted in the records returned.
+
+## Working with Partial Words
+
+If the administrator has enabled partial word results in conjunction with full-text searching, when you enter "up", the application searches for the word "up" as well as "update", "upgrade", "upper", "upstream", and even "UPS". Partial word results do not work with simple search.
+
+Administrators enable search features from the layout page for each business object. See [Using Layouts](../../Configure/Layouts/Layouts.mdx) for more information..
+
+## About Searches Not in English
+
+Searches in languages other than English are based on the default language setting of the server. For example, if your server language is set to Japanese and the search criteria contains Japanese characters (for example, the title field), your search should be successful. If the field contains characters from multiple languages, only characters matching the server settings are evaluated.

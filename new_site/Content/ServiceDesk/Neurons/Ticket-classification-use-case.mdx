@@ -1,0 +1,80 @@
+---
+title: Using Ticket Classification
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:47 GMT+0300 (Eastern European Summer Time)
+---
+
+**Role**: Service Desk Analyst.
+
+**Minimum Version**: \{\{Primary.Company}} \{\{Primary.Product}} 2024.2.
+
+**Feature Eligibility**: Ivanti's AITSM capabilities are available to customers who have subscribed to Premium or Enterprise Premium license. To know your eligibility, reach out to your Ivanti Account Manager.
+
+\{\{Primary.Product}} can automatically categorize your service tickets by enabling the ticket classification feature. When you create a service ticket, the application will automatically fill the field recommendations such as **Category** and **Service** from Ivanti Neurons AI.
+
+<hint type="info">
+  - Ticket Classification feature is available to you only if the Administrator has configured it for your user role. For more information, reach out to your Administrator.
+  - Currently, this feature is available only in **Incident** Business Object.
+</hint>
+
+<ExpandableHeading>
+  ## Use Case 1 - An analyst creates a new incident:
+
+  1. Log in to \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Analyst-Service-Desk-Analyst}}.
+  2. Open the **Incident** workspace.
+  3. From the toolbar, select **New**.
+  4. Enter the incident subject in the **Summary&#x20;**&#x66;ield. The application displays recommended field values in the mapped fields with the label **Ivanti Neurons AI recommendations applied**. The recommended field values are triggered by keywords in the **Summary** field.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/o06UXcmnL4NwMS57LASG1_ticket-classification-predictions.png" alt="Recommended field values triggered by keywords in the Summary field" position="flex-start" size="40" indent="2" initialPath="../../Resources/Images/Agentic-AI-Images/ticket-classification-predictions.png" githubPath="Content/Resources/Images/Agentic-AI-Images/ticket-classification-predictions.png" showCaption="false"></Image>
+
+  <hint type="info" indent="2">
+    If the recommendations are not available, the application will not display the **Apply Ivanti Neurons AI recommendations** button and label. The application will also not display the button and label if **Target Fields** such as **RecommendedCategory** and **RecommendedService** are not mapped. For more information about recommended field mapping, refer to the *Mapping Target Fields* section in [Configure Ticket Classification using Neurons Platform](../../Configure/Neurons/Ticket-categorization.mdx).
+  </hint>
+
+  5. Modify the field values if you want to make changes. Refer to [Managing Incidents](../Incidents/Managing-Incidents.mdx). Upon overriding any one of the recommendations, the application displays the **Apply Ivanti Neurons AI recommendations** button.
+  6. Select **Apply Ivanti Neurons AI recommendations** to accept the recommended field values.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/xxUg5H4wntz8D1dbq7H2M_ticket-classification-add-ai-button.png" alt="Override recommendations" position="flex-start" size="40" indent="2" initialPath="../../Resources/Images/Agentic-AI-Images/ticket-classification-add-ai-button.png" githubPath="Content/Resources/Images/Agentic-AI-Images/ticket-classification-add-ai-button.png" showCaption="false"></Image>
+
+  7. Enter data in the remaining fields and select **Save**.Refer to [Managing Incidents](../Incidents/Managing-Incidents.mdx).
+     If the incident is saved using recommendations, the **Incident** workspace displays the **Is AI Recommendation?** field value as *True*. Also, the application displays the **RecommendedCategory** and **RecommendedService** field values if you have added these fields in the List view. Refer to [Working with Lists](../../Configure/Lists/Lists.mdx) to modify the List view.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/sT89MMh_E2QcqBdqFt2sx_tc-incident-list.jpg" alt="Ticket classification fields" position="flex-start" size="40" indent="2" initialPath="../../Resources/Images/Configure/Neurons Workflow/tc-incident-list.jpg" githubPath="Content/Resources/Images/Configure/Neurons Workflow/tc-incident-list.jpg" showCaption="false"></Image>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Use Case 2 - An analyst modifies an existing incident:
+
+  1. Log in to \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Analyst-Service-Desk-Analyst}}.
+  2. Open the **Incident** workspace. A list of incidents is displayed.
+  3. Open an incident to view its details.
+  4. Modify the field values. Refer to [Managing Incidents](../Incidents/Managing-Incidents.mdx) to learn more about fields.
+  5. To apply the recommended field values, click **Apply Ivanti Neurons AI recommendations**. Upon accepting the recommended field values, the application displays the label "Ivanti Neurons AI recommendations applied", then selec&#x74;**&#x20;Save**.
+
+  <hint type="info" indent="2">
+    If the recommendations are not available, the application will not display the **Apply Ivanti Neurons AI recommendations** button and label. The application will also not display the button and label if **Target Fields** such as **RecommendedCategory** and **RecommendedService** are not mapped. For more information about recommended field mapping, refer to the *Mapping Target Fields* section in [Configure Ticket Classification using Neurons Platform](../../Configure/Neurons/Ticket-categorization.mdx).
+  </hint>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Use Case 3 - An end user (Self Service Mobile role) submits a ticket and an analyst modifies it:
+
+  1. Log in to \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Analyst-Service-Desk-Analyst}}.
+  2. Open the **Incident** workspace. A list of incidents is displayed.
+  3. Open the incident submitted by the end user to view its details.
+     The application displays recommended field values in the mapped fields with the label **Ivanti Neurons AI recommendations applied**.
+
+  <hint type="info" indent="2">
+    - When an end user submits a ticket, the application will automatically fill the recommended field values. For information on how an end user submits a ticket, refer to [Service Requests and Incidents](../../../../self/Content/Self-Service/service-requests-and-incidents.htm).
+    - If the recommendations are not available, the application will not display the **Apply Ivanti Neurons AI recommendations** button and label. The application will also not display the button and label if **Target Fields** such as **RecommendedCategory** and **RecommendedService** are not mapped. For more information about recommended field mapping, refer to the *Mapping Target Fields* section in [Configure Ticket Classification using Neurons Platform](../../Configure/Neurons/Ticket-categorization.mdx).
+  </hint>
+
+  4. Modify the field values if you want to make changes. Refer to [Managing Incidents](../Incidents/Managing-Incidents.mdx). When you override the recommendations, the application displays the **Apply Ivanti Neurons AI recommendations** button.
+  5. Select **Apply Ivanti Neurons AI recommendations** to accept the recommended field values and select **Save**.
+</ExpandableHeading>
+
+<hint type="info">
+  The auto fill of **RecommendedSubCategory**, **SubCategory**, and **Accuracy** fields will be in an upcoming version of Ivanti ITSM (mostly likely 2025.4).
+</hint>
+
+[<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Y4WfYOm5SkWQaKIj8jTPB_transparent.gif" size="10" alt="Related Topics Link Icon" isUploading="false" initialPath="../../../Skins/Default/Stylesheets/Images/transparent.gif" githubPath="Skins/Default/Stylesheets/Images/transparent.gif" width="16" height="16" showCaption="false"></Image>Related Topics](javascript\:void\(0\);)

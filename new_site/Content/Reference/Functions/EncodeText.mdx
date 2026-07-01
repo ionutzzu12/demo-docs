@@ -1,0 +1,63 @@
+---
+title: EncodeString
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:59 GMT+0300 (Eastern European Summer Time)
+---
+
+Applies the selected encoding method to text to encode a string. You can choose from:
+
+- Base 64
+- Backslash CR LF
+- Backslash Quote
+- Double Quote
+
+## Syntax
+
+EncodeString(textValue, encodingOption)
+
+## Enabled For
+
+For a description of the business object categories, see :Link[Notes on "Enabled For"]{label="Notes on &#x22;Enabled For&#x22;" overridedLabel="Notes on &#x22;Enabled For&#x22;" spaceId docId="xObv2pIDrk60jkEIWs8mD" version="v2" docAnchorId="#Notes" loadingMethod="dynamic" newTab="false" githubPath="_Built_in_Functions.htm#Notes" href="_Built_in_Functions.mdx"}.
+
+| Business Object Category                                                                                                                                                                                                                                                                                  | Yes/No |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| Business Rules: Before-Save Rules                                                                                                                                                                                                                                                                         | Yes    |
+| Business Rules: Calculation Rules (After Save, with or without Also Recalculate on Load)                                                                                                                                                                                                                  | Yes1   |
+| Business Rules: Calculation Rules (Before Save or Always, without Also Recalculate On Load)                                                                                                                                                                                                               | Yes    |
+| Business Rules: Calculation Rules (Before Save or Always, with Recalculate On Load)                                                                                                                                                                                                                       | Yes1   |
+| Business Rules: Editing Rules                                                                                                                                                                                                                                                                             | Yes2   |
+| Business Rules: Initialization Rules                                                                                                                                                                                                                                                                      | Yes    |
+| Business Rules: Read Only Rules                                                                                                                                                                                                                                                                           | No     |
+| Business Rules: Required Rules                                                                                                                                                                                                                                                                            | Yes2   |
+| Business Rules: Validation Rules                                                                                                                                                                                                                                                                          | Yes    |
+| Client Expressions                                                                                                                                                                                                                                                                                        | No     |
+| Object Permissions                                                                                                                                                                                                                                                                                        | No     |
+| Services                                                                                                                                                                                                                                                                                                  | No     |
+| LDAP                                                                                                                                                                                                                                                                                                      | No     |
+| Mobile                                                                                                                                                                                                                                                                                                    | No     |
+| Quick Actions (except UI Quick Actions)                                                                                                                                                                                                                                                                   | Yes    |
+| UI Quick Actions                                                                                                                                                                                                                                                                                          | No     |
+| Reports                                                                                                                                                                                                                                                                                                   | Yes    |
+| Search/Dashboard without field references                                                                                                                                                                                                                                                                 | No     |
+| Search/Dashboard with field references                                                                                                                                                                                                                                                                    | No     |
+| 1. Not fully supported in calculation rules that have a condition of **After Save** or have the **Also Recalculate on Load** option selected. It may fail if the rule's field is used in a grid, form, or saved search.<br />2. Except when this field appears on a form or is triggered by such a field. |        |
+
+## Parameters
+
+| Parameter      | Description                                                                                        |
+| -------------- | -------------------------------------------------------------------------------------------------- |
+| textValue      | The input string to encode.                                                                        |
+| encodingOption | The encoding method for the function (one of: Base64, BackslashCRLF, BackslashQuote, DoubleQuote). |
+
+## Return Value
+
+Encoded text.
+
+## Examples
+
+| Expression                                                           | Output                       |
+| -------------------------------------------------------------------- | ---------------------------- |
+| $(EncodeString("\\\ \\"Sample \r\n text\\" \\\\", "Base64"))         | XCAiU2FtcGxlIA0KIHRleHQiIFw= |
+| $(EncodeString("\\\ \\"Sample \r\n text\\" \\\\", "BackslashCRLF"))  | \ "Sample \r\n text" \\      |
+| $(EncodeString("\\\ \\"Sample \r\n text\\" \\\\", "BackslashQuote")) | \ \\"Sample<br />text\\" \\  |
+| $(EncodeString("\\\ \\"Sample \r\n text\\" \\\\", "DoubleQuote"))    | \\""Sample<br />text"" \\    |

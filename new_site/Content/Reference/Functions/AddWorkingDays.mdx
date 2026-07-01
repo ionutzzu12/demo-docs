@@ -1,0 +1,78 @@
+---
+title: AddWorkingDays
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:59 GMT+0300 (Eastern European Summer Time)
+---
+
+Returns the UTC date and time of the day that is the number of working days specified earlier than or later than the specified date and time. The application uses a HOP schedule to define the working days. See [Setting Up Hours of Operation](../../Configure/HoursOfOp/Hours_of_Operation.mdx).
+
+If the value of the **durationInDays** parameter is negative, the function returns a DateTime value that is the number of working days specified before the value of the **hopStartDateTime** parameter.
+
+## Syntax
+
+AddWorkingDays(hopIdOrName, durationInDays, hopStartDateTime)
+
+## Enabled For
+
+For a description of the business object categories, see :Link[Notes on "Enabled For"]{label="Notes on &#x22;Enabled For&#x22;" overridedLabel="Notes on &#x22;Enabled For&#x22;" spaceId docId="xObv2pIDrk60jkEIWs8mD" version="v2" docAnchorId="#Notes" loadingMethod="dynamic" newTab="false" githubPath="_Built_in_Functions.htm#Notes" href="_Built_in_Functions.mdx"}.
+
+| Business Object Category                                                                    | Yes/No |
+| ------------------------------------------------------------------------------------------- | ------ |
+| Business Rules: Before-Save Rules                                                           | Yes    |
+| Business Rules: Calculation Rules (After Save, with or without Also Recalculate on Load)    | Yes    |
+| Business Rules: Calculation Rules (Before Save or Always, without Also Recalculate On Load) | Yes    |
+| Business Rules: Calculation Rules (Before Save or Always, with Recalculate On Load)         | Yes    |
+| Business Rules: Editing Rules                                                               | Yes1   |
+| Business Rules: Initialization Rules                                                        | Yes    |
+| Business Rules: Read Only Rules                                                             | No     |
+| Business Rules: Required Rules                                                              | Yes1   |
+| Business Rules: Validation Rules                                                            | Yes    |
+| Client Expressions                                                                          | No     |
+| Object Permissions                                                                          | No     |
+| Services                                                                                    | Yes    |
+| LDAP                                                                                        | Yes    |
+| Mobile                                                                                      | Yes    |
+| Quick Actions (except UI Quick Actions)                                                     | Yes    |
+| UI Quick Actions                                                                            | No     |
+| Reports                                                                                     | Yes    |
+| Search/Dashboard without field references                                                   | Yes    |
+| Search/Dashboard with field references                                                      | No     |
+| 1. Except when this field appears on a form or is triggered by such a field.                |        |
+
+## Parameters
+
+| Parameter        | Description                                                                                                                                                                                                                                                                                             |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| hopIdOrName      | The hours of operation schedule name (for example, 24x7 or 9 to 5) that determines the working and non-working schedule.                                                                                                                                                                                |
+| durationInDays   | (Optional) The number of days before or after for which to calculate the working days. When the value of durationInDays is 0 (or omitted since 0 is the default) the value of hopStartDateTime is returned if it is within a working period, otherwise the start of the next working period is returned |
+| hopStartDateTime | (Optional) The base date and time for the function. If not specified, uses the default date which is the current date and time.                                                                                                                                                                         |
+
+## Returns Value
+
+<Paragraph indent="1">
+  DateTime value in UTC time.
+</Paragraph>
+
+<hint type="info">
+  If the application has to display the return value, it implicitly converts it to text, thereby allowing the display format to change depending on your culture code. See :Link[Available Languages and Cultures]{label="Available Languages and Cultures" overridedLabel="Available Languages and Cultures" spaceId docId="ZOdB7cSrDXVspZWLePaWn" version="v2" docAnchorId="#culture" loadingMethod="dynamic" newTab="false" githubPath="../../Configure/Localization/Setting Up Languages.htm#culture" href="../../Configure/Localization/Setting Up Languages.mdx"} for a list of the culture codes used by \{\{FRS\_VARS.ProductName}}.
+</hint>
+
+## Example
+
+$(AddWorkingDays("24 x 7", 4))
+
+<Paragraph indent="1">
+  If today is Tuesday August 11, 2015, this function returns the DateTime value for the date that is 4 working days past Tuesday August 11, 2015. In this case, it returns Monday August 17, 2015 at the same time of day, assuming that there are no exceptions defined during that time in the HOP schedule.
+</Paragraph>
+
+$(AddWorkingDays("24 x 7", -4))
+
+<Paragraph indent="1">
+  If today is Tuesday August 11, 2015, this function returns the DateTime value for the date that is 4 working days before Tuesday August 11, 2015. In this case, it returns Wednesday August 5, 2015 at the same time of day, assuming that there are no exceptions during that time defined in the HOP schedule.
+</Paragraph>
+
+$(AddWorkingDays("24 x 7", 10, mydate))
+
+<Paragraph indent="1">
+  If the value of the **mydate** parameter is Tuesday August 11, 2015, this function returns the DateTime value for the date that is 10 working days past Tuesday August 11, 2015. In this case, it returns Tuesday August 25, 2015 at the same time of day, assuming that there are no exceptions during that time defined in the HOP schedule.
+</Paragraph>

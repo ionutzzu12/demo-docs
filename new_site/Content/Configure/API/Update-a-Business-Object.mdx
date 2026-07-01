@@ -1,0 +1,261 @@
+---
+title: Update a Business Object
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:01 GMT+0300 (Eastern European Summer Time)
+---
+
+You can update details of a business object such as a change, problem, or incident.
+
+**Base URL:**
+
+https\://\{tenant url}/api/odata/businessobject/\{business object name}('\{business object unique key}')
+
+<hint type="info">
+  Ensure the business object name is suffixed with an "s".
+</hint>
+
+<ExpandableHeading>
+  ## Update a Business Object - Example
+
+  Here is an example to update a change by its unique ID.
+
+  | URL                                           | https\://\{tenant url}/api/odata/businessobject/changes('02818A8426C9402E8DFE7C8D3132F783')                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+  | --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | <font color="#ffffff">Method</font>           | PUT/PATCH  <br />  <br />The **PUT** and **PATCH** methods have the same request payload, despite performing different operations.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+  | Header Name                                   | Authorization: JTW Token/Session Key/REST API Key                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+  | Status Code                                   | 200                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+  | <font color="#ffffff">Response Payload</font> |   <ExpandableHeading>
+      ## Click to view the response
+
+      \{
+
+
+
+      "@odata.context": "https\://tatnet.ivanti.com/api/odata/change/$metadata#changes/$entity",
+
+      "AcceptanceDueDate": "0001-01-01T00:00:00Z",
+
+      "AcceptTimeout": "0001-01-01T00:00:00Z",
+
+      "BackoutPlanAttached": false,
+
+      "BallotCount": null,
+
+      "BusinessFunction\_Valid": "",
+
+      "BusinessFunction": "",
+
+      "Category\_Valid": "E0234286776B43C39231635C7066F369",
+
+      "Category": "Software",
+
+      "ChangeNumber": 10173,
+
+      "ClosedBy": null,
+
+      "ClosedCode\_Valid": "",
+
+      "ClosedCode": "",
+
+      "ClosedDateTime": "0001-01-01T00:00:00Z",
+
+      "CompletedBy": "",
+
+      "CreatedBy": "Admin",
+
+      "CreatedByRecID": "FB884D18F7B746A0992880F2DFFE749C",
+
+      "CreatedDateTime": "2011-10-09T01:30:36+05:30",
+
+      "DirectCost": 0,
+
+      "Emergency": false,
+
+      "EstimatedCost": 0,
+
+      "ExternalCalendarLinkID": "",
+
+      "ExternalTaskLinkID": "",
+
+      "FinalState": "False",
+
+      "Impact\_Valid": "1AFFC174C7EA4AB79CCA6B15EB67006D",
+
+      "Impact": "Medium",
+
+      "LastModBy": "RMatthews",
+
+      "LastModDateTime": "2011-11-24T01:30:36+05:30",
+
+      "Owner\_Valid": "8C50BA8C88D04AFE8288F9931DCA7CE8",
+
+      "Owner": "JSmith",
+
+      "OwnerTeam\_Valid": "2E4BABD54FB9420D94F836F0D9B80C47",
+
+      "OwnerTeam": "Service Desk",
+
+      "OwnerType": "Profile.Employee",
+
+      "ParentLink\_Category": "",
+
+      "ParentLink\_RecID": "",
+
+      "ParentLink": null,
+
+      "Priority": "3",
+
+      "Reason\_Valid": "",
+
+      "Reason": "",
+
+      "RecId": "008E3506AF3F4CC190BC95523645D968",
+
+      "RequestedBy": "Paul H Chang",
+
+      "RequestorLink\_Category": "Employee",
+
+      "RequestorLink\_RecID": "8A6EADA5906F4F4BBCC8F47CC126F374",
+
+      "RequestorLink": "8A6EADA5906F4F4BBCC8F47CC126F374",
+
+      "ScheduledEndDate": "2011-12-04T01:30:36+05:30",
+
+      "ScheduledStartDate": "2011-11-29T01:30:36+05:30",
+
+      "Service\_Valid": null,
+
+      "Service": "",
+
+      "Status\_Valid": "F93826F7E4394B1E8C8A6CA2C3F07ED3",
+
+      "Status": "Pending Approval",
+
+      "Subject": "Installation of Office 2010 compatibility pack",
+
+      "TargetBreach": false,
+
+      "TargetDate": "0001-01-01T00:00:00Z",
+
+      "TypeOfChange\_Valid": "E7663AFB13CC47E6BB13DE2DFC66CD8D",
+
+      "TypeOfChange": "Significant",
+
+      "Urgency\_Valid": "44021B6CC6E44E598868C4B3306053AE",
+
+      "Sponsor\_Valid": "D844686D74224F159EAFA7F11D0792EA",
+
+      "Sponsor": "Allen W Cope",
+
+      "RiskLevel\_Valid": "3548D4C1230B491DAB1D315AA93902B5",
+
+      "RiskLevel": "Low",
+
+      "RiskCatalogLink\_Category": "",
+
+      "RiskCatalogLink\_RecID": "",
+
+      "RiskCatalogLink": null,
+
+      "ReleaseLink\_Category": "",
+
+      "ReleaseLink\_RecID": "",
+
+      "ReleaseLink": "",
+
+      "TriggerChangesToCI": "0001-01-01T00:00:00Z",
+
+      "RequesterLocation": "APAC - China",
+
+      "RequesterPhone": "+86 10 8520 0424",
+
+      "Cost": 182,
+
+      "TotalTimeSpent": 160,
+
+      "IsUnRead": false
+
+      }
+    </ExpandableHeading> |
+</ExpandableHeading>
+
+## Unsuccessful Responses
+
+<ExpandableHeading>
+  ## Empty Object ID
+
+  Scenario: To update a change, the object ID provided is empty or a white space.
+
+  Example:
+
+  https\://\{tenant url}/api/odata/businessobject/changes(' ')
+
+  Header Name:
+
+  **Authorization: Sessionkey**
+
+  | <font color="#ffffff">Code</font>             | ISM\_4000                                         |
+  | --------------------------------------------- | ------------------------------------------------- |
+  | Description                                   | Invalid Request Payload                           |
+  | Message                                       | \[  <br />"Invalid Business Object Key"  <br />], |
+  | <font color="#ffffff">HTTP STATUS CODE</font> | **400**                                           |
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Invalid Object ID
+
+  Scenario: When updating a change, the object ID provided is invalid.
+
+  Examples:
+
+  https\://\{teannt url}/api/odata/businessobject/changes('1234')
+
+  https\://\{tenant url}/api/odata/businessobject/changes('random')
+
+  Header Name:
+
+  **Authorization: Sessionkey**
+
+  | <font color="#ffffff">Code</font>             | ISM\_4000                                                                           |
+  | --------------------------------------------- | ----------------------------------------------------------------------------------- |
+  | Description                                   | Invalid Request Payload                                                             |
+  | Message                                       | \[  <br />"Record '1234' cannot be found in the business object 'change'"  <br />], |
+  | <font color="#ffffff">HTTP STATUS CODE</font> | **400**                                                                             |
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Key Value Pair Does Not Exist
+
+  Scenario: When updating a valid business object instance with a proper key, an invalid request body or key value pair is provided, which are not part of business object field definition.
+
+  Example:
+
+  https\://\{tenant url}/api/odata/businessobject/changes('05B5CD2DFAE54D86A04C74DBF616C1DE')
+
+  Header Name:
+
+  **Authorization: Sessionkey**
+
+  | HTTP PUT/PATCH                                | Request payload is : \{"name": "test"}                                             |
+  | --------------------------------------------- | ---------------------------------------------------------------------------------- |
+  | <font color="#ffffff">Code</font>             | ISM\_4000                                                                          |
+  | Description                                   | Invalid Request Payload                                                            |
+  | Message                                       | \[  <br />"Field 'name' does not exist in the business object 'Change#'"  <br />], |
+  | <font color="#ffffff">HTTP STATUS CODE</font> | **400**                                                                            |
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Unhandled Exception
+
+  Scenario: When updating a valid business object instance with a proper key and valid request body, but for some reason unhandled code is provided and if it fails to update.
+
+  Header Name:
+
+  **Authorization: Sessionkey**
+
+  | <font color="#ffffff">Code</font>             | ISM\_5000                                                                                 |
+  | --------------------------------------------- | ----------------------------------------------------------------------------------------- |
+  | Description                                   | Internal server error                                                                     |
+  | Message                                       | \[  <br />"The server encountered an internal error. Please retry the request."  <br />], |
+  | <font color="#ffffff">HTTP STATUS CODE</font> | **500**                                                                                   |
+</ExpandableHeading>

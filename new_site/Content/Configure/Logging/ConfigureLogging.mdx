@@ -1,0 +1,62 @@
+---
+title: Viewing the Logging Configuration
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:53 GMT+0300 (Eastern European Summer Time)
+---
+
+1. Log into the \{\{FRS\_VARS.ProductName}} application.
+2. Open the **Logging Configuration** workspace. The application displays the **Logging Configuration** workspace, listing the default log settings.
+
+*Logging Configuration Workspace*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Cm4XTDqIY20p7pasyl0Ke_loggingconfig.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/logging_config.png" githubPath="Content/Resources/Images/help-images/logging_config.png" showCaption="false"></Image>
+
+## Configuring Logging
+
+Each time that you run a service, the application can create a log.
+
+1. Log in to \{\{FRS\_VARS.ProductName}}.
+2. Open the **Logging Configuration** workspace.
+3. Clic&#x6B;**&#x20;New Record**. The application displays the new record page.
+4. Enter information into the fields.
+
+| Field        | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Service Name | Name of the service. This list is populated from the **Service Name** workspace in the \{\{FRS\_VARS.ProductName}} Configuration Database. See :Link[Logging Services]{label="Logging Services" overridedLabel="Logging Services" spaceId docId="FKONOPD7Q_8zGlpFauq21" version="v2" docAnchorId="#Logging-Services" loadingMethod="dynamic" newTab="false" githubPath="../Localization/Logging.htm#Logging-Services" href="../Localization/Logging.mdx"}. |
+| Log Level    | The log level. See :Link[Logging Levels]{label="Logging Levels" overridedLabel="Logging Levels" spaceId docId="FKONOPD7Q_8zGlpFauq21" version="v2" docAnchorId="#Logging_Levels" loadingMethod="dynamic" newTab="false" githubPath="../Localization/Logging.htm#Logging_Levels" href="../Localization/Logging.mdx"}.                                                                                                                                       |
+
+5. Click **Save**.
+
+## Enable/disable Script Logging
+
+You can enable or disable additional logs for scripts (**Service Name** is **Script**) using the :Link[DisableScriptLevelLogging ]{label="DisableScriptLevelLogging " overridedLabel="DisableScriptLevelLogging " spaceId docId="6CPp-wWweHGMGP37lRlsY" version="v2" docAnchorId="#DisableScriptLevelLogging" loadingMethod="dynamic" newTab="false" githubPath="../Constants/Default_Global_Constants.htm#DisableScriptLevelLogging" href="../Constants/Default_Global_Constants.mdx"}Global Constant.
+
+Prior to version 2023.1, when executing scripts, additional logs were generated overriding the configuration. Starting from version 2023.1, you can decide to include or exclude the additional logs such as the INFO level logs, using the **DisableScriptLevelLogging&#x20;**&#x47;lobal Constant.
+
+### To enable/disable Script Logging
+
+- From the Configuration console, add the Global Constant **DisableScriptLevelLogging**.
+
+<Paragraph indent="1">
+  For more info on adding a Global Constant, see [Working with Global Constant](../Constants/Defining_Global_Constant.mdx).
+</Paragraph>
+
+**Enable DisableScriptLevelLogging**:
+
+- Set the value of the **DisableScriptLevelLogging** Global Constant as **True**.
+
+<Paragraph indent="1">
+  When executing scripts, additional logs that do not adhere to the configuration will not get logged anymore.
+</Paragraph>
+
+**Disable DisableScriptLevelLogging**:
+
+- Set the value of the **DisableScriptLevelLogging** Global Constant as **False**.
+
+<Paragraph indent="1">
+  When executing scripts, the logs are generated as they were prior to 2023.1. That is, all additional logs such as INFO level logs are also generated.
+</Paragraph>
+
+<hint type="info">
+  When the **DisableScriptLevelLogging&#x20;**&#x47;lobal Constant is not added to the application, the functionality works same as when the **DisableScriptLevelLogging&#x20;**&#x69;s set as False. That is, additional logs are generated.
+</hint>

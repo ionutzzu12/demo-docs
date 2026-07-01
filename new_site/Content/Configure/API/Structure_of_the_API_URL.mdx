@@ -1,0 +1,30 @@
+---
+title: Structure of the API URL
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:00 GMT+0300 (Eastern European Summer Time)
+---
+
+The API URL is structured as follows:
+
+\{tenant url}/\{base api url}/\{business object name}(\{'business object unique key'})?$\{query parameter and value}
+
+where,
+
+| \{tenant url}                   | Required | The tenant URL to access the server.<br />Example, https\://xyz.api-example.com                                                                                                                                                  |
+| ------------------------------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| \{base api url}                 | Required | The fixed path to access the API resource, it is used for all API calls expect for log-in and log-out.<br />Fixed Path - api/odata/businessobject<br />Fixed path for log-in and log-out APIs - /api/rest/authentication         |
+| \{business object name}         | Required | The business object name.<br />Example, incidents, alerts, and changes.                                                                                                                                                          |
+| \{(business object unique key)} | Optional | The business object unique key is the RecID which is used to request a specific resource or business object.<br />Example, ('02818A8426C9402E8DFE7C8D3132F783')                                                                  |
+| \{query parameter and value}    | Optional | The query parameter and value will be required based on the request such as to get only the top 10 Incidents from the list or to get Incidents by a specific Owner.<br />Examples,<br />?$top=10<br />?$filter=owner eq 'JClerk' |
+
+## Endpoint Examples:
+
+https\://xyz.api-example.com/api/odata/businessobject/incidents
+
+https\://xyz.api-example.com/api/odata/businessobject/alerts
+
+https\://xyz.api-example.com/api/odata/businessobject/employees
+
+https\://xyz.api-example.com/api/odata/businessobject/incidents?$search=Printer
+
+https\://xyz.api-example.com/api/odata/businessobject/incidents?$filter=Status eq 'Active'

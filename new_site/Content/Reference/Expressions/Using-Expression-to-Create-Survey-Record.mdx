@@ -1,0 +1,27 @@
+---
+title: Using Expression to Create Survey Record
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:58 GMT+0300 (Eastern European Summer Time)
+---
+
+## Example: Accessing a Survey Email Record
+
+Note that you need to add the appropriate expression to the incident or service request send survey business rule.
+
+If you have the following raw URL expression (notice that there are no \<a> tags surrounding the expression):
+
+$(GetSurveyURL())\&amp;survey\_name=$(GetSurveyName("DefaultSurveyName"))\&amp;customer\_id=$(GetApplicationId())\&amp;ot=Incident\&amp;oid=$(RecId)\&amp;page\_index=0
+
+Update it with the following expression:
+
+\<a href="$(GetSurveyURL())\&amp;survey\_name=$(GetSurveyName(\&quot;DefaultSurveyName\&quot;))\&amp;customer\_id=$(GetApplicationId())\&amp;ot=Incident\&amp;oid=$(RecId)\&amp;page\_index=0">Click here to fill out survey\</a>
+
+If you have already modified the send email configuration to the friendly URL, it appears as follows:
+
+\<a href="$(GetSurveyURL())\&amp;survey\_name=$(GetSurveyName("DefaultSurveyName"))\&amp;customer\_id=$(GetApplicationId())\&amp;ot=Incident\&amp;oid=$(RecId)\&amp;page\_index=0">Click here to fill out survey\</a>
+
+Update it with the following expression to escape the double-quote characters surrounding DefaultSurveyName, as shown:
+
+\<a href="$(GetSurveyURL())\&amp;survey\_name=$(GetSurveyName(\&quot;DefaultSurveyName\&quot;))\&amp;customer\_id=$(GetApplicationId())\&amp;ot=Incident\&amp;oid=$(RecId)\&amp;page\_index=0">Click here to fill out survey\</a>
+
+If you are not logged in to \{\{FRS\_VARS.ProductName}}, the application prompts you to do so upon clicking the link. Access is dictated by your assigned role.

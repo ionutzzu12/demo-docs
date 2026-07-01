@@ -1,0 +1,299 @@
+---
+title: Connecting Neurons for SOM to ADO
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:46 GMT+0300 (Eastern European Summer Time)
+---
+
+Perform the following procedures to connect \{\{FRS\_VARS.Neurons\_for\_SOM}} to your ADO instance.
+
+<ExpandableHeading>
+  ## Credentials and Initial Setup
+
+  1. Log into \{\{FRS\_VARS.ITSM}} as an Administrator and open th&#x65;**&#x20;Ticket Sharing and Synchronization&#x20;**(TSS) workspace.
+  2. Select **New Ticket Sharing and Synchronization**.
+  3. Enter th&#x65;**&#x20;Integration Name** (example: ADO).
+  4. Select **Incident&#x20;**&#x66;rom the **Business Object Name** menu.
+  5. Select **Enabled&#x20;**&#x66;rom the Status menu.
+  6. In the **Service Name** field, find and select ADO.
+  7. Save.
+
+  <Paragraph indent="1">
+    Four new tabs now appear after the **Credentials&#x20;**&#x74;ab: **Filters**,**&#x20;Field Mapping**, **Data Mapping**, and **Data Rules**.
+  </Paragraph>
+
+  8. The **Credentials&#x20;**&#x74;ab now contains three additional fields:
+
+  <Paragraph indent="1">
+    a. **Service URL**: Relevant ADO instance URL (example: https\://dev.azure.com/YourCompany).
+  </Paragraph>
+
+  <Paragraph indent="1">
+    b. **Username**: Jira account username (example: ADOUsername\@company.com).
+  </Paragraph>
+
+  <Paragraph indent="1">
+    c. **Auth Token**: Token provided by ADO (example: Token1232323232323).
+  </Paragraph>
+
+  9. Save.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Filters Tab
+
+  1. In the **Filters&#x20;**&#x74;ab, click **New Connector Service Filters**.
+  2. In the **New Connector Service Filters** dialog, select **Summary&#x20;**&#x66;rom the **Incident/ivnt\_SecurityIncident Field Name** menu.
+  3. In the **Incident/ivnt\_SecurityIncident Field Name** field, enter Trojan. Depending on environment and criteria, choosing the Security Incident’s **Category&#x20;**&#x66;ield (with, for example “Data Breach” as Field Value) might be more appropriate or practical.
+  4. **Operation with next Filter** determines how filtering works with other filters. Select the appropriate operator (AND or OR) (example: add a “Ransomware Detected” filter).
+  5. When all appropriate filters have been added, Save.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Field Mapping Tab
+
+  1. In the **Field Mapping** tab, click **New Connector Service Field Mapping**.
+
+  <Paragraph indent="1">
+    a. In the **New Connector Service Field Mapping&#x20;**&#x64;ialog, select **Summary** for th&#x65;**&#x20;Incident/ivnt\_SecurityIncident Field Name**.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    b. Enter System.Title for the **ADO Field Name**.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    c. Enter System.Title for the **Service Field Depth**.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    d. Select **Poll this field for any changes**.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    e. Save.
+  </Paragraph>
+
+  2. Clic&#x6B;**&#x20;New Connector Service Field Mapping**.
+
+  <Paragraph indent="1">
+    a. In the **New Connector Service Field Mapping** dialog, select **Status** for th&#x65;**&#x20;Incident/ivnt\_SecurityIncident Field Name**.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    b. Enter System.State for the **ADO Field Name** . This field is in lowercase in Jira.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    c. Enter System.State for the **Service Field Depth**.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    d. Select **Poll this field for any changes**.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    e. Save.
+  </Paragraph>
+
+  3. Clic&#x6B;**&#x20;New Connector Service Field Mapping**.
+
+  <Paragraph indent="1">
+    a. In the **New Connector Service Field Mapping** dialog, select **Description** for the **Incident/ivnt\_SecurityIncident Field Name**.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    b. Enter System.Description for th&#x65;**&#x20;ADO Field Name**.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    c. Enter System.Description for th&#x65;**&#x20;Service Field Depth**.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    d. Select **Poll this field for any changes**.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    e. Save.
+  </Paragraph>
+
+  4. Clic&#x6B;**&#x20;New Connector Service Field Mapping**.
+
+  <Paragraph indent="1">
+    a. In th&#x65;**&#x20;New Connector Service Field Mapping** dialog, select **Provide default value** (to switch field mapping from ADO to ISM).
+  </Paragraph>
+
+  <Paragraph indent="1">
+    b. Enter project for the **ADO Field Name**.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    c. Enter the name of the ADO project for the **Default Value**.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    d. Save.
+  </Paragraph>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Data Mapping Tab
+
+  1. In the **Data Mapping** tab, click **New Connector Service Data Mapping**.
+
+  <Paragraph indent="1">
+    a. In the **New Connector Service Field Mapping&#x20;**&#x64;ialog, select **Incident/ivnt\_SecurityIncident)=Status :: ADO=System.State** for the **Connector Service Field**.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    b. Enter Resolved for the **Incident/ivnt\_SecurityIncident Field Value**.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    c. Enter Resolved for the **ADO Field Value**.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    d. Save.
+  </Paragraph>
+
+  2. Click **New Connector Service Data Mapping**.
+
+  <Paragraph indent="1">
+    a. Select **Incident/ivnt\_SecurityIncident=Status :: ADO=System.State&#x20;**&#x66;or the **Connector Service Field**.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    b. Enter Logged for th&#x65;**&#x20;Incident/ivnt\_SecurityIncident Field Value**.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    c. Enter Committed for the **ADO Field Value**.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    d. Save.
+  </Paragraph>
+
+  3. Click **New Connector Service Data Mapping**.
+
+  <Paragraph indent="1">
+    a. Select **IIncident/ivnt\_SecurityIncident=Status :: ADO=System.State** for the **Connector Service Field**.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    b. Enter Active for the **Incident/ivnt\_SecurityIncident Field Value** .
+  </Paragraph>
+
+  <Paragraph indent="1">
+    c. Enter New for the **ADO Field Value**.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    d. Save.
+  </Paragraph>
+
+  4. Click **New Connector Service Data Mapping**.
+
+  <Paragraph indent="1">
+    a. Select **ncident/ivnt\_SecurityIncident=Status :: ADO=System.State** for the **Connector Service Field**.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    b. Enter Closed for the **Incident/ivnt\_SecurityIncident Field Value**..
+  </Paragraph>
+
+  <Paragraph indent="1">
+    c. Enter Done for the **ADO Field Value**.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    d. Save.
+  </Paragraph>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Data Rules Tab
+
+  1. In the Data Rules tab, select **New Connector Service Field Constraint**..
+
+  <Paragraph indent="1">
+    a. In the **Field Mapping Value** menu, selec&#x74;**&#x20;Incident/ivnt\_SecurityIncident=Status :: ADO=System.State\[Resolved,Resolved]**.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    b. In the **Business Object Field Name** menu, select **CauseCode**.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    c. Enter Vulnerability for th&#x65;**&#x20;Business Object Field Value**. This is an example; you need to match whatever cause codes you have set up in your Incident or Security Incident objects.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    d. Save.
+  </Paragraph>
+
+  2. Clic&#x6B;**&#x20;New Connector Service Field Constraint**.
+
+  <Paragraph indent="1">
+    a. In the **Field Mapping Value** menu, select **Incident/ivnt\_SecurityIncident=Status :: ADO=System.State\[Resolved,Resolved]**.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    b. In the **Business Object Field Name** menu, select **Resolution**.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    c. Enter Data Rules Resolution for th&#x65;**&#x20;Business Object Field Value**. This is an example; you need to match whatever resolution values you have set up in your Incident or Security Incident objects.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    d. Save.
+  </Paragraph>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Additional Operations
+
+  1. Click the **Additional Operations** tab. If the tab is not visible, you may have to refresh or go to List View and select your TSS again.
+  2. Select the following options:
+     - **Push Comments added in HEAT to ADO**
+     - **Pull Comments added in ADO to HEAT**
+     - **Push Attachments added in HEAT to ADO**
+     - **Pull Attachments added in ADO to HEAT**
+  3. In the **Comment Business Object** menu, select **Journal#Notes**.
+  4. Save.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Comment Field Mapping
+
+  1. Click th&#x65;**&#x20;Comment Field Mapping** tab. If the tab is not visible, you may have to refresh or go to List View and select your TSS again.
+  2. Click **New Comment Field Mapping**.
+
+  <Paragraph indent="1">
+    a. In the **Incident/ivnt\_SecurityIncident Field Name** menu, select **Notes**.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    b. Enter Description for th&#x65;**&#x20;ADO Field Name**.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    c. Save.
+  </Paragraph>
+
+  3. Clic&#x6B;**&#x20;New Comment Field Mapping**.
+
+  <Paragraph indent="1">
+    a. In the **Incident Field Name** menu, select **Subject**.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    b. Enter Summary for the **Jira Field Name**.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    c. Save.
+  </Paragraph>
+</ExpandableHeading>

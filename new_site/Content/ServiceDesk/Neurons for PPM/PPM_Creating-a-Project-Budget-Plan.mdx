@@ -1,0 +1,400 @@
+---
+title: Creating a Project Budget Plan
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:46 GMT+0300 (Eastern European Summer Time)
+---
+
+There are two types of budget plan, a Project Budget Plan, and a Portfolio Budget Plan. Use the appropriate workspace to create a budget plan for either a project or portfolio budget. To create a Portfolio Budget Plan, refer to [Creating a Portfolio Budget Plan](PPM_Creating-a-Portfolio-Budget-Plan.mdx).
+
+This workspace is available to the following roles:
+
+- \{\{FRS\_VARS.Neurons\_ITSM\_-\_Portfolio\_Manager}}
+- \{\{FRS\_VARS.Neurons\_ITSM\_-\_Project\_Manager}}
+- \{\{FRS\_VARS.Demand\_Manager}}
+
+**To create a Project Budget Plan:**
+
+1. Log into the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Console}} console.
+2. Open the **Project Budget Plan** workspace.
+3. Click **New Project Budget**.
+4. Enter the information into the **Overview** section and tabs listed below.
+5. When completed, click **Save**,
+
+<ExpandableHeading>
+  ## Adding Information in the Overview Section
+
+  This is the main section where you enter basic details for the project budget.
+
+  Fields marked with an asterisk are mandatory.
+
+  <table isTableHeaderOn="true">
+    <tr>
+      <td>
+        Field
+      </td>
+      <td>
+        Description
+      </td>
+    </tr>
+    <tr>
+      <td>
+        **Name\***
+      </td>
+      <td>
+        Enter a unique name for the budget plan, such as Sales and Marketing.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        **Portfolio Budget**
+      </td>
+      <td>
+        Leave this field blank if the budget is not linked to a portfolio budget. If you link this budget to a Portfolio Budget Plan, the portfolio budget it is linked to becomes the master budget, and is added under the **Master Budget Plan** tab.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        **Owner**
+      </td>
+      <td>
+        Name of the owner. The default owner is the creator of the record. You need to add an owner to enable approvals.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        **Status**
+      </td>
+      <td>
+        Select the status for the budget plan from the drop-down list - **Pending Approval**, **Under Review**, **Withdrawn**, **Committed** or **Retired**.
+        - When a budget plan is created, the **Status** field is automatically set to **Draft**.
+        - When a budget plan is submitted for approval, the **Status** field is automatically set to **Pending Approval**, and all the budget plan fields are locked.
+        - When a budget plan is approved, the **Status** field is automatically set to **Approved**.
+        - When a budget plan **Status** field is set to **Approved**, **Withdrawn** or **Committed**, only the **Status** field remains editable, all other fields are locked.
+        - When a budget plan **Status** field is set to **Retired**, all the budget plan fields are locked.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        **Start Date\***
+      </td>
+      <td>
+        Enter the start date for the budget plan.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        **End Date\***
+      </td>
+      <td>
+        Enter the end date for the budget plan.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        **Budget Type\***
+      </td>
+      <td>
+        Type of budget. Can be **Service**, **Entity**, **Project** or **Other**. For a project budget, typically select **Project**.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        **Service\***
+      </td>
+      <td>
+        Type of service to be budgeted, such as **Mobile Communication**.
+        This field is only enabled when the **Service** budget type is selected.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        **Entity\***
+      </td>
+      <td>
+        The organizational unit or entity to budget, such as **Sales and Marketing**.
+        This field is only enabled when the **Entity** budget type is selected.
+      </td>
+    </tr>
+  </table>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Adding Information in the Details Tab
+
+  1. Click the **Details** tab.
+  2. Enter information into the fields.
+
+  <Paragraph indent="1">
+    Fields marked with an asterisk are mandatory.
+  </Paragraph>
+
+  | Field                 | Description                                                                                                                                                                                                                                      |
+  | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+  | **Fiscal Year**       | Enter the fiscal year for the budget.                                                                                                                                                                                                            |
+  | **Approval Due Date** | Select the due date for approving the budget.                                                                                                                                                                                                    |
+  | **Cost Type**         | Select the cost type for the budget, **Capital Expense**, **Operational Expense** or **Uncategorized Expense**.                                                                                                                                  |
+  | **Planned Amount\***  | The total expense planned for the budget.                                                                                                                                                                                                        |
+  | **Budget Buffer**     | The buffer amount for the budget. This is typically money you do not intend to use, and is intended to provide a cushion for your budget.                                                                                                        |
+  | **Budgeted Amount**   | This field is populated by a triggered action on the Budget Item object, and also takes into account the **Budget Buffer** value. The value in this field changes when **Cost Items** and **Budget Items** are added to the Project Budget Plan. |
+  | **Remaining Budget**  | The remaining funds in the budget. This field value is calculated by subtracting the **Allocated Budget** and **Consumed Budget** values in the Portfolio from the **Planned Amount** value.                                                     |
+
+  3. Click **Save**.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Adding Information in the Budget Item Tab
+
+  1. Click **New Budget Item**.
+  2. Enter information into the fields.
+
+  <Paragraph indent="1">
+    Fields marked with an asterisk are mandatory.
+  </Paragraph>
+
+  | Field                 | Description                                                                                                                                                                                                                                                                                                                                          |
+  | --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | **Name\***            | A unique, descriptive name for the budget item.                                                                                                                                                                                                                                                                                                      |
+  | **Description**       | A description of the budget item.                                                                                                                                                                                                                                                                                                                    |
+  | **Price List Item**   | Type of price list item for the budget.                                                                                                                                                                                                                                                                                                              |
+  | **Cost Driver**       | Type of cost driver that is automatically entered by the system based on the selected price list item. If the price list item is empty, you can manually enter a number.                                                                                                                                                                             |
+  | **Unit Cost\***       | Cost of the unit. The default currency is USD.                                                                                                                                                                                                                                                                                                       |
+  | **Unit of Measure**   | Unit of measure such as user, feet, or each.                                                                                                                                                                                                                                                                                                         |
+  | **Usage\***           | The number of units to purchase or the number of hours used.                                                                                                                                                                                                                                                                                         |
+  | **Budget**            | Automatically calculated by the system based on the unit cost multiplied by the usage number. When this item is calculated, the total amounts in the budget and master budget plans are updated.                                                                                                                                                     |
+  | **Budget Start Date** | Start date for the budget item.                                                                                                                                                                                                                                                                                                                      |
+  | **Budget End Date**   | End date for the budget item.  <br />If the budget is created from the master budget, these dates are automatically entered by the system. However, you can enter dates for your budget.  <br />These dates have constraints. The start date cannot be earlier than the budget start date and the end date cannot be later than the budget end date. |
+  | **Cost Type**         | Select the cost type, **Capital Expense** or **Operational Expense**.                                                                                                                                                                                                                                                                                |
+
+  3. Click **Save**.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Adding Information in the Budget Requirement Tab
+
+  1. Click **New Budget Requirement**.
+  2. Enter information into the fields. .
+
+  <Paragraph indent="1">
+    Fields marked with an asterisk are mandatory.
+  </Paragraph>
+
+  | Field           | Description                                                                 |
+  | --------------- | --------------------------------------------------------------------------- |
+  | **Status**      | Status of the budget requirement.                                           |
+  | **Name\***      | A unique name for the requirement.                                          |
+  | **Description** | A brief description of the requirement.                                     |
+  | **Contact\***   | A contact name.                                                             |
+  | **Entity**      | Type of entity that is automatically entered based on the selected contact. |
+
+  3. Click **Save**.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Editing Information in Master Budget Plan Tab
+
+  <Paragraph indent="1">
+    If you have selected a Portfolio Budget Plan in the **Portfolio Budget** field in the **Overview** section, the basic details of the Portfolio Budget Plan are displayed in this tab.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    You can edit the displayed fields if required, or click **Go to** to open the Portfolio Budget Plan record if you want to edit fields that are not displayed in this tab.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    Refer to [Creating a Portfolio Budget Plan](PPM_Creating-a-Portfolio-Budget-Plan.mdx) for more detailed information on Portfolio Budget Plans.
+  </Paragraph>
+
+  **To edit the tab fields:**
+
+  1. Select the **Master Budget Plan** tab.
+  2. Edit the displayed fields as required.
+
+  <Paragraph indent="1">
+    Fields marked with an asterisk are mandatory.
+  </Paragraph>
+
+  | Field                 | Description                                                                                                                                    |
+  | --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+  | **Name\***            | A unique name for the master budget, for example, Portfolio Budget FY2015.                                                                     |
+  | **Budget Policy**     | A general statement about the budget policy.                                                                                                   |
+  | **Status**            | Status of the budget plan. The default status is **Draft&#x20;**&#x61;nd changes automatically as the plan goes through the approval workflow. |
+  | **Owner\***           | Name of the owner. The default owner is the creator of the record.                                                                             |
+  | **Start Date\***      | The start date of the budget plan, typically the first day of the fiscal year.                                                                 |
+  | **End Date\***        | The end date of the budget plan, typically the last day of the fiscal year.                                                                    |
+  | **Approval Due Date** | The latest date when the budget approval is due.                                                                                               |
+  | **Planned Amount**    | The total expense planned for the budget. This includes all planned amounts for project budgets associated with this budget.                   |
+
+  3. Click **Save** (at the top of the page).
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Adding Information in the Cost Item Tab
+
+  1. Open an incident, service request, or configuration item record, and then select the **Cost Item** tab.
+  2. Click **New Cost Item**.
+  3. Enter information into the fields.
+
+  <Paragraph indent="1">
+    Fields marked with an asterisk are mandatory.
+  </Paragraph>
+
+  | Field                    | Description                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+  | ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | **Description\***        | A description of the item. This can be a unique name for the item.                                                                                                                                                                                                                                                                                                                                                                                  |
+  | **Product Catalog Item** | Select the product catalog item. To add an item not on the list, refer to :Link[Adding a New Price List Item]{label="Adding a New Price List Item" overridedLabel="Adding a New Price List Item" spaceId docId="z8EsOnIif7k-22OkYus4_" version="v2" docAnchorId="#Add_a_Price_Item" loadingMethod="dynamic" newTab="false" githubPath="../Financial/Working-with-Cost-Items.htm#Add_a_Price_Item" href="../Financial/Working-with-Cost-Items.mdx"}. |
+  | **Budget**               | Select the budget that you want to charge this item to.                                                                                                                                                                                                                                                                                                                                                                                             |
+  | **Cost Driver**          | Select the cost driver. To add an item not on the list, refer to :Link[Creating a Cost Driver]{label="Creating a Cost Driver" overridedLabel="Creating a Cost Driver" spaceId docId="JhgNEIgcrvxSBoShaUGTG" version="v2" docAnchorId="#Creating" loadingMethod="dynamic" newTab="false" githubPath="../Financial/Working-with-Cost-Drivers.htm#Creating" href="../Financial/Working-with-Cost-Drivers.mdx"}.                                        |
+  | **Vendor**               | Select the vendor from the drop-down list.                                                                                                                                                                                                                                                                                                                                                                                                          |
+  | **Notes**                | Enter any relevant notes applicable to the cost item.                                                                                                                                                                                                                                                                                                                                                                                               |
+  | **Recurrence Type**      | Select a recurrence type from the drop-down list if applicable - **Monthly** or **Yearly**.                                                                                                                                                                                                                                                                                                                                                         |
+  | **Unit Cost\***          | Cost of each unit.                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+  | **Qty\***                | The number of units.                                                                                                                                                                                                                                                                                                                                                                                                                                |
+  | **Unit of Measure**      | The type of measurement of each unit.                                                                                                                                                                                                                                                                                                                                                                                                               |
+  | **Total Cost**           | Total cost calculated by **Unit Cost x Qty**.                                                                                                                                                                                                                                                                                                                                                                                                       |
+  | **Cost Type**            | Select if the cost type - **Capital Expense** or **Operational Expense**.                                                                                                                                                                                                                                                                                                                                                                           |
+
+  4. Click **Save**.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Viewing the Approvals Tab
+
+  <Paragraph indent="1">
+    The **Approvals** tab displays all approvals that are submitted for the budget plan.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    The **Approvals** tab is only displayed when a Project Budget Plan is submitted for approval.
+  </Paragraph>
+
+  | Field                                 | Description                                       |
+  | ------------------------------------- | ------------------------------------------------- |
+  | **Name**                              | Name of the approval.                             |
+  | **Owner**                             | Owner of the approval.                            |
+  | **Status**                            | Current status of the approval.                   |
+  | **Approval Status Updated By**        | The person that last updated the approval.        |
+  | **Approval Status Updated Date Time** | Date and time that the approval was last updated. |
+
+  ## Important Information on Approvals
+
+  <Paragraph indent="1">
+    If the budget is for a Demand, and is more than $1 million, it must also be approved by an executive approval group (refer to :Link[Executive Approval Committee]{label="Executive Approval Committee" overridedLabel="Executive Approval Committee" spaceId docId="5ABDN3ytMiVG1_3RezSD_" version="v2" docAnchorId="#Executive_Approval_Committee" loadingMethod="dynamic" newTab="false" githubPath="Setting_up_Neurons_for_PPM.htm#Executive_Approval_Committee" href="Setting_up_Neurons_for_PPM.mdx"}).
+  </Paragraph>
+
+  <Paragraph indent="1">
+    When submitting a project budget plan for approval you need to consider some aspects of your project configuration that may affect the behavior of the approvals process.
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    If a project is aligned to portfolios or programs, the approval is sent to the project sponsor.
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    If a project is not aligned to portfolios or programs, the approval is sent to the project owner.
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    If a budget is created that is linked to a project that does not have a sponsor or owner, when it is submitted for approval, no approval item is created, and the budget status workflow is moved to **Under Review**. The budget **Status** field may initially be displayed as **Pending Approval**, however on refreshing the record, the **Status** field is shown with its value as **Under Review**.
+  </Paragraph>
+
+  ## Working with Approvals
+
+  **To submit a Project Budget Plan for approval:**
+
+  <Paragraph indent="1">
+    Approvals can only be submitted when a Project Budget Plan status is **Draft** or **Under Review**.
+  </Paragraph>
+
+  1. Open the **Project Budget Plan** workspace.
+  2. Double-click the project plan you want to approve to open the record.
+  3. Click **Submit For Approval**.
+
+  **To add a new approval:**
+
+  1. Click **New Approval**.
+  2. Enter information into the fields.
+     Refer to [Working with Approvals](../../Configure/Approvals/Approvals.mdx) for information on the form fields.
+  3. Click **Save**.
+
+  **To edit and existing approval:**
+
+  1. Double-click the approval entry.
+  2. Edit the fields as required.
+     Refer to [Working with Approvals](../../Configure/Approvals/Approvals.mdx) for information on the form fields.
+  3. Click **Save**.
+
+  **Approve or deny a budget approval request:**
+
+  <Paragraph indent="1">
+    You can approve or deny a budget approval by navigating to the approval in the **Approvals** workspace and opening it.
+  </Paragraph>
+
+  1. Open the **Approvals** workspace, select the approval, and then double-click.
+  2. Select the **Approval Vote Tracking** tab.
+  3. Click **Approve** to approve the budget, or click **Deny** to deny the approval
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Viewing and Adding Information in the Activity History Tab
+
+  <Paragraph indent="1">
+    Use the **Activity History** tab to manage communication and investigation actions associated with the Project Budget Plan. The Journal business object displays and manages notes and email messages linked to the parent business object.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    If the **Activity History** tab is not displayed, click the **Restore hidden tabs** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/8qgkd6bNoUEOedgWUlCcL_hiddentabsicon.png" alt caption size="10" width="19" height="20"} and select the tab from the list.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    Emails and notes are automatically added to the **Activity History** list. You can also manually add an item to the activity history for further documentation of a business object.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    To manually add an activity history item, refer to :Link[Creating an Activity History Item]{label="Creating an Activity History Item" overridedLabel="Creating an Activity History Item" spaceId docId="D1ez2Rw5orcD9kcgRrHot" version="v2" docAnchorId="#Creating-an-Activity-History-Item" loadingMethod="dynamic" newTab="false" githubPath="../ActivityHistory/Activity_History.htm#Creating-an-Activity-History-Item" href="../ActivityHistory/Activity_History.mdx"}.
+  </Paragraph>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Adding Attachments in the Attachment Tab
+
+  <Paragraph indent="1">
+    You can attach files, images, or add URL's to Project Budget Plans, enabling users to access additional data not limited by the defined fields.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    If the **Attachment** tab is not displayed, click the **Restore hidden tabs** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/8qgkd6bNoUEOedgWUlCcL_hiddentabsicon.png" alt caption size="10" width="19" height="20"} and select the tab from the list.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    To add an attachment or URL, refer to :Link[Adding an Attachment]{label="Adding an Attachment" overridedLabel="Adding an Attachment" spaceId docId="JkvFLknCe88IG5gKPYAlB" version="v2" docAnchorId="#Adding-an-Attachment" loadingMethod="dynamic" newTab="false" githubPath="../../Configure/Attachments/Attachments.htm#Adding-an-Attachment" href="../../Configure/Attachments/Attachments.mdx"}.
+  </Paragraph>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Viewing Information in the Audit Tab
+
+  Lists audit details associated with the Project Budget Plan.
+
+  If the **Audit** tab is not displayed, click the **Restore hidden tabs** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/8qgkd6bNoUEOedgWUlCcL_hiddentabsicon.png" alt caption size="10" width="19" height="20"} and select the tab from the list.
+
+  The **Audit** tab displays the following information.
+
+  | Field       | Description                                     |
+  | ----------- | ----------------------------------------------- |
+  | Date        | Date when the budget plan was created.          |
+  | User        | Name of the person who created the budget plan. |
+  | Event Type  | Type of event.                                  |
+  | Description | A summary of the budget plan type.              |
+</ExpandableHeading>
+
+## Linking a Project Budget Plan to the Master (Portfolio) Budget
+
+After you have created a Project Budget Plan, you can link it to the Portfolio Budget Plan.
+
+1. Log in to the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Console}} console.
+2. Open the **Portfolio Budget Plan** workspace.
+3. Open the Portfolio Budget Plan from which you want to link a Project Budget Plan.
+4. Select the **Project Budgets** tab, and then click the **link** button :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/4mZbN5wPOg91xpsffepbN_link2.png" alt caption size="10" width="18" height="18"}.
+   The project budgets are displayed.
+5. Choose the project budget you want to link, and then click **Select**.
+   The Project Budget Plan is added to the **Project Budgets** tab list.

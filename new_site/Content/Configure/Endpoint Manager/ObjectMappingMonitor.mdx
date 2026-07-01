@@ -1,0 +1,36 @@
+---
+title: Object Mapping - Monitor
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:51 GMT+0300 (Eastern European Summer Time)
+---
+
+The object mappings for the Business Object Monitor are given in the below table:
+
+| Source - EPM Database                | Method | Tasget \{\{FRS\_VARS.ProductName}} Database  |
+| ------------------------------------ | ------ | -------------------------------------------- |
+| DateTimeNow                          | -->    | Audit.TimeStamp                              |
+| 0                                    | -->    | Audit.RequestID                              |
+| 0                                    | -->    | Audit.FirstSequence                          |
+| 1                                    | -->    | Audit.LastSequence                           |
+| Full                                 | -->    | Audit.Type                                   |
+| EPM                                  | -->    | Identity.Property.ScanMethod                 |
+| MP\_AC\_Devices.MP\_AC\_Devices\_Idn | -->    | Identity.Property.ClientID                   |
+| MP\_AC\_Devices.Barcode              | -->    | ComputerSystem.Property.AssetTag             |
+| PeripheralDevice                     | -->    | ComputerSystemProperty.CIType                |
+| Display                              | -->    | ComputerSystem.Property.SubType              |
+| MP\_AC\_Devices.Description          | -->    | Identity.Property.DeviceDescription          |
+| MP\_AC\_Devices.DomainName           | -->    | Identity.Property.DomainName                 |
+| Production                           | -->    | ComputerSystem.Property.ExecutionEnvironment |
+| MP\_AC\_Devices.DomainName           | -->    | Identity.Property.DomainName                 |
+| MP\_AC\_IPADDR.Address               | -->    | Identity.Property.IPAddress                  |
+| MP\_AC\_Devices.NetwareAddr          | -->    | Identity.Property.MACaddress                 |
+| MP\_AC\_Devices.Manufacturer         | -->    | ComputerSystem.Property.Manufacturer         |
+| MP\_AC\_Devices.DeviceName           | -->    | Identity.Property.HostName                   |
+| MP\_AC\_Devices.DisplayName          | -->    | Identity.Property.MachineName                |
+| MP\_AC\_Devices.SerialNumber         | -->    | Identity.Property.SerialNumber               |
+| MP\_AC\_Devices.Model                | Concat | ComputerSystem.Property.Model<br />          |
+| MP\_AC\_Devices.ModelNumber          |        |                                              |
+
+<hint type="info">
+  The source name of the object Monitor is Display.
+</hint>

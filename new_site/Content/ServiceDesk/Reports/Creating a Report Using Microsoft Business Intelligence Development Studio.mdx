@@ -1,0 +1,195 @@
+---
+title: Creating a Report Using Microsoft Business Intelligence Development Studio (BIDS)
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:49 GMT+0300 (Eastern European Summer Time)
+---
+
+- :Link[About Using Microsoft Business Intelligence Development Studio]{label="About Using Microsoft Business Intelligence Development Studio" overridedLabel="About Using Microsoft Business Intelligence Development Studio" spaceId docId="WedIhvizA1vugfhN5biqM" version="v2" docAnchorId="#About" loadingMethod="dynamic" newTab="false" href="Creating a Report Using Microsoft Business Intelligence Development Studio.mdx"}
+- :Link[Getting Started with BIDS]{label="Getting Started with BIDS" overridedLabel="Getting Started with BIDS" spaceId docId="WedIhvizA1vugfhN5biqM" version="v2" docAnchorId="#Getting" loadingMethod="dynamic" newTab="false" href="Creating a Report Using Microsoft Business Intelligence Development Studio.mdx"}
+- :Link[Creating a New Report with BIDS]{label="Creating a New Report with BIDS" overridedLabel="Creating a New Report with BIDS" spaceId docId="WedIhvizA1vugfhN5biqM" version="v2" docAnchorId="#Creating" loadingMethod="dynamic" newTab="false" href="Creating a Report Using Microsoft Business Intelligence Development Studio.mdx"}
+- :Link[Editing an Existing Report with BIDS]{label="Editing an Existing Report with BIDS" overridedLabel="Editing an Existing Report with BIDS" spaceId docId="WedIhvizA1vugfhN5biqM" version="v2" docAnchorId="#Editing" loadingMethod="dynamic" newTab="false" href="Creating a Report Using Microsoft Business Intelligence Development Studio.mdx"}
+- :Link[About the SSRSReportExtension.dll File]{label="About the SSRSReportExtension.dll File" overridedLabel="About the SSRSReportExtension.dll File" spaceId docId="WedIhvizA1vugfhN5biqM" version="v2" docAnchorId="#About_the_SSRSReportExtension.dll_File" loadingMethod="dynamic" newTab="false" href="Creating a Report Using Microsoft Business Intelligence Development Studio.mdx"}
+
+<hint type="info">
+  In addition to using Microsoft Business Intelligence Development Studio (BIDS) to create reports, you can also use the Microsoft SQL Server Reporting Service (SSRS) report builder. The Microsoft SSRS report builder is integrated with \{\{FRS\_VARS.ProductName}} to facilitate building report templates. See [Creating Reports and Report Templates](Creating_Custom_Reports.mdx) for more information about using the Microsoft SSRS report builder.
+</hint>
+
+### About Using Microsoft Business Intelligence Development Studio
+
+This information explains how to create reports with \{\{FRS\_VARS.ProductName}} Cloud platform and how to use Microsoft Business Intelligence Development Studio (BIDS) to create reports directly from your desktop. You can access the BIDS documentation at [https://msdn.microsoft.com/en-us/library/ms173767(v=sql.105).aspx.](https://msdn.microsoft.com/en-us/library/ms173767\(v=sql.105\).aspx)
+
+BIDS is the former integrated development environment (IDE) from Microsoft, which was used to develop data analysis and business intelligence solutions utilizing the Microsoft SQL Server Analysis Services, Reporting Services, and Integration Services.
+
+BIDS is based on the Microsoft Visual Studio development environment, but customized with Microsoft SQL Server services-specific extensions and project types, including tools, controls and projects for reports, data flows, and data mining structure.
+
+Report Managers and administrators can create their own customized report templates and then create reports from these custom report templates.
+
+\{\{FRS\_VARS.ProductName}} provides default reports as a reporting solution that you can customize. If you have already customized some of your reports, you can download those reports from your own instance and update them in the solution.
+
+### Getting Started with BIDS
+
+If you have trouble downloading BIDS, see :Link[Allowing Internet Explorer 9 to Automatically Prompt for Downloads]{label="Allowing Internet Explorer 9 to Automatically Prompt for Downloads" overridedLabel="Allowing Internet Explorer 9 to Automatically Prompt for Downloads" spaceId docId="Fgn15uU5Qu6_0T9fOu_gr" version="v2" docAnchorId="#Allowing_Internet_Explorer_9_to_Automatically_Prompt_for_Downloads" loadingMethod="dynamic" newTab="false" githubPath="Troubleshooting Reports.htm#Allowing_Internet_Explorer_9_to_Automatically_Prompt_for_Downloads" href="Troubleshooting Reports.mdx"} in the [Troubleshooting Reports](<Troubleshooting Reports.mdx>) topic.
+
+1. Start BIDS by doing the following:
+
+<Paragraph indent="1">
+  a. Download and install BIDS from the Microsoft download center at [http://www.microsoft.com/en-us/download/details.aspx?id=30438](http://www.microsoft.com/en-us/download/details.aspx?id=30438).
+
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Install the file called **SQLEXPRADV\_x64\_ENU.exe**.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. Depending on the type of system that you are using, download and install the correct file.
+</Paragraph>
+
+<Paragraph indent="2">
+  *Selecting the Download Package*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Tl25SzmyE7npKaeHUPXQp_sqldownload-copy.png" position="flex-start" size="40" indent="2" initialPath="../../Resources/Images/help-images/SQL_download - Copy.png" githubPath="Content/Resources/Images/help-images/SQL_download - Copy.png" showCaption="false"></Image>
+
+2. Go to [Ivanti Community path](https://forums.ivanti.com/s/article/How-To-Use-Business-Intelligence-Design-Studio-BIDS-with-Ivanti-Service-Manager) where the **HEAT Reporting BIDS.zip** file is located.
+3. Download the **HEAT Reporting BIDS.zip** file and copy the **SSRSReportExtension.dll** file into Program Files\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies.
+
+<Paragraph indent="1">
+  If you have two different program files for a 32-bit and a 64-bit system, copy the **SSRSReportExtension.dll** file into both of the folders. You must place the **SSRSReportExtension.dll** file in the Private Assembly folder of the BIDS installation.
+</Paragraph>
+
+4. To open BIDS, do the following:
+
+<Paragraph indent="1">
+  a. Go to **Heat Reporting - BIDS** and access the **HeatReports** folder.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Open **HeatReports.sln**.
+
+</Paragraph>
+
+5. In the **Solution Explorer** pane, double-click **HeatReports > Shared Data Sources > SaaSAppModel.rds**.
+
+<Paragraph indent="1">
+  *SaaSAppModel.rds*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/BhTOXr_lxOPOtsdh3Wokp_saasappmodel.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/SaaSAppModel.png" githubPath="Content/Resources/Images/help-images/SaaSAppModel.png" showCaption="false"></Image>
+
+6. In the **Shared Data Source Properties** dialog box, click **Edit** located near the **Connection String** button and enter the credentials that your \{\{FRS\_VARS.ProductName}} administrator provided.
+7. Click **Test Connection** to verify your connection.
+8. Check **Save my password**.
+9. Click **OK** in the next two screens.
+
+### Creating a New Report with BIDS
+
+Follow these steps to create a new report using the BIDS **New Report.rdl \[Design]** template:
+
+1. Double click **New Report.rdl** in the **Solution Explorer**. The system displays the **NewReport.rdl \[Design]** template.
+
+<Paragraph indent="1">
+  *NewReport.rdl \[Design] Template*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/If2sfVIZqrgyqTIbBSg5t_newnewreportdesign.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/New_New_Report_Design.png" githubPath="Content/Resources/Images/help-images/New_New_Report_Design.png" showCaption="false"></Image>
+
+2. Expand **Data Source** on the left side. (If you do not see the **Report Data** panel on the left side of the screen, select **View > Report Data** to display the panel.)
+3. Right-click **SaaSAppModel**.
+4. Select **Add Dataset**.  The system displays the **Dataset Properties** dialog box.
+5. Click **Query Designer...**. The system displays the **Query Designer** dialog box.
+
+<Paragraph indent="1">
+  *Query Designer*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/cIrKv-3o_xGzWT8TJn0HC_querydesignersmall.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/Query_Designer_Small.png" githubPath="Content/Resources/Images/help-images/Query_Designer_Small.png" showCaption="false"></Image>
+
+6. Use the **Query Designer** dialog box to create the Microsoft SQL query for this dataset.
+
+<Paragraph indent="1">
+  a. Click **Edit as Text** to create the **Microsoft SQL query**.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Enter a query.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. Click **!** to verify the data.
+</Paragraph>
+
+<Paragraph indent="1">
+  d. Click **OK** to run the query.
+</Paragraph>
+
+<Paragraph indent="1">
+  e. Enter a meaningful name for the dataset and click **OK** to save the dataset.
+</Paragraph>
+
+<Paragraph indent="1">
+  *Verify Data*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/b0bSM7BrFRJSCOMvYesXf_savethedataset.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/Save_the_Dataset.png" githubPath="Content/Resources/Images/help-images/Save_the_Dataset.png" showCaption="false"></Image>
+
+<Paragraph indent="1">
+  The system displays the dataset under **Datasets** in the **Report Data** left pane.
+</Paragraph>
+
+<Paragraph indent="1">
+  *Dataset*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/s0ft0ENjCjfHWoLwXLaoL_datasetstep12.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/Dataset_Step_12.png" githubPath="Content/Resources/Images/help-images/Dataset_Step_12.png" showCaption="false"></Image>
+
+7. Create a report using your new dataset and save the report using a new name.
+8. Upload the BIDS report template to \{\{FRS\_VARS.ProductName}} by following the procedure described in :Link[Downloading and Uploading a Report Template]{label="Downloading and Uploading a Report Template" overridedLabel="Downloading and Uploading a Report Template" spaceId docId="lqyFeWH0iCqzwXKTAJ5TX" version="v2" docAnchorId="#Downloading_and_Uploading_a_Report_Template" loadingMethod="dynamic" newTab="false" githubPath="Creating_Custom_Reports.htm#Downloading_and_Uploading_a_Report_Template" href="Creating_Custom_Reports.mdx"}. The system uploads the report created in BIDS as a report template to \{\{FRS\_VARS.ProductName}}.
+
+<hint type="info">
+  BIDS refers to a report while \{\{FRS\_VARS.ProductName}} refers to a report as a report template.
+</hint>
+
+### Editing an Existing Report with BIDS
+
+If you make any changes to the report template parameters, you must recreate the corresponding reports.
+
+To edit an existing report follow these steps:
+
+1. Double click the report name from the **Solution Explorer**.
+2. Edit the report by following the steps in :Link[Creating a New Report with BIDS]{label="Creating a New Report with BIDS" overridedLabel="Creating a New Report with BIDS" spaceId docId="WedIhvizA1vugfhN5biqM" version="v2" docAnchorId="#Creating" loadingMethod="dynamic" newTab="false" href="Creating a Report Using Microsoft Business Intelligence Development Studio.mdx"}.
+3. If you upload a report template with the same name, the system asks if you want to update the existing report. If you select **Yes**, the system updates the existing report template in \{\{FRS\_VARS.ProductName}}.
+4. To edit a customized or new report, access \{\{FRS\_VARS.ProductName}} and click **Download**. The system displays the **Report Templates** workspace.
+
+<Paragraph indent="1">
+  *Report Templates Workspace*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/q2bSwUhS_4cnhtAZL3HrH_editanexistingreport.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/Edit_an_Existing_Report.png" githubPath="Content/Resources/Images/help-images/Edit_an_Existing_Report.png" showCaption="false"></Image>
+
+5. From the Solution Explorer, right-click **Reports > Add > Existing Item**.
+6. Edit the report according to your business requirements.
+
+<Paragraph indent="1">
+  *Existing Report*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/cs1yHFEnFt8pLdmBzLg98_existingreport.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/Existing_Report.png" githubPath="Content/Resources/Images/help-images/Existing_Report.png" showCaption="false"></Image>
+
+7. Upload the report as a report template in \{\{FRS\_VARS.ProductName}}. If you upload the report using the same name, the system overwrites the existing report template.
+
+### About the SSRSReportExtension.dll File
+
+As part of the reports module, \{\{FRS\_VARS.ProductName}} provides a custom Microsoft .NET DLL file called **SSRSReportExtension.dll**. This file calculates the duration for the \{\{FRS\_VARS.ProductName}} reports. In reports with DateTime values, you can filter the data based on a specified number of days, weeks, months, quarters, or years.
+
+*Example Report with DateTime Value*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/6Xc66O2bVecWSO_3RS0Yw_report-date-example.png" position="flex-start" size="40" initialPath="../../Resources/Images/help-images/report-date-example.png" githubPath="Content/Resources/Images/help-images/report-date-example.png" showCaption="false"></Image>
+
+The **SSRSReportExtension.dll** file uses three methods called **getStartDateTime**, **GetEndDateTime**, and **GetValidationListSQL**. These methods run inside the Microsoft SSRS server and calculate the DateTime logic for the reports. The system passes the report parameters to those methods and the methods calculate the dates required for the reports.
+
+In the **Dataset Properties** dialog box, under the **Parameters** heading, you can define parameters and their values.  You can use expressions for the parameter values.  For example, you could create a parameter called **@en\_datein** and set its value to **=Code.getStartDateTime(Parameters!DateRangeOptions.Value, Parameters!TimeZoneOffset.Value, Parameters!Last.Value)&#x20;**.  Use the query designer to declare and then call the parameter inside the query.
+
+*Using the SSRSReportExtension.dll File*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/te8BiUThLyXL225Bsgw7G_frsreport-dll.png" position="flex-start" size="40" initialPath="../../Resources/Images/help-images/FRSReport-DLL.png" githubPath="Content/Resources/Images/help-images/FRSReport-DLL.png" showCaption="false"></Image>

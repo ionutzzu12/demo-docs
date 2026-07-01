@@ -1,0 +1,107 @@
+---
+title: Authorization
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:57 GMT+0300 (Eastern European Summer Time)
+---
+
+\{\{FRS\_VARS.ProductName}} employs role-based security to add security restrictions at the following levels:
+
+- **Business object**: You can restrict the access for a user to entire business objects, individual fields, and relationships.
+- **Form**: You can combine business rules and field-level permissions to help restrict the visibility of certain fields.
+- **Automation tools**: You can restrict the ability of a user to share quick actions, saved searches, and dashboards.
+
+## Role-Based Security
+
+A role consists of function-specific application displays. When you add users to \{\{FRS\_VARS.ProductName}}, you assign them to one or more roles. Each role is organized as a set of permissions organized by common user functions. At login, the application prompts the user to select a role for this session, which governs access to \{\{FRS\_VARS.ProductName}} modules and features (security rights) and access to business objects and fields (business object rights).
+
+\{\{FRS\_VARS.ProductName}} contains a default set of roles, including administrator, Service Desk Analyst, and various manager roles. You can customize these roles or create entirely new ones.
+
+For example, a user logging into \{\{FRS\_VARS.ProductName}} as a Change Manager might view a layout of the change form that differs from the change form seen by a Service Desk Analyst.  The Change Manager may also have access to dashboards displaying change request data recorded by the application over the last day and trending information for the week. You can link a role to a specific device, letting users log in to view dashboard data for those machines.
+
+Another item to manage within the user interfaces area is the ability to grant roles. While there may be value in granting a manager the ability to grant roles with edit access to a subordinate, that same manager probably should not be able to grant access to the entire Configuration Console.
+
+## Secure Business Objects and Permissions
+
+Business objects are designed with the following set of permissions:
+
+- **View**: View data.
+- **Add**: Add data.
+- **Edit**: Manipulate data.
+- **Delete**: Delete data.
+
+When granting access to a business object, be sure to grant access to its associated child business objects. When a role has access to a child business object, clicking **Go To** for a child record opens the associated child record in its own user interface. If not, the application does not open the business object. You do not have to make the child business object visible, only accessible.
+
+When designing lists and layouts, be aware of role access to user interfaces. For example, if a role has access to a user interface, double-clicking a child record in a user interface list opens the associated user interface. If the role does not have access to a user interface, the application opens the record in a pop-up window.
+
+Follow these steps to create roles governing access to entire business objects:
+
+1. From the Configuration Console, click **Configure > Users and Permissions > Roles** to open the **Roles** workspace. The list of available roles appears.
+2. The roles that govern access to entire business objects are displayed as top-level tabs (such as incident, problem, change, etc.) at the top of the user interface. See [Working with Roles](../../ServiceDesk/Roles/roles.mdx).
+
+## Secure Business Object Fields
+
+As you construct a role, use the **Object Permissions** workspace to add levels of granularity for the role. You can set access rights at the field level by expanding a selected business object and adjusting the field permission set.
+
+Follow these steps:
+
+1. From the Configuration Console, select **Configure > Users and Permissions > Roles and Permissions** to open the **Object Permissions** workspace.
+2. Click a role name to bring up the **Role Details** page for that role.
+3. Click the **Object Permissions** tab to display the **Object Permissions** workspace.
+4. For each field, check **Add**, **View**, **Edit**, or **Delete** to change the permissions for the field.
+5. Click **Save**.
+
+When working with fields that involve pick lists, the contents of the pick list are defined, along with any restrictions, on the **Pick Lists** page.
+
+## Secure Password
+
+To align with Ivanti's Secure by Design commitment, the option to reset password is by disabled by default.
+
+To allow reset password option:
+
+1. Login to the application as an \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+2. From the **Configuration** console, select **Security Controls** > **Security and Session**.
+
+<Paragraph indent="1">
+  A list of options is displayed.
+</Paragraph>
+
+3. Select the **Allow Forgot Password Request** checkbox.
+
+<Paragraph indent="1">
+  The option to reset password is enabled.
+</Paragraph>
+
+## Applying Advanced Security Features
+
+By clicking **Edit** under the **Access** column for a business object on the **Object Permissions** workspace, you can apply even more elaborate data-segregation constraints to do the following:
+
+- Object links to the **Employee** business object. For example, while a Service Desk Analyst can view all open incidents, you can use the **Employee** form to assign a new employee to a particular team, such as Service Desk Analyst US which can only view incidents opened by customers located in the United States. You also can create a definition to make an incident view-only upon being closed by a Service Desk Analyst.
+- Linked **Employee** business object fields.
+- Relationships linking the business object to the **Employee** business object (such as the Change Approval Board).
+- Business object links to business objects or hierarchies that are also related to the **Employee** business object. \{\{FRS\_VARS.ProductName}} supports hierarchy structures for:
+  - Organization unit
+  - Team/department
+  - Geography
+  - Cost center
+
+## Using Hierarchical Structure
+
+Use the hierarchy structure to manage permissions between tiers.For example, a member of a Service Desk Manager management-level tier could be allowed to view the incidents assigned to all Service Desk Analysts assigned to a lower tier.
+
+If you are a member of more than one hierarchy, you have access to the most open set of permissions. For example, if you are a member of two teams, one with read-only access to a business object field and one with write access to the same field, you are granted write access to the field.
+
+## Secure Forms
+
+When constructing a form, you can combine business rules and field restrictions to help manage a workflow. For example, you can create a form that includes all of the fields in the **Change** business object, but the fields viewed by a user are restricted based on the login role. This is the simplest way to secure a form.
+
+An example of using a business rule to secure a form would be to construct a business rule that prevents a Service Desk Analyst from editing a change request status once that change request has been submitted and is in process. The **Status** field is set to read-only on the change request form. However, once the change request has been processed and a change has been implemented, the field can be edited again, allowing the change request to be closed.
+
+Field restrictions that have been applied in the user interface are also applied to forms. For example, if you allow a pick list such as **Status** to be visible on an incident form, but not to be edited, the pick list remains view-only. This can interfere with successful completion of a workflow, as the status cannot be changed.
+
+## Secure Automation Tools
+
+Use the **Roles and Permissions** workspace to manage the sharing of productivity tools with other roles. By publishing permissions, you can define dashboards, quick actions, or saved searches within one role and share them with another role. See [Working with Roles](../../ServiceDesk/Roles/roles.mdx).
+
+Individual users can customize the secure automation tools. Restricting such sharing can keep the application from becoming cluttered in places such as lists of available quick actions or saved searches. For example, a Service Desk Manager can have the ability (publish permission) to publish search results to Service Desk Analysts, allowing saved searches also to be accessed by the Service Desk Analysts.
+
+Use care when adding powerful tools to forms such as quick actions. When added to a toolbar, they can often be used to circumvent form-related restrictions or pick lists that are constrained to limit selections for items such as status based on the current status value.

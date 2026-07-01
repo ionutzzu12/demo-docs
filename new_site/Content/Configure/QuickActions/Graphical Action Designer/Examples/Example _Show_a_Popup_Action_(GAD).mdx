@@ -1,0 +1,57 @@
+---
+title: Example: Using the Show a Popup Quick Action (GAD)
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:56 GMT+0300 (Eastern European Summer Time)
+---
+
+Here are two examples of where and how to use the **Show a Popup** \{\{FRS\_VARS.Quick\_Action}}.
+
+<hint type="info">
+  To use this \{\{FRS\_VARS.Quick\_Action}}, set the global constant **EnableActionService&#x20;**&#x74;o **True**. If **EnableActionService&#x20;**&#x69;s not available in the global constants list (this may be the case for upgraded instances), Administrators can manually add the constant.
+</hint>
+
+### Example 1
+
+In this example the **Show a Popup** action enables users to execute or cancel an action that deletes an Incident record.
+
+Create a new \{\{FRS\_VARS.Quick\_Action}} in the \{\{FRS\_VARS.Graphical\_Action\_Designer}}:
+
+1. Drag a **Show a Popup** and a **Delete a Record** block onto the designer.
+2. Link the **Start Block** to the **Show a Popup** action, and provide a name for the \{\{FRS\_VARS.Quick\_Action}} in the **Common** settings **Name** field.
+3. Link the two action blocks together, ensuring the **Show a Popup** action is first.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/f9Kt85rtki683NTYS4VY3_actionsshowapopupexample1.png" alt="screenshot of show a pop-up composite block, example shows delete a record used in conjunction with a pop-up" position="flex-start" size="40" indent="1" initialPath="../../quick-actions-images/actions_show_a_popup_example1.png" githubPath="Content/Configure/QuickActions/quick-actions-images/actions_show_a_popup_example1.png" showCaption="false"></Image>
+
+4. Customize the properties of the **Show a Popup** action **IncidentNumber** field in the action block **Title** and **Contents** fields as shown below.
+   The pop-up is also configured to display both **OK** and **Cancel** buttons. This will allow the user to confirm the deletion of the Incident record, or to cancel it.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/vW-L4MIY3SK5JyE7ADFYa_actionsshowapopupexample2.png" alt="screenshot of block tab settings for the show a pop-up action, this configures a message for the user prior to deleting a record" position="flex-start" size="40" indent="1" initialPath="../../quick-actions-images/actions_show_a_popup_example2.png" githubPath="Content/Configure/QuickActions/quick-actions-images/actions_show_a_popup_example2.png" showCaption="false"></Image>
+
+5. Save the \{\{FRS\_VARS.Quick\_Action}} when all settings are completed.
+
+The **Show a Popup** action displays the following message, enabling the user to allow or cancel the deletion of the Incident record.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/MK-cfDl4U6_tD-hnATi7K_actionsshowapopupexample3.png" alt="screenshot of the massage displayed by this action" position="flex-start" size="40" initialPath="../../quick-actions-images/actions_show_a_popup_example3.png" githubPath="Content/Configure/QuickActions/quick-actions-images/actions_show_a_popup_example3.png" showCaption="false"></Image>
+
+### Example 2
+
+In this example the **Show a Popup** action enables the current user to either assign a cloned Incident to themselves, or to skip the self-assignment.
+
+Create a new \{\{FRS\_VARS.Quick\_Action}} in the \{\{FRS\_VARS.Graphical\_Action\_Designer}}:
+
+1. Drag the action blocks shown below onto the designer.
+2. Link the **Start Block** to the **Clone Record** action, and provide a name for the \{\{FRS\_VARS.Quick\_Action}} in the **Common** settings **Name** field.
+3. Link the action blocks in the order as shown below.
+   The **Show a Popup** action block is placed after the initial **Clone** action, but before the **Go-to Record** and **Update a Record** actions. This makes the **Go-to Record** and **Update a Record** actions optional.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Ba5P9z8EcrZUIolT0WzBH_actionsshowapopupclonerecordexample1.png" alt="screenshot of show a pop-up composite block, example shows pop-up action that will enable the user to choose an option" position="flex-start" size="40" indent="1" initialPath="../../quick-actions-images/actions_show_a_popup_clone_record_example1.png" githubPath="Content/Configure/QuickActions/quick-actions-images/actions_show_a_popup_clone_record_example1.png" showCaption="false"></Image>
+
+4. Customize the properties of the **Show a Popup** action as shown below.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/LspKhwqxwjpiKB1fNCraW_actionsshowapopupclonerecordexample2.png" position="flex-start" size="40" indent="1" initialPath="../../quick-actions-images/actions_show_a_popup_clone_record_example2.png" githubPath="Content/Configure/QuickActions/quick-actions-images/actions_show_a_popup_clone_record_example2.png" showCaption="false"></Image>
+
+5. Save the \{\{FRS\_VARS.Quick\_Action}} when all settings are completed.
+
+The **Show a Popup** action displays the following message, enabling the user to choose to self-assign the cloned action by selecting **OK**, or to skip the self-assignment by selecting **Cancel**.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/pkyRjg1Oql0-G_gxbP8WJ_actionsshowapopupclonerecordexample3.png" position="flex-start" size="40" initialPath="../../quick-actions-images/actions_show_a_popup_clone_record_example3.png" githubPath="Content/Configure/QuickActions/quick-actions-images/actions_show_a_popup_clone_record_example3.png" showCaption="false"></Image>

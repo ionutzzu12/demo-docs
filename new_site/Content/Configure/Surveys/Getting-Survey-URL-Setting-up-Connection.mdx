@@ -1,0 +1,45 @@
+---
+title: Modern Survey Connection - Take Survey URL
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:54 GMT+0300 (Eastern European Summer Time)
+---
+
+When an incident is closed, a 'Take Survey' end point URL is generated, directing end users to submit their survey responses. Previously, this URL lacked authentication. As part of our security enhancements, we've introduced SQL user authentication for accessing the 'Take Survey' endpoint. The endpoint now requires the creation and linkage of a specific SQL user to tenants to function correctly.
+
+Ensure that the required SQL user is set up and associated with the relevant tenants for continued access to the 'Take Survey' URL. Take Survey end point - https\://\{tenant url}/HEATSurvey/TakeSurvey?action=take\_survey.
+
+## Configuring an SQL User for each Tenant Database
+
+1. Create a Separate SQL User - For each tenant database in your landscape, create a dedicated SQL user with limited permissions using below SQL query.
+
+<hint type="info" indent="1">
+  Ensure to replace \<username>, \<password>, and \<db\_name> with the appropriate values.
+</hint>
+
+<CodeblockTabs indent="1">
+  ```bash
+  CREATE LOGIN <username> WITH PASSWORD = '<password>', CHECK_POLICY = OFF, DEFAULT_DATABASE = <db_name>; EXEC [SYS].[SP_ADDUSER] <username>; 
+
+  GRANT SELECT ON [dbo].[FRS_Survey] TO <username>; 
+
+  GRANT SELECT ON [dbo].[FRS_SurveyQuestion] TO <username>; 
+
+  GRANT SELECT ON [dbo].[FRS_SurveyQuestionCategory] TO <username>; 
+
+  GRANT SELECT ON [dbo].[FRS_SurveyChoice] TO <username>; 
+
+  GRANT SELECT, UPDATE, INSERT ON [dbo].[FRS_SurveySession] TO <username>; 
+
+  GRANT SELECT, UPDATE, INSERT ON [dbo].[FRS_SurveyAnswer] TO <username>;
+  ```
+</CodeblockTabs>
+
+2. Configure the SQL User in the Tenant.
+   - Log in to the Config tenant.
+   - Navigate to the Tenants workspace.
+   - Select the tenant where the SQL user was created.
+   - Navigate to the **Survey Connection** child tab.
+   - Enter the SQL user’s username and password created in :Link[Step 1]{label="Step 1" overridedLabel="Step 1" spaceId docId="-oba44mhMgDQpzj__yk5h" version="v2" docAnchorId="#Step1" loadingMethod="dynamic" newTab="false" href="Getting-Survey-URL-Setting-up-Connection.mdx"} into the **Survey Username** and **Survey Password&#x20;**&#x66;ields.
+   - Save the configuration.
+
+[<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Y4WfYOm5SkWQaKIj8jTPB_transparent.gif" size="10" alt="Related Topics Link Icon" isUploading="false" initialPath="../../../Skins/Default/Stylesheets/Images/transparent.gif" githubPath="Skins/Default/Stylesheets/Images/transparent.gif" width="16" height="16" showCaption="false"></Image>Related Topics](javascript\:void\(0\);)

@@ -1,0 +1,903 @@
+---
+title: Ivanti Neurons for ITSM and Neurons Integration - Best Practices
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:49 GMT+0300 (Eastern European Summer Time)
+---
+
+**Intended Audience:** Administrators
+
+This topic lists out the \{\{FRS\_VARS.Company}} \{\{FRS\_VARS.ProductName}} and \{\{FRS\_VARS.Company}} Neurons integration steps, some common issues faced during the integration, and troubleshooting details.
+
+## Import Discovered Data from Ivanti Neurons
+
+You can take advantage of the Ivanti Neurons device discovery capabilities in \{\{FRS\_VARS.ITSM}} by importing a package from Ivanti Marketplace. This enables you to restore existing devices in the Ivanti \{\{FRS\_VARS.ProductName}} CI/Hardware Assets workspace from Ivanti Neurons. Also, newly discovered Ivanti Neurons devices get synced to the \{\{Primary.Company}} \{\{FRS\_VARS.ProductName}} CI > Hardware Assets workspace.
+
+<hint type="info">
+  Applicable only for cloud customers. Device data can be imported from Ivanti Neurons only during the synchronization process.
+</hint>
+
+<ExpandableHeading>
+  ## Package Selection
+
+  **For Ivanti Neurons Device Sync**
+
+  - New and existing \{\{FRS\_VARS.ProductName}} customers can apply the CMDB package (that is less than 1 MB) from Ivanti Marketplace for enabling the Ivanti Neurons device sync.
+  - New and existing customers who are using \{\{FRS\_VARS.ProductName}} version 2020.3 or later can apply the Ivanti Neurons Integration package from the Ivanti Marketplace for enabling the Ivanti Neurons device sync.
+
+  **For Complete Asset Management Capabilities**
+
+  New and existing \{\{FRS\_VARS.ProductName}} customers can apply the AMC (Asset Management Cloud) package from Ivanti Marketplace.
+
+  ### Ivanti Neurons to \{\{FRS\_VARS.ProductName}} Integration - Device Sync Only
+
+  1. Download the package (CMDB or the AMC) from Ivanti Marketplace.
+  2. Validate and apply the package if there are no errors on the \{\{FRS\_VARS.ProductName}} 2020.3 upgraded tenant.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Post Package Import Configuration
+
+  <ExpandableHeading>
+    ## Device Sync Only
+
+    Ivanti Neurons to \{\{FRS\_VARS.ProductName}} Integration – Device Sync only.
+
+    1. Log in to \{\{Primary.Company}} \{\{FRS\_VARS.ProductName}} as Administrator.
+    2. Open the **Ivanti Neurons Asset Import Configuration** workspace.
+    3. Enable the device type in the **Ivanti Neurons Asset Import Configuration** workspace.
+
+    <Paragraph indent="1">
+      *Ivanti Neurons Asset Import Configuration*
+    </Paragraph>
+
+    <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/CDXcD6PfECwcJt6dfIpSU_ivantineuronsassetimportconfiguration.png" alt="Enable the device type in the Ivanti Neurons Asset Import Configuration workspace." position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/Configure/ISM-Neurons-Integration-BestPractics/IvantiNeuronsAssetImportConfiguration.png" githubPath="Content/Resources/Images/Configure/ISM-Neurons-Integration-BestPractics/IvantiNeuronsAssetImportConfiguration.png" showCaption="false"></Image>
+
+    4. Open the **Asset Processor Configuration** workspace.
+    5. Ensure that the below configurations are enabled in the **Asset Processor Configuration** workspace.
+
+    <Paragraph indent="1">
+      *Asset Processor Configuration*
+    </Paragraph>
+
+    <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/EloKXW4JT7hgTdzgo4xPe_assetprocessorconfiguration.png" alt="Ensure that the proper configurations are enabled in the Asset Processor Configuration workspace." position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/Configure/ISM-Neurons-Integration-BestPractics/AssetProcessorConfiguration.png" githubPath="Content/Resources/Images/Configure/ISM-Neurons-Integration-BestPractics/AssetProcessorConfiguration.png" showCaption="false"></Image>
+  </ExpandableHeading>
+
+  <ExpandableHeading>
+    ## Asset Management Capabilities
+
+    1. Log in to \{\{Primary.Company}} \{\{FRS\_VARS.ProductName}} as Asset Administrator.
+    2. Open the **Ivanti Neurons Asset Import Configuration** workspace.
+    3. Enable the **Device**, **Invoice**, **Software Inventory** type in **Ivanti Neurons Asset Import Configuration** workspace.
+
+    <Paragraph indent="1">
+      *Ivanti Neurons Asset Import Configuration*
+    </Paragraph>
+
+    <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/J9GUN5O-JlniT5huGU5KD_ivantineuronsassetimportconfiguration2.png" alt="Enable asset types in the Ivanti Neurons Asset Import Configuration workspace." position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/Configure/ISM-Neurons-Integration-BestPractics/IvantiNeuronsAssetImportConfiguration2.png" githubPath="Content/Resources/Images/Configure/ISM-Neurons-Integration-BestPractics/IvantiNeuronsAssetImportConfiguration2.png" showCaption="false"></Image>
+
+    4. Open the **Asset Processor Configuration** workspace.
+    5. Ensure that the below configurations are enabled in the **Asset Processor Configuration** workspace.
+
+    <Paragraph indent="1">
+      *Asset Processor Configuration*
+    </Paragraph>
+
+    <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/OjbO01LanG8rl9eAj4iPn_assetprocessorconfiguration2.png" alt="Ensure that the proper configurations are enabled in the Asset Processor Configuration workspace." position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/Configure/ISM-Neurons-Integration-BestPractics/AssetProcessorConfiguration2.png" githubPath="Content/Resources/Images/Configure/ISM-Neurons-Integration-BestPractics/AssetProcessorConfiguration2.png" showCaption="false"></Image>
+
+
+
+    <hint type="info">
+      - New CI Type will be set to **ivnt\_UnmanagedAsset** for Windows by default. You can update the New CI Type to the required type such as Computer, Database, Contract so on.
+      - After configuring Ivanti Neurons to \{\{FRS\_VARS.ProductName}} Integration, the devices should start syncing in \{\{FRS\_VARS.ProductName}} based on the scheduled connectors.
+    </hint>
+
+
+  </ExpandableHeading>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Post Import Verification
+
+  <ExpandableHeading>
+    ## Device Sync Only
+
+    1. Log in to \{\{Primary.Company}} \{\{FRS\_VARS.ProductName}} as an Administrator.
+    2. Open the **CI** workspace.
+    3. Ensure the newly imported devices are listed under the **CI** workspace.
+
+    <Paragraph indent="1">
+      *Imported Devices*
+    </Paragraph>
+
+    <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/dmVuwDnbTY3Fy5ziRyvP8_importeddevices.png" alt="Imported devices should display in the CI workspace." position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/Configure/ISM-Neurons-Integration-BestPractics/ImportedDevices.png" githubPath="Content/Resources/Images/Configure/ISM-Neurons-Integration-BestPractics/ImportedDevices.png" showCaption="false"></Image>
+
+    4. Open the **Message Queue Journal** workspace.
+    5. Review the **Message Queue Journal** workspace for the incoming device messages processed from the Ivanti Neurons.
+
+    <Paragraph indent="1">
+      *Message Queue Journal*
+    </Paragraph>
+
+    <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/riN2UC6vSX6CEdiVgM0oM_messagequeuejournal.png" alt="Review the Message Queue Journal workspace for incoming device messages." position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/Configure/ISM-Neurons-Integration-BestPractics/MessageQueueJournal.png" githubPath="Content/Resources/Images/Configure/ISM-Neurons-Integration-BestPractics/MessageQueueJournal.png" showCaption="false"></Image>
+
+    6. Run the Decompress Message Quick Action for a selected message in the **Message Queue Journal** workspace to view the discovered device details.
+
+    <Paragraph indent="1">
+      *Device Details*
+    </Paragraph>
+
+    <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/D4oLtueRHhYA71e-5OJIG_devicedetails.png" alt="Run the Decompress Message Quick Action to view discovered device details." position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/Configure/ISM-Neurons-Integration-BestPractics/DeviceDetails.png" githubPath="Content/Resources/Images/Configure/ISM-Neurons-Integration-BestPractics/DeviceDetails.png" showCaption="false"></Image>
+  </ExpandableHeading>
+
+  <ExpandableHeading>
+    ## Asset Management Capabilities
+
+    1. Log in to \{\{Primary.Company}} \{\{FRS\_VARS.ProductName}} as Asset Administrator.
+    2. Open the **Hardware Assets** workspace.
+    3. Ensure the newly imported devices are listed under **Hardware Assets** workspace.
+
+    <Paragraph indent="1">
+      *Imported Devices*
+    </Paragraph>
+
+    <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/7DtGtDU9i1k8vMDJ475FP_importeddevices2.png" alt="Imported devices should display in the Hardware Assets workspace." position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/Configure/ISM-Neurons-Integration-BestPractics/ImportedDevices2.png" githubPath="Content/Resources/Images/Configure/ISM-Neurons-Integration-BestPractics/ImportedDevices2.png" showCaption="false"></Image>
+
+    4. Ensure the newly imported list of software is listed under the **Software Assets** workspace.
+
+    <Paragraph indent="1">
+      *Imported Software*
+    </Paragraph>
+
+    <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/VvlfV5xKFipYFBu_sYcHm_importedsoftwares.png" alt="Imported software should display in the Software Assets workspace." position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/Configure/ISM-Neurons-Integration-BestPractics/ImportedSoftwares.png" githubPath="Content/Resources/Images/Configure/ISM-Neurons-Integration-BestPractics/ImportedSoftwares.png" showCaption="false"></Image>
+
+    5. Open the **Message Queue Journal** workspace.
+    6. Review the **Message Queue Journal** workspace for the incoming device, software messages processed from the Ivanti Neurons.
+
+    <Paragraph indent="1">
+      *Message Queue Journal*
+    </Paragraph>
+
+    <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/IspxrAscrzPH4n_h3YfrP_messagequeuejournal2.png" alt="Review the Message Queue Journal workspace for incoming device messages." position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/Configure/ISM-Neurons-Integration-BestPractics/MessageQueueJournal2.png" githubPath="Content/Resources/Images/Configure/ISM-Neurons-Integration-BestPractics/MessageQueueJournal2.png" showCaption="false"></Image>
+
+    7. Run the **Decompress Message Quick Action** for a selected message in the **Message Queue Journal** workspace to view the discovered device details.
+
+    <Paragraph indent="1">
+      *Device Details*
+    </Paragraph>
+
+    <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Nr6i0vKGPHOfcVdtnxyUZ_devicedetails2.png" alt="Run the Decompress Message Quick Action to view discovered device details." position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/Configure/ISM-Neurons-Integration-BestPractics/DeviceDetails2.png" githubPath="Content/Resources/Images/Configure/ISM-Neurons-Integration-BestPractics/DeviceDetails2.png" showCaption="false"></Image>
+  </ExpandableHeading>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Enable the Decompress Message Quick Action
+
+  By default, the Decompress Message Quick Action will be disabled for a device message. To enable the Decompress Message Quick Action of the Message Queue Journal business object, follow these steps:
+
+  1. Open the Configuration console > **Build** > **Automation Tools** > **Quick Actions**.
+  2. Click **Frs\_MessageQueueJournal** from the **Action Manager** list.
+  3. Click the **Quick Action** tab.
+  4. On the left side panel, click **Decompress Message**.
+  5. Click **Edit** to open the **Edit Expression** window.
+  6. Add Device type in the **Quick Action** expression field **Disable in UI** as shown below.
+
+  <Paragraph indent="1">
+    *Edit Expression*
+  </Paragraph>
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/2cPTxfHbaOEG_ThUIGVCo_editexpressions.png" alt="Add the device type in the Edit Expression window." position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/Configure/ISM-Neurons-Integration-BestPractics/EditExpressions.png" githubPath="Content/Resources/Images/Configure/ISM-Neurons-Integration-BestPractics/EditExpressions.png" showCaption="false"></Image>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Customizing Asset Data Imports from Ivanti Neurons
+
+  <ExpandableHeading>
+    ## Device Filter in Mapping
+
+    The Filter Manager in **IN connector** (Ivanti Neurons Connector- Device) enables filtering inflow of device types based on the filter criteria. For instance, you can select to import **Asset Type** only of **Laptop** by creating the filter value as **Laptop**.
+
+    *Filter Manager*
+
+    <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/yG80dwu8hI7VbaSWfHk2a_filtermanager.png" alt="Use the Filter Manager to manage filter criteria." position="flex-start" size="40" initialPath="../../Resources/Images/Configure/ISM-Neurons-Integration-BestPractics/FilterManager.png" githubPath="Content/Resources/Images/Configure/ISM-Neurons-Integration-BestPractics/FilterManager.png" showCaption="false"></Image>
+
+
+
+    <hint type="info">
+      - The filter settings made during import remain saved for further import.
+      - Based on the filter settings, only those messages which are relevant to the mapping will be processed by the \{\{Primary.Company}} \{\{FRS\_VARS.ProductName}} tenant and rest of the messages will be discarded.
+      - To filter out null parameters, use the NotEqual operator instead of NoContain. For example, when filtering a device that does not have serial number to sync from Neurons.
+      - The filter settings work only for a single value filter in each row. If the field selected in the left panel of the mapping results in multiple values, then those filters will not work. You are advised to use the filter settings accordingly.
+    </hint>
+
+
+
+    For example, if you choose Device.BIOS.BIOSSettings in the root table, all the properties related to Device.BIOS.BIOSSettings will be displayed on the **Filter settings** page.
+
+    <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/i0bw2G-OPMSE4Pun5qwvz_biostable.png" alt="The settings shown in the Root Table." position="flex-start" size="40" initialPath="../../Resources/Images/Configure/ISM-Neurons-Integration-BestPractics/BiosTable.png" githubPath="Content/Resources/Images/Configure/ISM-Neurons-Integration-BestPractics/BiosTable.png" showCaption="false"></Image>
+
+    When you set the filter settings as shown in the image below, then the filter will not work.
+
+    <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/48EwjRYmlILBvUk_Try8C_filtercondition.png" alt="Example of a filter setting that does not work." position="flex-start" size="40" initialPath="../../Resources/Images/Configure/ISM-Neurons-Integration-BestPractics/FilterCondition.png" githubPath="Content/Resources/Images/Configure/ISM-Neurons-Integration-BestPractics/FilterCondition.png" showCaption="false"></Image>
+  </ExpandableHeading>
+
+  <ExpandableHeading>
+    ## Sample Mapping Scenarios
+
+    <ExpandableHeading>
+      ## Use Case 1
+
+      \<Portable > Computer> = \<CIParentType> = \<ComputerSystem.Property.CIType>
+
+      The asset imported from the IN connector having Device.Type > Portable has mapped to the parent type Computer in \{\{FRS\_VARS.ProductName}}. Hence, the device is imported under the category “Computer.”
+    </ExpandableHeading>
+
+    <ExpandableHeading>
+      ## Use case 2
+
+      \<Laptop > Computer> = \<CIParentType> = \<ComputerSystem.Property.CIType>
+
+      If the required mapping does not exist for **Laptop** as shown in the image below, then the device type **Laptop** will be moved to the default setting in the **Asset Processor Configuration** workspace.
+
+      <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/ukDoVN1aSqu-D8vgdQdwQ_mappingcase1.png" alt="Example of a mapping for the device type of Laptop." position="flex-start" size="40" initialPath="../../Resources/Images/Configure/ISM-Neurons-Integration-BestPractics/MappingCase1.png" githubPath="Content/Resources/Images/Configure/ISM-Neurons-Integration-BestPractics/MappingCase1.png" showCaption="false"></Image>
+    </ExpandableHeading>
+  </ExpandableHeading>
+
+  <ExpandableHeading>
+    ## Export and Import the Ivanti Neurons Connector
+
+    You can now edit the **IN** Connector mapping and export it as a metadata package and import on other \{\{Primary.Company}} \{\{FRS\_VARS.ProductName}} tenants on demand. The exported connector will include the default Table selection, Filter option, and Field Mapping changes.
+
+    This functionality is intended to help the Asset Administrator have a controlled import in STG/UAT, verify the imported asset, and update the mapping before importing all the assets in a PRD landscape.
+
+
+
+    <hint type="info">
+      - This feature is applicable only for an **Update** scenario; a package exported from here will not create a new connection if the connector does not exist.
+      - Post import of the package, you are advised to review the changes once before you start syncing the devices.
+      - Clone and delete actions for Ivanti Neurons Connector – Device are disabled or removed.
+    </hint>
+
+
+
+    *Ivanti Neurons Connector – Device – Only Device Sync*
+
+    <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/WZzHtWzJkP_Ki1fT9oJYt_ivantineuronsconnectordeviceonlydevicesync.png" alt="The Filter Setting page." position="flex-start" size="40" initialPath="../../Resources/Images/Configure/ISM-Neurons-Integration-BestPractics/IvantiNeuronsConnectorDeviceOnlyDeviceSync.png" githubPath="Content/Resources/Images/Configure/ISM-Neurons-Integration-BestPractics/IvantiNeuronsConnectorDeviceOnlyDeviceSync.png" showCaption="false"></Image>
+
+    *Ivanti Neurons Connector – Device & Invoice – Asset Management Capabilities*
+
+    <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/_m9dEtN7pyKls5AuCkqHx_ivantineuronsconnectordeviceinvoiceamcapabilities.png" position="flex-start" size="40" initialPath="../../Resources/Images/Configure/ISM-Neurons-Integration-BestPractics/IvantiNeuronsConnectorDeviceInvoiceAMCapabilities.png" githubPath="Content/Resources/Images/Configure/ISM-Neurons-Integration-BestPractics/IvantiNeuronsConnectorDeviceInvoiceAMCapabilities.png" showCaption="false"></Image>
+  </ExpandableHeading>
+
+  <ExpandableHeading>
+    ## Non-Device Type Import Support
+
+    You can import non-computer type devices to \{\{FRS\_VARS.ProductName}}. For instance, a Printer received from Ivanti Neurons can be imported as a Printer in the \{\{Primary.Company}} \{\{FRS\_VARS.ProductName}} tenant.
+  </ExpandableHeading>
+
+  <ExpandableHeading>
+    ## Schedule Page Removal
+
+    The **Ivanti Neurons Connector - Device Schedule** page is no longer an application of Ivanti Neurons connectors.
+
+    <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/rcd9FG-JpfTU_xQRLukaH_schedulepageremoval.png" position="flex-start" size="40" initialPath="../../Resources/Images/Configure/ISM-Neurons-Integration-BestPractics/SchedulePageRemoval.png" githubPath="Content/Resources/Images/Configure/ISM-Neurons-Integration-BestPractics/SchedulePageRemoval.png" showCaption="false"></Image>
+  </ExpandableHeading>
+
+  <ExpandableHeading>
+    ## Publish Options Removal
+
+    The publish option on the **Ivanti Neurons Connector – Device** page is disabled. This page is no longer applicable.
+
+    <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Ul1g8sCNvsZtJWXYWd39e_publishoptionsremoval.png" position="flex-start" size="40" initialPath="../../Resources/Images/Configure/ISM-Neurons-Integration-BestPractics/PublishOptionsRemoval.png" githubPath="Content/Resources/Images/Configure/ISM-Neurons-Integration-BestPractics/PublishOptionsRemoval.png" showCaption="false"></Image>
+
+    Any filter and mapping changes made require you to save the changes using the Publish action, and it is the only action required before synching the devices from Ivanti Neurons.
+
+    <hint type="info">
+      The schedule part is applicable only on Ivanti Neurons connectors, as the device messages are directly processed from Ivanti Neurons Discovery.
+    </hint>
+  </ExpandableHeading>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Configuration between Ivanti Neurons and Ivanti Neurons for ITSM
+
+  The \{\{FRS\_VARS.ProductName}} to \{\{Primary.Company}} Neuron Data center level one time configuration is required to make sure that discovered devices messages are read by the \{\{FRS\_VARS.ITSM}} integration service. This is usually done by the CloudOps team and does not require any change unless its mandated.
+
+  *Uno Landscape*
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/rV8GuSPnknxQmIv2dS1MC_unolandscape.png" position="flex-start" size="40" initialPath="../../Resources/Images/Configure/ISM-Neurons-Integration-BestPractics/UnoLandscape.png" githubPath="Content/Resources/Images/Configure/ISM-Neurons-Integration-BestPractics/UnoLandscape.png" showCaption="false"></Image>
+
+
+
+  <hint type="info">
+    - You need to contact Ivanti Support to set up the connection between Neurons and \{\{FRS\_VARS.ProductName}}.
+    - When you set the \{\{FRS\_VARS.Neurons}} connector synchronization frequency, set it to synchronize weekly instead of daily. Daily synchronization sends a high volume of asset messages to the Ivanti Asset Manager for \{\{FRS\_VARS.Neurons}} Discovery, and the increased volume degrades performance.
+  </hint>
+
+
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Create and Schedule the Ivanti Neurons Connector
+
+  For more information on scheduling the \{\{FRS\_VARS.Neurons}} Discovery to \{\{FRS\_VARS.ProductName}} data sync by API, refer to the [Scheduling API Data Sync from Ivanti Neurons for Discovery to Ivanti Neurons for ITSM](<../ImportExportData/Scheduling Sync From Neurons Discovery to ISM.mdx>).
+
+  <ExpandableHeading>
+    ## Scheduled Connectors in Ivanti Neurons
+
+    You can install and configure the required connector and schedule it to run. For more information, refer to [Connectors](https://help.ivanti.com/ht/help/en_US/CLOUD/vNow/connectors.htm).
+
+    *Connector Page*
+
+    <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/yx1Mew41tLFvQjvH7FKkf_connectorpage.png" position="flex-start" size="40" initialPath="../../Resources/Images/Configure/ISM-Neurons-Integration-BestPractics/ConnectorPage.png" githubPath="Content/Resources/Images/Configure/ISM-Neurons-Integration-BestPractics/ConnectorPage.png" showCaption="false"></Image>
+  </ExpandableHeading>
+
+  <ExpandableHeading>
+    ## Discovered Devices in Ivanti Neurons
+
+    Post configuration in Ivanti Neurons, the **Run Now** button allows you to run the connector on-demand. The discovered devices will appear in Devices page.
+
+    *Device Page*
+
+    <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/dpa1RvJdorIOSc1rrubIF_devicepage.png" position="flex-start" size="40" initialPath="../../Resources/Images/Configure/ISM-Neurons-Integration-BestPractics/DevicePage.png" githubPath="Content/Resources/Images/Configure/ISM-Neurons-Integration-BestPractics/DevicePage.png" showCaption="false"></Image>
+  </ExpandableHeading>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Test Ivanti Neurons Connector – Device from Ivanti Neurons for ITSM
+
+  You can confirm if the newly created Ivanti Neurons Connector – Device Test connection has succeeded. This step is very important and without Test Connection success, devices will not sync with \{\{FRS\_VARS.ProductName}}.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/jhn7uG51J8m4NGwFMsTVg_testconnection.png" position="flex-start" size="40" initialPath="../../Resources/Images/Configure/ISM-Neurons-Integration-BestPractics/TestConnection.png" githubPath="Content/Resources/Images/Configure/ISM-Neurons-Integration-BestPractics/TestConnection.png" showCaption="false"></Image>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Confirm Discovery Data Processed by Ivanti Neurons for ITSM
+
+  The discovered device information from Ivanti Neurons is read by the \{\{FRS\_VARS.ProductName}} integration service, which can be viewed in the **Integration Queue** workspace. Once messages are read, processing of the messages is done by the message queue service, which can be viewed in the **Message Queue Journal** workspace.
+
+  You can manage the devices which are created as part of Ivanti Neurons discovery, along with existing devices, in the **CI** workspace.
+
+  <hint type="info">
+    If the Test Connection fails, it is likely a configuration issue. Raise a Service Request to CloudOps to rectify.
+  </hint>
+
+  *Integration Queue*
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/mUMuoqRdSCG8EY3h_SoMZ_integrationqueue.png" position="flex-start" size="40" initialPath="../../Resources/Images/Configure/ISM-Neurons-Integration-BestPractics/IntegrationQueue.png" githubPath="Content/Resources/Images/Configure/ISM-Neurons-Integration-BestPractics/IntegrationQueue.png" showCaption="false"></Image>
+
+
+
+  *Message Queue Journal*
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/9CK103Bh6UY9GUNVOWe5D_messagequeuejournal3.png" position="flex-start" size="40" initialPath="../../Resources/Images/Configure/ISM-Neurons-Integration-BestPractics/MessageQueueJournal3.png" githubPath="Content/Resources/Images/Configure/ISM-Neurons-Integration-BestPractics/MessageQueueJournal3.png" showCaption="false"></Image>
+
+
+
+  *CI Page*
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/rRPVoBf3NDYsG2qrgGLNZ_cipage.png" position="flex-start" size="40" initialPath="../../Resources/Images/Configure/ISM-Neurons-Integration-BestPractics/CIPage.png" githubPath="Content/Resources/Images/Configure/ISM-Neurons-Integration-BestPractics/CIPage.png" showCaption="false"></Image>
+
+
+
+  *Hardware Assets*
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/sEF2e3q91n3JLCaG6lWiY_hardwareassets.png" position="flex-start" size="40" initialPath="../../Resources/Images/Configure/ISM-Neurons-Integration-BestPractics/HardwareAssets.png" githubPath="Content/Resources/Images/Configure/ISM-Neurons-Integration-BestPractics/HardwareAssets.png" showCaption="false"></Image>
+
+  <hint type="info">
+    Ivanti Neurons messages processing history data is not populated in **Integration History** workspace.
+  </hint>
+</ExpandableHeading>
+
+## FAQs
+
+<ExpandableHeading>
+  ## What is the sequence of steps involved in on-boarding Cloud ITSM customer to ITAM?
+
+  <Paragraph indent="1">
+    a. Identify the current version of \{\{FRS\_VARS.ProductName}} application. You can check in the **Aspects** workpace in the \{\{FRS\_VARS.ProductName}} application or **Patch logs** in admin UI can help to find out the latest content package applied.
+  </Paragraph>
+
+  <Paragraph indent="2">
+    \{\{Primary.Company}} \{\{FRS\_VARS.ProductName}} Version – Marketplace drop#
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="3">
+    201813 - Drop#13
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="3">
+    201902 - Drop#15
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="3">
+    201903 - Drop#16
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="3">
+    201904 - Drop#17
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="3">
+    201905 - Drop#18
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="3">
+    201906 - Drop#19
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="3">
+    202001 - Drop#20
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="3">
+    202002 - Drop#21
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="3">
+    202003 - Drop#22
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="3">
+    202004 - drop#23
+  </Paragraph>
+
+  <Paragraph indent="1">
+    b. Apply the right AMC package & apply.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    c. Configure the post asset management configuration – Asset Processor Configuration and Ivanti Neurons Asset import Configuration.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    d. Initiate a Service request for CloudOPS teams for Ivanti Neurons to \{\{FRS\_VARS.ProductName}} configuration.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    e. Post configuration the device should starts synching from Ivanti Neurons to \{\{FRS\_VARS.ProductName}} tenant.
+  </Paragraph>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Why is the Neurons data to Neurons for ITSM integration device sync slow?
+
+  <Paragraph indent="1">
+    The device sync depends on few factors such as:
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    Inflow of device messages from Ivanti Neurons to \{\{FRS\_VARS.ProductName}}.
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    Rate at which \{\{FRS\_VARS.ProductName}} can read the device messages from Ivanti Neurons. Currently we are facing some technical challenges in terms of device processing rate and creating/updating asset in real time.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    The solution is to raise a service ticket to Support, the support team will analyze and take necessary actions.
+  </Paragraph>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## How to track the delay in sync in the Neurons data to Neurons for ITSM
+
+  <Paragraph indent="1">
+    The **MessageQueueJournal** workspace will display the latest received device message along with software messages. One can make out the device processed vs the device processing failed. The dashboard will be added to have details on how many device messages received, how many failed etc.
+  </Paragraph>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Is there an ability to force a sync or option to sync specific device?
+
+  <Paragraph indent="1">
+    This feature is not available. The messages are read in FIFO order and hence the more recent scan device message takes longer time to sync in \{\{FRS\_VARS.ProductName}}.
+  </Paragraph>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Is there a dashboard to see how many messages are piled for ITSM to process?
+
+  <Paragraph indent="1">
+    There is no common dashboard to view in \{\{FRS\_VARS.ProductName}} application. However, the following Azure dashboards are being used for debugging purpose:
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    [https://portal.azure.com/#@ivanticloud0.onmicrosoft.com/dashboard/arm/subscriptions/ce2d1113-70c5-4301-ac59-e53efc23bca3/resourcegroups/dashboards/providers/microsoft.portal/dashboards/48d79312-fa8f-4dee-8db0-b1fb52ad778b](https://portal.azure.com/#@ivanticloud0.onmicrosoft.com/dashboard/arm/subscriptions/ce2d1113-70c5-4301-ac59-e53efc23bca3/resourcegroups/dashboards/providers/microsoft.portal/dashboards/48d79312-fa8f-4dee-8db0-b1fb52ad778b)
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    [https://portal.azure.com/#@ivanticloud0.onmicrosoft.com/dashboard/arm/subscriptions/ce2d1113-70c5-4301-ac59-e53efc23bca3/resourcegroups/dashboards/providers/microsoft.portal/dashboards/7e1cefe4-489b-4785-8068-80520b53d149](https://portal.azure.com/#@ivanticloud0.onmicrosoft.com/dashboard/arm/subscriptions/ce2d1113-70c5-4301-ac59-e53efc23bca3/resourcegroups/dashboards/providers/microsoft.portal/dashboards/7e1cefe4-489b-4785-8068-80520b53d149)
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    [https://portal.azure.com/#@ivanticloud0.onmicrosoft.com/dashboard/arm/subscriptions/ce2d1113-70c5-4301-ac59-e53efc23bca3/resourcegroups/dashboards/providers/microsoft.portal/dashboards/003058ac-cb7d-44e7-9093-df270a32d0a6](https://portal.azure.com/#@ivanticloud0.onmicrosoft.com/dashboard/arm/subscriptions/ce2d1113-70c5-4301-ac59-e53efc23bca3/resourcegroups/dashboards/providers/microsoft.portal/dashboards/003058ac-cb7d-44e7-9093-df270a32d0a6)
+  </Paragraph>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## When a Neurons tenant and ITSM tenant is linked, is there a way to find (from Neurons for ITSM) which Neurons tenant it is linked to?
+
+  <Paragraph indent="1">
+    Currently this can be viewed only from Config DB. The only way to know is to raise SR for CloudOps.
+  </Paragraph>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## When configuring an import from Neurons the Publish and Run Now and the Publish and Test Run are disabled
+
+  <Paragraph indent="1">
+    These buttons are made disabled as their functionalities are not required. The data is directly read by integration service from Ivanti Neurons service bus.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    If any change done in OData connector one has to perform publish action to save the change. Else connector might get disabled.
+  </Paragraph>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Why not all devices are synched from Ivanti Neurons to Neurons for ITSM tenant (Data miss match)?
+
+  <Paragraph indent="1">
+    The missing devices in \{\{FRS\_VARS.ProductName}} side post sync up from Ivanti Neurons could be due to the following reasons:
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    The device message has not reached \{\{FRS\_VARS.ProductName}}.
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    The device message has reached to \{\{FRS\_VARS.ProductName}} but not processed successfully due to missing information.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    In any of the cases, we need to look at the issue individual basis. Please reach out support for assistance.
+  </Paragraph>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Can I configure single Neurons tenant to more than one Neurons for ITSM tenants (STG/UAT/PRD at a time?
+
+  <Paragraph indent="1">
+    It is not recommended to configure single Neurons tenant to multiple \{\{FRS\_VARS.ProductName}} tenant at a time as it can create data inconsistency in \{\{FRS\_VARS.ProductName}}. One can always change the configuration from STG to UAT or PRD at any time by raising SR with CloudOPs.
+  </Paragraph>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Can I export & Import connector from one ITSM tenant to another?
+
+  Yes, one can export the OData connectors (Ivanti Neurons Connector – Device & Ivanti Neurons Connector – Invoice) from one \{\{FRS\_VARS.ProductName}} tenant to another tenant. Please make sure you have taken back up before importing can would overwrite the customer mapping. Also export and import should be on same version of \{\{FRS\_VARS.ProductName}} application to have consistent default mappings.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Can I have multiple OData connectors like Ivanti Neurons Connector – Device or Invoice?
+
+  <Paragraph indent="1">
+    Yes, but its recommended to enable only one OData connector at a time.
+  </Paragraph>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Can I have multiple mappings in a single OData connector like Ivanti Neurons Connector – Device?
+
+  <Paragraph indent="1">
+    Yes, but enable only one active mapping by name Device at a time and turn off other mapping.
+  </Paragraph>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## What is limit for MaxSize and BatchSize parameters in Object Mapping of OData connectors?
+
+  <Paragraph indent="1">
+    No limit for both the parameters, however its better to retain the default values.
+  </Paragraph>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## If ParentType not matched as per the mapping, then will device get created?
+
+  <Paragraph listStyleType="disc" indent="2">
+    2020.2 - Device will be moved to ivnt\_UnmanagedAsset
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    2020.3 - Device will honor the Asset Processor Configuration
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    2020.4 - Device will override the mapping details based on Asset Processor checkbox.
+  </Paragraph>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Can we remove both ParentType and SubType?
+
+  <Paragraph indent="1">
+    We can remove SubType fully but one mapping is mandatory for **ParentType**.
+  </Paragraph>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Are we updating AssetType > SubType?
+
+  <Paragraph indent="1">
+    No, we are not updating AssetType as subtype if mapping does not exist.
+  </Paragraph>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## When does a device get brought in?
+
+  <Paragraph indent="1">
+    The OData connector does not trigger based on \{\{FRS\_VARS.ProductName}} scheduler it always works based on the discovered devices available in Ivanti Neurons. As soon as device messages are available in Ivanti Neurons Service bus, \{\{FRS\_VARS.ProductName}} Integration service starts reading them in FIFO order.
+  </Paragraph>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## If DeviceType doesn't exist in Ivanti Neurons or AMC... what happens?
+
+  <Paragraph indent="1">
+    Device will honor the Asset Processor Configuration
+  </Paragraph>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Can both OData and Neurons for ITSM connectors co exists?
+
+  <Paragraph indent="1">
+    Yes.
+  </Paragraph>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Can we set it up to populate devices always into ivnt\_UnmanagedAsset?
+
+  <Paragraph indent="1">
+    Yes, Possible.
+  </Paragraph>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## On updating AssetType & SubType, will the next import from Neurons change the AssetType and SubType?
+
+  <Paragraph indent="1">
+    No.
+  </Paragraph>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Can we set any field for Mapping Fields in Asset Processor Configuration workspace?
+
+  <Paragraph indent="1">
+    No. Only constant value field can be set for Mapping Fields like PrevId, SerialNumber etc ….
+  </Paragraph>
+</ExpandableHeading>
+
+## Troubleshooting
+
+<ExpandableHeading>
+  ## When performing data sync from Neurons Discovery to Neurons for ITSM, system performance is degraded
+
+  **Resolution:**
+
+  When you schedule the data sync, ensure that the max size is no greater than 500. For more information, refer to [Scheduling API Data Sync from Ivanti Neurons for Discovery to Ivanti Neurons for ITSM](<../ImportExportData/Scheduling Sync From Neurons Discovery to ISM.mdx>).
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## When scheduling data sync from Neurons Discovery to Neurons for ITSM, Preview fails.
+
+  **Resolution:**
+
+  Verify that the download is no greater than 20 MB. Sync packages that are larger than 20 MB will cause the preview to fail. For more information, refer to [Scheduling API Data Sync from Ivanti Neurons for Discovery to Ivanti Neurons for ITSM](<../ImportExportData/Scheduling Sync From Neurons Discovery to ISM.mdx>).
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Opening Unmanaged Throws Error
+
+  **Resolution:**
+
+  1. Create CI extended BO ivnt\_UnmanagedAsset
+  2. Add forms by AM.UnmanagedAsset.Brief
+  3. Open and select Layout of CI (relevant) > Open in Grid view > Add the ivnt\_UnmanagedAsset with newly created form.
+  4. Open Layout of the CI BO and select Layout of CI (relevant) > Open in Form view > Add the ivnt\_UnmanagedAsset with newly created form.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Object Reference NULL Error
+
+  **Resolution:**
+
+  Can be observed by multiple reasons and some of the primary reasons could be:
+
+  1. Check Ivanti Neurons Connector - Device Test Connection.
+  2. Missing OData Connection information like API path Object.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Y1SH5W773BVNzfx5Q_VC1_configdetails.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/Configure/ISM-Neurons-Integration-BestPractics/ConfigDetails.png" githubPath="Content/Resources/Images/Configure/ISM-Neurons-Integration-BestPractics/ConfigDetails.png" showCaption="false"></Image>
+
+  3. More than one OData Connections defined: This can happen if customer has already created an OData Connector ford Device import manually before importing the \{\{FRS\_VARS.ProductName}} CMDB Turnkey package form Marketplace.
+
+  <hint type="info">
+    At a time only one OData Connector can be active for connection name Device.
+  </hint>
+
+  4. Ivanti Neurons Connector-Device type is disabled in Connector page. It’s advised to create the default naming as Device if your using multiple mappings.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Device Creation Failure
+
+  **Resolution:**
+
+  1. Enable the **Asset Processor Configuration Missing Create CI** checkbox.
+  2. Mandatory fields for creating CI missing, eg: Hostname, CIType etc.
+  3. Duplicate of Serial Number, Asset Tag, CI Component etc.
+  4. Connector Test Connection failure.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Device Type Not Updating
+
+  **Resolution:**
+
+  1. If the Ivanti Neurons does not have Device Type such devices will honor the Asset Processor Configuration.
+  2. If Connector doesn't have the mapping details for Device Type which present in Neurons such devices will honor the Asset Processor Configuration.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Device Field Values Are Not Populated
+
+  **Resolution:**
+
+  Review the mapping details in the connector.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## How to initiate the device scan on Neurons agent manually?
+
+  **Resolution:**
+
+  Run the following command in selected devices' console in the Neurons page:
+
+  Start-Process -WorkingDirectory "C:\Program Files\Ivanti\Ivanti Cloud Agent\UNO.INVENTORY.ENGINE64" -FilePath "C:\Program Files\Ivanti\Ivanti Cloud Agent\UNO.INVENTORY.ENGINE64\Inventory.Engine.exe"
+
+  The below command can list scanned items on the console itself:
+
+  Get-ChildItem -Path "C:\Program Files\Ivanti\Ivanti Cloud Agent\UNO.INVENTORY.ENGINE64"
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Issue where the Neurons connector doesn not kick off the schedule nor does the Run Now option work
+
+  **Resolution:**
+
+  Possible reason could be the same agent has been installed on multiple Neurons tenants. Uninstall one of the agents, and other should start working.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Custom Queries
+
+  - Ivanti Neurons Discovery Device Data:
+
+  <Paragraph indent="1">
+    customEvents
+  </Paragraph>
+
+  <Paragraph indent="1">
+    \| extend itemType = iif(itemType == 'customEvent',itemType,"")
+  </Paragraph>
+
+  <Paragraph indent="1">
+    \| extend customEvent\_name = iif(itemType == 'customEvent',name,'')
+  </Paragraph>
+
+  <Paragraph indent="1">
+    \| where itemType == 'customEvent'
+  </Paragraph>
+
+  <Paragraph indent="1">
+    \| where customEvent\_name == 'Discovery.InventoryEventHandler.InventoryEventReceived'
+  </Paragraph>
+
+  <Paragraph indent="1">
+    \| summarize count() by tostring(customDimensions.TenantId)
+  </Paragraph>
+
+  <Paragraph indent="1">
+    \| where customDimensions\_TenantId == "UNO\_TenantID"
+  </Paragraph>
+
+  - Ivanti Neurons Discovery Software Data:
+
+  <Paragraph indent="1">
+    customEvents
+  </Paragraph>
+
+  <Paragraph indent="1">
+    \| extend itemType = iif(itemType == 'customEvent',itemType,"")
+  </Paragraph>
+
+  <Paragraph indent="1">
+    \| extend customEvent\_name = iif(itemType == 'customEvent',name,'')
+  </Paragraph>
+
+  <Paragraph indent="1">
+    \| where itemType == 'customEvent'
+  </Paragraph>
+
+  <Paragraph indent="1">
+    \| where customEvent\_name == 'Discovery.InventoryEventV2Handler.InventoryEventReceived'
+  </Paragraph>
+
+  <Paragraph indent="1">
+    \| summarize count() by tostring(customDimensions.TenantId)
+  </Paragraph>
+
+  <Paragraph indent="1">
+    \| where customDimensions\_TenantId == " UNO\_TenantID "
+  </Paragraph>
+
+  - Sync Service Device Processed:
+
+  <Paragraph indent="1">
+    customEvents
+  </Paragraph>
+
+  <Paragraph indent="1">
+    \| extend itemType = iif(itemType == 'customEvent',itemType,"")
+  </Paragraph>
+
+  <Paragraph indent="1">
+    \| extend customEvent\_name = iif(itemType == 'customEvent',name,'')
+  </Paragraph>
+
+  <Paragraph indent="1">
+    \| where itemType == 'customEvent'
+  </Paragraph>
+
+  <Paragraph indent="1">
+    \| where customEvent\_name == 'SyncApp.InventoryEventHandler.InventoryEventProcessed'
+  </Paragraph>
+
+  <Paragraph indent="1">
+    \| summarize count() by tostring(customDimensions.TenantId)
+  </Paragraph>
+
+  <Paragraph indent="1">
+    \| where customDimensions\_TenantId == " UNO\_TenantID "
+  </Paragraph>
+
+  - Sync Service Software Processed:
+
+  <Paragraph indent="1">
+    customEvents
+  </Paragraph>
+
+  <Paragraph indent="1">
+    \| extend itemType = iif(itemType == 'customEvent',itemType,"")
+  </Paragraph>
+
+  <Paragraph indent="1">
+    \| extend customEvent\_name = iif(itemType == 'customEvent',name,'')
+  </Paragraph>
+
+  <Paragraph indent="1">
+    \| where itemType == 'customEvent'
+  </Paragraph>
+
+  <Paragraph indent="1">
+    \| where customEvent\_name == 'SyncApp.InventoryEventV2Handler.InventoryEventReceived'
+  </Paragraph>
+
+  <Paragraph indent="1">
+    \| summarize count() by tostring(customDimensions.TenantId)
+  </Paragraph>
+
+  <Paragraph indent="1">
+    \| where customDimensions\_TenantId == " UNO\_TenantID "
+  </Paragraph>
+</ExpandableHeading>
+
+## References
+
+Ivanti Neurons community article: [Ivanti Neurons: Troubleshooting The Neurons Connector Utility](https://forums.ivanti.com/s/article/Ivanti-Cloud-Troubleshooting-The-Cloud-Connector-Utility?language=en_US)
+
+Ivanti Neurons online help: [Setting up connectors](https://help.ivanti.com/ht/help/en_US/CLOUD/vNow/connectors.htm?cshid=1001)

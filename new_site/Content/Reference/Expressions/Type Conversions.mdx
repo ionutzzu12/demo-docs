@@ -1,0 +1,121 @@
+---
+title: About Type Conversions
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:58 GMT+0300 (Eastern European Summer Time)
+---
+
+In certain contexts, values from one data type can be converted to another data type, either implicitly or explicitly.
+
+- :Link[Implicit Conversions]{label="Implicit Conversions" overridedLabel="Implicit Conversions" spaceId docId="eVZtF84cBSwgHH8QyCA6X" version="v2" docAnchorId="#convers" loadingMethod="dynamic" newTab="false" href="Type Conversions.mdx"}
+- :Link[Conversion to Boolean Values]{label="Conversion to Boolean Values" overridedLabel="Conversion to Boolean Values" spaceId docId="eVZtF84cBSwgHH8QyCA6X" version="v2" docAnchorId="#Boolean_conversion" loadingMethod="dynamic" newTab="false" href="Type Conversions.mdx"}
+- :Link[Conversion to DateTime Values]{label="Conversion to DateTime Values" overridedLabel="Conversion to DateTime Values" spaceId docId="eVZtF84cBSwgHH8QyCA6X" version="v2" docAnchorId="#Conversion_datetime" loadingMethod="dynamic" newTab="false" href="Type Conversions.mdx"}
+- :Link[Conversion to Number Values]{label="Conversion to Number Values" overridedLabel="Conversion to Number Values" spaceId docId="eVZtF84cBSwgHH8QyCA6X" version="v2" docAnchorId="#number_Conversion" loadingMethod="dynamic" newTab="false" href="Type Conversions.mdx"}
+- :Link[Conversion to Text Values]{label="Conversion to Text Values" overridedLabel="Conversion to Text Values" spaceId docId="eVZtF84cBSwgHH8QyCA6X" version="v2" docAnchorId="#Conversion_Text" loadingMethod="dynamic" newTab="false" href="Type Conversions.mdx"}
+- :Link[Conversion to Currency Values]{label="Conversion to Currency Values" overridedLabel="Conversion to Currency Values" spaceId docId="eVZtF84cBSwgHH8QyCA6X" version="v2" docAnchorId="#Conversion" loadingMethod="dynamic" newTab="false" href="Type Conversions.mdx"}
+
+## Implicit Conversions
+
+An implicit conversion occurs when the expected type of an expression does not match the actual type.
+
+## Conversion to Boolean Values
+
+- :Link[From Text Values to Boolean Values]{label="From Text Values to Boolean Values" overridedLabel="From Text Values to Boolean Values" spaceId docId="eVZtF84cBSwgHH8QyCA6X" version="v2" docAnchorId="#FS2B" loadingMethod="dynamic" newTab="false" href="Type Conversions.mdx"}
+- :Link[From Currency Values to Boolean Values]{label="From Currency Values to Boolean Values" overridedLabel="From Currency Values to Boolean Values" spaceId docId="eVZtF84cBSwgHH8QyCA6X" version="v2" docAnchorId="#FC2B" loadingMethod="dynamic" newTab="false" href="Type Conversions.mdx"}
+- :Link[ From Number Values to Boolean Values]{label=" From Number Values to Boolean Values" overridedLabel=" From Number Values to Boolean Values" spaceId docId="eVZtF84cBSwgHH8QyCA6X" version="v2" docAnchorId="#FN2B" loadingMethod="dynamic" newTab="false" href="Type Conversions.mdx"}
+
+### From Text Values to Boolean Values
+
+The text values of true and false (case insensitive) can be used for setting the value of Boolean fields, when enclosed in single or double quotes.
+
+The text values of **n** (where n represents an integer or decimal value, and can be positive or negative), can be used for setting the value of logical fields, when enclosed in single or double quotes. If **n** is 0, the corresponding Boolean value is false; otherwise, all other values of n correspond to a Boolean value of true.
+
+### From Currency Values to Boolean Values
+
+The application drops the currency code. Any non-zero number is converted to true and zero is converted to false.
+
+### From Number Values to Boolean Values
+
+Any non-zero number is converted to true and zero is converted to false.
+
+## Conversion to DateTime Values
+
+Text values representing the date only or representing date and time values, can be implicitly converted to the corresponding DateTime value.
+
+## Conversion to Number Values
+
+- :Link[From Integer Values to Float Values, and from Float Values to Integer Values]{label="From Integer Values to Float Values, and from Float Values to Integer Values" overridedLabel="From Integer Values to Float Values, and from Float Values to Integer Values" spaceId docId="eVZtF84cBSwgHH8QyCA6X" version="v2" docAnchorId="#From" loadingMethod="dynamic" newTab="false" href="Type Conversions.mdx"}
+- :Link[From Boolean Values to Number Values]{label="From Boolean Values to Number Values" overridedLabel="From Boolean Values to Number Values" spaceId docId="eVZtF84cBSwgHH8QyCA6X" version="v2" docAnchorId="#FB2N" loadingMethod="dynamic" newTab="false" href="Type Conversions.mdx"}
+- :Link[From Text Values to Number Values]{label="From Text Values to Number Values" overridedLabel="From Text Values to Number Values" spaceId docId="eVZtF84cBSwgHH8QyCA6X" version="v2" docAnchorId="#FS2N" loadingMethod="dynamic" newTab="false" href="Type Conversions.mdx"}
+
+### From Integer Values to Float Values, and from Float Values to Integer Values
+
+Integer values can be implicitly converted to float values, but not vice versa. (If you convert a float value to an integer value, you lose the part after the decimal, which is not a proper conversion.)
+
+### From Boolean Values to Number Values
+
+The Boolean values of true and false (case insensitive) can be used for setting the value of number fields. Upon evaluation, the true and false values are converted to 1 and 0, respectively.
+
+Boolean values, however, cannot be implicitly converted to number values, when used in arithmetic contexts (for example, adding a number value to true), or in relational contexts (for example, comparing a number value to true).
+
+### From Text Values to Number Values
+
+There is no implicit conversion of text values to number values.
+
+For arithmetic operations, if one operand is a text value, and the other operand is a number value, the number value is converted to a text value, but the text value is not converted to a number value. At this point, only the plus (+) operator (in this context, for text concatenation) works properly; evaluation fails for all other available arithmetic operators (such as multiply \[\*] and divide \[%]).
+
+<font color="#000000"></font>Example 1: In this example, **$("20" + "30")** is interpreted as a text value of 2030 when you concatenate the two fields.  
+
+<font color="#000000">Similarly, for relational comparisons, if one operand is a text value, and the other operand is a number value, the number value is converted to a text value, but the text value is not converted to a number value. At this point, the values are compared in dictionary order instead of numerically.</font>
+
+<font color="#000000"></font>Example 2: In this example, **$(30 \< "200")**, the application converts 30 to text (in dictionary order ) and returns false because 200 comes before 30 (in dictionary order ).
+
+## Conversion to Text Values
+
+Boolean, DateTime, number, and currency values can be implicitly converted to text values.  
+
+- :Link[From Boolean Values to Text Values]{label="From Boolean Values to Text Values" overridedLabel="From Boolean Values to Text Values" spaceId docId="eVZtF84cBSwgHH8QyCA6X" version="v2" docAnchorId="#FB2T" loadingMethod="dynamic" newTab="false" href="Type Conversions.mdx"}
+- :Link[From DateTime Values to Text Values]{label="From DateTime Values to Text Values" overridedLabel="From DateTime Values to Text Values" spaceId docId="eVZtF84cBSwgHH8QyCA6X" version="v2" docAnchorId="#FD2T" loadingMethod="dynamic" newTab="false" href="Type Conversions.mdx"}
+- :Link[From Number Values to Text Values]{label="From Number Values to Text Values" overridedLabel="From Number Values to Text Values" spaceId docId="eVZtF84cBSwgHH8QyCA6X" version="v2" docAnchorId="#FN2T" loadingMethod="dynamic" newTab="false" href="Type Conversions.mdx"}
+- :Link[From Currency Values to Text Values]{label="From Currency Values to Text Values" overridedLabel="From Currency Values to Text Values" spaceId docId="eVZtF84cBSwgHH8QyCA6X" version="v2" docAnchorId="#FC2T" loadingMethod="dynamic" newTab="false" href="Type Conversions.mdx"}
+
+### From Boolean Values to Text Values
+
+For Boolean values, true and false are converted to the text values "true" and "false", respectively (case insensitive).
+
+Here are examples where the Boolean value is used, in the context of text concatenation (here, **TestText1** is a text field, whereas **TestBool1** is a Boolean field):
+
+$("Did the user answer all the questions: " + false)
+
+$("Did the user answer all the questions: " + TestBool1)
+
+$(TestText1 + TestBool1)
+
+### From DateTime Values to Text Values
+
+DateTime values are converted to a text value in the DateTime format of the current locale.
+
+### From Number Values to Text Values
+
+If you need a text value and you pass a number value, the application converts it to a text value.
+
+Here are examples where the number value is used in the context of text concatenation. Here, **TestText1** and **TestText2** are text fields, whereas **TestNumber** is a number field.
+
+$("There are >" + 3 + " blind mice")
+
+$("There are " + 3.28 + TestText1 )
+
+$(TestText1 + TestNumber + TestText2)
+
+### From Currency Values to Text Values
+
+If you need a text value and you pass a currency value, the application converts it to a text value.
+
+Here is an example where the currency value is used in the context of text concatenation.
+
+$("Julie won" + 200 USD + " in the lottery.")
+
+## Conversion to Currency Values
+
+You can convert a number to a currency value when it is used with a currency value in a binary operator or in another context where a currency value is required.  For example, in $(*currency\_field* + *number\_field*), the **number\_field** parameter is treated as a currency value with the same currency as the **currency\_field** parameter. In the example $(100USD + 46) , the application treats 46 as a USD value and the result is 146USD.
+
+When a number field is used when a currency is needed, for example to pass to a currency function, the application treats it as a currency with the default currency value of the tenant.  For example, $(Currency(20)) means 20 of the default currency for the tenant.

@@ -1,0 +1,318 @@
+---
+title: ITSM EPM Remote Control Integration
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:51 GMT+0300 (Eastern European Summer Time)
+---
+
+This feature is only available for on-premises customers.
+
+- :Link[About Endpoint Manager Remote Control]{label="About Endpoint Manager Remote Control" overridedLabel="About Endpoint Manager Remote Control" spaceId docId="T07WY_lZeDdWtNe9Wa-hg" version="v2" docAnchorId="#About" loadingMethod="dynamic" newTab="false" href="ISM-EPM-Remote-Control-Integration.mdx"}
+- :Link[Configuring Endpoint Manager Remote Control in Neurons for ITSM]{label="Configuring Endpoint Manager Remote Control in Neurons for ITSM" overridedLabel="Configuring Endpoint Manager Remote Control in Neurons for ITSM" spaceId docId="T07WY_lZeDdWtNe9Wa-hg" version="v2" docAnchorId="#Configur" loadingMethod="dynamic" newTab="false" href="ISM-EPM-Remote-Control-Integration.mdx"}
+- :Link[Configuring Endpoint Manager Remote Control for a Service Desk Analyst]{label="Configuring Endpoint Manager Remote Control for a Service Desk Analyst" overridedLabel="Configuring Endpoint Manager Remote Control for a Service Desk Analyst" spaceId docId="T07WY_lZeDdWtNe9Wa-hg" version="v2" docAnchorId="#ConfigureEPM" loadingMethod="dynamic" newTab="false" href="ISM-EPM-Remote-Control-Integration.mdx"}
+- :Link[Configuring Endpoint Manager Remote Control for Responsive Analyst]{label="Configuring Endpoint Manager Remote Control for Responsive Analyst" overridedLabel="Configuring Endpoint Manager Remote Control for Responsive Analyst" spaceId docId="T07WY_lZeDdWtNe9Wa-hg" version="v2" docAnchorId="#Responsive" loadingMethod="dynamic" newTab="false" href="ISM-EPM-Remote-Control-Integration.mdx"}
+
+## About Endpoint Manager Remote Control
+
+The \{\{Primary.Product}} remote control feature allows the Mobile Analyst role to access and control the machines of end users who need help. With the additional configuration mentioned in this topic, the remote control functionality can be extended to the Service Desk Analyst role.
+
+The remote control feature allows Service Desk Analysts to:
+
+- Control the machine of the end user/customer and see what they are doing.
+- Launch a remote control session directly from the CI record if remote control has been enabled for the CI-type.
+- Copy and paste between the analyst and end user's browser.
+- Create or resolve an incident from the window.
+- Use an EPM or Endpoint Manager console to view the history of the remote control sessions.
+
+### System Requirements for the Remote Control Feature
+
+- The Endpoint Manager Core Server and \{\{Primary.Product}} must be connected with a dedicated network between the two applications using a VPN.
+- The EPM server should have valid external certificate that is trusted by browsers.
+- Latest version of Chrome or Microsoft Edge.
+- You can launch EPM remote control from a browser before configuring it in ITSM.
+
+## Configuring Endpoint Manager Remote Control in Neurons for ITSM
+
+1. In the Configuration Console, set the **Enable Remote Control Integration** global constant to **true**.
+2. Create EPM Core details by providing the following values:
+   1. **EPM Core Server Name**: EPM Core Server Hostname or Full Qualified Name. Verify to confirm this server is accessible over the network from ISM servers. Update the etc\hosts file to resolve DNS on the server where remote control is being launched, if required.
+   2. **Remote Control URL**: Ensure formatting https\://\{EPM Core Server Name}/remotecontrol/#?rcauth=\{EPM Core Server Name}\&token=
+   3. **Token URL**: https\://\{EPM Core Server Name}/remotecontrolauth/api/jwt
+      If the information above does not work (for example when using an old version), you can try using this instead: https\://\{EPM Core Server Name}/remotecontrol/#/login/\{EPM Core Server Name}
+3. Configure the EPM remote control configuration business objects:
+   1. **User Name**: Login for EPM core administrator.
+   2. **Password**: Password for EPM core administrator.
+   3. **Timeout**: Time to keep the remote control session alive. The ISM session timeout overrides this configuration.
+   4. **Maximum Concurrent Sessions**: Max number of remote control sessions that can be launched by the ITSM logged-in user.
+   5. **Send Encrypted Credentials**: This setting must be unchecked.
+   6. **EPM Core Server**: The field name where the EPM core name is populated in the CI. While importing a CI, any specific field can be mapped and the exact field name should be added here.
+
+## Configuring Endpoint Manager Remote Control for a Service Desk Analyst
+
+Follow these procedures to add Endpoint Manager Remote Control to the CI business object.
+
+### Add RCUrl Field to the CI Business Object
+
+1. From the Configuration Console, select **Configure Application**.
+2. From the **Settings** pane, click **Build > Business Objects** and use **Find:** to search for the **CI (CI) Configuration Item** business object.
+3. Click **Fields** in the toolbar to open the list, then click **Add new\...**
+4. From the list of field types that can be added, select **Text**.
+5. In the **Add New Field** page, enter the following configurations:
+
+| Option           | Setting/Description                                                                    |
+| ---------------- | -------------------------------------------------------------------------------------- |
+| Field Name       | Enter **RCUrl** as a name for this field                                               |
+| Display Name     | RCUrl                                                                                  |
+| Description      | URL to remote control this CI                                                          |
+| Field Type       | Select Text > HTML                                                                     |
+| Text Length      | Unlimited (the system should automatically make this selection when HTML is selected). |
+| Field Attributes | Select **Nullable**                                                                    |
+
+6. Click **Save** to add the field. The system may take while to save this change.
+
+### Add a RCToken field to the CI Business Object
+
+Return to the Business Objects page in the Configuration Console.
+
+1. From the **Settings** pane, click **Build > Business Objects** and use **Find:** to search for the **CI (CI) Configuration Item** business object.
+2. Click **Fields&#x20;**&#x69;n the toolbar to open the Business Rules page, then click **Add New**.
+3. Select **Text&#x20;**&#x66;rom the list of field types.
+4. In the **Add New Field** page, complete the following:
+
+| Option           | Setting/Description                                                                        |
+| ---------------- | ------------------------------------------------------------------------------------------ |
+| Field Name       | Enter RCToken                                                                              |
+| Display Name     | Enter RCToken                                                                              |
+| Description      | "Enter RCToken field" stores the JWT token generated from \{\{FRS\_VARS.a\_Quick\_Action}} |
+| Field Type       | Text&#xA;&#xA;                                                                             |
+| Text Length      | Unlimited                                                                                  |
+| Field Attributes | Select **Nullable**                                                                        |
+
+5. Click **Save**.
+
+### Add Remote\_link to the CI Business Object
+
+Return to the Business Objects page in the Configuration Console.
+
+1. From the **Settings** pane, click **Build > Business Objects** and use **Find:** to search for the **CI (CI) Configuration Item** business object.
+2. Click **Fields&#x20;**&#x69;n the toolbar to open the Business Rules page, then click **Add New**.
+3. Select **Link** from the list of field types.
+4. In the **Add New Field** page, complete the following:
+
+| Option       | Setting/Description                                                                                                |
+| ------------ | ------------------------------------------------------------------------------------------------------------------ |
+| Field Name   | Enter Remote\_link                                                                                                 |
+| Display Name | Enter Remote\_link                                                                                                 |
+| Description  | "Enter Remote\_link" is used to create a relationship between the CI and EPM Core Server Details business objects. |
+| Field Type   | Link&#xA;&#xA;                                                                                                     |
+
+5. Save the changes.
+
+### Add the relationship between the CI and RemoteControl.EPMCoreDetails business objects
+
+Return to the Business Objects page in the Configuration Console.
+
+1. In the **CI (CI) Configuration Item** business object, add a relationship to the RemoteControl.EPMCoreDetails business object with the following details:
+
+| Designer Name                            | CIAssocRemoteControlEPMCoreDetails                              |
+| ---------------------------------------- | --------------------------------------------------------------- |
+| Display Name                             | CIAssocRemoteControlEPMCoreDetails                              |
+| Internal Reference Name                  | CIAssocRemoteControlEPMCoreDetails                              |
+| Relation to                              | RemoteControl.EPMCoreDetails&#xA;&#xA;                          |
+| Relationship Key                         | RemoteControl#EPMCoreDetails.CIAssocRemoteControlEPMCoreDetails |
+| Reverse Relationship Key                 | CI#.CIAssocRemoteControlEPMCoreDetails                          |
+| Direction                                | Reversed                                                        |
+| Relationship is Audited                  | blank                                                           |
+| Full Text Search is Enabled              | blank                                                           |
+| Prevent Delete when Linked Objects Exist | blank                                                           |
+| This Business Object cardinality         | Zero or many                                                    |
+| Binding Type                             | Associates with                                                 |
+| Related Business Object cardinality      | Zero or one                                                     |
+
+2. Save the changes.
+3. Select **Fields&#x20;**> **Remote\_link**, and update the Linked Object Type BO to **RemoteControl.EPMCoreDetails**.
+4. Save the changes.
+
+### Add a child panel for the CI Business Object layout
+
+Return to the Business Objects page in the Configuration Console.
+
+1. In the **CI (CI) Configuration Item** business object, select **Layout**, then select **AMC.CI**.
+2. Open the **Computer&#x20;**&#x66;orm view, then select **Add child panel** and add the following details:
+
+| Option       | Setting/Description                |
+| ------------ | ---------------------------------- |
+| Display Name | EPM Core Server                    |
+| Object       | RemoteControl.EPMCoreDetails       |
+| Relationship | CIAssocRemoteControlEPMCoreDetails |
+| Form         | EPMCoreDetails&#xA;&#xA;           |
+
+3. Save the changes.
+
+### Add the RCUrl field to a CI Computer form
+
+1. Open the **Computer Details** form (AMC.Asset.Administrator.Details) of the CI business object.
+2. Edit the page as follows.
+3. To add an icon for the Remote Control button: From the left pane, click the Other directory icon to expand the folder, then scroll to find Picture. Drag Picture to the top of the Asset Detail layout on the right of the page. A new row is created, and a gear icon appears. Select the gear icon you added to the form to enable the Control Properties tab.
+4. Replace the icon: From the **Control Properties** tab, Click in the Value section of the Image field, then click the expression editor symbol to open th&#x65;**&#x20;Edit Expression** dialog. Click th&#x65;**&#x20;Image Manager** link at the bottom of the form to open the dialog and scroll to find and select th&#x65;**&#x20;Start Remote Control** icon. Click **Select&#x20;**&#x74;o close the dialog and click **Save&#x20;**&#x69;n the **Edit Expression** dialog.
+5. From the **Control Properties** tab, click in the **Value&#x20;**&#x63;olumn for th&#x65;**&#x20;Visible Expression** field then click the expression editor. In the **Expression Editor** dialog enter $(RCUrl !=null) and click **Save**.
+6. Add the **Start Remote Control** field:
+7. From the left pane, scroll to and expand th&#x65;**&#x20;CI > Fields** folder.
+8. Select **RCUrl&#x20;**&#x61;nd drag to the right pane next to the Image icon you added earlier.
+9. Select the RCUrl field you dragged to the right pane and make the following changes in th&#x65;**&#x20;Control Properties tab**. You may need to scroll to see all the settings.
+
+| Option             | Setting/Description                   |
+| ------------------ | ------------------------------------- |
+| Control Type       | HTML Viewer                           |
+| Height             | 1 dm                                  |
+| Label              | Do not set a label (clear this field) |
+| Visible expression | $(RCUrl!=null)&#xA;                   |
+| Width              | 12 em (any setting you prefer)        |
+
+4. Select **Save**.
+5. When you return to Neurons for ITSM, refresh the browser then open a CI of type Workstation. The **Remote Control** option should be displayed at the top of the form.
+
+### Create a business rule for CI and CI.Computer business objects
+
+1. Open the CI business object.
+2. Click **Business Rules**.
+3. Click **Editing and Calculation Rules**.
+4. Click **Add Calculation Rule** and enter the following configurations:
+
+| Option                   | Setting/Description                                                                                                                                                                                                                                                                                                                                                           |
+| ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Field Name               | **RCUrl**                                                                                                                                                                                                                                                                                                                                                                     |
+| Condition                | **Always**                                                                                                                                                                                                                                                                                                                                                                    |
+| Also Recalculate on Load | Select                                                                                                                                                                                                                                                                                                                                                                        |
+| Name                     | **RCUrl**                                                                                                                                                                                                                                                                                                                                                                     |
+| Expression Editor        | Enter the following expression to allow a Remote Control session:<br />```bash
+$(if Name != null
+  then "<a href=" + "#" + " onclick=" + "window.open('" +
+       [RemoteControl#EPMCoreDetails.CIAssocRemoteControlEPMCoreDetails]RemoteControlURL1
+          +
+       RCToken + "','_blank','noopener'); return false;" +
+       ">Start Remote Control</a>"
+  else "")
+``` |
+
+5. Select **Save**.
+6. Add an **Editing Rule**:
+
+| Option            | Setting/Description                                       |
+| ----------------- | --------------------------------------------------------- |
+| Set               | RCToken                                                   |
+| Name              | Editing Rule for CI#Computer.RCToken on update of RCToken |
+| Expression Editor | $(Replace(RCToken, '"', ""))                              |
+
+7. Select **Save**.
+
+### Create a web service script to generate an authentication token
+
+1. From the Configuration Console, select **Extend > Integration Tools > Web Service Connections**.
+2. Add a new Integration named EPMRemoteControlAuth and click **Next**.
+3. Add this script in the **Scripts&#x20;**&#x66;ield:```bash
+   //This script will generate the JWT token for EPM Core server and appends to EPM Remote Control URL.
+
+   var CookiesSites = null;
+   var SessionInfoSites = null;
+   var computerRecID= Get("CI#", "$(RecId)"); //To get the CI Name from CI BO
+   console.error("ComputerRecID "+computerRecID);
+   var EPMRecID=computerRecID.Fields["Remote_link_RecID"]; // To get the RecID  of the linked RemoteControl.EPMCoreDetails BO.
+   console.error("EPMRecID "+EPMRecID);
+   //To get the JWT token URL
+   var remote=Search('RemoteControl#EPMCoreDetails', {
+       
+   RecId: EPMRecID
+   }).First();
+
+   //var EPMRemoteControlServer=remote;
+   //remote.Close();
+   console.error("EPMRemoteControlServer "+ remote);
+
+   var getJsonRequestSettingsSites = function ()
+
+   {
+
+   return {
+
+   Headers: { 'Content-Type': "application/x-www-form-urlencoded; charset=utf-8" },
+
+   Cookies: CookiesSites,
+
+   SkipServerCertificateValidation: true,
+   //EPM core login credentials
+   UserName: "EPMadmin", 
+
+   Password: "Ivanti@12345",
+
+   AllowAutoRedirect: false
+
+   };
+
+   };
+
+
+   var jwttoken;
+
+   //To store the JWT token URL into variable 
+   //var RCtoken="https://epm2021/remotecontrolauth/api/jwt";
+     var RCtoken=remote.Fields["JWTTokenURL"];
+     console.error("RCToken " +RCtoken);
+   //var responsePages= ExecuteWebRequest('POST', urlPages, "=##SVC1#", getJsonRequestSettingsSites());
+   //Build API call to get the JWT token.
+   var response= ExecuteWebRequest('POST', RCtoken, "=##"+computerRecID.Fields["Name"] +"#", getJsonRequestSettingsSites());
+   console.error("responsePages "+response);
+
+   jwttoken=(response.Data);
+   console.error("parseDataPages " + jwttoken);
+   //Updating to JWT token to RCToken field in the CI 
+   computerRecID.UpdateField("RCToken", jwttoken);
+   ```
+4. Click **Next&#x20;**&#x61;nd **Publish&#x20;**.
+
+### Create a Quick Action to run the web service script
+
+1. Open the CI business object.
+2. Click \{\{FRS\_VARS.Quick\_Actions}}.
+3. Add a new \{\{FRS\_VARS.Quick\_Action}} type named Web Service Script.
+4. Select **EPMRemoteControlAuth&#x20;**&#x61;s the connection name to load the above created web service script.
+5. Click **Save**.
+
+### Link the CI to EPMCoreServer details
+
+1. Login as Administrator and open the CI workspace.
+2. Link the EPM Core Server details record for the selected CI computer.
+
+### Validate Remote Control Access for a Service Desk Analyst
+
+A user can allow a Service Desk Analyst with remote control rights to EPM.
+
+**To open a remote control session:**
+
+1. Open a CI of any type that has the Remote Control function configured.
+2. Run the quick action “RCtoken\_update” to generate the token.
+3. From the **Details** tab, click the **Start Remote** button.
+4. The remote control session will open in new browser tab with authentication token appended to the URL.
+5. Copy the URL and paste in a new browser tab to open the remote control session seamlessly.
+
+### Troubleshooting
+
+- The RCtoken\_update \{\{FRS\_VARS.Quick\_Action}} generates an authentication token which is valid up to 5 minutes. We recommend you run the \{\{FRS\_VARS.Quick\_Action}} before selecting the **Start Remote** button.
+- If EPM Remote control is not accepted by your browser, you can execute the below URL and accept it first time for testing purpose only:
+  https\://\<EPMAgent>:44343/attr
+- Currently, launching a remote control session from ITSM-created browser tabs can take a long time. This issue is being investigated further, As workaround, you can copy the URL of the ITSM-launched browser tab into a new tab on a same browser. This will open the remote control session quickly.
+- To link each CI with the EPM Core Server details, run the SQL statement directly in SQL after replacing the EPM Core server name.```bash
+  UPDATE CI SET Remote_link_RecID=(Select Top 1 RecId from RemoteControl where EPMCore='EPM2021') where CIType='Computer'
+  ```
+- \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Analyst-Service-Desk-Analyst}}s are always allowed to manually log in to EPM core and remote control using RCViewer. This helps to log in to remote control in case authentication from ITSM fails.
+
+## Configuring Endpoint Manager Remote Control for Responsive Analyst
+
+Refer to [Working with Mobile Analyst](../../ServiceDesk/Analyst-Mobile/Working-with-Mobile-Analyst-Portal.mdx) for information on setting up \{\{FRS\_VARS.Mobile\_Analyst}} roles.
+
+**To configure EPM for the&#x20;**\{\{FRS\_VARS.Mobile\_Analyst\_portal}}**:**
+
+1. Apply the [Mobile Analyst Configuration Item Asset Content package](https://marketplace.ivanti.com/xchange/64b5b48e2ee9d6e08c3e6724/solution/663de52308c3a438dc77611e).
+2. While logged in as a \{\{FRS\_VARS.Mobile\_Analyst}}, launch a remote control session from a configuration item:
+   1. Open a CI record.
+   2. Select **More > Asset Manger > RCtoken\_Update**.
+   3. In the **RCViewer&#x20;**&#x77;indow, select the OS session you want to connect to.

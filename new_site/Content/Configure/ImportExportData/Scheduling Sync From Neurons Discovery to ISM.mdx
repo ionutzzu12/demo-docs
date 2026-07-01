@@ -1,0 +1,199 @@
+---
+title: Scheduling API Data Sync from Ivanti Neurons for Discovery to Ivanti Neurons for ITSM
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:52 GMT+0300 (Eastern European Summer Time)
+---
+
+Administrators can schedule data synchronization from \{\{FRS\_VARS.Neurons\_for\_Discovery}} to \{\{FRS\_VARS.ProductName}}.
+
+By default, \{\{FRS\_VARS.Neurons\_for\_Discovery}} synchronizes with \{\{FRS\_VARS.ProductName}} using the Azure-service and bus-based connectors. This API sync feature enables customized scheduling in the API-based connectors.
+
+## Preparing the Ivanti Neurons Environments
+
+<hint type="info">
+  When you enable the global constant, \{\{FRS\_VARS.Neurons}} disables the existing connectors between \{\{FRS\_VARS.Neurons\_for\_Discovery}} and \{\{FRS\_VARS.ProductName}}.
+</hint>
+
+To prevent performance degradation:
+
+<ExpandableHeading>
+  ## Updating the Last Data Change Time
+
+  **Finding the Last Data Scan Date and Time**
+
+  You can find the latest data scan date in the default \{\{FRS\_VARS.Neurons\_for\_Discovery}} connectors.
+
+  1. Open \{\{FRS\_VARS.Neurons\_for\_Discovery}}; click the :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/luZdmVcRmKJiFdvqUn7yW_neurons-connectors-icon.jpg" alt caption size="10" width="16" height="16"} icon, and select **Connectors** from the dropdown list.
+  2. In the list of connectors, filter for **Device**.
+  3. Take note of the date and time in the **Last Run** column.
+  4. Manually disable the \{\{FRS\_VARS.Neurons\_for\_Discovery}} bus-based connector(s).
+
+  <hint type="info">
+    When you disable the global constant EnableNeuronsSyncByAPI, you must manually reset the \{\{FRS\_VARS.Neurons\_for\_Discovery}} connectors to **True**.
+  </hint>
+
+  **Updating the Last Data Change Time**
+
+  Avoid pulling duplicate data that could slow system performance.
+
+  1. From the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}} menu, select **More** and search for the **Integration** workspace.
+  2. Select **Name** > **Filters** > and type **Device** to filter the connection list.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/3_HywSEU9K1Bn_AcE9zyV_connector-filtering.jpg" position="flex-start" size="40" initialPath="../../Resources/Images/ImportExportData-images/connector-filtering.jpg" githubPath="Content/Resources/Images/ImportExportData-images/connector-filtering.jpg" showCaption="false"></Image>
+
+  3. Select the **Device** connector.
+  4. Enter the last data scan date and time next to **Last Data Change Time**.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/ca8pJFLewtvBRmjxgR2GU_last-data-change-time.jpg" position="flex-start" size="40" initialPath="../../Resources/Images/ImportExportData-images/last-data-change-time.jpg" githubPath="Content/Resources/Images/ImportExportData-images/last-data-change-time.jpg" showCaption="false"></Image>
+
+  5. Click **Save**.
+</ExpandableHeading>
+
+## Setting up the API Sync
+
+<hint type="info">
+  Discovery data for devices and invoices are managed by separate connectors: Ivanti Neurons Connector - Device and Ivanti Neurons Connector - Invoice. Repeat this process with each connector.
+</hint>
+
+<ExpandableHeading>
+  ## Enabling the API Data Sync
+
+  1. From the Configuration console, navigate to **Build** > **Global Constants**.
+  2. Set the value of **EnableNeuronSyncByAPI&#x20;**&#x67;lobal constant to True.
+  3. Click **Save**.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/An9m7TSpxsGS2KGBza6HL_global-constant.png" position="flex-start" size="40" initialPath="../../Resources/Images/ImportExportData-images/Global Constant.png" githubPath="Content/Resources/Images/ImportExportData-images/Global Constant.png" showCaption="false"></Image>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Importing users along with devices
+
+  You can import user data along with the devices to view the DEX Score for users' devices.
+
+  <hint type="info">
+    When the **ImportUsersForDevices** global constant is enabled, Ivanti Neurons for ITSM imports user information associated with devices discovered in Ivanti Neurons.
+
+    During synchronization, the system may create new **Employee** records or update existing ones to associate users with their devices and enable **DEX Score** reporting.
+
+    If a matching Employee record already exists, the import process may update fields based on the data received from Ivanti Neurons. Depending on the synchronization results, fields such as **Display Name, Status,** and **CreatedDateTime** may be updated.
+
+    If Employee records are managed through another identity source or maintained manually, review this setting before enabling the constant.
+  </hint>
+
+  1. Raise a Service Ticket to the Ivanti \{\{FRS\_VARS.ITSM}} Operations team to enable the DEX Score feature in the Config Database.
+  2. Enable the Global Constant -
+
+  <Paragraph indent="1">
+    a. From the Configuration console, navigate to **Build** > **Global Constants**.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    b. Set the value of the **ImportUsersForDevices** Global Constant to True.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    c. Click **Save**.
+  </Paragraph>
+
+
+
+  <hint type="info">
+    - If you are an existing \{\{FRS\_VARS.ITSM}} user, besides the above configuration you need to complete additional steps to set up the DEX Score feature. See, [Setting up DEX Score feature for existing users](../DEX-Score/Setting-up-the-DEX-Score-Feature-for-existing-users.mdx).
+    - For more information on using the DEX Score feature, see [Prioritizing Service Tickets using DEX Score](../../ServiceDesk/Incidents/Prioritizing-Incidents-uing-DEX-Score.mdx) in the User help.
+  </hint>
+
+
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Configuring the Connectors
+
+  1. After enabling the global constant, set the connector's schedule.
+  2. From the Configuration console, click the Search :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/1DlZ7P07B5Kh2XRNxNPok_search-icon.jpg" alt caption size="10" width="16" height="16"} icon.
+  3. Go to **My Workspace** > **Data Import Connections**.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/QN0gdNsrhtxn_I4o_Izqm_data-import-connections2.jpg" position="flex-start" size="40" initialPath="../../Resources/Images/ImportExportData-images/data-import-connections2.jpg" githubPath="Content/Resources/Images/ImportExportData-images/data-import-connections2.jpg" showCaption="false"></Image>
+
+  4. Find the Ivanti Neurons Connector - Invoice and Ivanti Neurons Connector - Device connectors.
+
+  <hint type="info" indent="1">
+    When you enable the EnableNeuronSyncByAPI global constant, \{\{FRS\_VARS.ProductName}} updates the connectors with the **Run Now** option.
+  </hint>
+
+  5. Click **Run Now** to perform a sync with the preset connector configurations.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/8S7aSLIQS7oVp1evBGgpY_runnow.jpg" position="flex-start" size="40" initialPath="../../Resources/Images/ImportExportData-images/run_now.jpg" githubPath="Content/Resources/Images/ImportExportData-images/run_now.jpg" showCaption="false"></Image>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Setting the Schedule
+
+  1. From the **Data Import Connections** workspace, select the name of the connector you wish to configure to display the **Settings** page.
+
+  <Paragraph indent="1">
+    For more information on the use and configuration of filters, see [Import Discovery Data from Ivanti Neurons](Import-Discovery-Data-From-Neurons.mdx) and [Configuring Data Import Connections](Data-Import-Connections.mdx)
+  </Paragraph>
+
+  2. Enter the appropriate details for each tab in the connector and click **Next** until you reach the **Schedule Settings** tab.
+  3. For more information on configuring connectors, refer to [Configuring Data Import Connections](Data-Import-Connections.mdx) and [Import Discovery Data from Ivanti Neurons](Import-Discovery-Data-From-Neurons.mdx).
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/aNW_nQk4bW1qkP4lTwo5e_inside-connector.jpg" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/ImportExportData-images/inside connector.jpg" githubPath="Content/Resources/Images/ImportExportData-images/inside connector.jpg" showCaption="false"></Image>
+
+  <Paragraph indent="1">
+
+  </Paragraph>
+
+  4. Select the schedule you want to use.
+  5. If you need to set up a new schedule, you can find help and instructions in the [Administering and Customizing Neurons for ITSM ](../ADMINISTER.mdx)help topic.
+  6. Use the **LastHardwareScanDate** field in the **Schedule Settings** tab to set the date from which the scan will pull. This field is updated automatically after each sync and creates a baseline date from which to pull future \{\{FRS\_VARS.Neurons}} Discovery syncs.
+
+  <hint type="info" indent="1">
+    Verify that the batch size is set at 10 and the max size is set at 500. Do not change the max size unless it is absolutely necessary; using a max size greater than 500 will degrade system performance.
+  </hint>
+
+  7. Save and exit to the connector workspace.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Previewing, Publishing, and Running
+
+  The connector now has three additional actions available: **Preview**, **Publish and Run**, and **Publish and Test Run.**
+
+  The [Configuring Data Import Connections](Data-Import-Connections.mdx) help document contains more detailed information about the connector options.
+
+  <Paragraph listStyleType="disc" indent="2">
+    **Preview**: Shows a few sets of records from \{\{FRS\_VARS.Neurons\_for\_Discovery}} and provides the total count of devices and invoices present in \{\{FRS\_VARS.Neurons\_for\_Discovery}}.
+  </Paragraph>
+
+  <hint type="info" indent="2">
+    If the imported data are greater than 20 MB, the preview will fail.
+  </hint>
+
+  <Paragraph listStyleType="disc" indent="2">
+    **Publish and Run**: Saves all changes to the **CMDB** and triggers the sync.
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    **Publish and Test Run**: Triggers the sync, but does not insert changes into the **CMDB**.
+  </Paragraph>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Verifying
+
+  To verify you have set up the schedule successfully, see the steps outlined in [Import Discovery Data from Ivanti Neurons](Import-Discovery-Data-From-Neurons.mdx).
+
+  <hint type="info">
+    As a part of the device sync, software licensing information also will be imported for sync.
+  </hint>
+</ExpandableHeading>
+
+## Related topics:
+
+[Import Discovery Data from Ivanti Neurons](Import-Discovery-Data-From-Neurons.mdx)
+
+[Ivanti Neurons for ITSM and Neurons Integration - Best Practices](../ISM-Neurons-Integrations-BestPractices/ISM-Neurons-Integration-Best-Practices.mdx)
+
+[Configuring Data Import Connections](Data-Import-Connections.mdx)
+
+[Setting up DEX Score feature for existing users](../DEX-Score/Setting-up-the-DEX-Score-Feature-for-existing-users.mdx)

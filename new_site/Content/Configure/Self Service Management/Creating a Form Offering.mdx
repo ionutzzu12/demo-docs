@@ -1,0 +1,151 @@
+---
+title: To Create a Form Offering
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:50 GMT+0300 (Eastern European Summer Time)
+---
+
+**Role**: Administrator
+
+\{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}} have the ability to create new or modify existing templates from any business object configured for **My Items**.
+
+The request offering template enables \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}s to create incident, change, request, and approval templates for requesters in the Self-Service Portal. Like other request offerings, these templates can be made available to all organizational units that exist on the tenant or only to specific organizational units. By default, the new offering templates are published to the entire organization.
+
+Any business object that is part of the **My Item** configuration (by default, incident, service request, and approval) can be made available through a form offering. You can add relationships to other business objects (for example, change) to **My Item**, then use the corresponding templates. See [Using Relationships](../Relationships/Adding_a_Relationship_to.mdx).
+
+1. Log in to \{\{FRS\_VARS.ProductName}} as a \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+2. Open the **Request Offering** workspace.
+3. Click **New > Form Offering** from the toolbar. The **Define form offering** page opens.
+4. Enter information into the fields.
+
+| Field            | Description                                                                                                                     |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| Service          | The service for which the form applies. Select from the drop-down list. This list is populated from the **Services** workspace. |
+| Name             | A unique name for the service.                                                                                                  |
+| Description      | Describes how the form is used.                                                                                                 |
+| Anonymous Submit | Allows anonymous users to submit a request.                                                                                     |
+
+5. Click **Next**. The **Select form layout** page opens.
+6. Click **Change Image** to edit the default image. See [Default Icons for Request Offerings](../../ServiceDesk/RequestOfferings/Default-Icons-for-Request-Offerings.mdx).
+   - The image size cannot be larger than 50 KB.
+   - We recommend square images.
+   - The image dimensions can be as large as you like, but is scaled down to 48 by 48 pixels.
+7. Enter information into the fields.
+
+| Field           | Description                                                                                                                                                     |
+| --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Business Object | Business object in \{\{FRS\_VARS.ProductName}}.                                                                                                                 |
+| Object Layout   | The available object layouts that are related to the chosen business object. Additional fields appear on the page. See [Using Layouts](../Layouts/Layouts.mdx). |
+| Apply Template  | Template that automatically populates certain fields.                                                                                                           |
+
+8. Enter information into the remaining fields. These fields vary according to the chosen business object and object layout.
+   - If you are using a version prior to the 2025.4 release, make sure the button is configured as a save action for the selected custom object. To customize the button, For more information, [Create a Child Record.](<../QuickActions/Graphical Action Designer/Record Actions/Create a Child Record.mdx>)
+9. Click **Next**. The **Publish Action** page opens.
+10. Select an option from the **Status** drop-down list.
+
+| Field     | Description                                                                                                                                                                                                                                                                                                                      |
+| --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| In Design | Saves the form offering without publishing it to users. You can modify this form offering later.                                                                                                                                                                                                                                 |
+| Published | Saves the form offering and makes it available under request offerings, but not under the Service Catalog. When setting this status, by default the organizational unit of the owner is added with all permissions checked. This form offering is available in the Service Catalog for this organizational unit unless modified. |
+
+11. Click **Add**.
+
+| Field     | Description                                                                                                                                                                                                                                                                                                                    |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Org. Unit | Selects an organizational unit from the list. You can only publish request offerings to organizational units to which you have access. For example, if you do not have access to the entire organization, your published offering will only be available to users in the organizational unit that you have selected and below. |
+| Location  | Only publishes to specific locations. You can designate multiple locations.                                                                                                                                                                                                                                                    |
+| Submit    | To submit the request offering from the Service Catalog by the designated organizational unit.                                                                                                                                                                                                                                 |
+| Edit      | To modify the request offering (not the resulting service request).                                                                                                                                                                                                                                                            |
+| Cancel    | To cancel the request offering.                                                                                                                                                                                                                                                                                                |
+| Delete    | To delete the request offering (not the resulting service request).                                                                                                                                                                                                                                                            |
+| Copy      | To duplicate the request offering (not the resulting service request).                                                                                                                                                                                                                                                         |
+
+12. Click **Save**, **Save & Exit**, or **Cancel**.
+
+## To Skip Help and Resource Matching Screens in Request Offerings
+
+When users submit a request offering from the Service Catalog, the default user experience includes a three-step process:
+
+1. Help screen that prompts for issue title or summary.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/mwaaPfVajJ5ZCwiuV1w7N_step-1-screen-in-offering.png" position="flex-start" size="40" indent="2" initialPath="../../Resources/Images/SelfServiceMgmt-images/Step 1 SCREEN in offering.png" githubPath="Content/Resources/Images/SelfServiceMgmt-images/Step 1 SCREEN in offering.png" showCaption="false"></Image>
+
+2. Resource matching screen that displays suggested documents or knowledge articles.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/O4XHtCQ8Ue3iE8G7hlBPH_step-2-in-form-offerings.png" position="flex-start" size="40" indent="2" initialPath="../../Resources/Images/SelfServiceMgmt-images/Step 2 in Form offerings.png" githubPath="Content/Resources/Images/SelfServiceMgmt-images/Step 2 in Form offerings.png" showCaption="false"></Image>
+
+3. The actual form where users enter request details.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/92Xpb_A94Z9SvRIUE3ARR_step-3-of-form-offering.png" position="flex-start" size="40" indent="2" initialPath="../../Resources/Images/SelfServiceMgmt-images/Step 3 of Form Offering.png" githubPath="Content/Resources/Images/SelfServiceMgmt-images/Step 3 of Form Offering.png" showCaption="false"></Image>
+
+<Paragraph indent="1">
+  If you want to bypass the first two steps and directly display the request form, you can configure this behavior at the layout level.
+</Paragraph>
+
+**How to Skip Steps 1 and 2**
+
+To skip the Help and Resource Matching screens, disable the Matching Panel in the relevant form layout:
+
+1. Go to **Build** > **Business Objects**.
+2. From the list of business objects, select the object used in your request offering for example:
+   - **Incident**
+   - **Problem**
+   - **Knowledge**
+   - **Security Incident** (as shown in the example screenshot)
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Qit52o76Viqa4EoJ2t7k8_select-bos.png" position="flex-start" size="40" indent="3" initialPath="../../Resources/Images/SelfServiceMgmt-images/Select BOs.png" githubPath="Content/Resources/Images/SelfServiceMgmt-images/Select BOs.png" showCaption="false"></Image>
+
+3. In the selected business object workspace, choose the Layouts tab.
+4. Select the layout used for the Self-Service Portal.
+   For example: **SecurityIncident.SelfService**
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/wo_4uUj5wesDvmYDPKW2J_layout-offerings.png" position="flex-start" size="40" indent="2" initialPath="../../Resources/Images/SelfServiceMgmt-images/Layout Offerings.png" githubPath="Content/Resources/Images/SelfServiceMgmt-images/Layout Offerings.png" showCaption="false"></Image>
+
+5. In the **Toolbar** section, clear the **Enable Matching panel** checkbox.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Tk06S_X7YbW1qb5pRG97L_matching-panel.png" position="flex-start" size="40" indent="2" initialPath="../../Resources/Images/SelfServiceMgmt-images/Matching Panel.png" githubPath="Content/Resources/Images/SelfServiceMgmt-images/Matching Panel.png" showCaption="false"></Image>
+
+6. Select **Save**.
+
+## Enabling and Configuring the Matching Panel
+
+To display the Help and Suggested Resources screens before the request form (Steps 1 and 2), enable and configure the Matching Panel in the relevant layout.
+
+**Steps to enable and configure**
+
+1. Go to **Build** > **Business Objects**.
+2. From the list of business objects, select the object used in your request offering for example:
+   - **Incident**
+   - **Problem**
+   - **Knowledge**
+   - **Security Incident** (as shown in the example screenshot)
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Qit52o76Viqa4EoJ2t7k8_select-bos.png" position="flex-start" size="40" indent="3" initialPath="../../Resources/Images/SelfServiceMgmt-images/Select BOs.png" githubPath="Content/Resources/Images/SelfServiceMgmt-images/Select BOs.png" showCaption="false"></Image>
+
+3. In the selected business object workspace, choose the Layouts tab.
+4. Select the layout used for the Self-Service Portal.
+   For example: **SecurityIncident.SelfService**
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/wo_4uUj5wesDvmYDPKW2J_layout-offerings.png" position="flex-start" size="40" indent="2" initialPath="../../Resources/Images/SelfServiceMgmt-images/Layout Offerings.png" githubPath="Content/Resources/Images/SelfServiceMgmt-images/Layout Offerings.png" showCaption="false"></Image>
+
+5. In the **Toolbar** section, select the **Enable Matching panel** checkbox.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Tk06S_X7YbW1qb5pRG97L_matching-panel.png" position="flex-start" size="40" indent="2" initialPath="../../Resources/Images/SelfServiceMgmt-images/Matching Panel.png" githubPath="Content/Resources/Images/SelfServiceMgmt-images/Matching Panel.png" showCaption="false"></Image>
+
+6. Select **Edit Matching Settings** to open the configuration dialog.
+7. In the **Incident matching for the "null" layout** window, configure the following:
+   - **Display name**: Enter a label for the matching rule (for example, FAQ, Document Object Matching for Incident).
+   - **Run incident matching whenever the field changes**: Select the source field (commonly Subject (Summary)).
+   - **Match keywords from Incident’s** field: Select the field used to extract keywords (usually Subject (Summary)).
+   - **Search for matches in**: Define the target objects to search, such as **FAQ** and **Knowledge**.
+   - For each object:
+     - Use **Edit Preview** to define how results are displayed.
+     - Use **Edit Filter** to apply filters to the results.
+     - Use the **Delete** :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/CF0G2mmm8DigM7O1dBWlX_delete-icon-126x21.png" alt caption size="10" width="26" height="21"}icon to remove an object from the matching list.
+     - Use the plus :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Kc7G2l98uGFtWPlc5ZMqC_add-icon.png" alt caption size="10" width="15" height="15"} icon to add more objects.
+8. (Optional) Select **Provide feedback for knowledge article** to allow user feedback on matching articles.
+9. Set the number of matches to show per search area using the **Show \[x] matches per search area** dropdown list.
+10. Click **Save**.
+
+<Paragraph indent="1">
+  Once enabled and configured, the Self-Service Portal displays **Steps 1** and **2** (**Help** and **Resource Matching Screens**) before displaying the request form.
+</Paragraph>

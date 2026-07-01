@@ -1,0 +1,67 @@
+---
+title: About Email Processing
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:50 GMT+0300 (Eastern European Summer Time)
+---
+
+When a user sends an email to the inbox email address, the application automatically creates the specific type of business object record (such as incident, problem, Knowledge Base article, or change). This section describes how the application processes these emails.
+
+- :Link[About Processing Outgoing Emails]{label="About Processing Outgoing Emails" overridedLabel="About Processing Outgoing Emails" spaceId docId="uIF5ELUIoBxuNpcHex5QZ" version="v2" docAnchorId="#About-Processing-Outgoing-Emails" loadingMethod="dynamic" newTab="false" href="Email_Processing.mdx"}
+- :Link[About Processing Incoming Emails]{label="About Processing Incoming Emails" overridedLabel="About Processing Incoming Emails" spaceId docId="uIF5ELUIoBxuNpcHex5QZ" version="v2" docAnchorId="#Incoming_Email_Processing" loadingMethod="dynamic" newTab="false" href="Email_Processing.mdx"}
+- :Link[About Assigning a Task to a Team]{label="About Assigning a Task to a Team" overridedLabel="About Assigning a Task to a Team" spaceId docId="uIF5ELUIoBxuNpcHex5QZ" version="v2" docAnchorId="#Assignin" loadingMethod="dynamic" newTab="false" href="Email_Processing.mdx"}
+
+## About Processing Outgoing Emails
+
+To ensure that outgoing emails reach their recipients during application exceptions, email processing includes the following:
+
+- Outgoing emails are stored in the **Email** workspace.
+- The **Sent** status for emails is set to **Y** or **N**.
+- The **Processed** status for emails is set to **Y** or **N**. Refer to :Link[About Processing Incoming Emails]{label="About Processing Incoming Emails" overridedLabel="About Processing Incoming Emails" spaceId docId="uIF5ELUIoBxuNpcHex5QZ" version="v2" docAnchorId="#Incoming_Email_Processing" loadingMethod="dynamic" newTab="false" href="Email_Processing.mdx"} for information about processing emails.
+- The application displays information in the **Last Error** field if the email was not sent successfully.
+- The number of attempts made to send an email appears in the **Send Attempt** field.
+- The application displays the capability to resend any email through a **Resend** quick action in the workspace.
+- The application captures bounced emails by creating an email business object of type **bounced**.
+- A timeout validation on save rule for emails is set to a value from 100 seconds (default) up to a maximum of 1000 seconds.
+
+These enhancements appear on the **Email** workspace as shown:
+
+*Email Workspace*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/9ky3SEcjI6_N3NSnv1fPh_email03.png" position="flex-start" size="40" initialPath="../../Resources/Images/help-images/email_03.png" githubPath="Content/Resources/Images/help-images/email_03.png" showCaption="false"></Image>
+
+The following flowchart shows how outgoing emails are processed by the email listener:
+
+*Outgoing Email Process*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/fQbH7uTghbk4-WlOEhaBV_outgoingemailprocessing.jpg" position="flex-start" size="40" initialPath="../../Resources/Images/help-images/outgoing_email_processing.jpg" githubPath="Content/Resources/Images/help-images/outgoing_email_processing.jpg" showCaption="false"></Image>
+
+## About Processing Incoming Emails
+
+To prevent the application from deleting incorrectly-configured, processed, incoming emails, the email listener does the following:
+
+- Moves processed emails to an archive email folder within the same mailbox.
+- Creates a link between failed emails and incidents which creates an incident for failed emails.
+- Captures unprocessed or failed emails in the logs, with more diagnostic messaging.
+
+To prevent overloading the email server, the text size (not including images) going through the email listener is limited. When the size exceeds the allowed amount, the message body is replaced with the message "The email exceeds the allowed text processing size limit." This does not apply to images or HTML emails.
+
+The following flowcharts shows how incoming emails are processed by the email listener:
+
+*Processing Incoming Emails - Step 1*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/9aJTeHe7wL7BtPsR3lHgK_incomingemailprocessing.jpg" position="flex-start" size="40" initialPath="../../Resources/Images/help-images/incoming_email_processing.jpg" githubPath="Content/Resources/Images/help-images/incoming_email_processing.jpg" showCaption="false"></Image>
+
+*Processing Incoming Emails - Step 2*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/UAFFc4_YRxmL8VkiCJC4U_incomingemailprocessingstep2.jpg" position="flex-start" size="40" initialPath="../../Resources/Images/help-images/incoming_email_processing_step2.jpg" githubPath="Content/Resources/Images/help-images/incoming_email_processing_step2.jpg" showCaption="false"></Image>
+
+## About Assigning a Task to a Team
+
+When a task is assigned to a team, the entire team receives an email. One team member can then accept the task (via email) and become the owner.
+
+A user can send an email to update a task if:
+
+- The requested status is accepted, AND the current status is logged or assigned, AND the sender is a member of the team of this task. The task status becomes accepted and the owner becomes the sender.
+- The requested status is accepted, AND the current status is accepted. A warning appears in the log file. In the **Journal Email -> Sender** info, an error message The task has already been accepted is stored.
+
+For all other cases, if the sender is the owner, the status is updated.

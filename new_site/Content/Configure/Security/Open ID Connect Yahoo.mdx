@@ -1,0 +1,231 @@
+---
+title: Setting Up Authentication for OpenID Connect with Yahoo
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:57 GMT+0300 (Eastern European Summer Time)
+---
+
+## Adding a New Application
+
+On [https://developer.yahoo.com](https://developer.yahoo.com/), create a new application with the following settings:
+
+- Type: Web Application
+- Redirect URL: https\://\{\{tenant-url}}/handlers/sso/OIDC/AuthResultHandler.ashx
+- API Permissions: OpenID Connect Permissions, Email, and Profile
+
+Information required for configuration in \{\{FRS\_VARS.ProductName}}:
+
+- Client ID
+- Client Secret
+
+## Creating a Neurons for ITSM Authentication Provider
+
+<hint type="info">
+  To set up \{\{FRS\_VARS.ITSM}} users for authentication via the \{\{FRS\_VARS.Neurons\_platform}}, refer to [Setting up ITSM users for authentication via the Neurons Platform](../../../setting-up-itsm-users-for-authentication-via-the-neurons-platform.mdx) and [Authentication](https://help.ivanti.com/ht/help/en_US/CLOUD/vNow/authentication.htm). This feature is **Early Access** only and may not be available in your environment. For more information, please contact your Customer Success Manager.
+</hint>
+
+1. Open the Configuration console.
+2. Click **Configure** > **Security Controls** > **Authentication Providers** to open the **Authentication Providers** workspace.
+3. From the **New Record Menu** list, select **New OpenID Connect**.
+4. Delete the default data from the existing fields.
+5. Enter information into the fields.
+
+<table isTableHeaderOn="true">
+  <tr>
+    <td>
+      Field
+    </td>
+    <td>
+      Description
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Default
+    </td>
+    <td>
+      Specifies if this authentication provider is called.
+      Automatically set by the application. To set the authentication provider as default, you must first set Default to False for all other authentication providers and then change the Default settings for this authentication provider to True.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Disabled
+    </td>
+    <td>
+      Specifies if this authentication provider is disabled.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Name
+    </td>
+    <td>
+      The name of the OpenID Connect provider.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Authentication URL
+    </td>
+    <td>
+      Enter https\://api.login.yahoo.com/oauth2/request\_auth.
+      For more details about authentication, refer to [https://developer.yahoo.com/oauth2/guide/openid\_connect/getting\_started.html](https://developer.yahoo.com/oauth2/guide/openid_connect/getting_started.html)
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Token Verification URL
+    </td>
+    <td>
+      Enter https\://api.login.yahoo.com/oauth2/get\_token.
+      For more details about token verification, refer to [https://developer.yahoo.com/oauth2/guide/openid\_connect/getting\_started.html](https://developer.yahoo.com/oauth2/guide/openid_connect/getting_started.html)
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Logout URL
+    </td>
+    <td>
+      Enter the URL that sign out from Yahoo account when the you log out from \{\{FRS\_VARS.ProductName}},
+      After logging out from \{\{Primary.Product}}, the end session of OpenID Connect endpoint is called and clients in the same browser session are also signed out.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Session Renewal URL
+    </td>
+    <td>
+      URL used to request to renew the session. If this field is empty, the application uses the value of the **Authentication URL** field.
+      \{\{Primary.Product}} must be able to initiate an outbound HTTPS (port 443) connection to this URL.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Client ID
+    </td>
+    <td>
+      Enter the Yahoo client ID. This is the Client ID captured from new application.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Client Secret
+    </td>
+    <td>
+      Enter the client secret value from your Yahoo application. This is the Client Secret captured from new application.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      OIDC Hosted Domain
+    </td>
+    <td>
+      Not used for Yahoo.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      OIDC Realm
+    </td>
+    <td>
+      Enter the \{\{Primary.Product}} tenant URL. You can enter the following URL https\://\{\{tenant-url}}.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Certificate URL
+    </td>
+    <td>
+      Not used for Yahoo.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Certificate Issuer
+    </td>
+    <td>
+      Not used for Yahoo.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Expiration Date
+    </td>
+    <td>
+      Not used for Yahoo.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Force Login
+    </td>
+    <td>
+      The **Force Login** option is applicable to users reaching concurrent session limits, in the case of external authentication.
+      - If the option is selected, when you reach a concurrent session limit, the application terminates all existing sessions and devices, and automatically logs them into a new session.
+      - If the option is not selected, when you reach a concurrent session limit, an error message will appear on the page. Then you need to log out of existing sessions or devices, and then try logging in again.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Auto Provisioning
+    </td>
+    <td>
+      Adds new users via authentication. You have the option to auto provision the role, status, and team for the new user. By selecting **Auto Provisioning**, the application creates an employee record if a user logs in using authentication and does not already have an employee record.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Profile Information URL
+    </td>
+    <td>
+      Not used for Yahoo.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Auto Provision Role
+    </td>
+    <td>
+      Role associated with the new user.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Auto Provision Status
+    </td>
+    <td>
+      Status of the new user.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Auto Provision Team
+    </td>
+    <td>
+      Team associated with the new user.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Auto Provision User Business Object
+    </td>
+    <td>
+      Type of user record to create. You can select the following types:
+      - Employee
+      - External contact
+    </td>
+  </tr>
+</table>
+
+6. Click **Save**.
+7. To verify your configuration, click **Test Authentication**.
+
+<hint type="info">
+  You must have an Employee record with an appropriate External Authentication linking to this provider before the test runs successful.
+</hint>
+
+<Paragraph indent="1">
+  A successful test looks similar to the below screenshot.
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/d4dniVzai1f6P9OULl4I9_creating-a-service-manager-authentication-provider-yahoo.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/Configure/creating-a-service-manager-authentication-provider-Yahoo.png" githubPath="Content/Resources/Images/Configure/creating-a-service-manager-authentication-provider-Yahoo.png" showCaption="false"></Image>

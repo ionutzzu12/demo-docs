@@ -1,0 +1,296 @@
+---
+title: Using Web Services with External Data Sources
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:52 GMT+0300 (Eastern European Summer Time)
+---
+
+This topic describes external data and web service support for new business objects, including associating scripts with the data.
+
+<hint type="info">
+  This topic does not apply to existing business objects. To use the processes described here, you must create a new business object and apply the processes to that newly-created business object.
+</hint>
+
+- :Link[About Working with External Data]{label="About Working with External Data" overridedLabel="About Working with External Data" spaceId docId="PoFCurWoY5bcC8LYsEjYg" version="v2" docAnchorId="#About-Working-with-External-Data" loadingMethod="dynamic" newTab="false" href="Using-Web-Services-with-External-Data-Sources.mdx"}
+- :Link[About Working with DSM as an External Data Source]{label="About Working with DSM as an External Data Source" overridedLabel="About Working with DSM as an External Data Source" spaceId docId="PoFCurWoY5bcC8LYsEjYg" version="v2" docAnchorId="#About_Working_with_HEATDSMas_an_External_Data_Source" loadingMethod="dynamic" newTab="false" href="Using-Web-Services-with-External-Data-Sources.mdx"}
+- :Link[Prerequisites]{label="Prerequisites" overridedLabel="Prerequisites" spaceId docId="PoFCurWoY5bcC8LYsEjYg" version="v2" docAnchorId="#Prerequisites" loadingMethod="dynamic" newTab="false" href="Using-Web-Services-with-External-Data-Sources.mdx"}
+- :Link[Creating an External Data Connection]{label="Creating an External Data Connection" overridedLabel="Creating an External Data Connection" spaceId docId="PoFCurWoY5bcC8LYsEjYg" version="v2" docAnchorId="#Using_External_Data" loadingMethod="dynamic" newTab="false" href="Using-Web-Services-with-External-Data-Sources.mdx"}
+- :Link[Troubleshooting]{label="Troubleshooting" overridedLabel="Troubleshooting" spaceId docId="PoFCurWoY5bcC8LYsEjYg" version="v2" docAnchorId="#Troubleshooting" loadingMethod="dynamic" newTab="false" href="Using-Web-Services-with-External-Data-Sources.mdx"}
+- :Link[Example: Creating an External Business Object to Access External Data Using Web Services]{label="Example: Creating an External Business Object to Access External Data Using Web Services" overridedLabel="Example: Creating an External Business Object to Access External Data Using Web Services" spaceId docId="PoFCurWoY5bcC8LYsEjYg" version="v2" docAnchorId="#Example:_Creating_an_External_Business_Object_to_Access_External_Data_UsingWebServices" loadingMethod="dynamic" newTab="false" href="Using-Web-Services-with-External-Data-Sources.mdx"}
+
+### About Working with External Data
+
+Many times, customers have data in systems outside of \{\{FRS\_VARS.ProductName}}, such as DSM or SalesForce.com, that need to be integrated with \{\{FRS\_VARS.ProductName}}. Prior to \{\{FRS\_VARS.ProductName}} Release 2015.2, customers had to import that data; however, once the data was imported, it became stale. Also, the imported data could be very large and unnecessarily increase the size of the \{\{FRS\_VARS.ProductName}} database.
+
+With this new process, you can have access to data in other systems without having to actually import the data into \{\{FRS\_VARS.ProductName}}. This access is accomplished by using web services.
+
+With this process, you can use web services and scripts to create a mapping of the data from the other application to \{\{FRS\_VARS.ProductName}}. This allows you to pick and choose which data to integrate and what format to use and to use external data with different properties. From the script, you can make service calls to talk to the external application to get the data and bring it into \{\{FRS\_VARS.ProductName}}.
+
+The data in the external application may be in a different format than the data in \{\{FRS\_VARS.ProductName}}, and there may be more fields that what \{\{FRS\_VARS.ProductName}} needs. The mapping does not have to be one-to-one. You can select the external data to import and configure the mapping. For example, the data in the external application may have 100 fields, but \{\{FRS\_VARS.ProductName}} only needs to work with 10 fields. \{\{FRS\_VARS.ProductName}} can import only those 10 fields and can map them to the associated fields in the business object in \{\{FRS\_VARS.ProductName}}.
+
+### About Working with DSM as an External Data Source
+
+One of the most common external data sources that works with \{\{FRS\_VARS.ProductName}} is Desktop and Server Management (DSM). You can improve the integration between \{\{FRS\_VARS.ProductName}} and DSM by following the processes in this topic.
+
+To drive a more useful integration with DSM, \{\{FRS\_VARS.ProductName}} needs to be able to view the data that is stored in DSM. To be effective, this should be done in such a way that changes made in DSM are automatically reflected in \{\{FRS\_VARS.ProductName}}.  The way that \{\{FRS\_VARS.ProductName}} accesses DSM is through web services.
+
+For more information about the new DSM integration, refer to [Configuring the New DSM Integration](../../ServiceDesk/DSM/Configuring-the-New-DSM-Integration.mdx).
+
+### Prerequisites
+
+We recommend that you have the following knowledge for working with this process:
+
+- Familiarity with \{\{FRS\_VARS.ProductName}} and its database.
+- Familiarity with the external application and its database.
+- Programming skills and knowledge of JavaScript, for writing the scripts and using the web services.
+
+### Creating an External Data Connection
+
+Follow these steps to work with an external data source:
+
+1. Create an external business object.
+
+<Paragraph indent="1">
+  a. Ensure that you check **External** and enter information in the **External Object Synchronization** section. Refer to :Link[Creating a Business Object]{label="Creating a Business Object" overridedLabel="Creating a Business Object" spaceId docId="z5Hl_JIl1C8b9P5aZK1aD" version="v2" docAnchorId="#Create_a_Business_Object" loadingMethod="dynamic" newTab="false" githubPath="../BusinessObjects/Using Business Objects.htm#Create_a_Business_Object" href="../BusinessObjects/Using Business Objects.mdx"}.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. If you want the external business object to be a validation business object, when you create it, ensure that you click **Pure Validation Object**.
+</Paragraph>
+
+2. (Optional. Only if you created a validation business object.) Create a pick list that uses the external business object that you just created.
+
+<Paragraph indent="1">
+  Refer to :Link[Creating a Pick List]{label="Creating a Pick List" overridedLabel="Creating a Pick List" spaceId docId="zIb3lkDe40RTLdiCNY6iP" version="v2" docAnchorId="#Creating" loadingMethod="dynamic" newTab="false" githubPath="../PickLists/Pick_Lists.htm#Creating" href="../PickLists/Pick_Lists.mdx"}. However, the constraints for the pick list must be either all AND or all OR. You cannot mix constraint types, nor can you use nested constraints.
+</Paragraph>
+
+<Paragraph indent="1">
+  Every time you access the pick list, the application checks to see if it is a synchronized external business object.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  If it is a synchronized external business object, the application checks to see if the external data is available locally.
+  If there is no external data or if any of the external data is stale, the application triggers the script to get refreshed data to populate the pick list with. If the data exists and is not stale, the application does not trigger the script.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  If it is not a synchronized external business object, the application triggers the script to get the data to populate the pick list with.
+</Paragraph>
+
+3. Associate a script with the external business object. There can only be one script per business object use case. (A use case can be a form, list, report, workspace, etc.) This process is based on the information in [Working with Web Service Script Integration](Web-Service.mdx).
+
+<Paragraph indent="1">
+  a. Add a new external business object integration. Refer to :Link[Adding an Outgoing External Business Object Integration]{label="Adding an Outgoing External Business Object Integration" overridedLabel="Adding an Outgoing External Business Object Integration" spaceId docId="FdCBQbHhR6rvSknbFTcBX" version="v2" docAnchorId="#Adding_an_External_Business_Object_Integration" loadingMethod="dynamic" newTab="false" githubPath="Using-Web-Services.htm#Adding_an_External_Business_Object_Integration" href="Using-Web-Services.mdx"} for complete information.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. As part of adding a new external business object integration, create a service reference. Refer to :Link[Adding an Incoming Service Reference]{label="Adding an Incoming Service Reference" overridedLabel="Adding an Incoming Service Reference" spaceId docId="FdCBQbHhR6rvSknbFTcBX" version="v2" docAnchorId="#Adding2" loadingMethod="dynamic" newTab="false" githubPath="Using-Web-Services.htm#Adding2" href="Using-Web-Services.mdx"}.
+</Paragraph>
+
+4. Create a top-level tab for this new external business object.
+5. You can optionally create a quick action to trigger the script. Use the **Run Web Service** quick action template to create the quick action. Refer to [Run Web Service Quick Action](<../QuickActions/Classical Action Designer/templates/Run Web Service.mdx>).
+
+### Troubleshooting
+
+- :Link[Viewing the Logs]{label="Viewing the Logs" overridedLabel="Viewing the Logs" spaceId docId="PoFCurWoY5bcC8LYsEjYg" version="v2" docAnchorId="#Viewing_the_Logs" loadingMethod="dynamic" newTab="false" href="Using-Web-Services-with-External-Data-Sources.mdx"}
+- :Link[Refreshing the Cache]{label="Refreshing the Cache" overridedLabel="Refreshing the Cache" spaceId docId="PoFCurWoY5bcC8LYsEjYg" version="v2" docAnchorId="#Refreshing_the_Cache" loadingMethod="dynamic" newTab="false" href="Using-Web-Services-with-External-Data-Sources.mdx"}
+
+### Viewing the Logs
+
+There is a new log type starting in \{\{FRS\_VARS.ProductName}} Release 2015.2 called **Script**. Refer to [Working with Logs](../Localization/Logging.mdx) for more information.
+
+To view the information from the log on your monitor, add the following snippet to the bottom of your code:
+
+console.log();
+
+console.debug();
+
+console.error();
+
+You can also check the log at C:\Logs\AppServer.log.
+
+### Refreshing the Cache
+
+You can also go to the **Cache Management** workspace, and in the **Business objects that marked as external synchronized** field, select the external business object. Click **Invalidate synchronized data** to mark all of the existing records as stale. This forces the application to go to the external application for the data the next time that you access the data.
+
+### Example: Creating an External Business Object to Access External Data Using Web Services
+
+- :Link[Creating the Web Service Integration]{label="Creating the Web Service Integration" overridedLabel="Creating the Web Service Integration" spaceId docId="PoFCurWoY5bcC8LYsEjYg" version="v2" docAnchorId="#Creating" loadingMethod="dynamic" newTab="false" href="Using-Web-Services-with-External-Data-Sources.mdx"}
+- :Link[Creating a Service Request to Demo the Integration]{label="Creating a Service Request to Demo the Integration" overridedLabel="Creating a Service Request to Demo the Integration" spaceId docId="PoFCurWoY5bcC8LYsEjYg" version="v2" docAnchorId="#Creating2" loadingMethod="dynamic" newTab="false" href="Using-Web-Services-with-External-Data-Sources.mdx"}
+
+### Creating the Web Service Integration
+
+The following is an example of using web services to allow a user to enter a country name and have the application return the country code.
+
+1. Go to the **Business Object** workspace and create a new standalone business object. (Refer to :Link[Creating a Stand-Alone Business Object]{label="Creating a Stand-Alone Business Object" overridedLabel="Creating a Stand-Alone Business Object" spaceId docId="z5Hl_JIl1C8b9P5aZK1aD" version="v2" docAnchorId="#Create_a_Stand-alone_Business_Object" loadingMethod="dynamic" newTab="false" githubPath="../BusinessObjects/Using Business Objects.htm#Create_a_Stand-alone_Business_Object" href="../BusinessObjects/Using Business Objects.mdx"} for more information.)
+
+<Paragraph indent="1">
+  a. For the business object name and display name, enter **WS\_Country**.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Check **External**.  
+</Paragraph>
+
+<Paragraph indent="1">
+  c. Check **Synchronized**, set the **Refresh Interval** parameter to **10**, and set the **Time To Live** parameter to **60**.
+</Paragraph>
+
+<Paragraph indent="1">
+  d. Check **Pure validation object**.
+</Paragraph>
+
+2. Go to the **Fields** tab. (Refer to[Creating a Field](../BusinessObjects/Creating-a-Field.mdx) for more information.)
+
+<Paragraph indent="1">
+  a. Add a new text field called **ISOCode** that is Unicode Text, variable, max 128, check **Unique**, and uncheck **Nullable**.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Add another text field called **Name** that is Unicode Text, variable, max 64, check **Unique**, and uncheck **Nullable**.
+</Paragraph>
+
+3. Go back to the **Details** tab.
+
+<Paragraph indent="1">
+  a. In the **External Primary Key** field, select **ISOCode\_Unique**.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Click **Auto Generate UI** to automatically create a new form associated with the **WS\_Country** external business object.
+</Paragraph>
+
+4. Go to the **Pick Lists** tab.
+
+<Paragraph indent="1">
+  a. Click **Add new\...**.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. For the list name and display name, enter **WS\_Country**.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. Select **WS\_Country** from the **Get list data from** field and select **Name** for the **Display field**, **Value field**, and **Sort by field** fields.
+</Paragraph>
+
+5. Go to the **Roles and Permissions** workspace.
+
+<Paragraph indent="1">
+  a. Click **Admin** and then click the **Top Level Tabs** tab. Click **Add New Tab** and click **Object Workspace**. 
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Enter **WS\_Country** in the **Name** field, select **WS\_Country** in the **Object** field, and select **WS\_Country.Autogenerated** in the **Layout** field.
+</Paragraph>
+
+6. Go to the **Scheduled Jobs** workspace.
+
+<Paragraph indent="1">
+  a. Add a new hourly schedule.
+</Paragraph>
+
+<Paragraph indent="1">
+  a. Name it **WS\_Country** and set a start time, end time, start date, end date, and set the **Recur Every** field to 1.
+</Paragraph>
+
+7. Go to the **Web Service Connection (BETA)** workspace.
+
+<Paragraph indent="1">
+  a. Click **New External BO Integration**.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. On the next page, select **WS\_Country** for the **External BO Name** field.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. On the next page, for the **Service Reference** field, select **Add new\...**. For the **Service Reference** field, enter **Country Info Service**.
+</Paragraph>
+
+<Paragraph indent="1">
+  d. In the **Service Address** field, enter **http\://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso?WSDL**.
+</Paragraph>
+
+<Paragraph indent="1">
+  e. Select the **ListOfCountryNamesByCode** method.
+</Paragraph>
+
+<Paragraph indent="1">
+  f. Paste the following into the **Scripts** field:
+
+
+</Paragraph>
+
+// web service call
+
+console.info("Script starts: WS\_Country - CountryInfoService - ListOfCountryNamesByCode");
+
+var serviceCall = "CountryInfoService";
+
+var serviceRef = "Country Info Service";
+
+var serviceInstance = GetWebService(serviceRef, serviceCall);
+
+var methodCall = "ListOfCountryNamesByCode";
+
+var paramValues = \[ null ];
+
+var result = serviceInstance.InvokeMethod(methodCall, paramValues);
+
+function GetCountries(isocode, name)
+
+\{
+
+this.ISOCode = isocode;
+
+this.Name = name;
+
+}
+
+var json = \[];
+
+for(i=0; i\<result.length; i++)
+
+\{
+
+json.push(new GetCountries(result\[i].sISOCode,result\[i].sName));
+
+}
+
+SynchronizeAllHeatData('WS\_Country',\['ISOCode'],json);
+
+console.info("Script ends: WS\_Country - CountryInfoService - ListOfCountryNamesByCode");
+
+8. Click **Next** and for the **Schedule List**, select **WS\_Country**.
+9. Click **Next** and then click **Publish & Run Now**.
+
+### Creating a Service Request to Demo the Integration
+
+1. Go to the **Request Offering** workspace and create a new request offering:
+
+<Paragraph indent="1">
+  a. Select **Demo Service** for the service and enter **WS\_Country** for the name. Choose any category.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Add a drop-down field called **Country** and a text field called **ISOCode**.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. Edit the **Country** field and under **Pick List: None**, select the **WS\_Country** pick list (validation list). Under **Properties**, set the **Unique ID** field to **WS\_CountryCombo**.
+</Paragraph>
+
+<Paragraph indent="1">
+  d. Edit the **ISOCode** field and under **Default Value**, select **Expression** and for the **Triggered by** field, select **WS\_Country**.
+</Paragraph>
+
+<Paragraph indent="1">
+  e. Click **Next** twice.
+</Paragraph>
+
+<Paragraph indent="1">
+  f. Click **Add** to add a new organizational unit. Select an org unit. Change the **Status** to **Published**.
+</Paragraph>
+
+2. Log in as a Self Service user. Go to the **Service Catalog** workspace.
+3. Click the **WS\_Country** request offering and make sure it opens.

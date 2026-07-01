@@ -1,0 +1,142 @@
+---
+title: Get Related Business Objects
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:01 GMT+0300 (Eastern European Summer Time)
+---
+
+You can get all the related business objects that are linked to a business object.
+
+**Base URL:**
+
+https\://\{tenant url}/api/odata/businessobject/\{business object name}('\{business object unique key}')/\{relationship name}
+
+<hint type="info">
+  Ensure the business object name is suffixed with an "s".
+</hint>
+
+<ExpandableHeading>
+  ## Get Related Business Objects - Example
+
+  Here is an example to get related business objects linked to an incident.
+
+  | URL                                 | https\://\{tenant url}/api/odata/businessobject/incidents  <br />('0A8C17C5DF534513AACCBB543C60B1D5')/IncidentContainsJournal                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+  | ----------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | <font color="#ffffff">Method</font> | GET                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+  | Header Name                         | Authorization: JTW Token/Session Key/REST API Key                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+  | Status Code                         | 200                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+  | Response Payload                    |   <ExpandableHeading>
+      ## Click to view response payload
+
+      \{
+
+      "@odata.context": "\{tenant url}/api/odata/$metadata
+
+      #Collection(MetaData.journal)",
+
+      "value": \[
+
+      \{
+
+      "Category\_Valid": "079449CD8C0040E7B580AD0DFFAC76FB",
+
+      "Category": "Outgoing Email",
+
+      "CreatedBy": "ATaylor",
+
+      "CreatedDateTime": "2019-02-01T04:55:28Z",
+
+      "JournalType": "Email",
+
+      "LastModBy": "ATaylor",
+
+      "LastModDateTime": "2019-02-01T04:55:28Z",
+
+      "Owner\_Valid": null,
+
+      "Owner": null,
+
+      "OwnerTeam\_Valid": null,
+
+      "OwnerTeam": null,
+
+      "OwnerType": "",
+
+      "ParentLink\_Category": "Incident",
+
+      "ParentLink\_RecID": "0A8C17C5DF534513AACCBB543C60B1D5",
+
+      "ParentLink": null,
+
+      "RecId": "06E745A9F96F412CB92DB567911D8F4F",
+
+      "Subject": "Incident# 21206 is assigned to your group",
+
+      "TypeAlias": null,
+
+      "PublishToWeb": false,
+
+      "AttachmentName": null,
+
+      "AttachmentExtension": null,
+
+      "AttachmentData": "",
+
+      "ReadOnly": false,
+
+      "IsNewRecord": false,
+
+      "IsUnRead": false,
+
+      "ParentOwner": "RThomas",
+
+      "UnreadTransition": false
+
+      }
+
+      ]
+
+      }
+    </ExpandableHeading> |
+</ExpandableHeading>
+
+## Unsuccessful Responses
+
+<ExpandableHeading>
+  ## Invalid URL
+
+  Scenario: Trying to get related business objects when the url is invalid.
+
+  Invalid URL examples:
+
+  https\://\{tenant url}/api/odata/businessobject/incident('0A8C17C5DF534513AACCBB543C60B1D5')/IncidentContainsJournal
+
+  Header Name:
+
+  **Authorization: Sessionkey**
+
+  | Code                                          | ISM\_4004                                                                                            |
+  | --------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+  | Description                                   | Bad Request                                                                                          |
+  | Message                                       | \[  <br />"No service for type 'Microsoft.OData.Edm.IEdmModel'  <br />has been registered."  <br />] |
+  | <font color="#ffffff">HTTP STATUS CODE</font> | 404                                                                                                  |
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Invalid RecID
+
+  Scenario: Trying to get related business objects when the RecID of the linked main business object is invalid.
+
+  Example:
+
+  https\://\{tenant url}/api/odata/businessobject/incidents('1234')/IncidentContainsJournal
+
+  Header Name:
+
+  **Authorization: Sessionkey**
+
+  | Code                                          | ISM\_4000                                            |
+  | --------------------------------------------- | ---------------------------------------------------- |
+  | Description                                   | Invalid Request                                      |
+  | Message                                       | \[  <br />"Linked resource does not exist."  <br />] |
+  | <font color="#ffffff">HTTP STATUS CODE</font> | 400                                                  |
+</ExpandableHeading>

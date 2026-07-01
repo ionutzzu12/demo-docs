@@ -1,0 +1,166 @@
+---
+title: Using the GetPackageData Web Method
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:01 GMT+0300 (Eastern European Summer Time)
+---
+
+Returns the details of the specified request offering.
+
+## Request Syntax
+
+publicFRSHEATGetPackageDataResponse GetPackageData(string sessionKey, string tenantId, string strSubscrRecId)
+
+## Parameters
+
+- **sessionKey**: The session key from the **Connect** web method.
+- **tenantId**: The tenant for which the session key is authenticated.
+- **strSubscrRecId**: The subscription ID corresponding to the request offering for the current user.
+
+## Return Value
+
+**FRSHEATGetPackageDataResponse** object, defined as follows:
+
+public class FRSHEATGetPackageDataResponse
+
+    \{
+
+public string status \{ get; set; }
+
+public string exceptionReason \{ get; set; }
+
+public FRSHEATServiceReqSubscription srSubscription \{ get; set; }
+
+    }
+
+The **FRSHEATGetPackageDataResponse** class has the following fields:
+
+- **status**: Provides a status about the state of the connection. The table below contains a full description of the available status values.
+- **exceptionReason**: Contains exception information, if the application throws an exception when running this web method.
+- **srSubscription**: Contains an **FRSHEATServiceReqSubscription** object that contains the full details of the request offering (such as the parameter details).
+
+The **FRSHEATServiceReqSubscription** class is defined as follows:
+
+public class FRSHEATServiceReqSubscription
+
+    \{
+
+public string strSubscriptionRecId;
+
+public string strDateSubscribed;
+
+public string strOrgUnitId;
+
+public string strName;
+
+public string strDescription;
+
+public string strServiceName;
+
+public string strRecId;
+
+public List\<FRSHEATServiceReqTemplateParam> lstParameters;
+
+    }
+
+The **FRSHEATServiceReqTemplateListItem** class has the following fields:
+
+- **strSubscriptionRecId**: The subscription ID corresponding to the request offering for the current user.
+- **strDateSubscribed**: The date when the request offering was marked as published and subscribed.
+- **strOrgUnitId**: RecID of the organizational unit the request offering is associated with.
+- **strName**: The name of the request offering.
+- **strDescription**: The description value of the request offering.
+- **strServiceName**: The name of the service that the request offering is associated with.
+- **strRecId**: The RecID of the request offering.
+- **lstParameters**: A list of **FRSHEATServiceReqTemplateParam** objects, each item representing a parameter in the request offering.
+
+The **FRSHEATServiceReqTemplateParam** class is defined as follows:
+
+public class FRSHEATServiceReqTemplateParam
+
+    \{
+
+public string strName;
+
+public string strLabel;
+
+public string strDescription;
+
+public string strType;
+
+public bool bAllowSelectByUser;
+
+public bool bDBValidated;
+
+public string strRequiredExpression;
+
+public bool isCalculated;
+
+public bool autoFillOnlyWhenEmpty;
+
+public string strValidationListRecId;
+
+public string strValidationListTableRef;
+
+public bool bIsHidden;
+
+public string strRecId;
+
+public List\<ValidationConstraint> validationConstraints;
+
+public string strValidationConstraints;
+
+public string strAutoFillExpression;
+
+public List\<string> triggerFields;
+
+public string strTriggerFields;
+
+public string strDefaultValue;
+
+    }
+
+The **FRSHEATServiceReqTemplateListItem** class has the following fields:
+
+- **strName**: Name of the parameter.
+- **strLabel**: Label of the parameter.
+- **strDescription**: Description of the parameter.
+- **strType**: Type of the parameter.
+- **bAllowSelectByUser**: Flag indicating whether the parameter can be selected by the user.
+- **bDBValidated**: Flag indicating whether the parameter is validated.
+- **strRequiredExpression**: Expression indicating how the parameter is (conditionally) required.
+- **isCalculated**: Flag indicating whether the parameter is calculated (that is, does not take inputs from users).
+- **autoFillOnlyWhenEmpty**: Flag indicating whether the autofill for the parameter occurs, when the parameter is initially empty.
+- **strValidationListRecId**: RecID of the named validation list (such as a pick list), if the parameter is a drop-down selection.
+- **strValidationListTableRef**: The name of the business object, from which the drop-down values are retrieved, for the drop-down selection.
+- **bIsHidden**: Flag indicating whether the parameter is hidden.
+- **strRecId**: RecID of the request offering parameter.
+- **validationConstraints**: List of validation constraint objects, used for representing the validation constraints currently set on the parameter.
+- **strValidationConstraints**: Textual representation of the **validationConstraints** member.
+- **strAutoFillExpression**: Textual representation of the autofill expression.
+- **triggerFields**: List of dependent parameters, upon which the current parameter is dependent upon.
+- **strTriggerFields**: Textual representation of the **triggerFields** member.
+- **strDefaultValue**: Textual representation of the default value for the parameter.
+
+The following table lists the available status values and describes how to interpret them.
+
+| <font color="#FFFFFF">Status</font> | <font color="#FFFFFF">Explanation</font>                                                                                                                                                                                                                                                          |
+| ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Success**                         | Successfully retrieved the details of the request offering. This list is available in the **srSubscription** field.                                                                                                                                                                               |
+| **NotFound**                        | The tenant does not contain a request offering with the specified subscription ID. Ensure that the subscription ID of the request offering is spelled correctly.<br />Note that the **GetSubscriptionId** web method is used for returning the subscription ID corresponding to the current user. |
+| **Error**                           | An error was encountered during the execution of this web method.  Inspect the corresponding **exceptionReason** field to determine why the web method has failed.                                                                                                                                |
+
+## Example
+
+FRSHEATGetPackageDataResponse getPackageDataResponse = frSvc.GetPackageData(authSessionKey, tenantId, strSubscrRecId);
+
+FRSHEATServiceReqSubscription scsrs;
+
+if (getPackageDataResponse.status == "Success")
+
+            \{
+
+                scsrs = getPackageDataResponse.srSubscription;
+
+// Go ahead and access the relevant properties of interest from the request offering.
+
+            }

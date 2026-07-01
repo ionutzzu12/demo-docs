@@ -1,0 +1,82 @@
+---
+title: Using the FindMultipleBusinessObjectsByField Web Method
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:01 GMT+0300 (Eastern European Summer Time)
+---
+
+Returns one or more business objects based on the specified field or value and returns the result as an array of business objects. For example, this web method can be used to retrieve all incident records with a status of active, all changes with a type of major, and so on.
+
+This web method only searches on a single field or value criteria. Use the **Search** web method if you need more complex queries. This web method always returns the results in an array, even if there is only one matching record. If you know that only one record will be returned, use the **FindSingleBusinessObjectByField** web method instead.
+
+## Request Syntax
+
+FRSHEATIntegrationSearchResponse FindMultipleBusinessObjectsByField(string sessionKey, string tenantId, string boType, string fieldName, string fieldValue)
+
+## Parameters
+
+- **sessionKey**: The session key from the **Connect** web method.
+- **tenantId**: The tenant for which the session key is authenticated.
+- **boType**: The type of business object to retrieve.  
+- **recId**:  The unique identifier for the business object.
+- **fieldName**: The name of the field in the business object to search against.
+- **fieldValue**: The value of the field to search for in the matching record.
+
+## Return Value
+
+**FRSHEATIntegrationSearchResponse** object, defined as follows:
+
+public class FRSHEATIntegrationSearchResponse
+
+    \{
+
+public string status \{ get; set; }
+
+public string exceptionReason \{ get; set; }
+
+public List\<List\<WebServiceBusinessObject>> objList \{ get; set; }
+
+    }
+
+The **FRSHEATIntegrationSearchResponse** class has the following fields:
+
+- **status**: Provides a status value indicating whether the operation was successful. A full description of the available status values is provided in the table below.
+- **exceptionReason**: Contains exception information, if the application throws an exception when running the **Connect** web method.
+- **objList**: Contains a list of the results found, if the value of the status field is success. The outer list contains multiple business objects, if the search condition matched more than one business object. The inner list contains joined business objects if the search condition requested joins. Unlike Microsoft SQL response fields from each joined objects are kept in a separate list, they are not mingled together.
+
+The following table lists the available status values and describes how to interpret them.
+
+| <font color="#FFFFFF">Status</font> | <font color="#FFFFFF">Explanation</font>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| ----------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Success**                         | Successfully found the business objects. Access the business object list from the **objList** field, which returns the results as a list of **WebServiceBusinessObjects**.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| **Error**                           | Cannot find the business objects. The **objList** field is null.  Inspect the corresponding **exceptionReason** field to determine why the web method failed.<br />One typical error is **Table not found**, which occurs when the specified business object does not exist in the tenant. Ensure that the name of the business object is spelled properly.<br />Another common error is that the specified field does not exist for the business object. The error message is:<br />ObjectTableMap: field \<FieldName> is not found in table \<Business Object>#<br />Ensure that the field name is spelled correctly, and that it is defined for the specified business object. |
+| **NotFound**                        | The specified business object exists in the tenant, but the specified RecID does not match any of the existing records in the object.<br />Since this is not an exceptional condition, no exception is stored in the **exceptionReason** field but the **objList** field is null. Ensure that the RecID for the intended record exists in the tenant.                                                                                                                                                                                                                                                                                                                             |
+
+## Example
+
+FRSHEATIntegrationSearchResponse res = frSvc.FindMultipleBusinessObjectsByField(authSessionKey, tenantId, "Incident", "Status", "Active");
+
+if (res.status == "Success")
+
+\{
+
+WebServiceBusinessObject\[]\[] incidentList = res.objList;
+
+foreach (WebServiceBusinessObject\[] incidentOuterList in incidentList)
+
+\{
+
+foreach (WebServiceBusinessObject incident in incidentOuterList)
+
+\{
+
+WebServiceFieldValue\[] incidentFieldList = incident.FieldValues;
+
+WebServiceFieldValue incidentNumberField = incidentFieldList.SingleOrDefault(f => f.Name == "IncidentNumber");
+
+Console.WriteLine("Incident \{\{0}} matches the selection criteria", incidentNumberField.Value);
+
+}
+
+}
+
+}           

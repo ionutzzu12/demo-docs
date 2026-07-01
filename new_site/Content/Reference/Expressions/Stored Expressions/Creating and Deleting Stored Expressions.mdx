@@ -1,0 +1,125 @@
+---
+title: Creating and Deleting Stored Expressions
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:58 GMT+0300 (Eastern European Summer Time)
+---
+
+You can create a stored expression in two ways: through the **Configuration Console**, or through a business object. If you create the stored expression from a business object, it will be an associated stored expression by default, and it can not be changed later. When you create a stored expression from the **Configuration Console**, you choose whether to associate it to a business object.
+
+<hint type="info">
+  For detailed help understanding and writing expressions, read [Expression Grammar](<../Expression Grammar.mdx>).
+</hint>
+
+<ExpandableHeading>
+  ## Using the Configuration Console to Create Stored Expressions
+
+  **Creating a Stored Expression from the Configuration Console**
+
+  You can create a stored expression from the **Configuration Console**. These stored expressions can be associated with a business Object or left unassociated.
+
+  1. Select **Stored Expressions** from the **Build** list under the **Settings** pane of the **Configuration Console**.
+  2. Click the **Add** icon to create a new stored expression.
+  3. Enter the details for your stored expression:
+
+  <Paragraph indent="1">
+        <Paragraph listStyleType="disc" indent="1">
+          **Name**: Choose a descriptive name.
+        </Paragraph>    <Paragraph listStyleType="disc" indent="1">
+          **Description**: Briefly describe the purpose of the stored expression.
+        </Paragraph>    <Paragraph listStyleType="disc" listStart="2" indent="1">
+          **Association**: If your stored expression needs to be specific to a business object, select the appropriate business object from the **Association** dropdown list.
+        </Paragraph>    <hint type="info" indent="2">
+          You may only use an associated stored expression when the current business object is the same type or the business object can be referenced through a relationship. An unassociated stored expression may be used in any business object context or when there is no business object.
+        </hint>    <Paragraph indent="1">
+          **Expression Type**: Select the data type you want the stored expression to return. Only **Number**, **Text**, **DateTime** and **Boolean** return data types are supported.
+        </Paragraph>    <Paragraph listStyleType="disc" listRestartPolite="4" indent="1">
+          **Expression**:
+        </Paragraph>    <Paragraph listStyleType="disc" indent="2">
+          Click **None** to open the **Expression Editor**.
+        </Paragraph>    <Paragraph listStyleType="disc" indent="2">
+          The options available in the **Expression Editor** vary based on the association; only options available for the associated business object will show.
+        </Paragraph>    <hint type="info" indent="3">
+          These functions cannot be used with unassociated expressions:
+
+          - **ForEachChild**
+          - **IsBOUnderChangeControl**
+          - **HierarchicalChildFold**
+          - **ChildFold**
+          - **IsTrueForAllChildren**
+          - **IfAllSiblings**
+          - **GetSRPValue**
+          - **GetSRPPrice**
+          - **GetBOValue**
+          - **FindAncestor**
+        </hint>
+  </Paragraph>
+
+  4. Compose the expression, and click **Simplify Expression** to check for syntax and accuracy.
+
+  <hint type="info" indent="1">
+    Read [Expression Grammar](<../Expression Grammar.mdx>) for detailed help writing expressions.
+  </hint>
+
+  5. Click **OK** to return to the **Setting Expression Details** workspace.
+  6. Click **Save** to return to the **Stored Expression** workspace.
+
+  <hint type="info" indent="1">
+    Once you click **Save**, you can no longer change your stored expression's association, data type, or name.
+  </hint>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Creating Stored Expressions From a Business Object
+
+  **Creating Stored Expressions from a Business Object**
+
+  You can create a Stored Expression from inside a business object. When you create a stored expression from inside the business, you can not change its association.
+
+  1. Select **Business Objects** from the **Build** list under the settings pane of the **Configuration Console**.
+  2. In the workspace, select the business object for which you need this stored expression.
+  3. Inside the business object, click the **Stored Expressions** tab at the top. The number in parentheses indicates the number of stored expressions currently associated with this business object .
+
+  <hint type="info" indent="1">
+    You will only see stored expressions associated with the business object you're using.
+  </hint>
+
+  4. Repeat steps 2 - 6 of Creating Stored Expressions from the Configuration Console in this topic to complete and save your stored expression.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Deleting Stored Expressions
+
+  **Deleting Stored Expressions**
+
+  Any user may delete a stored expression whether or not they created it.
+
+  1. From the **Configuration Console**, select **Stored Expressions** from the **Build** menu.
+  2. Find the expression you want to delete in the list of stored expressions.
+  3. Select the red **X** to the right of the stored expression.
+
+  <Paragraph indent="1">
+        <Paragraph listStyleType="disc" indent="1">
+          Select **Yes** in the **Delete Expression** dialog box.
+        </Paragraph>    <Paragraph listStyleType="disc" indent="1">
+          Select **No** if you don't want to delete the expression.
+        </Paragraph>
+  </Paragraph>
+
+  4. You also can delete the stored expression from the stored expression's details page.
+
+  <hint type="info">
+    - Any user can delete a stored expression whether or not they created it.
+    - You can not delete a stored expression if it is currently in use.
+    - You can not delete a field if it is being used by a stored expression.
+  </hint>
+</ExpandableHeading>
+
+## More Information
+
+[About Stored Expressions](<Stored Expressions.mdx>)
+
+[About Expressions](../Expressions.mdx)
+
+[Expression Grammar](<../Expression Grammar.mdx>)
+
+[Using the Expression Editor](<../Using Expression Editor.mdx>)

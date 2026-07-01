@@ -1,0 +1,246 @@
+---
+title: Using the PaginationSearch Web Method
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:01 GMT+0300 (Eastern European Summer Time)
+---
+
+This web method retrieves one or more business objects based on the search criteria. This is a Microsoft SQL style query. Compared to the other search web methods, you can use this general-purpose web method to express arbitrarily complex queries.
+
+## Request Syntax
+
+FRSHEATIntegrationSearchResponse PaginationSearch(string sessionKey, string tenantId, ObjectQueryDefinition query, int skip)
+
+## Parameters
+
+- **sessionKey**: The session key from the **Connect** web method.
+- **tenantId**: The tenant for which the session key is authenticated.
+- **query**: A structure describing the search criteria. It follows the structure of a Microsoft SQL Select request and captures most of the possible parameters in Select queries, including **Top**, **Where**, **Join**, and **Order By** clauses. I&#x6E;**&#x20;PaginationSearch** method, the **Top** value is considered as the page size parameter. If **Top** is not specified, then this method returns 100 records by default.
+- **skip** : Integer value which indicates the number of records that need to be skipped from top of the result set (that is, similar to offset parameter).
+
+## Return Value
+
+**FRSHEATIntegrationSearchResponse** object, defined as follows:
+
+public class FRSHEATIntegrationSearchResponse
+
+    \{
+
+public string status \{ get; set; }
+
+public string exceptionReason \{ get; set; }
+
+public List\<List\<WebServiceBusinessObject>> objList \{ get; set; }
+
+    }
+
+The **FRSHEATIntegrationSearchResponse** class has the following fields:
+
+- **status**: Provides a status value indicating whether the operation was successful. A full description of the available status values is provided in the table below.
+- **exceptionReason**: Contains exception information, if the system throws an exception when running the **Connect** web method.
+- **objList**: Contains a list of the results found, if the value of the status field is success. The outer list contains multiple business objects, if the search condition matched more than one business object. The inner list contains joined business objects, if the search condition requested joins. Unlike Microsoft SQL response, fields from each joined objects are kept in a separate list. They are not mingled together. If you do not specify the **Top** value in the request, then **objList** will return top 100 records from the result list by default.
+
+The below table lists the available status values and describes how to interpret them.
+
+<table isTableHeaderOn="true">
+  <tr>
+    <td>
+      <font color="#FFFFFF">Status</font>
+    </td>
+    <td>
+      <font color="#FFFFFF">Description</font>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      **Success**
+    </td>
+    <td>
+      Successfully found the business objects. Access the business object list from the **objList** field, which returns the results as a list of **WebServiceBusinessObjects**.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      **Error**
+    </td>
+    <td>
+      ```bash
+      ObjectTableMap: field <FieldName> is not found in table <Business Object>#
+      ```
+      Cannot find the business objects. The **objList** field is null. Inspect the corresponding **exceptionReason** field to determine why the web method failed.
+      Following are the common error examples:
+      - A typical error is **Table not found**, which occurs when the specified business object does not exist in the tenant.
+      Ensure that the name of the business object is spelled properly.
+      - Another common error is that the specified field does not exist for the business object. The error message is:
+      Ensure that the field name is spelled correctly and defined for the specified business object.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      **NotFound**
+    </td>
+    <td>
+      The specified business object exists in the tenant, but the specified **RecID** does not match any of the existing records in the object.
+      Since this is not an exceptional condition, no exception is stored in the **exceptionReason** field but the **objList** field is null. Ensure that the **RecID** for the intended record exists in the tenant.
+    </td>
+  </tr>
+</table>
+
+<ExpandableHeading>
+  ## Example 1
+
+  The following example searches for incident records where the priority is 1 and the status is *active*, and retrieves the corresponding incident numbers from the matching results by skipping the first 10 records.
+
+  ObjectQueryDefinition query = new ObjectQueryDefinition();
+
+  query.Select = new SelectClass();
+
+  // Retrieve just the IncidentNumber field value from the Incident,
+
+  // when invoking the search
+
+  FieldClass\[] incidentFieldObjects = new FieldClass\[] \{
+
+  new FieldClass()
+
+  \{
+
+  Name = "IncidentNumber",
+
+  Type = "Text"
+
+  }
+
+  };
+
+  query.Select.Fields = incidentFieldObjects;
+
+  query.From = new FromClass();
+
+  query.From.Object = "Incident";
+
+  query.Where = new RuleClass\[] \{
+
+  new RuleClass()
+
+  \{
+
+  Join = "AND",
+
+  Condition = "=",
+
+  Field = "Priority",
+
+  Value = "1"
+
+  },
+
+  new RuleClass()
+
+  \{
+
+  Join = "AND",
+
+  Condition = "=",
+
+  Field = "Status",
+
+  Value = "Active"
+
+  }
+
+  };
+
+  int skip =10;
+
+  FRSHEATIntegrationSearchResponse searchResponse = frSvc.PaginationSearch(authSessionKey, tenantId, query, skip);
+
+  if (searchResponse.status == "Success")
+
+  \{
+
+  WebServiceBusinessObject\[]\[] incidentList = searchResponse.objList;
+
+  foreach (WebServiceBusinessObject\[] incidentOuterList in incidentList)
+
+  \{
+
+  foreach (WebServiceBusinessObject incident in incidentOuterList)
+
+  \{
+
+  // Since we are just retrieving one field in the selection criteria
+
+  // (i.e. IncidentNumber), this corresponds to
+
+  // incident.FieldValues\[0].Value when retrieving the results
+
+  Console.WriteLine("Incident \{\{0}} matches the selection criteria", incident.FieldValues\[0].Value);
+
+  }
+
+  }
+
+  }
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Example 2
+
+  The following SOAP example searches for incident records, skips the top 10 records, and returns the next 100 records if you do not specify **Top** in the query.
+
+  \<?xml version="1.0"?>
+
+  \<soap\:Envelope
+
+  xmlns\:saas="SaaS.Services"
+
+  xmlns\:soap="http\://www\.w3.org/2003/05/soap-envelope">
+
+  \<soap\:Header/>
+
+  \<soap\:Body>
+
+  \<saas\:PaginationSearch>
+
+  \<!--Optional:-->
+
+  \<saas\:sessionKey>SessionKey\</saas\:sessionKey>
+
+  \<!--Optional:-->
+
+  \<saas\:tenantId>TenantID\</saas\:tenantId>
+
+  \<saas\:ObjectQuery>
+
+  \<!--Optional:-->
+
+  \<saas\:From Object="Incident#">\</saas\:From>
+
+  \<!--Optional:-->
+
+  \<saas\:Select All="true">\</saas\:Select>
+
+  \<saas\:OrderBy>
+
+  \<!--Zero or more repetitions:-->
+
+  \<saas\:Field Direction="asc" Name="IncidentNumber"/>
+
+  \</saas\:OrderBy>
+
+  \</saas\:ObjectQuery>
+
+  \<saas\:skip>10\</saas\:skip>
+
+  \</saas\:PaginationSearch>
+
+  \</soap\:Body>
+
+  \</soap\:Envelope>
+</ExpandableHeading>
+
+<hint type="info">
+  - You can set the default **Top** maximum value using the **Appserver webconfig** property.
+    \<add key="DefaultMaxNumberOfRecordsRestAPI" value="100" />
+  - If you specify the **Top** value as 0, then the **PaginationSearch** method will return 100 records by default.
+</hint>

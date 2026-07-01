@@ -1,0 +1,129 @@
+---
+title: Working with Service Level Packages
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:47 GMT+0300 (Eastern European Summer Time)
+---
+
+A service level package describes the level of service offered to a customer.
+
+Service owners create service level packages and customers subscribe to them. The service level package specifies the target times for you as the service provider to respond and resolve incidents. The service level package specifies which request offerings are available and the target time for service request delivery.
+
+You can link any number of service level packages to a single service. By varying the parameters in the service level packages that are linked to the same service, you can offer different levels of service to different customers while keeping all of the parameters (such as owner, provider, and so on) that are defined in the service the same. For example, you could define service level packages named Gold, Silver, and Bronze for the Mobile Phone Request service, each with a different price, response time, hours of operation, and so on.
+
+By default, all organizations have one level of service (a single service level package). In this case, all request offerings are automatically linked to the service level package. You can offer more levels, but this is optional.
+
+For example, an organization that provides an airline service has the core service of taking passengers from point A to point B. Supporting services would include ticket sales, baggage handling, food service, and security. The service level package would determine the level in which to deliver the services, such as first class passengers might receive access to a lounge, kid-glove baggage handling, better food and free drinks, and expedited security. Business class passengers might receive special food requests and extra leg room. Economy class passengers might receive a seat on the plane, but required to provide their own food and pay extra for baggage.
+
+You must define the request offerings before defining service level packages.
+
+You should be familiar with the following terms:
+
+- A core service is an IT service that delivers basic outcomes desired by one or more customers.
+- A service level package is a defined level of utility and warranty for a particular service package. Each service level package is designed to meet the needs of a particular pattern of business activity.
+
+## Viewing Service Level Packages
+
+1. Log in to \{\{FRS\_VARS.ProductName}} as a Service Owner.
+2. Open the **Service Package** workspace. The application displays a list of Service Level Package records.
+3. Open a Service Level Package to view its details.
+
+<Paragraph indent="1">
+  For a broader description of the target tabs listed below, refer to :Link[About Service Level Targets]{label="About Service Level Targets" overridedLabel="About Service Level Targets" spaceId docId="T1Pnmed2J3aAGYazFNgNY" version="v2" docAnchorId="#About" loadingMethod="dynamic" newTab="false" githubPath="Creating_Service_Level_Target.htm#About" href="Creating_Service_Level_Target.mdx"}.
+</Paragraph>
+
+<Paragraph indent="1">
+  Records in the **Service Package** workspace contain the following tabs:
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  **Delivery Target**: The delivery target is based on the delivery target of the request offering and is configured in the **Service Level Target** workspace. Click **Go To** to open the originating record. Refer to :Link[Defining Delivery Targets]{label="Defining Delivery Targets" overridedLabel="Defining Delivery Targets" spaceId docId="T1Pnmed2J3aAGYazFNgNY" version="v2" docAnchorId="#Define_Delivery_Targets" loadingMethod="dynamic" newTab="false" githubPath="Creating_Service_Level_Target.htm#Define_Delivery_Targets" href="Creating_Service_Level_Target.mdx"}.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  **Response Target**: The response target is based on the incident response target and is configured in the **Service Level Target** workspace. Refer to :Link[Defining Response Targets]{label="Defining Response Targets" overridedLabel="Defining Response Targets" spaceId docId="T1Pnmed2J3aAGYazFNgNY" version="v2" docAnchorId="#Define_Response_Targets" loadingMethod="dynamic" newTab="false" githubPath="Creating_Service_Level_Target.htm#Define_Response_Targets" href="Creating_Service_Level_Target.mdx"}.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  **Resolution Target**: Refer to :Link[Defining Resolution Targets]{label="Defining Resolution Targets" overridedLabel="Defining Resolution Targets" spaceId docId="T1Pnmed2J3aAGYazFNgNY" version="v2" docAnchorId="#Define_Resolution_Targets" loadingMethod="dynamic" newTab="false" githubPath="Creating_Service_Level_Target.htm#Define_Resolution_Targets" href="Creating_Service_Level_Target.mdx"}.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  **Service Agreements**: Refer to [Working with Service Level Agreements](Working-with-Service-Level-Agreements.mdx).
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  **Request Offering Link**: Refer to :Link[Linking a Request Offering to a Service Level Package ]{label="Linking a Request Offering to a Service Level Package " overridedLabel="Linking a Request Offering to a Service Level Package " spaceId docId="a8CXyn1QZ2Xi1gEuSrnnY" version="v2" docAnchorId="#LinkingRequestOffernigToSLP" loadingMethod="dynamic" newTab="false" href="Service_Level_Packages.mdx"}.
+</Paragraph>
+
+## Creating a Service Level Package
+
+You must define the Services offered by your organization before creating a Service Level Package.
+
+A service can have one or many Service Level Packages linked to it. By varying the parameters of a Service Level Package, you can offer different levels of services to different consumers for the same service.
+
+After you create the Service Level Package, you must configure the Service Level Targets for it. Refer to [Working with Service Level Targets](Creating_Service_Level_Target.mdx).
+
+1. Log in to \{\{FRS\_VARS.ProductName}} as a Service Owner.
+2. Open the **Services** workspace.
+3. Open a Service.
+4. Click the **Service Level Package** tab.
+5. Click **New** from the toolbar. The system displays the **New Service Level Package** dialog box.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/b5hBjWrzYtEadKSzXvQKb_service-level-package-new.png" alt="New Service Level Package Dialog Box" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/service level package new.png" githubPath="Content/Resources/Images/help-images/service level package new.png" showCaption="false"></Image>
+
+6. Enter information into the fields.
+
+| Field              | Description                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Status             | Status.<br />**Draft**: A new service level package appears in this state. Keep in this state until you are ready to publish.<br />**Published**: The service level package is available for subscription.<br />**Expired**: The service level package is not available for subscription because the date specified in the **Expiration Date** field has passed.<br />**Obsolete**: The service level package is no longer used. |
+| Name               | Name of the Service Level Package.                                                                                                                                                                                                                                                                                                                                                                                               |
+| Description        | A brief description of the Service Level Package.                                                                                                                                                                                                                                                                                                                                                                                |
+| Price              | The price charged when a service owner subscribes to the Service Level Package.                                                                                                                                                                                                                                                                                                                                                  |
+| Price Description  | A description of the features that are included in the price.                                                                                                                                                                                                                                                                                                                                                                    |
+| Service            | Automatically generated if you are creating the Service Level Package from a Service.                                                                                                                                                                                                                                                                                                                                            |
+| Hours of Operation | The hours of operation.                                                                                                                                                                                                                                                                                                                                                                                                          |
+| Compliance Target  |                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| Expiration Date    | The expiration date. Enter a date or click the **calendar** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/XjHn7hyVdfJ0J_URGb2Fb_calendar.png" alt caption size="10" width="15" height="16"}.                                                                                                                                                                                  |
+| Review Date        | A date prior to the expiration date by which the service level package must be reviewed for renewal. Enter a date or click the **calendar** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/XjHn7hyVdfJ0J_URGb2Fb_calendar.png" alt caption size="10" width="15" height="16"}.                                                                                                  |
+
+7. Click **Save** to close the dialog box.
+8. Click **Save**.
+   - The system creates the Service Level Package and adds it to the list of Service Level Packages.
+   - The system displays this Service Level Package on the **Service Level Package** tab of the **Services** workspace.
+
+## Linking a Request Offering to a Service Level Package
+
+1. Log in to \{\{FRS\_VARS.ProductName}} as a \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Owner}}.
+2. Open the **Service Package** workspace.
+3. Open a Service Level Package.
+4. Click the **Request Offering Link** tab.
+5. Click **Link Request Offering**. The system displays the **New Request Offering Condition** dialog box.
+6. Enter information into the fields.
+
+| Field            | Description                                                |
+| ---------------- | ---------------------------------------------------------- |
+| Request Offering | The request offering to link to the Service Level Package. |
+| Delivery Target  | The target delivery time for this Request Offering.        |
+| Price ($)        | The price charged for the Request Offering.                |
+
+7. Click **Save** to close the dialog box.
+8. Click **Save**.
+
+## UnLinking a Request Offering from a Service Level Package
+
+1. Log in to \{\{FRS\_VARS.ProductName}} as a \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Owner}}.
+2. Open the **Service Package** workspace.
+3. Open a Service Level Package.
+4. Click the **Request Offering Link** tab.
+5. Click **Unlink Request Offering**.
+
+<Paragraph indent="1">
+  The application displays a **Reference Warning** dialog box that displays all the references to the Request Offering.
+</Paragraph>
+
+6. Go through all the references before unlinking.
+7. Click **Continue**.
+
+<hint type="info">
+  On unlinking the Request Offering in the Service Level Package, the entry created in the **Escalation Schedules** will not be deleted. For the Escalation Schedules to be properly updated, delete the associated Request Offering and Service Level Agreements and then create new Service Level Agreements.
+</hint>

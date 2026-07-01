@@ -1,0 +1,14 @@
+---
+title: Authentication
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:57 GMT+0300 (Eastern European Summer Time)
+---
+
+\{\{FRS\_VARS.ProductName}} enforces authentication through internal or external means when you log in. These are specified by checking one or both of the following when creating an employee account:
+
+- **Enable Internal Auth**: Employs a user name and password stored in the \{\{FRS\_VARS.ProductName}} database for authentication purposes. You need to supply the password used for this employee account.
+- **Enable External Auth**: Permits the use of Microsoft Active Directory (secured using HTTPS) authentication. You need to supply LDAP server login credentials. It can differ from the ID used for internal authentication, and can contain a domain prefix.
+
+If you enforce additional policies, such as password expiration and password complexity, to strengthen security, you should enable internal authentication.
+
+If you enable both authentication protocols, \{\{FRS\_VARS.ProductName}} attempts internal authentication first. If the internal authentication fails, the application tries external authentication. For example, if your internal authentication ID of bernard.jeffries fails, \{\{FRS\_VARS.ProductName}} then tries the external ID *domain\_name*/bjeffries.

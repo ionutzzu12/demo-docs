@@ -1,0 +1,194 @@
+---
+title: Working with Object Matching and Related Items
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:53 GMT+0300 (Eastern European Summer Time)
+---
+
+This topic describes how to use object matching to configure a related items search. Object matching determines the items that are listed in the **Related Items** pane.
+
+Object matching is a type of search that allows you to search other business objects while inside a form. The search can originate:
+
+- From a field on a form that has an associated search icon. An example is the **Summary** field on the **Details** tab for an incident. The application displays the results in the **Related Items** pane (refer to [Using Related Items and Object Matching](<../../ServiceDesk/Search/Related Items.mdx>)).
+
+<Paragraph indent="1">
+  *Summary Search*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/3NyNHbm1n1cQPE_JIv2Sk_object-matching.png" alt="Image of a summary search." position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/Search-images/object-matching.png" githubPath="Content/Resources/Images/Search-images/object-matching.png" showCaption="false"></Image>
+
+- When you enter a search phrase into the **Search** text box in the search results panel and start the search.
+
+<Paragraph indent="1">
+  Search Box
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/cg02ZVQv-2JW0GgWuKcrT_object-matching-search-box.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/Search-images/object-matching-search-box.png" githubPath="Content/Resources/Images/Search-images/object-matching-search-box.png" showCaption="false"></Image>
+
+The application ranks the business objects that match the search criteria by how closely they match the current business object. The application lists these matching business objects in the search results panel in the form of the current business object.  The **Incident**, **Knowledge**, and **Problem** business objects have object matching enabled by default.
+
+When the application searches business objects, the object matching function performs a Microsoft SQL full-text search in all full-text indexed fields in the business object tables. The Microsoft SQL engine also ranks the business objects.
+
+### Viewing Object Matching Lists
+
+The **Object Matching Lists** workspace lists all of the business objects that use object matching.
+
+1. From the Configuration Console, click **Build > Automation Tools > Object Matching Lists** to open the **Object Matching Lists** workspace. The application displays a list of object matching business objects.
+2. Open an item from the list to view the object matching parameters.
+
+### Creating an Object Matching Configuration
+
+Follow these steps to create a new object matching configuration.
+
+1. From the Configuration Console, go to **Build > Business Objects** to open the **Business Objects** workspace.
+2. Open the business object to configure object matching for.
+3. Click the **Layouts** tab. The application displays a list of all the layouts used for this business object.
+
+*List of Layouts*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/f99q4UTyOYbnB7Sp4f2nh_incidentlayout0.png" alt="A list of all the layouts used for a business object." position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/incident_layout_0.png" githubPath="Content/Resources/Images/help-images/incident_layout_0.png" showCaption="false"></Image>
+
+4. Determine the layout to use. Refer to :Link[Determining the Layout to Use for an Object Matching Configuration]{label="Determining the Layout to Use for an Object Matching Configuration" overridedLabel="Determining the Layout to Use for an Object Matching Configuration" spaceId docId="L-0LQZEjy9NMmo_IaWMUJ" version="v2" docAnchorId="#Determin" loadingMethod="dynamic" newTab="false" href="Configuring Related Items Search.mdx"} to determine which layout to use.
+5. Open the layout. The application opens the **Edit Layout** workspace.
+6. Under the **Views in this layout** section, click **formView** to open the form view of the layout.
+7. (Optional) Click **Try our new look!** to go to the new for view editor.
+8. In the **Layout** section, click **Edit Properties**. The application displays the **Form View Properties Editor** dialog box.
+9. Check **Enable Matching panel**. The application displays the ***Business\_object*****&#x20;matching for the&#x20;*****layout\_name*****&#x20;layout** dialog box.
+
+*Business Object Matching for the Layout Name Dialog Box*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/tlF7wDc8vwpo6MYfAUAzk_object-matching-new.png" alt="Business object matching for the layout name dialog box." position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/object-matching-new.png" githubPath="Content/Resources/Images/help-images/object-matching-new.png" showCaption="false"></Image>
+
+10. Enter information into the following fields:
+
+| Field                                                          | Description                                                                                                           |
+| -------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| Display Name                                                   | The name of this object matching display.                                                                             |
+| Run *business\_object* Matching whenever the field --- changes | The field on which to run object matching. Choose a field name from the drop-down list.                               |
+| Match keywords from *business\_object*'s --- field             | The field on which to match keywords. Choose a field name from the drop-down list.                                    |
+| Object Name                                                    | The name of the business object to enable object matching for. Choose a business object name from the drop-down list. |
+
+11. Click **Edit Preview (Not Set)** or **Edit Preview** to set the preview format.
+
+*Preview Item Format*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/G1yf3eRQHNdvAslAC41xv_previewitemformat.png" alt="Image of a Preview Item format." position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/preview_item_format.png" githubPath="Content/Resources/Images/help-images/preview_item_format.png" showCaption="false"></Image>
+
+<Paragraph indent="1">
+  The next step determines where the information for the object matching panel comes from. The business object that you selected in the previous step determines your choices in the next step.
+</Paragraph>
+
+12. Enter information into the following fields:
+
+| Field                                  | Description                                                  |
+| -------------------------------------- | ------------------------------------------------------------ |
+| Title Field                            | The title. Choose from the drop-down list.                   |
+| Preview Text Field                     | The preview text to display.                                 |
+| Number of Preview Lines to show        | The number of preview lines to display. Select from 1 to 10. |
+| Highlight matching text in the preview | Highlights the matching text in the preview.                 |
+| Form for Hover Panel                   | The form to display when hovering.                           |
+
+<Paragraph indent="1">
+  When you search for a business object, the matching business object appears in the panel on the right side.
+</Paragraph>
+
+13. Add buttons as needed, by following these steps:
+
+<Paragraph indent="1">
+  a. Click **Add New Button**. The application displays the **Create new button** dialog box.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. In the **Button Label** field, enter a name for the button.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. Check **Link matched&#x20;*****business\_object*****&#x20;with main&#x20;*****business\_object*****#**.
+</Paragraph>
+
+<Paragraph indent="1">
+  d. Click **Add Field**.
+</Paragraph>
+
+<Paragraph indent="1">
+  e. Select a field from the drop-down menu.
+</Paragraph>
+
+<Paragraph indent="1">
+  f. Enter the name of a field to update the field with, such as owner, category, status, and service.
+</Paragraph>
+
+<Paragraph indent="1">
+  g. Click **Save**.
+</Paragraph>
+
+14. In the **Preview Item Format** page, click **Save**.
+15. Add more business objects to search in by doing the following:
+
+<hint type="info">
+  The order in which you add the business objects is the order in which these business objects are displayed in the **Related Items** panel. To change the order of the business objects in the **Related Items** panel, delete the business objects and add them back in the order in which you want them to appear.
+</hint>
+
+<Paragraph indent="1">
+  a. In the **Search for matches in** section, click the **add** icon <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/JtIxGMfjslfCSitXWBu4o_addgreen.png" size="10" isUploading="false" initialPath="../../Resources/Images/buttons/add_green.png" githubPath="Content/Resources/Images/buttons/add_green.png" width="17" height="15" showCaption="false"></Image>.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Select a business object from the **Object Name** drop-down list.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. Click **Edit Preview (Not Set)** to set the preview format.
+</Paragraph>
+
+<Paragraph indent="1">
+  d. Enter information into the fields and create buttons as needed.
+</Paragraph>
+
+<Paragraph indent="1">
+  In the example below, the user added the knowledge, document, error message, patch, Q\&A, and reference business objects to the list of places to search for.
+</Paragraph>
+
+*Adding Business Objects to be Searched In*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/OtqACcX7FBYgdf-Kw6eA__incidentmatchingfields.png" alt="Adding business objects to be searched in." position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/incident_matching_fields.png" githubPath="Content/Resources/Images/help-images/incident_matching_fields.png" showCaption="false"></Image>
+
+16. In the ***Business\_object*****&#x20;matching for the&#x20;*****layout\_name*****&#x20;layout** dialog box, click **Save**.
+17. In the **Form View Properties Editor** page, click **Save**.
+18. Click **Save** to save the layout.
+
+### Editing an Existing Object Matching Configuration
+
+After you create the object matching configuration, you can edit it.
+
+1. From the Configuration Console, go to **Build > Automation Tools > Object Matching Lists**. The application displays a list of all of the object matching configurations that have been created.
+2. Click an object matching configuration to edit it.
+
+### Determining the Layout to Use for an Object Matching Configuration
+
+Determine the layout to use by doing the following:
+
+1. From the Configuration Console, click **Configure&#x20;**>**&#x20;Users and Permissions&#x20;**>**&#x20;Roles and Permissions** to open the **Roles and Permissions** workspace.
+2. Click Self Service to select the Self Service role. The application displays the **Role Details** page.
+3. Click the **Top Level Tabs** tab.  The application displays all of the workspaces that appear in the \{\{FRS\_VARS.ProductName}} application for this role.
+4. From the list of top-level tabs, click the name of the tab to configure object matching for. For example, click **My Items**.
+
+*My Items Top-Level Tab Configuration*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/h8p1d-i2kc382TQsmEE_y_myitemsconfig.png" alt="My Items top-level tab configuration." position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/my_items_config.png" githubPath="Content/Resources/Images/help-images/my_items_config.png" showCaption="false"></Image>
+
+5. Under the **My Items Configuration** section, next to a business object name, click **Configure**.
+
+<hint type="info">
+  If you do not see a list of business object names with the word **Configure** next to them, you cannot create an object matching configuration for this workspace. Object matching configurations are mostly used for the **My Items** and **Search** workspaces, but can be used on other workspaces.
+</hint>
+
+<Paragraph indent="1">
+  The application displays the **Select&#x20;*****business\_object\_name*****&#x20;objects layout** dialog box showing the layouts that are being used.
+</Paragraph>
+
+*List of Layouts for this Object Matching Configuration*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/SQ3FRWdHRKZ2VXWEQzUmt_myitemsincidentlayout.png" alt="List of layouts for this object matching configuration." position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/myItems_incident_layout.png" githubPath="Content/Resources/Images/help-images/myItems_incident_layout.png" showCaption="false"></Image>
+
+6. Select a layout to configure object matching for.
+7. Click **Cancel**.

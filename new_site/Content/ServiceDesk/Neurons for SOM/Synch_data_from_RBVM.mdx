@@ -1,0 +1,143 @@
+---
+title: Configure the RBVM Data Import Connector to Import RBVM Events
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:46 GMT+0300 (Eastern European Summer Time)
+---
+
+You can synchronize data to \{\{FRS\_VARS.ProductName}} from RBVM, based on filter criteria configured in the RBVM Connector settings. With use of Open Data Protocol (OData) calls, data is imported directly from RBVM, ensuring updated information is always available. This integration also removes the requirement to edit scripts, and the limitation on importing records into \{\{FRS\_VARS.ProductName}}.
+
+The connector configuration UI feature enables you to easily set up a connection, set filter criteria for the data, and set schedules to run the connector and import from RBVM. Once the data is pulled from RBVM, based on the filter criteria, Security Events and CIs are created. If the Event Severity and Risk Score of the Security Event is greater than or equal to 9 (the default value), Security Incidents are created.
+
+## Prerequisites
+
+To enable connection between \{\{FRS\_VARS.ProductName}} and the RBVM client, your tenant Configuration Database (DB) needs to be configured to permit the connection, which must be setup by \{\{Primary.Company}}. Please provide :Link[Getting help]{label="Getting help" overridedLabel="Getting help" spaceId docId="lXpuJf0tM6wspRfw5bLY-" version="v2" docAnchorId="#Ivanti_Cloud_Operations" loadingMethod="dynamic" newTab="false" githubPath="../../More-Information.htm#Ivanti_Cloud_Operations" href="../../More-Information.mdx"} with the following information when requesting setup:
+
+- RBVM Platform ID
+- RBVM Client ID
+- RBVM API Key
+
+## Configure the RBVM Connector
+
+An RBVM Connector is provided in the **Data Import Connections** list. If you cannot locate this connector in the list, contact :Link[Getting help]{label="Getting help" overridedLabel="Getting help" spaceId docId="lXpuJf0tM6wspRfw5bLY-" version="v2" docAnchorId="#Ivanti_Cloud_Operations" loadingMethod="dynamic" newTab="false" githubPath="../../More-Information.htm#Ivanti_Cloud_Operations" href="../../More-Information.mdx"}.
+
+1. Log in as Administrator, and open the \{\{FRS\_VARS.Configuration\_console}}.
+2. Select **Tools > Integration Tools > Data Import Connections**.
+3. Click on the **RBVM Connector** entry.
+   The **Connection Settings** configuration UI opens. You do not need to alter the default settings.
+4. Click **Test Connection**.
+   The result is displayed in a popup window.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/uWe7M5cBD3AD30GjWpmwT_avinya-image-1.png" position="flex-start" size="40" initialPath="../../Resources/Images/Avinya image 1.png" githubPath="Content/Resources/Images/Avinya image 1.png" showCaption="false"></Image>
+
+5. Click **Next** to open the **Filter Setting** window.
+   - The window displays pre-populated filter settings based on existing configurations. You can review and update the default criteria directly.
+   - You can add new filters from an extended list of filter-specific operators, and apply AND/OR logic to customize how filters are applied.
+
+<Paragraph indent="1">
+  *Available filters*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/lTibX1JC0ciE0K8Go1_PF_avinya.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/Avinya.png" githubPath="Content/Resources/Images/Avinya.png" showCaption="false"></Image>
+
+**Define or modify filter criteria**
+
+<Paragraph indent="1">
+  To define or modify filter criteria, follow these steps:
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  Use the drop-down lists to select a field (e.g., Severity), an operator (e.g., Greater, Lesser), and enter a value (e.g., 9).
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  To define multiple criteria, click **Add&#x20;**:inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/v9zxmzpD8FNadBYWRlu-m_addconnectionfilterbutton.png" alt caption size="10" width="16" height="16"} to include additional filters.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  Use Logical operators (AND/OR) to combine filters and refine the data import logic.
+</Paragraph>
+
+<Paragraph indent="1">
+  The filters configured here help narrow down the data imported from the RBVM client based on specific conditions.
+</Paragraph>
+
+<Paragraph indent="1">
+  **Example**: In the example above, a filter is applied to import only those records where the Severity is greater than or equal to 9.
+</Paragraph>
+
+<hint type="info" indent="1">
+  You can edit, add, or delete filter criteria at any time within the same window.
+</hint>
+
+6. Click **Next**, and then select a schedule (or schedules) from the list in the **Schedule Manager**:
+   - Select one or more schedules, and then click **Next** to move to the next screen. To select multiple schedules, hold down the **Ctrl** key, and then select each schedule. You can create a new schedule in the **Schedule Entry** workspace if required, and then select it from this list. To create a new schedule, refer to [About the Schedule Entry and Scheduled Jobs Workspaces](../../Configure/Schedules/Schedule_Entry.mdx).
+   - If no schedule is required, click **Next** to move to the next screen.
+     If you select to proceed without a schedule, a **Confirmation** dialog is shown, select **Yes** to proceed, or **No** to cancel.
+7. Publish the connection configuration:
+   - **Publish**: Select this option to publish without running the connection configuration. If you selected a schedule, the connection runs at the scheduled time and imports any data from RBVM that meets the filter criteria. The imported data is automatically turned into Security Events and Security Incidents in \{\{FRS\_VARS.ITSM}}.
+   - **Publish and Run Now**: Select this option to publish and run the connection configuration now. Selecting this option immediately imports any data from RBVM that meets the filter criteria. The imported data is automatically turned into Security Events and Security Incidents in \{\{FRS\_VARS.ITSM}}.
+   - **Publish and Test Run**: Select this option to publish and test the connection and import only, no Security Events or incidents are created.
+
+<Paragraph indent="1">
+  When you run the connector, you can check the Integration Queue to see if the request is queued, running, or has run and completed. To do this select **Integration Tools > Integration Queue**.
+</Paragraph>
+
+## Verify the RBVM Data Import
+
+When the RBVM Connector run has completed, check the **Event**, **CI**, and **Security Incident** workspaces to verify that any imported data is published into new Events, CI records, and Security Incidents.
+
+### Verify Security Events are created and linked to CI business objects
+
+To verify Security Events are created and are linked to **CI** business objects:
+
+1. Log on as Administrator.
+2. Open the **Event** workspace and search the **Event** workspace for Security Events.
+
+<Paragraph indent="1">
+  a. Enter Security Event in the **Search** field.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Click **Show All Results**.
+</Paragraph>
+
+3. Select a Security Event in the list and double-click to open it.
+4. Select the **Details** tab and note the **Host ID**.
+5. Select the **CI** tab and verify that the same ID is shown under **Asset ID**.
+
+### Verify CIs created from RBVM have a Security Event linked
+
+To verify if the **CIs** created from RBVM have a Security Event linked:
+
+1. Log on as Administrator.
+2. Open the **CI** workspace.
+3. Filter the **CI** list to display **CIs** created from RBVM using the **RBVM Discovered CIs** saved search.
+
+<Paragraph indent="1">
+  a. At the top left of the workspace, click the **Saved Search (All)** drop-down.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Click **All Saved Searches** at the bottom right of the list.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. Select **RBVM Discovered CIs**.
+
+</Paragraph>
+
+4. Select a **CI** entry and double-click to open it.
+5. Select the **Events** tab and confirm the corresponding Security Event(s) are listed.
+
+<hint type="info">
+  Multiple events may be linked to the same **CI** record. This occurs if multiple events have the same Host ID.
+</hint>
+
+### Verify Security Incidents are created
+
+Security Incident creation is triggered in accordance with the **RiskSense - Create Security Incident** business rule triggered action conditional expression parameter, as configured for the **Frs\_EVT\_Event.Security\_Event** business object. The default trigger conditional expression parameter is $(Event\_Severity >= 9 && Risk\_Score >= 9), therefore Security Events with **Event Severity** and **Risk Score** values greater than or equal to '9' create a Security Incident. To change the parameter setting, open the **RiskSense - Create Security Incident** business rule triggered action and alter the conditional expression parameter as required. For more information, refer to :Link[Creating a Triggered Action]{label="Creating a Triggered Action" overridedLabel="Creating a Triggered Action" spaceId docId="4XSn5lf-Ocn14fHU5D_yY" version="v2" docAnchorId="#Creating_a_Triggered_Action" loadingMethod="dynamic" newTab="false" githubPath="../../Configure/BusinessRules/Business_Rules.htm#Creating_a_Triggered_Action" href="../../Configure/BusinessRules/Business_Rules.mdx"}.
+
+To verify Security Incidents are created:
+
+1. Log on as Administrator.
+2. Open the **Security Incident** workspace and check that corresponding new Security Incidents are created.

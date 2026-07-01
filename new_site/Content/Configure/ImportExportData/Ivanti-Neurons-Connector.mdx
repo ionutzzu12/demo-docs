@@ -1,0 +1,180 @@
+---
+title: Ivanti Neurons Connector
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:52 GMT+0300 (Eastern European Summer Time)
+---
+
+This topic includes the configuration details for the \{\{Primary.Company}} \{\{FRS\_VARS.Neurons}} Connector.
+
+To access the \{\{Primary.Company}} \{\{FRS\_VARS.Neurons}} Connector settings page:
+
+1. From the Configuration Console, click **Extend** > **Integration Tools** > **Data Import Connections** to open the **Data Source Manager** page.
+
+<Paragraph indent="1">
+  The page lists all the connections that are already defined for your installation.
+</Paragraph>
+
+2. Click **Add New\...** to add a new connection and to open the **Settings** page.
+
+<Paragraph indent="1">
+  *Connection Settings Page*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/S1SZwMsBsneIdbo32NDv3_data-import-connections-settings-page.png" alt="Image of the Connection Settings page." position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/Configure/data-import-connections-settings-page.png" githubPath="Content/Resources/Images/Configure/data-import-connections-settings-page.png" showCaption="false"></Image>
+
+<Paragraph indent="1">
+    <Paragraph listStyleType="disc" indent="1">
+      :Link[Connection Setting]{label="Connection Setting" overridedLabel="Connection Setting" spaceId docId="4a76yCc3yjRomvfsgMiY4" version="v2" docAnchorId="#Connection-Setting" loadingMethod="dynamic" newTab="false" href="Ivanti-Neurons-Connector.mdx"}
+    </Paragraph>  <Paragraph listStyleType="disc" indent="1">
+      :Link[Filter Settings]{label="Filter Settings" overridedLabel="Filter Settings" spaceId docId="4a76yCc3yjRomvfsgMiY4" version="v2" docAnchorId="#FilterSettings" loadingMethod="dynamic" newTab="false" href="Ivanti-Neurons-Connector.mdx"}
+    </Paragraph>  <Paragraph listStyleType="disc" listStart="2" indent="1">
+      :Link[Field Mapping]{label="Field Mapping" overridedLabel="Field Mapping" spaceId docId="4a76yCc3yjRomvfsgMiY4" version="v2" docAnchorId="#Field-Mapping" loadingMethod="dynamic" newTab="false" href="Ivanti-Neurons-Connector.mdx"}
+    </Paragraph>  <Paragraph listStyleType="disc" listStart="3" indent="1">
+      :Link[Review and Publish]{label="Review and Publish" overridedLabel="Review and Publish" spaceId docId="4a76yCc3yjRomvfsgMiY4" version="v2" docAnchorId="#Review-and-Publish" loadingMethod="dynamic" newTab="false" href="Ivanti-Neurons-Connector.mdx"}
+    </Paragraph>
+</Paragraph>
+
+## Connection Setting
+
+**Prerequisite:**
+
+For this feature to work, you must link the tenant with the \{\{Primary.Company}} \{\{FRS\_VARS.Neurons}} tenant. To do this, contact the \{\{Primary.Company}} Operations team.
+
+1. In the **Connection Name** field, enter a unique name for the connection.
+2. From the **Connection Type** drop-down list, select **Ivanti Cloud Connector**.
+3. The following two fields appear:
+   1. **Cloud Connector API Path**: The default path appears as **api/discovery/v1/**. However, this can be modified, if required.
+   2. **Cloud Connector Object**: Enter the name of the business object for which you want to fetch data.
+4. Click **Next**. The **Object Mapping** page opens.
+
+## Object Mapping
+
+1. Enter information into the fields.
+
+| Field                      | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Mapping                    | Select **Add new\...** from the drop-down list.<br />The application creates a clone of the mapping, which you can then modify.<br />This button is only enabled if you select an existing mapping.                                                                                                                                                                                                                                                                                                                                                                                                       |
+| Name                       | Use the default name or modify the name to and click **Save as new**.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| Source Mapping Tables      | **A list of tables that is populated based on the&#x20;****Cloud Connector Object****, as defined in step 3b of the&#x20;****Connection Setting****&#x20;phase.**                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| Root Table                 | Select the primary table containing the master data that uniquely defines the computer systems in your organization.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| Unique Key                 | Select the field that is primary in identifying your records, which can be used to retrieve additional information. This field lists the fields containing keys that uniquely identify your record. The fields that appear in the list are taken from the first record in your source file.                                                                                                                                                                                                                                                                                                               |
+| Target Business Object     | Use the **Target Business Object** field to enter a few letters of the target business object, and then click **Filter by Name** or **Filter by Object** to narrow your search. For example, if you are importing a list of employee records into \{\{FRS\_VARS.ProductName}}, the primary business object you need to map to is the **Employee** business object.<br />Highlight the business object in the list. This field is the primary business object in \{\{FRS\_VARS.ProductName}} into which the data is imported.<br />The list shows all the business objects in \{\{FRS\_VARS.ProductName}}. |
+| Exclude Validation Objects | Select this check box if you want to exclude the validation objects that are part of the target business object.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+
+2. Click **Next**. The **Filter Settings** page opens.
+
+## Filter Settings
+
+The Filter Manager enables filtering inflow of device types based on the filter criteria. For instance, an Administrator can select to import **Asset Type** of only **Laptop** by creating the filter value **Laptop**.
+
+*Filter Manager*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/yG80dwu8hI7VbaSWfHk2a_filtermanager.png" alt="Image of the Filter Manager page." position="flex-start" size="40" initialPath="../../Resources/Images/Configure/ISM-Neurons-Integration-BestPractics/FilterManager.png" githubPath="Content/Resources/Images/Configure/ISM-Neurons-Integration-BestPractics/FilterManager.png" showCaption="false"></Image>
+
+<hint type="info">
+  - The filter settings made during import remain saved for future imports.
+  - Based on the filter settings, only those messages which are relevant to the mapping will be processed by the ITSM tenant. The rest of the messages will be discarded.
+  - To filter out null parameters, use the IsNotEmpty operator instead of NoContain (for example, when filtering a device which does not have a serial number to sync from Neurons).
+  - The filter settings work only for a single value filter in each row. If the field selected in the left panel of the mapping results in multiple values, then those filters will not work. It is advised to use the filter settings accordingly.
+</hint>
+
+For example, if you choose Device.BIOS.BIOSSettings in root table, then all the properties related to Device.BIOS.BIOSSettings will be displayed on **Filter settings** page.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/i0bw2G-OPMSE4Pun5qwvz_biostable.png" alt="Image of the root table filter setting." position="flex-start" size="40" initialPath="../../Resources/Images/Configure/ISM-Neurons-Integration-BestPractics/BiosTable.png" githubPath="Content/Resources/Images/Configure/ISM-Neurons-Integration-BestPractics/BiosTable.png" showCaption="false"></Image>
+
+When you set the filter settings as shown in the image below, the filter will not work.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/48EwjRYmlILBvUk_Try8C_filtercondition.png" alt="Image of a filter setting that will not work." position="flex-start" size="40" initialPath="../../Resources/Images/Configure/ISM-Neurons-Integration-BestPractics/FilterCondition.png" githubPath="Content/Resources/Images/Configure/ISM-Neurons-Integration-BestPractics/FilterCondition.png" showCaption="false"></Image>
+
+## Field Mapping
+
+This page is used to define the field-level mapping and transformation. The left column shows the source file name and the right column shows the target business object field name. It is assumed that the Source mapping names are known or identified in advance.
+
+1. If appropriate, select a transformation function from the middle column.
+2. Select the field names to map the source file and the target business object in \{\{FRS\_VARS.ProductName}}.
+
+<Paragraph indent="1">
+  For example: Invoice.InvoiceNumber would map to \{\{FRS\_VARS.ProductName}} ivnt\_InvoiceNumber asset identifier.
+</Paragraph>
+
+3. Select a transformation function from the second column, if required by your organization.
+
+<ExpandableHeading indent="1">
+  ## Overview of functions
+
+  | Function Name  | Category | Description                                                                                                                                                                                                                | Input                 | Output   |
+  | -------------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------- | -------- |
+  | -->            | None     | Returns the source value (does nothing).                                                                                                                                                                                   |                       |          |
+  | Abs            | Math     | The absolute value of input value.                                                                                                                                                                                         | Double                | Double   |
+  | Avg            | Math     | The arithmetic mean or average of all the input values.                                                                                                                                                                    | Double                | Double   |
+  | Cbrt           | Math     | The cube root of the input value.                                                                                                                                                                                          | Double                | Double   |
+  | Ceiling        | Math     | Smallest integer value less, greater than, or equal to the given value.                                                                                                                                                    | Double                | Double   |
+  | Century        | DateTime | Returns the century part of the input date time value.                                                                                                                                                                     | DateTime              | Double   |
+  | Concat         | String   | Concatenates string values together.                                                                                                                                                                                       | String Array          | String   |
+  | ConvertToLocal | DateTime | Converts a DateTime value to a local DateTime value.                                                                                                                                                                       | DateTime              | DateTime |
+  | ConvertToUTC   | DateTime | Converts a DateTime value to a UTC DateTime value.                                                                                                                                                                         | DateTime              | DateTime |
+  | DayOfMonth     | DateTime | Returns the day of the month of the input DateTime value.                                                                                                                                                                  | DateTime              | Double   |
+  | DayOfWeekNo    | DateTime | Returns the day number of the week of the input DateTime value.  <br />**0**: Sunday  <br />**1**: Monday  <br />**2**: Tuesday  <br />**3**: Wednesday  <br />**4**: Thursday  <br />**5**: Friday  <br />**6**: Saturday | DateTime              | Double   |
+  | DayOfWeekStr   | DateTime | Returns the day string of the week of the input DateTime value.  <br />Sunday  <br />Monday  <br />Tuesday  <br />Wednesday  <br />Thursday  <br />Friday  <br />Saturday                                                  | DateTime              | String   |
+  | DayOfYear      |          | Returns the day of the year of the input DateTime value.                                                                                                                                                                   | DateTime              | Double   |
+  | Diff           | Math     | Subtracts all the values from the first value.                                                                                                                                                                             | Double Array          | Double   |
+  | Div            | Math     | Divides the first value by the remainder of the values.                                                                                                                                                                    | Double Array          | Double   |
+  | Floor          | Math     | Largest integer value less, greater than, or equal to the given value.                                                                                                                                                     | Double                | Double   |
+  | Hour           | DateTime | Returns the hour part of the input DateTime value.                                                                                                                                                                         | DateTime              | Double   |
+  | IsoWeek        | DateTime | Returns the ISO week number of the input DateTime value.                                                                                                                                                                   | DateTime              | Double   |
+  | Leap           |          |                                                                                                                                                                                                                            |                       |          |
+  | Length         | String   | The length of the string.                                                                                                                                                                                                  | String                | Double   |
+  | LineItemType() | String   | Reads the MaterialGroupID and places the item in the appropriate product type category (Consumables, Facilities, Hardware, and Software).                                                                                  | String                | String   |
+  | Min            |          |                                                                                                                                                                                                                            |                       |          |
+  | Minute         | DateTime | Returns the minute part of the DateTime value.                                                                                                                                                                             | DateTime              | Double   |
+  | Mod            | Math     | Remainder after dividing first value by the second value.                                                                                                                                                                  | Double,  <br />Double | Double   |
+  | Month          | DateTime | Returns the month part of the input DateTime value.                                                                                                                                                                        | DateTime              | Double   |
+  | Pow            | Math     | The number raised to the power.                                                                                                                                                                                            | Double                | Double   |
+  | Product        | Math     | Product of all values.                                                                                                                                                                                                     | Double Array          | Double   |
+  | Quarter        | DateTime | Returns the quarter of the input DateTime value. Quarter ranges from 1 to 4.                                                                                                                                               | DateTime              | Double   |
+  | RegexMatch     | String   | Returns a matched value from the input value for a pattern in a position (zero-based).                                                                                                                                     | String                |          |
+  | RegexReplace   | String   | Returns a string that has been replaced with a string that matches a pattern in the input string.                                                                                                                          | String                |          |
+  | Replace        | String   | Replaces the part of a string with given value.                                                                                                                                                                            | String                | String   |
+  | Round          | Math     | Rounds a double-precision floating-point value to the nearest integer.                                                                                                                                                     | Double                | Double   |
+  | Second         | DateTime | Returns the second part of the DateTime value.                                                                                                                                                                             | DateTime              | Double   |
+  | Select         | Special  | Returns the first item in the list where the corresponding predicate is equal to a given value.                                                                                                                            |  String               |  String  |
+  | SelectNotNull  | Special  | Returns the first input value that is not empty or not null for the group of items.                                                                                                                                        | String                | String   |
+  | Split          | String   | Returns a specific part of a string split using a separator.                                                                                                                                                               | String                | String   |
+  | Sqrt           | Math     | The square root of the input value.                                                                                                                                                                                        | Double                | Double   |
+  | Substring      | String   | Returns part of a string.                                                                                                                                                                                                  | String                | String   |
+  | Sum            | Math     | Sum of given values.                                                                                                                                                                                                       | Double                | Double   |
+  | Switch         | Special  | Returns the string based on the input value and corresponding mappings (delimiter is ':')                                                                                                                                  | String                | String   |
+  | TimeDiff       | DateTime | Returns the period between two DateTime values.                                                                                                                                                                            | DateTime, DateTime    | TimeSpan |
+  | ToLower        | String   | Converts to lowercase text.                                                                                                                                                                                                | String                | String   |
+  | ToProper       | String   | Converts to proper case text.                                                                                                                                                                                              | String                | String   |
+  | ToUpper        | String   | Converts to uppercase text.                                                                                                                                                                                                | String                | String   |
+  | Trim           | String   | Removes all leading and trailing white spaces.                                                                                                                                                                             | String                | String   |
+  | TrimLeft       | String   | Removes the leading white spaces.                                                                                                                                                                                          | String                | String   |
+  | TrimRight      | String   | Removes the trailing white spaces.                                                                                                                                                                                         | String                | String   |
+  | Truncate       | Math     | The integral part of the value. In other words, rounds up or down towards zero.                                                                                                                                            | Double                | Double   |
+  | Week           | DateTime | Returns the standard week number of the input DateTime value.                                                                                                                                                              | DateTime              | Double   |
+  | Year           | DateTime | Returns the year part of the input DateTime value.                                                                                                                                                                         | DateTime              | Double   |
+</ExpandableHeading>
+
+4. If the target field is a link field, determine the name of the field to use. Refer to :Link[Mapping Fields]{label="Mapping Fields" overridedLabel="Mapping Fields" spaceId docId="z2z90_aQskfSDzXRA7Lii" version="v2" docAnchorId="#Mapping" loadingMethod="dynamic" newTab="false" githubPath="Data-Import-Connections.htm#Mapping" href="Data-Import-Connections.mdx"}.
+5. (Optional). Click **Auto Map** to map the source file column header to the target field name. Remapping the source column header does not change your existing mapping.
+6. Click **Next**. The **Review and Publish** page opens.
+
+## Review and Publish
+
+Click **Publish** to activate the connection so that it can run according to the schedule. The application only shows this option if there is a schedule involved, like with the **File on Shared Folder**, **FTP**, **Secure FTP (SSH)**, and **Ivanti Cloud Connector** connection types.
+
+The application automatically saves all field mappings even if they are not immediately published. After you publish the data, the job runs based on the schedule/s you selected.
+
+Refer to [Scheduling API Data Sync from Ivanti Neurons for Discovery to Ivanti Neurons for ITSM](<Scheduling Sync From Neurons Discovery to ISM.mdx>) for help setting your desired schedule.
+
+### Viewing, Changing, or Deactivating a Published Connection
+
+1. Log in to \{\{FRS\_VARS.ProductName}}.
+2. Open the **Integration** workspace.
+3. Select a record to open and view the settings.
+4. To deactivate a **Published** connection, clear the **Active** check box. and then click **Save**.
+
+<Paragraph indent="1">
+  You can resume the imports by selecting the **Active** check box, if needed.
+</Paragraph>

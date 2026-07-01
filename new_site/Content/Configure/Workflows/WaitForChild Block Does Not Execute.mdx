@@ -1,0 +1,27 @@
+---
+title: Troubleshooting the WaitForChild Workflow Block
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:58 GMT+0300 (Eastern European Summer Time)
+---
+
+Sometimes it appears that the **WaitForChild** workflow block does not execute. This can happen if a child business object does not meet the needed criteria.
+
+For example, if you have created a workflow called **Wait Until All Tasks Completed**, you would define the workflow block to be in the wait state until all tasks are set to completed, rejected, or canceled, at which time the workflow would continue.
+
+However, the **WaitForChild** workflow block also waits for any child business objects included.
+
+For example, say your **WaitForChild** workflow block is defined as follows:
+
+*Wait For Child Workflow Block Properties*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/aSZ3dVDi9n7js0PoOdgWO_waitforchild-block-properties.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/WaitForChild block properties.png" githubPath="Content/Resources/Images/help-images/WaitForChild block properties.png" showCaption="false"></Image>
+
+Notice that the child business object **ChangeAssocTaskAssignment** has been included. The workflow block checks this relationship to see that it is in the necessary state before continuing.
+
+However, if you manually create a task from the workspace using a relationship, the **WaitForChild** workflow block fails to detect the new manually-created task and remains in the waiting status.
+
+*Manually Creating a Task Using a Relationship*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/xQ9n-fnBT-Cni6u2-DO1E_task-assignment-change-contains-task.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/task assignment change contains task.png" githubPath="Content/Resources/Images/help-images/task assignment change contains task.png" showCaption="false"></Image>
+
+Both relationships need to be the same for the **Wait For Child** workflow block to work.

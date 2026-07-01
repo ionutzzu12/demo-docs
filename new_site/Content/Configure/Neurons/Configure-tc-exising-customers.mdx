@@ -1,0 +1,119 @@
+---
+title: Configuring ticket classification for upgraded customers
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:55 GMT+0300 (Eastern European Summer Time)
+---
+
+Follow the below steps to configure ticket classification feature for \{\{Primary.Product}} upgraded customers.
+
+1. Sign in to \{\{Primary.Product}} with the Administrator user role.
+2. Select **Configure Application** to go to the Configuration Console.
+3. From the Configuration Console, select **Build > Business Objects > Incident** to open the **Incident** Business Object.
+4. Select **Forms > Incident.CustomerOwnershipForm**.
+5. Drag and drop below fields and controls to the form and configur&#x65;**&#x20;Control Properties** as shown below.
+   - **Accuracy**: set **Visible Expression** to "False".
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/wZnRVMsGyMVyO9jPaQOVx_tc1.jpg" position="flex-start" size="40" indent="3" initialPath="../../Resources/Images/Configure/Neurons Workflow/Ticket Classification/TC1.jpg" githubPath="Content/Resources/Images/Configure/Neurons Workflow/Ticket Classification/TC1.jpg" showCaption="false"></Image>
+
+<Paragraph listStyleType="disc" indent="2">
+  **RecommendedService**: set **Visible Expression&#x20;**&#x74;o "False".
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/-xmPCmskSRRqDoU_fNhPD_tc2.jpg" position="flex-start" size="40" indent="3" initialPath="../../Resources/Images/Configure/Neurons Workflow/Ticket Classification/TC2.jpg" githubPath="Content/Resources/Images/Configure/Neurons Workflow/Ticket Classification/TC2.jpg" showCaption="false"></Image>
+
+<Paragraph listStyleType="disc" listStart="2" indent="2">
+  **RecommendedSubCategory**: set **Visible Expression** to "False".
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/eZ_NRAYgYDPlCa9lTCuls_tc3.jpg" position="flex-start" size="40" indent="3" initialPath="../../Resources/Images/Configure/Neurons Workflow/Ticket Classification/TC3.jpg" githubPath="Content/Resources/Images/Configure/Neurons Workflow/Ticket Classification/TC3.jpg" showCaption="false"></Image>
+
+<Paragraph listStyleType="disc" listStart="3" indent="2">
+  **RecommendedCategory**: set **Visible Expression** to "False".
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/EFH_YnFHs3U2n9vNgyGQn_tc4.jpg" position="flex-start" size="40" indent="3" initialPath="../../Resources/Images/Configure/Neurons Workflow/Ticket Classification/TC4.jpg" githubPath="Content/Resources/Images/Configure/Neurons Workflow/Ticket Classification/TC4.jpg" showCaption="false"></Image>
+
+<Paragraph listStyleType="disc" listStart="4" indent="2">
+  **Label**: set **Label Style Rule** as "SuccessLabel" and **Label Expression** as shown below.
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/qQVYMpao88JyBpxLREdy2_tc5.jpg" position="flex-start" size="40" indent="3" initialPath="../../Resources/Images/Configure/Neurons Workflow/Ticket Classification/TC5.jpg" githubPath="Content/Resources/Images/Configure/Neurons Workflow/Ticket Classification/TC5.jpg" showCaption="false"></Image>
+
+<Paragraph indent="2">
+  ```bash
+  $(if GetGlobal("EnableTicketClassification") &&
+
+  CheckIfTicketClassificationIsEnabledForLayout("IncidentLayout.ServiceDesk"     "Incident.CustomerOwnershipForm") &&
+
+      (RecommendedCategory != "" && 
+  RecommendedCategory != null) &&
+
+       (RecommendedService != "" && 
+  RecommendedService != null) &&
+
+  (RecommendedCategory == Category &&
+
+  RecommendedService == Service)
+    then "Ivanti Neurons AI recommendations applied."
+
+  else "")
+  ```
+</Paragraph>
+
+<Paragraph listStyleType="disc" listStart="5" indent="2">
+  **Command Button**: set **Action** as "Get Recommendation", **Label** as "Apply Ivanti Neurons AI recommendations” and **Visible Expression** as shown below.
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/LkVvGvZNBoJTO1XQRrKUi_tc6.jpg" position="flex-start" size="40" indent="3" initialPath="../../Resources/Images/Configure/Neurons Workflow/Ticket Classification/TC6.jpg" githubPath="Content/Resources/Images/Configure/Neurons Workflow/Ticket Classification/TC6.jpg" showCaption="false"></Image>
+
+<Paragraph indent="2">
+  ```bash
+  $(GetGlobal("EnableTicketClassification") &&
+
+  CheckIfTicketClassificationIsEnabledForLayout("IncidentLayout.ServiceDesk", 
+    "Incident.CustomerOwnershipForm") &&
+  RecommendedCategory != "" && 
+  RecommendedCategory != null &&
+  RecommendedService != "" && 
+  RecommendedService != null &&
+
+  (RecommendedCategory != Category || RecommendedService != Service))
+  ```
+</Paragraph>
+
+6. Select **Save**. You can change UI as per user experience. Below is an example.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/W6XF-0PE5SOCa6WM2b02T_tc7.jpg" position="flex-start" size="40" indent="2" initialPath="../../Resources/Images/Configure/Neurons Workflow/Ticket Classification/TC7.jpg" githubPath="Content/Resources/Images/Configure/Neurons Workflow/Ticket Classification/TC7.jpg" showCaption="false"></Image>
+
+7. Select the **Business Rules** tab. The application displays a list of business rules.
+8. From the **Initialization Rules** section, select **Add Initialization Rule**. The application displays the **Add Initialization Rule** window.
+9. Set the **Initialization Rule for Incident.Service** field value for Self Service user form (**Incident.WebSelfService.Edit**) as below.```bash
+   $(if GetGlobal("EnableTicketClassification") == false &&
+
+   !CheckIfTicketClassificationIsEnabledForLayout("Incident Layout 0", 
+   "Incident.WebSelfService.Edit")
+
+    then "Service Desk"
+   else null)
+   ```
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/bLzIhnHNPkRtdKIpo7zqu_tc8.jpg" position="flex-start" size="40" indent="2" initialPath="../../Resources/Images/Configure/Neurons Workflow/Ticket Classification/TC8.jpg" githubPath="Content/Resources/Images/Configure/Neurons Workflow/Ticket Classification/TC8.jpg" showCaption="false"></Image>
+
+10. Select the **Layout** tab and determine the layout to configure the ticket classification.
+11. Open the layout. For example, select **IncidentLayout.ServiceDesk** for the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Analyst-Service-Desk-Analyst}} role.
+12. Select **formView** or **FormEdit** to open the Form View Editor.
+13. Select **Enable Ticket Classification**.
+14. Select **Edit Ticket Classification Settings**. The application displays the **Configure Ticket Classification for Incident "formView" layout** dialog box.
+15. Edit the below changes accordingly. See "Enable the layout to use ticket classification feature for a user role" section in [Configuring Ticket Classification ](Ticket-categorization.mdx)for more information.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/DyZeQ3m6qENbxPOjn9Vwn_tc10.jpg" position="flex-start" size="40" indent="2" initialPath="../../Resources/Images/Configure/Neurons Workflow/Ticket Classification/TC10.jpg" githubPath="Content/Resources/Images/Configure/Neurons Workflow/Ticket Classification/TC10.jpg" showCaption="false"></Image>
+
+16. Select **Save**.
+17. Repeat Steps 11 through 16 for other layouts if required.
+18. Select **Build > Global Constants** to open the Global Constants window.
+19. Set th&#x65;**&#x20;EnableTicketClassification** value to True.
+20. Select **Save**.
+
+<hint type="info">
+  If you use different forms and layout other than those listed in the above configuration steps, then you must perform the above steps on those forms and layouts and the expression needs to be updated accordingly.
+</hint>

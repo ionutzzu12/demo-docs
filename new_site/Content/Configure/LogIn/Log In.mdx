@@ -1,0 +1,324 @@
+---
+title: Setting Up User Login
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:50 GMT+0300 (Eastern European Summer Time)
+---
+
+This section contains information about various login configurations.
+
+- :Link[Defining Account Locking]{label="Defining Account Locking" overridedLabel="Defining Account Locking" spaceId docId="pK0CzGqvxfEFzja39GxTp" version="v2" docAnchorId="#Defining_Account_Locking" loadingMethod="dynamic" newTab="false" href="Log In.mdx"}
+- :Link[Defining the Login Credential Priority]{label="Defining the Login Credential Priority" overridedLabel="Defining the Login Credential Priority" spaceId docId="pK0CzGqvxfEFzja39GxTp" version="v2" docAnchorId="#Defining" loadingMethod="dynamic" newTab="false" href="Log In.mdx"}
+- :Link[About Setting the Password Policy]{label="About Setting the Password Policy" overridedLabel="About Setting the Password Policy" spaceId docId="pK0CzGqvxfEFzja39GxTp" version="v2" docAnchorId="#Setting" loadingMethod="dynamic" newTab="false" href="Log In.mdx"}
+- :Link[Viewing a List of Users with External Logins]{label="Viewing a List of Users with External Logins" overridedLabel="Viewing a List of Users with External Logins" spaceId docId="pK0CzGqvxfEFzja39GxTp" version="v2" docAnchorId="#Viewing" loadingMethod="dynamic" newTab="false" href="Log In.mdx"}
+- :Link[Using the Identity Store]{label="Using the Identity Store" overridedLabel="Using the Identity Store" spaceId docId="pK0CzGqvxfEFzja39GxTp" version="v2" docAnchorId="#Using" loadingMethod="dynamic" newTab="false" href="Log In.mdx"}
+- :Link[Configuring the Session Timeout (classic ITSM)]{label="Configuring the Session Timeout (classic ITSM)" overridedLabel="Configuring the Session Timeout (classic ITSM)" spaceId docId="pK0CzGqvxfEFzja39GxTp" version="v2" docAnchorId="#Configur" loadingMethod="dynamic" newTab="false" href="Log In.mdx"}
+- :Link[Working with Security History]{label="Working with Security History" overridedLabel="Working with Security History" spaceId docId="pK0CzGqvxfEFzja39GxTp" version="v2" docAnchorId="#Working" loadingMethod="dynamic" newTab="false" href="Log In.mdx"}
+- :Link[Allowing Framing]{label="Allowing Framing" overridedLabel="Allowing Framing" spaceId docId="pK0CzGqvxfEFzja39GxTp" version="v2" docAnchorId="#Allowing_Framing" loadingMethod="dynamic" newTab="false" href="Log In.mdx"}
+- :Link[Canceling User Sessions]{label="Canceling User Sessions" overridedLabel="Canceling User Sessions" spaceId docId="pK0CzGqvxfEFzja39GxTp" version="v2" docAnchorId="#Cancelin" loadingMethod="dynamic" newTab="false" href="Log In.mdx"}
+- :Link[About Logging Out]{label="About Logging Out" overridedLabel="About Logging Out" spaceId docId="pK0CzGqvxfEFzja39GxTp" version="v2" docAnchorId="#About2" loadingMethod="dynamic" newTab="false" href="Log In.mdx"}
+- [Configuring anonymous user in Neurons for ITSM](Anonymous_Log_In.mdx)
+- [Logging in or Accessing Records Using URLs](Log_In_Using_URLs.mdx)
+- [Defining the Loading Message](<Define the Loading Message.mdx>)
+- [Configuring the Save For Later Feature](<../Self-Service/Configuring Save For Later.mdx>)
+
+## Defining Account Locking
+
+Use the **Security & Session** workspace to manage the account locking configuration for the current tenant.
+
+There are two types of locking:
+
+- A soft lock is when you enter an incorrect password a certain number of times. After a certain amount of time, the account unlocks.
+- A hard lock is when you are locked out and the only way to fix this is by having an administrator unlock the account.
+
+Follow these steps to configure locking:
+
+1. From the Configuration Console, click **Configure > Security Controls > Security & Session** to open the **Security & Session** workspace.
+2. Navigate to the **Account Locking** section.
+3. Enter information into the fields. The default settings can be re-set to different values.
+
+| Field              | Description                                                                                                                                                                                                                                                                                                                                                                                                            |
+| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Enabled            | Enables account locking. Unselect to disable account locking.                                                                                                                                                                                                                                                                                                                                                          |
+| Soft Lock Attempts | The number of login attempts a user can make before the account is soft locked. Default setting is **5** attempts.                                                                                                                                                                                                                                                                                                     |
+| Soft Lock Period   | The time, in minutes, for the soft lock to be in effect. Default setting is **5** minutes.                                                                                                                                                                                                                                                                                                                             |
+| Hard Lock Attempts | The number of login attempts a user can make before the account is hard locked. Default setting is **20** login attempts before the account is locked.                                                                                                                                                                                                                                                                 |
+| API Key            | The API key. The API key is required for soft locking to work correctly. Refer to :Link[Working with API Keys]{label="Working with API Keys" overridedLabel="Working with API Keys" spaceId docId="4uMINgX8IkEBkQJYaozlw" version="v2" docAnchorId="#Working-with-API-Keys" loadingMethod="dynamic" newTab="false" githubPath="../API/Web-Services-API.htm#Working-with-API-Keys" href="../API/Web-Services-API.mdx"}. |
+
+## Setting the Concurrent Session
+
+Use the **Concurrent Session** section to define the concurrent session feature for different types of users.
+
+1. From the Configuration Console, click **Configure > Security Controls > Security and Session** to open the **Security and Session** workspace.
+2. Navigate to the **Concurrent Session** section.
+3. Enter the required information in the fields. By default, the value for each field will be set to 0.
+
+| Field               | Description                                                                                                |
+| ------------------- | ---------------------------------------------------------------------------------------------------------- |
+| Named User          | No limit. Named users can have multiple sessions.                                                          |
+| Privileged User     | Users who have permission to "Run Admin Tool." Limit can be set to no more than three concurrent sessions. |
+| Non Privileged User | Limit can be set to no more than two concurrent sessions.                                                  |
+
+4. If the concurrent session limit is met, an error message will appear on the screen, "**You have reached the maximum concurrent sessions possible. Please logout from other devices and try again.**"
+
+## Defining the Login Credential Priority
+
+Use the **Security & Session** workspace to define which login credentials to use first when logging in.
+
+1. From the Configuration Console, click **Configure > Security Controls > Security and Session** to open the **Security and Session** workspace.
+2. Navigate to the **Login Priority** section.
+
+<Paragraph indent="1">
+  By default, **Try internal login before external** is checked, directing \{\{FRS\_VARS.ProductName}} to use internal login credentials before attempting to use external authentication credentials.
+</Paragraph>
+
+3. To use external login credentials first, disable this option.
+
+## About Setting the Password Policy
+
+- :Link[Setting the Password Policy]{label="Setting the Password Policy" overridedLabel="Setting the Password Policy" spaceId docId="pK0CzGqvxfEFzja39GxTp" version="v2" docAnchorId="#Setting2" loadingMethod="dynamic" newTab="false" href="Log In.mdx"}
+- :Link[Changing User Passwords]{label="Changing User Passwords" overridedLabel="Changing User Passwords" spaceId docId="pK0CzGqvxfEFzja39GxTp" version="v2" docAnchorId="#Changing" loadingMethod="dynamic" newTab="false" href="Log In.mdx"}
+
+<hint type="info">
+  The application configures all available password fields (such as **TenantEmailConfiguration** and **TenantEmailMailbox** to be of password field type. You can only define one password policy for a tenant; therefore, the password policy must accommodate all the various password values configured in the tenant.
+</hint>
+
+### Setting the Password Policy
+
+Use the **Security and Session** workspace to manage the password policy for each tenant.
+
+1. From the Configuration Console, click **Configure > Security Controls > Security and Session** to open the **Security and Session** workspace.
+2. Navigate to the **Password Policy** section.
+3. Enter information into the fields. The default settings can be re-set to values available in the drop‑down menus.
+
+<table isTableHeaderOn="true">
+  <tr>
+    <td>
+      Field
+    </td>
+    <td>
+      Description
+    </td>
+  </tr>
+  <tr>
+    <td>
+      User Passwords Expire in
+    </td>
+    <td>
+      Number of days before the password must be changed. Default setting is **Never Expires**.
+      Custom number can be typed from 1 to 255 days. To comply with FedRAMP standards, the custom number should be set from 1 to 60 days.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Minimum Password Age in Days
+    </td>
+    <td>
+      Number of days that should age for a password before it can be reset by a user. For example, if the value is set to 2, then a user will be unable to reset the password for two days. If the **Minimum Password Age in Days** value is set to zero, then the password can be reset at any point in time. If a user wants to reset the password before meeting the set value, then the user must contact the administrator.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Minimum Password Length
+    </td>
+    <td>
+      Minimum length for passwords. Default setting is **7** characters. To comply with FedRAMP standards, the password length should be set to **15** characters.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Password Complexity
+    </td>
+    <td>
+      Specifies the password complexity requirements for application users. Specifications include:
+      - No restriction
+      - Caps and lower case required
+      - Caps and lower case and number required (is the default setting).
+      - Advanced: Allows you to create a regular expression that can check the password characters against the requirements you define, such as uppercase characters (A-Z), lowercase characters (a‑z), base‑10 digits (0‑9), and special characters (for example, !, $, #, %).
+      To comply with FedRAMP standards, select **Fedramp** from the list.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      History Depth
+    </td>
+    <td>
+      This field keeps a record of the number of times a user can change the password in \{\{FRS\_VARS.ProductName}}. By default, this field is set to **3**. According to FedRAMP standards, the previous 24 passwords cannot be repeated. Hence, to comply with FedRAMP standards, set the value to **24**.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Allow Forgot Password Request
+    </td>
+    <td>
+      Adds a link to the application login page where users can request a new password.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Forgot Password Email Subject
+    </td>
+    <td>
+      The contents of the subject line of the **Forgot Password** email.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Forgot Password Letter Template
+    </td>
+    <td>
+      The text of the **Forgot Password** email. Include the ($TempInternalAuthPassword) string used to generate a temporary password.
+      The temporary password expires within 3 days of the password request.
+    </td>
+  </tr>
+</table>
+
+4. Click **Save Policy**.
+
+After updating the policy, the application sends an error message if a user tries to change a password to one that does not meet the updated password policy. The policy is enforced on password changes, not for previously existing passwords.
+
+### Changing User Passwords
+
+When a user changes a password in the application, \{\{FRS\_VARS.ProductName}} checks the password against current password policy requirements. If the new password does not meet the requirements, an error message appears.
+
+For more information on changing and resetting password, refer to [Changing and Recovering Passwords](../../Common/Passwords.mdx).
+
+## Viewing a List of Users with External Logins
+
+The **External Login** workspace (Configuration Console, click **Configure > Security Controls > External Login**) lists users that have external authentication associated with their employee record.
+
+## Using the Identity Store
+
+The **Identity Store** workspace lists all the users who have login access to \{\{FRS\_VARS.ProductName}} . These users have login IDs and passwords.
+
+- :Link[Viewing the Identity Store List]{label="Viewing the Identity Store List" overridedLabel="Viewing the Identity Store List" spaceId docId="pK0CzGqvxfEFzja39GxTp" version="v2" docAnchorId="#ViewingID" loadingMethod="dynamic" newTab="false" href="Log In.mdx"}
+- :Link[Showing Identity Details]{label="Showing Identity Details" overridedLabel="Showing Identity Details" spaceId docId="pK0CzGqvxfEFzja39GxTp" version="v2" docAnchorId="#Showing" loadingMethod="dynamic" newTab="false" href="Log In.mdx"}
+- :Link[Exporting an Employee List]{label="Exporting an Employee List" overridedLabel="Exporting an Employee List" spaceId docId="pK0CzGqvxfEFzja39GxTp" version="v2" docAnchorId="#Exporting" loadingMethod="dynamic" newTab="false" href="Log In.mdx"}
+
+### Viewing the Identity Store List
+
+1. Log into the \{\{FRS\_VARS.ProductName}} Application.
+2. Open the **Identity Store** workspace. A list of identities appears.
+3. Double-click a record from the list to see details.
+
+### Showing Identity Details
+
+1. Log into the \{\{FRS\_VARS.ProductName}} Application.
+2. Open the **Identity Store** workspace. A list of identities appears.
+3. Select a user name from the list. The user details appear in the bottom panel of the window.
+4. For more information, select a user from the list, then click **Show Identity Details** from the toolbar. The **Employee** workspace opens and the user details appear on the page. Refer to [Working with Employees](../Users/Working_with_employees.mdx). Edit employee details within the **Employee** or **External Contact** workspace.
+
+### Exporting an Employee List
+
+1. Log into the \{\{FRS\_VARS.ProductName}} Application.
+2. Open the **Identity Store** workspace. A list of identities appears.
+3. Click **Export Employee List** from the toolbar. The export confirmation window appears.
+4. Click **Yes**. A second confirmation window appears.
+5. Click **Yes**. Depending on how many records you have, the export might take several minutes, tying up your computer and possibly the database.
+
+<Paragraph indent="1">
+  The **Open Export** window appears.
+</Paragraph>
+
+6. To open the export file in Microsoft Excel, select **Open**.
+7. To save the file to your local computer, select **Save File**. The file is saved to your downloads folder.
+8. Click **OK**.
+
+## Configuring the Session Timeout (classic ITSM)
+
+- :Link[About the Session Timeout Interval]{label="About the Session Timeout Interval" overridedLabel="About the Session Timeout Interval" spaceId docId="pK0CzGqvxfEFzja39GxTp" version="v2" docAnchorId="#About" loadingMethod="dynamic" newTab="false" href="Log In.mdx"}
+- :Link[Changing the Timeout Interval]{label="Changing the Timeout Interval" overridedLabel="Changing the Timeout Interval" spaceId docId="pK0CzGqvxfEFzja39GxTp" version="v2" docAnchorId="#ChangingTO" loadingMethod="dynamic" newTab="false" href="Log In.mdx"}
+
+### About the Session Timeout Interval
+
+You can define the time (in minutes) that the current login session can remain inactive before the application automatically times out. The specified timeout is effective the moment a user logs in.
+
+You can change the timeout interval for your tenant. The default setting is 120 minutes. We recommend setting this to a value between 45 and 120 minutes, depending on how your users access the application. The application uses one timeout setting for both internal and external users.
+
+When the application reaches the specified timeout interval,
+
+- **In FedRAMP environment**: by default the user is logged out and redirected to the login page. Any unsaved data is lost.
+- **In non FedRAMP environment**: the user is logged and unsaved data is lost if the **Redirect to login page on Session expiry** option in **Configure&#x20;**>**&#xA0;Security Controls&#x20;**>**&#x20;Security and Session** > **Session Timeout** is selected. If it is not selected, the application displays a pop -up message giving users the option to log in again to the current page by entering their login password. This allows user to continue working without losing any unsaved changes.
+
+### Changing the Timeout Interval
+
+1. From the Configuration Console, click **Configure > Security Controls > Security and Session** to open the **Security and Session** workspace.
+2. Navigate to the **Session Timeout** section.
+3. Click the **Timeout (Minutes)** value.
+4. Enter a new interval time in minutes.
+5. Click **Save**.
+
+The new timeout value is effective the next time you log in.
+
+To bypass this feature, you can implement SAML 2.0 for single sign-on and pass-through authorization. This eliminates the need for a login page and allows users to directly pass through into the application. Contact \{\{FRS\_VARS.Company-short}} Support for more information on how to do this.
+
+## Configuring the Session Timeout (ITSM via Neurons Platform)
+
+<hint type="success">
+  This feature is **Early Access** only and may not be available in your environment. For more information, please contact your Customer Success Manager.
+</hint>
+
+If you are using \{\{FRS\_VARS.ITSM}} via a \{\{FRS\_VARS.unified\_product\_experience}}, control of session timeout is managed in \{\{FRS\_VARS.Neurons}} for all the products that you have access to.
+
+For more information, refer to [App login and navigation](<../../Common/How to Log In.mdx>).
+
+## Working with Security History
+
+You can get a list of when users log in from the **Security History** workspace.
+
+Prior to \{\{FRS\_VARS.ProductName}} Release 2015.2, this workspace was called the **Logon History** workspace.
+
+1. While logged in as administrator, do one of the following:
+   - From the \{\{FRS\_VARS.ProductName}} Application, open the **Security History** workspace.
+   - From the Configuration Console, click **Monitor > Security History** to open the **Security History** workspace.
+
+<Paragraph indent="1">
+  The list of logins appears with the following information:
+</Paragraph>
+
+| Column              | Description                                                   |
+| ------------------- | ------------------------------------------------------------- |
+| Event Date          | The date of the event                                         |
+| Event Type          | The type of event                                             |
+| User                | The user name                                                 |
+| Message             | Message details of the event                                  |
+| Logged from IP      | The source IP address of the user received by the server      |
+| Login date/time     | The date and time the user logged in                          |
+| Login Type          | The login type, such as new login                             |
+| Logout date/time    | The date and time the user logged out                         |
+| Logout Type         | The type of logout, such as explicit                          |
+| Role                | The role the user logged in as                                |
+| Authentication Type | The authentication type used                                  |
+| Last Request        | The date and time of the last login request                   |
+| Successful Login    | Success of the login: successful or unsuccessful attempt      |
+| User Agent          | The browser and operating application that the user was using |
+
+## Allowing Framing
+
+In the context of a web browser, a frame is a part of a web page or browser window that displays content independent of its container, with the ability to load content independently. The HTML or media elements that go in a frame may or may not come from the same web site as the other elements of content on display.
+
+By default, \{\{FRS\_VARS.ProductName}} allows framing. Use caution when allowing framing across domains, as this could lead to security problems.
+
+1. From the Configuration Console, click **Configure > Security Controls > Security and Session** to open the **Security and Session** workspace.
+2. Navigate to the **Framing** section.
+3. Check **Allow framing** to allow framing, or uncheck it to disable framing.
+
+## Canceling User Sessions
+
+You can simultaneously terminate multiple user sessions.
+
+1. From the Configuration Console, click **Monitor > Security History** to open the **Security History** workspace.
+2. Select the user sessions to cancel.
+3. Click **Terminate User Session**. The application disables this button if any of the selected user sessions are already terminated. A confirmation window appears.
+4. Click **Yes**.
+
+You can also cancel sessions from the Action Menu.
+
+*Terminate User Session Quick Action*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/v93lndFp6yK82vCjue2Lf_cancel-session-qa.png" alt="Terminating a user session using an Action menu quick action." position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/cancel session qa.png" githubPath="Content/Resources/Images/help-images/cancel session qa.png" showCaption="false"></Image>
+
+## About Logging Out
+
+When a user closes the last browser tab or window in Mozilla Firefox, the active session is stopped. This enables other users to access the application without compromising licensing limitations. This is not possible for Microsoft Internet Explorer or Google Chrome, at this time.
+
+The active session is removed when the user closes the browser window in Microsoft Internet Explorer and Mozilla Firefox, freeing the license for other users. Google Chrome does not log out users when they close the window, but rather keeps the sessions open, allowing users to resume their session at a later time.

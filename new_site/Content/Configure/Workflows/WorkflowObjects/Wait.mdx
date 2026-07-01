@@ -1,0 +1,67 @@
+---
+title: Wait Workflow Block
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:58 GMT+0300 (Eastern European Summer Time)
+---
+
+The **Wait** workflow block waits for a condition specified in the workflow block to become true, or for a timer to expire. By default, exit ports for this block allow for separate workflow paths for these events.
+
+<hint type="info">
+  Defining parameters and conditions from the Design form interrupts the wait workflow block execution.
+</hint>
+
+*Wait Workflow Block Properties*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/0fXps2J8e91eEbwcDxklM_waitblock.png" position="flex-start" size="40" indent="1" initialPath="../../../Resources/Images/help-images/wait_block.png" githubPath="Content/Resources/Images/help-images/wait_block.png" showCaption="false"></Image>
+
+The timeout behavior is as follows:
+
+If value-based timer (such as duration) is specified by values
+
+| days | == | null && hours == null && minutes == null, | then infinite timeout or never times out                                                 |
+| ---- | -- | ----------------------------------------- | ---------------------------------------------------------------------------------------- |
+| days | =  | 0 && hours = 0 && minutes = 0,            | then immediately times out and timeout exit is used                                      |
+| days | >  | 0 && hours > 0 && minutes > 0,            | then combined value is set as the timeout and exit timeout is used when the time passes. |
+
+<hint type="info">
+  The maximum number of days allowed is 30, if it exceeds 30, a validation error is displayed.
+</hint>
+
+If field-based timer
+
+| fieldvalue | ==  | null,   | then infinite timeout or never times out                                                |
+| ---------- | --- | ------- | --------------------------------------------------------------------------------------- |
+| fieldvalue | \<= | UtcNow, | then immediately times out and timeout exit used                                        |
+| fieldvalue | >   | UtcNow, | then combined value is set as the timeout and exit timeout is used when the time passes |
+
+## Exit Ports
+
+You can define additional exit ports under the **Exits Configuration** tab. See :Link[Exits Configuration]{label="Exits Configuration" overridedLabel="Exits Configuration" spaceId docId="SaUQJmfwFZ-PqnlodqGKY" version="v2" docAnchorId="#Exits_Configuration" loadingMethod="dynamic" newTab="false" githubPath="Switch.htm#Exits_Configuration" href="Switch.mdx"}.
+
+| Exit Port | Description                                                                                          |
+| --------- | ---------------------------------------------------------------------------------------------------- |
+| OK        | Continue to the next block.                                                                          |
+| Timed Out | General exit port for a failed integration action. A logical next step is to trigger a notification. |
+
+## Properties
+
+| Property        | Description                                                                                                            |
+| --------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| Title           | A unique name for the workflow block.                                                                                  |
+| Timeout         |                                                                                                                        |
+| Field           | The due date is generated relative to the field selected from the drop-down list.                                      |
+| Duration        | Defines the due date according to the interval defined in the **Days**, **Hrs** (hours), and **Mins** (minutes) fields |
+| Wait Conditions |                                                                                                                        |
+| AND / OR        | The child filter condition.                                                                                            |
+| Field           | The operand. Select from the drop-down list.                                                                           |
+| Operator        | An additional operator. Select from the drop-down list.                                                                |
+| Value           | Adds a value. Depending on the child business object, this can be a drop-down list or calendar selection.              |
+
+## Actions
+
+| Button                                                                                                                                                                                                                                                                                                                      | Action                                    |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------- |
+| <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/TsW33ptQCQZi49zfSiIIi_add.png" size="10" isUploading="false" initialPath="../../../Resources/Images/buttons/add.png" githubPath="Content/Resources/Images/buttons/add.png" width="20" height="16" showCaption="false"></Image>          | Adds an expression to the workflow block. |
+| <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/uN-MJlNAhdQXruh5k_EsW_delete.png" size="10" isUploading="false" initialPath="../../../Resources/Images/buttons/delete.png" githubPath="Content/Resources/Images/buttons/delete.png" width="19" height="16" showCaption="false"></Image> | Removes an expression from the list.      |
+| Save                                                                                                                                                                                                                                                                                                                        | Commits your settings.                    |
+| Cancel                                                                                                                                                                                                                                                                                                                      | Exits without saving.                     |

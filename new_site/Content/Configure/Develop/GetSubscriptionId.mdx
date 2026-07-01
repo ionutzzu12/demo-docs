@@ -1,0 +1,63 @@
+---
+title: Using the GetSubscriptionId Web Method
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:01 GMT+0300 (Eastern European Summer Time)
+---
+
+Returns the subscription ID corresponding to the request offering for the current user.
+
+## Request Syntax
+
+publicFRSHEATGetSubscriptionIdResponse GetSubscriptionId(string sessionKey, string tenantId, string name)
+
+## Parameters
+
+- **sessionKey**: The session key from the **Connect** web method.
+- **tenantId**: The tenant for which the session key is authenticated.
+- **name**: The name of the request offering.
+
+## Return Value
+
+**FRSHEATGetSubscriptionIdResponse** object, defined as follows:
+
+public class FRSHEATGetSubscriptionIdResponse
+
+    \{
+
+public string status \{ get; set; }
+
+public string exceptionReason \{ get; set; }
+
+public string subscriptionId \{ get; set; }
+
+    }
+
+The **FRSHEATGetSubscriptionIdResponse** class has the following fields:
+
+- **status**: Provides a status about the state of the connection. The table below contains a full description of the available status values.
+- **exceptionReason**: Contains exception information, if the application throws an exception when running this web method.
+- **subscriptionId**: Contains the subscription ID corresponding to the request offering for the current user.
+
+The following table lists the available status values and describes how to interpret them.
+
+| <font color="#FFFFFF">Status</font> | <font color="#FFFFFF">Explanation</font>                                                                                                                           |
+| ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Success**                         | Successfully retrieved the subscription ID of the specified request offering. This is contained in the **subscriptionId** field.                                   |
+| **NotFound**                        | The tenant does not contain a request offering with the specified name. Ensure that the name of the request offering is spelled correctly.                         |
+| **Error**                           | An error was encountered during the execution of this web method.  Inspect the corresponding **exceptionReason** field to determine why the web method has failed. |
+
+## Example
+
+FRSHEATGetSubscriptionIdResponse subscriptionIdResponse = frSvc.GetSubscriptionId(authSessionKey, tenantId, offeringName);
+
+string offeringname = "Domain Password Reset";
+
+if (subscriptionIdResponse.status == "Success")
+
+            \{
+
+string subscriptionId = subscriptionIdResponse.subscriptionId;
+
+Console.WriteLine("The Subscription Id for the \\"\{\{0}}\\" Request Offering is \{\{1}}", offeringName, subscriptionId);
+
+            }  

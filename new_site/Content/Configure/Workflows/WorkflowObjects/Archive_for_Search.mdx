@@ -1,0 +1,65 @@
+---
+title: Archive for Search Workflow Block
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:58 GMT+0300 (Eastern European Summer Time)
+---
+
+The **Archive for Search** workflow block is used to delete various records from a business object. It is used with the database archive and delete feature. See [Archiving and Deleting Log Data from the Neurons for ITSM Databases](<../../Performance/Archiving Business Objects.mdx>).
+
+<hint type="info">
+  Although this feature is called "Database Archive and Delete", only the functionality to delete data has been added.  We will introduce the functionality to archive data in a future release.
+</hint>
+
+## Specifying the Business Object to Archive and Delete
+
+To specify the business object to delete, do the following:
+
+1. In the Configuration Console, click **Build > Workflow > Workflows** to view the **Workflow Instances** workspace.
+2. Under Schedule Entry, click **Archive Logs** to open the **Archive Logs** workflow.
+3. Click the **edit** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/WTLKbMa5PI7qeazzbj0FD_edit-old.png" alt caption size="10" width="16" height="16"} to open the Workflow Editor.
+4. Double-click inside any workflow block to open it.
+
+*Archive for Search Workflow Block Properties*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/IFVdUR6q88s7OUV-fcu3e_archiveworkflowblock.png" position="flex-start" size="40" indent="1" initialPath="../../../Resources/Images/help-images/archive_workflow_block.png" githubPath="Content/Resources/Images/help-images/archive_workflow_block.png" showCaption="false"></Image>
+
+5. Select a business object from the **Select Object** drop-down list.
+
+<Paragraph indent="1">
+  If you select a business object that can be archived or deleted, the **Search Definition** field shows **Archive**.
+</Paragraph>
+
+6. Select **Archive**.
+7. (Optional) Change the title.
+8. Click **Save**.
+
+<Paragraph indent="1">
+  The application validates the workflow block.
+</Paragraph>
+
+9. Run the associated workflow.
+
+## Validating the Archive for Search Workflow Block
+
+The **Archive for Search** workflow block gets validated every time you save it. If the workflow block has any errors, the application does not save it and displays an error with more information.
+
+## Exit Ports
+
+| Exit Port | Description                 |
+| --------- | --------------------------- |
+| OK        | Continue to the next block. |
+
+## Properties
+
+| Property          | Description                                                                                      |
+| ----------------- | ------------------------------------------------------------------------------------------------ |
+| Title             | A unique name for the workflow block.                                                            |
+| Select Object     | The business object on which to search. Select a business object that can be archived or deleted |
+| Search Definition | The particular records to be deleted.                                                            |
+
+## Actions
+
+| Button | Action                 |
+| ------ | ---------------------- |
+| Save   | Commits your settings. |
+| Cancel | Exits without saving.  |

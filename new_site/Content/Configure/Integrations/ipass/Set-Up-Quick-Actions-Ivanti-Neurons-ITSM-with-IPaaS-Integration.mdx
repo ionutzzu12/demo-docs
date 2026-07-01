@@ -1,0 +1,93 @@
+---
+title: Set up quick actions in ITSM with iPaaS integration
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:52 GMT+0300 (Eastern European Summer Time)
+---
+
+**Role**: Administrators.
+
+**Minimum Version**: \{\{Primary.Company}} \{\{Primary.Product}} 2025.2.
+
+This section describes the procedure for integrating \{\{Primary.Company}} \{\{Primary.Product}} with \{\{FRS\_VARS.Product\_Name}} recipes to perform tasks, create records, and trigger various outcomes through \{\{FRS\_VARS.Product\_Name}} connectors.
+
+## Configure a quick action to execute an iPaaS recipe
+
+1. Log in to Ivanti Neurons for \{\{FRS\_VARS.ITSM}} as an \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+2. From the Service Desk console, open the required workspace. For example, open **Incident**.
+3. Create a web request action:
+
+<Paragraph indent="1">
+  If you are using the Modern UI, do the step (a), and then continue with step 4.
+</Paragraph>
+
+<Paragraph indent="1">
+  a. Select **More** > **Edit Actions** > \{\{FRS\_VARS.Graphical\_Action\_Designer}}.
+</Paragraph>
+
+<Paragraph indent="2">
+  The \{\{FRS\_VARS.Graphical\_Action\_Designer}} is displayed.
+</Paragraph>
+
+*Web Request in&#x20;*\{\{FRS\_VARS.Graphical\_Action\_Designer}}
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/k_5do9L1JEYQxlx7AildX_gad-web-request.png" alt="Image of a typical Neurons for ITSM deployment." position="flex-start" size="40" indent="2" initialPath="../../../Resources/Images/Integration-images/gad-web-request.png" githubPath="Content/Resources/Images/Integration-images/gad-web-request.png" showCaption="false"></Image>
+
+<Paragraph listStyleType="disc" indent="3">
+  Select **New Action** > **Web Request**
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="3">
+  Select the **Web Request** from the left pane, and drag it to the design screen.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="3">
+  Connect the **Start block** to the **Web Request Action** using the available connector tools.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="3">
+  In the **Settings** pane in the window, enter the details in **Name** and **Description** .
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="3">
+  Select **Web Request Action**, and set the method type to **POST** or **GET**, depending on the webhook type.
+</Paragraph>
+
+<Paragraph indent="1">
+  If you are using the Classic UI, do the step (b) and then continue with step (4):
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Select **More** > **Edit Actions** > \{\{FRS\_VARS.Classic\_Action\_Designer}}.
+</Paragraph>
+
+<Paragraph indent="2">
+  The \{\{FRS\_VARS.Classic\_Action\_Designer}} is displayed.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="3">
+  Select **Create New Actions** > **Run Rest Web Service**.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="3">
+  Enter details in **Action Name**, and **Action description**.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="3">
+  Select the **Request Type**, and set the method type **POST** or **GET**, depending on the webhook type.
+</Paragraph>
+
+4. In the **URL** field, enter the webhook address from the \{\{FRS\_VARS.Product\_Name}} recipe that uses a webhook triggered action.
+
+<Paragraph indent="1">
+  Example:
+</Paragraph>
+
+```bash
+"https://webhooks.workato.com/webhooks/rest/809f5852-2787-4786-8500-57423e914987/get-incident?RecId=" + RecId
+```
+
+5. Add query parameters as required. Use available Incident fields from the right pane to populate parameter values and then click **Save**.
+6. The Quick Action sends a web request to the \{\{FRS\_VARS.Product\_Name}} recipe, which can:
+   - Notify users via email
+   - Update related incidents
+   - Trigger automation tasks, such as sending notifications to Slack or Teams through \{\{FRS\_VARS.Product\_Name}} connectors.

@@ -1,0 +1,136 @@
+---
+title: Automate tasks or trigger iPaaS recipes from microsoft teams with workbot
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:52 GMT+0300 (Eastern European Summer Time)
+---
+
+**Role**: Administrators.
+
+**Minimum Version**: \{\{Primary.Company}} \{\{Primary.Product}} 2025.2.
+
+<hint type="success">
+  To trigger \{\{FRS\_VARS.Product\_Name}} recipes you must create a project in ITSM, and check the access permissions in microsoft teams.
+</hint>
+
+To access \{\{FRS\_VARS.Product\_Name}} in \{\{FRS\_VARS.ITSM}}, sign in as an \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}, open the Configuration console, go to **Extend** > \{\{FRS\_VARS.Product\_Name}}**&#x20;Integration**, and then select an existing project or create a new one.
+
+### Required permissions and access
+
+\{\{FRS\_VARS.Product\_Name}}**&#x20;access requirements**
+
+Ensure you have access to the following \{\{FRS\_VARS.Product\_Name}} features and required privileges:
+
+- **Workbot**: **Platform** > **Workbot**
+- **Custom OAuth profiles** : **Tools** > **Custom OAuth Profiles**
+
+<Paragraph indent="1">
+  If either option is unavailable, contact your Customer Success Manager.
+</Paragraph>
+
+- You must have privileges to:
+  - Create and configure workbots
+  - Create and configure custom OAuth profiles
+
+**Microsoft 365 role requirements**
+
+You must have one of the following roles in your Microsoft organization:
+
+- Application administrator
+- Cloud application administrator
+- Global administrator
+- Privileged role administrator
+
+### Create a custom OAuth profile in microsoft teams
+
+1. Open the **Microsoft Teams** application, log in with appropriate role.
+2. Go to **Tools** > **Custom OAuth Profiles**.
+3. Select **Create New Custom OAuth Profile** and choose **Workbot** for Microsoft Teams.
+4. Enter a unique name according to the guidelines.
+
+### Create a bot
+
+1. Go to **Tools** > **Bot Management.**
+2. Select **+ New Bot** and enter an appropriate bot name and then click **+ Add**
+
+<hint type="info">
+  It is recommended that you use the same name as your application to avoid confusion.
+</hint>
+
+3. Set the bot endpoint address by clicking **Create new app** on the left.
+4. Click **Save**.
+
+### Create the app in microsoft teams developer portal
+
+1. Open the **Microsoft Teams Developer Portal**.
+2. On the **Apps** page, select **+ New app**.
+3. Enter the details in the following required fields:
+   - Short description
+   - Long description
+   - Developer information
+   - App URLs
+   - Privacy policy
+   - Terms of use
+4. Click **Save**.
+5. Under **Branding**, configure the app's branding.
+6. Under the **Domains** section, select **Add a domain** and enter \*.workato.com.
+
+### Configure bot permissions
+
+1. In the **App features** section, select **Bot**.
+2. From the dropdown list, select the newly created bot.
+3. Under the **What can your bot do**, select **Upload and download files**.
+4. Under **Scopes**, select the following:
+   - Check Personal, Team, and Group Chat
+5. Click **Save**.
+6. Select **Add a command**, and enter details in the following:
+   - Command : **help**
+   - Description : **help** to view available commands.
+   - Scopes : **Check Personal**, **Team**, **Group Chat**
+7. Click **Save**.
+
+### Configure authentication redirect URLs in azure
+
+1. Open the **Azure Portal**.
+2. In the search bar, enter **App Registration** and select the result.
+3. Select your **bot** from the list.
+4. In the left pane, click **Authentication**.
+5. Under **Platform configurations**, select **+ Add a platform**, and then select **Web**.
+6. Enter the redirect URL: [https://www.workato.com/oauth/callback](https://www.workato.com/oauth/callback)
+7. Select **Save**.
+
+### Retrieve bot credentials
+
+1. Go to **Tools** > **Bot Management**.
+2. Select your newly created bot.
+3. Select **Create new app** on the left to view the bot endpoint, and copy the **Bot ID** from the URL:
+
+https\://dev.teams.microsoft.com/bots/\<YOUR-BOT-ID>/configure.
+
+4. Paste the **Bot ID** into the **Client ID** field.
+5. Under the **Client secrets**, select **Add a client secret**, then copy and paste it into the **Client secret** field.
+
+### Copy the application (client) id
+
+1. Go to the **Apps page** in the Microsoft Teams Developer Portal.
+2. Select your newly created app.
+3. Under **Basic Information**, copy the **Bot ID** and paste it into the **Application (Client) ID** field.
+
+### Publish the application
+
+1. In the **Microsoft Teams Developer** portal, go to **Publish** > **Publish to org**.
+2. Select **Publish your app** to submit a request for approval.
+3. Ask your **Microsoft Teams admin** to approve the request, by navigating to:
+
+<Paragraph indent="1">
+  **Admin dashboard** > **Manage apps** > **Search for the app** > **Allow publish**.
+</Paragraph>
+
+### Add the bot to microsoft teams
+
+1. After approval, open microsoft teams, go to **Teams app** store.
+2. Under **Built for your organization**, find your app and select **Add**.
+3. Open the chat window and enter **help** to view available Workbot actions. These actions are \{\{FRS\_VARS.Product\_Name}} recipes created using the custom OAuth connection you configured earlier.
+
+<Paragraph indent="1">
+  For detailed instructions on creating Workbot recipes for platforms such as Microsoft Teams and Slack, see the [Workato documentation](https://docs.workato.com/workbot-for-teams/workbot.html).
+</Paragraph>

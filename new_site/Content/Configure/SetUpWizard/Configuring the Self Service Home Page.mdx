@@ -1,0 +1,123 @@
+---
+title: Configuring the Self-Service Portal
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:49 GMT+0300 (Eastern European Summer Time)
+---
+
+- :Link[Initially Configuring the Self-Service Portal]{label="Initially Configuring the Self-Service Portal" overridedLabel="Initially Configuring the Self-Service Portal" spaceId docId="Qz1BL3TyfqaqT8CT5j4uj" version="v2" docAnchorId="#Initially_Configuring_the_Self_Service_Home_Page" loadingMethod="dynamic" newTab="false" href="Configuring the Self Service Home Page.mdx"}
+- :Link[Modifying the Self-Service Portal After the Initial Configuration]{label="Modifying the Self-Service Portal After the Initial Configuration" overridedLabel="Modifying the Self-Service Portal After the Initial Configuration" spaceId docId="Qz1BL3TyfqaqT8CT5j4uj" version="v2" docAnchorId="#Modifying_the_Self_Service_Home_Page_After_the_Initial_Configuration" loadingMethod="dynamic" newTab="false" href="Configuring the Self Service Home Page.mdx"}
+
+## Initially Configuring the Self-Service Portal
+
+The **Application Setup - Self Service Configuration** page is part of the **Application Setup** workspace. Use this page to define the display of the Self-Service Portal and to add users who can access the Self-Service Portal.
+
+<hint type="info">
+  This is one step of the application setup process. For more information about this process, including how to access this page, see [Setting Up the Application](<Setting Up The Application.mdx>).
+
+  You can skip this step by accepting the defaults by clicking **Accept Defaults and Skip Section**.
+</hint>
+
+See the following sections:
+
+- :Link[Configuring the Tabs on the Self-Service Portal]{label="Configuring the Tabs on the Self-Service Portal" overridedLabel="Configuring the Tabs on the Self-Service Portal" spaceId docId="Qz1BL3TyfqaqT8CT5j4uj" version="v2" docAnchorId="#Configuring_the_Self_Service_Home_Page_Branding" loadingMethod="dynamic" newTab="false" href="Configuring the Self Service Home Page.mdx"}
+- :Link[Configuring the Look of the Self-Service Portal]{label="Configuring the Look of the Self-Service Portal" overridedLabel="Configuring the Look of the Self-Service Portal" spaceId docId="Qz1BL3TyfqaqT8CT5j4uj" version="v2" docAnchorId="#Configuring_the_Look_of_the_Self_Service_Home_Page" loadingMethod="dynamic" newTab="false" href="Configuring the Self Service Home Page.mdx"}
+
+## Configuring the Tabs on the Self-Service Portal
+
+You can designate what users see in the Self-Service Portal, such as a logo or tabs. The branding option only applies to the Self-Service Portal.
+
+By default, you can display the following tabs on the Self-Service Portal:
+
+- **Home**: Displays the Self-Service Portal.
+- **Social Board**: Displays the **Social Board** workspace.
+- **Service Catalog**: Lists available services and allows you to request a service.
+- **My Items**: Displays reported items and service requests.
+- **Knowledge Center**: Allows access to the organization Knowledge Base.
+- **Search**: Defines search parameters.
+- **Announcements**: Displays application-generated announcements.
+- **Alert**: Displays application alerts.
+- **FAQ**: Displays a list of frequently asked questions.
+
+Follow these steps:
+
+1. Log in to Neurons for ITSM as Administrator.
+2. In the \{\{FRS\_VARS.Configuration\_console}}, select **Configure** >**Organization Profile** > **Application Setup** > **Branding**.
+3. Click **Branding**. The application displays the **Application Setup - Self Service Branding** page.
+4. To change the tabs on the Self-Service Portal, do the following:
+
+<Paragraph indent="1">
+  a. Click **Edit** next to the name of a tab.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. To change the name of the tab, edit the text in the **Title** field.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. Next to **Hidden Expression**, click **\<Not Set>**. The application displays an **Expression Editor** pop-up window where you can enter an expression that specifies when the workspace is visible in the Self-Service Portal. Enter an expression such as **$(GetGlobal("FeatureA"))** and click **Save**.
+</Paragraph>
+
+<Paragraph indent="1">
+  d. To display an available tab, check **Initially visible** or to not display an available tab, uncheck **Initially visible**.
+</Paragraph>
+
+5. Click **Next** to go to the next page.
+
+### Configuring the Look of the Self-Service Portal
+
+You can designate the look of the Self-Service Portal.
+
+1. Click **Home Page**. The application displays the **Application Setup - Self Service Home Page** page.
+
+<Paragraph indent="1">
+  The application displays four dashboard configurations.
+</Paragraph>
+
+| Option                    | Description                                                                                         |
+| ------------------------- | --------------------------------------------------------------------------------------------------- |
+| Self Service              | Includes alerts, search plugins, and five standard dashboard parts.                                 |
+| Self Service Simple       | Contains My Open Items, top questions, report issue, and service request parts.                     |
+| Self Service Simplified   | Contains search plugins and two default dashboard parts.                                            |
+| Self Service for Call Log | Contains information for customers who migrated to \{\{FRS\_VARS.ProductName}} from Ivanti Classic. |
+
+2. Click **Preview** to see how a dashboard looks. Click outside the **Preview** window to return to the page.
+3. Select the option to display on the Self-Service Portal.
+4. Click **Next** to save your settings and go to the next page. See [Adding Users to the System and Assigning Roles to Users](<Adding Users to Roles.mdx>).
+
+## Modifying the Self-Service Portal After the Initial Configuration
+
+After you have initially configured the Self-Service Portal, you can later edit the settings from the Configuration console.
+
+### Changing the Tabs on the Self-Service Portal
+
+Select the tabs that appear by default on the Self-Service Portal. You can also change the tab order.
+
+1. From the Configuration console, click **Build > Self Service > Tabs** to open the **Tabs** workspace.
+2. Click **Edit** next to a tab name to configure the following options:
+
+| Field     | Description                                                              |
+| --------- | ------------------------------------------------------------------------ |
+| Title     | The name of the tab that appears to the user. Click the name to edit it. |
+| Available | Makes this tab available to the user.                                    |
+| Visible   | Makes this tab initially visible to the user.                            |
+| Closeable | Includes a **Close** button (X) that allows the user to close the tab.   |
+
+3. Click **Apply Changes** to save your changes.
+4. To change the tab order, click and drag the dotted area on the left of the tab name to reorder the tabs.
+5. Click **Save**.
+
+### Changing the Default Look of the Self-Service Portal
+
+Select the default look of the Self-Service Portal.
+
+1. From the Configuration console, click **Build > Self Service > Home Page** to open the Self-Service Portal. The application displays four dashboard configurations.
+
+| Option                    | Description                                                                                       |
+| ------------------------- | ------------------------------------------------------------------------------------------------- |
+| Self Service              | Includes alerts, search plugins, and five standard dashboard parts.                               |
+| Self Service Simple       | Contains My Open Items, top questions, report issue, and service request parts.                   |
+| Self Service Simplified   | Contains search plugins and two default dashboard parts.                                          |
+| Self Service for Call Log | Contains information for customers who migrated to \{\{FRS\_VARS.ProductName}} from HEAT Classic. |
+
+2. Click **Preview** to see how a dashboard looks. Click outside the **Preview** window to return to the page.
+3. Select the option to display on the Self-Service Portal.

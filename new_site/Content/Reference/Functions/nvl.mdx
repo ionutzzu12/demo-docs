@@ -1,0 +1,62 @@
+---
+title: nvl
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:59 GMT+0300 (Eastern European Summer Time)
+---
+
+First determines if the value of the first parameter is null. If it is, it returns the value of the second parameter.
+
+## Syntax
+
+nvl(expr1, expr2)
+
+## Enabled For
+
+For a description of the business object categories, see :Link[Notes on "Enabled For"]{label="Notes on &#x22;Enabled For&#x22;" overridedLabel="Notes on &#x22;Enabled For&#x22;" spaceId docId="xObv2pIDrk60jkEIWs8mD" version="v2" docAnchorId="#Notes" loadingMethod="dynamic" newTab="false" githubPath="_Built_in_Functions.htm#Notes" href="_Built_in_Functions.mdx"}.
+
+| Business Object Category                                                                    | Yes/No |
+| ------------------------------------------------------------------------------------------- | ------ |
+| Business Rules: Before-Save Rules                                                           | Yes    |
+| Business Rules: Calculation Rules (After Save, with or without Also Recalculate on Load)    | Yes    |
+| Business Rules: Calculation Rules (Before Save or Always, without Also Recalculate On Load) | Yes    |
+| Business Rules: Calculation Rules (Before Save or Always, with Recalculate On Load)         | Yes    |
+| Business Rules: Editing Rules                                                               | Yes    |
+| Business Rules: Initialization Rules                                                        | Yes    |
+| Business Rules: Read Only Rules                                                             | Yes    |
+| Business Rules: Required Rules                                                              | Yes    |
+| Business Rules: Validation Rules                                                            | Yes    |
+| Client Expressions                                                                          | Yes    |
+| Object Permissions                                                                          | Yes    |
+| Services                                                                                    | Yes    |
+| LDAP                                                                                        | Yes    |
+| Mobile                                                                                      | Yes    |
+| Quick Actions (except UI Quick Actions)                                                     | Yes    |
+| UI Quick Actions                                                                            | Yes    |
+| Reports                                                                                     | Yes    |
+| Search/Dashboard without field references                                                   | Yes    |
+| Search/Dashboard with field references                                                      | Yes    |
+
+## Parameters
+
+| Parameter | Description            |
+| --------- | ---------------------- |
+| expr1     | The first expression.  |
+| expr2     | The second expression. |
+
+## Return Value
+
+Text value:
+
+- Returns the value of the expr1 parameter if the value of the expr1 parameter is not null.
+- Returns the value of the expr2 parameter if the value of the expr1 parameter is null.
+- Returns null if the values of both the expr1 and expr2 parameters are null.
+
+## Example
+
+The following example tests the **Owner** field to see if it is empty, and returns the appropriate message:
+
+$(nvl(Owner, "Unknown owner"))
+
+<hint type="info">
+  nvl does not support multiple values to be used as parameter, therefore a list cannot be used as expr1. That is, a Validated field cannot be used as expr1.
+</hint>

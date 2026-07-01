@@ -1,0 +1,107 @@
+---
+title: Ticket Summary
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:00 GMT+0300 (Eastern European Summer Time)
+---
+
+**Role**: \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+
+**Platform**: SaaS only.
+
+**Minimum Version**: \{\{Primary.Company}} \{\{Primary.Product}} 2024.2.
+
+**Feature Eligibility**: Ivanti's \{\{FRS\_VARS.AITSM}} capabilities are available to customers who have subscribed to Premium or Enterprise Premium license. To know your eligibility, reach out to your Ivanti Account Manager.
+
+**Package Installation:** Existing customers - import the [latest package](https://marketplace.ivanti.com/xchange/64b5b48e2ee9d6e08c3e6724/solution/66573f6ffa3fa054d3cbb75a).
+
+With AITSM capabilities, both Self Service users and Service Desk Analysts can now view ticket summary, check user interaction history, and leverage urgency prediction to streamline incident reporting in your \{\{FRS\_VARS.ITSM}} service desk. The Ticket Summary feature provides a quick, consolidated view of the ticket details and past interactions, helping users and analysts stay informed at a glance.
+
+When submitting an incident through the Self Service Mobile V3 portal, the system uses AI to automatically predict the urgency of the ticket and display relevant knowledge base articles that the user referred to before submission. This not only improves the accuracy of incident prioritization but also gives the Service Desk team valuable insights into user behavior and the resources consulted, enabling faster and more informed resolutions.
+
+## Configuring the Incident Form
+
+The **User Interaction History** is available for new users out-of-the-box but existing users need to configure it.
+
+**Adding the User Interaction History field to the Incident Form -&#x20;**\{\{FRS\_VARS.Self\_Service\_Mobile\_portal}}**&#x20;Incident Page**
+
+Use the following procedure to add the **User Interaction History** field in the \{\{FRS\_VARS.Self\_Service\_Mobile\_portal}} Incident page so that end users can view the User Interaction History while submitting the Incident.
+
+1. Log in to \{\{Primary.Product}} as an Administrator.
+2. Open the Configuration console > **Build** > **Business Objects** > **Incident** > **Forms** tab.
+3. Select the form:
+   - To create a new form - select **Incident.WebSelfService.New**.
+   - To edit existing form - select **Incident.WebSelfService.Edit**.
+
+<hint type="info" indent="1">
+  In case you are using a different form, select the one you use for the Self Service Mobile role.
+</hint>
+
+4. Drag and drop the **User Interaction History** field on to the form.
+5. In the **Control Properties** field of the form, add the following expression:
+
+```bash
+$(IsRegexMatch(GetGlobal("IsAIITSMEnabled"),/"TicketSummarization":\s*[tT]rue/))
+```
+
+6. Adjust the dimensions - height and width.
+7. Make any necessary changes to the **field properties**.
+8. Save the changes.
+
+<Paragraph indent="1">
+  The **User Interaction History** field will be displayed in the \{\{FRS\_VARS.Self\_Service\_Mobile\_portal}} Incident page.
+</Paragraph>
+
+<hint type="info" indent="2">
+  This feature is applicable only for \{\{FRS\_VARS.Self\_Service\_Portal-Self-Service}} Version 3 users.
+</hint>
+
+<Paragraph indent="1">
+  *User Interaction History -&#x20;*\{\{FRS\_VARS.Self\_Service\_Mobile\_portal}}*&#x20;portal*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/E_GlatGuaP8wwAnJhqG1C_user-interaction-history.png" alt="User interaction history shown in self service mobile portal" position="flex-start" size="40" indent="1" initialPath="../Resources/Images/Agentic-AI-Images/User-Interaction-History.png" githubPath="Content/Resources/Images/Agentic-AI-Images/User-Interaction-History.png" showCaption="false"></Image>
+
+**Adding the User Interaction History field to the Incident Form - Service Desk Incident Page**
+
+The following steps are to add the **User Interaction History** field to the Service Desk Incident page so that Service Desk Analysts can view the User Interaction History of the \{\{FRS\_VARS.Self\_Service\_Portal-Self-Service}} users.
+
+1. Log in to \{\{Primary.Product}} as an Administrator.
+2. Open the Configuration console > **Build** > **Business Objects** > **Incident** > **Forms** tab.
+3. Select the **Incident.Defaultform** or the form used for Classic UI Incident.
+4. Drag and drop the **User Interaction History** field to the form.
+5. In the **Control Properties** field of the form, add the following expression:
+
+```bash
+$(IsRegexMatch(GetGlobal("IsAIITSMEnabled"),/"TicketSummarization":\s*[tT]rue/))
+```
+
+6. Adjust the dimensions - height and width.
+7. Make any necessary changes to the field properties.
+8. Save the changes.
+
+<Paragraph indent="1">
+  The **User Interaction History** section is displayed in the Service Desk console Incident page.
+</Paragraph>
+
+<Paragraph indent="1">
+  *User Interaction History - Service Desk console*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/yMz2qd10_ODA0iw1Gy4Oo_user-interaction-section.png" alt="User Interaction History - Service Desk console" position="flex-start" size="40" indent="1" initialPath="../Resources/Images/Agentic-AI-Images/User-Interaction-Section.png" githubPath="Content/Resources/Images/Agentic-AI-Images/User-Interaction-Section.png" showCaption="false"></Image>
+
+<Paragraph indent="1">
+  ## Viewing User Interaction
+</Paragraph>
+
+1. Log in to \{\{Primary.Product}} as a \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Analyst-Service-Desk-Analyst}} or any role than has access to Incident workspace.
+2. Open an Incident.
+3. Under the **User Interaction History** section, click the Maximize icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/TqijutZO1fzuux-UccO0V_maximize-icon.png" alt caption size="10" width="17" height="16"}.
+
+<Paragraph indent="1">
+  The **User Interaction History** window pops-up.
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/WEdqzKobh6IDQdDEU81zD_user-interaction-history-service-desk-console.png" alt="User Interaction History window" position="flex-start" size="40" indent="1" initialPath="../Resources/Images/Agentic-AI-Images/User-Interaction-History-Service-Desk-Console.png" githubPath="Content/Resources/Images/Agentic-AI-Images/User-Interaction-History-Service-Desk-Console.png" showCaption="false"></Image>
+
+4. You can edit the content and format it if required.
+5. Click **Close** to exit.

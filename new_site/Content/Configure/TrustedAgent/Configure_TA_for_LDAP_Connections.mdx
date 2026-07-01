@@ -1,0 +1,379 @@
+---
+title: Configuring Trusted Agent for LDAP Connections
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:53 GMT+0300 (Eastern European Summer Time)
+---
+
+***Role****: Administrators.*
+
+***Minimum Version****:&#x20;*\{\{Primary.Company}} \{\{Primary.Product}}*&#x20;2023.1*
+
+Configure and synchronize employee profiles from your LDAP Active Directory server to \{\{FRS\_VARS.ProductName}}.
+
+<ExpandableHeading>
+  ## Add a New LDAP Connection and Push Policy Settings
+
+  <hint type="info">
+    This procedure must be completed prior to installing Trusted Agent as described in :Link[Install Trusted Agent]{label="Install Trusted Agent" overridedLabel="Install Trusted Agent" spaceId docId="XTiUfvyNLUQynrvlCZ-sn" version="v2" docAnchorId="#Install_Trusted_Agent" loadingMethod="dynamic" newTab="false" githubPath="Setting_up_Trusted_Agent.htm#Install_Trusted_Agent" href="Setting_up_Trusted_Agent.mdx"}. Also note that in the current version of \{\{FRS\_VARS.ProductName}}, you can add only one Trusted Agent connection.
+  </hint>
+
+  1. In the Configuration console, select **Extend > Integration Tools > Trusted Agent Connections**.
+
+  <Paragraph indent="1">
+    The **Trusted Agent Connections** form is displayed. Use this form to configure a new connection or edit an existing one.
+  </Paragraph>
+
+  2. Click **New trusted agent connection** to open the **Trusted Agent Connections** form.
+  3. Enter the connection settings in the **Configuration** section of the **Trusted Agent for Connections** form.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/dPBImJlaCwdlAoclQWqNZ_blanktrustedagentconnectionsform.png" alt="screeenshot of a blank trusted agent connections form" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/trustedAgents-images/blank_trusted_agent_connections_form.png" githubPath="Content/Resources/Images/trustedAgents-images/blank_trusted_agent_connections_form.png" showCaption="false"></Image>
+
+  <table isTableHeaderOn="true">
+    <tr>
+      <td>
+        Field
+      </td>
+      <td>
+        Description
+      </td>
+    </tr>
+    <tr>
+      <td>
+        **Setting Name**
+      </td>
+      <td>
+        A unique name for this LDAP server connection.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        **Policy Type**
+      </td>
+      <td>
+        Select **LDAP**.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        **Server**
+      </td>
+      <td>
+        The LDAP domain controller host IP address.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        **Base DN**
+      </td>
+      <td>
+        Optional. The distinguished name for the LDAP object in the LDAP server. This value is not case sensitive.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        **User Name**
+      </td>
+      <td>
+        If the server requires authentication, enter the LDAP domain server name.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        **Password**
+      </td>
+      <td>
+        If the server requires authentication, enter the LDAP domain server password.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        **Encryption Method**
+      </td>
+      <td>
+        Select an encryption method:
+        - **No encryption**
+        - **Use SSL encryption (ldaps\://)**
+        - **Use StartTLS extension**
+      </td>
+    </tr>
+    <tr>
+      <td>
+        **Authentication Type**
+      </td>
+      <td>
+        Select an authentication type:
+        - For **No encryption** method, select **Ntlm**.
+        - For **SSL** or **TLS** method, select **Simple (Basic) authentication**.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        **Api Key**
+      </td>
+      <td>
+        Optional: The SignalR API key required to enable external authentication.
+        The SignalR API key is required if you want to enable users to login externally, if you do not want to enable external authentication this key is not required. For information on SignalR, see [https://learn.microsoft.com/en-us/aspnet/signalr/overview/getting-started/introduction-to-signalr.](https://learn.microsoft.com/en-us/aspnet/signalr/overview/getting-started/introduction-to-signalr)
+        To generate the API key, see step 4 below.
+        Paste the generated API key into this field.
+        When the key is provided, and the LDAP settings are pushed successfully, the **Enable Authentication** switch is displayed.
+        <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/JfdbUFPyv4fGRo1OkS7RM_externalauthenticationselector.png" alt="screenshot of the external authentication selector" position="flex-start" size="40" initialPath="../../Resources/Images/trustedAgents-images/external_authentication_selector.png" githubPath="Content/Resources/Images/trustedAgents-images/external_authentication_selector.png" showCaption="false"></Image>
+        This switch can be toggled ON *after the Trusted Agent is installed*. If you toggle the switch ON before the Trusted Agent is installed a warning is displayed. See :Link[Enable External Authentication]{label="Enable External Authentication" overridedLabel="Enable External Authentication" spaceId docId="qiCcju38kHr1LMAyL7lkc" version="v2" docAnchorId="#Enable_External_Authentication" loadingMethod="dynamic" newTab="false" href="Configure_TA_for_LDAP_Connections.mdx"}.
+      </td>
+    </tr>
+  </table>
+
+  4. Optional: Generate a SignalR API Key to enable external authentication:
+
+  <hint type="info" indent="1">
+    This step is only required if you want to enable external authentication. For information on SignalR, see [https://learn.microsoft.com/en-us/aspnet/signalr/overview/getting-started/introduction-to-signalr](https://learn.microsoft.com/en-us/aspnet/signalr/overview/getting-started/introduction-to-signalr).
+  </hint>
+
+  <Paragraph indent="1">
+    a. In the Configuration Console, select **Security Controls > API Keys**.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    b. In the **API Keys** workspace, select **Add Key Group**.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    c. In the **Name** field, enter Signalr, and then enter a brief description in the **Description** field.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    d. Click **Save Key Group**.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    e. Select the Signalr group in the **Key Groups** list.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    f. In the **API Keys** pane, select **Add API Key**.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    g. Select the **Activated** checkbox if not already selected.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    h. Enter a description, on behalf of, and role information if required.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    i. Click **Save Key**.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    j. Copy the generated API key identifier to the clipboard.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    k. Return to the **Trusted Agent for LDAP Connections** form, and then paste the key into the **Api Key** field.
+  </Paragraph>
+
+  5. Click **Push Policy Settings**.
+
+  <Paragraph indent="1">
+    While the LDAP settings for the Trusted Agent are being processed, the **Status** is displayed as **Pending**.
+    :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/VNmSm2eiS7BtVOdh3M0CD_statuspending1.png" alt="image showing agent policy status pending" caption size="45" width="452" height="93"}
+  </Paragraph>
+
+  <hint type="info" indent="1">
+    The **Push Policy Settings** button changes to **Update Policy Settings**, and is disabled while the settings are being processed.
+  </hint>
+
+  <Paragraph indent="1">
+    The LDAP settings push can take up to 20 minutes to complete. Click **Refresh** to check if the push has completed. When completed successfully, the **Status** is displayed as **Success**. A pop-up message is also displayed.
+    :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/DGjIJ4Ry4roEh-N5l-3XM_statussuccess1.png" alt="image showing agent policy status successful" caption size="45" width="454" height="95"}
+  </Paragraph>
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/pnVPAMH43ZcDDOtfwxSc__policyconnectionsuccessmessage.png" alt="Image showing massage informong that Push LDAP Settings are successful" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/trustedAgents-images/policy_connection_success_message.png" githubPath="Content/Resources/Images/trustedAgents-images/policy_connection_success_message.png" showCaption="false"></Image>
+
+  <hint type="info">
+    Occasionally the status may revert to **Pending**. If this happens, push the LDAP settings again by clicking **Update Policy Settings**, and then click **Refresh**. The status changes to **Success**.
+  </hint>
+
+  <Paragraph indent="1">
+    If the push fails, a **Failed** pop-up message is displayed.
+  </Paragraph>
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/1-qnmpRcf-kOnkmvM3trR_policyconnectionfailedmessage404x55.png" alt="Image showing massage informong that Push LDAP Settings have failed" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/trustedAgents-images/policy_connection_failed_message_404x55.png" githubPath="Content/Resources/Images/trustedAgents-images/policy_connection_failed_message_404x55.png" showCaption="false"></Image>
+
+  <Paragraph indent="1">
+    If a failed push occurs, check your settings are correct, and then:
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    Push the settings again.
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    If the push still fails, refresh the page in the browser, and push the settings again.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    When processing is complete, an enrollment key, comprising of the tenant ID and activation key, is displayed in the **Enrollment Key** field.
+  </Paragraph>
+
+  6. Under the **Download URL for Installer (Windows)** section, click **Download** to download the installer files.
+
+  <hint type="info" indent="1">
+    Copy the IvantiCloudAgent.exe and IvantiCloudAgent.exe.options files to the server on the private network where Trusted Agent is to be installed.
+  </hint>
+
+  **When completed successfully, proceed to installing the Trusted Agent before continuing with the remaining procedures in this topic, refer to&#x20;**:Link[Install Trusted Agent]{label="Install Trusted Agent" overridedLabel="Install Trusted Agent" spaceId docId="XTiUfvyNLUQynrvlCZ-sn" version="v2" docAnchorId="#Install_Trusted_Agent" loadingMethod="dynamic" newTab="false" githubPath="Setting_up_Trusted_Agent.htm#Install_Trusted_Agent" href="Setting_up_Trusted_Agent.mdx"}
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Connect Trusted Agent to the Directory Server and Test the Connection
+
+  <hint type="info">
+    Prior to testing the connection, ensure that the **Agent Status** is displayed as "Success" on the **Trusted Agent Connection** page, and that Trusted Agent is installed successfully on the machine in the private network.
+  </hint>
+
+  1. In the Configuration console, select **Extend > Integration Tools > LDAP Settings**.
+     The **LDAP Settings** list is displayed.
+  2. Click **Add New**.
+     The **Connect to Directory** form is opens.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/fK_XYF66EuTvKWpyvUe1s_connecttodirectory.png" alt="A screenshot of the connect to directory form" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/trustedAgents-images/connect_to_directory.png" githubPath="Content/Resources/Images/trustedAgents-images/connect_to_directory.png" showCaption="false"></Image>
+
+  3. Select **Use Trusted Agent**.
+     Provided the Trusted Agent is running, selecting this checkbox automatically populates the settings fields with the Trusted Agent connection settings.
+
+  <hint type="info" indent="1">
+    For security reasons, the **Password** field displays "not set". The password is not shown.
+  </hint>
+
+  4. Click **Test Connection**.
+     A message is displayed to inform you if the connection is successful or has failed. If an error is displayed, return to the connection settings to determine the error, edit and test again.
+  5. If successful, click **Next**.
+     When you click **Next** the **Select Directory Info to Sync** form is displayed. Use this form to select and add the root nodes to synchronize. See :Link[Configure Root Nodes, Save and Synchronize Directory Information and Enable External Authentication]{label="Configure Root Nodes, Save and Synchronize Directory Information and Enable External Authentication" overridedLabel="Configure Root Nodes, Save and Synchronize Directory Information and Enable External Authentication" spaceId docId="qiCcju38kHr1LMAyL7lkc" version="v2" docAnchorId="#Synchronize_Directory" loadingMethod="dynamic" newTab="false" href="Configure_TA_for_LDAP_Connections.mdx"} below.
+
+  <hint type="info">
+    If the connection test failed, you can find error information on the failed connection in **Trusted Agent Monitoring**. For more information, see [Trusted Agent Monitoring and Logging](Trusted_Agent_Monitoring_and_Logging.mdx).
+  </hint>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Configure Root Nodes, Save and Synchronize Directory Information and Enable External Authentication
+
+  When you have a successful connection, you need to select the directory root nodes (employees) to connect, save the LDAP settings, and then synchronize the settings to import their data.
+
+  ### Connecting the Root Nodes
+
+  1. Click **Root DSE** to expand the list.
+  2. Select the nodes you want to connect and synchronize.
+  3. Scroll down to the end of the page, click **Add selected node as root**, and then click **Select sample entry**.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/BusXUJAZf3AGCW1Xzi6bY_addselectednodes.png" alt="Image showing the Add selected node as root and Select sample entry that you select, as mentioned in the above instruction" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/trustedAgents-images/add_selected_nodes.png" githubPath="Content/Resources/Images/trustedAgents-images/add_selected_nodes.png" showCaption="false"></Image>
+
+  4. Check at the top of the page if the selected nodes are displayed under **Root LDAP node(s)** and **Sample LDAP entry to extract fields from**.
+  5. Click **Next** to move to the **Field Mapping** form.
+
+  <hint type="info" indent="1">
+    For this version, changes to field mapping are optional, you can skip the field mapping process if not required and move directly to completing the synchronization. If changes to the field mapping are required, see :Link[Mapping Fields]{label="Mapping Fields" overridedLabel="Mapping Fields" spaceId docId="nWFKP61I7mWXuOXiyk-Xj" version="v2" docAnchorId="#Mapping" loadingMethod="dynamic" newTab="false" githubPath="../ImportExportData/LDAP_Settings.htm#Mapping" href="../ImportExportData/LDAP_Settings.mdx"}.
+  </hint>
+
+  6. Click **Next**, then click **Next** again to display the **Completed** form.
+     This form displays the **Save** and **Synchronize Now** functions.
+
+  ### Save and Synchronize the LDAP Settings
+
+  Save the LDAP settings before synchronizing them.
+
+  1. Click **Save** to save the LDAP settings.
+  2. Click **OK** in the **LDAP Wizard** message dialog.
+  3. Click **Synchronize now**.
+     The **LDAP Sync** dialog appears.
+  4. Click **OK**.
+
+  <hint type="info">
+    Once you have established the LDAP connection, and the connection is validated, you can use a workflow to schedule synchronization of the LDAP connection, and to notify users if the synchronization is started or has failed. See [Example: Using a Workflow to Schedule LDAP Synchronization](../Workflows/Automate_TA_LDAP_Synch_with_a_Workfow.mdx). You can also synchronize existing LDAP connections from the **LDAP Settings** list by selecting **Sync Now** in the **Action** column.
+  </hint>
+
+  ### Enable External Authentication
+
+  If you configured an API key for the LDAP connection, toggle ON the **Enable Auth** switch in the **Trusted Agent Connections** form to enable external authentication for imported employees.
+
+  1. Open the **Trusted Agent Connections** form.
+  2. Toggle the **Enable Auth** switch ON.
+     A success message is displayed when external authentication is enabled for the connection.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/plCDgPihp4xHCHetjc3GA_extauthverificationsuccessmessage.png" alt="screenshot of the external authentication success message" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/trustedAgents-images/ext_auth_verification_success_message.png" githubPath="Content/Resources/Images/trustedAgents-images/ext_auth_verification_success_message.png" showCaption="false"></Image>
+
+  <hint type="info">
+    You can return to the **Trusted Agent LDAP Connections** form at any time to disable or re-enable external authentication.
+  </hint>
+
+  If the enable external authentication generates an error, check the following:
+
+  - Trusted Agent is installed, see :Link[Install Trusted Agent]{label="Install Trusted Agent" overridedLabel="Install Trusted Agent" spaceId docId="XTiUfvyNLUQynrvlCZ-sn" version="v2" docAnchorId="#Install_Trusted_Agent" loadingMethod="dynamic" newTab="false" githubPath="Setting_up_Trusted_Agent.htm#Install_Trusted_Agent" href="Setting_up_Trusted_Agent.mdx"}
+  - You have generated a SignalR API key.
+  - You have entered the correct API key (SignalR API key) in the **Trusted Agent Connections** form.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Check the LDAP Import Log, Verify Employee Import and External Authentication
+
+  ### Check the LDAP Import Log
+
+  1. Select **Extend > Integration Tools > LDAP Import Log**.
+  2. Click **Refresh** to update the list and check that your LDAP import is logged.
+
+     This may take a few minutes to update if the LDAP import is queued. Click **Refresh** again to refresh the list.
+
+  View the Trusted Agent Monitoring logs if you want to verify the status of all the operations performed while setting up the Trusted Agent. See [Trusted Agent Monitoring and Logging](Trusted_Agent_Monitoring_and_Logging.mdx).
+
+  ### Verify Employee Import
+
+  You can verify all selected employees have been imported by the Trusted Agent connection to the **Employee** workspace.
+
+  1. From the **Administrator** dashboard, open the **Employee** workspace.
+  2. Check the list of employees and verify that the employees you imported are present in the list.
+
+  <hint type="success">
+    Use the **Employee** workspace search function to quickly locate each entry.
+  </hint>
+
+  ### Verify External Authentication
+
+  If you have configured external authentication to enable external login for employees, check employee records to verify that their external login is enabled.
+
+  1. From the **Administrator** dashboard, open the **Employee** workspace.
+  2. Select an employee that you imported and open the **Employee** record.
+  3. Check the following:
+     - The **Enable External Auth** checkbox is checked.
+     - The employee user name and the Trusted Agent instance appears in the **Login for External Auth** entry.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/B1Le87Rs5R90pDob_NYZZ_extauthverification.png" alt="screenshot of employee external authentication fields" position="flex-start" size="40" indent="2" initialPath="../../Resources/Images/trustedAgents-images/ext_auth_verification.png" githubPath="Content/Resources/Images/trustedAgents-images/ext_auth_verification.png" showCaption="false"></Image>
+
+  4. Repeat step 2 and 3 above to verify additional records as required.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Synchronizing Existing LDAP Settings for Trusted Agent
+
+  This feature enables you to verify and synchronize an existing Trusted Agent LDAP connection from the **LDAP Settings** list.
+
+  if you have made alterations to an existing Trusted Agent LDAP configuration, you can use the **Verify Config** option on the **LDAP Settings** page to validate the alterations made to the LDAP configuration.
+
+  When running **Verify Config** from the LDAP settings page, this prompts you to select the appropriate root node or directory within the configuration. This step is vital as it ensures that any changes made to the Trusted Agent LDAP configuration are saved, and accurately validated. By choosing the correct root node, you guarantee that your LDAP configuration remains consistent and functional.
+
+  This process also safeguards the integrity of workflows within the system. Ensuring that LDAP configuration changes are correctly validated helps prevent any disruptions or breakages in workflows that rely on LDAP data.
+
+  The **Sync Now** function for the Trusted Agent LDAP connection listed in the **LDAP Settings** page is disabled if the connection configuration settings are not verified.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/rg2uWKoc_CC7f6xM76K8U_synch-nowverifyconfigfortaldap.png" position="flex-start" size="40" initialPath="../../Resources/Images/trustedAgents-images/synch-now_verify_config_for_TA_LDAP.png" githubPath="Content/Resources/Images/trustedAgents-images/synch-now_verify_config_for_TA_LDAP.png" showCaption="false"></Image>
+
+  **To verify and synchronize existing Trusted Agent LDAP settings:**
+
+  1. In the Configuration console, select **Extend > Integration Tools > LDAP Settings**.
+     The **LDAP Settings** list is displayed.
+  2. Select **Verify Config** for the LDAP connection.
+     The LDAP settings configuration opens.
+  3. Follow the configuration pages displayed, selecting **Next** to move through the process, ensuring the correct root nodes or directories are selected.
+  4. **Save** the LDAP configuration.
+  5. You can synchronize the LDAP connection in the settings page, or use the **Sync Now** function displayed in the **LDAP Settings** list.
+</ExpandableHeading>

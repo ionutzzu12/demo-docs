@@ -1,0 +1,94 @@
+---
+title: Knowledge Base Article Generation
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:00 GMT+0300 (Eastern European Summer Time)
+---
+
+**Role**: \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+
+**Platform**: SaaS only.
+
+**Minimum Version**: \{\{Primary.Company}} \{\{Primary.Product}} 2024.2.
+
+**Feature Eligibility**: Ivanti's \{\{FRS\_VARS.AITSM}} capabilities are available to customers who have subscribed to Premium or Enterprise Premium license. To know your eligibility, reach out to your Ivanti Account Manager.
+
+**Package Installation:** Existing customers - import the [latest package](https://marketplace.ivanti.com/xchange/64b5b48e2ee9d6e08c3e6724/solution/66573f6ffa3fa054d3cbb75a).
+
+Ivanti Neurons for \{\{FRS\_VARS.ITSM}} introduces \{\{FRS\_VARS.AITSM}} capabilities that simplify the process of creating knowledge content. With just a click, Knowledge Base Articles can be generated using supported out-of-the-box templates, making it easier for Service Desk Analysts to produce consistent and helpful documentation.
+
+This AI knowledge base feature eliminates manual effort, allowing teams to quickly generate knowledge articles and maintain a robust knowledge base platform. Whether you're building a help desk knowledge base or managing KB articles, this intelligent solution enhances productivity and ensures high-quality content across your knowledge base AI environment.
+
+## Configuring the Generate Knowledge Article button
+
+The **Generate Knowledge Article** button is not available by default for existing customers; the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}} must specifically add it to the Incident layout. However, for new users, the **Generate Knowledge Article** button is available out-of-the-box by default.
+
+**Prerequisite**
+
+- Existing customers - ensure you import the latest package.
+
+**Adding the Generate Knowledge Article button to the Incident Layout**
+
+1. Log in to \{\{Primary.Product}} as an Administrator.
+2. Open the Configuration console > **Build** > **Business Objects** > **Incident** > **Layouts** tab.
+3. Select the Incident Business Object layout used for the role you want the **Generate Knowledge Article** button implemented.
+4. Click **formView** to edit the form.
+5. Click **Edit** under the **Toolbar** field. The **Toolbar Editor** page is displayed.
+6. Drag and drop **Generate Knowledge Article** into the toolbar.
+
+<Paragraph indent="1">
+  The **Toolbar Button Editor** window is displayed.
+</Paragraph>
+
+7. Click **Advanced**.
+   - Enter the following code under **Hidden Expression**:
+
+```bash
+$(!IsRegexMatch(GetGlobal("IsAIITSMEnabled"),/"KnowledgeBaseCreation":\s*[tT]rue/))
+```
+
+<Paragraph listStyleType="disc" indent="2">
+  Enter the following code under **Disabled Expression**:
+</Paragraph>
+
+```bash
+$(Status not in ("Resolved", "Closed"))
+```
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/eX4erXj408rpreLz029Jb_generate-kb-button-expression.png" position="flex-start" size="40" indent="2" initialPath="../Resources/Images/Agentic-AI-Images/Generate-KB-button-Expression.png" githubPath="Content/Resources/Images/Agentic-AI-Images/Generate-KB-button-Expression.png" showCaption="false"></Image>
+
+8. Save the changes.
+9. Open the Incident page, the **Generate Knowledge Article** button should be available
+
+<Paragraph indent="1">
+  *Generate Knowledge Article button in Incident Page*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/nBQ70QfapidRgjgS7qfIp_generate-knowledge-article-button.png" alt="Generate Knowledge Article button in Incident Page" position="flex-start" size="40" indent="1" initialPath="../Resources/Images/Agentic-AI-Images/Generate-Knowledge-Article-Button.png" githubPath="Content/Resources/Images/Agentic-AI-Images/Generate-Knowledge-Article-Button.png" showCaption="false"></Image>
+
+## Generating a Knowledge Base Article
+
+1. Log into \{\{Primary.Product}} as a \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Analyst-Service-Desk-Analyst}} or any role having access to the Incident workspace.
+2. Open a Resolved or Closed Incident.
+3. Click **Generate Knowledge Article** and select a type from the dropdown list.
+
+<Paragraph indent="1">
+  The **Knowlege Base Article** is displayed on the side panel. The AI generates the **Title**, **Keywords**, and **Description**.
+</Paragraph>
+
+<hint type="info">
+  - Only Knowledge Base templates provided out-of-the-box are supported in generating the AI Knowledge Article. Custom templates are not supported.
+  - Ensure you provide sufficient details in the **Description**, **Summary**, and **Resolution** fields to be able to generate the knowledge article.
+</hint>
+
+4. Select the **Collection** and **Category** and click **Save as Draft**.
+5. Click the thumbs up or thumbs down button at the end of the page and enter your comments. Sharing your feedback helps us improve the capability.
+
+<Paragraph indent="1">
+  *Generated Knowledge Base Article*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/QJLhuFa42dronaMTtsYwM_ai-generated-kb-article.png" alt="Generated Knowledge Base Article" position="flex-start" size="40" indent="1" initialPath="../Resources/Images/Agentic-AI-Images/AI-Generated-KB-Article.png" githubPath="Content/Resources/Images/Agentic-AI-Images/AI-Generated-KB-Article.png" showCaption="false"></Image>
+
+<hint type="info">
+  The AI Summary form is provided as a fixed interface and is not customizable.
+</hint>

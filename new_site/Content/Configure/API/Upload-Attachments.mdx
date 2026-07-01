@@ -1,0 +1,79 @@
+---
+title: Upload Attachments
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:01 GMT+0300 (Eastern European Summer Time)
+---
+
+You can upload attachments to business objects.
+
+The details of the Method, Request Body, and Headers to execute the Upload Attachment API are as given in the table below:
+
+| Base URL                                  | https\://\{tenant url}/api/rest/Attachment                                                                                                                                           |
+| ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| <font color="#ffffff">Method</font>       | POST                                                                                                                                                                                 |
+| Header Name                               | Authorization: JTW Token/Session Key/REST API Key                                                                                                                                    |
+| <font color="#ffffff">Request Body</font> | Key	Value&#xA;Value Format	Value&#xA;ObjectID	Text	Business object RecID.&#xA;ObjectType	Text	Business object type.&#xA; 	File	&#xA;&#xA;File name of the attachment.<br />form-data |
+
+<ExpandableHeading>
+  ## Upload Attachments - Example
+
+  Here is an example to upload an attachment to an incident business object.
+
+  | URL                                          | https\://\{tenant url}/api/rest/Attachment                                                                                                                                                                                                                                                    |
+  | -------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | <font color="#ffffff">Method</font>          | POST                                                                                                                                                                                                                                                                                          |
+  | Header Name                                  | Authorization: JTW Token/Session Key/REST API Key                                                                                                                                                                                                                                             |
+  | <font color="#ffffff">Request Body</font>    | Key	Value&#xA;Value Format	Value&#xA;ObjectID	Text	1968C01EFAB244AD8C67648E7578A30E&#xA;ObjectType	Text	incident#&#xA; 	File	Invoice.png&#xA; 	File	BillOfMaterial.png  <br />form-data                                                                                                       |
+  | <font color="#ffffff">Status Code</font>     | 200                                                                                                                                                                                                                                                                                           |
+  | <font color="#ffffff">Response Header</font> | \[  <br />\{  <br />"FileName": "Invoice.png",  <br />"IsUploaded": true,  <br />"Message": "1968C01EFAB244AD8C67648E7578A30E"  <br />},  <br />\{  <br />"FileName": "BillOfMaterial.png",  <br />"IsUploaded": true,  <br />"Message": "1968C01EFAB244AD8C67648E7578A30E"  <br />}  <br />] |
+
+  <hint type="info">
+    When attachment is successful, the Unique ID of the attachment is displayed in the Response Header Message.
+  </hint>
+</ExpandableHeading>
+
+### Unsuccessful Responses
+
+<ExpandableHeading>
+  ## Re-attaching an existing file
+
+  Scenario: Uploading two files to a business object where one of the file already exists in the business object.
+
+  Example:
+
+  https\://\{tenant url}/api/rest/Attachment
+
+  Header Name:
+
+  **Authorization: Sessionkey**
+
+  | Code                                          | ISM\_3000                                                                                                                                                                                                                                                                                                                                                                                           |
+  | --------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | Description                                   | Validation Error                                                                                                                                                                                                                                                                                                                                                                                    |
+  | Message                                       | \[  <br />\{  <br />"FileName": "CIMapButton.png",  <br />"IsUploaded": true,  <br />"Message": "FE36F27EBCF64A7BB88D9425E9738C08"  <br />},  <br />\{  <br />"FileName": "ChooseFilesButton.png",  <br />"IsUploaded": false,  <br />"Message": "Upload Failed, A file with the name 'ChooseFilesButton.png'  <br />is already attached to this object. Please change the name."  <br />}  <br />] |
+  | <font color="#ffffff">HTTP STATUS CODE</font> | **300**                                                                                                                                                                                                                                                                                                                                                                                             |
+
+  <hint type="info">
+    The code **300** indicates, multiple responses, some success and some unsuccessful. The message contains the details of the success and unsuccessful responses.
+  </hint>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Attaching an unsupported file type
+
+  Scenario: Trying to attach an unsupported file type.
+
+  Example:
+
+  https\://\{tenant url}/api/rest/Attachment
+
+  Header Name:
+
+  **Authorization: Sessionkey**
+
+  | Code                                          | ISM\_3000                                                                                            |
+  | --------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+  | Description                                   | Validation Error                                                                                     |
+  | Message                                       | \[  <br />"Upload failed. Invalid attachment type. Attach a valid file type and try again".  <br />] |
+  | <font color="#ffffff">HTTP STATUS CODE</font> | **300**                                                                                              |
+</ExpandableHeading>

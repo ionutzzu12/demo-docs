@@ -1,0 +1,50 @@
+---
+title: Example: Showing Fields in Different Colors Based on Value
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:57 GMT+0300 (Eastern European Summer Time)
+---
+
+This topic describes how to colorize an incident record based on the value in the **Impact** field.
+
+1. Create the styles to use on your form. See [Using Highlighter Styles](<Using Highlighter Styles.mdx>).
+
+<Paragraph indent="1">
+  In this example, we created a list style that shows a yellow background. You could create a style for each impact value (low, medium, high).
+</Paragraph>
+
+*Example New List Color*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/xtxgsXqXc6RpU-tqZpydB_grid-impact-color.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/grid impact color.png" githubPath="Content/Resources/Images/help-images/grid impact color.png" showCaption="false"></Image>
+
+2. Apply the style to a field in your form. See [Creating a Form](../Forms/CreatingForms.mdx) for information on how to use fields.
+
+<Paragraph indent="1">
+  In this example, we opened the **Incident.ServiceDesk** form, and applied the style to the **Impact** field using an expression in the **Style Rule** parameter.
+</Paragraph>
+
+*Edit Expression to Include Color Style*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/XfIKHO2iw2WgNvqFGLC7c_impact-field-color.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/impact field color.png" githubPath="Content/Resources/Images/help-images/impact field color.png" showCaption="false"></Image>
+
+$(if( Impact == "Low"), "LowImpactColor",
+if( Impact == "Medium"), "MedImpactColor",
+if( "IncidentSLAThirdEscalation"), "ImpactColor"))) 
+
+3. Click **Save** to close the window.
+4. Open the **Incident** workspace from the Service Desk Console and observe the background color of the **Impact** field.
+
+*Colors Based on the Impact Value*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/cRHgk47lxhbojDTAEELrj_cell-in-different-colors.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/cell in different colors.png" githubPath="Content/Resources/Images/help-images/cell in different colors.png" showCaption="false"></Image>
+
+<Paragraph indent="1">
+  Note that in the **Style Rule** property you can use the same values as in the **Style** property. You should specify the underlying values (not the display values) when using them in expressions.
+</Paragraph>
+
+*Default Styles can be Used in Style Rules*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/jGkv5e_ZcbMutik_oBlvu_cell-styles.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/cell styles.png" githubPath="Content/Resources/Images/help-images/cell styles.png" showCaption="false"></Image>
+
+<Paragraph indent="1">
+  The reverse is not true; it is not possible to use styles for the **Style** property, or in control style expressions.
+</Paragraph>

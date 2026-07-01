@@ -1,0 +1,73 @@
+---
+title: Translation Service
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:00 GMT+0300 (Eastern European Summer Time)
+---
+
+The **Translation Service** feature converts all UI elements and user-generated content into the user's preferred language or locale.
+
+To perform translations, the **Translation Service** supports the following AI models:
+
+- **Ivanti-hosted translation model**: Uses the OpenAI model that is provided by \{\{FRS\_VARS.Company}}.
+- **Custom translation models**: Administrators can customize their own translation service. It includes OpenAI (custom hosted), Azure OpenAI, Google Translate, Azure Translate, DeepL.
+
+Administrators can select a translation service based on their organizational preference.
+
+## Enable Translation Service
+
+**To enable the Translation Service, do the following:**
+
+1. Log in to \{\{Primary.Product}} as an \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+2. Go to the Configuration console, scroll to **AI Configuration Hub** and select it.
+3. Set **Translation Service** to **Active** using the toggle button.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Bp6uJHySY8lZYdXritUHI_ai-config-translation-service.png" position="flex-start" size="40" indent="1" initialPath="../Resources/Images/help-images/ai-config-translation-service.png" githubPath="Content/Resources/Images/help-images/ai-config-translation-service.png" showCaption="false"></Image>
+
+## Configure Ivanti-hosted Translation Model
+
+**To configure the Ivanti-hosted Translation Model, do the following:**
+
+1. Select the **Configure** option beside the toggle button.
+2. From the dropdown, select **Internally Hosted** that uses OpenAI model by default.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/FJrgoKZdUkRW-bKRcOGb7_ai-config-translation-internal-host.png" position="flex-start" size="40" indent="1" initialPath="../Resources/Images/help-images/ai-config-translation-internal-host.png" githubPath="Content/Resources/Images/help-images/ai-config-translation-internal-host.png" showCaption="false"></Image>
+
+3. Click **Save**.
+
+<hint type="info">
+  Ivanti-hosted translation model is the default model for all the \{\{FRS\_VARS.AITSM}} use cases.
+</hint>
+
+## Configure Custom Translation Model
+
+**To configure a Custom Translation Model that you own, do the following:**
+
+1. Select the Edit icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/0MDGSXRgef4ra3nGypxfE_edit-icon.png" alt caption size="10" width="16" height="16"} besides the **Translation Service** toggle button.
+2. Select **Custom Model** as the AI model that you want to use for translation from the dropdown.
+3. Once selected, you have to fill the following fields to configure the selected model:
+   - **Models**: From the dropdown, select the following preferred AI model that you want to use for translation. The available AI models are as follows:
+     - OpenAI
+     - Azure OpenAI
+     - Azure Translation
+     - DeepL
+     - Google Translate
+   - **API Key**: Enter the API Key to authenticate your application with the translation service provider. This field is required for OpenAPI, Azure OpenAI, Azure Translation, DeepL, and Google Translate models.
+   - **Endpoint URL**: Enter the base URL where your translation API is hosted. This field is required for OpenAPI model, Azure OpenAI, and Azure Translation models.
+   - **Model Name**: Enter the specific name or ID of the translation model you want to use. This field is required for OpenAPI model and Azure OpenAI models.
+   - **Temperature**: Set the temperature accordingly. This field is required for OpenAPI model and Azure OpenAI models.
+   - **API version**: Enter the version of API that you're using. This field is required for Azure Translation.
+   - **Region**: Enter the geographical region where your translation service is hosted. This field is required for Azure Translation.
+4. Click **Save**.
+5. Click **Test Connection** to validate the configuration. A success message will appear if the configuration is correct.
+
+<hint type="info" indent="1">
+  Fields marked with an asterisk (\*) are mandatory.
+</hint>
+
+<hint type="info">
+  Custom translation model is optional and can be used only by the Localization Workbench within \{\{FRS\_VARS.AITSM}}.
+</hint>
+
+<hint type="info">
+  If a Custom translation model isn't configured, the Localization Workbench still works. However, the translation is limited to 20 strings per call. If Custom translation model is configured, the translation capacity increases to 100 strings per call.
+</hint>

@@ -1,0 +1,80 @@
+---
+title: Example: Working with the Export Data Action (CAD)
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:57 GMT+0300 (Eastern European Summer Time)
+---
+
+- :Link[Before Creating an Export Data Action]{label="Before Creating an Export Data Action" overridedLabel="Before Creating an Export Data Action" spaceId docId="70sGqqUiDphSc7e-HTHE3" version="v2" docAnchorId="#Before_Creating_an_Export_Data_Quick_Action" loadingMethod="dynamic" newTab="false" href="Creating an Export Data QA.mdx"}
+- :Link[Creating an Export Data Action]{label="Creating an Export Data Action" overridedLabel="Creating an Export Data Action" spaceId docId="70sGqqUiDphSc7e-HTHE3" version="v2" docAnchorId="#Creating_an_Export_Data_Quick_Action" loadingMethod="dynamic" newTab="false" href="Creating an Export Data QA.mdx"}
+- :Link[Running the Export Data Action]{label="Running the Export Data Action" overridedLabel="Running the Export Data Action" spaceId docId="70sGqqUiDphSc7e-HTHE3" version="v2" docAnchorId="#Running_the_Export_Data_Quick_Action" loadingMethod="dynamic" newTab="false" href="Creating an Export Data QA.mdx"}
+
+### Before Creating an Export Data Action
+
+You can create an action that exports either an ad-hoc or a scheduled report.
+
+See [Export Data Action](<../templates/Export Data.mdx>).
+
+1. Create an export data connection from the Data Integration Wizard by following the process in [Exporting Data](../../../ImportExportData/Data-Export.mdx). For this example, create a connection that creates a file by selecting **Shared Folder**. (File share is only available for on-premise deployments.)
+
+*Data Integration Wizard*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/LzVlyE4EvLzFQp6SL-9xi_qa-export-connection.png" position="flex-start" size="40" indent="1" initialPath="../../../../Resources/Images/help-images/qa export connection.png" githubPath="Content/Resources/Images/help-images/qa export connection.png" showCaption="false"></Image>
+
+2. Create a report template and upload it.
+3. Create a table report that includes the fields to use. See [Creating Reports and Report Templates](../../../../ServiceDesk/Reports/Creating_Custom_Reports.mdx).
+
+<hint type="info">
+  To include multiple records in the report, the primary key field should be **RecID**.
+
+  If you intend to re-import the data, ensure that you include a unique identifier field for each record (such as **RecID**). Otherwise, the imported data does not match the correct records.
+
+  Ensure that **Can run from Export Data action** is checked. (Go to the **Report** workspace, and click the **edit** icon next to a report.)
+</hint>
+
+### Creating an Export Data Action
+
+1. From the Configuration console, click **Build > Automation Tools > Quick Actions** to open the **Actions Manager** workspace. The list of business objects that have actions appears.
+2. Click **Add/Edit** for the **Incident** business object. The Actions Center appears.
+3. Click the **Create New Actions** tab.
+4. Choose **Export Data**. The **Export Data** action appears.
+5. For this example, enter the following information into the fields.
+
+*Export Data Action*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/cweY2yYYnLzMrIekysY4U_qa-export-data-options.png" position="flex-start" size="40" indent="1" initialPath="../../../../Resources/Images/help-images/qa export data options.png" githubPath="Content/Resources/Images/help-images/qa export data options.png" showCaption="false"></Image>
+
+| Field                        | Description                                                                                                |
+| ---------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| Enter action name            | A unique name for the action. In this example, use **Run Data Export**.                                    |
+| Enter action description     | Optional. A description of what the action does.                                                           |
+| Enter category               | Optional. The category. Select from the drop-down list.                                                    |
+| Report Name                  | The report that you created above. Select from the drop-down list.                                         |
+| Can run for multiple records | Allows the action to be run against multiple records.                                                      |
+| Connection                   | The connection. Select from the drop-down list.                                                            |
+| Schedule                     | Optional. The schedule for the action so that it runs at a scheduled time, such as within a workflow.      |
+| Report Parameters            | Parameters appear according to the chosen report. In this example, under **Source Value**, enter **Main**. |
+| Export Format                | The export format. Select from the drop-down list. In this example, choose **Comma Separated Values**.     |
+| Field Delimiter              | A field delimiter. Enter one or select from the drop-down list. In this example, choose **Comma**.         |
+| Record Delimiter             | A delimiter for each record. In this example, enter '**#####**'.                                           |
+| Qualifier                    | Leave this field blank.                                                                                    |
+
+6. Click **Save**.
+
+<Paragraph indent="1">
+  The **Run Data Export** action now appears under the Action Menu.
+</Paragraph>
+
+### Running the Export Data Action
+
+1. Log in to \{\{FRS\_VARS.ProductName}}.
+2. Open the **Incident** workspace.
+3. Select one or more records (CTRL + click) from the list. (You can only export multiple records if you have checked **Can run from Export Data Action** on the **Report Parameters** page. See [Creating Reports and Report Templates](../../../../ServiceDesk/Reports/Creating_Custom_Reports.mdx).)
+4. From the Action Menu, choose **No Category&#x20;**>**&#x20;Run Export Data**.
+
+*Export Data Action*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/0rBd2bccW2Wz8bJT6qiDQ_qa-run-export-menu.png" position="flex-start" size="40" indent="1" initialPath="../../../../Resources/Images/help-images/qa run export menu.png" githubPath="Content/Resources/Images/help-images/qa run export menu.png" showCaption="false"></Image>
+
+<Paragraph indent="1">
+  The report runs and is saved to your local drive.
+</Paragraph>

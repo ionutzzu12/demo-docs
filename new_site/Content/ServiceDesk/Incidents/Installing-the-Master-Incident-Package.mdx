@@ -1,0 +1,421 @@
+---
+title: Installing the Master Incident Package
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:47 GMT+0300 (Eastern European Summer Time)
+---
+
+The **Master Incident** feature comes as a package. There are two package files: 
+
+- **Master Incident 2015.2.MetadataPatch**: For core changes such as fields, relationships, business rules, quick actions, saved searched, and dashboard parts.
+- **Master Incident 2015.2 UI Update.MetadataPatch**: For user interface changes such as forms and layouts.
+
+The **Master Incident 2015.2 UI Update.MetadataPatch** file adds additional incident forms and layouts that are designed specifically for the master incident feature. You must be on \{\{FRS\_VARS.ProductName}} Release 2013.1 or later and have the **FRS\_Composite-Contract\_Contact** business object in your system.
+
+Do not install the **Master Incident 2015.2 UI Update.MetadataPatch** file if:
+
+- You are using \{\{FRS\_VARS.ProductName}} Release 2012 or earlier.
+- Do not have the **FRS\_Composite-Contract\_Contact** business object in your system.
+- You want to retain your existing incident forms and layouts.
+
+If you do not install this file but you want to update the incident forms and layouts, refer to :Link[Updating the Incident Header Form]{label="Updating the Incident Header Form" overridedLabel="Updating the Incident Header Form" spaceId docId="2Wj1Fk4dM1mhgPQdW4zwv" version="v2" docAnchorId="#Updating_the_Incident_Header_Form" loadingMethod="dynamic" newTab="false" href="Installing-the-Master-Incident-Package.mdx"}, :Link[Updating the Incident Details Form]{label="Updating the Incident Details Form" overridedLabel="Updating the Incident Details Form" spaceId docId="2Wj1Fk4dM1mhgPQdW4zwv" version="v2" docAnchorId="#Updating_the_Incident_Details_Form" loadingMethod="dynamic" newTab="false" href="Installing-the-Master-Incident-Package.mdx"}, :Link[Updating the Incident Resolution Form]{label="Updating the Incident Resolution Form" overridedLabel="Updating the Incident Resolution Form" spaceId docId="2Wj1Fk4dM1mhgPQdW4zwv" version="v2" docAnchorId="#Updating_the_Incident_ResolutionForm" loadingMethod="dynamic" newTab="false" href="Installing-the-Master-Incident-Package.mdx"}, and :Link[Updating the Incident Layout]{label="Updating the Incident Layout" overridedLabel="Updating the Incident Layout" spaceId docId="2Wj1Fk4dM1mhgPQdW4zwv" version="v2" docAnchorId="#Updating_the_Incident_Layout" loadingMethod="dynamic" newTab="false" href="Installing-the-Master-Incident-Package.mdx"}.
+
+Follow these steps to install and configure the master incident feature:
+
+- :Link[Installing the Master Incident Package]{label="Installing the Master Incident Package" overridedLabel="Installing the Master Incident Package" spaceId docId="2Wj1Fk4dM1mhgPQdW4zwv" version="v2" docAnchorId="#Installing_the_MasterIncident_Package" loadingMethod="dynamic" newTab="false" href="Installing-the-Master-Incident-Package.mdx"}
+- :Link[Updating the Role Definitions]{label="Updating the Role Definitions" overridedLabel="Updating the Role Definitions" spaceId docId="2Wj1Fk4dM1mhgPQdW4zwv" version="v2" docAnchorId="#Updating_the_Role_Definitions" loadingMethod="dynamic" newTab="false" href="Installing-the-Master-Incident-Package.mdx"}
+- :Link[Updating the Service Desk Manager Dashboard]{label="Updating the Service Desk Manager Dashboard" overridedLabel="Updating the Service Desk Manager Dashboard" spaceId docId="2Wj1Fk4dM1mhgPQdW4zwv" version="v2" docAnchorId="#Updating_the_Service_Desk_Manager_Dashboard" loadingMethod="dynamic" newTab="false" href="Installing-the-Master-Incident-Package.mdx"}
+- :Link[Updating the Incident Header Form]{label="Updating the Incident Header Form" overridedLabel="Updating the Incident Header Form" spaceId docId="2Wj1Fk4dM1mhgPQdW4zwv" version="v2" docAnchorId="#Updating_the_Incident_Header_Form" loadingMethod="dynamic" newTab="false" href="Installing-the-Master-Incident-Package.mdx"}
+- :Link[Updating the Incident Details Form]{label="Updating the Incident Details Form" overridedLabel="Updating the Incident Details Form" spaceId docId="2Wj1Fk4dM1mhgPQdW4zwv" version="v2" docAnchorId="#Updating_the_Incident_Details_Form" loadingMethod="dynamic" newTab="false" href="Installing-the-Master-Incident-Package.mdx"}
+- :Link[Updating the Incident Resolution Form]{label="Updating the Incident Resolution Form" overridedLabel="Updating the Incident Resolution Form" spaceId docId="2Wj1Fk4dM1mhgPQdW4zwv" version="v2" docAnchorId="#Updating_the_Incident_ResolutionForm" loadingMethod="dynamic" newTab="false" href="Installing-the-Master-Incident-Package.mdx"}
+- :Link[Updating the Incident Layout]{label="Updating the Incident Layout" overridedLabel="Updating the Incident Layout" spaceId docId="2Wj1Fk4dM1mhgPQdW4zwv" version="v2" docAnchorId="#Updating_the_Incident_Layout" loadingMethod="dynamic" newTab="false" href="Installing-the-Master-Incident-Package.mdx"}
+
+## Installing the Master Incident Package
+
+1. Download the package and save it to a convenient location.
+2. From the \{\{FRS\_VARS.Configuration\_console}}, click **Build** > **HEAT Development Package** > **Package**.
+3. Click **Import Package**.
+4. Select **Validate and apply if no errors**.
+5. Click **Browse...**, find the package that you downloaded, and click **Open**.
+
+## Updating the Role Definitions
+
+Follow these steps to give access to the **Master Incident** feature to certain user roles.
+
+1. From the \{\{FRS\_VARS.Configuration\_console}}, click **Configure** > **Users and Permissions** > **Roles and Permissions**.
+2. Select a role. For example, \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+3. Click the **Top Level Tabs** tab.
+4. Click **Incident**.
+5. For the **Layout** field, select IncidentLayout.ServiceDesk.
+6. Click **Save**.
+
+## Updating the Service Desk Manager Dashboard
+
+If you have the **Master Incident** feature enabled for \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Manager}}s, update the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Manager}} dashboard to include a dashboard part for master incident resolution. The dashboard part is included in the master incident patch files.
+
+1. From the \{\{FRS\_VARS.Configuration\_console}}, click **Build** > **Charts and Graphs** > **Dashboards**.
+2. Next to \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Manager}}, click the **edit** :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/pUcDCwFqa9aQFPQhBx47U_edit.png" alt caption size="10" width="15" height="16"} icon.
+3. Under Dashboard Objects, expand the **Charts** section.
+4. Drag the chart part called **Incident Resolution by Master Incident Comparison** to the right side. We recommend putting it on the right of the chart part called **Top 5 Services with Active Incidents**.
+5. In the header of the **Incident Resolution by Master Incident Comparison** chart part, click the **edit**:inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/pUcDCwFqa9aQFPQhBx47U_edit.png" alt caption size="10" width="15" height="16"} icon.
+6. From the **Last** drop-down list, select **5**.
+7. From the **days** drop-down list, select **Years**.
+
+<Paragraph indent="1">
+  *Master Incident Chart Part*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/b3R_UOw8wgSriPfLihRFc_master-incident-chart.png" alt="Master Incident chart part" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/master-incident-chart.png" githubPath="Content/Resources/Images/help-images/master-incident-chart.png" showCaption="false"></Image>
+
+8. Click the **refresh** :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/5YW-KLD_GiFCtJJXKwelR_refresh.png" alt caption size="10" width="15" height="16"} icon to see data for the new date range.
+9. Click **Save** to close the chart.
+10. Click **Save** to save the dashboard.
+
+## Updating the Incident Header Form
+
+1. From the \{\{FRS\_VARS.Configuration\_console}}, click **Build** > **Business Objects**.
+2. Open the **Incident** business object.
+3. Click the **Forms** tab.
+4. Click **IncidentHeader** to open the incident header form.
+5. Update the **Incident** label by doing the following:
+
+<Paragraph indent="1">
+  a. In the form area on the right, click the **Label** field that correlates to the master incident.
+</Paragraph>
+
+<Paragraph indent="1">
+  *Updating the Incident Header Form*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/iIJKo0oevgjaS36HuZXIl_master-incident-header.png" alt="Updating the Incident Header form" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/master-incident-header.png" githubPath="Content/Resources/Images/help-images/master-incident-header.png" showCaption="false"></Image>
+
+<Paragraph indent="1">
+  b. On the left, under the **Control Properties** tab, for the **Visible Expression** field, click the <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/nkqElOFXdxvDGVcRO7D1F_function.png" size="10" isUploading="false" initialPath="../../Resources/Images/buttons/function.png" githubPath="Content/Resources/Images/buttons/function.png" width="16" height="16" showCaption="false"></Image> icon to open the Expression Editor.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. Enter **$(!IsMasterIncident ||CurrentUserRole() not in ("Admin", "ServiceDeskAnalyst", "ServiceDeskManager"))** and then click **Save**.
+</Paragraph>
+
+<Paragraph indent="1">
+  *Expression Editor*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/dRTZiss63CBY_fzGarHVh_master-incident-expression.png" alt="Adding an expression for master incidents" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/master-incident-expression.png" githubPath="Content/Resources/Images/help-images/master-incident-expression.png" showCaption="false"></Image>
+
+6. Add a **Master Incident** label by doing the following:
+
+<Paragraph indent="1">
+  a. In the top left panel, expand **Other** and select **Label**.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Drag **Label** onto the form into the same cell as the existing **Label** fields.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. While the new **Label** field is highlighted, on the left, under the **Control Properties** tab, for the **Label Expression** field, click the <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/nkqElOFXdxvDGVcRO7D1F_function.png" size="10" isUploading="false" initialPath="../../Resources/Images/buttons/function.png" githubPath="Content/Resources/Images/buttons/function.png" width="16" height="16" showCaption="false"></Image> icon to open the Expression Editor.
+</Paragraph>
+
+<Paragraph indent="1">
+  d. Enter **$(local("Master Incident: ") + IncidentNumber + " (" + local(Status) + ")")** and click **Save**.
+</Paragraph>
+
+<Paragraph indent="1">
+  e. For the **Style** field, select **RedLabel** from the drop-down list.
+</Paragraph>
+
+<Paragraph indent="1">
+  f. For the **Visible Expression** field, click the <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/nkqElOFXdxvDGVcRO7D1F_function.png" size="10" isUploading="false" initialPath="../../Resources/Images/buttons/function.png" githubPath="Content/Resources/Images/buttons/function.png" width="16" height="16" showCaption="false"></Image> icon to open the Expression Editor.
+</Paragraph>
+
+<Paragraph indent="1">
+  g. Enter **$(IsMasterIncident && CurrentUserRole() in ("Admin", "ServiceDeskAnalyst", "ServiceDeskManager")** and click **Save**.
+</Paragraph>
+
+7. Add a **Master Incident Link** field by doing the following:
+
+<Paragraph indent="1">
+  a. In the top left panel, expand **Incident > Fields** and select **MasterIncidentLink**.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Highlight the **Reported By** cell and click **Insert Row Above**.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. Drag **MasterIncidentLink** onto the form into the cell above the cell called **Reported By**.
+</Paragraph>
+
+<Paragraph indent="1">
+  d. While the **MasterIncidentLink** cell is highlighted, on the left, under the **Control Properties** tab, for the **Display Field** field, enter **\[Incident]IncidentNumber**.
+</Paragraph>
+
+<Paragraph indent="1">
+  e. For the **Label** field, enter **Master Incident**.
+</Paragraph>
+
+<Paragraph indent="1">
+  f. For the **Visible Expression** field, click the <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/nkqElOFXdxvDGVcRO7D1F_function.png" size="10" isUploading="false" initialPath="../../Resources/Images/buttons/function.png" githubPath="Content/Resources/Images/buttons/function.png" width="16" height="16" showCaption="false"></Image> icon to open the Expression Editor.
+</Paragraph>
+
+<Paragraph indent="1">
+  g. Enter **$(if CurrentUserRole() in ("Admin", "ServiceDeskAnalyst", "ServiceDeskManager") && IsMasterIncident ||Status == "Closed" && IsNull(MasterIncidentLink\_RecID) then false else true)** and then click **Save**.
+</Paragraph>
+
+<Paragraph indent="1">
+  h. For the **Width** field, enter **4**.
+</Paragraph>
+
+8. Add a **Copy Master Detail** button by doing the following:
+
+<Paragraph indent="1">
+  a. In the top left panel, expand **Other** and select **Command Button**.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Drag **Command Button** onto the form into the same cell as the **Master Incident Link** field.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. While the **Button** control is highlighted, on the left, under the **Control Properties** tab, for the **Action** field, click the <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/nkqElOFXdxvDGVcRO7D1F_function.png" size="10" isUploading="false" initialPath="../../Resources/Images/buttons/function.png" githubPath="Content/Resources/Images/buttons/function.png" width="16" height="16" showCaption="false"></Image> icon to open the Action Editor.
+</Paragraph>
+
+<Paragraph indent="1">
+  d. Under **Master Incident**, choose **Copy Master Detail&#x20;**&#x61;nd then click **OK**.
+</Paragraph>
+
+<Paragraph indent="1">
+  e. For the **Label** field, enter **Copy Master Detail**.
+</Paragraph>
+
+<Paragraph indent="1">
+  f. For the **Visible Expression** field, click the <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/nkqElOFXdxvDGVcRO7D1F_function.png" size="10" isUploading="false" initialPath="../../Resources/Images/buttons/function.png" githubPath="Content/Resources/Images/buttons/function.png" width="16" height="16" showCaption="false"></Image> icon to open the Expression Editor.
+</Paragraph>
+
+<Paragraph indent="1">
+  g. Enter **$(if CurrentUserRole() not in ("Admin", "ServiceDeskAnalyst", "ServiceDeskManager") || IsNull(MasterIncidentLink\_RecID) == true || IsMasterIncident ||Status == "Closed" then false else true)** and then click **Save**.
+</Paragraph>
+
+<Paragraph indent="1">
+  h. In the **Width** field, enter **5**.
+</Paragraph>
+
+9. Add an **Update Related Incidents (Service, Category, and Status)** checkbox by doing the following:
+
+<Paragraph indent="1">
+  a. In the top left panel, expand **Incident** > **Fields** and select **IsRelatedIncidentUpdate**.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Drag **IsRelatedIncidentUpdate** onto the form into the cell next to the **Copy Master Detail** button.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. While the **IsRelatedIncidentUpdate** cell is highlighted, on the left, under the **Control Properties** tab, for the **Label Pos** field, select **On the right** from the drop-down list.
+</Paragraph>
+
+<Paragraph indent="1">
+  d. In the **Label** field, enter **Update Related Incidents (Service, Category, and Status)**.
+</Paragraph>
+
+<Paragraph indent="1">
+  e. In the **Visible Expression** field, click the <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/nkqElOFXdxvDGVcRO7D1F_function.png" size="10" isUploading="false" initialPath="../../Resources/Images/buttons/function.png" githubPath="Content/Resources/Images/buttons/function.png" width="16" height="16" showCaption="false"></Image> icon to open the Expression Editor.
+</Paragraph>
+
+<Paragraph indent="1">
+  f. Enter **$(if CurrentUserRole() in ("Admin", "ServiceDeskAnalyst", "ServiceDeskManager") && IsMasterIncident && Status != "Resolved" && Status != "Closed" then true else false)** and then click **Save**.
+</Paragraph>
+
+<Paragraph indent="1">
+  g. In the **Height** field, enter **1**.
+</Paragraph>
+
+10. Click **Save**.
+
+## Updating the Incident Details Form
+
+1. From the \{\{FRS\_VARS.Configuration\_console}}, click **Build** > **Business Objects**.
+2. Open the **Incident** business object.
+3. Click the **Forms** tab.
+4. Click **IncidentDetails.ServiceDesk** to open the incident details form for the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Console}}.
+5. Add a **Declare Master Incident** button by doing the following:
+
+<Paragraph indent="1">
+  a. In the top left panel, expand **Other** and select **Command Button**.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Drag **Command Button** onto the form into the same cell as the **Impact** field.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. While the **Button** control is highlighted, on the left, under the **Control Properties** tab, for the **Action** field, click the <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/nkqElOFXdxvDGVcRO7D1F_function.png" size="10" isUploading="false" initialPath="../../Resources/Images/buttons/function.png" githubPath="Content/Resources/Images/buttons/function.png" width="16" height="16" showCaption="false"></Image> icon to open the Action Editor.
+</Paragraph>
+
+<Paragraph indent="1">
+  d. Under **Master Incident**, choose **Declare Master Incident** and click **OK**.
+</Paragraph>
+
+<Paragraph indent="1">
+  e. For the **Disabled Expression** field, enter **$(Status == "Closed")**.
+</Paragraph>
+
+<Paragraph indent="1">
+  f. For the **Image** field, enter **badge-metal.png**.
+</Paragraph>
+
+<Paragraph indent="1">
+  g. For the **Label** field, enter **Declare Master Incident**.
+</Paragraph>
+
+<Paragraph indent="1">
+  h. For the **Visible Expression** field, click the <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/nkqElOFXdxvDGVcRO7D1F_function.png" size="10" isUploading="false" initialPath="../../Resources/Images/buttons/function.png" githubPath="Content/Resources/Images/buttons/function.png" width="16" height="16" showCaption="false"></Image> icon to open the Expression Editor.
+</Paragraph>
+
+<Paragraph indent="1">
+  i. Enter **$(if CurrentUserRole() in ("Admin", "ServiceDeskAnalyst", "ServiceDeskManager") && Impact == "High" && !IsMasterIncident && IsNull(MasterIncidentLink\_RecID) then true else false)** and then click **Save**.
+</Paragraph>
+
+<Paragraph indent="1">
+  j. For the **Width** field, enter **12**.
+</Paragraph>
+
+6. Click **Save**.
+
+## Updating the Incident Resolution Form
+
+1. From the \{\{FRS\_VARS.Configuration\_console}}, click **Build > Business Objects**.
+2. Open the **Incident** business object.
+3. Click the **Forms** tab.
+4. Click **IncidentDetails.ServiceDesk.Resolution** to open the incident resolution details form for the Service Desk.
+5. Add an **Update Related Incidents Resolution** checkbox by doing the following:
+
+<Paragraph indent="1">
+  a. In the top left panel, expand **Incident > Fields** and select **IsRelatedIncidentResolutionUpdate**.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Drag **IsRelatedIncidentResolutionUpdate** onto the form into the cell next to the **Resolution** cell.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. While the **IsRelatedIncidentResolutionUpdate** cell is highlighted, on the left, under the **Control Properties** tab, for the **Label Pos** field, select **On the right** from the drop-down list.
+</Paragraph>
+
+<Paragraph indent="1">
+  d. For the **Label** field, enter **Update Related Incident Resolution**.
+</Paragraph>
+
+<Paragraph indent="1">
+  e. For the **Visible Expression** field, click the <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/nkqElOFXdxvDGVcRO7D1F_function.png" size="10" isUploading="false" initialPath="../../Resources/Images/buttons/function.png" githubPath="Content/Resources/Images/buttons/function.png" width="16" height="16" showCaption="false"></Image> icon to open the Expression Editor.
+</Paragraph>
+
+<Paragraph indent="1">
+  f. Enter **$(if CurrentUserRole() in ("Admin", "ServiceDeskAnalyst", "ServiceDeskManager") && IsMasterIncident && (!IsNull(Resolution) || Resolution == "") && Status == "Resolved" then true else false)** and then click **Save**.
+</Paragraph>
+
+<Paragraph indent="1">
+  g. For the **Width** field, enter **18**.
+</Paragraph>
+
+6. Click **Save**.
+
+## Updating the Incident Layout
+
+1. From the \{\{FRS\_VARS.Configuration\_console}}, click **Build** > **Business Objects**.
+2. Open the **Incident** business object.
+3. Click the **Layouts** tab.
+4. Click **IncidentLayout.ServiceDesk** to open the layout.
+5. Under the **Views in this layout** section, click **formView**.
+6. Ensure that you are not in the **Try our new look!** view. If you see a link on the top right that says **Switch to old view**, click it.
+7. Near the bottom of the page, click **Add Child Panel**.
+8. Set the display name by doing the following:
+
+<Paragraph indent="1">
+  a. Under the **Display Name** header, click **\<Not Set>**.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Enter **Related Incidents**.
+</Paragraph>
+
+9. Assign a relationship by doing the following:
+
+<Paragraph indent="1">
+  a. Under the **Object** header, click **\<Not Set>**. 
+</Paragraph>
+
+<Paragraph indent="1">
+  b. In the **FormView Child Panel Relationship Editor** dialog box, select **Use only direct relationship to child object(s)**.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. For **Direct Relationship**, click **not set**.
+</Paragraph>
+
+<Paragraph indent="1">
+  d. Select **IncidentAssocChildIncident** from the drop-down list.
+</Paragraph>
+
+<Paragraph indent="1">
+  e. Click **Save**.
+</Paragraph>
+
+10. Set the list name by doing the following:
+
+<Paragraph indent="1">
+  a. Under the **List** header, click **\<Not Set>**.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Select **Incident** from the drop-down list.
+</Paragraph>
+
+11. Set the form by doing the following:
+
+<Paragraph indent="1">
+  a. Under the **Form(s)** header, click **\<Not Set>**.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. In the **Form Selection** dialog box, click **\<Not Set>**.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. Select **IncidentDetails.ServiceDesk** from the drop-down list.
+</Paragraph>
+
+<Paragraph indent="1">
+  d. Click **OK**.
+</Paragraph>
+
+12. Set a hidden expression by doing the following:
+
+<Paragraph indent="1">
+  a. Under the **Hidden Expression** header, click **\<Not Set>**.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. In the Expression Editor, enter **$(if IsMasterIncident == true then false else true)**.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. Click **Save**.
+</Paragraph>
+
+13. Set the link button filter by doing the following:
+
+<Paragraph indent="1">
+  a. Under the **Link Button Filter** header, click **\<Not Set>**.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. In the Expression Editor, enter **$(if \[OtherObject]IsMasterIncident == true || \[OtherObject]Status == "Closed" then false else true)**.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. Click **Save**.
+</Paragraph>
+
+14. Check the checkbox under the **Show Count in Title** header.
+15. Click **Save**.

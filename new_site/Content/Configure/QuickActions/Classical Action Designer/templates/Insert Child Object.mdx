@@ -1,0 +1,46 @@
+---
+title: Insert Child Object Action
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:57 GMT+0300 (Eastern European Summer Time)
+---
+
+- :Link[About the Insert Child Object Action]{label="About the Insert Child Object Action" overridedLabel="About the Insert Child Object Action" spaceId docId="f8F6u6b2ePoLtHY4kxu4Z" version="v2" docAnchorId="#About_the_Insert_Child_ObjectQuickAction" loadingMethod="dynamic" newTab="false" href="Insert Child Object.mdx"}
+- :Link[Parameters]{label="Parameters" overridedLabel="Parameters" spaceId docId="f8F6u6b2ePoLtHY4kxu4Z" version="v2" docAnchorId="#Parameters" loadingMethod="dynamic" newTab="false" href="Insert Child Object.mdx"}
+- :Link[Actions]{label="Actions" overridedLabel="Actions" spaceId docId="f8F6u6b2ePoLtHY4kxu4Z" version="v2" docAnchorId="#Actions" loadingMethod="dynamic" newTab="false" href="Insert Child Object.mdx"}
+- [Example: Using the Insert Child Object Action](../../Example_Using_the_Insert_Child_Object_QA.mdx)
+- **Graphical Action Designer**: [Create a Child Record Quick Action](<../../Graphical Action Designer/Record Actions/Create a Child Record.mdx>)
+
+## About the Insert Child Object Action
+
+The **Insert Child Object** action inserts a child business object into a form or list, such as a new incident, field value, or a note.
+
+<hint type="info">
+  This action is listed as **Create a Child Record** in the Graphical Action Designer.
+</hint>
+
+Use this action to add levels of granularity, constructing additional expressions restricting the viewing and usage of the action to certain field states.
+
+### Parameters
+
+<hint type="info">
+  Some parameter field names may differ slightly in the Graphical Action Designer UI.
+</hint>
+
+| Field                    | Description                                                                                                                                                                                                                                                                                                                                 |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Enter action name        | A unique name for the action.                                                                                                                                                                                                                                                                                                               |
+| Enter action description | Optional. A description of what the action does.                                                                                                                                                                                                                                                                                            |
+| Enter category           | Optional. The category. Select from the drop-down list.                                                                                                                                                                                                                                                                                     |
+| Child Object             | The child business object to insert. Select from the drop-down list. The fields that appear are based on this value.                                                                                                                                                                                                                        |
+| Field Name               | The name of the field.                                                                                                                                                                                                                                                                                                                      |
+| Field Value              | The value of the field.                                                                                                                                                                                                                                                                                                                     |
+| Web UI parameters        | Generally for internal use only.<br /><br />Only used to post the object to the Social Board. This field takes only one expression:<br />**\{socialshare\:true, elementId: $(elementId)}**.<br /><br />For example, in the **Incident** business object, this field is used in the **Post Social message associated with Incident** action. |
+
+### Actions
+
+| Button                                                                                                                                                                                                                                                                                                                         | Action                                                                                                                                                                                 |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/JtIxGMfjslfCSitXWBu4o_addgreen.png" alt caption size="10" width="17" height="15"} or **+ Add Field**                                                                                                                               | Adds a field to the list.                                                                                                                                                              |
+| <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/uN-MJlNAhdQXruh5k_EsW_delete.png" size="10" isUploading="false" initialPath="../../../../Resources/Images/buttons/delete.png" githubPath="Content/Resources/Images/buttons/delete.png" width="19" height="16" showCaption="false"></Image> | Removes a field from the list. To delete a field in the Graphical Action Designer, click "**X**"at the top right of the **Field Name** entry in the **Block** section of **Settings**. |
+| Save                                                                                                                                                                                                                                                                                                                           | Commits your settings.                                                                                                                                                                 |
+| Cancel                                                                                                                                                                                                                                                                                                                         | Exits without saving.                                                                                                                                                                  |

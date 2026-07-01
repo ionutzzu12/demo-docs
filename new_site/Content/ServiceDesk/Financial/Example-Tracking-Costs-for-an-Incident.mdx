@@ -1,0 +1,66 @@
+---
+title: Example: Tracking Costs for an Incident
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:48 GMT+0300 (Eastern European Summer Time)
+---
+
+This example shows how costs are tracked for an incident. You can use the same procedures to show costs for a service request.
+
+When you create an incident, you can assign tasks that have costs associated with them. Costs are automatically captured in the record when a task is set to completed.
+
+### Adding Tasks to an Incident Record
+
+1. Log into the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Console}} console.
+2. Open the **Incident** workspace.
+3. Create a new incident. (See :Link[Creating an Incident]{label="Creating an Incident" overridedLabel="Creating an Incident" spaceId docId="crTb5NPQ-I8esrvjKIssw" version="v2" docAnchorId="#Creating_an_Incident" loadingMethod="dynamic" newTab="false" githubPath="../Incidents/Managing-Incidents.htm#Creating_an_Incident" href="../Incidents/Managing-Incidents.mdx"}.)
+4. Under the **Details** tab, enter the following information.
+
+| Field       | Description                                                             |
+| ----------- | ----------------------------------------------------------------------- |
+| Customer    | Name of the customer.                                                   |
+| Summary     | Summary of the incident. For example, **mobile phone**.                 |
+| Description | A brief description of the incident. For example, **track cost items**. |
+| Service     | Type of service. For example, **Mobile Communication**.                 |
+| Category    | Category of the incident. For example, **Device Failure**.              |
+
+<Paragraph indent="1">
+  Do not change the other fields.
+</Paragraph>
+
+5. Click **Save**.
+6. To resolve this incident, you can assign a task.
+7. From the **Task** tab, create a new task. (See [Creating a Task](../Tasks/Creating-a-Task.mdx).)
+8. In the **New Task** window, enter information into the following fields.
+
+| Field   | Description                                      |
+| ------- | ------------------------------------------------ |
+| Summary | Title, such as **Pick up phone from user site**. |
+| Team    | Name of the team.                                |
+| Owner   | Name of the owner.                               |
+
+<Paragraph indent="1">
+  Do not change the other fields.
+</Paragraph>
+
+9. Click **Save**.
+10. Select the task from the list, then click **Accept** from the toolbar. Here, you are triggering the workflow for the incident.
+11. Click **Complete** from the toolbar. A text box opens.
+12. Enter the number of minutes spent on the task, such as 60.
+13. Click **OK**.
+    - The task is saved and shows up under the **Task** tab.
+    - The task cost appears under the **Cost Item** tab.
+    - The task cost also appears in the **CI Service** workspace.
+
+<hint type="info" indent="1">
+  Costs only appear when the task is completed. Only tasks defined in the task catalog are tracked (ad-hoc tasks are not tracked).
+</hint>
+
+### Adding Equipment Costs
+
+You can also add costs to the record of items not related to a task, such as the cost of a monitor or other equipment.
+
+1. Log into the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Console}} console.
+2. Open the **Incident** workspace.
+3. Create a new incident. (See :Link[Creating an Incident]{label="Creating an Incident" overridedLabel="Creating an Incident" spaceId docId="crTb5NPQ-I8esrvjKIssw" version="v2" docAnchorId="#Creating_an_Incident" loadingMethod="dynamic" newTab="false" githubPath="../Incidents/Managing-Incidents.htm#Creating_an_Incident" href="../Incidents/Managing-Incidents.mdx"}.)
+4. In the **Cost Item** tab of the incident record, click **New from price list item**.
+5. Select a price list item from the drop-down list. For example, choose **iPhone 5C**. The cost is taken from the **Price List Item** workspace and the item is added to the **Cost Item** list. The grand total is updated to reflect the added equipment.

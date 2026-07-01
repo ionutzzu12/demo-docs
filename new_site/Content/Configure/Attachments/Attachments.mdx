@@ -1,0 +1,184 @@
+---
+title: Working With Attachments and URLs
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:51 GMT+0300 (Eastern European Summer Time)
+---
+
+You can attach files or images to records, enabling users to access additional data not limited by the defined fields. Many \{\{FRS\_VARS.ProductName}} workspaces allow attachments and URLs to be added to a record, including incidents, knowledge articles, tasks, problems, change requests, releases, and service requests.
+
+Administrators can limit the size and type of attachments allowed (refer to [About the "Other" Form Controls](<../Forms/Other Form Controls.mdx>)). You can designate attachments to Knowledge Base articles as searchable (refer to [Working with Searchable Attachments for Knowledge Base Articles](Searchable_Attachments.mdx)).
+
+- :Link[Adding an Attachment]{label="Adding an Attachment" overridedLabel="Adding an Attachment" spaceId docId="JkvFLknCe88IG5gKPYAlB" version="v2" docAnchorId="#Adding-an-Attachment" loadingMethod="dynamic" newTab="false" href="Attachments.mdx"}
+- :Link[Adding a URL]{label="Adding a URL" overridedLabel="Adding a URL" spaceId docId="JkvFLknCe88IG5gKPYAlB" version="v2" docAnchorId="#Adding2" loadingMethod="dynamic" newTab="false" href="Attachments.mdx"}
+- :Link[Downloading an Attachment]{label="Downloading an Attachment" overridedLabel="Downloading an Attachment" spaceId docId="JkvFLknCe88IG5gKPYAlB" version="v2" docAnchorId="#Downloading_an_Attachment" loadingMethod="dynamic" newTab="false" href="Attachments.mdx"}
+- :Link[Opening a URL]{label="Opening a URL" overridedLabel="Opening a URL" spaceId docId="JkvFLknCe88IG5gKPYAlB" version="v2" docAnchorId="#Opening" loadingMethod="dynamic" newTab="false" href="Attachments.mdx"}
+- :Link[About Modifying an Attachment]{label="About Modifying an Attachment" overridedLabel="About Modifying an Attachment" spaceId docId="JkvFLknCe88IG5gKPYAlB" version="v2" docAnchorId="#Modifyin" loadingMethod="dynamic" newTab="false" href="Attachments.mdx"}
+- [Working with Attachment Types](Attachment_Types.mdx)
+- [Storing Attachments as External Files](<Storing Attachments as a File.mdx>)
+- [Limiting Attachment Size](<How to Limit Attachment Size.mdx>)
+- [Working with Searchable Attachments for Knowledge Base Articles](Searchable_Attachments.mdx)
+- [Displaying a URL or HTML Content in a Workspace](<Support Object Workspace as URL.mdx>)
+- [Supporting a URL in a Dashboard](<Support URL in Dashboard.mdx>)
+- [Opening a Workspace From a URL](<Opening a Workspace from a URL.mdx>)
+
+## Adding an Attachment
+
+You can add multiple attachments to a record if:
+
+- You are using Google Chrome, Mozilla Firefox, or Microsoft Internet Explorer versions 10 and higher.
+
+Attachments can be added from the **Details** tab using the **Flex Attachment Control**, or from the **Attachments** tab.
+
+*Flex Attachment Control and Attachments Tab*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/0aB1ZN7Gww4btXmiRkrar_flex-attachments.png" alt="Image of the Flex Attachment Control and Attachments tab." position="flex-start" size="40" initialPath="../../Resources/Images/help-images/flex attachments.png" githubPath="Content/Resources/Images/help-images/flex attachments.png" showCaption="false"></Image>
+
+When attaching a file, the application uploads the attachments to the attachment path folder.
+
+- If the path drive exists, but not the folder, the application creates the folder and the uploads the attachments.
+- If the path drive does not exist, the application displays the following error message when the file is uploaded: "Upload failed with error: Could not find a part of the path 'g:\temp2\346918CF43BD4FE2BAE0C57D781076C3'."
+- If the **Save Type** parameter is empty, but the path is correct, it uploads the attachment to the database.
+
+Follow these steps to add an attachment in the **Attachments** tab:
+
+1. Log into the Service Desk Console.
+2. Open a workspace.
+3. Open a record. The application displays the record details page.
+4. Select the **Attachment** tab.
+
+<hint type="info">
+  If the **Attachments** tab is not visible, you can open it by selecting **Attachment** from the **Restore Hidden Tabs** list (select the :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/8qgkd6bNoUEOedgWUlCcL_hiddentabsicon.png" alt caption size="10" width="19" height="20"} icon).
+</hint>
+
+5. Select **New** on the toolbar. The application displays the **File Upload** dialog box.
+6. Navigate to a file and select **Open**. The application uploads the file and displays the name in the attachment list.
+
+Follow these steps to add an attachment in the **Details** tab:
+
+1. Log into the Service Desk Console.
+2. Open a workspace.
+3. Open a record. The application displays the record details page.
+4. Select the **Details** tab.
+5. Select **Attach**. The application displays the **File Upload** dialog box.
+6. Navigate to a file and select **Open**. The application uploads the file and displays the name in the attachment list.
+7. **Save** the record.
+
+Follow these steps to add an attachment in the **Details** tab by pasting from the clipboard:
+
+1. Copy the item to the clipboard that you want to attach (select the item and press CTRL+C).
+2. Open a record. The application displays the record details page.
+3. Select the **Details** tab.
+4. Select **Paste**. The application displays he attachment preview dialog box.
+5. Enter a name for the attachment in the **Attachment name** field.
+6. Select the **Clipboard preview** section and paste the item on the clipboard into it (press CTRL+V).
+7. Select **OK**.
+
+You can add an image using HTML control (such as **Description** box) for a record. For example, follow the below steps to add an image using **Description** field:
+
+1. Log into the Service Desk Console.
+2. Open a workspace.
+3. Open a record.
+
+<Paragraph indent="1">
+  The application displays the record details page.
+</Paragraph>
+
+4. Copy an image and paste into the **Description** box.
+5. Click **Save**.
+
+<Paragraph indent="1">
+  The application saves the image as a thumbnail in the **Description** box. Also, the application uploads the image and displays the name of the image in the **Attachment** section.
+</Paragraph>
+
+6. Click on the image in the **Description** box to view the image in a separate window.
+
+<hint type="info">
+  You can delete the image from the **Attachment** list only.
+</hint>
+
+## Downloading an Attachment
+
+To download an attachment to you local machine:
+
+1. Open the record containing the attachment.
+2. In the **Details** or **Attachment** tab, click the attached file you want to download.
+
+The attached file is downloaded to your Downloads folder.
+
+## Adding a URL
+
+You can add multiple URLs to a record.
+
+To add a URL in the **Attachments** tab:
+
+1. Log into the Service Desk Console.
+2. Open a workspace.
+3. Open a record. The application displays the record details page.
+4. Select **New URL**. The application displays the **Add attachment** dialog box.
+5. Enter a valid URL (such as https\://www\.ivanti.com; be sure to include **https\://**), then click **Save**. If you attach a URL beginning with HTTP, \{\{FRS\_VARS.ProductName}} blocks the content. Remind users to follow the steps in :Link[Opening a URL]{label="Opening a URL" overridedLabel="Opening a URL" spaceId docId="JkvFLknCe88IG5gKPYAlB" version="v2" docAnchorId="#Opening" loadingMethod="dynamic" newTab="false" href="Attachments.mdx"} to display the content.
+
+<Paragraph indent="1">
+  The application displays the URL in the attachment list.
+</Paragraph>
+
+To add a URL in the **Details** tab:
+
+<hint type="info">
+  If the **New URL** control is not visible in the **Details** tab, you need to enable it in the form **Attachment Display Settings**, refer to the **Attachments** section in [About the "Other" Form Controls](<../Forms/Other Form Controls.mdx>)
+</hint>
+
+1. Log into the Service Desk Console.
+2. Open a workspace.
+3. Open a record. The application displays the record details page.
+4. Select **New URL**. The application displays the **Add attachment** dialog box.
+5. Enter a valid URL (such as https\://www\.ivanti.com; be sure to include **https\://**), then click **Save**. If you attach a URL beginning with HTTP, \{\{FRS\_VARS.ProductName}} blocks the content. Remind users to follow the steps in :Link[Opening a URL]{label="Opening a URL" overridedLabel="Opening a URL" spaceId docId="JkvFLknCe88IG5gKPYAlB" version="v2" docAnchorId="#Opening" loadingMethod="dynamic" newTab="false" href="Attachments.mdx"} to display the content.
+
+<Paragraph indent="1">
+  The application displays the URL in the attachment list.
+</Paragraph>
+
+## Opening a URL
+
+If you try to open a URL that begins with HTTP rather than with HTTPS, \{\{FRS\_VARS.ProductName}} blocks the content so that you are not fooled into thinking that you are viewing secure and valid content.
+
+You can override this and view a URL beginning with HTTP by following these steps:
+
+1. When you try to open a URL beginning with HTTP, the dashboard does not display the content and the browser displays an icon on the right edge of the URL indicating that an unsafe script was trying to load.
+
+*Unsafe URL*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/riC1n3z2I3k_lJUXxwou5_newurl.png" alt="Image of the badge icon, which indicates an unsafe URL." position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/NEW_URL.png" githubPath="Content/Resources/Images/help-images/NEW_URL.png" showCaption="false"></Image>
+
+2. To view the page, click the badge icon.
+3. The application prompts you to allow non-secure content.
+4. Click **Load unsafe scripts**. The browser refreshes and loads the requested page.
+
+*Requested Content*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/xNZyykxcYR4CwaDygRUjW_safepage-copy.png" alt="After clicking &#x22;Load unsafe scripts,&#x22; the browser refreshes and loads the requested page." position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/Safe_Page - Copy.png" githubPath="Content/Resources/Images/help-images/Safe_Page - Copy.png" showCaption="false"></Image>
+
+## About Modifying an Attachment
+
+You can add additional attachments to incidents, Knowledge Base articles, tasks, problems, change requests, releases, and service requests, after they have been created. You cannot modify individual attachments, but you can delete it, change it outside of \{\{FRS\_VARS.ProductName}}, and then re-attach it.
+
+<hint type="info">
+  Only Knowledge Managers can view or edit attached files from other users when a Knowledge Base article is in draft status.
+</hint>
+
+### Limitations with Attachment Modification
+
+- For Cloud Users:
+
+<Paragraph indent="1">
+  Only the *ATTACHDESC* field on the **Attachment** business object can be updated using a web script. All other fields are restricted for security reasons. To update other fields, use the [Attachment APIs](../API/Attachment-APIs.mdx).
+</Paragraph>
+
+- For On-premise Users:
+
+<Paragraph indent="1">
+  To allow updating all fields of the **Attachment** business object using a web script, you need to enable a configuration setting in the appserver configuration file. Contact your system administrator or [Ivanti Support](https://www.ivanti.com/support) for details.
+</Paragraph>
+
+<hint type="info" indent="1">
+  Enabling this setting overrides the default security restriction and should only be done in controlled environments.
+</hint>

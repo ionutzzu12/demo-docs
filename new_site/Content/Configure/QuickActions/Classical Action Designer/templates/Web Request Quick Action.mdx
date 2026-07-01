@@ -1,0 +1,87 @@
+---
+title: Web Request  
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:57 GMT+0300 (Eastern European Summer Time)
+---
+
+The application provides several options for using web services with \{\{FRS\_VARS.Quick\_Action}}s.
+
+- Use the [Run Web Service Quick Action](<Run Web Service.mdx>) for SOAP web services.
+- Use the Web Request Quick Action for REST API web services when you need to use simple authentication.
+- Use the Web Request Quick Action for REST API web services with Authorization Headers.
+
+The **Web Request** \{\{FRS\_VARS.Quick\_Action}} updates fields in your business objects using REST API.
+
+**Graphical Action Designer**: [Web Request Quick Action](<../../Graphical Action Designer/Advanced Actions/Web Request.mdx>)
+
+<hint type="info">
+  You can only use a **Web Request** \{\{FRS\_VARS.Quick\_Action}} as a component of a **Composite Action**. For help with **Composite Actions**, see [Adding Multiple Actions to a Quick Action](../../Adding_Actions_to_Quick_Act.mdx).
+</hint>
+
+## Using the Web Request Action Feature
+
+The **Web Request** \{\{FRS\_VARS.Quick\_Action}} allows you to customize and define inputs to your web request. The **Web Request** \{\{FRS\_VARS.Quick\_Action}} uses REST APIs to communicate with web servers, making it a flexible data gathering tool.
+
+The core difference between this and the [Run REST Web Service Quick Action](<Run REST Web Service.mdx>) is that the this \{\{FRS\_VARS.Quick\_Action}} uses Authorization Headers instead of basic authentication.
+
+## Parameters
+
+Update the settings of the web request using the parameters.
+
+### General Settings
+
+- **Method**:
+  - GET: Gathers data from a resource on the server.
+  - POST: Sends data to the server to create or update a resource. Multiple POST requests will result in compounded changes to the resource.
+  - PUT: Sends data to the server to create or update a resource. Multiple PUT requests will result in the same response with every request.
+  - PATCH: Applies partial modifications to a resource.
+  - DELETE: Deletes the specified resource.
+- **URL**: The target of your web request.
+- **Body**: Enter the payload you are sending with your web request.
+  - For example, $('\{"Status":"' + Status + '", "Subject":"' + Subject +'", "Description":"' + Symptom + '"}'):
+
+### Header Settings
+
+The header settings contain metadata in key-value pairs that are sent along with HTTP requests. A request header is sent to the web server and contains information and instructions for the resource to respond to the request. You can find useful information on using HTTP headers at [https://blog.postman.com/what-are-http-headers/](https://blog.postman.com/what-are-http-headers/). You can specify one or more header key-value pairs in the **Header Settings**. See :Link[Example of Header Settings]{label="Example of Header Settings" overridedLabel="Example of Header Settings" spaceId docId="vU5ITkyEKoNQMIFNW3OAt" version="v2" docAnchorId="#Example_of_Header_Settings_CAD" loadingMethod="dynamic" newTab="false" href="Web Request Quick Action.mdx"} for typical examples of defining the header settings.
+
+1. Click **Header Settings**.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/-HpIKMe84DzLKteQOu-ZO_cadwebrequestheadersettings.png" position="flex-start" size="40" indent="1" initialPath="../../quick-actions-images/cad_web_request_header_settings.png" githubPath="Content/Configure/QuickActions/quick-actions-images/cad_web_request_header_settings.png" showCaption="false"></Image>
+
+2. Enter the required **Header Key** and **Header Value** pair.
+3. Click the **+** icon to add more pairs.
+
+### Example of Header Settings
+
+In this example, we define the header settings to pass an API key to a web server.
+
+Typically, this may be used to obtain data from the server, the header value API key being passed to the server as authorization to obtain the data.
+
+1. Select **General Settings** and set the **Web Request** action's **Method** field to 'GET', as we want to gather data from a resource on the server.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/nfywNAkycOwVSYUomIgts_cadwebrequestmethodsettings.png" position="flex-start" size="40" indent="1" initialPath="../../quick-actions-images/cad_web_request_method_settings.png" githubPath="Content/Configure/QuickActions/quick-actions-images/cad_web_request_method_settings.png" showCaption="false"></Image>
+
+2. Enter tenant URL along with resource location in the **URL** field.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/0SKFMrTjq5OcszkU6sBfg_cadwebrequesturlsettings.png" position="flex-start" size="40" indent="1" initialPath="../../quick-actions-images/cad_web_request_url_settings.png" githubPath="Content/Configure/QuickActions/quick-actions-images/cad_web_request_url_settings.png" showCaption="false"></Image>
+
+<Paragraph indent="1">
+  For example, https\://\<tenant-url>/api/odata/businessobject/incidents('$(RecId)')
+</Paragraph>
+
+3. Click **Header Settings** and enter "Authorization" for the **Header Key**, and the API key for the **Header Value**.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/a-GMeRTRiT8cwppxyNI58_cadwebrequestheadersettingspopulated.png" position="flex-start" size="40" indent="1" initialPath="../../quick-actions-images/cad_web_request_header_settings_populated.png" githubPath="Content/Configure/QuickActions/quick-actions-images/cad_web_request_header_settings_populated.png" showCaption="false"></Image>
+
+4. Click **Add Header** :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/tz6ln1JEcq28-cRejFGYz_webrequestaddheaderrowbutton.png" alt caption size="10" width="29" height="29"} to add a second header key and value row.
+5. Enter "Content-Type" for the **Header Key**, and application/json for the **Header Value**.
+   This indicates that the request body contains JSON data.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/gJGSqFUIIyau1gZcvbE33_cadwebrequestheadersettingspopulated1.png" position="flex-start" size="40" indent="1" initialPath="../../quick-actions-images/cad_web_request_header_settings_populated1.png" githubPath="Content/Configure/QuickActions/quick-actions-images/cad_web_request_header_settings_populated1.png" showCaption="false"></Image>
+
+### Response Settings
+
+- **Ignore Certificate Errors**: Check this box to have the web request ignore certificate errors (such as an expired certificate error) and continue processing the remaining steps in the Action.
+- **Store Response Code As**: Creates and populates a variable to store the response code for use in subsequent action steps.
+- **Store Response Body As**: Creates and populates a variable to store the response body for in subsequent action steps.
+- **Store Response Headers As**: Creates and populates a variable to store the response header for in subsequent action steps.

@@ -1,0 +1,123 @@
+---
+title: Example: Using the Run for Child Action (CAD)
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:57 GMT+0300 (Eastern European Summer Time)
+---
+
+Use the **Run for Child** action to perform an action on a child business object of a parent business object. See [Run for Child Action](<../templates/Run for Child.mdx>).
+
+- :Link[Example using the Release (ReleaseProject) Business Object]{label="Example using the Release (ReleaseProject) Business Object" overridedLabel="Example using the Release (ReleaseProject) Business Object" spaceId docId="1FbKL0adXJvS50SmUBGob" version="v2" docAnchorId="#Example_using_the_Release_(ReleaseProject)_Business_Object" loadingMethod="dynamic" newTab="false" href="Using the Run for Child QA.mdx"}
+- :Link[Example using the Problem Business Object]{label="Example using the Problem Business Object" overridedLabel="Example using the Problem Business Object" spaceId docId="1FbKL0adXJvS50SmUBGob" version="v2" docAnchorId="#Example_using_the_Problem_Business_Object" loadingMethod="dynamic" newTab="false" href="Using the Run for Child QA.mdx"}
+- :Link[Example using the Service Request Business Object]{label="Example using the Service Request Business Object" overridedLabel="Example using the Service Request Business Object" spaceId docId="1FbKL0adXJvS50SmUBGob" version="v2" docAnchorId="#Example_using_the_Service_Request_Business_Object" loadingMethod="dynamic" newTab="false" href="Using the Run for Child QA.mdx"}
+
+## Prerequisites
+
+This example assumes you have administrator-level access to \{\{FRS\_VARS.ITSM}} and are familiar with creating both business objects and \{\{FRS\_VARS.Quick\_Action}}s.
+
+## How to create a Run for Child Quick Action
+
+To create a **Run For Child** \{\{FRS\_VARS.Quick\_Action}}:
+
+1. From the Configuration console, click **Build > Automation Tools > Quick Actions** to open the **Actions Manager** workspace. The list of business objects that have actions appears.
+2. Select a business object from the list and click **Add/Edit**.
+3. In the Actions Center, click the **Create New Actions** tab.
+4. Under the **Create New Actions** tab, click **Run for Child**.
+5. Enter your parameters in the fields provided. Examples of business objects and their parameters are shown in the tables below.
+6. Click **Save**.
+
+## Example using the Release (ReleaseProject) Business Object
+
+### Scenario
+
+A company has a number of change records linked to a Release business object. They want to use \{\{Primary.Company}}\{\{Primary.Product}} to update the status of these changes (RFCs) in a batch to the **Implemented&#x20;**&#x73;tatus. By leveraging the Run for Child \{\{FRS\_VARS.Quick\_Action}}, the company can easily set up a way to update these associated "child" records in \{\{Primary.Product}}.
+
+| Field                    | Parameter                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Enter action name        | Update Linked Changes to Implemented Status                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| Enter action description | Updates the status of a linked change to Implemented if its status is approved.                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| Enter category           | Form actions<br />Choose a category to place your new action in the **Your Actions** tab on the left of the screen. OOTB category options include **No Category, Form Actions, New Milestones, Print, Search and Link, System** or **Windows 7 Migration Milestones**.<br />To create your own category, type a name instead of selecting from the **Category&#x20;**&#x64;rop-down list.                                                                                                                                          |
+| Relationship             | ChangeAssociatedReleaseProject                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| Child Object Filter      | $(ApprovalCondition == "true")<br />This means that the action only runs on change records where the field **ApprovalCondition** is **true**.                                                                                                                                                                                                                                                                                                                                                                                      |
+| Action to run            | Update Status to Implemented<br />This action is set up as follows:<br /><Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/TtiI_pnGaFTiheT5ePw_I_examplecadrunforchild1a.png" position="flex-start" size="40" initialPath="../../quick-actions-images/example_CAD_RunforChild1a.png" githubPath="Content/Configure/QuickActions/quick-actions-images/example_CAD_RunforChild1a.png" showCaption="false"></Image><br />It sets the change record's **Status&#x20;**&#x66;ield to **Implemented**. |
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/LQvG5yqtpnml-tnAOXOiW_examplecadrunforchild1.png" alt="paramets for an example using Run for Child to change status of a release project business object" position="flex-start" size="40" initialPath="../../quick-actions-images/example_CAD_RunforChild1.png" githubPath="Content/Configure/QuickActions/quick-actions-images/example_CAD_RunforChild1.png" showCaption="false"></Image>
+
+### Run the Scenario
+
+1. Log in as a Change Manager.
+2. Create a new Change with Typ&#x65;**&#x20;Emergency**.
+3. Run the **Update Status to Implemented** \{\{FRS\_VARS.Quick\_Action}}.
+
+<Paragraph indent="1">
+  The **Status&#x20;**&#x66;ield is set to **Implemented**, and if the Approvals and Approval Vote Tracking tabs do not exist yet, they are created.
+</Paragraph>
+
+## Example using the Problem Business Object
+
+### Scenario
+
+A company has a number of problems linked to an associated incident business object. They want to use \{\{Primary.Company}}\{\{Primary.Product}} to update the status of these records in a batch so that all problems at **Priority 1** are set to status **Resolved**.
+
+| Field                    | Parameter                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Enter action name        | Resolve via Resolution                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| Enter action description | Runs a resolution action for problems of highest priority.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| Enter category           | Workflow Engine<br />The selected category determines where your new action appears in the **Your Actions** tab on the left of the screen.<br />Choose from **No Category, Knowledge Articles, Print, Templates** or **Workflow Engine** OOTB categories. The Workflow Engine category helps group actions related to altering the path of records through the system.<br />To create your own category, type a name instead of selecting from the **Category&#x20;**&#x64;rop-down list.                                                                                                                                                                                   |
+| Relationship             | ProblemAssociatesIncident                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| Child Object Filter      | $(Priority == "1")                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| Action to run            | Resolve Incident via Problem Resolution<br />This action is set up as follows:<br /><Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/M1FbVwugqgFoleg6NrsG-_examplecadrunforchild3a.png" position="flex-start" size="40" initialPath="../../quick-actions-images/example_CAD_RunforChild3a.png" githubPath="Content/Configure/QuickActions/quick-actions-images/example_CAD_RunforChild3a.png" showCaption="false"></Image><br />It sets the Incident record's **Cause Code** field to **Linked Problem**, the **Resolution&#x20;**&#x66;ield to **Resolved via Problem Resolution**, and the **Status&#x20;**&#x66;ield to **Resolved**. |
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/mBLEFPrgde705I_Zqv7hi_examplecadrunforchild3.png" position="flex-start" size="40" initialPath="../../quick-actions-images/example_CAD_RunforChild3.png" githubPath="Content/Configure/QuickActions/quick-actions-images/example_CAD_RunforChild3.png" showCaption="false"></Image>
+
+### Run the Scenario for a Single Record
+
+1. Login as an Administrator.
+2. Open the Incident workspace and select an Incident with an associated Problem at **Priority 1&#x20;**&#x6F;r create one.
+
+<hint type="info">
+  Increasing the values for **Urgency&#x20;**&#x61;nd **Impact&#x20;**&#x66;ields gives you a **Priority 1**.
+</hint>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/G8XsMlHHXGwM1FKfr_FoM_examplecadrunforchild3b.png" position="flex-start" size="40" indent="1" initialPath="../../quick-actions-images/example_CAD_RunforChild3b.png" githubPath="Content/Configure/QuickActions/quick-actions-images/example_CAD_RunforChild3b.png" showCaption="false"></Image>
+
+<Paragraph indent="1">
+  The **Resolution**, **Cause Code** and **Status&#x20;**&#x66;ields at the bottom of the Problem are set to **None**, **Blank&#x20;**&#x61;nd **Active&#x20;**&#x72;espectively:
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Zqo1zAOeQsdbmpYfk7XPO_examplecadrunforchild3e.png" position="flex-start" size="40" indent="1" initialPath="../../quick-actions-images/example_CAD_RunforChild3e.png" githubPath="Content/Configure/QuickActions/quick-actions-images/example_CAD_RunforChild3e.png" showCaption="false"></Image>
+
+3. Click on **More > Form Actions > Resolve Via Resolution**.
+4. When the Resolve via Resolution \{\{FRS\_VARS.Quick\_Action}} is run, the three fields are updated to **Resolved via Problem Resolution**, **Linked Problem**, and **Resolved&#x20;**&#x72;espectively.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/3LyjjEpulazZFETBcOHRz_examplecadrunforchild3h.png" position="flex-start" size="40" indent="1" initialPath="../../quick-actions-images/example_CAD_RunforChild3h.png" githubPath="Content/Configure/QuickActions/quick-actions-images/example_CAD_RunforChild3h.png" showCaption="false"></Image>
+
+## Example using the Service Request Business Object
+
+### Scenario
+
+A company has a number of task records linked to the Service Request business object. They want to use \{\{Primary.Company}}\{\{Primary.Product}} to update the status of these records in a batch so that once the task reaches 30 days old, its Status gets sets to **Cancelled**.
+
+| Field                    | Parameter                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Enter action name        | Cancel Tasks                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| Enter action description | Cancels the service request assignment once it reaches 30 days old.                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| Enter category           | System<br />The category chosen sets the location for your new action in the **Your Actions** tab on the left of the screen. Choose from **No Category, Button, Escalation Engine** or **Mobile** OOTB categories.<br />To create your own category, type a name instead of selecting from the **Category&#x20;**&#x64;rop-down list.                                                                                                                                                                    |
+| Relationship             | ServiceReqAssocTaskAssignment                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| Child Object Filter      | $(BeginningOfDay(30))                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| Action to run            | Cancel<br />This action is set up as follows:<br /><Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/b0G1VpxOGyKDW_0kFCJEx_examplecadrunforchild4a.png" position="flex-start" size="40" initialPath="../../quick-actions-images/example_CAD_RunforChild4a.png" githubPath="Content/Configure/QuickActions/quick-actions-images/example_CAD_RunforChild4a.png" showCaption="false"></Image><br />It sets the Task record's **Status&#x20;**&#x66;ield to **Cancelled**. |
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/GIYWTcKNgXgfVWiFEH3YB_examplecadrunforchild4.png" position="flex-start" size="40" initialPath="../../quick-actions-images/example_CAD_RunforChild4.png" githubPath="Content/Configure/QuickActions/quick-actions-images/example_CAD_RunforChild4.png" showCaption="false"></Image>
+
+### Run the Scenario
+
+1. Log in as an Administrator.
+2. Open the Service Request workspace and select a record with associated tasks that are older than 30 days. If you cannot find tasks of that age, modify the Child Object filter value in the \{\{FRS\_VARS.Quick\_Action}} to a lower number, such as 5 days, for testing the action.
+3. Check that the **Status&#x20;**&#x66;ield is not set to **Cancelled&#x20;**&#x61;lready.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/PQnpZe7ymeAp4WHAN5kUj_examplecadrunforchild4c.png" position="flex-start" size="40" indent="1" initialPath="../../quick-actions-images/example_CAD_RunforChild4c.png" githubPath="Content/Configure/QuickActions/quick-actions-images/example_CAD_RunforChild4c.png" showCaption="false"></Image>
+
+4. Click on **More > System > Cancel Tasks**.
+5. Enter a **Reason for Cancellation** when prompted.
+6. When the Cancel Tasks \{\{FRS\_VARS.Quick\_Action}} has been run, the Status field is updated to **Cancelled**.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/DNQVgRDtZvGmo0fqzcIjs_examplecadrunforchild4e.png" position="flex-start" size="40" indent="1" initialPath="../../quick-actions-images/example_CAD_RunforChild4e.png" githubPath="Content/Configure/QuickActions/quick-actions-images/example_CAD_RunforChild4e.png" showCaption="false"></Image>

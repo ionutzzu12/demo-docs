@@ -1,0 +1,129 @@
+---
+title: Configure the RiskSense Web Service Connector to Import RBVM Events
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:46 GMT+0300 (Eastern European Summer Time)
+---
+
+\{\{FRS\_VARS.Neurons\_for\_SOM}} 2023.3 updated the way \{\{FRS\_VARS.ITSM}} communicates with Neurons for RBVM.
+
+If you have \{\{FRS\_VARS.Neurons\_for\_SOM}} 2023.1 already installed, \{\{FRS\_VARS.Neurons\_for\_SOM}} 2023.3 will not make changes to your existing integration.
+
+\{\{FRS\_VARS.Neurons\_for\_SOM}} 2023.3 includes two new Web Service Connections:
+
+- **RiskSense - Create Security Events:** Calls the Neurons for RBVM API and creates new Security Events or updates existing Security Events by SourceID. If a Security Event is set to **Closed&#x20;**&#x69;n \{\{FRS\_VARS.ITSM}} but not in Neurons for RBVM, a new Security Event is created with the same SourceID next time the Schedule Entry job runs. If the Security Incident record is set to **Resolved**.
+- **RiskSense - Security Event Details:&#xA0;**&#x55;pdates the Security Event record by filling in the **Description**, **Event Severity** and **Risk Score** fields with details from Neurons for RBVM via the Neurons for RBVM API.
+- **RiskSense - CIs by Security Event:&#xA0;**&#x45;ither finds CIs within \{\{FRS\_VARS.ITSM}} that are associated with the SourceID in RiskSense and updates the CI record OR creates a new CI record. If the **Risk Score** and **Event Severity** are above 9, a Security Incident record is automatically created. You can edit those thresholds in the Triggered Actions of the Security Event business object. When the Security Event record is created, the system will associate the affected CIs in the record'&#x73;**&#x20;CI** tab.
+- **RBVM Integration Using Export API:&#x20;**&#x4E;ew for \{\{FRS\_VARS.Neurons\_for\_SOM}} 2023.3, this API offers better mapping of imported data into fields in Security Event forms. This also allows for better reporting and more detailed dashboards.
+
+If you installed \{\{FRS\_VARS.Neurons\_for\_SOM}} 2023.3 over a previous version, you have to update the Schedule Entry to use the new Web Service Connections. You can also leave the Web Service Connections from older versions in place if you prefer.
+
+When a Security Event is created, two Business Rule Triggered Action are initiated:
+
+- **RiskSense - Update Start Date:&#x20;**&#x55;pdates the record filling in the **Event Start Date** field with the current date/time.
+- **RiskSense - Create/Update CIs:** Calls the **RiskSense - CIs by Security Event** Workflow and either finds CIs within \{\{FRS\_VARS.ITSM}} that are associated with the SourceID in RiskSense and updates the record OR creates a new CI record.
+
+**To import RiskSense events:**
+
+1. Open the **Integration Tools&#x20;**&#x77;orkspace and select **Web Service Connections**.
+
+<Paragraph indent="1">
+  Refer to [About Configuring Data Integration](../../Configure/ImportExportData/About-Configuring-Data-Integration.mdx) and [Working with Incoming Web Service Connections](../../Configure/ImportExportData/Using-Web-Services.mdx) for more information.
+</Paragraph>
+
+<Paragraph indent="1">
+  a. Three connections were installed with \{\{FRS\_VARS.Neurons\_for\_SOM}} 2023.1: RiskSense - CIs by Security Event, RiskSense - Create Security Events, and RiskSense - Security Event Details.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Edit the **RiskSense Integration**.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. On the **Integration Details** page, select **Next**.
+</Paragraph>
+
+<Paragraph indent="1">
+  d. On the **Integration Script** page, edit the **API Call Settings** to add the RiskSense API URL and the API Key.
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/oySYPy90UN048_IdF-aJP_infsemrisksenseapisettings.png" alt="API Settings in RiskSense" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/Neurons-SOM-Images/infsem_risksense_api_settings.png" githubPath="Content/Resources/Images/Neurons-SOM-Images/infsem_risksense_api_settings.png" showCaption="false"></Image>
+
+<Paragraph indent="1">
+  e. Select **Next**.
+</Paragraph>
+
+<Paragraph indent="1">
+  f. In the **Schedule Settings** window, select **Next**.
+</Paragraph>
+
+<Paragraph indent="1">
+  g. Create a schedule to import these events on a regular basis. Refer to Creating a Schedule in [About the Schedule Entry and Scheduled Jobs Workspaces.](../../Configure/Schedules/Schedule_Entry.mdx)
+</Paragraph>
+
+<Paragraph indent="2">
+  If you installed \{\{FRS\_VARS.Neurons\_for\_SOM}} 2023.1 over \{\{FRS\_VARS.Neurons\_for\_SOM}} 2022.2, you need to update the Integration tab.
+</Paragraph>
+
+<Paragraph indent="1">
+  h. Select **Yes** in the **Confirmation** window.
+</Paragraph>
+
+<Paragraph indent="1">
+  i. On the **Review and Publish** page, select **Publish**.
+</Paragraph>
+
+<Paragraph indent="1">
+  j. Select **OK** on the **Data Import confirmation** window.
+</Paragraph>
+
+2. Open the **Integration Queue** workspace.
+
+<Paragraph indent="1">
+  Refer to [Viewing the Integration Status and History.](<../../Configure/ImportExportData/Integration Status and History.mdx>)
+</Paragraph>
+
+<Paragraph indent="1">
+  a. Select **Refresh** to see the running RiskSense Integration. You may need to do this several times.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. You can also open the Integration History workspace to verify the Integration has finished running.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. If the import fails, open the **Integration Log** workspace to check for Error Stats.
+</Paragraph>
+
+<hint type="info">
+  If the import fails, try changing the date format to MM/DD/YYYY on the Integration Script page.
+</hint>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/OHDd1p6XdfgzDEfF45UTH_infsemrisksensedateformat.png" alt="Date Format for RiskSense" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/Neurons-SOM-Images/infsem_risksense_date_format.png" githubPath="Content/Resources/Images/Neurons-SOM-Images/infsem_risksense_date_format.png" showCaption="false"></Image>
+
+3. To view the imported events, open the **Events&#x20;**&#x77;orkspace.
+
+<Paragraph indent="1">
+  When a Security Event is imported from RiskSense, an Incident is automatically created.
+</Paragraph>
+
+4. Set the RiskSense Integration Schedule:
+
+<Paragraph indent="1">
+  a. Search for RiskSense in the **Schedule Entry** workspace and open th&#x65;**&#x20;RiskSense Integration** job.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. In the **Integration&#x20;**&#x74;ab, link the **RiskSense - Create Security Events\_job**.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. Set the recurring schedule as desired.
+</Paragraph>
+
+<Paragraph indent="1">
+  Refer to Creating a Schedule in [About the Schedule Entry and Scheduled Jobs Workspaces](../../Configure/Schedules/Schedule_Entry.mdx).
+</Paragraph>
+
+<Paragraph indent="1">
+  If you installed \{\{FRS\_VARS.Neurons\_for\_SOM}} 2023.1 over \{\{FRS\_VARS.Neurons\_for\_SOM}} 2022.2, you have to update the **Integration&#x20;**&#x74;ab to link **RiskSense - Create Security Events\_job**.
+</Paragraph>

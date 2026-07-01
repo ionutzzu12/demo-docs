@@ -1,0 +1,231 @@
+---
+title: Example: Creating and Updating a Record using Go To Record Quick Action with Webhook Values (GAD)
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:01 GMT+0300 (Eastern European Summer Time)
+---
+
+**Role:** Administrator
+
+**Minimum Version:** \{\{Primary.Company}} \{\{Primary.Product}}*&#x20;2023.4.*
+
+**Prerequisites**: To use the **Go to Record&#x20;**\{\{FRS\_VARS.Quick\_Action}}**s**, set the global constant **EnableActionService&#x20;**&#x74;o **True**.
+
+This example shows you how to do the following tasks using the Go to Record \{\{FRS\_VARS.Quick\_Action}} using webhook-supplied values:
+
+- When using Go to Record, when the record that we want to go to does not exist, this example shows you how to create a new record with the information provided in the Go to Record \{\{FRS\_VARS.Quick\_Action}}.
+- Shows that the new record gets the focus by updating a value in the record using the Update a Record \{\{FRS\_VARS.Quick\_Action}}.
+- How to supply all the values for Go to Record, creating the record, and Update a Record using a webhook.
+
+<hint type="info" indent="1">
+  The webhook values are stored in the Update Variables And Stored Values \{\{FRS\_VARS.Quick\_Action}} for use in the actions. The Postman application is used as the REST-API client when sending the webhook POST request to the Execute endpoint.
+</hint>
+
+Three sets of tasks have to be completed before you can send an Execute request to webhooks in \{\{FRS\_VARS.ITSM}}:
+
+1. Create a Composite Action with the actions **Update Variables And Stored Values**, **Go to Record**, and **Update a Record** in an existing business object (we used the **Project** business object in this instance).
+2. Create a webhook referring to the Composite Action created above.
+3. Create an API Key to use as Authorization in the Execute POST request.
+
+<ExpandableHeading>
+  ## ITEM 1: Create a Composite Action for the Project Business Object
+
+  1. Log in to \{\{FRS\_VARS.ITSM}} as an Administrator.
+  2. Go to the **Configuration Console&#x20;**> **Build&#x20;**>**Business Objects&#x20;**> **Project&#x20;**> **Quick Actions&#x20;**> **Graphical Action Designer**.
+  3. Under **Advanced Actions**, find the **Update Variables and Stored Values&#x20;**\{\{FRS\_VARS.Quick\_Action}} and then drag the block on to the Designer Board.
+  4. In the **Common&#xA0;**&#x53;ettings tab, enter a name in the **Name&#x20;**&#x66;ield, for example, **CreateAndUpdatewithGTRWithWHValues**. This is the name for the whole set of actions.
+  5. Select **Auto-save**.
+
+  <hint type="info" indent="1">
+    Auto-save preserves any changes made up to that point if a problem occurs when using a Composite Action.
+  </hint>
+
+  6. In the **Block&#x20;**&#x53;ettings tab, click **Editor**. Select or enter the following values:
+
+  | Field                           | Parameter                |
+  | ------------------------------- | ------------------------ |
+  | Variable Type                   | Variable                 |
+  | Variable Name                   | WebhookBody              |
+  | Data Type                       | JSON or XML              |
+  | Value (JSON)  <br />Value (XML) | \{}  <br />\<xml>\</xml> |
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/ibJ4y58DsWrzzWbusYEge_examplegotorecordwithwebhook1.png" alt="1st image in example showing values in Update Stored Values and Variables action block." position="flex-start" size="40" indent="1" initialPath="images/example_go_to_record_with_webhook_1.png" githubPath="Content/Configure/Webhooks/images/example_go_to_record_with_webhook_1.png" showCaption="false"></Image>
+
+  7. Click **Ok&#x20;**&#x61;t the bottom of the screen.
+  8. Under **Record Actions**, find the **Go to Record** \{\{FRS\_VARS.Quick\_Action}} and then drag and drop the block on to the Designer Board.
+  9. Link the **Go to Record** block to the **Update Variables and Stored Values** block so that the latter is the second block in the chain.
+  10. In the **Block&#x20;**&#x74;ab of **Go to Record**, the **Business Object** field is prepopulated with the current business object name and cannot be edited.
+  11. Enter the field values:
+
+  | Field                            | Parameter                 |
+  | -------------------------------- | ------------------------- |
+  | Field Name                       | RecID (Record Identifier) |
+  | Field Value                      | 1                         |
+  | Create a new Record if not found | Selected                  |
+
+  12. Enter values as per below for populating the new record on creation. Use **+ Add Field** to add more field-value pairs as needed.
+
+  | Field                                       | Parameter                                                                                                                   |
+  | ------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+  | Field Name                                  | ProjectName (Project)                                                                                                       |
+  | Field Value (JSON)  <br />Field Value (XML) | $(JSONPathValue(Variable("WebhookBody"), "$.gotonamevalue"))  <br />$(XPathValue(Variable(“WebhookBody”), "gotonamevalue")) |
+
+  | Field                                       | Parameter                                                                                                       |
+  | ------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+  | Field Name                                  | Summary                                                                                                         |
+  | Field Value (JSON)  <br />Field Value (XML) | $(JSONPathValue(Variable("WebhookBody"), "$.summary"))  <br />$(XPathValue(Variable(“WebhookBody”), "summary")) |
+
+  | Field       | Parameter                        |
+  | ----------- | -------------------------------- |
+  | Field Name  | ProjectOwnerLink (Project Owner) |
+  | Field Value | $(CurrentUserRecId())            |
+
+  | Field       | Parameter                     |
+  | ----------- | ----------------------------- |
+  | Field Name  | ProjectStartDate (Start Date) |
+  | Field Value | $(CurrentDateTime())          |
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/-E2caqm4S4hQWKrd6TNS4_examplegotorecordwithwebhook2.png" alt="2nd image in example showing field values for Go to Record action block" position="flex-start" size="40" indent="1" initialPath="images/example_go_to_record_with_webhook_2.png" githubPath="Content/Configure/Webhooks/images/example_go_to_record_with_webhook_2.png" showCaption="false"></Image>
+
+  13. Under **Record Actions**, find the **Update a Record&#x20;**\{\{FRS\_VARS.Quick\_Action}} and then drag and drop the block on to the Designer Board.
+  14. Link it to the **Go to Record** block so that it is third in line to be run in the composite action.
+  15. In the **Block&#x20;**&#x74;ab of **Update a Record**, select or enter values as per below:
+
+  | Field                                       | Parameter                                                                                                                   |
+  | ------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+  | Field Name                                  | Summary                                                                                                                     |
+  | Field Value (JSON)  <br />Field Value (XML) | $(JSONPathValue(Variable("WebhookBody"), "$.secondsummary"))  <br />$(XPathValue(Variable(“WebhookBody”), "secondsummary")) |
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/5YE1XcdDeWaS6z5hkeoHD_examplegotorecordwithwebhook3.png" alt="3rd image in example showing values for Update a Record block" position="flex-start" size="40" indent="1" initialPath="images/example_go_to_record_with_webhook_3.png" githubPath="Content/Configure/Webhooks/images/example_go_to_record_with_webhook_3.png" showCaption="false"></Image>
+
+  16. Click **Save**.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## ITEM 2: Create a webhook referring to the Composite Action created above.
+
+  1. Log in to \{\{FRS\_VARS.ITSM}} as an Administrator.
+  2. Go to the **Configuration Console&#x20;**> **Build&#x20;**>**Webhooks Manager**.
+  3. Click **+ Add a New Webhook**.
+  4. Populate the fields as follows:
+
+  | Field              | Parameter                                                                                       |
+  | ------------------ | ----------------------------------------------------------------------------------------------- |
+  | Name               | CreateAndUpdatewithGTRWithWHValues                                                              |
+  | Endpoint Extension | webH2                                                                                           |
+  | Status             | Enabled                                                                                         |
+  | Business Object    | Project (Frs\_Project)                                                                          |
+  | Action             | CreateAndUpdatewithGTRWithWHValues (choose the Composite Action you just created from the list) |
+
+  5. Click **Save**.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## ITEM 3: Create the API Key
+
+  1. Log in to \{\{FRS\_VARS.ITSM}} as an Administrator.
+  2. Go to the **Configuration Console&#x20;**> **Configure** > **Security Controls** > **API Keys**.
+  3. Click **Add API Key** within one of the **Key Groups** to create a new API Key for webhooks.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Vu8SGXBZJn21ROfBYJH77_examplegotorecordwithwebhook4.png" alt="Image 4 showing API key creation in Security controls" position="flex-start" size="40" indent="1" initialPath="images/example_go_to_record_with_webhook_4.png" githubPath="Content/Configure/Webhooks/images/example_go_to_record_with_webhook_4.png" showCaption="false"></Image>
+
+  4. Enter values for the fields as follows:
+
+  | Field        | Parameter       |
+  | ------------ | --------------- |
+  | Description  | Webhook API Key |
+  | On Behalf Of | Your User Name  |
+  | In Role      | Administrator   |
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/p28c82H3T3i_cykGRhMSf_examplegotorecordwithwebhook5.png" alt="API key creation forthe webhook" position="flex-start" size="40" indent="1" initialPath="images/example_go_to_record_with_webhook_5.png" githubPath="Content/Configure/Webhooks/images/example_go_to_record_with_webhook_5.png" showCaption="false"></Image>
+
+  5. Click **Save Key**.
+  6. Click **Back** to go to the API Keys list page.
+  7. Make a note of your API Key. This is used as the Authorization value in the Execute POST request.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/BKLqwmMfUeu_JDB3Xm1Fd_examplegotorecordwithwebhook6.png" alt="API keys list showing your newly created API key - you need to make a note of it." position="flex-start" size="40" indent="1" initialPath="images/example_go_to_record_with_webhook_6.png" githubPath="Content/Configure/Webhooks/images/example_go_to_record_with_webhook_6.png" showCaption="false"></Image>
+</ExpandableHeading>
+
+## Executing the Webhook and Composite Action
+
+1. Open Postman or a similar application that can send HTTP requests.
+2. Create a POST request for the Execute Endpoint by providing a URL with EndpointExtension, an Authorization header and a JSON/XML body as per below.
+   - In the POST request header, add your previously noted API Key as shown in the image.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/vuv9U0IWu5Mpg9MvjhUVP_examplegotorecordwithwebhook8.png" alt="Authorisation API Key in Headers section in Postman" position="flex-start" size="40" indent="2" initialPath="images/example_go_to_record_with_webhook_8.png" githubPath="Content/Configure/Webhooks/images/example_go_to_record_with_webhook_8.png" showCaption="false"></Image>
+
+<Paragraph listStyleType="disc" indent="2">
+  Add the case sensitive Endpoint Extension on to the end of the POST URL: https\://\[your server]/api/rest/Webhooks/Execute?extension=WebH2. The POST URL is shown when creating the webhook.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  In the JSON Body, send the values to be used by the Quick Action variable:
+</Paragraph>
+
+<Paragraph indent="2">
+  For example:
+</Paragraph>
+
+<Paragraph indent="2">
+  \{
+</Paragraph>
+
+<Paragraph indent="2">
+  "gotonamevalue": "new record",
+</Paragraph>
+
+<Paragraph indent="2">
+  "summary": "summary updated",
+</Paragraph>
+
+<Paragraph indent="2">
+  "secondsummary": "summary updated second time"
+</Paragraph>
+
+<Paragraph indent="2">
+  }
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/qlKsphDP6qjFuZxgFD1lJ_examplegotorecordwithwebhook7.png" alt="HTTP POST request to send via postman" position="flex-start" size="40" indent="2" initialPath="images/example_go_to_record_with_webhook_7.png" githubPath="Content/Configure/Webhooks/images/example_go_to_record_with_webhook_7.png" showCaption="false"></Image>
+
+<Paragraph indent="2">
+  XML:
+</Paragraph>
+
+<Paragraph indent="2">
+  \<xml>
+</Paragraph>
+
+<Paragraph indent="2">
+  \<gotonamevalue>new record\</gotonamevalue>
+</Paragraph>
+
+<Paragraph indent="2">
+  \<summary>summary updated\</summary>
+</Paragraph>
+
+<Paragraph indent="2">
+  \<secondsummary>summary updated second time\</secondsummary>
+</Paragraph>
+
+<Paragraph indent="2">
+  \</xml>
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/jgp58eIpS10RCXad0pks3_examplegotorecordwithwebhook10.png" alt="XML version of Postman request" position="flex-start" size="40" indent="2" initialPath="images/example_go_to_record_with_webhook_10.png" githubPath="Content/Configure/Webhooks/images/example_go_to_record_with_webhook_10.png" showCaption="false"></Image>
+
+<hint type="info" indent="2">
+  There should not be an existing record with the same value as the **gotonamevalue** in the **Project&#x20;**&#x77;orkspace, **Name&#x20;**&#x63;olumn.
+</hint>
+
+3. Click **Send**.
+4. Verify that you received a **Status 200 OK** for a successful response in Postman.
+5. In \{\{FRS\_VARS.ITSM}}, open the **Project&#x20;**&#x77;orkspace and check if a new record has been created using the fields and values in the **Create a new Record** section of the **Go to Record** action in step 12.
+   - A new record with the webhook values sent via Postman should have been created with **Name** =new record.
+   - The **Summary&#x20;**&#x6F;f the record with the **Name&#x20;**(**gotonamevalue** provided in the JSON/XML body) has been updated with the **secondsummary** value provided in the JSON/XML body (see step 2 in this section).
+   - The **Summary&#x20;**&#x76;alue for the new record has the value provided for the **secondsummary** field.
+
+<hint type="info" indent="2">
+  The **Go to Record&#x20;**\{\{FRS\_VARS.Quick\_Action}} creates a new record with the values from the webhook and GOES to that record. The **Update a Record** \{\{FRS\_VARS.Quick\_Action}} then uses the value from the webhook **secondsummary** (see step 15) and updates the **Summary** value of the record.
+</hint>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/C9ekW1Jyf5MKErvhzkmSK_examplegotorecordwithwebhook9.png" alt="Record has been created and updated with selected information using combined actions of actions blocks and webhook." position="flex-start" size="40" indent="2" initialPath="images/example_go_to_record_with_webhook_9.png" githubPath="Content/Configure/Webhooks/images/example_go_to_record_with_webhook_9.png" showCaption="false"></Image>

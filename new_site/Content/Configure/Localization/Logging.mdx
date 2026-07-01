@@ -1,0 +1,93 @@
+---
+title: Working with Logs
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:53 GMT+0300 (Eastern European Summer Time)
+---
+
+- :Link[About Logging]{label="About Logging" overridedLabel="About Logging" spaceId docId="FKONOPD7Q_8zGlpFauq21" version="v2" docAnchorId="#About_Logging" loadingMethod="dynamic" newTab="false" href="Logging.mdx"}
+- :Link[Viewing Logs]{label="Viewing Logs" overridedLabel="Viewing Logs" spaceId docId="FKONOPD7Q_8zGlpFauq21" version="v2" docAnchorId="#Viewing" loadingMethod="dynamic" newTab="false" href="Logging.mdx"}
+- :Link[Viewing the Logging Configuration]{label="Viewing the Logging Configuration" overridedLabel="Viewing the Logging Configuration" spaceId docId="hfn2eH03fCPCpkdp8DX3H" version="v2" docAnchorId="#Viewing2" loadingMethod="dynamic" newTab="false" githubPath="../Logging/ConfigureLogging.htm#Viewing2" href="../Logging/ConfigureLogging.mdx"}
+- [Viewing the Logging Configuration](../Logging/ConfigureLogging.mdx)
+- [Viewing the CMDB Baseline Log](<../Logging/CMDB Baseline Log.mdx>)
+- [Viewing the Integration Log](<../Logging/Integration Log.mdx>)
+- [Viewing the LDAP Import Log](<../Logging/LDAP Import Log.mdx>)
+- [About the Transaction Audit Log](<../Logging/Transaction Audit Log.mdx>)
+- [Viewing the Patch Log](<../Logging/Patch Log.mdx>)
+- [Working with the Outage Log](<../Logging/Outage Log.mdx>)
+- [Deleting a Log](<../Logging/Delete Log.mdx>)
+
+## About Logging
+
+- :Link[About Logs]{label="About Logs" overridedLabel="About Logs" spaceId docId="FKONOPD7Q_8zGlpFauq21" version="v2" docAnchorId="#About" loadingMethod="dynamic" newTab="false" href="Logging.mdx"}
+- :Link[Using Logs]{label="Using Logs" overridedLabel="Using Logs" spaceId docId="FKONOPD7Q_8zGlpFauq21" version="v2" docAnchorId="#Using_Logs" loadingMethod="dynamic" newTab="false" href="Logging.mdx"}
+- :Link[Logging Services]{label="Logging Services" overridedLabel="Logging Services" spaceId docId="FKONOPD7Q_8zGlpFauq21" version="v2" docAnchorId="#Logging-Services" loadingMethod="dynamic" newTab="false" href="Logging.mdx"}
+- :Link[Logging Levels]{label="Logging Levels" overridedLabel="Logging Levels" spaceId docId="FKONOPD7Q_8zGlpFauq21" version="v2" docAnchorId="#Logging_Levels" loadingMethod="dynamic" newTab="false" href="Logging.mdx"}
+
+### About Logs
+
+Logs contain valuable information about \{\{FRS\_VARS.ProductName}} and are invaluable aids to \{\{FRS\_VARS.Company-short}} for diagnosing customer issues. We recommend that you keep all logs from the current release and the most recent past major release.
+
+\{\{FRS\_VARS.ProductName}} can automatically archive and delete the application logs on a regular basis. By default, this feature is deactivated.
+
+When automatic archiving is activated, by default any records over 180 days old are eligible for archiving and the archive function runs once a week. To activate automatic archiving, see [Archiving and Deleting Log Data from the Neurons for ITSM Databases](<../Performance/Archiving Business Objects.mdx>).
+
+### Using Logs
+
+You can create logs for various events.
+
+Each service on each tenant can have a different logging level.
+
+### Logging Services
+
+\{\{FRS\_VARS.ProductName}} includes a set of default logging services, but you can create additional logging services if needed. You must create your logging service before you can configure it for logging.
+
+The following are the default logging services:
+
+| Logging Service         | Description                                                                                                                                                                                  |
+| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Workflow Service        | Logs information from the workflow engine.                                                                                                                                                   |
+| Web Client              | Logs information from the web client.                                                                                                                                                        |
+| Unknown Service         | Logs information about services that do not fit into any other category.                                                                                                                     |
+| Script                  | Logs information about the script engine.                                                                                                                                                    |
+| Performance             | Logs performance information. See [Measuring the Performance of Web Service Calls](<../Performance/Performance of Web Service Calls.mdx>) for complete information about using this service. |
+| Message Queue Service   | Logs information about the \{\{FRS\_VARS.ProductName}} message queue.                                                                                                                        |
+| Integration Service     | Logs information about the integration services.                                                                                                                                             |
+| IM                      | Logs information about Discovery.                                                                                                                                                            |
+| Escalation Service      | Logs information about the escalation service.                                                                                                                                               |
+| Email Service           | Logs information about the email service.                                                                                                                                                    |
+| DSM Integration Service | Logs information about Ivanti DSM.                                                                                                                                                           |
+| CMDB Import Service     | Logs information about the CMDB import service.                                                                                                                                              |
+| Central Config          | Logs information about the central configuration.                                                                                                                                            |
+| App Server\_Rule Trace  | Logs information about how the application executes rules. For example, if there is an execution error with a rule, the application creates a log record with this service name.             |
+| App Server              | Logs information about the \{\{FRS\_VARS.ProductName}} Application Server.                                                                                                                   |
+
+### Logging Levels
+
+Set each logging service to a level, depending on the amount of information that you need to collect. We recommend that you use the error or warning levels. If you include info and debug messages, this could impact application performance by logging too many messages. If you use these levels, only do so for a short time.
+
+Following is a list of the logging levels:
+
+| Logging Level | Description                                                                                                                                                 |
+| ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Off           | Logs nothing.                                                                                                                                               |
+| Fatal         | Very severe error events, usually unrecoverable, that may destroy the application.                                                                          |
+| Error         | Events that can harm the application, but usually allow the application to continue running. This level also includes fatal messages.                       |
+| Warning       | Potentially harmful situations. This level also includes fatal and error messages.                                                                          |
+| Info          | Informational messages that highlight the progress of the application at coarse-grained level. This level also includes fatal, error, and warning messages. |
+| Debug         | Fine-grained informational events that are most useful for debugging an application. This level also includes fatal, error, warning, and info messages.     |
+| All           | Includes all messages.                                                                                                                                      |
+
+## Viewing Logs
+
+1. Log into the \{\{FRS\_VARS.ProductName}} Application.
+2. Click **Logs** to open the **Logs** workspace. The application displays a list of logs.
+
+*Logs Workspace*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/fX-LKp8LJIP3PfUEJfLjB_logsworkspace.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/logs_workspace.png" githubPath="Content/Resources/Images/help-images/logs_workspace.png" showCaption="false"></Image>
+
+3. Open a log to view the log details.
+
+*Log Details*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/5WPjdIv9WOu88aEU0iAZN_logs.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/logs.png" githubPath="Content/Resources/Images/help-images/logs.png" showCaption="false"></Image>

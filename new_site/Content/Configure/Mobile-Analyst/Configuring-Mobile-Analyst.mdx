@@ -1,0 +1,61 @@
+---
+title: Configuring the Analyst Portal
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:50 GMT+0300 (Eastern European Summer Time)
+---
+
+The Analyst interface is a responsive user interface suitable for analyst user roles. You can configure and setup the Analyst interface based on your business needs.
+
+## Enabling the Mobile Analyst portal access for a role
+
+The out-of-the-box user role aligned to the Analyst interface is the \{\{FRS\_VARS.Mobile\_Analyst}} . However, you can enable any role to use it.
+
+Out-of-the-box, the Analyst interface is assigned to Mobile Analyst and Mobile Asset Manager user roles. These roles are designed in a way that the they can aptly use the Analyst interface.
+
+However, with the 2021.3 release a new check box **Modern Analyst UI** is introduced. Selecting the check box, the Analyst interface can be enabled for that particular Role. This check box is grayed out if the **Overwrite default branding options with the options listed below** check box is not selected.
+
+The Analyst interface currently supports only limited controls hence not all forms/layouts would work with the interface. Currently, the Mobile Analyst and Mobile Asset manager roles are designed to include only the supported controls out-of-the-box. To view the supported controls functions, please refer to the related topics at the end of this topic.
+
+As a try on customer can add newer roles and enable the Analyst interface and configure the supported controls. To enable the interface please follow the below steps:
+
+1. Log in to \{\{FRS\_VARS.ProductName}} as an Administrator.
+2. Open the \{\{FRS\_VARS.Configuration\_console}} > **Roles and Permissions** > select a role.
+3. Select the **Modern Analyst UI** option.
+
+<Paragraph indent="1">
+  The configured role now has access to the modern Analyst UI.
+</Paragraph>
+
+## Enabling the modern UI
+
+To enable the modern UI for \{\{FRS\_VARS.Mobile\_Analyst\_portal}}:
+
+1. Log in to the \{\{FRS\_VARS.ProductName}} as an \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+2. Open the \{\{FRS\_VARS.Configuration\_console}} > **Build** > **Global Constants**.
+3. Type modern in the **value** field of **ActivateTheme**.
+
+## Enabling card configuration for Mobile Analyst Business Object
+
+The elements in the \{\{FRS\_VARS.Mobile\_Analyst}} workspaces such as Incident and Task are based on the setup made to the **List&#x20;**&#x69;n Business Object. If you want the \{\{FRS\_VARS.Mobile\_Analyst}} workspaces to be configurable, you need to enable the Global Constant - **EnableCardConfiguration**.
+
+To enable the Global Constant,
+
+1. Log in to the \{\{FRS\_VARS.ProductName}} as an \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+2. Open the \{\{FRS\_VARS.Configuration\_console}} > **Build** > **Global Constants**.
+3. Set the **Value** field of **EnableCardConfiguration** to True.
+
+*The functioning of modern UI and card configuration when enabled/disabled in different scenarios is explained in the below table*
+
+| EnableCardConfiguration | Activate Theme | Home Screen | Workspace Screen                            |
+| ----------------------- | -------------- | ----------- | ------------------------------------------- |
+| True                    | True           | Modern UI   | Modern UI + Configurable workspace elements |
+| True                    | False          | Old UI      | Old UI + Configurable workspace elements    |
+| False                   | True           | Modern UI   | Only Modern UI                              |
+| False                   | False          | Old UI      | Old UI                                      |
+
+### Related Topics:
+
+- [Configuring Custom Business Objects for Mobile Analyst portal](Configuring-RA-BusinessObject.mdx)
+- [Configuring multi-select option for Mobile Analyst Business Object](Configuring-Multi-select-option-in-RA.mdx)
+- [Supported Controls](Supported-Un-Supported-Controls.mdx)
+- [Supported Functions](Supported-Function-for-Analyst.mdx)

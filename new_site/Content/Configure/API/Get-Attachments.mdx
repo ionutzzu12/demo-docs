@@ -1,0 +1,63 @@
+---
+title: Get Attachments
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:01 GMT+0300 (Eastern European Summer Time)
+---
+
+You can get attachments from business objects.
+
+**Base URL:**
+
+https\://\{tenant url}/api/rest/Attachment?ID=\{business object unique key}
+
+<ExpandableHeading>
+  ## Get Attachments - Example
+
+  Here is an example to get attachments from a particular business object.
+
+  | URL                                 | https\://\{tenant url}/api/rest/Attachment?ID=05B5CD2DFAE54D86A04C74DBF616C1DE |
+  | ----------------------------------- | ------------------------------------------------------------------------------ |
+  | <font color="#ffffff">Method</font> | GET                                                                            |
+  | Header Name                         | Authorization: JWT Token/Session Key/REST API Key                              |
+  | Status Code                         | 200                                                                            |
+
+  The attachment is displayed in the message body.
+</ExpandableHeading>
+
+## Unsuccessful Responses
+
+<ExpandableHeading>
+  ## Invalid RecID
+
+  Scenario: Trying to get attachments when the business object's RecID is invalid.
+
+  https\://\{tenant url}/api/rest/Attachment?ID=abc123
+
+  Header Name:
+
+  **Authorization: Sessionkey**
+
+  | Code                                          | ISM\_4000                                                                                               |
+  | --------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+  | Description                                   | Invalid Request                                                                                         |
+  | Message                                       | \[  <br />"Attachment for the object "abc123" not found. Provide a valid RecID and try again."  <br />] |
+  | <font color="#ffffff">HTTP STATUS CODE</font> | **400**                                                                                                 |
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Blank RecID
+
+  Scenario: Trying to get attachments without providing the business object's RecID.
+
+  https\://\{tenant url}/api/rest/Attachment?ID=
+
+  Header Name:
+
+  **Authorization: Sessionkey**
+
+  | Code                                          | ISM\_4000                                                                        |
+  | --------------------------------------------- | -------------------------------------------------------------------------------- |
+  | Description                                   | Invalid Request                                                                  |
+  | Message                                       | \[  <br />"RecID cannot be blank. Provide a valid RecID and try again."  <br />] |
+  | <font color="#ffffff">HTTP STATUS CODE</font> | **400**                                                                          |
+</ExpandableHeading>

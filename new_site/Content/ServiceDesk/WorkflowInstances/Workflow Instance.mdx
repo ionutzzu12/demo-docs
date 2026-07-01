@@ -1,0 +1,137 @@
+---
+title: Working with Workflow Instances
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:49 GMT+0300 (Eastern European Summer Time)
+---
+
+If a business object is part of a workflow (usually involving the approval process or a status progression), then a workflow appears under the **Workflow Instance** tab of a record or in the **Workflow Instance** workspace.
+
+- :Link[Viewing the Workflow Instance]{label="Viewing the Workflow Instance" overridedLabel="Viewing the Workflow Instance" spaceId docId="hGqL6uSh-ZH8oQCeKCwT2" version="v2" docAnchorId="#Viewing-a-Workflow-Instance" loadingMethod="dynamic" newTab="false" href="Workflow Instance.mdx"}
+- :Link[About Adding a Workflow Instance]{label="About Adding a Workflow Instance" overridedLabel="About Adding a Workflow Instance" spaceId docId="hGqL6uSh-ZH8oQCeKCwT2" version="v2" docAnchorId="#About" loadingMethod="dynamic" newTab="false" href="Workflow Instance.mdx"}
+- :Link[Modifying a Workflow Instance]{label="Modifying a Workflow Instance" overridedLabel="Modifying a Workflow Instance" spaceId docId="hGqL6uSh-ZH8oQCeKCwT2" version="v2" docAnchorId="#About2" loadingMethod="dynamic" newTab="false" href="Workflow Instance.mdx"}
+- :Link[About Deleting a Workflow Instance]{label="About Deleting a Workflow Instance" overridedLabel="About Deleting a Workflow Instance" spaceId docId="hGqL6uSh-ZH8oQCeKCwT2" version="v2" docAnchorId="#About3" loadingMethod="dynamic" newTab="false" href="Workflow Instance.mdx"}
+- :Link[Rerunning a Workflow]{label="Rerunning a Workflow" overridedLabel="Rerunning a Workflow" spaceId docId="hGqL6uSh-ZH8oQCeKCwT2" version="v2" docAnchorId="#Rerunning_a_Workflow" loadingMethod="dynamic" newTab="false" href="Workflow Instance.mdx"}
+- :Link[Aborting, Pausing, and Resuming a Workflow Instance]{label="Aborting, Pausing, and Resuming a Workflow Instance" overridedLabel="Aborting, Pausing, and Resuming a Workflow Instance" spaceId docId="hGqL6uSh-ZH8oQCeKCwT2" version="v2" docAnchorId="#Aborting,_Pausing,_and_Resuming_a_Workflow_Instance" loadingMethod="dynamic" newTab="false" href="Workflow Instance.mdx"}
+
+## Viewing a Workflow Instance
+
+1. Log into the Service Desk Console.
+2. Open a workspace.
+3. Open a record.
+4. Select the **Workflow Instance** tab. Any workflows associated with the record are listed.
+5. Open a workflow item from the list or highlight one and click **Go To**. The system displays the **Edit Workflow Instance** window.
+
+<Paragraph indent="1">
+  *Edit Workflow Instance Window*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/AKPelz0kWCete-xBvCIsZ_edit-workflow-instance.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/edit workflow instance.png" githubPath="Content/Resources/Images/help-images/edit workflow instance.png" showCaption="false"></Image>
+
+6. Click **View Instance**. The workflow appears in a new window.
+
+## About Adding a Workflow Instance
+
+Workflow instances are created in two ways:
+
+- Automatically, according to the workflows and business rules set up by the administrator.
+- By rerunning a workflow. See :Link[Rerunning a Workflow]{label="Rerunning a Workflow" overridedLabel="Rerunning a Workflow" spaceId docId="hGqL6uSh-ZH8oQCeKCwT2" version="v2" docAnchorId="#Rerunning_a_Workflow" loadingMethod="dynamic" newTab="false" href="Workflow Instance.mdx"}.
+
+## Modifying a Workflow Instance
+
+1. Log into the Service Desk Console.
+2. Open a workspace.
+3. Open a record.
+4. Click the **Workflow Instance** tab. Any workflows associated with the record are listed.
+5. Double-click a workflow item from the list or highlight one and click **Go To**. The system displays the **Edit Workflow Instance** window.
+6. Modify the workflow as needed. See [Using Workflows](../../Configure/Workflows/Using_Workflows.mdx) for more information.
+
+## About Deleting a Workflow Instance
+
+You cannot delete workflow instances from within a record. You can, however, cancel or stop the workflow. See [Example: Canceling a Workflow that is Awaiting Approval](<../../Configure/Workflows/Cancel a Workflow Awaiting Approval.mdx>).
+
+## Rerunning a Workflow
+
+- :Link[About Rerunning a Workflow]{label="About Rerunning a Workflow" overridedLabel="About Rerunning a Workflow" spaceId docId="hGqL6uSh-ZH8oQCeKCwT2" version="v2" docAnchorId="#About_Rerunning_a_Workflow" loadingMethod="dynamic" newTab="false" href="Workflow Instance.mdx"}
+- :Link[Rerunning a Workflow from a Workspace]{label="Rerunning a Workflow from a Workspace" overridedLabel="Rerunning a Workflow from a Workspace" spaceId docId="hGqL6uSh-ZH8oQCeKCwT2" version="v2" docAnchorId="#Rerunning_a_Workflow_from_a_Record" loadingMethod="dynamic" newTab="false" href="Workflow Instance.mdx"}
+- :Link[Rerunning a Workflow from the Workflow Instance Workspace]{label="Rerunning a Workflow from the Workflow Instance Workspace" overridedLabel="Rerunning a Workflow from the Workflow Instance Workspace" spaceId docId="hGqL6uSh-ZH8oQCeKCwT2" version="v2" docAnchorId="#Rerunning_a_Workflow_from_the_Workflow_Instance_Workspace" loadingMethod="dynamic" newTab="false" href="Workflow Instance.mdx"}
+
+### About Rerunning a Workflow
+
+Workflows usually run when a trigger condition is met. However, there can be times when a workflow does not run as expected, due to various reasons. For example, the workflow engine could be stuck or not running, there could be a content conflict that causes unreachable conditions, or a process might have skipped a business rule. In prior releases, when this happened, you could not rerun the workflow because the trigger condition had passed.
+
+Make sure that you understand the impact of rerunning a workflow. When you rerun a workflow, you are rerunning it again irrespective of the previous success or failure status of the workflow instance. Rerunning the workflow does not undo the previous workflow execution.
+
+Use this feature with caution, as you cannot stop it and it cannot be undone.
+
+If the workflow has already run as expected, and you rerun it, you may not get correct results because the conditions associated with the workflow may not be correct anymore.
+
+Rerunning the workflow can duplicate data or cause other problems.
+
+### Rerunning a Workflow from a Workspace
+
+This is equivalent to running the **Execute Workflow** quick action. See [Execute Workflow Action](<../../Configure/QuickActions/Classical Action Designer/templates/Execute Workflow.mdx>). You can also create a triggered action that uses the **Execute Workflow** quick action, to run the workflow on an event.
+
+To rerun a workflow from a workspace, follow these steps:
+
+1. Log into the Service Desk Console.
+2. Open any workspace.
+3. From the **Action Menu** drop-down list, click **View Workflow**.
+
+<Paragraph indent="1">
+  The item might be listed under a specific category, such as **Form Actions** in this example. If **View Workflow** does not appear under the Action Menu, then it has not been set up for this workspace.
+</Paragraph>
+
+<Paragraph indent="1">
+  The system displays the **View workflow definition and instance** dialog box.
+</Paragraph>
+
+<Paragraph indent="1">
+  *View Workflow Definition and Instance Dialog Box*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/tssboifraldwP8w3PVfQ3_rerun-workflow.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/rerun workflow.png" githubPath="Content/Resources/Images/help-images/rerun workflow.png" showCaption="false"></Image>
+
+4. Click **Re-run Workflow** to rerun the workflow. The system displays a cautionary message.
+
+<Paragraph indent="1">
+  *Rerun Workflow Cautionary Message*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/up9t7abr8jM2vxTyB3xYZ_rerun-caution.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/rerun-caution.png" githubPath="Content/Resources/Images/help-images/rerun-caution.png" showCaption="false"></Image>
+
+5. Click **OK** to proceed.
+
+### Rerunning a Workflow from the Workflow Instance Workspace
+
+You can rerun a workflow only if the status is set to completed, failed, or aborted.
+
+To rerun a workflow from the **Workflow Instance** workspace, follow these steps:
+
+1. Log into the Service Desk Console.
+2. Open the **Workflow Instance** workspace.
+
+<Paragraph indent="1">
+  *Workflow Instance Workspace*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/doU-pYBzh2zRDkOBWrP_V_workflow-instance-workspace.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/workflow-instance-workspace.png" githubPath="Content/Resources/Images/help-images/workflow-instance-workspace.png" showCaption="false"></Image>
+
+3. Highlight one or more items.
+4. Click **Re-run** from the top menu. The system displays a cautionary message.
+5. Click **Yes** to rerun the workflow.
+6. To verify that the workflow reran correctly, open the item in its parent by clicking **Open In Parent** from the **Workflow Instance** workspace. The system opens the item in its parent workspace.
+7. Click the **Workflow Instance** tab and view the dates and times associated with the workflows.
+
+## Aborting, Pausing, and Resuming a Workflow Instance
+
+You can abort, pause, and resume a workflow instance if it is in the waiting state. Abort a workflow instance to stop it completely. Pause a workflow instance if you need to fix or investigate the business object, and then resume it when you are finished.
+
+1. Log into the Service Desk Console.
+2. Do one of the following:
+   - Open the **Workflow Instance** workspace.
+   - Go to a workspace, open a record, and click the **Workflow Instance** tab.
+3. Find a workflow instance that has a status of waiting.
+4. Do one of the following:
+   - To abort the workflow instance, click **Abort**.
+   - To pause a workflow instance that is running, click **Pause**.
+   - To resume a paused workflow instance, click **Resume**.

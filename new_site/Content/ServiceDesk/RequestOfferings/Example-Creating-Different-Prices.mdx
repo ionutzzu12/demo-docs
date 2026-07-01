@@ -1,0 +1,81 @@
+---
+title: Example: Creating Different Prices
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:48 GMT+0300 (Eastern European Summer Time)
+---
+
+You can create different prices for users depending on where the user is located.
+
+For example, if you create a Service Catalog request, the prices automatically reflect the location of the user, based on the defined location in the **Employee** record.
+
+### Showing the Total Price for a Service
+
+The following employee has a location of Canada (and a primary address in Colorado which is ignored because the location is Canada):
+
+*Employee Location*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Va9X6TjwFKBQqRY672lm8_employee-location.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/employee location.png" githubPath="Content/Resources/Images/help-images/employee location.png" showCaption="false"></Image>
+
+This user makes a request for a new smart phone. The price appears and the total is automatically calculated in Canadian dollars (CAD).
+
+*Sample Service Request - New Smart Phone*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/F_DYKtOkb4MCUEheP2nx__currency-demo-01.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/currency demo 01.png" githubPath="Content/Resources/Images/help-images/currency demo 01.png" showCaption="false"></Image>
+
+The user adds an option for the international shipping. This service is only available in USD, and appears as such on the right pane. Each currency type is totaled separately. The monthly charges are not added to the total cost.
+
+*Sample Service Request - International Shipping*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/WGQDufkatpL2rSqSmiybs_currency-demo-02.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/currency demo 02.png" githubPath="Content/Resources/Images/help-images/currency demo 02.png" showCaption="false"></Image>
+
+### Creating an Ad-Hoc Price for a Request Offering
+
+1. Log into the Service Desk Console.
+2. Open the **Price List** workspace.
+3. From the toolbar, click **New Price Item**. A blank price form appears.
+4. Enter the following into the fields:
+
+| Field     | Description                                           |
+| --------- | ----------------------------------------------------- |
+| Enabled   | Check this option.                                    |
+| Item Name | Blackberry                                            |
+| Price     | Enter **99** for value and **USD** for currency type. |
+| Cost      | Enter **25** for value and **USD** for currency type. |
+
+*Sample Request Offering - Blackberry Price*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/2lt_fv67FHnxCg532Layl_currency-demo-07.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/currency demo 07.png" githubPath="Content/Resources/Images/help-images/currency demo 07.png" showCaption="false"></Image>
+
+5. Click **Save**.
+6. Open the **Request Offering** workspace and select **New Smartphone Request**. The **Define Request Offering** page appears.
+
+<Paragraph indent="1">
+  Notice that **Use Price List** is enabled. (See [Creating a Request Offering](Creating-a-Request-Offering.mdx).)
+</Paragraph>
+
+*Sample Request Offering - New Smart Phone Request*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/eBnx9q1afkEwCGFuB-egO_currency-demo-03.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/currency demo 03.png" githubPath="Content/Resources/Images/help-images/currency demo 03.png" showCaption="false"></Image>
+
+7. Click **Add from Price List** under **Delivery Item**. The list of prices appear. This list is populated from the [Working with Price Lists](Working-with-Price-Lists.mdx) workspace.
+8. Choose \{\{FRS\_VARS.ProductName}} **Cloud Service Management 2014.1** subscription, then click **Select**.
+
+*Sample Request Offering - Select Price List Items*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/3ZXYSHouK-HV8yXONY15C_currency-demo-04.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/currency demo 04.png" githubPath="Content/Resources/Images/help-images/currency demo 04.png" showCaption="false"></Image>
+
+<Paragraph indent="1">
+  The item now appears in the request offering. This represents the base delivery item for this product and is charged to all users.
+</Paragraph>
+
+9. Click **Design Request Form**. This is where you define optional packages, such as **Phone** or **Service Plan**.
+10. Click **Edit**:inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/WTLKbMa5PI7qeazzbj0FD_edit-old.png" alt caption size="10" width="16" height="16"} next to **Phone**. The **Configuration Editor** appears.
+
+*Sample Request Offering - Item Configuration Editor for Phone*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/G5zrIVH4-_rvLNmTpXufY_currency-demo-05.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/currency demo 05.png" githubPath="Content/Resources/Images/help-images/currency demo 05.png" showCaption="false"></Image>
+
+11. Open the **Pick List** section, then click **Add**. A new line appears.
+12. In the first field, type Blackberry, then click **Pick Price**. The **Select Price List** window appears.
+13. Choose **Blackberry** from the list (the one you just created), then click **Select**.
+14. Click **OK**. You have now added an item to the list, which appears to users in the Service Catalog.

@@ -1,0 +1,87 @@
+---
+title: DateTime
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:00 GMT+0300 (Eastern European Summer Time)
+---
+
+Converts the input parameter into a local *DateTime* value.
+
+## Syntax
+
+DateTime(value)
+
+## Enabled For
+
+For a description of the business object categories, see :Link[Notes on "Enabled For"]{label="Notes on &#x22;Enabled For&#x22;" overridedLabel="Notes on &#x22;Enabled For&#x22;" spaceId docId="xObv2pIDrk60jkEIWs8mD" version="v2" docAnchorId="#Notes" loadingMethod="dynamic" newTab="false" githubPath="_Built_in_Functions.htm#Notes" href="_Built_in_Functions.mdx"}.
+
+| Business Object Category                                                                    | Yes/No |
+| ------------------------------------------------------------------------------------------- | ------ |
+| Business Rules: Before-Save Rules                                                           | Yes    |
+| Business Rules: Calculation Rules (After Save, with or without Also Recalculate on Load)    | Yes    |
+| Business Rules: Calculation Rules (Before Save or Always, without Also Recalculate On Load) | Yes    |
+| Business Rules: Calculation Rules (Before Save or Always, with Recalculate On Load)         | Yes    |
+| Business Rules: Editing Rules                                                               | Yes    |
+| Business Rules: Initialization Rules                                                        | Yes    |
+| Business Rules: Read Only Rules                                                             | Yes    |
+| Business Rules: Required Rules                                                              | Yes    |
+| Business Rules: Validation Rules                                                            | Yes    |
+| Client Expressions                                                                          | Yes    |
+| Object Permissions                                                                          | No     |
+| Services                                                                                    | Yes    |
+| LDAP                                                                                        | Yes    |
+| Mobile                                                                                      | Yes    |
+| Quick Actions (except Export to Microsoft Excel Quick Action and UI Quick Actions)          | Yes    |
+| UI Quick Actions                                                                            | Yes    |
+| Reports                                                                                     | Yes    |
+| Search/Dashboard without field references                                                   | Yes    |
+| Search/Dashboard with field references                                                      | No     |
+
+## Parameter
+
+| Parameter | Description                                                     |
+| --------- | --------------------------------------------------------------- |
+| value     | The input to evaluate. Can be a text value or a DateTime value. |
+
+## Return Value
+
+<Paragraph indent="1">
+  DateTime value.  See :Link[DateTime Embedded Literals]{label="DateTime Embedded Literals" overridedLabel="DateTime Embedded Literals" spaceId docId="rPq_uRqKAng4wQvEUuDtC" version="v2" docAnchorId="#Date/Time_Literals" loadingMethod="dynamic" newTab="false" githubPath="../Expressions/Literals.htm#Date/Time_Literals" href="../Expressions/Literals.mdx"} and :Link[Conversion to DateTime Values]{label="Conversion to DateTime Values" overridedLabel="Conversion to DateTime Values" spaceId docId="eVZtF84cBSwgHH8QyCA6X" version="v2" docAnchorId="#Conversion_datetime" loadingMethod="dynamic" newTab="false" githubPath="../Expressions/Type Conversions.htm#Conversion_datetime" href="../Expressions/Type Conversions.mdx"}. Returns the date and time in the date and time format that is based on your culture code. See :Link[Available Languages and Cultures]{label="Available Languages and Cultures" overridedLabel="Available Languages and Cultures" spaceId docId="ZOdB7cSrDXVspZWLePaWn" version="v2" docAnchorId="#culture" loadingMethod="dynamic" newTab="false" githubPath="../../Configure/Localization/Setting Up Languages.htm#culture" href="../../Configure/Localization/Setting Up Languages.mdx"} for a list of the culture codes used by \{\{FRS\_VARS.ProductName}}.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  Returns a date and time if the **value** parameter is a text value that contains a valid date and time literal.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  Returns the same **value** parameter if the input is a DateTime value.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  Returns null if the **value** parameter is null.
+</Paragraph>
+
+### Example
+
+1. For **English (United Kingdom)** locale, accepted date format is *dd/mm/yy*.
+
+<Paragraph indent="1">
+  $(DateTime("31/01/24"))
+</Paragraph>
+
+<Paragraph indent="1">
+  For the example above, returns 31/01/24 as date.
+</Paragraph>
+
+2. For **English (United states)** locale, accepted date format is *mm/dd/yy*.
+
+<Paragraph indent="1">
+  $(DateTime("01/31/24"))
+</Paragraph>
+
+<Paragraph indent="1">
+  For the example above, returns 01/31/24 as date.
+</Paragraph>
+
+<hint type="info" indent="1">
+  The return date value depends on the locale you're using. Check the date format based on your locale.
+</hint>

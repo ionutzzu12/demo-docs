@@ -1,0 +1,76 @@
+---
+title: About Incident Management
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:47 GMT+0300 (Eastern European Summer Time)
+---
+
+An incident is defined by ITIL as any break in the standard operation of a service that causes or might cause an interruption or reduction in the quality of that service. The goal of incident management is to restore normal services as quickly as possible when an IT service has been disrupted, and to make sure that business operations function normally. The definition of normal service is agreed to in service level agreements with the customers of your organization.
+
+Incident management reduces or eliminates the effects of potential disruptions on IT services, so that end users can get back to work as soon as possible. To achieve this, the system records, classifies, assigns to specialists, and monitors the progress of incidents until they are resolved and closed. Service level agreements and escalations (in the absence of service level agreements) ensure that incidents are responded to and resolved on time with satisfactory resolution rates.
+
+Incident control is the process of identifying, recording, classifying, and monitoring incidents until the impacted services are restored.
+
+\{\{FRS\_VARS.ProductName}} follows these key processes of incident management as defined by ITIL:
+
+<ExpandableHeading>
+  ## Incident Detection and Recording
+
+  Users can submit an incident by:
+
+  - **Using the Self-Service Portal**: A user creates an incident from the \{\{FRS\_VARS.Self\_Service\_Portal-Self-Service}} portal and the system notifies the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Manager}} who assigns the incident to a \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Manager}}.
+  - **Contacting the Service Desk by phone or email**: A user calls or emails the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Console}}. A \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Analyst-Service-Desk-Analyst}} then creates an incident.
+  - **Sending an email**: The \{\{FRS\_VARS.ProductName}} email listener allows a user to create an incident directly from an email.
+  - **Calling**: If your \{\{FRS\_VARS.ProductName}} application uses \{\{FRS\_VARS.Company}} Voice, a user can create an incident from a phone call.
+
+  The application automatically assigns a unique reference number (called a RecID) and date time stamp (**CreatedDateTime**) to each incident.
+
+  \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Analyst-Service-Desk-Analyst}}s can effectively capture key information about the incident from the **Incident** workspace. End users and \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Analyst-Service-Desk-Analyst}}s can search the Knowledge Base for solutions during incident recording. If a resolution exists in the Knowledge Base, the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Analyst-Service-Desk-Analyst}} resolves the incident without further action.
+
+  The **Incident** workspace helps you to manage your time and work efficiently while creating or working on incidents by providing the following features:
+
+  - **Quick actions**: Quick actions enable you to perform an action with a single click. From the **Incident** workspace, you can select an incident and perform a quick action on it without opening the incident directly.
+  - **Open new tabs**: Additional tabs can be opened to work on new issues or to view other modules while keeping your current sessions active.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Classification and Initial Support
+
+  Classifying and initially supporting an incident is accomplished by the following:
+
+  - In the **Incident** workspace, the application classifies incidents by service and category. When a service is selected from the drop-down list, the category menu is populated and filtered with options from the service that you selected.
+  - Categorizing incidents allows the application to appropriately assign them to specialists by matching categories with skills. For example, an incident with a category of desktop hardware could be assigned to the desktop hardware group.
+  - Categorizing incidents not only identify services that failed, but also configuration items that encountered failures. This allows the application to identify trends in failures of similar services or categories. Categorization is also useful for reporting purposes.
+  - Default service level agreements are attached to some services. If an incident matches a service with a configured service level agreement, the incident should be resolved according to the terms of the service level agreement as defined for the organizational unit of the incident customer. Refer to [Default Priority Values](<../../Reference/Default Priority Values.mdx>).
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Resolution and Recovery
+
+  - When a \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Analyst-Service-Desk-Analyst}} fixes an incident, they set the status to resolved.
+  - The application tracks escalations, as configured by service level agreements (or the escalation engine in the absence of an service level agreement) of active incidents. An incident is considered breached if a \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Analyst-Service-Desk-Analyst}}t does not respond to and resolve it within a certain amount of time.
+  - During the initial classification of an incident, you can match the incident to another incident, a problem, or a Knowledge Base article by searching on the keywords in the **Summary** field of the incident. If the application finds a resolution or workaround, you can bypass the investigation and diagnosis process and resolve the incident.
+  - Incidents can be resolved during the initial contact with the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Console}}, thus ensuring a quicker restoration of normal service for the end user.
+  - The objective of incident management during an incident is to restore normal service as quickly as possible. The objective is not to make an application perfect. If service can be restored by a temporary workaround quicker than by correcting the underlying root cause of the issue, then that is acceptable. Correction of underlying root causes is done after service is restored by the problem management team by a process called root cause analysis. If the cause of the incident is actually a problem, the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Analyst-Service-Desk-Analyst}} can work with the problem management process by linking an incident to a problem or by creating a problem to link to an incident.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Incident Closure
+
+  By default, the application automatically closes an incident that is in the resolved status after a few days. By default, the system closes incidents after one day if there is no further communication from the user. \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Analyst-Service-Desk-Analyst}}s close incidents through the escalation engine service. The user or a \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Analyst-Service-Desk-Analyst}} can reopen incidents that are in the resolved state if the resolution is not satisfactory.
+
+  After the incident is set to closed, a \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Analyst-Service-Desk-Analyst}} or \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Manager}} can review all of the information for the incident and update its details. The system sends a link to a survey to the user, giving them an opportunity to rate the effectiveness of the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Console}} in resolving the incident.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Ownership, Monitoring, Tracking, and Communication
+
+  - The application tracks and monitors incidents throughout their lifecycle until closure.
+  - Throughout the incident management process, the application notifies users when there is a change in the status of the incident, for example, when the incident is set to resolved. Users can provide feedback through a survey to rate their satisfaction with the resolution and can reopen the incident if the resolution is not satisfactory.
+  - The application notifies the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Console}} when a user creates an incident, and notifies the incident owner (the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Analyst-Service-Desk-Analyst}} who the incident is assigned to) when the incident is assigned. The application notifies the appropriate users, such as the user, the incident owner, or the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Manager}} whenever the status or priority of the incident changes, or when other conditions are met. \{\{FRS\_VARS.ProductName}} has default notification business rules but the administrator can configure new business rules to better manage incidents in your organization.
+  - When an incident is closed, it remains in the application and can be viewed for reporting and analytic purposes. \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Manager}}s can view and generate dashboards and reports to determine how the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Console}} performed against service level agreements (or escalations in the absence of default service level agreements).
+  - \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Manager}}s can also view the cost of the incident while it is being worked on, and get a final cost associated with the incident when it is resolved or closed.
+  - Survey feedback from customers provides valuable metrics on the effectiveness and timeliness of the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Console}} in resolving incidents as well as helps \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Manager}}s track the performance of the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Analyst-Service-Desk-Analyst}}s.
+  - Other process owners can also view dashboards and generate reports from incidents to aid their processes. For example, a \{\{FRS\_VARS.Neurons\_ITSM\_-\_Problem\_Manager}} can view trends in incidents and determine if incidents are actually problems; a \{\{FRS\_VARS.Neurons\_ITSM\_-\_Configuration\_Manager}} can view configuration items that were reported as failures.
+
+
+</ExpandableHeading>

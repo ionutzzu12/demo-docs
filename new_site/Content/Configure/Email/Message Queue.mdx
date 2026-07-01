@@ -1,0 +1,95 @@
+---
+title: About Using the Message Queue Handler
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:50 GMT+0300 (Eastern European Summer Time)
+---
+
+<hint type="info">
+  This topic only applies to on-premise customers. This topic does not apply to \{\{FRS\_VARS.ProductName}} Cloud customers.
+</hint>
+
+\{\{FRS\_VARS.ProductName}} uses a message queue to hold email messages as they are received into the database so that they can be processed at a later time. This message queue provides more control over the email messages in terms of processing and managing the email queue. The \{\{FRS\_VARS.ProductName}} message queue also helps to journal messages in error and archiving. The actual email messages are stored in the message queue in the tenant database.
+
+Using a message queue has the following benefits:
+
+- You can back up and restore email messages during software and hardware upgrades.
+- If the application fails to process a message, it no longer rolls back the entire transaction, sending the message back to the message queue for reprocessing.
+- You can delete a single email message.
+- You can manage failed email messages, by moving them to a different message queue and resending them later.
+
+To configure the message queue, follow the procedures below. After the message queue is set up, users can send emails that contain XML in the body to the inbox to be configured.
+
+The first three procedures are performed in the \{\{FRS\_VARS.ProductName}} Configuration Database, which can only be accessed by certain administrative users.
+
+<ExpandableHeading>
+  ## Configuring the Message Queue
+
+  Each application should only have one message queue.  If there is more than one, the application uses the first one listed. \{\{FRS\_VARS.ProductName}} comes with one preconfigured message queue.  We recommend that if you need a message queue with different features, you modify the default message queue instead of creating a new one.
+
+  Follow these steps:
+
+  1. Log into the \{\{FRS\_VARS.ProductName}} Configuration Database.
+  2. Open the **Message Queue Configuration** workspace.   The application displays the **Message Queue Configuration** workspace.
+  3. Enter information into the fields.
+  4. Click **Save**.
+
+  See the *Configuration Database Guide for&#x20;*\{\{Primary.Company}}\{\{FRS\_VARS.ProductName}} for information about using the ConfigDB, including information about the fields in this workspace.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Creating the Message Queue Handler
+
+  The message queue handler listens to the message queue.
+
+  To use the new message service, you need to configure a message queue handler.  Follow these steps:
+
+  1. Log into the \{\{FRS\_VARS.ProductName}} Configuration Database.
+  2. Open the **Message Queue Handler** workspace.   The application displays the **Message Queue Handler** workspace.
+  3. Enter information into the fields.
+  4. Click **Save**.
+
+  See the *Configuration Database Guide for&#x20;*\{\{Primary.Company}}\{\{FRS\_VARS.ProductName}} for information about using the ConfigDB, including information about the fields in this workspace.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Specifying the Email Handler
+
+  This specifies the email handler that communicates with the message queue handler.
+
+  1. Log into the \{\{FRS\_VARS.ProductName}} Configuration Database.
+  2. Open the **Email Configuration** workspace.   The application displays the **Service Provider Email Configuration** workspace.
+  3. In the **Message Queue Handler Name** field, enter the name of the message queue handler that you created in :Link[Creating Message Queue Handler]{label="Creating Message Queue Handler" overridedLabel="Creating Message Queue Handler" spaceId docId="oDmBZ7v_BuUqAYaKnByZr" version="v2" docAnchorId="#CreatingMsgQueue" loadingMethod="dynamic" newTab="false" href="Message Queue.mdx"}.
+  4. Click **Save**.
+
+  See the *Configuration Database Guide for&#x20;*\{\{Primary.Company}}\{\{FRS\_VARS.ProductName}} for information about using the ConfigDB, including information about the fields in this workspace.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Configuring the Email
+
+  1. Log in to the application using the Administrator role
+  2. Open the **Inbox** workspace. The application displays the **Inbox Configuration** workspace.
+  3. In the **Email Processor** field, select **ExportEmailAsXml**.
+  4. In the **Data Import Connection** field, select **Email XML with XSLT**.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Viewing the Messages with Errors
+
+  You can view information about the email messages that have timed out or had errors. You can also view archived messages if you configured the message queue to do so. (See the **Archive on Completion** and **Purge Archive after (days)** parameters in the **Message Queue Handler** workspace in the \{\{FRS\_VARS.ProductName}} Configuration Database.)
+
+  1. Log in to the application using the Administrator role
+  2. Open the **Message Queue Journal** workspace.
+
+  <Paragraph indent="1">
+    The application displays the **Message Queue Journal** workspace, including any messages that meet the criteria.
+  </Paragraph>
+
+  3. To replay the email messages that have timed out, click **Replay Message**. This moved the email message back into the message queue to be processed again.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Defining the Data Import Connection
+
+  For information about defining the data import connection, refer to :Link[Setting Up a Data Import Connection]{label="Setting Up a Data Import Connection" overridedLabel="Setting Up a Data Import Connection" spaceId docId="z2z90_aQskfSDzXRA7Lii" version="v2" docAnchorId="#SettingUpDataImportConnection" loadingMethod="dynamic" newTab="false" githubPath="../ImportExportData/Data-Import-Connections.htm#SettingUpDataImportConnection" href="../ImportExportData/Data-Import-Connections.mdx"}. Select **Email Import** as the connection type.
+</ExpandableHeading>

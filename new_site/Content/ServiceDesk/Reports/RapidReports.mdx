@@ -1,0 +1,237 @@
+---
+title: Using RapidReports
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:49 GMT+0300 (Eastern European Summer Time)
+---
+
+**Role**: Administrator
+
+**Minimum Version**: \{\{FRS\_VARS.Company}} \{\{FRS\_VARS.ProductName}} 2017.3
+
+**RapidReports** allows you to quickly create a report using a single click. The feature may need to be configured and implemented in order to be available for your installation. Once a default or customized report has been created, it will appear under **Build > Automation Tools > RapidReports** in the **Report Manager** page.
+
+<hint type="info">
+  - RapidReports is available for both on-premises and cloud deployments, with different configuration and installation methods for each. For example, on-premises reports are installed and configured using the Report Configuration Manager installer.
+  - RapidReports support only SMTP protocol.
+</hint>
+
+RapidReports is enabled out-of-the-box for most business objects for both form and list (grid) view:
+
+- Incident
+- ServiceReq
+- Problem
+- Change
+- Knowledge
+- Release (except for SDA view)
+- Project
+- CI.Service
+- Task.Assignment
+- Journal.Email
+
+Follow the steps in this topic to enable RapidReports for objects other than those listed. You can also customize the templates using the procedures in :Link[Use Report Manager to Customize and Edit a Default Template]{label="Use Report Manager to Customize and Edit a Default Template" overridedLabel="Use Report Manager to Customize and Edit a Default Template" spaceId docId="pYvSZHSWlIVDv6cNfwpOC" version="v2" docAnchorId="#Customiz" loadingMethod="dynamic" newTab="false" href="RapidReports.mdx"}.
+
+RapidReports contains two functions that can be assigned to users. The administrator must explicitly assign access rights to either one or both of these. Depending on the functionality assigned to a role, a user can create default reports from the available list, or create and customize the reports. A report designated as a **Global Report** can be viewed and run by all users. The functions are:
+
+- **Report Manager**: Usually assigned to Administrators or super-user roles. Allows you to create a Default report, to clone, edit, and rename Default reports, and to designate a report as a Global report.
+- **Report Viewer**: Can be assigned to any role to allow them to view reports, or to run a Default report, a global report, or any report created for a workspace that they can access.
+
+Any role with access rights can create a report from any workspace where RapidReports is implemented.
+
+**Available Formats:** Once a report is generated, it can be printed to PDF or HTML.
+
+**Using a Saved Search:** The data can be sorted and filtered by selecting and running a **Saved Search**, and then generating a report. To do this:
+
+1. Run the selected search.
+2. When the results are displayed, click the RapidReports print icon and use the Default Template to create a report from the search results.
+
+<hint type="info">
+  The report displays any column contained in the search, as long as the column also appears in the report template. The search parameters do not impact the columns contained in the pre-configured template. To only display certain columns in a report, you can create a report template that is specific to your requirements. See :Link[Use Report Manager to Customize and Edit a Default Template]{label="Use Report Manager to Customize and Edit a Default Template" overridedLabel="Use Report Manager to Customize and Edit a Default Template" spaceId docId="pYvSZHSWlIVDv6cNfwpOC" version="v2" docAnchorId="#Customiz" loadingMethod="dynamic" newTab="false" href="RapidReports.mdx"} for more information.
+</hint>
+
+## Configure Access to RapidReports
+
+Use the following steps to assign access for an Administrator, then assign access to other roles using the same steps. Remember, an Administrator user will need access to both functions **Report Manager** and **Report Viewer**, but most other roles may only need access to the **Report Viewer**.
+
+1. Log in to the application using the Administrator role.
+2. From the **Settings** pane go to **Configure > Users and Permissions > Roles and Permissions** and select a role (such as Administrator).
+3. At the **Role Details** page click **Top Level Tabs** in the toolbar.
+4. At the **Top Level Tabs** page, click **Add New Tab** and select **Report Manager** from the list.
+5. In the **New Tab Details** page, edit the **Name:** field to **Report Manager** then click **Add This Tab**.
+6. For Administrator users, also add the **Report Viewer** tab using the same steps.
+7. Click **Save** to save your changes.
+
+## Add RapidReports to a Workspace
+
+Edit the business object to implement RapidReports for a workspace. You can implement RapidReports for **Change**, **Problem**, or **Incident** business objects. This example uses the Incident business object. Implement RapidReports by using the following steps:
+
+1. Log in to the application using the Administrator role.
+2. From **Settings > Build > Business Objects&#x20;**, click **Incident**.
+3. From the **Business Object Incident#** page, click **Layouts** in the toolbar.
+4. From the **Layouts** page, select **Incident.Layout.ServiceDesk**.
+5. In the **Edit Layout: IncidentLayout.ServiceDesk** page, scroll to **Views in this layout:** and click **gridView**.
+
+<Paragraph indent="1">
+  As best practice, we recommend that you add the function to both **gridView** and **formView**.
+</Paragraph>
+
+6. In the **List View Editor** page, in the **Toolbar:** option, click the **Edit** link on the right of the toolbar.
+7. In the **Toolbar Editor**, filter on **Commands** to locate **RapidReports**. Then click-select and drag it to the right pane.
+8. Click **Save** in the **Toolbar Button Editor** dialog, **Save** on the **Toolbar Editor**, and **Save** in the **List View Editor** (or **Form View Editor**) page to save your changes.
+
+<Paragraph indent="1">
+  This may take some time as the system needs to add functionality.
+</Paragraph>
+
+As recommended in :Link[In the Edit Layout: IncidentLayout.ServiceDesk page, scroll to Views in this layout: and click gridView. ]{label="In the Edit Layout: IncidentLayout.ServiceDesk page, scroll to Views in this layout: and click gridView. " overridedLabel="In the Edit Layout: IncidentLayout.ServiceDesk page, scroll to Views in this layout: and click gridView. " spaceId docId="pYvSZHSWlIVDv6cNfwpOC" version="v2" docAnchorId="#In" loadingMethod="dynamic" newTab="false" href="RapidReports.mdx"}above, also apply the **RapidReports** button to the **formView**.
+
+## Create a Default Template
+
+Generate a Default template if no templates are initially available. Once a template is available you can edit it and rename it to suit your needs. As mentioned previously if you are an existing customer, no templates appear under **Build > Automation Tools > RapidReports**. The following procedure walks you through the basics of creating a template, cloning it, renaming it, and setting a few functions.
+
+1. While you are still in Administrator role, return to the application page and refresh it to apply the changes you made after following instructions to :Link[Add RapidReports to a Workspace]{label="Add RapidReports to a Workspace" overridedLabel="Add RapidReports to a Workspace" spaceId docId="pYvSZHSWlIVDv6cNfwpOC" version="v2" docAnchorId="#Add" loadingMethod="dynamic" newTab="false" href="RapidReports.mdx"}.
+2. Click on the **Incident** workspace to open it, and click the **RapidReports** button you added to the toolbar to see the available options. Initially only the following 2 options are available:
+   - **Default Template**: Generates the default template for this list. Select this option to create the initial template.
+   - **Report Manager**: Opens the page to edit a template. You cannot edit a Default Template, but you can edit any other templates. Select the option to see a list of editable templates. If no options appear, see :Link[Using Report Manager to Clone, or Customize a Template]{label="Using Report Manager to Clone, or Customize a Template" overridedLabel="Using Report Manager to Clone, or Customize a Template" spaceId docId="pYvSZHSWlIVDv6cNfwpOC" version="v2" docAnchorId="#Clone" loadingMethod="dynamic" newTab="false" href="RapidReports.mdx"} for information about how to clone and create a new, editable template.
+3. Click the **Default Template** option to generate a template. A new tab with **Incident Report: Default template** opens. Notice that all columns available in the Incident list window appear in the report.
+
+<Paragraph indent="1">
+  In a new installation, clicking **Report Manager** will also generate a default template so that at least one template is always available.
+</Paragraph>
+
+4. Return to the configuration console to edit the Default template to create customized output.
+
+## Use Report Manager to Customize and Edit a Default Template
+
+<hint type="info">
+  Before you begin, remember that the report you produce by clicking on the RapidReports icon, may not exactly match the search you run. The search is created using the **List view** from the workspace. However, the columns in the report template appear in the order specified within the template. This means that the data you request, is presented based on the pre‑configured report template you selected. To view the data in a different format, or to show only some of the columns, or to view columns in a different order, you need to customize a template for your requirements.
+</hint>
+
+Once a default template has been created, you can edit it to change items such as margins, to customize the logo, and so on. Use the following procedure to create customized templates.
+
+1. Log in to the application using the Administrator role.
+2. From **Settings > Build > Automation Tools > RapidReports**, open the **Report Manager** page select the default template (or any other template) in order to customize it.
+3. The toolbar options are described in the following table.
+
+<table isTableHeaderOn="true">
+  <tr>
+    <td>
+      Icon
+    </td>
+    <td>
+      Description
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/HnqpfYp1O8zGiffnPCr9V_repclone.png" size="10" isUploading="false" initialPath="../../Resources/Images/help-images/rep_clone.png" githubPath="Content/Resources/Images/help-images/rep_clone.png" width="38" height="38" showCaption="false"></Image>
+    </td>
+    <td>
+      Click the Clone icon to create a clone of a Default report
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/nD997P94wcJunLqD1jkPZ_repeditgrey.png" size="10" isUploading="false" initialPath="../../Resources/Images/help-images/rep_edit_grey.png" githubPath="Content/Resources/Images/help-images/rep_edit_grey.png" width="36" height="36" showCaption="false"></Image>
+    </td>
+    <td>
+      Click the Edit icon to change the name of a template and to designate it as a Global template. The Global check box is selected by default.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/YaXV_Unlh5PAxoUkjOZTQ_repdesign.png" size="10" isUploading="false" initialPath="../../Resources/Images/help-images/rep_design.png" githubPath="Content/Resources/Images/help-images/rep_design.png" width="91" height="38" showCaption="false"></Image>
+    </td>
+    <td>
+      Click the Design icon to change the design of the template.
+      - Edit the footer information by clicking the footer and then adding System Variables to display other information.
+      - The columns you see in the Default report (as listed below) are the only columns that you are able to retain for any new reports you create. You cannot add other columns.
+      <Paragraph indent="1">
+        They are: Incident (displays Incident Number) , Summary, Status, Priority, Customer, Location, Team, Owner, Service, Category, Source, Created On, and Modified On.
+      </Paragraph>
+      - When editing a report template or creating a customized template you can delete any columns that you do not need. However, if you delete a column heading (such as Team) then you must also delete the appropriate (associated) table column from the report.
+      - Options in the Style Designer, such as charts or graphs, cannot be enabled in Reports and will not work.
+      - \{\{FRS\_VARS.ProductName}} does not support the use of images that have been uploaded to Image Control in RapidReport.
+      - Select an item on the report to activate the associated properties that you can edit, in order to change the appearance. For example, font, font weight, or alignment.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/MBWzuPqb6HUywVsimO9P8_repdelete.png" size="10" isUploading="false" initialPath="../../Resources/Images/help-images/rep_delete.png" githubPath="Content/Resources/Images/help-images/rep_delete.png" width="38" height="38" showCaption="false"></Image>
+    </td>
+    <td>
+      Click the Trash icon to delete the selected template. Once deleted a template cannot be retrieved.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/97uKexP71sv4wf-TGBOHE_repreload.png" size="10" isUploading="false" initialPath="../../Resources/Images/help-images/rep_reload.png" githubPath="Content/Resources/Images/help-images/rep_reload.png" width="38" height="38" showCaption="false"></Image>
+    </td>
+    <td>
+      Click the Reload/Refresh icon to refresh the list.
+    </td>
+  </tr>
+</table>
+
+4. Select the **Design** icon to open the **Properties** and to edit the template.
+
+<Paragraph indent="1">
+  We recommend not changing the basic format. However, you can customize a few basic elements as described in the following table. Most properties can be viewed from the **Home** tab. The bottom bar lists the default measurement unit used by the template.
+</Paragraph>
+
+<Paragraph indent="1">
+  Select an element in order to see the appropriate properties in the left pane.
+</Paragraph>
+
+<Paragraph indent="1">
+  Properties in the Style Designer such as charts or graphs are unavailable and will not work.
+</Paragraph>
+
+| Element          | How to edit                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Logo             | If this exists, replace with a company logo or add a logo to the template. You can change the logo directly in the Report Designer or in the Admin UI Branding which will change all logos for any NEWLY created reports. (Any reports created before the branding changes are made will not be updated.)                                                                                                                                                                                                                                                                                                                                           |
+| Measurement Unit | Available from **Home** tab. Change the measurement units so they are appropriate for your installation. The setting is located on the bottom bar under Properties and is applied to and affects, page size and page layouts. The default is Millimeters but you may want to change the default to inches.<br /><Image src="https://archbee-doc-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/j01v_6XDeEJ3LqoVkr8Oi_repmeasurement.bmp" position="flex-start" size="40" initialPath="../../Resources/Images/help-images/rep_measurement.bmp" githubPath="Content/Resources/Images/help-images/rep_measurement.bmp" showCaption="false"></Image> |
+| Page size        | Select the **Page** option from **Properties** and select from the available values for page size (A4, Letter etc.) and margins.<br />If you cannot see th&#x65;**&#x20;Page** option click in the *margins* of the report example (the white area) that displays in the right pane. From here you can select a default Orientation (Portrait or Landscape) and a paper size (A4 or Letter).<br />Edit **Margins** by using the following structure: Left;Top;Right;bottom. Example: 1.25;0.5;0.5;0.75<br />Add a Watermark if required. You can also leave defaults as is, and only edit the settings for other templates.                         |
+
+5. Click the **Save** icon on the top left to save your changes.
+
+### Using Report Manager to Clone, or Customize a Template
+
+To create a customized template it is recommended that you clone the Default template, then customize it as needed. You can also customize the default template before you clone it, as described in :Link[Use Report Manager to Customize and Edit a Default Template]{label="Use Report Manager to Customize and Edit a Default Template" overridedLabel="Use Report Manager to Customize and Edit a Default Template" spaceId docId="pYvSZHSWlIVDv6cNfwpOC" version="v2" docAnchorId="#Customiz" loadingMethod="dynamic" newTab="false" href="RapidReports.mdx"}.
+
+1. Log in to the application using the Administrator role.
+2. Open the Configuration Console and from **Settings > Build > Automation Tools > RapidReports**, open the **Report Manager** page and click on the **Default Template - Default**
+3. Click the Clone option from the Report Manager to clone the template, then edit it.
+
+<Paragraph indent="1">
+  Or, from the application, as any user with access to **Report Manager**, click on **RapidReports > Report Manager** to open a template designer, and create a new global or personal template.
+</Paragraph>
+
+### Other Report Manager Options
+
+Once the feature is configured you will see a full list of Forms in the **Report Manager**.
+
+- **Search and Filter**
+
+<Paragraph indent="1">
+  Reports can be searched for or filtered, by report name or report type. The options are as follows:
+</Paragraph>
+
+| Item             | Description                                                                                                                                                                                                                                          |
+| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Type             | Select a checkbox in the list to filter your choices.                                                                                                                                                                                                |
+| Source name      | Enter a source such as **Incident** or **IncidentLayout** to see the forms associated with that source. The source name is usually the name of the item as it appears in either the **gridView** or **formView** (i.e. from where it was generated). |
+| Report name      | Enter the first few letters of the report name to see the choices.                                                                                                                                                                                   |
+| Owner            | Enter the owner name as it appears in \{\{FRS\_VARS.ProductName}}, to see all templates owned by that user.                                                                                                                                          |
+| Show global only | Check this box to see only templates designated as Global.                                                                                                                                                                                           |
+| Reset Filters    | Click to reset the search parameters to the default.                                                                                                                                                                                                 |
+
+- **Export or Import Reports**: Export a report to a JSON file or import a JSON template into the system by selecting the Export or Import icons on the top left.
+- **Print**: A generated report can be saved to PDF.
+- **Email**: Send the report in email by using the Email option after a report is generated.
+
+Following is some general information about data that will appear in the reports, and how to gather only the information you need:
+
+- Report data is generated from the Search you select and run, before you generate a report. Create a targeted search to define the data you want to view in the report. The data can be sorted and filtered by selecting and running a **Saved Search**, and then generating a report.
+- The report data will appear in the same sort order you see in the List window. For example, if you sorted by **Owner Name**, then the data will appear sorted by that column.
+- All columns that you see in the default list view will appear in the report. Hiding them won't hide them in the report. However, you can create a template that only includes the columns you need. For example, Incident Number, Summary, Customer Name, and Owner. See :Link[Using Report Manager to Clone, or Customize a Template]{label="Using Report Manager to Clone, or Customize a Template" overridedLabel="Using Report Manager to Clone, or Customize a Template" spaceId docId="pYvSZHSWlIVDv6cNfwpOC" version="v2" docAnchorId="#Clone" loadingMethod="dynamic" newTab="false" href="RapidReports.mdx"} for more information.
+- You can scale to select one page or the whole report. Selecting the option to load a report page by page is the quickest way to view it. Loading the full report (if it consists of multiple pages) may take some time. The one page view is the default option.

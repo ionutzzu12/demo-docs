@@ -1,0 +1,126 @@
+---
+title: Task/Template Instantiation Workflow Block
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:58 GMT+0300 (Eastern European Summer Time)
+---
+
+The **Task/Template Instantiation** workflow block creates a task or template instance.
+
+*Task/Template Instantiation Workflow Block Properties*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/BsmXMiaPf-DZo32VKucBi_tasktemplateblock.png" position="flex-start" size="40" indent="1" initialPath="../../../Resources/Images/help-images/task_template_block.png" githubPath="Content/Resources/Images/help-images/task_template_block.png" showCaption="false"></Image>
+
+## Exit Ports
+
+| Exit Port | Description                                                                                          |
+| --------- | ---------------------------------------------------------------------------------------------------- |
+| OK        | Continue to the next block.                                                                          |
+| Failed    | General exit port for a failed integration action. A logical next step is to trigger a notification. |
+
+## Properties
+
+| Property                                 | Description                                                                      |
+| ---------------------------------------- | -------------------------------------------------------------------------------- |
+| Title                                    | A unique name for the workflow block.                                            |
+| Select Task/Template Source Object       | The source task or template object. Select from the drop-down list.              |
+| Select Task/Template Source Record       | The source task or template record object. Select from the drop-down list.       |
+| Select Task/Template Source Relationship | The source task or template relationship object. Select from the drop-down list. |
+| Select Target Object                     | The target object. Select from the drop-down list.                               |
+
+## Actions
+
+| Button | Action                 |
+| ------ | ---------------------- |
+| Save   | Commits your settings. |
+| Cancel | Exits without saving.  |
+
+## Example
+
+The Following is a working example for Frequent Traveler Setup.You have two objects:
+
+- FulfillmentItemPackage
+- FulfillmentItem
+
+A package is a template; when used, it creates a FulfillmentItem. Fulfillment items are built from FulfillmentItem packages.
+
+In the packages, the Task Catalog tab lists tasks created by the task/template block for that FulfillmentItem. Therefore, "Tasks are built from Task Catalogs."
+
+To clarify the process:
+
+"Frequent Traveler Setup" allows selection of Fulfillment Items from a list of packages.
+
+The workflow (WF) iterates over this list, adding FulfillmentItem objects to the service request.
+
+When a FulfillmentItem is added, its WF triggers the Task/template block.
+
+This block iterates over the task catalog items in the FulfillmentItemPackage to create tasks and attach them to the FulfillmentItem (not directly to the service request).
+
+This explanation helps manage the complexity of multiple items and the importance of the insert multi-child block for entering values into Fulfillment Items.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/dgdhRF5CPx1v-botJdo2l_planrequestfulfilment.PNG" position="flex-start" size="40" initialPath="../../../Resources/Images/PlanRequestFulfilment.PNG" githubPath="Content/Resources/Images/PlanRequestFulfilment.PNG" showCaption="false"></Image>
+
+You have a list of fulfillment items. This list is validated against fulfillment. The Multi block iterates over this list when inserting items.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/kiB_OOG346gChUfUbrNiX_picklistvalidation.PNG" position="flex-start" size="40" initialPath="../../../Resources/Images/Picklistvalidation.PNG" githubPath="Content/Resources/Images/Picklistvalidation.PNG" showCaption="false"></Image>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/z4t4Ut64z_vpcLQhDRh8p_picklistactivegeneral.PNG" position="flex-start" size="40" initialPath="../../../Resources/Images/PicklistActiveGeneral.PNG" githubPath="Content/Resources/Images/PicklistActiveGeneral.PNG" showCaption="false"></Image>
+
+On the Insert Multi-Child:
+
+1. Define the relationship for adding new entries.
+2. Specify the field or parameter to iterate over, such as the list control called 'Items'.
+
+<Paragraph indent="1">
+  Expressions pull data from each selected 'item' to create FulfillmentItems, using 'boRecId' as the RecID for the current entry the multi-child block is processing.
+</Paragraph>
+
+$(GetBOValue(RecId, "boRecId", "FulfillmentItemPackage#", "Name"))
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/SgFLkr0qOZI7UfDU85F3N_insertmultichildblockproperties.PNG" position="flex-start" size="40" initialPath="../../../Resources/Images/InsertMultiChildBlockProperties.PNG" githubPath="Content/Resources/Images/InsertMultiChildBlockProperties.PNG" showCaption="false"></Image>
+
+This is why you select the 'Select Child Object Type' relationship above; it is tied to FulfillmentItem.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/XTYyj9DTpQXOQu65GycHu_servicereqfulfilmentitem.PNG" position="flex-start" size="40" initialPath="../../../Resources/Images/ServiceReqFulfilmentItem.PNG" githubPath="Content/Resources/Images/ServiceReqFulfilmentItem.PNG" showCaption="false"></Image>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/WiBvrj-IbFf0WexOYPr1D_fulfillmentitem.PNG" position="flex-start" size="40" initialPath="../../../Resources/Images/FulfillmentItem.PNG" githubPath="Content/Resources/Images/FulfillmentItem.PNG" showCaption="false"></Image>
+
+The first "insert multi-child" workflow simply adds the fulfillment items. A standard workflow in FulfillmentItem then adds the tasks from the catalog.
+
+In the FulfillmentItem object, a workflow triggers whenever a new fulfillment item is created. This workflow uses Task/Template Instantiation. When the first workflow creates the fulfillment item, this triggers the creation of tasks on the fulfillment item based on the template.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/lW53lZkotRQh2u1vInEyT_businessobjectfulfillmentitem.PNG" position="flex-start" size="40" initialPath="../../../Resources/Images/Businessobjectfulfillmentitem.PNG" githubPath="Content/Resources/Images/Businessobjectfulfillmentitem.PNG" showCaption="false"></Image>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/K9cBCowpTXu86uTbd8HLq_createtaskfromtaskcatalog.PNG" position="flex-start" size="40" initialPath="../../../Resources/Images/CreateTaskfromTaskCatalog.PNG" githubPath="Content/Resources/Images/CreateTaskfromTaskCatalog.PNG" showCaption="false"></Image>
+
+On the initial insert multi-child block, define the relationships for the template. The TemplateLink\_Relationship between FulfillmentItemPackage and TaskCatalog creates tasks based on the catalog items linked to the package.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/IXZOSf18nTj7lcXX22Chf_targetobjectfield.PNG" position="flex-start" size="40" initialPath="../../../Resources/Images/TargetobjectField.PNG" githubPath="Content/Resources/Images/TargetobjectField.PNG" showCaption="false"></Image>
+
+In the fulfillment item:
+
+- TemplateLink\_Category: FulfillmentItemPackage - The base business object being evaluated.
+- TemplateLink: $(GetBOValue(RecId, "boRecId", "FulfillmentItemPackage#", "RecId")) - Pulls the RecId of the fulfillment package currently processed in the insert multi-child iteration.
+- TemplateLink\_Relationship: FulfillmentItemPackageAssocTaskCatalog - The relationship from FulfillmentItemPackage to TaskCatalog. The block iterates over items in this relationship specific to the package RecId and inserts tasks using the 'Target', causing multiple tasks to be added.
+- Target: The location where the task will be created.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/h9H9n9d00zYtq8jRYNohf_tasktemplateinstiationblockproperties.PNG" position="flex-start" size="40" indent="2" initialPath="../../../Resources/Images/TaskTemplateInstiationBlockProperties.PNG" githubPath="Content/Resources/Images/TaskTemplateInstiationBlockProperties.PNG" showCaption="false"></Image>
+
+Example:
+
+Here is a Fulfillment Item Package with two task catalog items. Each time this package is used, two tasks are created.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/b_59CAR0ejkfQjed6ZdEN_fulfillmentitempackage.PNG" position="flex-start" size="40" initialPath="../../../Resources/Images/FulfillmentItempackage.PNG" githubPath="Content/Resources/Images/FulfillmentItempackage.PNG" showCaption="false"></Image>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Nrr0iCS-PtDwI33u4EU3F_edittaskcatalogitem.PNG" position="flex-start" size="40" initialPath="../../../Resources/Images/EditTaskCatalogItem.PNG" githubPath="Content/Resources/Images/EditTaskCatalogItem.PNG" showCaption="false"></Image>
+
+Following is the submission snapshot.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/BCeWyF_wi7-s0VX_h7hGH_serviceofferingfrequenttraveleresetup.PNG" position="flex-start" size="40" initialPath="../../../Resources/Images/ServiceofferingFrequentTraveleresetup.PNG" githubPath="Content/Resources/Images/ServiceofferingFrequentTraveleresetup.PNG" showCaption="false"></Image>
+
+Following is the outcome snapshot.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/QFnDRW9jyU_VfoGteynl4_customerandowner.PNG" position="flex-start" size="40" initialPath="../../../Resources/Images/Customer&Owner.PNG" githubPath="Content/Resources/Images/Customer&Owner.PNG" showCaption="false"></Image>
+
+The two expected tasks are created.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Cg6emiUt8b0YVPSbrAPKA_taskcreated.png" position="flex-start" size="40" initialPath="../../../Resources/Images/Common/TaskCreated.png" githubPath="Content/Resources/Images/Common/TaskCreated.png" showCaption="false"></Image>

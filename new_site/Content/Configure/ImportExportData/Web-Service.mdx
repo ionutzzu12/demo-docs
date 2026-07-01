@@ -1,0 +1,27 @@
+---
+title: Working with Web Service Script Integration
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:52 GMT+0300 (Eastern European Summer Time)
+---
+
+- :Link[About Web Services]{label="About Web Services" overridedLabel="About Web Services" spaceId docId="Y-RBqIqQ_nXa3kIwVkY0J" version="v2" docAnchorId="#About_Web_Services" loadingMethod="dynamic" newTab="false" href="Web-Service.mdx"}
+- :Link[Working with Incoming Web Service Connections]{label="Working with Incoming Web Service Connections" overridedLabel="Working with Incoming Web Service Connections" spaceId docId="FdCBQbHhR6rvSknbFTcBX" version="v2" docAnchorId="#top" loadingMethod="dynamic" newTab="false" githubPath="Using-Web-Services.htm#top" href="Using-Web-Services.mdx"}
+- :Link[Working with Outgoing Web Service Connections]{label="Working with Outgoing Web Service Connections" overridedLabel="Working with Outgoing Web Service Connections" spaceId docId="FdCBQbHhR6rvSknbFTcBX" version="v2" docAnchorId="#Working" loadingMethod="dynamic" newTab="false" githubPath="Using-Web-Services.htm#Working" href="Using-Web-Services.mdx"}
+- [Using Web Services with External Data Sources](Using-Web-Services-with-External-Data-Sources.mdx)
+- [Using Web Services with External Messages](Accept-Messages.mdx)
+- [Working with the WSDL and Script Repository](Common-Repository.mdx)
+
+## About Web Services
+
+\{\{FRS\_VARS.ProductName}} can interact with external systems in a variety of ways by making web service calls:
+
+- Calling a web service on a scheduled basis to retrieve information.
+- Calling a web service via a quick action to retrieve information. See [Run Web Service Quick Action](<../QuickActions/Classical Action Designer/templates/Run Web Service.mdx>) for information about making a direct web service call and [Web Service Script Action](<../QuickActions/Classical Action Designer/templates/Web Service Script.mdx>) for information about accessing a web service through a script.
+- Retrieving the values for an external business object. External business objects are a special type of business object that do not store their data in the \{\{FRS\_VARS.ProductName}} database but instead retrieves the data as needed from the external application. See [Using Web Services with External Data Sources](Using-Web-Services-with-External-Data-Sources.mdx).
+- Receiving a call from an external web service to receive information that will update a business object. See [Using Web Services with External Messages](Accept-Messages.mdx).
+
+To support a wide range of different uses, web services are called as part of a script. This allows you to make multiple web service calls if necessary and to manipulate the results as needed for one scenario. These scripts are based on ECMAScript, which has been extended to support interaction with \{\{FRS\_VARS.ProductName}} business objects.
+
+Each individual script is called a web service connection.
+
+The web service script editor is consistent for all usage except the web service script quick action. Scripts in the quick action interface use the same script that is documented here, but the editor is less feature rich. We plan on updating this in a future release to utilize scripts written in the web service connection editor. At that time, any existing scripts written for quick actions may need to be copied over to the standard editor.

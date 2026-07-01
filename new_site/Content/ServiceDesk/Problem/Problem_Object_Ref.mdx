@@ -1,0 +1,195 @@
+---
+title: Problem Business Object Reference
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:48 GMT+0300 (Eastern European Summer Time)
+---
+
+The following sections describe the default **Problem** business object.
+
+- :Link[Problem Business Object Field Descriptions]{label="Problem Business Object Field Descriptions" overridedLabel="Problem Business Object Field Descriptions" spaceId docId="uLi9tisn_f9F6eGOwyMxd" version="v2" docAnchorId="#1" loadingMethod="dynamic" newTab="false" href="Problem_Object_Ref.mdx"}
+- :Link[Problem Business Object Relationship Definitions]{label="Problem Business Object Relationship Definitions" overridedLabel="Problem Business Object Relationship Definitions" spaceId docId="uLi9tisn_f9F6eGOwyMxd" version="v2" docAnchorId="#2" loadingMethod="dynamic" newTab="false" href="Problem_Object_Ref.mdx"}
+- :Link[Problem Business Object Layouts]{label="Problem Business Object Layouts" overridedLabel="Problem Business Object Layouts" spaceId docId="uLi9tisn_f9F6eGOwyMxd" version="v2" docAnchorId="#3" loadingMethod="dynamic" newTab="false" href="Problem_Object_Ref.mdx"}
+- :Link[Problem Business Object Forms]{label="Problem Business Object Forms" overridedLabel="Problem Business Object Forms" spaceId docId="uLi9tisn_f9F6eGOwyMxd" version="v2" docAnchorId="#4" loadingMethod="dynamic" newTab="false" href="Problem_Object_Ref.mdx"}
+- :Link[Problem Business Object Quick Actions]{label="Problem Business Object Quick Actions" overridedLabel="Problem Business Object Quick Actions" spaceId docId="uLi9tisn_f9F6eGOwyMxd" version="v2" docAnchorId="#5" loadingMethod="dynamic" newTab="false" href="Problem_Object_Ref.mdx"}
+- :Link[Problem Business Object Business Rules]{label="Problem Business Object Business Rules" overridedLabel="Problem Business Object Business Rules" spaceId docId="uLi9tisn_f9F6eGOwyMxd" version="v2" docAnchorId="#6" loadingMethod="dynamic" newTab="false" href="Problem_Object_Ref.mdx"}
+- :Link[Problem Business Object Searches]{label="Problem Business Object Searches" overridedLabel="Problem Business Object Searches" spaceId docId="uLi9tisn_f9F6eGOwyMxd" version="v2" docAnchorId="#7" loadingMethod="dynamic" newTab="false" href="Problem_Object_Ref.mdx"}
+
+### Problem Business Object Field Descriptions
+
+| Field name                       | Type     | Size               | Comments                                           |
+| -------------------------------- | -------- | ------------------ | -------------------------------------------------- |
+| Category                         | Text     | 60                 | Pick list for the category.                        |
+| ClosedBy                         | Text     | 100                | $CurrentUserName()                                 |
+| ClosedDateTime                   | DateTime | n/a                | $CurrentDateTime()                                 |
+| CreatedBy                        | Text     | 100                | $CurrentUserName()                                 |
+| CreatedDateTime                  | DateTime | n/a                | $CurrentDateTime()                                 |
+| Description                      | Text     | 4000               | Details of the problem.                            |
+| ErrorMessage                     | Text     | 1000               | Text of the error message.                         |
+| FirstIncidentLinked              | DateTime | n/a                |                                                    |
+| Impact                           | Text     | 10                 | Pick list for the impact.                          |
+| IncidentToRootCause&#xA;Duration | Number   | 12 digits          |                                                    |
+| IsInFinalState                   | Boolean  | Y/N                |                                                    |
+| IsWorkAround                     | Boolean  | Y/N                |                                                    |
+| KnownErrorDate                   | DateTime | n/a                | Date when established.                             |
+| KnownErrorDuration               | Number   | 10 digits          | Computed                                           |
+| KPIAfterIdentification           | Number   | 12 digits          |                                                    |
+| KPIBeforeIdentification          | Number   | 12 digits          |                                                    |
+| KPITimeUntilRootCause            | Number   | 12 digits          |                                                    |
+| LastModBy                        | Text     | 100                | $CurrentUserName()                                 |
+| LastModDateTime                  | DateTime | n/a                | $CurrentDateTime()                                 |
+| OrganizationalUnit               | Text     | 60                 | Impacted organization unit.                        |
+| Owner                            | Text     | 100                | Assigned owner.                                    |
+| OwnerEmailAddress                | Text     | 100                | Email address of the owner.                        |
+| OwnerLink                        | Link     | n/a                |                                                    |
+| OwnerTeam                        | Text     | 100                | Assigned owner team.                               |
+| OwnerType                        | Text     | 30                 | $DefaultUserType()                                 |
+| Priority                         | Text     | 10                 | Based on the impact, urgency, and severity.        |
+| ProblemDuration                  | Number   | 10 digits          | Known error date; the created date.                |
+| ProblemLifetime                  | Number   | 10 digits          | Closed date; the created date.                     |
+| ProblemNumber                    | Number   | 10 digits          | Auto generated from a counter.                     |
+| RecId                            | Text     | 32                 | Record ID.                                         |
+| Resolution                       | Text     | 4000               | When the problem is resolved.                      |
+| ResolutionAction                 | Text     | 100                | Pick list for the resolution action.               |
+| ResolutionEscLink                | Link     | n/a                | When auto resolved.                                |
+| ResponseEscalationLink           | Link     | n/a                |                                                    |
+| RootCause                        | Text     | 400                | When a request for change is submitted.            |
+| RootCauseDateTime&#xA;Created    | DateTime | n/a                |                                                    |
+| Service                          | Text     | 40                 | Impacted service                                   |
+| Source Source                    | Text     | 25                 |                                                    |
+| Status                           | Text     | 40                 | Pick list for the status.                          |
+| Subject Summary                  | Text     | 100                | Brief description of the problem.                  |
+| TargetResolutionTime             | DateTime | n/a                |                                                    |
+| TotalWaitingDuration             | Number   | 8 digit, 2 decimal |                                                    |
+| TypeOfProblem                    | Text     | 60                 | Auto-filled. Values can be problem or known error. |
+| Urgency                          | Text     | 10                 | Pick list for the urgency.                         |
+| WaitingEscLink                   | Link     | n/a                |                                                    |
+| Workaround                       | Text     | 4000               | Describes a workaround.                            |
+
+### Problem Business Object Relationship Definitions
+
+| Relationship                        | Type       | Cardinality  |
+| ----------------------------------- | ---------- | ------------ |
+| ProblemAssociatesAnnouncement       | associated | zero or many |
+| ProblemContainsAttachment           | contains   | zero or one  |
+| AuditHistoryRelationship            | contains   | exactly one  |
+| BusinessServiceAssociatesProblem    | associated | zero or many |
+| ProblemAssociatesChange             | associated | zero or many |
+| CIAssociatesProblem                 | associated | zero or many |
+| FAQAssociatedProblem                | associated | zero or many |
+| ProblemAssociatedEscalationWatch    | associated | zero or one  |
+| ProblemAssociatedByWorkflowInstance | associated | zero or one  |
+| FRS\_KnowledgeAssociatedProblem     | associated | zero or many |
+| ProblemAssociatedMyItem             | associated | zero or one  |
+| ProblemAssociatesIncident           | associated | zero or one  |
+| ProblemAssocInventoryItem           | associated | zero or many |
+| ProblemContainsJournal              | contains   | zero or one  |
+| ProblemAssocKnowledge               | associated | zero or many |
+| ProblemAssocProblemWorkaround       | associated | zero or many |
+| ProblemAssociProfileEmployee        | associated | zero or many |
+| ProblemAssociatesReleaseProject     | associated | zero or many |
+| ServiceCatalogAssociatesProblem     | associated | zero or many |
+| ProblemAssocStandardUserTeam        | associated | zero or one  |
+| ProblemContainsTask                 | associated | zero or one  |
+
+### Problem Business Object Layouts
+
+<table isTableHeaderOn="true">
+  <tr>
+    <td>
+      Layout
+    </td>
+    <td>
+      Context
+    </td>
+    <td>
+      Roles
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Problem Layout
+    </td>
+    <td>
+      Create, change, or view a problem.
+    </td>
+    <td>
+      - Service Desk Analyst
+      - Data provider (incident)
+      - Internal specialists
+    </td>
+  </tr>
+</table>
+
+### Problem Business Object Forms
+
+| Name               | Purpose                                                   |
+| ------------------ | --------------------------------------------------------- |
+| Problem            | Main problem edit.                                        |
+| Problem.Brief      | Brief preview below list (browse).                        |
+| Problem.PopUp      | Pop-up view.                                              |
+| ProblemRootCause   | Shows the root cause of the problem.                      |
+| Problem.Workaround | Shows a workaround for the problem.                       |
+| Problem.Detail     | Shows the details tab.                                    |
+| Problem.DataEntry  | Shows the details tab plus the problem ID on the header . |
+
+### Problem Business Object Quick Actions
+
+| Name                             | Invocation | Description                                                                                                                                            |
+| -------------------------------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Request for change               | Manual     | Creates a new change using problem data.                                                                                                               |
+| New Document Article             | Manual     | Creates a new knowledge article based on the contents of the current problem.                                                                          |
+| New Error Message Article        |            |                                                                                                                                                        |
+| New Issue and Resolution Article |            |                                                                                                                                                        |
+| New Patch Article                |            |                                                                                                                                                        |
+| New Q\&A Article                 |            |                                                                                                                                                        |
+| New Reference Article            |            |                                                                                                                                                        |
+| Close Related Incidents          | Manual     | Closes all incidents related to the current problem.                                                                                                   |
+| Problem Status to Closed         | Auto       | Updates the status of the problem to closed. Invoked from the **Problem Close Process** demo workflow via the **Close Related Problems** quick action. |
+| Resolve Incidents                | Manual     | Sets the incident status to resolved. Accomplished by invoking the **Resolve Incident Related to Problem** quick action against the related incidents. |
+
+### Problem Business Object Business Rules
+
+| Name                                                           | Description                                                                                                                           |
+| -------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| CI Owner Notification for Problem Cause Identification         | Sends notification to the related configuration item owner if the configuration item is identified as the root cause for the problem. |
+| Major Problem Root Cause Identification                        | Sends notification to the Problem Review Board when the root cause of a major problem is identified.                                  |
+| New Problem Notification                                       | Sends notification to the owner for a new problem.                                                                                    |
+| New Priority 1 Problem Notification                            | Sends notification to the owner for a new problem.                                                                                    |
+| First incident is Linked                                       | Detects when the first incident is linked to the problem to populate the date and time to field Problem.FirstIncidentLinked.          |
+| Major Problem Resolution Notification for Problem Review Board | Major problem review.                                                                                                                 |
+| New Link On Problem Review Board                               | New link on Problem Review Board.                                                                                                     |
+| New Service Linked Add To Problem Review Board                 | New service linked add to Problem Review Board.                                                                                       |
+| Resolve all Related Incidents when Problem Closed              | Closes any incident records linked to a parent problem record that has been closed.                                                   |
+| Root Cause has been Found                                      | Root cause has been found.                                                                                                            |
+| Start Investigation of Problem                                 | Starts an investigation of the problem.                                                                                               |
+| Workaround Notification for Incident Owner                     | Workaround has been created.                                                                                                          |
+
+### Problem Business Object Searches
+
+| Name                                                         | Criteria                                                                                                                                                                                        |
+| ------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Open problems                                                | Find 'Problem' where: Problem# Status Not in List Canceled, Closed                                                                                                                              |
+| Active problem with CIs                                      | Find 'Problem' where: Problem# Status Equal To Active<br />AND<br />CI# RecID IsNotEmpty                                                                                                        |
+| Closed problem last 30 days                                  | Find 'Problem' where: Problem# Status Equal To Closed<br />AND<br />Problem# ClosedDateTime EqualTo $(LastThirtyDays())                                                                         |
+| Active problems                                              | Find 'Problem' where: Problem# Status Equal To Active                                                                                                                                           |
+| Active problems with linked incidents                        | Find 'Problem' where: Problem# Status Equal To Active<br />AND<br />Incident# RecID IsNotEmpty                                                                                                  |
+| All problems                                                 | Find 'Problem' where: Problem# RecID Is Not Empty                                                                                                                                               |
+| Closed problems                                              | Find 'Problem' where: Problem# Status Equal To Closed                                                                                                                                           |
+| High priority problems                                       | Find 'Problem' where: Problem# Priority Equal To 1                                                                                                                                              |
+| Known error without workarounds                              | Find 'Problem' where: Problem# Type of Problem Equal To Known Error<br />AND<br />Problem# Workaround IsEmpty<br />AND<br />Problem# Status NotInList Closed, Resolved                          |
+| Known errors                                                 | Find 'Problem' where: Problem# Type of Problem Equal To Known Error                                                                                                                             |
+| Logged problems                                              | Find 'Problem' where: Problem# Status Equal To Logged                                                                                                                                           |
+| My active problems                                           | Find 'Problem' where\:Problem# Status InList Active<br />AND<br />Problem# Owner Equal To $(CurrentLoginId())                                                                                   |
+| My problems                                                  | Find 'Problem' where: Problem# Owner Equal To $(CurrentLoginId())                                                                                                                               |
+| My team's problem                                            | Find 'Problem' where: Problem# OwnerTeam Equal To $(CurrentUserTeam())                                                                                                                          |
+| Priority 1 active problems                                   | Find 'Problem' where: Problem# Priority Equal To 1<br />AND<br />Problem# Status Equal To Active                                                                                                |
+| Problem past target date                                     | Find 'Problem' where: Problem# TargetResolutionDate Less Than $(CurrentDateTime())<br />AND<br />Problem# Status Not In List Closed, Resolved                                                   |
+| Problem received today                                       | Find 'Problem' where: Problem# CreatedDateTime Equal To $(CurrentDate())                                                                                                                        |
+| Problem with root cause found                                | Find 'Problem' where: Problem# Root Cause Created Greater Than $(StartOfThisYear())                                                                                                             |
+| Problems with change                                         | Find 'Change' where: Change# RecID Is Not Empty                                                                                                                                                 |
+| Problems with CIs                                            | Find 'CI' where: CI# RecID Is Not Empty                                                                                                                                                         |
+| Problems with incident to root cause duration calculated     | Find 'Problem' where: Problem# Incident To Root Cause Created Greater Than 0                                                                                                                    |
+| Problems with linked incidents after identification of issue | Find 'Problem' where: Problem# Status Equal To Identified<br />AND<br />Incident# RecID Is Not Empty                                                                                            |
+| Problems with linked incidents before identification         | Find 'Problem' where: Problem# Status Not In List Canceled, Closed, Identified, Investigation, Resolved, Waiting for 3rd Party, Waiting for Resource<br />AND<br />Incident# RecID Is Not Empty |
+| Problems with pending tasks                                  | Find 'Task' where Status In List Accepted, Waiting                                                                                                                                              |
+| Problems with workarounds                                    | Find 'Problem' where: Problem# Workaround Is Not Empty                                                                                                                                          |

@@ -1,0 +1,59 @@
+---
+title: DefaultUserTeam
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:59 GMT+0300 (Eastern European Summer Time)
+---
+
+Returns the default team associated with the current session.
+
+Returns the primary team for the user associated with the current session, as defined in the **Team** field under the **Details** tab on the **Employee Details** form.
+
+## Syntax
+
+DefaultUserTeam()
+
+## Enabled For
+
+For a description of the business object categories, see :Link[Notes on "Enabled For"]{label="Notes on &#x22;Enabled For&#x22;" overridedLabel="Notes on &#x22;Enabled For&#x22;" spaceId docId="xObv2pIDrk60jkEIWs8mD" version="v2" docAnchorId="#Notes" loadingMethod="dynamic" newTab="false" githubPath="_Built_in_Functions.htm#Notes" href="_Built_in_Functions.mdx"}.
+
+| Business Object Category                                                                     | Yes/No |
+| -------------------------------------------------------------------------------------------- | ------ |
+| Business Rules: Before-Save Rules                                                            | Yes1   |
+| Business Rules: Calculation Rules (After Save, with or without Also Recalculate on Load)     | No     |
+| Business Rules: Calculation Rules (Before Save or Always, without Also Recalculate On Load)  | Yes1   |
+| Business Rules: Calculation Rules (Before Save or Always, with Recalculate On Load)          | No     |
+| Business Rules: Editing Rules                                                                | Yes2   |
+| Business Rules: Initialization Rules                                                         | Yes1   |
+| Business Rules: Read Only Rules                                                              | No     |
+| Business Rules: Required Rules                                                               | Yes2   |
+| Business Rules: Validation Rules                                                             | Yes2   |
+| Client Expressions                                                                           | No     |
+| Object Permissions                                                                           | No     |
+| Services                                                                                     | Yes    |
+| LDAP                                                                                         | Yes    |
+| Mobile                                                                                       | Yes    |
+| Quick Actions (except UI Quick Actions)                                                      | Yes1   |
+| UI Quick Actions                                                                             | No     |
+| Reports                                                                                      | Yes1   |
+| Search/Dashboard without field references                                                    | Yes1   |
+| Search/Dashboard with field references                                                       | No     |
+| 1. Except in services.                                                                       |        |
+| 2. Except in services and when this field appears on a form or is triggered by such a field. |        |
+
+## Parameters
+
+None.
+
+## Return Value
+
+<Paragraph indent="1">
+  Text value.
+</Paragraph>
+
+## Example
+
+$(DefaultUserTeam())
+
+<Paragraph indent="1">
+  If the current session is for a user who is part of the service desk team, the above example returns "Service Desk".
+</Paragraph>

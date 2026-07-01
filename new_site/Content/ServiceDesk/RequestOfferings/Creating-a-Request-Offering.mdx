@@ -1,0 +1,330 @@
+---
+title: Creating a Request Offering
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:48 GMT+0300 (Eastern European Summer Time)
+---
+
+1. Log in to the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Console}} console.
+2. Open the **Request Offering** workspace.
+3. Click **New > Request Offering**.
+
+<hint type="info" indent="1">
+  If the **Service** name appears as GUID, the service has been deleted or is marked non-published.
+</hint>
+
+4. Enter information into the fields.
+
+| Field                          | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| ------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Service                        | The service for which the form applies. This list is populated from the **Services** workspace.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| Name                           | A unique name for the service.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Description                    | A description of how the form is used.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| Category                       | The category determines where the request offering can be found in the Service Catalog. For example, choosing the **IT Services > Data Services** category places the offering within this group. Offerings can have multiple categories.<br />Click **Add category** to choose a category for this form. Repeat to add multiple categories.<br />Click **Edit Categories** to make changes to a category. Starting in \{\{FRS\_VARS.ProductName}} Release 2016.2, you can manually arrange and sort the categories. Select a category and drag it to a new location in the list. For example, to move the category called HR Services to be between the categories of Application Administration and Communication Services, click on the HR Services category and drag it to the new location. Click **Save Order**. Now whenever anyone creates a request offering and views the list of categories, the HR Services category is listed between Application Administration and Communication Services instead of in alphabetical order.<br />See [Creating an External Offering](Creating-an-External-Offering.mdx) for information on creating or modifying categories. |
+| Anonymous Submit               | Allows anonymous users to submit a request.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| Hide Price information         | Hides price information from users in the Self-Service Portal.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Hide Delivery Time information | Hides delivery time information from users in the Self-Service Portal.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| Enable Request Cancellation    | Enables the request offering to be canceled.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Enable Request Editing         | Enables the request offering to be modified.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Use Price List                 | Enables pricing from a global price list. See [Working with Price Lists](Working-with-Price-Lists.mdx) for information on how to use this feature. Enabling this option also checks **Enable Financial Transaction**. Do not select this option if you do not use regional pricing and do not want financial reporting.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| Enable Financial Transaction   | Tracks financial transactions for this item. The system automatically maintains a consumption history of all end users requesting this service, including pricing data. This information can be used for charge back or consumption reporting.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Delivery item(s)               | The name of the delivery item. If **Use Price List** is checked, the value is automatically set to **From Price List**.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| Deliver by                     | When to deliver by. Enter a number, then select the unit: minutes, hours, days, weeks.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| Price                          | A price for the request item. Use this only if you are not using the price list.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| Recurring                      | The recurring price unit.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| Per                            | Price unit. Use this only if you are not using the price list.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+
+5. Click **Next**.
+
+## **Design request form**
+
+1. Click **Change Image** to edit the default image. See [Default Icons for Request Offerings](Default-Icons-for-Request-Offerings.mdx).
+   - The image size cannot be larger than 50 KB.
+   - We recommend using square images.
+   - The image size can be as large as you like, but is scaled down to 48 by 48 pixels.
+2. Click **Layout Configuration** to define into how many columns the fields are to be arranged on the form.
+
+<Paragraph indent="1">
+  *Layout Configuration*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/MpqzRTrXY-IThd34f5U59_layout-configuration.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/ReqOff-Images/layout-configuration.png" githubPath="Content/Resources/Images/ReqOff-Images/layout-configuration.png" showCaption="false"></Image>
+
+| Field                       | Description                                                                                                                                                                                                                                                                 |
+| --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Align rows in columns       | Aligns your rows into columns. Only useful to forms with multiple columns.<br />Items are placed on the page from left to right into columns, then down the page. Items of different sizes can cause the layout to look jagged. This option aligns the columns of each row. |
+| Show column number in a row | Shows the column placement. When you place an item on the form, an icon appears showing which column it inhabits. This is most useful when using a two or three column display.                                                                                             |
+
+3. Click **OK**. The system closes the **Layout Configuration** window.
+4. Drag items from the **Form Designer Tools** pane on the right onto the **Request Form** area.
+5. Click the **edit** button :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/nH4LDSjWwydlsFfpwW_T5_edit-button.png" alt caption size="10" width="23" height="24"} next to the control to define its parameters in the Configuration Editor.
+
+<table isTableHeaderOn="true">
+  <tr>
+    <td>
+      Control
+    </td>
+    <td>
+      Description
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Check Box
+    </td>
+    <td>
+      Creates a simple checkbox. Used to answer simple yes or no questions or options such as "For personal use?".
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Text, Number, or Mask Field
+    </td>
+    <td>
+      From the **Type** drop-down menu, you can select from the pre-configured choices to define this field to accept specific input format, such as Money, Phone Number, MAC Address, or URL.
+      Or select **Custom** to define a custom "mask". Example: To create a postal code, such as W11 2BQ, enter A00 0AA).
+      <hint type="info">
+        - For number fields, when validating the number, the system automatically sets the default value to the value of the **Minimum** field unless you specifically configure a default value.
+        - If the mask field is empty, clicking on it will always position the cursor at the beginning of the textbox. If the field is filled, you can click anywhere in the field containing text contents, and the cursor will position itself anywhere in the textbox.
+      </hint>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Text Area
+    </td>
+    <td>
+      To enter answers requiring multi-line responses, such as a description field.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Category Heading
+    </td>
+    <td>
+      To create headings for various sections of your form. For example, you could have an address section, containing common address fields such as city, state, and zip. Then an equipment section, containing fields such as equipment list, problem description.
+      Click **Edit** to show a dividing line or create a new page.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Row Aligner
+    </td>
+    <td>
+      Aligns a set of form items when using multiple columns. Do not check **Align rows in columns** from the **Layout Configuration**, as this overrides this feature.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Drop-down selection
+    </td>
+    <td>
+      To select an item from a drop-down list. You can create a custom list or use a validation list. You can also define a limit of minimum characters that suggest the drop down options.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Date field
+    </td>
+    <td>
+      To select a date from a calendar.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Time Field
+    </td>
+    <td>
+      To enter a time from a drop-down list.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Date / Time Field
+    </td>
+    <td>
+      Combines the date and time fields into one line. Allows users to enter a date from a calendar and a time from a drop-down list.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Image
+    </td>
+    <td>
+      To show an image on the form that can be triggered from another field. For example, when a user chooses an option from a list, an image appears, providing feedback.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Upload attachments
+    </td>
+    <td>
+      To upload files to the request offering. The option now supports drag and drop additions of supported file types.
+      Click the **edit** icon to open the **Indent field** dialog box.
+      The **Allow drag'ndrop** must be selected to enable drag and drop functionality. The **Allow drag'n'drop** is checked by default. This allows users to drag and drop attachments into the request offering.
+      The supported extensions are a subset of the allowed extensions configured in **System Settings**.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Read only text
+    </td>
+    <td>
+      A label or description.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      List
+    </td>
+    <td>
+      To select an item from a scrollable list. You can create a custom list or use a validation list. See [Configuring the List Control](Configuring-the-List-Control.mdx) for how to configure this control.
+    </td>
+  </tr>
+</table>
+
+<Paragraph indent="1">
+  You can also configure the controls with **Expression** to define the condition on the particular control. For example, making the email address field as \`true\` to enable the Login ID field.
+</Paragraph>
+
+<Paragraph indent="1">
+  With **Expression** you can define Readonly, Visible, and Required conditions.
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/rA63F1FEPJFBklba366Vt_expression-in-request-offering.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/ServiceDesk-Images/expression-in-request-offering.png" githubPath="Content/Resources/Images/ServiceDesk-Images/expression-in-request-offering.png" showCaption="false"></Image>
+
+6. Enter a name for the controls.
+
+<Paragraph indent="1">
+  For example, if you have used the **Date/Time Field**, you could name the control Appointment.
+</Paragraph>
+
+<Paragraph indent="1">
+  *Example*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/xQAzDxUZq_IuG2xsg9aUA_appointment.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/appointment.png" githubPath="Content/Resources/Images/help-images/appointment.png" showCaption="false"></Image>
+
+7. Enter a description for the control.
+8. Choose a template from the **Templates** tab.
+9. Attach images to be used from the **Attachments** tab.
+
+<Paragraph indent="1">
+  Files should be uploaded before adding the control. See :Link[Adding Images to the List Control]{label="Adding Images to the List Control" overridedLabel="Adding Images to the List Control" spaceId docId="ZnAO4WNjy3CAm9h64PyJQ" version="v2" docAnchorId="#Adding-Images-to-the-List-Control" loadingMethod="dynamic" newTab="false" githubPath="Adding-More-Information.htm#Adding-Images-to-the-List-Control" href="Adding-More-Information.mdx"}.
+</Paragraph>
+
+10. Click **Preview** to see how your form appears to users.
+11. Click **Direct link to this Offering** to get the active link for the offering.
+12. Click **Next**.
+
+## **Plan Request Fulfillment**
+
+<hint type="info">
+  - You cannot edit the workflow if the production metadata is in read-only mode. When this happens, the system displays a message.
+  - For more information about setting the production metadata to read-only, see the *Configuration Database Guide for&#x20;*\{\{FRS\_VARS.ProductName}}.
+</hint>
+
+1. Select a fulfillment option from the **Fullfill as** drop-down list.
+
+<table isTableHeaderOn="true">
+  <tr>
+    <td>
+      Field
+    </td>
+    <td>
+      Description
+    </td>
+  </tr>
+  <tr>
+    <td>
+      No fulfillment
+    </td>
+    <td>
+      No fulfillment action occurs for this request offering.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Email
+    </td>
+    <td>
+      An email form appears. Enter the information as required. See [Setting Up Email](../../Configure/Email/Email.mdx).
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Workflow
+    </td>
+    <td>
+      ### Copying a Workflow Between Request Offerings### Copying a Workflow for an Existing Request Offering### Copying a Workflow for a New Request Offering### Verifying the Copied Workflow in a Service Request
+      Creates a workflow in the Workflow Designer. See [Using Workflows](../../Configure/Workflows/Using_Workflows.mdx).
+      You can define a multi-step fulfillment workflow with the Workflow Designer. The designer supports the inclusion of all required approvals and fulfillment tasks. If financial approval is required, include an approval block dedicated for financial approval.
+      All Service Request submissions with associated workflows are queued as a high priority. Once queued, the workflow uses the priority defined in the Request Offering.
+      Administrators can reuse existing workflows to create new workflows or update workflows for Request Offerings. The system clones the selected workflow in the backend, creating an independent copy for the target Request Offering.
+      This approach allows administrators to use an existing workflow as a template and modify it to meet the requirements of the new or updated Request Offering, eliminating the need to build workflows from scratch.
+      To copy a workflow to an existing Request Offering, perform the following:
+      1. Log in to \{\{Primary.Product}} as an \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+      2. Click **More** > **Request Offering**.
+      The list of available Request Offerings is displayed.
+      3. Select the Request Offering for which you want to replace the workflow.
+      4. Open the **Plan Request Fulfillment** tab.
+      5. Locate and click **Use Existing Workflow**.
+      The **Use Existing Workflow** dialog box opens.
+      6. Select the **Service** and **Request Offering** that contains the workflow you want to reuse.
+      7. Click **Replace Workflow**.
+      8. Click **Save**.
+      The selected workflow replaces the existing workflow and is saved to the database.
+      To copy a workflow while creating a new Request Offering, perform the following:
+      1. Log in to \{\{Primary.Product}} as an \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+      2. Click **More** > **Request Offering**.
+      3. Click **New Offering**.
+      4. In the **Define Request Offering** tab, complete the required details across all tabs.
+      5. Open the **Plan Request Fulfillment** tab.
+      6. Click **Use Existing Workflow**.
+      The Use Existing Workflow dialog box opens.
+      7. Select the **Service** and **Request Offering** that contains the workflow you want to reuse.
+      8. Click **Replace Workflow**.
+      9. Open the **Public Action Access** tab and select **Publish**.
+      10. Click **Save**.
+      After creating the Request Offering, verify that the workflow is available by performing the following:
+      1. Navigate to **Service Request**.
+      2. Click **New** and enter the required request details.
+      3. Open the Parameters tab and locate the workflow copied from the Request Offering.
+      4. Click **Save**.
+      <Paragraph indent="1">
+        Confirm that the workflow executes as expected.
+      </Paragraph>
+    </td>
+  </tr>
+</table>
+
+5. Click **Next**.
+
+## **Publish Action Access**
+
+1. Select an option from the **Status** drop-down list.
+
+| Field     | Description                                                                                                                                                                                                                                                                                                                                  |
+| --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| In Design | Saves the form without publishing it to users. You can modify this form later.                                                                                                                                                                                                                                                               |
+| Published | Saves the form and makes the request offering available under request offerings, but not under the Service Catalog. When setting this status, by default the organizational unit of the creator/owner is added with all permissions checked. This offering is available in the Service Catalog for this organizational unit unless modified. |
+
+2. Click **Add**.
+
+| Field     | Description                                                                                                                                                                                                                                                                                                                    |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Org. Unit | Selects an organizational unit from the list. You can only publish request offerings to organizational units to which you have access. For example, if you do not have access to the entire organization, your published offering will only be available to users in the organizational unit that you have selected and below. |
+| Location  | Only publishes to specific locations. You can designate multiple locations.                                                                                                                                                                                                                                                    |
+| Submit    | To submit the request offering from the Service Catalog by the designated organizational unit.                                                                                                                                                                                                                                 |
+| Edit      | To modify the request offering (not the resulting service request).                                                                                                                                                                                                                                                            |
+| Cancel    | To cancel the request offering.                                                                                                                                                                                                                                                                                                |
+| Delete    | To delete the request offering (not the resulting service request).                                                                                                                                                                                                                                                            |
+| Copy      | To duplicate the request offering (not the resulting service request).                                                                                                                                                                                                                                                         |
+
+3. Click the **remove** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/USPl9Egu4Y2Blx7HKC3mA_deleteredx.png" alt caption size="10" width="14" height="13"} to remove the organizational unit from the list.
+
+<hint type="info" indent="1">
+  - The request offering owner/creator has edit permissions by default.
+  - You can only publish to an organizational unit to which you belong, and its parent and child units.
+</hint>
+
+4. Click **Save**, **Save & Exit**, or **Cancel**.

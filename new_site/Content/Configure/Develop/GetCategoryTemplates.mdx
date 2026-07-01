@@ -1,0 +1,88 @@
+---
+title: Using the GetCategoryTemplates Web Method
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:01 GMT+0300 (Eastern European Summer Time)
+---
+
+Returns the list of request offerings in the Service Catalog for the specified category.
+
+## Request Syntax
+
+public FRSHEATGetTemplatesResponse GetCategoryTemplates(string sessionKey, string tenantId, string categoryid, string searchString)
+
+## Parameters
+
+- **sessionKey**: The session key from the **Connect** web method.
+- **tenantId**: The tenant for which the session key is authenticated.
+- **categoryId**: The RecID of the category in the Service Catalog from the **GetCategories** web method.
+- **searchString**: A substring for determining the matching request offerings.
+
+## Return Value
+
+**FRSHEATGetTemplatesResponse** object, defined as follows:
+
+public class FRSHEATGetTemplatesResponse
+
+    \{
+
+public string status \{ get; set; }
+
+public string exceptionReason \{ get; set; }
+
+public List\<FRSHEATServiceReqTemplateListItem> srtList \{ get; set; }
+
+    }
+
+The **FRSHEATGetTemplatesResponse** class has the following fields:
+
+- **status**: Provides a status about the state of the connection. The table below contains a full description of the available status values.
+- **exceptionReason**: Contains exception information, if the application throws an exception when running this web method.
+- **srtList**: Contains a list of **FRSHEATServiceReqTemplateListItem** objects, each of which represents the request offering matching the search criteria.
+
+The **FRSHEATServiceReqTemplateListItem** class is defined as follows:
+
+public classFRSHEATServiceReqTemplateListItem
+
+    \{
+
+public string strRecId;
+
+public string strName;
+
+public string strDescription;
+
+public string strSubscriptionId;
+
+    }
+
+The **FRSHEATServiceReqTemplateListItem** class has the following fields:
+
+- **strRecId**: The RecID corresponding to the request offering.
+- **strName**: The name of the request offering.
+- **strDescription**: The description for the request offering.
+- **strSubscriptionId**: The subscription ID.
+
+The following table lists the available status values and describes how to interpret them.
+
+| <font color="#FFFFFF">Status</font> | <font color="#FFFFFF">Explanation</font>                                                                                                                           |
+| ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Success**                         | Successfully retrieved the list of request offerings in the Service Catalog. This list is available in the **srtList** field.                                      |
+| **Error**                           | An error was encountered during the execution of this web method.  Inspect the corresponding **exceptionReason** field to determine why the web method has failed. |
+
+## Example
+
+FRSHEATGetTemplatesResponse getTemplatesResponse = frSvc.GetCategoryTemplates(authSessionKey, tenantId, categoryid, searchString);
+
+if (getTemplatesResponse.status == "Success")
+
+            \{
+
+foreach (FRSHEATServiceReqTemplateListItem srTemplateListItem in getTemplatesResponse.srtList)
+
+                \{
+
+Console.WriteLine("Request Offering: \{\{0}} \{\{1}}", srTemplateListItem.strSubscriptionId, srTemplateListItem.strName);
+
+                }
+
+            }

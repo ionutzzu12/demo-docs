@@ -1,0 +1,90 @@
+---
+title: Enable chat support for Line of Business (LOB) departments
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:51 GMT+0300 (Eastern European Summer Time)
+---
+
+This feature allows for chat functionality customized to different LOB departments. For example, it can route Workday-related conversations to the HR team or payroll-related queries to the Finance team. Users can link LOB departments and corresponding knowledge to the appropriate Business Units, ensuring chat requests are directed to analysts best able to help.
+
+Once LOB requests are created, analysts can be assigned accordingly. This setup optimizes resource allocation, enhancing user experience by directing requests to personnel based on expertise and departmental responsibilities.
+
+If no LOB is displayed, users are directed to a generic IT Analyst.
+
+To enable chat conversation:
+
+1. Log into \{\{FRS\_VARS.ProductName}} as an \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+2. Open the **Chat Analyst LOB Mapping** workspace.
+
+Choose a department to enable targeted chat expertise (IT, HR, Facilities, Security). When enabled, the department option appears in a user's chat window).
+
+<hint type="info">
+  Chat functionality is enabled for IT by default. You can enable it for other departments depending on your organization's needs/capacity. A user's chat interface will show available departments according to these settings.
+</hint>
+
+<hint type="info">
+  Currently, the application supports a maximum of four departments. Each department can be mapped to any four departments as required.
+</hint>
+
+## Department Name Customization for Self Service Users
+
+The **Department Name** field has been added to improve visibility and make department names easier for self-service users to see. Administrators can customize how department names are displayed to users, making it more intuitive.
+
+**Steps to Use the Department Name Feature:**
+
+- **Chat LOB workspace** - Navigate to the desired LOB to be changed.
+- **Edit Department Name** - Admin can now edit the Department Name for each department.
+
+For instance, change “IT” to “Information Technology” or “HR” to “Human Resources”.
+
+- **Nullable Field** - The **Department Name** field is nullable. If no value is entered, the department will display the default name.
+
+For example, if the admin doesn't enter a custom name for "Facilities," the default value will remain "Facilities."
+
+- **Visibility to Self Service Users** - Once the department name is updated, self-service users will see the new name in the interface.
+
+If the admin hasn't edited the name, the default department name will be shown to the users.
+
+## Link and unlink an LOB chat analyst
+
+Use the **Link&#x20;**&#x61;nd **Unlink&#x20;**&#x6F;ptions to assign and remove employees designated as **Chat Analysts** for LOB.
+
+To link/unlink an LOB chat analyst:
+
+1. Log into \{\{FRS\_VARS.ProductName}} as an \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+2. Open the **Chat Analyst LOB Mapping** workspace. Double-click the department for which you want to add/remove analysts.
+   - To link an employee, select **Link&#x20;**&#x61;nd choose a name.
+   - To unlink an employee, choose a name and select **Unlink**.
+
+**Workaround for Employee Visibility Issue in User List**
+
+When searching for newly added employees in the system, they may not appear in the list due to a limitation in the current configuration.
+
+The **Enable Chat as Analyst** checkbox may not have been properly activated for the role, preventing the employee from being listed.
+
+**Steps to Resolve the Issue**
+
+To make the newly added employee visible in the list view, follow these steps:
+
+<Paragraph listStyleType="disc" indent="2">
+  **Navigate to Admin UI** - Log in to the Admin interface of the system.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  **Select Users and Permissions** - In the sidebar, go to Users and Permissions.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  **Choose Roles and Permissions** - Click on **Roles** and **Permissions** to manage user roles.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  **Select the Specific Role** - Choose the appropriate role that corresponds to the employee.
+</Paragraph>
+
+<Paragraph indent="1">
+  For example: IT → SDA - Service Desk Analyst.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  **Enable the Checkbox** - To activate the feature, uncheck and then check the checkbox again in the role settings under **Enable Chat as Analyst**.
+</Paragraph>

@@ -1,0 +1,110 @@
+---
+title: Working with Cost Items
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:48 GMT+0300 (Eastern European Summer Time)
+---
+
+A cost item is a specific line item within a cost entity, such as an incident, service request, or service. Costs associated with a task are automatically added to an incident or service request record. You can also manually add costs to these records. These cost items are listed in the **Cost Item** tab of the associated record, and in the **ITFM Cost Item** workspace, which is then used to compile data on all costs. See [About Task Costs](About-Task-Costs.mdx).
+
+## Viewing Cost Items
+
+Do one of the following:
+
+- Log into the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Console}} console and open the **ITFM Cost Item** workspace. All cost items are listed.
+- Open an incident, service request, or configuration item record, and then select the **Cost Item** tab. Cost items associated with that record are listed.
+
+<hint type="info" indent="1">
+  Not all configuration items have cost items.
+</hint>
+
+## Adding a Cost Item
+
+Costs are added automatically from service requests, tasks, and allocations. (See :Link[Creating a Service Request]{label="Creating a Service Request" overridedLabel="Creating a Service Request" spaceId docId="kfew166RQFjswGroLwxWu" version="v2" docAnchorId="#Creating-a-Service-Request" loadingMethod="dynamic" newTab="false" githubPath="../ServiceRequest/Working-with-Service-Requests.htm#Creating-a-Service-Request" href="../ServiceRequest/Working-with-Service-Requests.mdx"}, [Creating a Task](../Tasks/Creating-a-Task.mdx) or [Service Allocation](Service-Allocation.mdx).)
+
+There are two types of costs that you can add manually:
+
+- **Ad-hoc costs**: Click **New ITFM Cost Item&#x20;**&#x77;hen there are no defined cost types.
+- **Defined costs**: Click **New from Price List Item** when adding a cost with a defined cost type.
+
+### Adding a New ITFM Cost Item
+
+1. Open an incident, service request, or configuration item record, and then select the **Cost Item** tab.
+2. Click **New ITFM Cost Item**.
+3. Enter information into the fields.
+
+| Field                | Description                                                                                                                                                                                                                                                                                                                                         |
+| -------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Item Description     | A unique name for the item.                                                                                                                                                                                                                                                                                                                         |
+| Product Catalog Item | The product catalog item. To add an item not on the list, see :Link[Adding a New Price List Item]{label="Adding a New Price List Item" overridedLabel="Adding a New Price List Item" spaceId docId="z8EsOnIif7k-22OkYus4_" version="v2" docAnchorId="#Add_a_Price_Item" loadingMethod="dynamic" newTab="false" href="Working-with-Cost-Items.mdx"}. |
+| Unit Cost            | Cost of each unit.                                                                                                                                                                                                                                                                                                                                  |
+| Qty                  | The number of units.                                                                                                                                                                                                                                                                                                                                |
+| Unit of Measure      | The type of measurement of each unit.                                                                                                                                                                                                                                                                                                               |
+| Total Cost           | Total cost calculated by **Unit Cost x Qty**.                                                                                                                                                                                                                                                                                                       |
+| Cost Driver          | Name of the cost driver.                                                                                                                                                                                                                                                                                                                            |
+| Vendor               | Name of the vendor.                                                                                                                                                                                                                                                                                                                                 |
+| Billable             | Select if the cost is billable to a customer.                                                                                                                                                                                                                                                                                                       |
+| Capital Expense      | Select if the cost is a capital expense.                                                                                                                                                                                                                                                                                                            |
+| Fixed Cost           | Select if the cost is a fixed cost.                                                                                                                                                                                                                                                                                                                 |
+| Direct Cost          | Select if the cost is a direct cost.                                                                                                                                                                                                                                                                                                                |
+| Notes                | Notes or comments about the record.                                                                                                                                                                                                                                                                                                                 |
+
+4. Click **Save**.
+
+### Adding a Defined Price List Item
+
+1. Open an incident, service request, or configuration item record, and then select the **Cost Item** tab.
+2. Click **New from Price List Item**.
+3. Select a cost item from the list. The item appears on the list.
+
+## Adding a New Price List Item
+
+1. Open an incident, service request, or configuration item record, and then select the **Cost Item** tab.
+2. Click **New ITFM Cost Item**.
+3. Click the **search** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/XSI1g-SuNibY4y0X_k5G0_search-icon.png" alt caption size="10" width="26" height="24"} in the **Price List Item** field. A list of price list items are displayed.
+4. Click **Add**. The **Price List Item** dialog box opens.
+5. Enter information into the fields.
+
+| Field               | Description                                                                         |
+| ------------------- | ----------------------------------------------------------------------------------- |
+| Enabled             | Makes this price list item active.                                                  |
+| Item Name           | A unique name for the item.                                                         |
+| Item Revision       | The version number.                                                                 |
+| Type                | The purpose for the price list item.                                                |
+| Recurrence Type     | If the price is recurring, choose **Monthly** or **Yearly**. Else, select **None**. |
+| Price               | The price of the item.                                                              |
+| Cost                | The cost of the item.                                                               |
+| Unit of Measure     | The price and cost unit of measure.                                                 |
+| Description         | A brief description of the item.                                                    |
+| Vendor              | Name of the vendor.                                                                 |
+| Cost Driver         | Name of the cost driver.                                                            |
+| Cost Drive Category | Type of cost driver that is automatically generated.                                |
+| Is Direct           | Select if the price of the item is direct.                                          |
+| Is Fixed            | Select if the price of the item is a fixed cost (as opposed to a variable cost).    |
+| Is Capital Expense  | Select if the item can be classified as a capital expense for tax purposes.         |
+
+6. Click **Save**. The price list item is listed in the **New from** **Price List Item** list.
+
+## Modifying a Cost Item
+
+1. Open the **ITFM Cost Item** workspace.
+2. Double-click the item to edit. The **Cost Item** page opens.
+3. Make the required changes.
+4. Click **Save**.
+
+## Deleting a Cost Item
+
+1. Open the **ITFM Cost Item** workspace.
+2. Select the cost item to delete and click the **Delete** button :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/USPl9Egu4Y2Blx7HKC3mA_deleteredx.png" alt caption size="10" width="14" height="13"} from the toolbar. The item is removed and no longer listed.
+
+## Exporting Costs to Microsoft Excel
+
+You can export one or more of your cost items to a file and opened with Microsoft Excel or other financial software.
+
+1. Open the **ITFM Cost Item** workspace.
+2. Select the records to export or select none to export all records.
+
+<hint type="info" indent="1">
+  You can create a saved search to limit the records that are displayed in the list. See [Using a Saved Search](<../Search/Saved Searches.mdx>).
+</hint>
+
+3. From the toolbar, click **Export Cost Item to Excel**. The details are exported to an excel file.

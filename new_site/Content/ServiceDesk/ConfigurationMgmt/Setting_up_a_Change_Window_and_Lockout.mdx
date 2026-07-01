@@ -1,0 +1,103 @@
+---
+title: Setting up a Change Window and Lockout
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:48 GMT+0300 (Eastern European Summer Time)
+---
+
+- :Link[About Change Windows and Lockouts]{label="About Change Windows and Lockouts" overridedLabel="About Change Windows and Lockouts" spaceId docId="j3Tew8OME4ob8Fkx_Gqur" version="v2" docAnchorId="#About" loadingMethod="dynamic" newTab="false" href="Setting_up_a_Change_Window_and_Lockout.mdx"}
+- :Link[Setting Up a Change Window]{label="Setting Up a Change Window" overridedLabel="Setting Up a Change Window" spaceId docId="j3Tew8OME4ob8Fkx_Gqur" version="v2" docAnchorId="#Setting1" loadingMethod="dynamic" newTab="false" href="Setting_up_a_Change_Window_and_Lockout.mdx"}
+- :Link[Creating a New Schedule]{label="Creating a New Schedule" overridedLabel="Creating a New Schedule" spaceId docId="j3Tew8OME4ob8Fkx_Gqur" version="v2" docAnchorId="#Creating" loadingMethod="dynamic" newTab="false" href="Setting_up_a_Change_Window_and_Lockout.mdx"}
+- :Link[Linking Configuration Items to a Change Window]{label="Linking Configuration Items to a Change Window" overridedLabel="Linking Configuration Items to a Change Window" spaceId docId="j3Tew8OME4ob8Fkx_Gqur" version="v2" docAnchorId="#Linking1" loadingMethod="dynamic" newTab="false" href="Setting_up_a_Change_Window_and_Lockout.mdx"}
+- :Link[Setting Up a Change Lockout]{label="Setting Up a Change Lockout" overridedLabel="Setting Up a Change Lockout" spaceId docId="j3Tew8OME4ob8Fkx_Gqur" version="v2" docAnchorId="#Setting" loadingMethod="dynamic" newTab="false" href="Setting_up_a_Change_Window_and_Lockout.mdx"}
+- :Link[Linking Configuration Items to a Change Lockout]{label="Linking Configuration Items to a Change Lockout" overridedLabel="Linking Configuration Items to a Change Lockout" spaceId docId="j3Tew8OME4ob8Fkx_Gqur" version="v2" docAnchorId="#Linking" loadingMethod="dynamic" newTab="false" href="Setting_up_a_Change_Window_and_Lockout.mdx"}
+
+## About Change Windows and Lockouts
+
+Configuration Managers can create a lockout period and a change window for a configuration item. The lockout period appears on the change scheduler in red, while the change window appears in green.
+
+A change lockout period indicates that changes should not be made during this time. They can be overridden by the Change Manager, if necessary.
+
+A change window indicates to the Change Manager that it is a preferred time to implement a change for the configuration item.
+
+## Setting Up a Change Window
+
+By setting up a change window for a configuration item, you are letting Change Enablement know of the preferred time to implement changes that affect the configuration item. For example, you can set up a change window during weekends or non-work hours.
+
+1. Log in to the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Console}} as a Configuration Manager.
+2. Open the **Configuration Item** workspace. The list of objects appears.
+3. Double-click a record. The record details appear.
+4. Click the **Change Window** tab.
+5. Click **Link**. A list of schedules appears.
+6. Choose a schedule, then click **Select**. The schedule appears in the list.
+7. Click **Save**.
+
+## Creating a New Schedule
+
+1. Log in to the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Console}} as a Configuration Manager.
+2. Open the **Configuration Item** workspace. The list of objects appears.
+3. Double-click a record. The record details appear.
+4. Click the **Change Window** tab.
+5. Click **New Change Window**. A blank change window form appears.
+6. Enter information into the fields.
+
+| Field                 | Description                                                                                                                                                |
+| --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Name                  | A unique, descriptive name for the schedule.                                                                                                               |
+| Description           | Optional. Describes how the schedule is to be used.                                                                                                        |
+| Start Time / End Time |                                                                                                                                                            |
+| All Day Event         | Does not specify specific times.                                                                                                                           |
+| Start Date / End Date | The start and end dates (according to your local time) of the change lockout.                                                                              |
+| No End Date           | Does not specify an end date.                                                                                                                              |
+| Daily                 | Runs the change lockout daily within the above specified dates. Enter the number of days, such as, recurs every 2 days.                                    |
+| Weekly                | Runs the change lockout weekly within the above specified dates. Enter the number of weeks, such as recurs every 1 week on Wednesday.                      |
+| Monthly               | Runs the change lockout monthly within the above specified dates. Enter the number of months, such as, recurs every 3 months on the second Monday.         |
+| Yearly                | Runs the change lockout annually within the above specified dates. Enter the number of years, such as recurs every 2 years in January on the first Monday. |
+
+7. Click **Save**.
+
+<Paragraph indent="1">
+  If this configuration item links to a change, the Change Manager can view the change window and know the preferred time to implement any changes that involve this configuration item.
+</Paragraph>
+
+## Linking Configuration Items to a Change Window
+
+You can associate a single configuration item or multiple configuration items to a change window. If a change is created using any of the associated configuration items, the change window is shown in the **Change Calendar** tab of the change record.
+
+1. Log in to the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Console}} as a Configuration Manager.
+2. Open the **Change Window** workspace. The list of objects schedules appears.
+3. Double-click a record. The record details appear.
+4. Click the **CI** tab.
+5. Click **Link** :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/3aNmOvuWqAurGzGYP6YMW_link.png" alt caption size="10" width="18" height="11"}. A list of records appears.
+6. Select a record, then click **Select**.
+7. Click **Save**.
+
+<Paragraph indent="1">
+  The configuration items are now associated with the change window. If a new change is created for any of the configuration items that are associated with this change window, the change window appears in the **Change Schedule** tab of the change record. The configuration item records also show the change window associated with the configuration items.
+</Paragraph>
+
+## Setting Up a Change Lockout
+
+By setting up a change lockout for a configuration item, you are letting Change Enablement know that changes that affect the configuration item should not be made during the lockout window. For example, you can set up a change lockout during business hours on weekdays.
+
+1. Log in to the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Console}} as a Configuration Manager.
+2. Open the **Configuration Item** workspace. The list of objects appears.
+3. Double-click an object from the list. The record details appear.
+4. Select the **Change Lockout** tab.
+5. Click **Link** :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/3aNmOvuWqAurGzGYP6YMW_link.png" alt caption size="10" width="18" height="11"}. A list of schedules appears.
+6. Select a schedule and click **Select**. The schedule appears in the list.
+7. Click **Save**.
+
+## Linking Configuration Items to a Change Lockout
+
+You can also associate a configuration item or bulk configuration items to a change lockout from the **Change Lockout** workspace.
+
+1. Log in to the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Console}} as a Configuration Manager.
+2. Open the **Change Lockout** workspace. The list of object schedules appears.
+3. Double-click an object from the list. The record details appear.
+4. Select the **CI** tab, then click **Link** :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/3aNmOvuWqAurGzGYP6YMW_link.png" alt caption size="10" width="18" height="11"}. A list of records appears.
+5. Select a record, then click **Select**.
+6. Click **Save**.
+
+<Paragraph indent="1">
+  The configuration items are now associated with the change lockout. If a new change is created for any of the configuration items that are associated with this change lockout, the change lockout appears in the **Change Schedule** tab of the change record. The configuration item records also show the change lockout associated with the configuration items.
+</Paragraph>

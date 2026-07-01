@@ -1,0 +1,32 @@
+---
+title: Example: Using the GoTo Action Quick Action (GAD)
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:56 GMT+0300 (Eastern European Summer Time)
+---
+
+Here is an example of where and how to use the **GoTo Action**\{\{FRS\_VARS.Quick\_Action}}.
+
+<hint type="info">
+  To use this \{\{FRS\_VARS.Quick\_Action}}, set the global constant **EnableActionService&#x20;**&#x74;o **True**. If **EnableActionService&#x20;**&#x69;s not available in the global constants list (this may be the case for upgraded instances), Administrators can manually add the constant.
+</hint>
+
+In this example, the **Status** of an Incident record is checked. If the record's **Status** is actively set to ‘Closed’ the record is deleted. Alternatively, if the record is not already 'Closed', the record's **Status** is updated to ‘Closed’ before jumping back to perform this check a second time. As the record's **Status** is now ‘Closed’, the second time around the user can go ahead with the deletion of the record.
+
+Create a new \{\{FRS\_VARS.Quick\_Action}} in the \{\{FRS\_VARS.Graphical\_Action\_Designer}}:
+
+1. Drag a **Decision Block**, **Delete a Record**, **Update a Record**, and a **Go to Action** onto the designer.
+2. Link the **Start Block** to the **Decision Block** action, and provide a name for the \{\{FRS\_VARS.Quick\_Action}} in the **Common** settings **Name** field.
+3. Link the action blocks together as shown below, ensuring the **Go to Action** block (the block named **Jump to Decision Block - Status** in the diagram) is linked after and from the **Update a Record** action.
+
+<hint type="info" indent="1">
+  Th&#x65;**&#x20;GoTo Action** block must be the last block in an execution path.
+</hint>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/4w23L6GDkWtRqXQxEUXM8_actionsjumptodecisionblockexample1.png" alt="screenshot of a composite action including a go to action linking to a decision block" position="flex-start" size="40" indent="1" initialPath="../../quick-actions-images/actions_jump_to_decision_block_example1.png" githubPath="Content/Configure/QuickActions/quick-actions-images/actions_jump_to_decision_block_example1.png" showCaption="false"></Image>
+
+4. Customize the properties of the **Go to Action**. In the **Target Action** field, select the **Decision Block** action.
+   In this example the **Max Number of Iterations** field is set to 1, this specifies the number of times the **GoTo Action** is executed.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/3U3yPYuVMees3zT64pjo5_actionsjumptodecisionblockexample2.png" alt="screenshot of go to action settings block tab" position="flex-start" size="40" indent="1" initialPath="../../quick-actions-images/actions_jump_to_decision_block_example2.png" githubPath="Content/Configure/QuickActions/quick-actions-images/actions_jump_to_decision_block_example2.png" showCaption="false"></Image>
+
+5. Save the \{\{FRS\_VARS.Quick\_Action}} when all settings are completed.

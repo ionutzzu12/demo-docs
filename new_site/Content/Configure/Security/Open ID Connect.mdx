@@ -1,0 +1,91 @@
+---
+title: Setting Up Authentication for OpenID Connect with Google
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:57 GMT+0300 (Eastern European Summer Time)
+---
+
+<ExpandableHeading>
+  ## Adding a Google Application
+
+  Configure Google App as an identity provider. Go to [https://developers.google.com/identity/protocols/OpenIDConnect](https://developers.google.com/identity/protocols/OpenIDConnect).
+</ExpandableHeading>
+
+## Obtaining OAuth 2.0 Credentials
+
+<ExpandableHeading>
+  ## Setting a Redirect URI
+
+  You need OAuth 2.0 credentials, including a client ID and client secret, to authenticate users and gain access to Google's APIs.
+
+  To find your project's client ID and client secret, do the following:
+
+  1. Go to the Google Developers Console at [https://console.developers.google.com/start](https://console.developers.google.com/start).
+  2. Select an existing project or click **Create project** to create a new one.
+  3. In the **Dashboard** area, click **Use Google APIs**.
+  4. In the **Overview** area, select an API. If you do not need a specific API, select any of them, such as **Google Drive** and then click **Enable** to enable the API.
+  5. From the sidebar on the left, click **Credentials**.
+  6. In the **Credentials** panel, under **Create credentials**, click **OAuth client ID**.
+  7. Enter the requested information and then click **Create**. The application displays a dialog box with the client ID and client secret. Note that not all types of credentials use both a client ID and client secret. These are not listed in the table if they are not used.
+</ExpandableHeading>
+
+The redirect URI that you set in the Google Developers Console determines where Google sends responses to your authentication requests.
+
+To find the redirect URI for your OAuth 2.0 credentials, do the following:
+
+1. Go to the Google Developers Console at [https://console.developers.google.com/start](https://console.developers.google.com/start).
+2. Select an existing project or click **Create project** to create a new one.
+3. In the dashboard, click **Use Google APIs**.
+4. In the sidebar on the left, click **Credentials**.
+5. From the list of **OAuth 2.0 client IDs**, click the client ID you just created.
+6. Under **Authorized redirect URIs**, enter the path in your application that users are redirected to after they have authenticated with Google.
+7. Click **Save**.
+
+<ExpandableHeading>
+  ## Creating a Neurons for ITSM Authentication Provider
+
+  <hint type="info">
+    To set up \{\{FRS\_VARS.ITSM}} users for authentication via the \{\{FRS\_VARS.Neurons\_platform}}, refer to [Setting up ITSM users for authentication via the Neurons Platform](../../../setting-up-itsm-users-for-authentication-via-the-neurons-platform.mdx) and [Authentication](https://help.ivanti.com/ht/help/en_US/CLOUD/vNow/authentication.htm). This feature is **Early Access** only and may not be available in your environment. For more information, please contact your Customer Success Manager.
+  </hint>
+
+  1. From the Configuration Console, click **Configure** > **Security Controls** > **Authentication Providers** to open the **Authentication Providers** workspace.
+  2. From the **New Record Menu** drop-down list, select **New OpenID Connect**.
+  3. Enter data into the fields.
+
+  | Field                               | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+  | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | Default                             | Specifies if this authentication provider is called.  <br />Automatically set by the application. You change this in the list. To make this authentication provider the default, you must first change the default setting for all other authentication providers to false and then change the default setting for this authentication provider to true.                                                                                                      |
+  | Disabled                            | Specifies if this authentication provider is disabled.                                                                                                                                                                                                                                                                                                                                                                                                        |
+  | Name                                | The name of the OpenID Connect provider.                                                                                                                                                                                                                                                                                                                                                                                                                      |
+  | Authentication URL                  | The URL that accepts the OpenID Connect request. The default value is [https://accounts.google.com/o/oauth2/auth](https://accounts.google.com/o/oauth2/auth).  <br />\{\{FRS\_VARS.ProductName}} must be able to initiate an outbound HTTPS (port 443) connection to this URL.                                                                                                                                                                                |
+  | Token Verification URL              | The URL to use to verify and extract authentication information from the response of the authentication request. The default value for Google is [https://www.googleapis.com/oauth2/v3/token](https://www.googleapis.com/oauth2/v3/token).  <br />\{\{FRS\_VARS.ProductName}}must be able to initiate an outbound HTTPS (port 443) connection to this URL.                                                                                                    |
+  | Logout URL                          | If sign-out from Google is required when the user logs out from \{\{FRS\_VARS.ProductName}}, enter: [https://www.google.com/accounts/Logout](https://www.google.com/accounts/Logout).  <br />After logging out from \{\{FRS\_VARS.ProductName}}, the OpenIDConnect endsession endpoint is called and clients in the same browser session are also signed out.                                                                                                 |
+  | Session Renewal URL                 | The URL to request to renew the session. If this field is empty, the application uses the value of the **Authentication URL** field.  <br />\{\{FRS\_VARS.ProductName}} must be able to initiate an outbound HTTPS (port 443) connection to this URL.                                                                                                                                                                                                         |
+  | Client ID                           | A value from the target Google application. See :Link[Obtaining OAuth 2.0 Credentials]{label="Obtaining OAuth 2.0 Credentials" overridedLabel="Obtaining OAuth 2.0 Credentials" spaceId docId="_rFBt3ptrKXfpPxmuypLl" version="v2" docAnchorId="#Obtaining_OAuth_2.0_Credentials" loadingMethod="dynamic" newTab="false" href="Open ID Connect.mdx"}.                                                                                                         |
+  | Client Secret                       | A value from the target Google application. Refer to :Link[Obtaining OAuth 2.0 Credentials]{label="Obtaining OAuth 2.0 Credentials" overridedLabel="Obtaining OAuth 2.0 Credentials" spaceId docId="_rFBt3ptrKXfpPxmuypLl" version="v2" docAnchorId="#Obtaining_OAuth_2.0_Credentials" loadingMethod="dynamic" newTab="false" href="Open ID Connect.mdx"}.                                                                                                    |
+  | OIDC Hosted Domain                  | Optional authentication parameters for the specific Google application.  <br />Not used in this release of \{\{FRS\_VARS.ProductName}}.                                                                                                                                                                                                                                                                                                                       |
+  | OIDC Realm                          | Optional authentication parameters for the specific Google application.  <br />Not used in this release of \{\{FRS\_VARS.ProductName}}.                                                                                                                                                                                                                                                                                                                       |
+  | Certificate URL                     | The URL of the certificate used to verify the signature of the authentication response. The default value for Google is [https://www.googleapis.com/oauth2/v3/certs](https://www.googleapis.com/oauth2/v3/certs).  <br />\{\{FRS\_VARS.ProductName}} must be able to initiate an outbound HTTPS (port 443) connection to this URL.                                                                                                                            |
+  | Certificate Issuer                  | The name of the certificate authority who issued the certificate. The default value for Google is [accounts.google.com](http://accounts.google.com/).                                                                                                                                                                                                                                                                                                         |
+  | Expiration Date                     | The expiration date of the certificate.  <br />Not used in this release of \{\{FRS\_VARS.ProductName}}.                                                                                                                                                                                                                                                                                                                                                       |
+  | Auto Provisioning                   | Enables auto provisioning.                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+  | Profile Information URL             | Gets additional information about users (such as email addresses) for auto provisioning. The default value is [https://www.googleapis.com/plus/v1/people/me/openIdConnect](https://www.googleapis.com/plus/v1/people/me/openIdConnect). Do not change this value. It is submitted automatically when a new OpenID Connect record is created.  <br />\{\{FRS\_VARS.ProductName}} must be able to initiate an outbound HTTPS (port 443) connection to this URL. |
+  | Auto Provision Role                 | Role associated with the new user.                                                                                                                                                                                                                                                                                                                                                                                                                            |
+  | Auto Provision Status               | Status of the new user.                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+  | Auto Provision Team                 | Team associated with the new user.                                                                                                                                                                                                                                                                                                                                                                                                                            |
+  | Auto Provision User Business Object | Type of user record to create. Can be either employee or external contact.                                                                                                                                                                                                                                                                                                                                                                                    |
+
+  4. To verify the authentication, click **Test Authentication**.
+  5. Click **Save**.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Security Considerations
+
+  \{\{FRS\_VARS.ProductName}} application servers must be able to initiate outbound connections to the following endpoints:
+
+  - **Authentication URL**: [https://accounts.google.com/o/oauth2/auth](https://accounts.google.com/o/oauth2/auth)
+  - **If a session renewal URL is specified**: [https://accounts.google.com/o/oauth2/auth](https://accounts.google.com/o/oauth2/auth)
+  - **Token verification URL**: [https://www.googleapis.com/oauth2/v3/token](https://www.googleapis.com/oauth2/v3/token)
+  - **If auth response is required, certificate URL**: [https://www.googleapis.com/oauth2/v3/certs](https://www.googleapis.com/oauth2/v3/certs)
+  - **If auto provisioning is enabled, profile information URL**: [https://www.googleapis.com/oauth2/v3/userinfo](https://www.googleapis.com/oauth2/v3/userinfo)
+</ExpandableHeading>

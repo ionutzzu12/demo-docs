@@ -1,0 +1,93 @@
+---
+title: Number
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:00 GMT+0300 (Eastern European Summer Time)
+---
+
+Converts the input parameter into a number value.
+
+<hint type="info">
+  This function can be used to replace the TextToNumber modifier as used in \{\{FRS\_VARS.CSM}}.
+</hint>
+
+## Syntax
+
+Number(value)
+
+## Enabled For
+
+For a description of the business object categories, see :Link[Notes on "Enabled For"]{label="Notes on &#x22;Enabled For&#x22;" overridedLabel="Notes on &#x22;Enabled For&#x22;" spaceId docId="xObv2pIDrk60jkEIWs8mD" version="v2" docAnchorId="#Notes" loadingMethod="dynamic" newTab="false" githubPath="_Built_in_Functions.htm#Notes" href="_Built_in_Functions.mdx"}.
+
+| Business Object Category                                                                    | Yes/No |
+| ------------------------------------------------------------------------------------------- | ------ |
+| Business Rules: Before-Save Rules                                                           | Yes    |
+| Business Rules: Calculation Rules (After Save, with or without Also Recalculate on Load)    | Yes    |
+| Business Rules: Calculation Rules (Before Save or Always, without Also Recalculate On Load) | Yes    |
+| Business Rules: Calculation Rules (Before Save or Always, with Recalculate On Load)         | Yes    |
+| Business Rules: Editing Rules                                                               | Yes    |
+| Business Rules: Initialization Rules                                                        | Yes    |
+| Business Rules: Read Only Rules                                                             | Yes    |
+| Business Rules: Required Rules                                                              | Yes    |
+| Business Rules: Validation Rules                                                            | Yes    |
+| Client Expressions                                                                          | Yes    |
+| Object Permissions                                                                          | No     |
+| Services                                                                                    | Yes    |
+| LDAP                                                                                        | Yes    |
+| Mobile                                                                                      | Yes    |
+| Quick Actions (except UI Quick Actions)                                                     | Yes    |
+| UI Quick Actions                                                                            | Yes    |
+| Reports                                                                                     | Yes    |
+| Search/Dashboard without field references                                                   | Yes    |
+| Search/Dashboard with field references                                                      | No     |
+
+## Parameter
+
+| Parameter | Description            |
+| --------- | ---------------------- |
+| value     | The input to evaluate. |
+
+## Return Value
+
+<Paragraph indent="1">
+  Number value. See also :Link[Conversion to Number Values]{label="Conversion to Number Values" overridedLabel="Conversion to Number Values" spaceId docId="eVZtF84cBSwgHH8QyCA6X" version="v2" docAnchorId="#number_Conversion" loadingMethod="dynamic" newTab="false" githubPath="../Expressions/Type Conversions.htm#number_Conversion" href="../Expressions/Type Conversions.mdx"}.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  If the **value** parameter is a number, returns the number unchanged.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  If the **value** parameter is a text value that contains a valid number image, returns the number in the text.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  If the **value** parameter is a Boolean value and is true, returns 1. If the **value** parameter is a Boolean value and is false, returns 0 .
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  If the **value** parameter is a currency value, returns the amount.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  If the **value** parameter is null, returns null.
+</Paragraph>
+
+## Example
+
+$(Number("2.793"))
+
+<Paragraph indent="1">
+  The example above returns 2.793.
+</Paragraph>
+
+$(Number(1234.56HKD))
+
+<Paragraph indent="1">
+  The above example above returns 1234.56.
+</Paragraph>
+
+$(Number(true))
+
+<Paragraph indent="1">
+  The above example returns 1.
+</Paragraph>

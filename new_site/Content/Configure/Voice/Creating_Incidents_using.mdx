@@ -1,0 +1,78 @@
+---
+title: Viewing Ivanti Voice Agent Groups and Agent Skills
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:54 GMT+0300 (Eastern European Summer Time)
+---
+
+\{\{FRS\_VARS.Company-short}} Voice has many parts, and therefore, many workspaces.
+
+1. Log into the Service Desk Console.
+2. Open the **Voice - Agent Group** workspace. The system displays a list of voice records.
+3. Double-click a record to view details.
+
+<Paragraph indent="1">
+  *Ivanti Voice - Agent Group*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/R079CCoQZxPagfQa71zb6_voice-agent-group.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/voice agent group.png" githubPath="Content/Resources/Images/help-images/voice agent group.png" showCaption="false"></Image>
+
+4. Open the **Voice - Agent Skill** workspace. The system displays a list of voice records.
+5. Double-click a record to view details.
+
+<Paragraph indent="1">
+  *Ivanti Voice - Skill Group*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/gOTu2BBjZaTZJs36BT5AU_voice-skill-group.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/voice skill group.png" githubPath="Content/Resources/Images/help-images/voice skill group.png" showCaption="false"></Image>
+
+## Creating Incidents Using Ivanti Voice
+
+- :Link[Viewing the Voice Activity Log]{label="Viewing the Voice Activity Log" overridedLabel="Viewing the Voice Activity Log" spaceId docId="thh0mgURMZ00c1HJSqYdI" version="v2" docAnchorId="#Viewing" loadingMethod="dynamic" newTab="false" href="Creating_Incidents_using.mdx"}
+- :Link[Viewing the Voice Attachment File]{label="Viewing the Voice Attachment File" overridedLabel="Viewing the Voice Attachment File" spaceId docId="thh0mgURMZ00c1HJSqYdI" version="v2" docAnchorId="#Viewing2" loadingMethod="dynamic" newTab="false" href="Creating_Incidents_using.mdx"}
+- :Link[Ivanti Voice Building Blocks]{label="Ivanti Voice Building Blocks" overridedLabel="Ivanti Voice Building Blocks" spaceId docId="thh0mgURMZ00c1HJSqYdI" version="v2" docAnchorId="#IPCM" loadingMethod="dynamic" newTab="false" href="Creating_Incidents_using.mdx"}
+- :Link[Ivanti Voice Incident Call Flow]{label="Ivanti Voice Incident Call Flow" overridedLabel="Ivanti Voice Incident Call Flow" spaceId docId="thh0mgURMZ00c1HJSqYdI" version="v2" docAnchorId="#IPCM2" loadingMethod="dynamic" newTab="false" href="Creating_Incidents_using.mdx"}
+
+### Viewing the Voice Activity Log
+
+1. Open the incident instance created from the phone call and click the **Activity History** tab.
+2. Select the voice record.
+3. Click **Go to** to view the details.
+
+You can also configure \{\{FRS\_VARS.Company-short}} Voice to create a voice message recording that is stored in the **Attachment** tab of the created incident instance.
+
+### Viewing the Voice Attachment File
+
+The .wav file is stored as a URL.
+
+1. Open the incident instance created by the phone call.
+2. Select the **Attachment** tab.
+3. Click the attachment link to play the recording on your installed media player.
+
+### Ivanti Voice Building Blocks
+
+You can configure \{\{FRS\_VARS.Company-short}} Voice to create incidents and perform other activities in the Self-Service Portal from phone calls. You can also configure the system to create "screen pops" in \{\{FRS\_VARS.ProductName}} when an agent answers a call. You create the "screen pops" by using a set of application building blocks designed to integrate with \{\{FRS\_VARS.ProductName}}. For more information about the \{\{FRS\_VARS.Company}} Voice **Application Builder**, see [Voice Application Design](https://help.ivanti.com/ht/help/en_US/Voice/2022.3/Admin-Guide/Voice-OLH/Voice-Application-Design/Voice-Application-Design.htm).
+
+These building blocks include:
+
+- **Create a record**: Creates a new record for any business object. You can set both field values and relationships.
+- **Update a record**: Updates an existing record for any business object. You can set both field values and relationships.
+- **Search for a record**: Returns values from existing business objects so that they can be used during the voice application flow, or so that they can be read back to the caller.
+- **Alpha search for a record**: Allows a caller to search for a record using the dial pad of their phone. The system maps the numbers pressed to the equivalent characters (for example, 2 can be A or B or C).
+- **Reset password**: Allows the caller to reset their Microsoft Windows domain password.
+- **Run quick action**: Allows \{\{FRS\_VARS.Company-short}} Voice to execute a quick action in \{\{FRS\_VARS.ProductName}}.
+
+### Ivanti Voice Incident Call Flow
+
+\{\{FRS\_VARS.Company-short}} Voice includes a default application that provides an example of these capabilities. It utilizes the following application flow:
+
+1. Identifies the caller based on their caller ID in \{\{FRS\_VARS.ProductName}} using the phone number from the employee record.  If the system cannot identify the caller based on the caller ID, the user must provide their login ID.
+2. After the system identifies the caller, the system checks to see if the user has any open incidents.
+   - If the caller has an open incident, the system asks the caller if they are calling about this incident and if they want to speak to an agent about it.
+   - If the caller responds yes, the system routes the call to an available agent with priority given to the incident customer. The system automatically opens the incident on the computer of the agent who accepts the call. This is called a screen pop.
+   - If the caller has no open incidents, the system prompts the caller to choose an action. These actions include the following:
+     - Talk with a service technician.
+     - Open a new ticket.
+     - Call about an existing ticket.
+     - Reset their Microsoft Windows domain password.
+   - If an agent is not available to answer a call, the caller can leave a voicemail. The system attaches this voicemail as a .wav file to a new incident.
+   - All calls generate a voice activity journal. The system attaches the voice activity journal to the incident that the user selected during the call.

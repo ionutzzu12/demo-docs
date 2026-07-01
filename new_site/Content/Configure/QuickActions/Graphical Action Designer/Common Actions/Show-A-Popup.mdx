@@ -1,0 +1,40 @@
+---
+title: Show a Popup Quick Action
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:56 GMT+0300 (Eastern European Summer Time)
+---
+
+**Role**: \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}
+
+**Minimum Version**: \{\{FRS\_VARS.Company}} \{\{FRS\_VARS.ProductName}} 2023.4
+
+**Prerequisites**: To use this \{\{FRS\_VARS.Quick\_Action}}, set the global constant **EnableActionService** to **True**. If **EnableActionService** is not available in upgraded instances, you can manually add it. For more refer to [Working with Global Constants](../../../Constants/Defining_Global_Constant.mdx).
+
+## About the **Show a Popup** Quick Action
+
+Use the **Show a Popup** action to generate a popup window during a composite action. Configure it to display a message for users, enabling them to move the composite action to its next step or to cancel it. If the user chooses to cancel, the action is terminated.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/yQhZU3BgA25fRwcjDuVUM_qa-show-a-popup-block-gad.png" alt="image of the show a pop-up block" position="flex-start" size="40" initialPath="../../../../Resources/Images/help-images/qa show a popup block gad.png" githubPath="Content/Resources/Images/help-images/qa show a popup block gad.png" showCaption="false"></Image>
+
+<hint type="info">
+  When using a **Show a Popup** action either as a standalone popup action or part of a composite action, would not have any effect when executed from a workflow. Also, ensure to execute it before any subsequent action you want it to act upon in the Graphical Action Designer. See [Example: Using the Show a Popup Quick Action (GAD)](<../Examples/Example _Show_a_Popup_Action_(GAD).mdx>).
+</hint>
+
+## Parameters
+
+To access the parameters, select the **Action Block** to display them in the **Settings** pane.
+
+### Action Block Settings
+
+You must complete all required fields to save your \{\{FRS\_VARS.Quick\_Action}}.
+
+- **Block Label**: A unique name for the block. This is useful to identify each action when you have more than one of the same action block added or cloned in the design area.
+- **Title**: Enter a title for the pop-up window. You can also enter an expression to define the title.
+- **Contents**: Enter a message to display in the pop-up window. You can type a text message, or define an expression to display a value in the contents of the pop-up window.
+- **Buttons**: Select to display an **OK** button, or **OK** and **Cancel** buttons.
+  - Selecting the **OK** button progresses the action.
+  - Selecting the **Cancel** button stops the action from progressing and terminates the action.
+
+### Start Block Settings
+
+These settings are accessed by selecting the **Start Block**, refer to :Link[Start Block Settings]{label="Start Block Settings" overridedLabel="Start Block Settings" spaceId docId="T_2hq2qRJzWxiHLCfgn-7" version="v2" docAnchorId="#CommonTab" loadingMethod="dynamic" newTab="false" githubPath="../Using_the_Graphical_Action_Designer.htm#CommonTab" href="../Using_the_Graphical_Action_Designer.mdx"}.

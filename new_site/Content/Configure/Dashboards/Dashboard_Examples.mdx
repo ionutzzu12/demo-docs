@@ -1,0 +1,330 @@
+---
+title: Dashboard Examples
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:56 GMT+0300 (Eastern European Summer Time)
+---
+
+The following examples show how to use dashboards in various scenarios.
+
+- :Link[Creating a Chart Showing Active Incidents by Owner]{label="Creating a Chart Showing Active Incidents by Owner" overridedLabel="Creating a Chart Showing Active Incidents by Owner" spaceId docId="T0l1l9l3yQNKS9lJVPRNG" version="v2" docAnchorId="#Creating-a-Chart-Showing-Active-Incidents-by-Owner" loadingMethod="dynamic" newTab="false" href="Dashboard_Examples.mdx"}
+- :Link[Creating a Tree Showing Software Manufacturers]{label="Creating a Tree Showing Software Manufacturers" overridedLabel="Creating a Tree Showing Software Manufacturers" spaceId docId="T0l1l9l3yQNKS9lJVPRNG" version="v2" docAnchorId="#dashboards_490471715_1246529" loadingMethod="dynamic" newTab="false" href="Dashboard_Examples.mdx"}
+- :Link[Creating a Tree Showing Software by Vendor]{label="Creating a Tree Showing Software by Vendor" overridedLabel="Creating a Tree Showing Software by Vendor" spaceId docId="T0l1l9l3yQNKS9lJVPRNG" version="v2" docAnchorId="#dashboards_490471715_1246631" loadingMethod="dynamic" newTab="false" href="Dashboard_Examples.mdx"}
+- :Link[Creating a Simple Pivot Table Showing Total Count by Status of Priority 1 through 5 Incidents by Categories and Services]{label="Creating a Simple Pivot Table Showing Total Count by Status of Priority 1 through 5 Incidents by Categories and Services" overridedLabel="Creating a Simple Pivot Table Showing Total Count by Status of Priority 1 through 5 Incidents by Categories and Services" spaceId docId="T0l1l9l3yQNKS9lJVPRNG" version="v2" docAnchorId="#Simple" loadingMethod="dynamic" newTab="false" href="Dashboard_Examples.mdx"}
+- :Link[Creating a Simple Pivot Table Showing Total Count by Owner of Priority 1 through 5 Incidents by Categories and Locations]{label="Creating a Simple Pivot Table Showing Total Count by Owner of Priority 1 through 5 Incidents by Categories and Locations" overridedLabel="Creating a Simple Pivot Table Showing Total Count by Owner of Priority 1 through 5 Incidents by Categories and Locations" spaceId docId="T0l1l9l3yQNKS9lJVPRNG" version="v2" docAnchorId="#Simple2" loadingMethod="dynamic" newTab="false" href="Dashboard_Examples.mdx"}
+- :Link[Creating a Hybrid Table Using Three Data Points and Aggregates]{label="Creating a Hybrid Table Using Three Data Points and Aggregates" overridedLabel="Creating a Hybrid Table Using Three Data Points and Aggregates" spaceId docId="T0l1l9l3yQNKS9lJVPRNG" version="v2" docAnchorId="#Hybrid" loadingMethod="dynamic" newTab="false" href="Dashboard_Examples.mdx"}
+- :Link[Adding a List Using a Pre-configured Special Part]{label="Adding a List Using a Pre-configured Special Part" overridedLabel="Adding a List Using a Pre-configured Special Part" spaceId docId="T0l1l9l3yQNKS9lJVPRNG" version="v2" docAnchorId="#Adding_a_List_Using_a_Pre-configured_Special_Part" loadingMethod="dynamic" newTab="false" href="Dashboard_Examples.mdx"}
+
+## Creating a Chart Showing Active Incidents by Owner
+
+This example shows how to create a chart that shows the active incidents for a team by owner and drills down to the active incidents by priority.
+
+1. From the \{\{FRS\_VARS.ProductName}} Chart Wizard (see :Link[Adding a Chart Part]{label="Adding a Chart Part" overridedLabel="Adding a Chart Part" spaceId docId="F0D9p-GpatkKFlK-N-PNn" version="v2" docAnchorId="#AddingCHartPart" loadingMethod="dynamic" newTab="false" githubPath="The_Dashboard_Center.htm#AddingCHartPart" href="The_Dashboard_Center.mdx"}) under the **Standard** tab, enter the following information:
+
+| Field              | Description                                                        |
+| ------------------ | ------------------------------------------------------------------ |
+| Chart Title        | **My Team's Active incidents by Priority**.                        |
+| Type               | Select **Vertical Bar**.                                           |
+| Object             | Select **incident**.                                               |
+| Header<br />Footer | Optional. Enter information and select the **Show Legend** option. |
+| Aggregate by       | Select **Count**.                                                  |
+| Group By           | Select **Owner**.                                                  |
+| Order By           | Select **Aggregation Field**, then select **Ascending**.           |
+| Results            | Select **All**.                                                    |
+
+2. Under the **Drill Downs** tab, enter the following information:
+
+| Field        | Description                                              |
+| ------------ | -------------------------------------------------------- |
+| Type         | Select **Vertical Bar** or **Pie Chart**.                |
+| Header       | Enter **By Priority**.                                   |
+| Aggregate by | Select **Count**.                                        |
+| Group By     | Select **Priority**.                                     |
+| Order By     | Select **Aggregation Field**, then select **Ascending**. |
+| Results      | Select **All**.                                          |
+
+3. Click **Add** to add another drill down.
+
+| Field | Description       |
+| ----- | ----------------- |
+| Type  | Select **Table**. |
+
+4. Under the **Advanced** tab, select a saved search. For example, select **My Team's Active Incidents**.
+
+<hint type="info">
+  You must create the saved search before you use it here.
+</hint>
+
+5. Click **Refresh** to preview the results.
+6. Click **Save**.
+
+## Creating a Tree Showing Software Manufacturers
+
+Using the \{\{FRS\_VARS.ProductName}} Tree Designer (see :Link[Using Tree Parts and the Tree Designer]{label="Using Tree Parts and the Tree Designer" overridedLabel="Using Tree Parts and the Tree Designer" spaceId docId="F0D9p-GpatkKFlK-N-PNn" version="v2" docAnchorId="#Using2" loadingMethod="dynamic" newTab="false" githubPath="The_Dashboard_Center.htm#Using2" href="The_Dashboard_Center.mdx"}), create a tree that shows all the software manufacturers and drills down to software by manufacturer, software versions, and the machines on which the software is installed.
+
+1. From the \{\{FRS\_VARS.ProductName}} Tree Designer, enter the following data into the fields:
+
+| Field          | Description                      |
+| -------------- | -------------------------------- |
+| Tree Title     | Enter **Software Manufacturer**. |
+| Show Node Name | Keep selected.                   |
+
+2. Right click **Root**, then from the drop-down list, select **Add Node**. The fields become active.
+3. Design the first node:
+
+| Field       | Description                             |
+| ----------- | --------------------------------------- |
+| Node Name   | Enter **Manufacturers**.                |
+| Object      | Select **Manufacturer**.                |
+| Field       | Select **Manufacturer**.                |
+| Object Icon | Select an icon from the drop-down list. |
+
+4. Click **Update**.
+5. Right-click the manufacturer node that you just created and select **Add Node**. Enter the following data:
+
+| Field        | Description                                                  |
+| ------------ | ------------------------------------------------------------ |
+| Node Name    | Enter **Software**.                                          |
+| Relationship | Select **SoftwareIdentityAssocManufacturer**.                |
+| Object       | Automatically filled in with the value **SoftwareIdentity**. |
+| Field        | Select **SoftwareName**.                                     |
+| Object Icon  | Select an icon from the drop-down list.                      |
+
+6. Click **Update**.
+7. Right-click the software node you just created and select **Add Node**. Enter the following data.
+
+| Field        | Description                                                           |
+| ------------ | --------------------------------------------------------------------- |
+| Node Name    | Enter **Versions**.                                                   |
+| Relationship | Select **FRS\_CIComponentInstalledApplicationAssocSoftwareIdentity**. |
+| Object       | Automatically filled in with the value **Installed Software**.        |
+| Field        | Select **VersionNumber**.                                             |
+| Object Icon  | Select an icon from the drop-down list.                               |
+
+8. Click **Update**.
+9. Right-click the versions node you just created and select **Add Node**. Enter the following data:
+
+| Field        | Description                                    |
+| ------------ | ---------------------------------------------- |
+| Node Name    | Enter **Installed On**.                        |
+| Relationship | Select **CIAssociatedFRS\_CIComponent**.       |
+| Object       | Automatically filled in with the value **CI**. |
+| Field        | Select **Name**.                               |
+| Object Icon  | Select an icon from the drop-down list.        |
+
+10. Click **Update**.
+11. From the **Tree Actions** drop-down list, select **Preview Tree** to view the tree results in the right preview pane.
+12. Click **Save**.
+
+## Creating a Tree Showing Software by Vendor
+
+This example takes the previous tree (:Link[Creating a Tree Showing Software Manufacturers]{label="Creating a Tree Showing Software Manufacturers" overridedLabel="Creating a Tree Showing Software Manufacturers" spaceId docId="T0l1l9l3yQNKS9lJVPRNG" version="v2" docAnchorId="#dashboards_490471715_1246529" loadingMethod="dynamic" newTab="false" href="Dashboard_Examples.mdx"}) and applies a filter to show software from a specific vendor.
+
+Use the tree created in the previous example.
+
+1. From the \{\{FRS\_VARS.ProductName}} Tree Designer (see :Link[Using Tree Parts and the Tree Designer]{label="Using Tree Parts and the Tree Designer" overridedLabel="Using Tree Parts and the Tree Designer" spaceId docId="F0D9p-GpatkKFlK-N-PNn" version="v2" docAnchorId="#Using2" loadingMethod="dynamic" newTab="false" githubPath="The_Dashboard_Center.htm#Using2" href="The_Dashboard_Center.mdx"}), right-click **Manufacturers** and select **Edit Node**. The node fields become active.
+2. In the **Filter Criteria** section:
+   - In the first field, select **Manufacturer**.
+   - In the second field, select **CreatedBy**.
+   - In the operator field, select **Contains**.
+   - In the last field, enter **Microsoft**.
+3. Click **Update**.
+4. Click the **Tree Actions** drop-down list and select **Preview Tree**.
+
+<Paragraph indent="1">
+  The tree now shows only software from Microsoft, the software versions, and the machines on which they are installed.
+</Paragraph>
+
+## Creating a Simple Pivot Table Showing Total Count by Status of Priority 1 through 5 Incidents by Categories and Services
+
+1. From the \{\{FRS\_VARS.ProductName}} Pivot Table Wizard (see :Link[Using Pivot Tables and the Pivot Table Wizard]{label="Using Pivot Tables and the Pivot Table Wizard" overridedLabel="Using Pivot Tables and the Pivot Table Wizard" spaceId docId="F0D9p-GpatkKFlK-N-PNn" version="v2" docAnchorId="#Pivot" loadingMethod="dynamic" newTab="false" githubPath="The_Dashboard_Center.htm#Pivot" href="The_Dashboard_Center.mdx"}), enter the following data into the fields:
+
+| Field        | Definition                                                   |
+| ------------ | ------------------------------------------------------------ |
+| Title        | Enter **Total Count by Status**.                             |
+| Object       | Select **incident**.                                         |
+| Template     | Select **2 Row 1 Column** (the third button from the right). |
+| Aggregate by | Select **Count**.                                            |
+| Measure      | Select **Priority**.                                         |
+| Left Axis 1  | Select **Category**.                                         |
+| Left Axis 2  | Select **Service**.                                          |
+| Top Axis 1   | Select **Status**.                                           |
+
+2. Click **Refresh** to view the table.
+3. Click **Save**.
+
+## Creating a Simple Pivot Table Showing Total Count by Owner of Priority 1 through 5 Incidents by Categories and Locations
+
+1. From the \{\{FRS\_VARS.ProductName}} Pivot Table Wizard (see :Link[Using Pivot Tables and the Pivot Table Wizard]{label="Using Pivot Tables and the Pivot Table Wizard" overridedLabel="Using Pivot Tables and the Pivot Table Wizard" spaceId docId="F0D9p-GpatkKFlK-N-PNn" version="v2" docAnchorId="#Pivot" loadingMethod="dynamic" newTab="false" githubPath="The_Dashboard_Center.htm#Pivot" href="The_Dashboard_Center.mdx"}), enter the following data into the fields:
+
+| Field        | Description                                                  |
+| ------------ | ------------------------------------------------------------ |
+| Title        | Enter **Total Count by Owner**.                              |
+| Object       | Select **incident**.                                         |
+| Template     | Select **2 Row 1 Column** (the third button from the right). |
+| Aggregate by | Select **Count**.                                            |
+| Measure      | Select **Priority**.                                         |
+| Left Axis 1  | Select **Service**.                                          |
+| Left Axis 2  | Select **Location**.                                         |
+| Top Axis 1   | Select **Owner**.                                            |
+
+2. Click **Refresh** to view the table.
+3. Click **Save**.
+
+## Creating a Hybrid Table Using Three Data Points and Aggregates
+
+1. From the \{\{FRS\_VARS.ProductName}} Pivot Table Wizard (see :Link[Using Pivot Tables and the Pivot Table Wizard]{label="Using Pivot Tables and the Pivot Table Wizard" overridedLabel="Using Pivot Tables and the Pivot Table Wizard" spaceId docId="F0D9p-GpatkKFlK-N-PNn" version="v2" docAnchorId="#Pivot" loadingMethod="dynamic" newTab="false" githubPath="The_Dashboard_Center.htm#Pivot" href="The_Dashboard_Center.mdx"}), enter the following data into the fields:
+
+| Field        | Description                                           |
+| ------------ | ----------------------------------------------------- |
+| Title        | Enter **incident Total Times**.                       |
+| Object       | Select **incident**.                                  |
+| Template     | Select the hybrid template (the button on the right). |
+| Aggregate by | Select **Average**.                                   |
+| Measure      | Select **Total Time Spent**.                          |
+| Left Axis 1  | Select **Service**.                                   |
+| Left Axis 2  | Select **Category**.                                  |
+| Top Axis 1   | Select **Impact**.                                    |
+| Field Title  | Enter **Incident time by Impact**.                    |
+
+2. Click the blue **plus** button. A new data set section appears.
+3. Enter the following data into this new section:
+
+| Field        | Description                          |
+| ------------ | ------------------------------------ |
+| Aggregate by | Select **Sum**.                      |
+| Measure      | Select **Total Time Spent**.         |
+| Top Axis     | Select **Priority**.                 |
+| Field Title  | Enter **Incident time by Priority**. |
+
+4. Click the blue **plus** button to add another data set.
+5. Enter the following data into this new section:
+
+| Field        | Description                       |
+| ------------ | --------------------------------- |
+| Aggregate by | Select **Maximum**.               |
+| Measure      | Select **Total Time Spent**.      |
+| Top Axis     | Select **Owner**.                 |
+| Field Title  | Enter **Incident time by Owner**. |
+
+6. Click **Refresh** to view the table.
+7. Click **Save**.
+
+## Adding a List Using a Pre-configured Special Part
+
+1. Under **Dashboard Objects**, open the **Special parts** menu.
+2. Drag the Top 5 Questions item to your desktop.
+3. Click the **edit** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/RYamrlC3MXZzjE-8BK_CE_editchart.png" alt caption size="10" width="16" height="16"} to access the **Dashboard Command List Editor**.
+4. On the **Main** tab, enter the information as requested.
+
+<Paragraph indent="1">
+  a. For **Title**, enter Top 10 Questions.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. For **Description**, enter a description of this list.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. For **Title icon**, keep the default **icon\_questions.png**.
+</Paragraph>
+
+<Paragraph indent="1">
+  d. For **Part frame**, choose a color from the drop-down list.
+</Paragraph>
+
+<Paragraph indent="1">
+  e. Check the **Enable Refresh** button box.
+</Paragraph>
+
+<Paragraph indent="1">
+  f. Leave the **Header** button box unchecked.
+</Paragraph>
+
+5. Click **Save** and then click the **Data** tab.
+6. Enter the information as requested.
+
+<Paragraph indent="1">
+  a. For **Data Source Type**, choose **Preconfigured data source** from the drop-down list.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. For **Pre-Configured**, choose **Top Questions** from the drop-down list.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. For **Items count**, enter **10**.
+</Paragraph>
+
+<Paragraph indent="1">
+  d. For **Sort direction**, choose **Ascending** from the drop-down list.
+</Paragraph>
+
+7. Click **Save** and then click the **Toolbar** tab.
+8. Enter the information as requested.
+
+<Paragraph indent="1">
+  a. Click **Create New** to create a new button. The application displays the **Command button editor** dialog box.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. On the **Button** tab, choose **Icon and Text** from the **Display as** drop-down menu. Choose **icon\_refresh.png** from the **Icon** menu. Enter **Refresh** in the **Text** field. Enter **Refresh the list&#x20;**&#x69;n the **Tooltip** field. Then click **Save**.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. On the **Command** tab, choose **Reload the page** from the **Command** drop-down menu. Then click **Save**.
+</Paragraph>
+
+<Paragraph indent="1">
+  d. Back on the **Toolbar** tab, drag the new icon to one of the corners.
+</Paragraph>
+
+9. Click **Save** and then click the **List Item** tab.
+10. Enter the information as requested.
+
+<Paragraph indent="1">
+  a. For **Show list item as**, choose **Icon and Link** from the drop-down menu.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. For **Odd background color**, choose **Light green** from the drop-down menu.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. For **Even background color**, choose **White** from the drop-down menu.
+</Paragraph>
+
+<Paragraph indent="1">
+  d. For **Default Icon**, choose **icon\_resolve.png** from the drop-down menu.
+</Paragraph>
+
+<Paragraph indent="1">
+  e. For **Icon from item data**, choose **RecId** (record ID number) from the drop-down menu.
+</Paragraph>
+
+<Paragraph indent="1">
+  f. For **Text field**, choose **text** from the drop-down menu.
+</Paragraph>
+
+<Paragraph indent="1">
+  g. For **Description field**, choose **description** from the drop-down menu.
+</Paragraph>
+
+<Paragraph indent="1">
+  h. For **Ellipsis description after**, enter **25** to display the first 25 characters of the description, followed by ...
+</Paragraph>
+
+<Paragraph indent="1">
+  i. For Execute command at, choose Single click from the drop-down menu.
+</Paragraph>
+
+<Paragraph indent="1">
+  j. Optional. Click the **Edit command** button to make any changes to the command.
+</Paragraph>
+
+<Paragraph indent="1">
+  k. Optional. Click the **X** button to delete to the existing command.
+</Paragraph>
+
+11. Click **Save**.
+12. Click **Save** to save the dashboard.
+13. Refresh your browser to view the new part in your desktop.

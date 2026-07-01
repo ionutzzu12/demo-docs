@@ -1,0 +1,66 @@
+---
+title: GetUserField
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:59 GMT+0300 (Eastern European Summer Time)
+---
+
+Returns the field value of the specified user (if a RecID is supplied) or for the currently logged-in user (if no RecID is supplied).
+
+## Syntax
+
+GetUserField(fieldName, recId)
+
+## Enabled For
+
+For a description of the business object categories, see :Link[Notes on "Enabled For"]{label="Notes on &#x22;Enabled For&#x22;" overridedLabel="Notes on &#x22;Enabled For&#x22;" spaceId docId="xObv2pIDrk60jkEIWs8mD" version="v2" docAnchorId="#Notes" loadingMethod="dynamic" newTab="false" githubPath="_Built_in_Functions.htm#Notes" href="_Built_in_Functions.mdx"}.
+
+| Business Object Category                                                                     | Yes/No |
+| -------------------------------------------------------------------------------------------- | ------ |
+| Business Rules: Before-Save Rules                                                            | Yes1   |
+| Business Rules: Calculation Rules (After Save, with or without Also Recalculate on Load)     | Yes    |
+| Business Rules: Calculation Rules (Before Save or Always, without Also Recalculate On Load)  | Yes1   |
+| Business Rules: Calculation Rules (Before Save or Always, with Recalculate On Load)          | Yes    |
+| Business Rules: Editing Rules                                                                | Yes2   |
+| Business Rules: Initialization Rules                                                         | Yes1   |
+| Business Rules: Read Only Rules                                                              | No     |
+| Business Rules: Required Rules                                                               | Yes2   |
+| Business Rules: Validation Rules                                                             | Yes1   |
+| Client Expressions                                                                           | No     |
+| Object Permissions                                                                           | No     |
+| Services                                                                                     | Yes    |
+| LDAP                                                                                         | Yes    |
+| Mobile                                                                                       | Yes    |
+| Quick Actions (except UI Quick Actions)                                                      | Yes1   |
+| UI Quick Actions                                                                             | No     |
+| Reports                                                                                      | Yes1   |
+| Search/Dashboard without field references                                                    | Yes1   |
+| Search/Dashboard with field references                                                       | No     |
+| 1. Except in services.                                                                       |        |
+| 2. Except in services and when this field appears on a form or is triggered by such a field. |        |
+
+## Parameters
+
+| Parameter | Description                                                                                  |
+| --------- | -------------------------------------------------------------------------------------------- |
+| fieldName | The name of the field for which to get the value.                                            |
+| recId     | (Optional). The RecID of a specific user instance. Defaults to the currently logged-in user. |
+
+## Return Value
+
+<Paragraph indent="1">
+  Text field.
+</Paragraph>
+
+## Example
+
+$(GetUserField("DisplayName", Owner\_Valid))
+
+<Paragraph indent="1">
+  This example gets the display name field of the user who is the owner of this business object, assuming that there is an owner relationship and that the owner is a validated field.
+</Paragraph>
+
+$(GetUserField("PrimaryEmail"))
+
+<Paragraph indent="1">
+  This example gets the primary email field of the currently logged-in user.
+</Paragraph>

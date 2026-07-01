@@ -1,0 +1,71 @@
+---
+title: Example: Using Task Status with the WaitForChild Workflow Block
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:58 GMT+0300 (Eastern European Summer Time)
+---
+
+This example shows how to set up a workflow that waits for multiple tasks to be completed before continuing.
+
+- :Link[Creating a Workflow]{label="Creating a Workflow" overridedLabel="Creating a Workflow" spaceId docId="i920ydTOZdFGFT4PsfBRz" version="v2" docAnchorId="#Creating" loadingMethod="dynamic" newTab="false" href="Using Task Status with WaitForChild.mdx"}
+- :Link[Testing the Workflow]{label="Testing the Workflow" overridedLabel="Testing the Workflow" spaceId docId="i920ydTOZdFGFT4PsfBRz" version="v2" docAnchorId="#Testing" loadingMethod="dynamic" newTab="false" href="Using Task Status with WaitForChild.mdx"}
+
+## Creating a Workflow
+
+1. From the Configuration Console, click **Build&#x20;**>**&#xA0;Workflow&#x20;**>**&#x20;Workflows** to open the **Workflows** workspace.
+2. Click **Add new\...**. The **Add New Workflow** page appears.
+3. Enter the parameters.
+
+| Parameter       | Description                                                                                    |
+| --------------- | ---------------------------------------------------------------------------------------------- |
+| Business Object | The business object. Choose one from the drop-down list. In this example, choose **Incident**. |
+| List Name       | A unique name for the workflow object. In this example, enter **IncidentTaskStatus**.          |
+| Display Name    | A name that appears on workspaces. In this example, enter **Incident Task Status**.            |
+| Description     | A brief description of what the workflow does.                                                 |
+
+4. Click **Save**. The workflow is created.
+5. Click **Add Version**. First version of the workflow is created and the Workflow Designer appears.
+6. Drag and drop appropriate blocks from the **Blocks** panel to design the workflow.
+7. Connect all the blocks in a logical flow.
+
+<Paragraph indent="1">
+  In this example, **Start**, **Run Program**, **Wait for Child** and **Stop** blocks are used.
+</Paragraph>
+
+8. Define the properties for the blocks by double-clicking the header of the block.
+9. Define the following properties.
+
+<Paragraph indent="1">
+  For example, double-click the header of **Wait for Child&#x20;**&#x62;lock. The properties window appears.
+</Paragraph>
+
+| Property                                    | Description                                                                                                                                                                      |
+| ------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Title                                       | Block name. In this example, define the title as **Wait for all tasks to Complete.**                                                                                             |
+| Relationship Name                           | Block category. In this example, select **IncidentAssocTaskAssignment**.                                                                                                         |
+| How many children should satisfy conditions | Number of child items that should satisfy the wait condition. In this example, select **All**.                                                                                   |
+| Timeout                                     | Timeout duration for wait condition. For this example, set **Duration** as **5 Mins**.                                                                                           |
+| Child Conditions                            | **AND** - Child conditions applicable even if **Timeout** is defined.<br />**OR** - Child conditions not applicable if **Timeout** is set.<br />In this example, select **AND**. |
+| Field                                       | Child condition type. In this example, select the child condition type as **Task**.                                                                                              |
+| Operator                                    | Operator action. In this example, select the operator action as **Equal to**.                                                                                                    |
+| Value                                       | Child condition value. In this example, set the value as **Completed**.                                                                                                          |
+
+<hint type="info">
+  The properties for every block is dynamic so they vary for each block.
+</hint>
+
+10. You can add or delete child conditions by clicking the add :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/8dmMLdF7u_ixfOcYDaG0h_addicon.png" alt caption size="10" width="20" height="20"} or delete :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/SnR5ICet_y8bRcvHZtPuc_deleteicon.png" alt caption size="10" width="21" height="20"} icon.
+11. If you have completed defining the properties, click **Save**. The block property definition is saved.
+
+*Workflow Designer*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/azhLTbR-3pkrBeLG1nqC0_workflow-designer.png" position="flex-start" size="40" initialPath="../../Resources/Images/help-images/Workflow Designer.png" githubPath="Content/Resources/Images/help-images/Workflow Designer.png" showCaption="false"></Image>
+
+12. Click **Save&#x20;**. The workflow is saved and now appears on the workflow list.
+
+*Workflow List*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/uiU4tij5md0E1Nf_dh95T_workflow-list.png" position="flex-start" size="40" initialPath="../../Resources/Images/help-images/workflow list.png" githubPath="Content/Resources/Images/help-images/workflow list.png" showCaption="false"></Image>
+
+## Testing the Workflow
+
+Test the workflow by creating an incident record with multiple tasks. Set the tasks to various states and observe the workflow instance.

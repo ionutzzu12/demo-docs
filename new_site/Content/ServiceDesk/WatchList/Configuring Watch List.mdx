@@ -1,0 +1,75 @@
+---
+title: Configuring a Watch List
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:45 GMT+0300 (Eastern European Summer Time)
+---
+
+Administrators can enable or disable the Watch List.  
+
+If a relationship from the **MyShelfItem** business object to the business object does not exist, then you must create one.
+
+<hint type="info">
+  The relationship must be created from the **MyShelfItem** business object to the business object you want to access from the Watch List.
+</hint>
+
+1. In the Configuration Console, click **Build > Business Objects**.
+2. Click **View All** at the top tight corner of the window.
+3. Locate the **MyShelfItem&#x20;**&#x62;usiness object in the list, and click to open it.
+4. Click **Relationships** in the top row. The **Relationships** list opens.
+5. Click **Add New**, and then select the business object you want to configure the relationship with. The **Relationship Details** form opens.
+
+<Paragraph indent="1">
+  Refer to :Link[Adding a Relationship to a Business Object]{label="Adding a Relationship to a Business Object" overridedLabel="Adding a Relationship to a Business Object" spaceId docId="bbN-X_29QOEX_8YXjBBrX" version="v2" docAnchorId="#Adding" loadingMethod="dynamic" newTab="false" githubPath="../../Configure/Relationships/Adding_a_Relationship_to.htm#Adding" href="../../Configure/Relationships/Adding_a_Relationship_to.mdx"} for details on configuring the relationship.
+</Paragraph>
+
+6. Ensure that you select **ShelfObjectID&#x20;**&#x66;rom the drop-down list under **This Business Object**.
+
+<hint type="info" indent="1">
+  You must make this selection prior to selecting the relationship type in step 8 below.
+</hint>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/h_E0svARP48BhZaHmElLP_selectrelationshipbusinessobject.png" alt="Shows the selection of the business object to establish the relationship with" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/select_relationship_business_object.png" githubPath="Content/Resources/Images/help-images/select_relationship_business_object.png" showCaption="false"></Image>
+
+7. Select the **Zero to many** option.
+8. Click **Add This Relationship** when you have completed the configuration form settings.
+
+After creating the relationship, continue to configure the watch list by doing the following:
+
+1. From the Configuration console, click **Build > Automation Tools > Watch Lists** to open the **Watch Lists** workspace.
+
+<Paragraph indent="1">
+  The application displays the watch list sorted by business object.
+</Paragraph>
+
+2. Click **Add New**.
+3. Select a business object from the **Business Object** drop-down list.
+4. In the **Object Presentation** field, enter the configuration expression. For example, enter **$((("Change " + ChangeNumber) + ": ") + Subject)**.
+5. Click **Save**. The new business object appears in the **Watch Lists** workspace.
+6. Click **Build > Business Objects** to open the **Business Objects** workspace.
+7. Select a business object.
+8. Click the **Layouts** tab. The **Layouts** page appears.
+9. Click a layout. The system displays the Layout Editor.
+10. You can view your object in list view or form view. For this example, click **gridView**. The list view editor appears. If **Pin It** does not appear in the toolbar area, you can add it. Refer to [Using the Toolbar Editor](../../Configure/Layouts/Toolbar_Editor.mdx).
+
+<Paragraph indent="1">
+  *Change Layout - Pin It Button*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/TFNoUrjlJdpmQHK5AWT30_change-layout-pin-it.png" alt="Pin it button shown for changing record layout in the list view editor" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/change layout pin it.png" githubPath="Content/Resources/Images/help-images/change layout pin it.png" showCaption="false"></Image>
+
+11. On the right side of the window, click **Edit**. The system displays the Toolbar Editor.
+12. Click **Edit** :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/WTLKbMa5PI7qeazzbj0FD_edit-old.png" alt caption size="10" width="16" height="16"} next to the **Pin It** button. The Toolbar Button Editor appears.
+13. Enter the options under the **General** tab.
+
+| Field                 | Description                                                                                                                                                 |
+| --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Button Invokes Action | Enables this button to perform an action. Select **Pin It** from the drop-down list.                                                                        |
+| Display               | Specifies how the **Pin It** button appears. Select from image and text, image only, or text only.                                                          |
+| Image                 | The image to display. Select an image from the drop-down list. The default image is SaasAddToMyShelf.png.                                                   |
+| Text                  | The default text to show with the image. Select either default to show the default text with the image, or select custom to enter your own text in the box. |
+| Tooltip               | The text to appear when users hover over the button. The default is Pin It.                                                                                 |
+| Argument              | Left blank                                                                                                                                                  |
+
+14. Click **Save**. The window closes.
+15. Click **Save** again. The Toolbar Editor closes. **Pin It** appears in the toolbar area.
+16. Click **Save**. Watch List is added to the toolbar.

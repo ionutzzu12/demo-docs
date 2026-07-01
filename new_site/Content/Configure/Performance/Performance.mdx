@@ -1,0 +1,87 @@
+---
+title: Improving System Performance
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:58 GMT+0300 (Eastern European Summer Time)
+---
+
+**Role**: *Administrator*
+
+**Minimum Version**: \{\{FRS\_VARS.Company}} \{\{FRS\_VARS.ProductName}} 2025.4
+
+If your application or database is running slowly or the application data is not synchronizing correctly, you can perform some simple actions to clear things up
+
+## Clearing the Cache from ITSM
+
+Clearing the cache in this context refers to the database cache, not the browser cache, although clearing that might help with some issues. Use this method when metadata is not changing or updating.
+
+1. Sign in to \{\{FRS\_VARS.ProductName}} as an \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+2. From the Configuration Console, click **Configure** > **Cache Management**.
+3. To clear all cached items, click **Remove all cache items**.
+
+<Paragraph indent="1">
+  This action removes all queried items from the memory cache on all \{\{FRS\_VARS.ProductName}} application servers.
+</Paragraph>
+
+4. To clear only validation lists, click **Reset cached validation lists only**.
+
+<Paragraph indent="1">
+  This action removes all static-data validation lists from the memory cache on all \{\{FRS\_VARS.ProductName}} application servers. This does not affect dynamic validation lists (such as employee list).
+</Paragraph>
+
+## Clearing the Cache using PowerShell Script
+
+You can remove all the cache from the server by executing this PowerShell Script: <File src="https://archbee-doc-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Ejys1Zn5EEFgIGUoj-x_4_resettenantcachescriptv1.ps1" label="ResetTenantCacheScriptV1.ps1" initialPath="media/ResetTenantCacheScriptV1.ps1" githubPath="Content/Configure/Performance/media/ResetTenantCacheScriptV1.ps1" /> (To download this script do a right-click and choose Save As.)
+
+**To run the PowerShell script**
+
+1. Run PowerShell as an Administrator.
+2. Navigate to the folder location of the script
+
+<Paragraph indent="1">
+  cd "C:\\\<Path>\\\<To>\\\<Script>"
+</Paragraph>
+
+<Paragraph indent="1">
+  Run the script
+</Paragraph>
+
+<Paragraph indent="1">
+  .\\\<filename>.ps1
+</Paragraph>
+
+3. The script execution prompts you for the following:
+   - Enter tenant ID: \<tenant-url>.com
+   - Enter ConfigDB tenant ID: \<config-db>.\<tenant-url>.com
+   - Enter serverUrl: \<server-url>.com
+   - Enter Central Config API Key: \<api-key>
+
+<hint type="info" indent="2">
+  - This API key is from Azure Client Key Vault to authenticate against the Central Config service. For further help, contact your Administrator or [Ivanti support](https://www.ivanti.com/support).
+  - If you are an on-premise user, you can use any dummy value here.
+</hint>
+
+<Paragraph listStyleType="disc" indent="2">
+  Enter Central Config URL (e.g., https\://localhost:57222/CentralConfig.asmx?wsdl): https\://\<url-to-central-config>.com
+</Paragraph>
+
+To run this PowerShell script on macOS and Linux (Debian, RHEL, and Ubuntu) you need to install PowerShell capabilities from Microsoft on your macOS and Linux distros. For more details, refer to the [PowerShell installation docs](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell?view=powershell-7.5) for [macOS](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-macos?view=powershell-7.5) and [Linux](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-linux?view=powershell-7.5).
+
+## How Throttling is Used
+
+- :Link[About Throttling]{label="About Throttling" overridedLabel="About Throttling" spaceId docId="hUzuLIjRNQcM89alomhRT" version="v2" docAnchorId="#About2" loadingMethod="dynamic" newTab="false" href="Performance.mdx"}
+- :Link[For Cloud Implementations]{label="For Cloud Implementations" overridedLabel="For Cloud Implementations" spaceId docId="hUzuLIjRNQcM89alomhRT" version="v2" docAnchorId="#For" loadingMethod="dynamic" newTab="false" href="Performance.mdx"}
+- :Link[For On-Premise Implementations]{label="For On-Premise Implementations" overridedLabel="For On-Premise Implementations" spaceId docId="hUzuLIjRNQcM89alomhRT" version="v2" docAnchorId="#For2" loadingMethod="dynamic" newTab="false" href="Performance.mdx"}
+
+### About Throttling
+
+In \{\{FRS\_VARS.ProductName}}, throttling is when the application intentionally slows the speed of web services. We use this process to regulate the network traffic and to minimize bandwidth congestion. When using web services, \{\{FRS\_VARS.ProductName}} may limit the message rate, based on overall load. If you exceed the rate of 100,000 API calls per day, you may find your responses slowed to an appropriate rate. This helps ensure that you get a fair share of resources, and \{\{FRS\_VARS.Company-short}} can prevent unintended performance degradation from runaway integrations and denial of service attempts.
+
+For more information about using the \{\{FRS\_VARS.ProductName}} integration web services, see [Working with the Ivanti Integration Web Service](<../Develop/Web Service.mdx>).
+
+### For Cloud Implementations
+
+In Cloud implementations, the web services used by any one customer can affect the entire application, including other customers. Therefore, \{\{FRS\_VARS.ProductName}} may reject or delay some or all of the web services. We recommend that you do not create web services using the Discovery integration web services that send messages faster than one API call per second.
+
+### For On-Premise Implementations
+
+In on-premise implementations, your web service use only affects your environment. If you exceed the recommended rate, you may see performance implications. You can adjust your implementation throttling thresholds. See the *Installation and Deployment Guide for&#x20;*\{\{Primary.Company}} \{\{FRS\_VARS.ProductName}}.

@@ -1,0 +1,291 @@
+---
+title: Using Resource Capacity
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:47 GMT+0300 (Eastern European Summer Time)
+---
+
+With the addition of resource capacity, there is a new layout for the Employee business object workspace. Portfolio, Project and Demand Managers can all use this new layout to create and allocate resources to Tasks.
+
+<hint type="info">
+  **Note:** For Administrators, there are no changes to the Employee business object.
+</hint>
+
+## About Resource Capacity
+
+Previously PPM users could assign Project Roles, create Resource Plans and then search for Employee Resources based on Roles. They could then assign Tasks to the available Resources.
+
+In this new release, resourcing capabilities have been enhanced to include Effort and Capacity Management. Project & Portfolio Managers can assign Project Tasks to the right person (Resource) with the right Skills and available Capacity. Managers can also manage Effort around a Project. They now have insight into Resources to avoid exceeding capacity, limit assignment outside of job scope, and assign the right Skills to any given Task.
+
+## Creating a Resource
+
+1. Log in as a Portfolio Manager, Project Manager, or Demand Manager.
+2. Open the **Employee** workspace.
+3. Select an existing employee.
+4. Check the **Details** tab to ensure you have selected the correct employee; the fields on the **Details&#x20;**&#x74;ab are unavailable for editing because this information is provided by HR.
+5. Complete the following tabs as described:
+   - :Link[Overview]{label="Overview" overridedLabel="Overview" spaceId docId="GFDw3UWZa6cQmfDyGu1Kj" version="v2" docAnchorId="#Overview" loadingMethod="dynamic" newTab="false" href="Using_Resource_Capacity.mdx"}
+   - :Link[Details]{label="Details" overridedLabel="Details" spaceId docId="GFDw3UWZa6cQmfDyGu1Kj" version="v2" docAnchorId="#Details" loadingMethod="dynamic" newTab="false" href="Using_Resource_Capacity.mdx"}
+   - :Link[Project Roles]{label="Project Roles" overridedLabel="Project Roles" spaceId docId="GFDw3UWZa6cQmfDyGu1Kj" version="v2" docAnchorId="#ProjectRoles" loadingMethod="dynamic" newTab="false" href="Using_Resource_Capacity.mdx"}
+   - :Link[Project Skills]{label="Project Skills" overridedLabel="Project Skills" spaceId docId="GFDw3UWZa6cQmfDyGu1Kj" version="v2" docAnchorId="#ProjectSkills" loadingMethod="dynamic" newTab="false" href="Using_Resource_Capacity.mdx"}
+   - :Link[Scheduling Tasks]{label="Scheduling Tasks" overridedLabel="Scheduling Tasks" spaceId docId="GFDw3UWZa6cQmfDyGu1Kj" version="v2" docAnchorId="#SchedulingTasks" loadingMethod="dynamic" newTab="false" href="Using_Resource_Capacity.mdx"}
+   - :Link[All Tasks]{label="All Tasks" overridedLabel="All Tasks" spaceId docId="GFDw3UWZa6cQmfDyGu1Kj" version="v2" docAnchorId="#AllTasks" loadingMethod="dynamic" newTab="false" href="Using_Resource_Capacity.mdx"}
+   - :Link[Teams]{label="Teams" overridedLabel="Teams" spaceId docId="GFDw3UWZa6cQmfDyGu1Kj" version="v2" docAnchorId="#Teams" loadingMethod="dynamic" newTab="false" href="Using_Resource_Capacity.mdx"}
+   - :Link[Roles]{label="Roles" overridedLabel="Roles" spaceId docId="GFDw3UWZa6cQmfDyGu1Kj" version="v2" docAnchorId="#Roles" loadingMethod="dynamic" newTab="false" href="Using_Resource_Capacity.mdx"}
+   - :Link[Incidents and Changes]{label="Incidents and Changes" overridedLabel="Incidents and Changes" spaceId docId="GFDw3UWZa6cQmfDyGu1Kj" version="v2" docAnchorId="#IncidentsChanges" loadingMethod="dynamic" newTab="false" href="Using_Resource_Capacity.mdx"}
+   - :Link[Contact Groups]{label="Contact Groups" overridedLabel="Contact Groups" spaceId docId="GFDw3UWZa6cQmfDyGu1Kj" version="v2" docAnchorId="#ContactGroups" loadingMethod="dynamic" newTab="false" href="Using_Resource_Capacity.mdx"}
+   - :Link[Time Off]{label="Time Off" overridedLabel="Time Off" spaceId docId="GFDw3UWZa6cQmfDyGu1Kj" version="v2" docAnchorId="#TimeOff" loadingMethod="dynamic" newTab="false" href="Using_Resource_Capacity.mdx"}
+   - :Link[Projects]{label="Projects" overridedLabel="Projects" spaceId docId="GFDw3UWZa6cQmfDyGu1Kj" version="v2" docAnchorId="#Projects" loadingMethod="dynamic" newTab="false" href="Using_Resource_Capacity.mdx"}
+6. Select **Save**. This updates all the calculated fields.
+
+<hint type="info">
+  **Note:** For help on creating Tasks, refer to: [Working with Project Management](../PPM/Project_Management.mdx).
+</hint>
+
+## Overview
+
+| Field                           | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Status**                      | The employee's company status.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| **Team**                        | The employee's team.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| **Weekly Availability (Hours)** | The number of hours in a working week for the company.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| **Primary Project Role**        | Select a relevant project role from the dropdown.<br />Only roles that are already linked under the **Project Roles** tab can be selected or populated in the **Primary Project Role** field.                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| **Operational Percent**         | Percentage of time (0-100) that a resource is **not** available to work on PPM projects.<br />Derived as follows:<br />Operational Hours = Operational Percent / 100 \* Daily Hours<br />Available Hours = DailyHours - Operational Hours \* Number of Days Requested<br />Daily Hours = WeeklyAvailability / 5                                                                                                                                                                                                                                                                                                                |
+| **Start Date**                  | Start date for employee availability.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| **End Date**                    | End date for employee availability. When **Start Date** and **End Date** are populated, any Tasks that include that date range appear in the **Scheduling Tasks** tab.                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| **Available Hours**             | This field is automatically calculated from the **Weekly Availability** value minus the **Operational Percent**.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| **Number of Days Requested**    | The difference between the **Start Date&#x20;**&#x61;nd **End Date** using 9 to 5 hours from the Hours of Operation calendar. Refer to: [Setting Up Hours of Operation](../../Configure/HoursOfOp/Hours_of_Operation.mdx)<br />In more depth, this is automatically calculated from **Weekly Availability** value minus the **Operational Percent**. That result is divided by the **Available Hours**.<br />For example, 40 hours per week minus 10% = 36 hours per week available divided by 5 days = 7.2 hours per day. A **Number of Days Requested** of 4.62 comes from dividing 33.26 **Available Hours** by 7.2 = 4.62. |
+| **Total Allocated Hours**       | Select a Task. If **Planned Effort** has a value then **Total Allocated Hours** for that Task is subtracted from the **Available Hours**.<br />If a Task does not intersect with the chosen date range, it isn't listed in the **Scheduling Tasks** tab and does not affect the **Remaining Capacity**.                                                                                                                                                                                                                                                                                                                        |
+| **Remaining Capacity**          | Click **Get Capacity** to have all Tasks in the **Scheduling Tasks** tab considered and the remaining hours shown.<br />**Note:** If only a portion of the Task's date range overlap with the employee's availablity, that is taken into account automatically because **Planned Effort** is divided by the days in the Task's Date Range.                                                                                                                                                                                                                                                                                     |
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/dMo2Hs9RG5cXIZSgNYxsk_ppm-employee-bo.png" alt="Employee BO fields" position="flex-start" size="40" initialPath="../../Resources/Images/ServiceDesk/ppm-employee-bo.png" githubPath="Content/Resources/Images/ServiceDesk/ppm-employee-bo.png" showCaption="false"></Image>
+
+## Details
+
+Information on the **Details** tab is read-only because it is owned by HR. It is useful for checking if you have the correct employee before you start allocating tasks.
+
+## Project Roles
+
+If you want to add an extra role to an employee for a Project (example: DBA, Backup Admin, Trainer, Treasurer, Scrum Master), you can do this using the **Project Roles** tab.
+
+<table isTableHeaderOn="true">
+  <tr>
+    <td>
+      Field
+    </td>
+    <td>
+      Description
+    </td>
+  </tr>
+  <tr>
+    <td>
+      **New Project Role**
+    </td>
+    <td>
+      1. To create a new project role, click **New Project Role**.
+      2. Provide the name of the role and click **Save**.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      **Link**
+    </td>
+    <td>
+      To link an existing role, click **Link**, and then click **Select&#x20;**&#x6F;r use **Custom Search** to search for a role.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      **Unlink**
+    </td>
+    <td>
+      To remove a project role from the list, select the role and click **Unlink**.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      **Go to**
+    </td>
+    <td>
+      Select a role from the list and click **Go to** to view the details of the project role.
+    </td>
+  </tr>
+</table>
+
+<hint type="info">
+  Only those Roles that are already linked under this tab can be selected or populated in the **Primary Project Role** field of the **Overview** section.
+</hint>
+
+<hint type="info">
+  You can't unlink a Role that is already set as the Primary Project Role in the **Overview** section.
+</hint>
+
+## Project Skills
+
+You can use the **Project Skills** tab to assign Skills to resources and filter resources by the skills necessary to complete a Project Task.
+
+## Scheduling Tasks
+
+The **Scheduling Tasks** tab displays information about Tasks scheduled within the Start Date and End Date provided for the Resource Capacity search.
+
+**Searching for Tasks for an Employee**
+
+When looking at Resource Capacity, you can search to review all assigned Tasks within a time frame. The search results display Planned Effort and Actual Effort in addition to other standard fields.
+
+1. From the **Employee** business object, click the **Scheduling Tasks** tab.
+2. In the **Overview** section, enter the Start Date and End Date under **Resource Capacity**.
+3. Click **Get Capacity** to display the employee's remaining Capacity in hours and a list of the Tasks assigned in the specified time frame.
+
+## All Tasks
+
+To view a list of Tasks assigned to an employee, click the All Tasks tab. This tab displays each Task assigned to the employee with Planned Effort and Actual Effort.
+
+<hint type="info">
+  **Note:** Tasks are employee-specific and cannot be shared between employees.
+</hint>
+
+### Creating a Task
+
+1. Select th&#x65;**&#x20;All Tasks** tab.
+2. Click **New Task**.
+3. Complete the following fields:
+
+| Field                            | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Summary**                      | Provide a summary of the Task (example: Plan training program for new IT induction process).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| **Details**                      | Describe the Task in more detail (example: Training needs to be planned in detail ensuring it achieves buy-in from all attendees for the new IT process).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| **Service**                      | Select the Service carrying out the Task from the drop-down list.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| **Team** an&#x64;**&#x20;Owner** | Select the owning Team and individual from the drop-down lists.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| ### Details                      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| **Planned Start/End Date**       | When assigning a Task, if **Planned Effort** has a value, **Planned Start Date** and **Planned End Date** are mandatory fields.<br />**Planned Effort** has a validation rule that the minutes entered must be less than or equal to the difference between the **Planned Start** and **Planned End** dates.<br />When the date range overlaps all or part of the Resource's availability, the task appears automatically on the **Scheduling Tasks** tab. You cannot add or delete Tasks on th&#x65;**&#x20;Scheduling Tasks** tab.<br />**Note for&#x20;**\{\{FRS\_VARS.Company}}**&#x20;Cloud Operations:** The above changes can affect existing tasks. This means that there may be some manual clean-up to be assessed before the \{\{FRS\_VARS.Neurons\_for\_ITSM\_Enterprise}} paid enhancement package is applied and possibly some data to clean up afterward. |
+| **Start/End Date**               | Both fields are optional but you cannot have a start date without an end date.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| **Priority**                     | Select between **1&#x20;**&#x61;nd **5** from the drop-down list. Usually 1 is highest priority but your company can decide.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| **Planned Effort (Mins)**        | Provide the amount of effort planned in minutes. This Effort value rolls up via the Project Phase to the Project.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| **Actual Effort (Mins)**         | Provide the actual effort expended in minutes. This Effort value rolls up via the Project Phase to the Project.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| **Percent Complete (%)**         | Provide the percentage complete for this task as the work is carried out. This figure is then rolled up into the Project and then in to the Program and Portfolio.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+
+### Creating a Task From a Search
+
+After [Searching for Resources](Searching-Resources.mdx), you can create Tasks and assign them to the Resources returned in the Search.
+
+1. Click on the **Resources** tab of the Project Phase.
+2. Select an employee with the Capacity to complete a Task from the list of search results.
+3. Click **Create Task** and complete the fields:
+
+<Paragraph indent="1">
+  a. **Enter Subject**: Enter a name for the Task.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. **Enter Details**: Enter any details associated with the Task.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. **Enter Planned Effort**: Enter the expected effort in minutes.
+</Paragraph>
+
+<Paragraph indent="1">
+  d. Click **OK**.
+</Paragraph>
+
+4. To create the same Task for multiple Resources, select those employees in the Resources tab, and click **Create Task**.
+
+## Teams
+
+You can link as many teams as you like to an employee's record. Use this feature to track which teams are working on a task.
+
+1. Select th&#x65;**&#x20;Teams** tab.
+2. Click **Link**.
+3. Select your chosen Team if it is already listed, or select the **Custom Search** option to search for a Team using fields and expressions.
+
+<hint type="info">
+  **Note:** You cannot unlink the employee's default team which is automatically linked for you.
+</hint>
+
+## Roles
+
+You can link as many \{\{FRS\_VARS.ITSM}}-related roles as you like to an employee's record.
+
+1. Select th&#x65;**&#x20;Roles** tab.
+2. Click **Link**.
+3. Select your chosen Role if it is already listed, or select the **Custom Search** option to search for a Role using fields and expressions. Examples of Roles include Analyst, Demand Manager, Portfolio Manager, Project Manager.
+
+## Incidents and Changes
+
+You can add new Incidents or Changes to an employee or you can view existing associated Incidents or Changes.
+
+1. Select th&#x65;**&#x20;Incidents&#x20;**&#x74;ab or the **Changes** tab.
+2. Click **New Incident** or **New Change**.
+3. For information on how to create Incidents or Changes, go to:
+   - [Managing Incidents](../Incidents/Managing-Incidents.mdx)
+   - [Creating a Change Request](../Change/Creating-a-Change-Request.mdx)
+4. Selec&#x74;**&#x20;Go To** to view an existing associated Incident or Change.
+
+## Contact Groups
+
+You can link as many contact groups (change approval groups) as you like to an employee's record.
+
+1. Select th&#x65;**&#x20;Contact Groups** tab.
+2. Click **Link**.
+3. Select your chosen group if it is already listed, or select the **Custom Search** option to search for a group using fields and expressions.
+4. Selec&#x74;**&#x20;Go To** to view an existing linked group.
+
+## Time Off
+
+You can request time off for the selected employee using this tab. This is automatically factored into an Employee's available hours.
+
+1. Select th&#x65;**&#x20;Time Off** tab.
+2. Click **New Time Off**.
+3. Enter start and end dates for the time off.
+4. Click **Save**.
+
+## Projects
+
+For a selected employee business object, you can use the **Projects** tab to view the projects the employee is assigned to.
+
+Suppose an employee is assigned as a resource to a project workspace using the **Resources** tab.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/DHXS2__P-Q3RP98JxzL3h_ppm-employee-resource-tab.png" alt="Scheduling Tasks tab of Employee BO" position="flex-start" size="40" initialPath="../../Resources/Images/ServiceDesk/ppm-employee-resource-tab.png" githubPath="Content/Resources/Images/ServiceDesk/ppm-employee-resource-tab.png" showCaption="false"></Image>
+
+Later, you open the **Employee** business object and select the same employee from the list.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/dMo2Hs9RG5cXIZSgNYxsk_ppm-employee-bo.png" alt="Scheduling Tasks tab of Employee BO" position="flex-start" size="40" initialPath="../../Resources/Images/ServiceDesk/ppm-employee-bo.png" githubPath="Content/Resources/Images/ServiceDesk/ppm-employee-bo.png" showCaption="false"></Image>
+
+The **Projects** tab display the projects to which the employee has been added.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/vSSxwHdK51HjCBSVRR1fM_ppm-employee-bo-project-tab.png" alt="Scheduling Tasks tab of Employee BO" position="flex-start" size="40" initialPath="../../Resources/Images/ServiceDesk/ppm-employee-bo-project-tab.png" githubPath="Content/Resources/Images/ServiceDesk/ppm-employee-bo-project-tab.png" showCaption="false"></Image>
+
+## Calculate Resource Capacity
+
+Project Managers ,Portfolio Managers, and Demand Managers can calculate a resource’s remaining capacity within the **Project**, **Project Phase**, and **Resource Plan** business objects.
+
+To calculate resource capacity, do the following:
+
+1. In the **Project** and **Project Phase** record, go to the **Resources** tab.
+
+<Paragraph indent="2">
+  In the **Resource Plan** record, go to **Available Resources** tab.
+</Paragraph>
+
+2. Select a resource and click **Calculate Capacity**.
+3. In the dialog, enter the **Capacity Start Date** and **Capacity End Date** using the calendar icon.
+
+<hint type="danger" indent="1">
+  For a date selected from the calendar icon, the time is set to 12:00 AM by default. You should adjust the time appropriately to ensure accurate capacity calculation. To calculate capacity for a full day, set the End Date time to 11:59 PM.
+</hint>
+
+<Paragraph indent="1">
+  Example: Selecting 03/18/2026 12:00 AM to 03/19/2026 12:00 AM does not count as a full day. To calculate capacity for a full day, modify the range to 03/18/2026 12:00 AM to 03/19/2026 11:59 PM.
+</Paragraph>
+
+4. Click **OK**.
+
+The **Remaining Capacity** field of the selected resource gets recalculated automatically.
+
+*Remaining resource capacity*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/PPXg0733vwVqT1q8KkrMe_calc-capacity.png" alt="Scheduling Tasks tab of Employee BO" position="flex-start" size="40" initialPath="../../Resources/Images/ServiceDesk/calc-capacity.png" githubPath="Content/Resources/Images/ServiceDesk/calc-capacity.png" showCaption="false"></Image>
+
+<hint type="info">
+  - For the **Remaining Capacity** calculation to work, ensure that the **Weekly Availability (Hours)** and **Operational Percent** fields are filled in on the Employee record for the selected resource. Refer :Link[Overview]{label="Overview" overridedLabel="Overview" spaceId docId="GFDw3UWZa6cQmfDyGu1Kj" version="v2" docAnchorId="#Overview" loadingMethod="dynamic" newTab="false" href="Using_Resource_Capacity.mdx"}.
+  - Using the **Calculate Capacity** button updates the Resource Capacity Start Date and End Date for all resources in the selected list. These updates are reflected in the Employee business object and across all associated Projects, Project Phases, and Resource Plans where the resource is listed. Therefore, users should recalculate capacity whenever they need up-to-date and accurate resource capacity information.
+</hint>

@@ -1,0 +1,43 @@
+---
+title: Anonymization of Personal Identity Information with GDPR
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:53 GMT+0300 (Eastern European Summer Time)
+---
+
+This feature is considered in a Beta phase for the \{\{Primary.Product}} 2025.3 release. Due to the irreversible nature of this feature, ensure a thorough understanding of its behavior in a Staging or UAT environment before enabling it in Production. For more details contact the \{\{Primary.Product}} [support team](https://www.ivanti.com/support).
+
+***Role****: Administrator.*
+
+***Minimum Version****:&#x20;*\{\{Primary.Company}} \{\{Primary.Product}}*&#x20;2025.3.*
+
+**Prerequisites**: Request Ivanti ops-team to enable the **EnableGdprAnonymization** feature, for more help contact [Ivanti Support](https://www.ivanti.com/support). Also, add and enable the global constant **EnableGdprAnonymization** with **Type**: **Boolean** and **Value**: **True** / **False**. Refer to the [Defining a Global Constants](../Constants/Defining_Global_Constant.mdx) to add the **EnableGdprAnonymization** global constant.
+
+General Data Protection Regulation (GDPR) requires that data is anonymized when no longer required. This typically happens when an employee or a customer leaves an organization, although GDPR allows the person the 'right to be forgotten' on request.
+
+Based on this you can hide or anonymize the information of an ex-customer or an ex-employee.
+
+## Use Case
+
+To anonymize the information of an entity:
+
+1. Sign in to \{\{FRS\_VARS.ProductName}} as an \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+2. Go to **Employee** console and select the employee's record you want to anonymize.
+3. Select the **Status** as **Terminated**, then go to Action Menu and select the action to Anonymize the information. For more information to create your own Quick Action menu refer to [Quick Action](../QuickActions/Using_Quick_Actions.mdx) guide.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/x2X_0wPo3GDtgQfREK4qx_anonymize-quick-action.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/gdpr/anonymize-quick-action.png" githubPath="Content/Resources/Images/gdpr/anonymize-quick-action.png" showCaption="false"></Image>
+
+4. Confirm the prompt to anonymize the employee information.
+
+This anonymization is irreversible. Once anonymized, the entity's identifiable information cannot be reverted.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Mc2ctYPQ_k0LF7QHPwsAD_hidden-masked-emp-info.png" position="flex-start" size="40" initialPath="../../Resources/Images/gdpr/hidden-masked-emp-info.png" githubPath="Content/Resources/Images/gdpr/hidden-masked-emp-info.png" showCaption="false"></Image>
+
+In case there are additional fields being used to store PII that are not marked by default, you can map that field's **Field Annotations** to **PersonalIdentifiableinformation** from th&#x65;**&#x20;Employee** **Business Object** in the configuration console. To do this:
+
+1. Log in to \{\{FRS\_VARS.ProductName}} as an \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}
+2. Go to **Build** >**&#x20;Business Object** >search for **Employee** business object > **Field** > select the field you want to map.
+3. In the **Field Annotations** select the **PersonalIdentifiableinformation** and **Save**
+
+<hint type="info">
+  Anonymization applies only to fields within the **Employee** business object that are annotated with **PersonalIdentifiableInformation**. It also applies to fields in other business objects that are linked to those Employee fields marked as PII, including audit history. For example, the customer field in the **Incident** business object is anonymized if it is linked to the **Employee** business object, such as the **Name** field.
+</hint>

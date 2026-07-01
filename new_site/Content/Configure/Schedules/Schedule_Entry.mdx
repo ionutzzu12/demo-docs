@@ -1,0 +1,348 @@
+---
+title: About the Schedule Entry and Scheduled Jobs Workspaces
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:57 GMT+0300 (Eastern European Summer Time)
+---
+
+<ExpandableHeading>
+  ## About the Schedule Entry and Scheduled Jobs Workspaces
+
+  The **Schedule Entry** workspace enables you to create a variety of schedules to be used in different functions, such as using time zones within the time object. These schedules appear in a drop-down list within corresponding workspaces. The schedule must be created in **Schedule Entry** before it will appear in other places.
+
+  <hint type="info">
+    Time zone is not yet available in the request offering time control. This will be considered in a future release.
+  </hint>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Accessing the Schedule Entry and Scheduled Jobs Workspaces
+
+  1. Do one of the following:
+     - From the Service Desk console, log in as an administrator and open the **Schedule Entry** workspace.
+     - From the Configuration console, click **Monitor > Scheduled Jobs** to view the **Scheduled Jobs** workspace.
+
+  <Paragraph indent="1">
+    A list of schedules appear. Several default schedules come with \{\{FRS\_VARS.ProductName}}, but you can modify these or create your own schedules. See [Default Schedules](<Default Schedules.mdx>).
+  </Paragraph>
+
+  2. Double-click an item from the list to view details.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Creating a Schedule
+
+  1. Do one of the following:
+     - From the Service Desk console, open the **Schedule Entry** workspace.
+     - From the Configuration console, click **Monitor&#x20;**>**&#xA0;Scheduled Jobs**.
+  2. Click **New** on the toolbar, choose the type from the drop-down list (Daily, Hourly, Monthly, Onetime, Weekly, or yearly). The schedule is displayed.
+  3. Enter information into the fields.
+
+  | Field       | Description                                                                                                              |
+  | ----------- | ------------------------------------------------------------------------------------------------------------------------ |
+  | Name        | A unique name for the schedule, such as **Weekly Baseline Report**.                                                      |
+  | Start Time  | The start time, including a time zone. By default, the application uses the local time based on your machine.            |
+  | End Time    | The end time, including a time zone. By default, the application uses the local time based on your machine.              |
+  | Recur Every | The number of units after which to schedule the next entry. This field is not applicable for the Onetime Schedule Entry. |
+  | Start Date  | The date to start the schedule.                                                                                          |
+  | End Date    | The date to end the schedule.                                                                                            |
+  | No End Date | Specifies that the schedule runs forever or until it is deleted.                                                         |
+
+  <hint type="info">
+    The time zone used is based only on the **Time** field (as opposed to a DateTime field).
+  </hint>
+
+  <Paragraph indent="1">
+    Further options appear according to the schedule type:
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    :Link[Daily]{label="Daily" overridedLabel="Daily" spaceId docId="ff1as7Nd0to83i6uUC1aZ" version="v2" docAnchorId="#Daily" loadingMethod="dynamic" newTab="false" href="Schedule_Entry.mdx"}
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    :Link[Hourly]{label="Hourly" overridedLabel="Hourly" spaceId docId="ff1as7Nd0to83i6uUC1aZ" version="v2" docAnchorId="#Hourly" loadingMethod="dynamic" newTab="false" href="Schedule_Entry.mdx"}
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    :Link[Weekly]{label="Weekly" overridedLabel="Weekly" spaceId docId="ff1as7Nd0to83i6uUC1aZ" version="v2" docAnchorId="#Weekly" loadingMethod="dynamic" newTab="false" href="Schedule_Entry.mdx"}
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    :Link[Monthly]{label="Monthly" overridedLabel="Monthly" spaceId docId="ff1as7Nd0to83i6uUC1aZ" version="v2" docAnchorId="#Monthly" loadingMethod="dynamic" newTab="false" href="Schedule_Entry.mdx"}
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    :Link[Onetime]{label="Onetime" overridedLabel="Onetime" spaceId docId="ff1as7Nd0to83i6uUC1aZ" version="v2" docAnchorId="#OnetimeSchedule" loadingMethod="dynamic" newTab="false" href="Schedule_Entry.mdx"}
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    :Link[Yearly]{label="Yearly" overridedLabel="Yearly" spaceId docId="ff1as7Nd0to83i6uUC1aZ" version="v2" docAnchorId="#Yearly" loadingMethod="dynamic" newTab="false" href="Schedule_Entry.mdx"}
+  </Paragraph>
+
+  ### Daily
+
+  *Daily Recurring Schedule Form*
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Gc8e1__RgHCnCWmsXgJ41_scheduledaily.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/schedule_daily.png" githubPath="Content/Resources/Images/help-images/schedule_daily.png" showCaption="false"></Image>
+
+  | Option           | Description                                                                                     |
+  | ---------------- | ----------------------------------------------------------------------------------------------- |
+  | Recur Every Days | The number of days between each run. For example, to run the schedule every other day, enter 2. |
+  | All Day Event    | Lets the schedule run an entire day without a specific start and end time.                      |
+
+  <Paragraph indent="1">
+    To run multiple imports or exports of the same data each day, you need to create multiple entries. For example, to run an import in the morning and in the afternoon each day (twice a day), create a schedule for the morning run and another for the afternoon run.
+  </Paragraph>
+
+  ### Hourly
+
+  *Hourly Recurring Schedule Form*
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/BZWwq7_Lezerf7DeeTDbl_hourlyschedule.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/hourly_schedule.png" githubPath="Content/Resources/Images/help-images/hourly_schedule.png" showCaption="false"></Image>
+
+  | Option            | Description                                                                                       |
+  | ----------------- | ------------------------------------------------------------------------------------------------- |
+  | Recur Every Hours | The number of hours between each run. For example, to run the schedule every other hour, enter 2. |
+
+  ### Weekly
+
+  *Weekly Recurring Schedule Form*
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/V9yQtn6clxA8FWBFRA4N0_scheduleweekly.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/schedule_weekly.png" githubPath="Content/Resources/Images/help-images/schedule_weekly.png" showCaption="false"></Image>
+
+  | Option            | Description                                                                                       |
+  | ----------------- | ------------------------------------------------------------------------------------------------- |
+  | Recur Every Weeks | The number of weeks between each run. For example, to run the schedule every other week, enter 2. |
+  | Days of the Week  | The specific days of the week for the schedule to run.                                            |
+
+  ### Monthly
+
+  *Monthly Recurring Schedule Form*
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/ETLIPVMmg13lPAdSDL22F_schedulemonthly.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/schedule_monthly.png" githubPath="Content/Resources/Images/help-images/schedule_monthly.png" showCaption="false"></Image>
+
+  | Option   | Description                                                                                                            |
+  | -------- | ---------------------------------------------------------------------------------------------------------------------- |
+  | Method 1 | The cardinal day number (such as 5 or 26) of every number of months for the schedule to run.                           |
+  | Method 2 | The ordinal day number (such as the first Tuesday or last Saturday) of every number of months for the schedule to run. |
+
+  <hint type="info">
+    <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/EkJkuZZcgud9NVFikSJOs_schedule-entry-required-rules.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/schedule entry required rules.png" githubPath="Content/Resources/Images/help-images/schedule entry required rules.png" showCaption="false"></Image>
+
+    If you get an error message ("The following information does not satisfy validation constraints:"), you must do the following:
+
+    If using Method 1, create a new required rule for DayNumber.
+
+    If using Method 2, update the required rules for WeekNumber and WeekDay.
+
+    *WeekNumber is Required*
+
+    Delete the required rule for RecurEvery. In its place, add a new initialization rule for RecurEvery, and set it to 1.
+  </hint>
+
+  ### Onetime
+
+  *Onetime Schedule Form*
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/gb37gERx9WQF7TkItbkvS_onetimeschedule.png" position="flex-start" size="40" initialPath="../../Resources/Images/Configure/ScheduleEntry/OnetimeSchedule.png" githubPath="Content/Resources/Images/Configure/ScheduleEntry/OnetimeSchedule.png" showCaption="false"></Image>
+
+  The Onetime Schedule Entry is used to create and run a schedule for a single time. After the schedule is run at the set date and time, it gets deleted.
+
+  For this option is available to you only if you apply the AdvanceScheduleEntry.MetadataPackage from Marketplace. And set the **EnableAdvancedScheduleEntry** option in **Global Constant** as True.
+
+  The Business Objecy used for this Schedule Entry is **ScheduleEntry.OneTimeSchedule**.
+
+  ### Yearly
+
+  *Yearly (Annual) Recurring Schedule Form*
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/pPnEH1zqg1R4riaRNh_y8_scheduleyearly.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/schedule_yearly.png" githubPath="Content/Resources/Images/help-images/schedule_yearly.png" showCaption="false"></Image>
+
+  | Option            | Description                                                                                                         |
+  | ----------------- | ------------------------------------------------------------------------------------------------------------------- |
+  | Recur Every Years | The number of years between each run. For example, to run the schedule every other year, enter 2.                   |
+  | Method 1          | The specific day of the year for the schedule to run (such as March 1).                                             |
+  | Method 2          | The ordinal day number (such as the first Tuesday of January or the last Saturday of July) for the schedule to run. |
+
+  4. Click **Save**.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Modifying a Schedule
+
+  1. From the Configuration Console, click **Monitor > Scheduled Jobs** to view the **Scheduled Jobs** workspace.
+  2. Double click the schedule to modify. The schedule settings appear.
+  3. Change the settings as needed.
+  4. Click **Save**.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Deleting a Schedule
+
+  Use caution when deleting a schedule, as unpredictable results could affect related functions.
+
+  1. From the Configuration Console, click **Monitor > Scheduled Jobs** to view the **Scheduled Jobs** workspace.
+  2. Select the schedule to delete.
+  3. Click the **delete** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/USPl9Egu4Y2Blx7HKC3mA_deleteredx.png" alt caption size="10" width="14" height="13"}.
+
+  <Paragraph indent="1">
+    The schedule no longer appears in the list.
+  </Paragraph>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Configuring the Time Zone Control
+
+  - :Link[About the Time Zone Control]{label="About the Time Zone Control" overridedLabel="About the Time Zone Control" spaceId docId="ff1as7Nd0to83i6uUC1aZ" version="v2" docAnchorId="#AboutTZ" loadingMethod="dynamic" newTab="false" href="Schedule_Entry.mdx"}
+  - :Link[How the Time Zone Control Works]{label="How the Time Zone Control Works" overridedLabel="How the Time Zone Control Works" spaceId docId="ff1as7Nd0to83i6uUC1aZ" version="v2" docAnchorId="#HowTZ" loadingMethod="dynamic" newTab="false" href="Schedule_Entry.mdx"}
+  - :Link[Removing the Existing Time Controls from the Forms]{label="Removing the Existing Time Controls from the Forms" overridedLabel="Removing the Existing Time Controls from the Forms" spaceId docId="ff1as7Nd0to83i6uUC1aZ" version="v2" docAnchorId="#Removing_the_existing_time_controls_from_the_forms" loadingMethod="dynamic" newTab="false" href="Schedule_Entry.mdx"}
+  - :Link[Activating the Time Zone Control]{label="Activating the Time Zone Control" overridedLabel="Activating the Time Zone Control" spaceId docId="ff1as7Nd0to83i6uUC1aZ" version="v2" docAnchorId="#Activating_the_timezone_control" loadingMethod="dynamic" newTab="false" href="Schedule_Entry.mdx"}
+  - :Link[Placing the Time Zone Controls onto the Forms]{label="Placing the Time Zone Controls onto the Forms" overridedLabel="Placing the Time Zone Controls onto the Forms" spaceId docId="ff1as7Nd0to83i6uUC1aZ" version="v2" docAnchorId="#Placing_the_timezone_controls_onto_the_forms" loadingMethod="dynamic" newTab="false" href="Schedule_Entry.mdx"}
+
+  About the Time Zone Control
+
+  The time zone control is automatically included in schedule entry forms. Users who have created forms prior to this version and who want to use time zones in their forms must manually replace the **time** field with the **time zone** field.
+
+  If a daily schedule in the **Scheduled Jobs** workspace shows only time fields for start and end time, then you do not have the time zone control enabled.
+
+  *Schedule Entry Example: Time Zone Control Not Enabled*
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/ppSfQbJtNYkTYrEPrnv7L_timezonescheduleentry.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/time_zone_schedule_entry.png" githubPath="Content/Resources/Images/help-images/time_zone_schedule_entry.png" showCaption="false"></Image>
+
+  ### How the Time Zone Control Works
+
+  You can specify which time zone options appear whenever you encounter a date or time control on a form. The date and time controls reflect the local date and time of the user. The time zone control enables the user to select a specific time according to a specified time zone, while indicating the local time of the user.
+
+  For example, users can choose a time and a time zone (including standard and daylight savings times) from a drop-down list. The time zones are specified as they appear in the IANA time zone database. See [Working with Dates, Times, and Time Zones](<../../ServiceDesk/Dates/Working with Dates Times and Time Zones.mdx>).
+
+  *Choose a Time and Time Zone*
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Lx-NjGDrcFQWpou2EsqzK_timezone1.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/time_zone_1.png" githubPath="Content/Resources/Images/help-images/time_zone_1.png" showCaption="false"></Image>
+
+  At the same time, the local time of the user is automatically shown, so no conversions or mathematical calculations are needed to figure out time differences.
+
+  *Local Time*
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/edUbVxP4CP_hFgPA_0Yvc_timezone2.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/time_zone_2.png" githubPath="Content/Resources/Images/help-images/time_zone_2.png" showCaption="false"></Image>
+
+  ### Removing the Existing Time Controls from the Forms
+
+  1. From the Configuration Console, click **Build > Business Objects** to view the **Business Objects** workspace.
+  2. On the top right, click **View All** to view all business objects.
+  3. Scroll down the list to the **ScheduleEntry** business object. Notice that it has five member business objects: Daily, Hourly, Weekly, Monthly, and Yearly.
+  4. Select a member business object (such as ScheduleEntry.DailySchedule).
+  5. Choose the **Forms** tab. Two forms appear.
+  6. Choose a form. Notice that the form contains time only controls.
+
+  *Schedule Entry Form*
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Bck-2DdEbauYU0GzjjfUI_scheduleentryfields.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/scheduleEntry_fields.png" githubPath="Content/Resources/Images/help-images/scheduleEntry_fields.png" showCaption="false"></Image>
+
+  7. Remove the start time and end time controls.
+  8. Click **Save**.
+  9. Repeat this procedure for all forms under each member object (ScheduleEntry.DailySchedule, ScheduleEntry.WeeklySchedule, ScheduleEntry.MonthlySchedule, and ScheduleEntry.YearlySchedule).
+
+  ### Activating the Time Zone Control
+
+  1. From the Configuration Console, click **Build > Business Objects** to view the **Business Objects** workspace.
+  2. Open the **ScheduleEntry** business object.
+  3. Click the **Fields** tab.
+  4. Select the **StartTime** field.
+  5. Check **Time** and **Time zone**.
+
+  *Schedule Entry Field Types*
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/hCNmdyccWBKUZyEYbMK2Q_scheduleentrystarttime.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/scheduleEntry_startTime.png" githubPath="Content/Resources/Images/help-images/scheduleEntry_startTime.png" showCaption="false"></Image>
+
+  6. Click **Save**.
+  7. Repeat this process for the **EndTime** field.
+
+  <Paragraph indent="1">
+    Setting these fields automatically sets the time fields for the member objects.
+  </Paragraph>
+
+  *Schedule Entry Member Objects*
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/nKHiGpZCIyewmVYCAkXZ9_scheduleentrymemberfields.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/scheduleEntry_memberFields.png" githubPath="Content/Resources/Images/help-images/scheduleEntry_memberFields.png" showCaption="false"></Image>
+
+  ### Placing the Time Zone Controls onto the Forms
+
+  1. From the Configuration Console, click **Build > Business Objects** to view the **Business Objects** workspace.
+  2. Open a business object.
+  3. Click the **Forms** tab.
+  4. Open a form.
+  5. Drag the **StartTime** and **EndTime** controls onto the form where the former time-only fields once were.
+
+  <Paragraph indent="1">
+    Notice that the control now includes a container for time zone and a label for local time.
+  </Paragraph>
+
+  *Schedule Entry Example: Time Zone Enabled*
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/-xI6_rHOQo_KVZoxvgAC1_scheduleentrytimezone.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/scheduleEntry_timezone.png" githubPath="Content/Resources/Images/help-images/scheduleEntry_timezone.png" showCaption="false"></Image>
+
+  6. Click **Save**.
+  7. Repeat this procedure for all forms under each member object (ScheduleEntry.DailySchedule, ScheduleEntry.WeeklySchedule, ScheduleEntry.MonthlySchedule, and ScheduleEntry.YearlySchedule).
+
+
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Creating a Workflow and Associating a Schedule Entry
+
+  You can create workflows and associate them with schedule entries by following one of the methods described below.
+
+  ### Method 1
+
+  1. Create the **Schedule Entry** and configure the settings as described in :Link[Creating a Schedule]{label="Creating a Schedule" overridedLabel="Creating a Schedule" spaceId docId="ff1as7Nd0to83i6uUC1aZ" version="v2" docAnchorId="#CreatingASchedule" loadingMethod="dynamic" newTab="false" href="Schedule_Entry.mdx"}.
+  2. Open the **Configure** Application by clicking the :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/0EKMPJV7NOcHnrHyn8Q8S_config-icon23x24.jpg" alt caption size="10" width="23" height="24"} icon at the top right corner of the web interface.
+  3. Select **Business Objects** form the menu on the left pane. The **Business Objects** page is displayed.
+  4. Search by keyword “Schedule Entry” in the **Find** field and click the **Schedule Entry** business object. The **Business Object ScheduleEntry#** page is displayed.
+  5. Click **Workflows**.
+  6. Click **Add New Workflow**. Enter the following information in the fields.
+
+  | Field           | Description                                                                     |
+  | --------------- | ------------------------------------------------------------------------------- |
+  | Business Object | A unique name for the workflow.                                                 |
+  | List Name       | The list name for the workflow.                                                 |
+  | Display Name    | The display name of the business object.                                        |
+  | Description     | A short description about the workflow, such as **Workflow for ScheduleEntry**. |
+
+  7. Click **Save**.
+  8. Click **Add Version** from the **Workflow** record page.
+  9. Make necessary selections for the workflow from the menu on the left pane. The **Start** and **Stop** blocks of the workflow are mandatory, however there can be several workflow blocks between them. The following example shows an email notification workflow block. You must click the email notification block to configure the notification parameters.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/B2t6G0VvYzJLXD9IC06fL_workflow-creation.JPG" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/Configure/ScheduleEntry/Workflow creation.JPG" githubPath="Content/Resources/Images/Configure/ScheduleEntry/Workflow creation.JPG" showCaption="false"></Image>
+
+  10. Click the **Configuration** tab at the top of the **Workflow** creation screen. The **Workflow Configuration** page is displayed.
+  11. Under **Trigger Definition**, select the schedule you want to associate with the workflow from the drop-down list available in the **Use Schedule Definition** field. Here, you are selecting the schedule entry to use as the entry condition.
+  12. Click **Save**.
+  13. Publish the workflow by clicking the icon as shown.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/YwWNc2Kggak7SbQsVh-re_publish-workflow.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/Configure/ScheduleEntry/Publish workflow.png" githubPath="Content/Resources/Images/Configure/ScheduleEntry/Publish workflow.png" showCaption="false"></Image>
+
+  You have now created the workflow you wish to run on your new schedule.
+
+  ### Method 2
+
+  You can use this method to group workflows that are created for different business objects under a Relationship.
+
+  1. Follow steps 1 thorough 10 from :Link[Method 1]{label="Method 1" overridedLabel="Method 1" spaceId docId="ff1as7Nd0to83i6uUC1aZ" version="v2" docAnchorId="#Method1" loadingMethod="dynamic" newTab="false" href="Schedule_Entry.mdx"}.
+  2. Open the **Configure** Application by clicking the :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/0EKMPJV7NOcHnrHyn8Q8S_config-icon23x24.jpg" alt caption size="10" width="23" height="24"} icon at the top right corner of the web interface
+  3. Select **Business Objects** from the menu on the left pane. The **Business Objects** page is displayed.
+  4. Select a Schedule Entry business object.
+  5. Click **Relationships**.
+  6. Click **Add New Relationship** and select the business objects from the list that is displayed.
+  7. Make the necessary configuration in the **Relationship Details** page.
+  8. Click **Add This Relationship** to include the business object to the relationship.
+  9. Repeat steps 5 through 8 from :Link[Method 1]{label="Method 1" overridedLabel="Method 1" spaceId docId="ff1as7Nd0to83i6uUC1aZ" version="v2" docAnchorId="#Method1" loadingMethod="dynamic" newTab="false" href="Schedule_Entry.mdx"} to create a workflow.
+  10. Select the **Start**, **Stop** and **Invoke Workflow** blocks from the menu on the left pane.
+  11. Click the **Invoke Workflow** block and select the **Relationship Name** from the drop-down list; the associated **Workflow Names** are populated.
+  12. Click **Save**.
+  13. Click the **Configuration** tab at the top of the **Workflow** creation screen. The **Workflow Configuration** page is displayed.
+  14. Select the Schedule entry from the list.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/C2SFjQuY-fUjyK5x9kBxM_invoke-workflow-block.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/Configure/ScheduleEntry/Invoke Workflow Block.png" githubPath="Content/Resources/Images/Configure/ScheduleEntry/Invoke Workflow Block.png" showCaption="false"></Image>
+
+
+</ExpandableHeading>

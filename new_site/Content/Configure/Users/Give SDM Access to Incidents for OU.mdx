@@ -1,0 +1,28 @@
+---
+title: Example: Giving a Service Desk Manager Access to Incidents for an Organizational Unit
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:50 GMT+0300 (Eastern European Summer Time)
+---
+
+An example of applying organizational unit restrictions on a hierarchical level is to allow a Service Desk Manager to update and view incidents created within the organizational unit, either by himself or by subordinates:
+
+To allow a Service Desk Manager to update and view incidents created by himself and any subordinates, do the following:
+
+1. From the Configuration Console, click **Configure > Users and Permissions > Roles and Permissions** to open the **Roles and Permissions** workspace.
+2. Click **Service Desk Manager**.
+3. Click the **Object Permissions** tab.
+4. Navigate to the incident business object and click **Edit**.
+5. The **ServiceDeskManager accessing Incident** page opens. Click the button to add a table row for adding a case.
+6. Select **Update and View** from the drop-down list.
+7. Select **Employee (via IncidentOwnerEmployee)** as the first operator to constrain from the drop-down list.
+8. From the next drop-down list, select **is** as the first negation.
+9. From the next drop-down list, select **the logged-in user** as a matching value.
+10. Check **or the logged-in user's subordinates**.
+11. Save your changes.
+
+The case is saved, and the display changes to read:
+
+- Update and view records where
+- Incident's \[Profile#Employee.Owner] is the logged in user (or the logged in user's subordinate)
+
+Upon logging in as a Service Desk Manager, the incident list displays the incidents created by the manager and any employees listed in the reporting hierarchy.

@@ -1,0 +1,53 @@
+---
+title: About Data Rollups
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:56 GMT+0300 (Eastern European Summer Time)
+---
+
+- :Link[About Data Rollups]{label="About Data Rollups" overridedLabel="About Data Rollups" spaceId docId="pNe0gKF3Ad5yF5gHXc_ze" version="v2" docAnchorId="#About-Data-Rollups" loadingMethod="dynamic" newTab="false" href="Data_Rollup.mdx"}
+- :Link[Defining a Data Rollup]{label="Defining a Data Rollup" overridedLabel="Defining a Data Rollup" spaceId docId="pNe0gKF3Ad5yF5gHXc_ze" version="v2" docAnchorId="#Defining-a-Data-Rollup" loadingMethod="dynamic" newTab="false" href="Data_Rollup.mdx"}
+
+## About Data Rollups
+
+The Layout Editor links data based on a mathematical concept called the transitive relationship. If *a* is related to *b*, and *b* is related to *c*, then *a* is also related to *c*. In the Layout Editor, you can display a grandchild business object (*c*) in relation to the parent business object (*a*) within a child panel list.
+
+As a result, you can specify child panels using direct relationships to child business objects, rollup relationships to grandchild business objects, or both.
+
+For example, the current business object is incident. It has a child problem business object which has a child attachment business object. For specifying child panels using direct relationships to child business objects, specify the child business object (that is, problem).
+
+For specifying child panels using rollup relationships to grandchild business objects, first specify the grandchild business object (that is, attachment) as the business object, then add the new rollup sequence that links the current business object (that is, incident) to the child business object (problem), followed by the link from the child business object (problem) to the grandchild business object (attachment).
+
+## Defining a Data Rollup
+
+Use the Layout Editor to define data rollups while working in the form view.
+
+1. From the Configuration Console, click **Build > Business Objects** to open the **Business Objects** workspace.
+2. Open a business object.
+3. Select the **Layouts** tab.
+4. Click **formView**. The **Form View Editor** appears. (See [Using Layouts](Layouts.mdx).)
+5. From the **Child Panels** area, click the object of the child panel for which to define a rollup. For example, **FRS\_ApprovalVoteTracking** (next to the **Approval Vote Tracking** area).
+
+<Paragraph indent="1">
+  The **FormView Child Panel Relationship Editor** appears.
+</Paragraph>
+
+6. Choose the relationship type:
+   - **Use only direct relationship to child object(s)**
+   - **Use only rollup relationship(s) to grandchild objects**
+   - **Use both direct and rollup relationships**
+7. Click **Add New Rollup Sequence**. The Rollup Chain Editor appears.
+8. Enter information into the fields.
+
+| Field                                                                                                                                                                                      | Description                                                                                                                                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Display Name                                                                                                                                                                               | A unique name for the rollup chain.                                                                                                                                                                                                |
+| Show rollup records by default                                                                                                                                                             | Shows rollup records by default.                                                                                                                                                                                                   |
+| :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/JtIxGMfjslfCSitXWBu4o_addgreen.png" alt caption size="10" width="17" height="15"} (add object) | Adds a rollup chain object. Click **Not Set**, then select an object from the drop-down list. The list is automatically populated based on the chosen business object. Hints are given to direct you to the correct relationships. |
+| :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/JtIxGMfjslfCSitXWBu4o_addgreen.png" alt caption size="10" width="17" height="15"} (add object) | Adds the grandchild object.                                                                                                                                                                                                        |
+
+*Adding a Rollup Sequence*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/TcYap5Rcgb9Vt6SFVSKdA_rollup-chain-editor-correct.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/rollup chain editor correct.png" githubPath="Content/Resources/Images/help-images/rollup chain editor correct.png" showCaption="false"></Image>
+
+9. Repeat to add more relationships.
+10. Click **Save**.

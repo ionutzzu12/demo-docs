@@ -1,0 +1,329 @@
+---
+title: Create a Service Request
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:00 GMT+0300 (Eastern European Summer Time)
+---
+
+You can create Service Requests using Rest API.
+
+**Base URL:**
+
+https\://\{tenant url}/api/rest/ServiceRequest/new
+
+<ExpandableHeading>
+  ## Create a Service Request - Example
+
+  Here is an example to create a Service Request.
+
+  | URL                                           | https\://\{tenant url}/api/rest/ServiceRequest/new                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+  | --------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | <font color="#ffffff">Method</font>           | POST                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+  | Header Name                                   | Authorization: JWT Token/Session Key/REST API Key                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+  | <font color="#ffffff">Request Payload</font>  |   <ExpandableHeading>
+      ## Click to view the Request Payload
+
+      \{
+
+      "attachmentsToDelete": \[],
+
+      "attachmentsToUpload": \[],
+
+      "parameters": \{},
+
+      "delayedFulfill": false,
+
+      "formName": "ServiceReq.ResponsiveAnalyst.DefaultLayout",
+
+      "saveReqState": false,
+
+      "serviceReqData": \{
+
+      "Subject": "SR from RESTAPI",
+
+      "Symptom": "Test02"
+
+      },
+
+      "strCustomerLocation": "West",
+
+      "strUserId": "2F851094BFE5437C97D19871D1C539C7",
+
+      "subscriptionId": "0C1780F4EC814CB2B8E045325D8CFB66",
+
+      "localOffset": -330
+
+      }
+
+      For details on how to fetch the values for these fields, see :Link[Field Values]{label="Field Values" overridedLabel="Field Values" spaceId docId="vQdujzphEE2mzswJVTxLH" version="v2" docAnchorId="#FieldValues" loadingMethod="dynamic" newTab="false" href="Create-a-Service-Request.mdx"} and :Link[Parameters]{label="Parameters" overridedLabel="Parameters" spaceId docId="vQdujzphEE2mzswJVTxLH" version="v2" docAnchorId="#Parameters" loadingMethod="dynamic" newTab="false" href="Create-a-Service-Request.mdx"}.
+
+      All the fields shown in this example are mandatory, the API will return an error if any of the field is missing. However, the value for `attachmentsToDelete` will be blank when executing Create Service Request API.
+    </ExpandableHeading> |
+  | <font color="#ffffff">Status Code</font>      | 200                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+  | <font color="#ffffff">Response Payload</font> |   <ExpandableHeading>
+      ## Click to view the Response Payload
+
+      \{ "IsSuccess": true,
+
+      "ErrorText": "",
+
+      "ServiceRequests": \[
+
+      \{
+
+      "bNew": true,
+
+      "strSubscriptionRecId": "0C1780F4EC814CB2B8E045325D8CFB66",
+
+      "strRequestRecId": "6730C50F527A481A81FFE15D7D60725F",
+
+      "strIssueRecId": null,
+
+      "strRequestNum": "10288",
+
+      "strName": "MinimalSR",
+
+      "strStatus": null,
+
+      "strStatusId": null,
+
+      "strService": null,
+
+      "strServiceId": null,
+
+      "strDetails": null,
+
+      "parameterTemplateParameterIds": \{},
+
+      "DateApproved": null,
+
+      "DateCancelled": null,
+
+      "DateCompleted": null
+
+      }
+
+      ],
+
+      "InvalidServiceRequests": \{}
+
+      }
+    </ExpandableHeading>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+</ExpandableHeading>
+
+## Field Values
+
+How to fetch the values of the fields used for executing the Create Service Request API is detailed below.
+
+<ExpandableHeading>
+  ## strCustomerLocation and strUserId
+
+  To fetch the value for `strCustomerLocation` and `strUserId`, execute the API - https\://\{tenant URL}/api/odata/businessobject/Frs\_CompositeContract\_Contacts?$filter=NetworkUserName eq '\{your user name}'
+
+  From the response that you get - the value for `Employee Location` will be your `strCustomerLocation` value and the value for `RecID` will be your `strUserId` value.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## subscriptionId
+
+  To fetch the value for `subscriptionId`, execute the API - https\://\{tenant URL}/api/rest/Template/\<User\_RecId>/\_All\_
+
+  This will give you all the published templates in Service Catalog. From the response that you get - the value for `strSubscriptionId` will be your `subscriptionId` value.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## localOffset
+
+  The value for `localoffset` is the difference in minutes from the Coordinated Universal Time for a particular place. For example, if your location is India, your GMT/UTC is +5.30 hours which is 330 minutes, therefore, the `localoffset` value for your location is -330.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Field RecID
+
+  To fetch the `RecID` for a field, execute the API - `https://{tenant url}/api/rest/ServiceRequest/PackageData/subscriptionId/strCustomerLocation`.
+
+  From the response, look for `lstParamCategories/lstParameters` and expand it. All fields will have a `RecID`, expand the field to view it's `RecID`.
+
+  *Field RecID*
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/YvX77UU4swq28dexidgqG_fieldrecid.png" position="flex-start" size="40" initialPath="../../Resources/Images/Configure/API/FieldRecID.png" githubPath="Content/Resources/Images/Configure/API/FieldRecID.png" showCaption="false"></Image>
+</ExpandableHeading>
+
+## Parameters
+
+The base structure of the Parameter is -
+
+"parameters": \{
+
+// \{parameter name}
+
+"par-\{Parameter RecID}": "value",
+
+}
+
+<ExpandableHeading>
+  ## Example
+
+  "parameters": \{
+
+  // Checkbox
+
+  "par-\{Parameter RecID}": "true",
+
+  // Text Field
+
+  "par-\{Parameter RecID}": "Text Field",
+
+  // Text Area
+
+  "par-\{Parameter RecID}": "Text Area",
+
+  // Drop Down
+
+  "par-\{Parameter RecID}": "Scheduled",
+
+  "par-\{Parameter RecID}-recId": "\{Field RecID of Scheduled}",
+
+  // Time Field
+
+  "par-\{Parameter RecID}": "\{system generated time}",
+
+  // DateTime Field
+
+  "par-\{Parameter RecID}": "\{system generated time}",
+
+  // Pick List
+
+  "par-\{Parameter RecID}": "Active",
+
+  "par-\{Parameter RecID}-recId": "\{Field RecID of Active}"
+
+  }
+
+  *Sample Service Request with Parameters*
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Xsc6x5QaRrj6jQkQsMmzd_parameters.png" position="flex-start" size="40" initialPath="../../Resources/Images/Configure/API/Parameters.png" githubPath="Content/Resources/Images/Configure/API/Parameters.png" showCaption="false"></Image>
+
+  <hint type="info">
+    Drop-down lists/pick-lists and Attachments work differently from other parameters. For details, see Drop-down and Pick-list and Attachments.
+  </hint>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Drop-down and Pick-list
+
+  In case of drop-down and pick-list you will need the value's RecID, to fetch it execute the following API:
+
+  GET: \{\{tenant\_url}}/api/rest/ServiceRequest/\{\{Parameter\_RecID}}/ValidationList
+
+  Use Postman or a similar app instead of browser and set the **Content-Type** as **application/json**.
+
+  **Example:**
+
+  1. Execute - GET: \{\{tenant\_url}}/api/rest/ServiceRequest/ 6B5A00312E00430AAF8769D1A27326C6/ValidationList
+
+  <Paragraph indent="1">
+    The response contains the Rec IDs of all values. For example, the RecID of the value Alex is "026221D7927F4104810ABF14672FCC3".
+  </Paragraph>
+
+  2. Use it for the parameter XYZ as given below:
+
+  "parameters": \{
+
+  "par-A72D69AF2A9B420F874BA8A5A293EF17": "Alex",
+
+  "par-A72D69AF2A9B420F874BA8A5A293EF17-recId": "026221D7927F4104810ABF14672FCC3"
+
+  }
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Attachments
+
+  To upload attachments in Service Request, you will need the attachment's token.
+
+  **To fetch the token execute the following API:**
+
+  1. POST: api/rest/Attachment/newSR
+
+  <Paragraph indent="1">
+    Use Postman or a similar app instead of browser and set the Request Body as **Form-data**.
+  </Paragraph>
+
+  2. Copy the token from the response.
+
+  <Paragraph indent="1">
+    *Sample response containing token*
+  </Paragraph>
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/r2G-H4D-lMb_L8y-gU8Mq_tokens.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/Configure/API/tokens.png" githubPath="Content/Resources/Images/Configure/API/tokens.png" showCaption="false"></Image>
+
+  **Using the token in the Service Request:**
+
+  attachmentsToUpload: \[\["\{token ID}", "\<attachment file name"]]
+</ExpandableHeading>
+
+## Unsuccessful Responses
+
+<ExpandableHeading>
+  ## Empty Request Body
+
+  Scenario: Trying to create a Service Request with empty request body.
+
+  Header Name:
+
+  **Authorization: Sessionkey**
+
+  | <font color="#ffffff">Code</font>             | ISM\_4000                                          |
+  | --------------------------------------------- | -------------------------------------------------- |
+  | Description                                   | Invalid Request Payload                            |
+  | Message                                       | \{  <br />"Message body cannot be empty."  <br />} |
+  | <font color="#ffffff">HTTP STATUS CODE</font> | **400**                                            |
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Invalid Request Body
+
+  Scenario: Trying to create a Service Request with invalid request body.
+
+  Header Name:
+
+  **Authorization: Sessionkey**
+
+  | <font color="#ffffff">Code</font>             | ISM\_4000                                      |
+  | --------------------------------------------- | ---------------------------------------------- |
+  | Description                                   | Invalid Request Payload                        |
+  | Message                                       | \[  <br />"Invalid Business Object."  <br />], |
+  | <font color="#ffffff">HTTP STATUS CODE</font> | **400**                                        |
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Missing Required Fields
+
+  Scenario: Trying to create a Service Request with missing mandatory fields.
+
+  Header Name:
+
+  **Authorization: Sessionkey**
+
+  | <font color="#ffffff">Code</font>             | ISM\_4000                                                 |
+  | --------------------------------------------- | --------------------------------------------------------- |
+  | Description                                   | Invalid Request Payload                                   |
+  | Message                                       | \[  <br />"Required field parameters is missing"  <br />] |
+  | <font color="#ffffff">HTTP STATUS CODE</font> | **400**                                                   |
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Invalid Response
+
+  Scenario: When the application fails to save when trying to create a Service Request.
+
+  Header Name:
+
+  **Authorization: Sessionkey**
+
+  | <font color="#ffffff">Code</font>             | ISM\_5000                                                                                 |
+  | --------------------------------------------- | ----------------------------------------------------------------------------------------- |
+  | Description                                   | Internal server error                                                                     |
+  | Message                                       | \[  <br />"The server encountered an internal error. Please retry the request."  <br />], |
+  | <font color="#ffffff">HTTP STATUS CODE</font> | **500**                                                                                   |
+</ExpandableHeading>

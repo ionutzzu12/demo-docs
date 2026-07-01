@@ -1,0 +1,114 @@
+---
+title: Viewing the Integration Status and History
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:52 GMT+0300 (Eastern European Summer Time)
+---
+
+The fastest way to spot errors is to look at the integration log. You can also view the status of your data import and cancel a running import.
+
+- :Link[Viewing the Integration Queue]{label="Viewing the Integration Queue" overridedLabel="Viewing the Integration Queue" spaceId docId="SZ6PVnM0THPrdssRKn1FH" version="v2" docAnchorId="#IntegrationQueue" loadingMethod="dynamic" newTab="false" href="Integration Status and History.mdx"}
+- :Link[Viewing the Data Integration Log - File Integration]{label="Viewing the Data Integration Log - File Integration" overridedLabel="Viewing the Data Integration Log - File Integration" spaceId docId="SZ6PVnM0THPrdssRKn1FH" version="v2" docAnchorId="#integrationLog" loadingMethod="dynamic" newTab="false" href="Integration Status and History.mdx"}
+- :Link[Viewing the Integration Log - SCCM]{label="Viewing the Integration Log - SCCM" overridedLabel="Viewing the Integration Log - SCCM" spaceId docId="SZ6PVnM0THPrdssRKn1FH" version="v2" docAnchorId="#IntegrationLogSCCM" loadingMethod="dynamic" newTab="false" href="Integration Status and History.mdx"}
+- :Link[Viewing Data Integration History]{label="Viewing Data Integration History" overridedLabel="Viewing Data Integration History" spaceId docId="SZ6PVnM0THPrdssRKn1FH" version="v2" docAnchorId="#Viewing" loadingMethod="dynamic" newTab="false" href="Integration Status and History.mdx"}
+- :Link[Canceling a Running or Queued Job]{label="Canceling a Running or Queued Job" overridedLabel="Canceling a Running or Queued Job" spaceId docId="SZ6PVnM0THPrdssRKn1FH" version="v2" docAnchorId="#Cancelin" loadingMethod="dynamic" newTab="false" href="Integration Status and History.mdx"}
+
+### Viewing the Integration Queue
+
+The integration queue only shows active or running jobs. Once the import is completed or aborted, the job disappears from the list.
+
+1. From the Configuration Console, click **Extend > Integration Tools > Integration Queue** to view the **Integration Queue** workspace.
+
+<Paragraph indent="1">
+  The application displays running jobs. If there are no running jobs, the workspace is empty. The application can process multiple integration jobs at one time.
+</Paragraph>
+
+### Viewing the Data Integration Log - File Integration
+
+1. Log in to \{\{FRS\_VARS.ProductName}}.
+2. Open the **Integration Log** workspace. The list of data imports appears.
+
+*Sample Integration Log*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/xULKTUy4Rsn5goMqecdzO_integrationlog.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/integration_log.png" githubPath="Content/Resources/Images/help-images/integration_log.png" showCaption="false"></Image>
+
+<Paragraph indent="1">
+  If an import was successful, one line appears under **LogType**: Stats.
+</Paragraph>
+
+<Paragraph indent="1">
+  Errors encountered are shown with two lines: Stats and ErrorStats.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  **Stats**: Double-click to view a summary of the job.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  **ErrorStats**: Double-click to view a summary of the errors. Open the attachment to view the rows containing errors. The last column contains specific details about the error. You can modify the data (correct the errors) in the attachment file and save it to the source location for re-import. The error message will be ignored and the data will be imported into the database.
+</Paragraph>
+
+### Viewing the Integration Log - SCCM
+
+View the details of the processed job from the **Integration Log** workspace.
+
+1. Log in to \{\{FRS\_VARS.ProductName}}.
+2. Open the **Integration Log** workspace. The list of import jobs appear with the following information:
+
+| Field           | Description                                                                                                                                                                                                                                                                                                                                                    |
+| --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Log Type        | Shows three log types:<br />**Queued**: Indicates that the source ID from SCCM has been queued in the inventory management asset data processor.<br />**Verified**: Indicates that the source ID from SCCM has been successfully created in the \{\{FRS\_VARS.ProductName}} database.<br />**Stats**: Shows the statistics about the number of rows processed. |
+| Source ID       | SCCM root table key (Computer\_System\_DATA) shown on the **Object Mapping** page of the wizard.                                                                                                                                                                                                                                                               |
+| Target ID       | Asset ID that is derived from the asset identifier mapping function on the **Field Mapping** page of the wizard.                                                                                                                                                                                                                                               |
+| Start Time      | Time when the job should run.                                                                                                                                                                                                                                                                                                                                  |
+| End Time        | If applicable, the time by which the job should end.                                                                                                                                                                                                                                                                                                           |
+| Total Processed | Total number of records processed. If there are no new mappings added, there will probably be no records processed.                                                                                                                                                                                                                                            |
+| Message         | Informational message, which varies according to the log type.                                                                                                                                                                                                                                                                                                 |
+
+<Paragraph indent="1">
+  While the job is being processed, you can view it from the **Integration Queue** workspace.
+</Paragraph>
+
+### Viewing Data Integration History
+
+The **Integration History** workspace shows all jobs, including canceled jobs.
+
+1. Log in to \{\{FRS\_VARS.ProductName}}.
+2. Open the **Integration History** workspace.
+
+<Paragraph indent="1">
+  The list of import jobs appears. Also shown is the following information for each job:
+</Paragraph>
+
+| Field                                                        | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| ------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Connection Name<br />Source Name                             | The name and source of the integration job as defined in [About Configuring Data Integration](About-Configuring-Data-Integration.mdx).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| Queue Status                                                 | Indicates the status of the job. This field is color-coded.<br />**Queued**: The job has not yet run but is in the queue. This status is replaced by running when the job begins.<br />**Running**: The job is currently running. This status is replaced by completed when the job ends.<br />**Abort Requested**: A user has canceled the job, but the cancellation has not yet taken place. This status is replaced by aborting as soon as the cancellation begins.<br />**Aborting**: The job is in the cancel process. This realtime status only appears when the cancellation is running and is replaced by aborted when the cancellation is complete.<br />**Aborted**: The job has been successfully canceled. This final status remains in the **History** workspace.<br />**Completed**: The job has been successfully run. This final status remains in the **History** workspace. |
+| Batch Number                                                 | The number of the last batch processed. A batch is 200 rows of data.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| Batch Processed                                              | The total number of rows that have been processed in the last batch.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| Batch Failed                                                 | The total number of rows that have failed in the last batch.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| Process Row Number                                           | The total number of rows in all batches for the current job. If the job has 10 batches, for example, this field shows the total number of rows for all batches (2000).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| Batch Start Time<br />Batch End Time                         | The start and end time of the last batch processed.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| Display Batch Time Taken                                     | The number of seconds to run the last batch.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| Start Time                                                   | The start time of the entire job.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| Display Queue Running Time                                   | The number of seconds to run the job, including initialization and dispatching.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| Created By<br />Created On<br />Modified By<br />Modified On | Automatically generated by the application based on the logged in user ID.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+
+### Canceling a Running or Queued Job
+
+You can only cancel a running or queued job.
+
+1. Log in to \{\{FRS\_VARS.ProductName}}.
+2. Open the **Integration History** workspace. A list of queued, current (running), and past jobs appear.
+3. From the toolbar, click **Abort Integration Event**. The application adds the cancellation to the queue and the job status changes to abort requested. Usually this takes only a few seconds. You might need to refresh the screen to update the status.
+
+*Cancel Integration Job*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/TJSNvP9WMkVxq5J4AtAQJ_cancelintegration.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/cancel_integration.png" githubPath="Content/Resources/Images/help-images/cancel_integration.png" showCaption="false"></Image>
+
+<Paragraph indent="1">
+  When the cancellation process begins, the status changes to aborting. It usually takes less than a minute for a job to cancel, depending on the amount of data being processed.
+</Paragraph>
+
+<Paragraph indent="1">
+  When the cancellation is complete, the status changes to aborted. This status remains in the **Integration History** workspace.
+</Paragraph>

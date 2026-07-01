@@ -1,0 +1,49 @@
+---
+title: Configuring the My Items record display
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:50 GMT+0300 (Eastern European Summer Time)
+---
+
+In the \{\{FRS\_VARS.Self\_Service\_Mobile\_portal}} portal, you can configure the My Items record fields and their order. The default fields and order are **ID**, **Status**, **Incident/Service Request Summary**, and **Date and Time**.
+
+1. Log in to \{\{Primary.Company}} \{\{FRS\_VARS.ProductName}} as an Administrator.
+2. Open the Configuration console > **Users and Permissions** > **Roles and Permissions** > **Self Service** > **Top Level Tabs** > **My Items**.
+3. From the **Configure My Items card**, select the fields in the sequence you want them to be displayed on the My Items record. A minimum of two fields should be selected.
+
+<hint type="info">
+  - For fields from other Business Objects to display in the **Configure My Items Card**, you have to create a field in My Items and map it to the required field from the other Business Object. For more information, refer to the :Link[sample scenario]{label="sample scenario" overridedLabel="sample scenario" spaceId docId="c7U_m6jGeMcGw6GuYINXN" version="v2" docAnchorId="#SampleScenario" loadingMethod="dynamic" newTab="false" href="Configure-My-Items-record-display.mdx"}.
+  - Upon adding a new top-level tab in the My Items Business Object, the **Configure My Items Card** settings are reset and you will have to set them up again.
+  - If you have set up the **Configure My Items Card**, upon cloning new roles from Self Service role, the settings are retained in the cloned roles.
+</hint>
+
+## Sample scenario - mapping the Actual Category field of the Incident Business Object to a new field in My Items
+
+**Create a new field:**
+
+1. Log in to \{\{FRS\_VARS.ProductName}} as an Administrator.
+2. Open the Configuration console > **Build** >**&#x20;Business Object** - **FRS\_MyItem** > **Fields** > **Add New**.
+3. Select the **Type** as **Text** and the **Field Type** as **Unicode**. The **Field Type** of the field you are creating and mapping to should match.
+4. Enter the **Field Name** and **Display Name** as **Incident Category** and **Save**.
+5. A new field - **Incident Category** is selected.
+
+**Map the newly created field to the Incident's field:**
+
+1. From the Incident Business Object page, select **Business Rules**.
+2. Select **Triggered Actions**, edit **Add My Item**.
+3. Select the **On Insert** option and click **Next**.
+
+<Paragraph indent="1">
+  All the fields of the My Items Business Object are displayed.
+</Paragraph>
+
+4. Select **Incident Category** and click in the **Value** field.
+5. Click **fx** to enter the expression in the **Expression Editor**.
+6. From the **Tool Box** section, select **Incident** > **Fields** > **Actual Category** and **Save**.
+
+<Paragraph indent="1">
+  The new field - **Incident Category** is mapped to **Actual Category**. The new field - **Incident Category** will now be available for selection in the **Configure My Items Card**.
+</Paragraph>
+
+<hint type="info" indent="1">
+  When a new field is created and added to the **Configure My Items Card** settings, it is applied and displayed for records in My Items only for new records and not for the existing ones.
+</hint>

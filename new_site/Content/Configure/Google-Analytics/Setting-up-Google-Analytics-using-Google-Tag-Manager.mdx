@@ -1,0 +1,98 @@
+---
+title: Setting up Google Analytics using Google Tag Manager
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:51 GMT+0300 (Eastern European Summer Time)
+---
+
+***Role****: Administrator.*
+
+***Minimum Version****:&#x20;*\{\{Primary.Company}} \{\{Primary.Product}}*&#x20;2024.2.*
+
+You can set up and measure analytics of \{\{FRS\_VARS.ProductName}} using [Google Tag Manager](https://marketingplatform.google.com/about/tag-manager/) (GTM) to measure the metrics that matters. For example, you can track the number of clicks used for keyword searches and accessing different workspaces.
+
+<hint type="info">
+  You can use GTM integration for the \{\{FRS\_VARS.ITSM}} classic UI, \{\{FRS\_VARS.Self\_Service\_Mobile\_portal}} portal, and \{\{FRS\_VARS.Mobile\_Analyst\_portal}} also.
+</hint>
+
+***Prerequisites****:*
+
+- *Ensure&#x20;*[Google Analytics](https://marketingplatform.google.com/about/analytics/)*&#x20;is integrated with&#x20;*[Google Tag Manager](https://marketingplatform.google.com/about/tag-manager/)*. To integrate&#x20;****Google Analytics****&#x20;with&#x20;****Google Tag Manager****&#x20;refer to the* [official documentation of Google Tag Manager](https://support.google.com/tagmanager/answer/9442095?hl=en).
+- *&#x20;Retrieve the&#x20;*:Link[Container ID]{label="Container ID" overridedLabel="Container ID" spaceId docId="Uy33imwpFgnGSL0KaxBJ0" version="v2" docAnchorId="#container-id" loadingMethod="dynamic" newTab="false" href="Setting-up-Google-Analytics-using-Google-Tag-Manager.mdx"}*&#x20;from your&#x20;****Google Tag Manager****&#x20;and ensure the container is published*.
+
+<Paragraph indent="1">
+  *Highlighting Container ID in the Google Tag Manager*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/ys0E3Ewmas1pVAV144PJd_container-id-gtm.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/GTM/container-id-gtm.png" githubPath="Content/Resources/Images/GTM/container-id-gtm.png" showCaption="false"></Image>
+
+<Paragraph indent="1">
+  *To retrieve&#x20;****Container ID****&#x20;from&#x20;****Google Tag Manager****&#x20;refer to the* [official documentation of Google Tag Manager](https://support.google.com/tagmanager/answer/14847097?hl=en\&ref_topic=15191151\&sjid=50419388955612946-AP).
+</Paragraph>
+
+## Integrate Google Tag Manager with ITSM
+
+Following are the steps to set up the GTM with \{\{FRS\_VARS.ITSM}}:
+
+1. Log in to \{\{FRS\_VARS.ITSM}} as an \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+2. Open the Configuration console > **Organization Profile** > **Account Information**.
+3. Select the **Enable google tag manager** check box and enter the **Container ID** created in Google Tag Manager in the **Enter Google Tag Manager Code**.
+
+<Paragraph indent="1">
+  Setting up the Google Tag Manager in the \{\{Primary.Product}}
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Qn6_7H2PsRKgZUKWNztwz_integrate-gtm-itsm.png" alt="Setting up the Google Tag Manager in ITSM" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/GTM/Integrate-GTM-ITSM.png" githubPath="Content/Resources/Images/GTM/Integrate-GTM-ITSM.png" showCaption="false"></Image>
+
+4. Click **Save**.
+
+## Use Cases
+
+Create a tracking metric for the number of clicks on the \{\{FRS\_VARS.Self\_Service\_Mobile\_portal}} portal left menu.
+
+1. Log in to \{\{FRS\_VARS.ITSM}} as an \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+2. Log in to your [Google Tag Manager workspace](https://tagmanager.google.com/), and select **Add a new tag** from the **New Tag** section to [create a Tag](https://support.google.com/tagmanager/answer/14842872).
+3. Select **Tag Configuration** > **Google Analytics** > **Google Analytics: GA4 Event**.
+4. Add the :Link[Measurement ID]{label="Measurement ID" overridedLabel="Measurement ID" spaceId docId="Uy33imwpFgnGSL0KaxBJ0" version="v2" docAnchorId="#measure-id" loadingMethod="dynamic" newTab="false" href="Setting-up-Google-Analytics-using-Google-Tag-Manager.mdx"} from [Google Analytics](https://support.google.com/analytics/answer/12270356?hl=en).
+5. Click the add + icon and select the **Event Name**.
+6. Under the **Event Parameter** section, set the **Parameter Name** as link\_text and the **Value** as \{\{Click Text}}.
+
+<hint type="info" indent="1">
+  For information on Parameter Name and Values, refer to the [analytics documentation on Google Support page](https://support.google.com/analytics/answer/13675006?hl=en).
+</hint>
+
+7. From the **Triggering** section, click the **Add** button and configure when the event should be triggered.
+8. Set the **Trigger Type** as **Click - All Elements**.
+9. Select **Some Clicks** for **This trigger fires on** option.
+10. Conditions - **Click Element**, **matches CSS selector**, gtm-left-nav-menu .x-treelist-item-icon.fontawesome-icon.
+
+<hint type="info" indent="1">
+  You can get the CSS element by right-clicking on the application and selecting **Inspect**.
+</hint>
+
+11. Save and exit.
+
+<Paragraph indent="1">
+  The event, Click - All Elements, is created. Now every time the left menu is clicked, the tag is triggered and the analytics are captured.
+</Paragraph>
+
+## Concepts
+
+<ExpandableHeading>
+  ## Measurement ID
+
+  **Measurement ID** is a unique identifier for web data stream in Google Analytics. The Measurement ID format is 'G-' followed by a mix of numbers and letters, such as 'G-PSW1MY7HB4.' For more information refer to [\[GA4\] Measurement ID](https://support.google.com/analytics/answer/12270356?hl=en).
+
+  *Highlighting Measurement ID in the Google Analytics*
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/IqMxAdMqH3LicTp2GDeTJ_measurement-id-ga.png" position="flex-start" size="40" initialPath="../../Resources/Images/GTM/measurement-id-ga.png" githubPath="Content/Resources/Images/GTM/measurement-id-ga.png" showCaption="false"></Image>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Container ID
+
+  **Container ID** is an identification code of container created in the Google Tag Manager. The Container ID format is \`GTM-\` followed by a mix of alpha-numeric string, such as \`GTM-T63FA3VC\`. For more information refer to [Install a web container](https://support.google.com/tagmanager/answer/14847097).
+
+  *Highlighting Container ID in the Google Tag Manager*
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/ys0E3Ewmas1pVAV144PJd_container-id-gtm.png" position="flex-start" size="40" initialPath="../../Resources/Images/GTM/container-id-gtm.png" githubPath="Content/Resources/Images/GTM/container-id-gtm.png" showCaption="false"></Image>
+</ExpandableHeading>

@@ -1,0 +1,99 @@
+---
+title: Workfow Variables
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:58 GMT+0300 (Eastern European Summer Time)
+---
+
+**Role**: Administrator
+
+**Minimum Version**: Ivanti \{\{FRS\_VARS.ProductName}} 2026.1
+
+**Prerequisites**: Enable workflow variables by creating the global constant **EnableWorkflowVariables** with **Type** as **Boolean** and set the **Value** as **True**.
+
+Workflow variables allow quick action blocks within the same workflow instance to share data at run time. They persist for the lifetime of the workflow instance and are deleted when the workflow reaches a terminal state (completed, failed, or interrupted). Workflow variables are not written to business object fields and are not visible outside the workflow context.
+
+### Using Workflow Variables in Quick Actions
+
+**Create Workflow Variables**
+
+Create a composite action to declare and initialize the workflow variable.
+
+1. Log into the Service Desk console as an **Administrator**,
+2. Open an Incident or \{\{FRS\_VARS.Service\_Request-Service-Request}}. From the **More** menu > **Edit Actions** > **Graphical Action Designer** or **Classic Action Designer**.
+
+<Paragraph indent="1">
+  In the **Graphical Action Designer**:
+</Paragraph>
+
+<Paragraph indent="1">
+  a. Drag the **Update Stored Values and Variables** block.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Select **Editor&#x20;**&#x69;n the side panel.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. Select the **Variable Type** as **Workflow Variable**, then enter the variable **Name**, select **Data Type**, and in **Value** you can define function using the **Expression Editor**.
+</Paragraph>
+
+<hint type="info" indent="2">
+  Workflow variables currently support only the Text data type. If you need to work with numeric or date-time values, store them as text and explicitly cast them to the required type in expressions or consuming actions.
+</hint>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/BBLJmFPh7pSd3WoFl1pgK_workflow-variable-creation-gad.png" position="flex-start" size="40" indent="2" initialPath="../QuickActions/quick-actions-images/workflow-variable-creation-gad.png" githubPath="Content/Configure/QuickActions/quick-actions-images/workflow-variable-creation-gad.png" showCaption="false"></Image>
+
+<Paragraph indent="1">
+  d. Select **OK**.
+</Paragraph>
+
+<Paragraph indent="1">
+  In the **Classic Action Designer**:
+</Paragraph>
+
+<Paragraph indent="1">
+  a. Add the **Composite Action** under **Create New Actions**.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Add basic details such as **Name**, **Description**, and **Category**.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. Select the **Update Stored Values and Variables** block in the **Add new action**.
+</Paragraph>
+
+<Paragraph indent="1">
+  d. Click the **+** button
+</Paragraph>
+
+<Paragraph indent="1">
+  e. In **Variable Type**, select **Workflow Variable**, then define the variable **Name**, **Data Type**, and in **Value** you can define function using the **Expression Editor**.
+</Paragraph>
+
+<hint type="info" indent="2">
+  Workflow variables currently support only the Text data type. If you need to work with numeric or date-time values, store them as text and explicitly cast them to the required type in expressions or consuming actions.
+</hint>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/rsih8aWnCGl9ZACtn9Eka_workflow-variable-creation.png" position="flex-start" size="40" indent="2" initialPath="../QuickActions/quick-actions-images/workflow-variable-creation.png" githubPath="Content/Configure/QuickActions/quick-actions-images/workflow-variable-creation.png" showCaption="false"></Image>
+
+<Paragraph indent="1">
+  f. **Save** the composite action.
+</Paragraph>
+
+<hint type="info" indent="1">
+  Workflow variables are isolated per workflow instance; two instances of the same workflow do not share variables.
+</hint>
+
+**Reading Workflow Variables**
+
+Use the **GetWorkflowVariable()** in the Expression Editor to read the variable value. This function accepts the variable name as a string argument and returns its last set value.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/50l4bn7b9KtD-RSI-b5-4_workflow-variable-function.png" position="flex-start" size="40" initialPath="../QuickActions/quick-actions-images/workflow-variable-function.png" githubPath="Content/Configure/QuickActions/quick-actions-images/workflow-variable-function.png" showCaption="false"></Image>
+
+**Workflow Variable Lifecycle and Scope**
+
+- Workflow variables persist for the duration of the workflow instance and are deleted when the workflow reaches a terminal state (completed, failed, or interrupted).
+- Variables are available only within the workflow instance that created them and cannot be referenced outside that workflow or from the Business Object action menu.
+- Executing a quick action that sets or reads workflow variables outside a workflow context triggers an error (for example, when launched directly from the BO workspace).
+- When logging is enabled, variable creation, updates, reads, and references are recorded for troubleshooting.

@@ -1,0 +1,2339 @@
+---
+title: Web Service Methods
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:01 GMT+0300 (Eastern European Summer Time)
+---
+
+This section lists the \{\{FRS\_VARS.ProductName}} web service methods that you can use. These methods are based on JavaScript.
+
+<hint type="success">
+  \{\{FRS\_VARS.Company}} strongly recommends using the secure protocol HTTPS instead of HTTP within the \{\{FRS\_VARS.ProductName}} platform to ensure data security and integrity.
+</hint>
+
+<ExpandableHeading>
+  ## About Using Web Service Methods with Quick Action Scripts and External Business Object Scripts
+
+  The following web service methods are supported in quick action scripts:
+
+  - GetWebServiceFromUrl
+  - GetWebService
+  - ExecuteQuickAction
+  - Create
+  - Get
+  - Search
+  - ExecuteWebRequest
+  - HtmlEncode
+  - HtmlDecode
+  - HexToBytes
+  - BytesToString
+  - LoadXml
+  - GetCultureInfo
+  - GetTimeZoneInfo
+  - Hash
+  - KeyedHash
+
+  The following web service methods are supported in external business object scripts:
+
+  - GetWebServiceFromUrl
+  - GetWebService
+  - SetReturnData
+  - SetReturnDataForCondition
+  - Get
+  - Search
+  - ExecuteWebRequest
+  - SynchronizeAllHeatData
+  - SynchronizeAllHeatDataWithRelated
+  - SynchronizeHeatData
+  - SynchronizeHeatDataWithRelated
+  - HtmlEncode
+  - HtmlDecode
+  - HexToBytes
+  - BytesToString
+  - LoadXml
+  - GetCultureInfo
+  - GetTimeZoneInfo
+  - Hash
+  - KeyedHash
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## About the HeatContext Variable
+
+  ### Variable
+
+  <Paragraph indent="1">
+    HeatContext
+  </Paragraph>
+
+  ### Description
+
+  <Paragraph indent="1">
+    This context variable is available in the **SetReturnData** and synchronization scripts. This object contains information about the reason why the script is executed.
+  </Paragraph>
+
+  ### Parameters
+
+  <table isTableHeaderOn="true">
+    <tr>
+      <td>
+        Locale
+      </td>
+      <td>
+        Contains the locale identifier such as 'en-US'. If the script is invoked as a result of user action then it contains the locale associated with the user session.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        TenantId
+      </td>
+      <td>
+        Tenant identifier.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        BusinessObject
+      </td>
+      <td>
+        Information about the business object that the script is associated with.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        UIBusinessObject
+      </td>
+      <td>
+        If the script is associated with a validation list business object, then when the pick list for that validation list business object is used in the workspace, it contains the business object associated with the workspace. For example, if the pick list is referenced in the **Incident** workspace, it contains information about the **Incident** business object.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        PickList
+      </td>
+      <td>
+        If the script is invoked to fetch values for a pick list, this contains the details of the pick list. If the pick list is a validation provider pick list and used in the Service Catalog, then the arguments below contain validation parameters name and their values.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Arguments
+      </td>
+      <td>
+        When the script is invoked to fetch the latest data from external sources, it has the following information:
+        List : Contains an object that holds the following information:
+        - **FieldFilter**: If any filter is defined in the list workspace by the user.
+        - **DefinitionName**: Name of the list that caused the invocation of this script.
+        - **SearchInfo**: If the list uses a saved search to populate the data, this contains the search criteria that is defined in that construct.
+        - **DependentInfo**: If the list is part of a dependent child tab, this contains information about the relationship between the parent business object and other information. Examples are MasterObjectTableRef, MasterObjectId, RelationshipTag, and DependentRel2Name.
+        When the script is invoked from another script using ExecuteScript(), it contains the value passed to the **Arguments** parameter of this function.
+        When the script is invoked to populate a validation provider pick list in the Service Catalog, this contains the validation parameters information.
+      </td>
+    </tr>
+  </table>
+
+
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Fatal
+
+  ### Method
+
+  Fatal
+
+  ### Description
+
+  Writes a fatal message to the server log.
+
+  ### Definition
+
+  console.fatal(string logMessage)
+
+  ### Parameters
+
+  | logMessage | The message string to be logged. |
+  | ---------- | -------------------------------- |
+
+  ### Example
+
+  You can log a fatal message with the following script:
+
+  console.fatal("This is a fatal message!");
+
+
+
+
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Error
+
+  ### Method
+
+  Error
+
+  ### Description
+
+  Writes an error message to the server log.
+
+  ### Definition
+
+  console.error(string logMessage)
+
+  ### Parameters
+
+  | logMessage | The message string to be logged. |
+  | ---------- | -------------------------------- |
+
+  ### Example
+
+  You can log an error message with the following script:
+
+  console.error("This is an error message!")
+
+
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Warning
+
+  ### Method
+
+  Warning
+
+  ### Description
+
+  Writes a warning message to the server log.
+
+  ### Definition
+
+  console.warn(string logMessage)
+
+  ### Parameters
+
+  | logMessage | The message string to be logged. |
+  | ---------- | -------------------------------- |
+
+  ### Example
+
+  You can log a warning message with the following script:
+
+  console.warn("This is a warning message!")
+
+
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Informational
+
+  ### Method
+
+  Informational
+
+  ### Description
+
+  Writes an informational message to the server log.
+
+  ### Definition
+
+  console.info(string logMessage)
+
+  ### Parameters
+
+  | logMessage | The message string to be logged. |
+  | ---------- | -------------------------------- |
+
+  ### Example
+
+  You can log an informational message with the following script:
+
+  console.info("This is an informational message!");
+
+
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Debug
+
+  ### Method
+
+  Debug
+
+  ### Description
+
+  Writes a debug message to the server log.
+
+  ### Definition
+
+  console.debug(string logMessage)
+
+  ### Parameters
+
+  | logMessage | The message string to be logged. |
+  | ---------- | -------------------------------- |
+
+  ### Example
+
+  You can log a debug message with the following script:
+
+  console.debug("This is a debug message!");
+
+
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Log
+
+  ### Method
+
+  Log
+
+  ### Description
+
+  Writes a log message to the server log.
+
+  ### Definition
+
+  console.log(string logMessage)
+
+  ### Parameters
+
+  | logMessage | The message string to be logged. |
+  | ---------- | -------------------------------- |
+
+  ### Example
+
+  You can log a log message with the following script:
+
+  console.log("This is a log message!");
+
+
+
+
+
+
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## GetWebServiceFromUrl
+
+  ### Method
+
+  GetWebServiceFromUrl
+
+  ### Description
+
+  Gets the web service instance object that invokes the web service.
+
+  ### Definition
+
+  object GetWebServiceFromUrl(string serviceUrl, string serviceName, string userName, string password)
+
+  object GetWebServiceFromUrl(string serviceUrl, string serviceName, string userName, string password, string wsdlPath)
+
+  ### Parameters
+
+  | serviceUrl  | The URL where the web service is located.                                                                                                                                                                                                                               |
+  | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | serviceName | The name of the web service.                                                                                                                                                                                                                                            |
+  | userName    | The user name of the credential needed to get the web service instance.                                                                                                                                                                                                 |
+  | password    | The password related to the user name.                                                                                                                                                                                                                                  |
+  | wsdlPath    | If the web service does not support querying WSDL documents, then this parameter contains the location where the WSDL for the web service is available.&#xA;&#xA;This is the name of the WSDL document as it is listed in the **WSDL and Script Repository** workspace. |
+
+  ### Return Type
+
+  Returns the object that is the web service instance whose methods can be called.
+
+  ### Examples
+
+  var serviceInstance = GetWebServiceFromUrl("http\://wsf.cdyne.com/WeatherWS/Weather.asmx", "Weather", null, null);
+
+
+
+  var serviceInstance = GetWebServiceFromUrl("http\://www\.webservicex.net/uszip.asmx", "USZip", null, null);
+
+
+
+  var serviceInstance = GetWebServiceFromUrl("http\://sap.local:8000/sap/bc/srt/rfc/sap/ict\_service\_desk\_api/100/ict\_service\_desk\_api/ict\_service\_desk\_api", "ICT\_SERVICE\_DESK\_API", null, null, 'Name of SAP WSDL document in the repository');
+
+
+
+  var serviceInstance = GetWebServiceFromUrl(null, "USZip", null, null, "http\://www\.webservicex.net/uszip.asmx?wsdl");
+
+
+
+  var serviceInstance = GetWebServiceFromUrl('http\://www\.webservicex.net/uszip.asmx', "USZip", null, null, "http\://www\.webservicex.net/uszip.asmx?wsdl");
+
+
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## GetWebService
+
+  ### Method
+
+  GetWebService
+
+  ### Description
+
+  Gets the web service instance object that is necessary to invoke the web service.
+
+  ### Definition
+
+  GetWebService(string serviceReferenceName, string serviceName)
+
+  ### Parameters
+
+  | serviceReferenceName | The name of the service reference. The name should be unique for each script. It identifies the service address URL within the script. |
+  | -------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+  | serviceName          | The name of the web service.                                                                                                           |
+
+  ### Return Type
+
+  Returns the object that is the web service instance whose methods can be called.
+
+  ### Example
+
+  var serviceReferenceName = "TestIntegration";
+
+  var wsdlAddress = "TestIntegration.TestIntegration.Address";
+
+  var userId = "TestIntegration.TestIntegration.Login";
+
+  var pwd = "TestIntegration.TestIntegration.Password";
+
+  var serviceName = "FRSHEATIntegration";
+
+  var serviceInstance = GetWebService (TestIntegration, FRSHEATIntegration);
+
+
+
+
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## InvokeMethod
+
+  ### Method
+
+  InvokeMethod
+
+  ### Description
+
+  Invokes the given web service method.
+
+  ### Definition
+
+  object service.InvokeMethod(string methodName, object\[] arguments);
+
+  object service.InvokeMethod(string methodName, object arguments);
+
+  ### Parameters
+
+  | methodName | The name of the web method to invoke.                                                                                                         |
+  | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+  | arguments  | The input parameters for the web method. Either an array of positional arguments or an object containing the name and value of the parameter. |
+
+  ### Return Type
+
+  Returns the result of the web service call as an object.
+
+  ### Example
+
+
+
+  var serviceInstance = GetWebServiceFromUrl("http\://www\.webservicex.net/uszip.asmx", "USZip", null, null);
+
+  var xmlDoc = serviceInstance.InvokeMethod("GetInfoByState", \[ state ]);
+
+  var xmlDoc = serviceInstance.InvokeMethod("GetInfoByState", \{ 'USState' : state });
+
+
+
+
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## GetCookieValue
+
+  ### Method
+
+  GetCookieValue
+
+  ### Description
+
+  Accesses the authentication token in the cookie, which is used when authenticating a user name and password.
+
+  ### Definition
+
+  GetCookieValue(string url, string name)
+
+  ### Parameters
+
+  | url  | The associated URL of the cookie that is being accessed.  |
+  | ---- | --------------------------------------------------------- |
+  | name | The name of the cookie whose value needs to be retrieved. |
+
+  ### Return Type
+
+  Returns the value of the authentication token.
+
+  ### Example
+
+  You can retrieve the cookie called AuthToken with the following script:
+
+  var wsdlAddress = "SunRise.WebServiceXSunRise.Address";
+
+  var userId = "SunRise.WebServiceXSunRise.Login";
+
+  var pwd = "SunRise.WebServiceXSunRise.Password";
+
+  var serviceCall = "SunSetRiseService";
+
+  var serviceInstance = GetWebServiceFromUrl(wsdlAddress, serviceCall, userId,pwd);
+
+  var result = serviceInstance.InvokeMethod(methodCall, paramValues);
+
+  var authToken = serviceInstance.GetCookieValue('/', 'AuthToken');
+
+
+
+
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## ExecuteQuickAction
+
+  ### Method
+
+  ExecuteQuickAction
+
+  ### Description
+
+  Executes the specific quick action.
+
+  With optional arguments, this method executes the specific quick action defined on the specified business object affecting the specified RecID.
+
+  ### Definition
+
+  ExecuteQuickAction(string actionName)
+
+  ExecuteQuickAction(string actionName, string tableRef, string recId)
+
+  ### Parameters
+
+  | actionName | The name of the quick action.                                 |
+  | ---------- | ------------------------------------------------------------- |
+  | tableRef   | The table reference of the table where the record is created. |
+  | recId      | The RecID of the record whose data is needed.                 |
+
+  ### Example
+
+  The application executes the **Problem Workaround Notification for Incident Owner** Quick Action on the current object context of the **Incident** business object:
+
+  ExecuteQuickAction("Problem Workaround Notification for Incident Owner");
+
+  The application executes the **Problem Workaround Notification for Incident Owner** Quick Action on the specified incident, where Incident\_RecId is the script variable that is initialized with the RecID of the target incident:
+
+  ExecuteQuickAction("Problem Workaround Notification for Incident Owner", "Incident#", Incident\_RecId);
+
+
+
+
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## ExecuteScript
+
+  ### Method
+
+  ExecuteScript
+
+  ### Description
+
+  Executes the script associated with the specified external business object.
+
+  ### Definition
+
+  ExecuteScript(string boDesignerName, object arguments)
+
+  ### Parameters
+
+  | boDesignerName | The name of the external business object.                                                            |
+  | -------------- | ---------------------------------------------------------------------------------------------------- |
+  | arguments      | The input parameters for the external business object specified by the **boDesignerName** parameter. |
+
+  ### Return Type
+
+  The JSON object that is returned using the **SetReturnData** web method.
+
+  ### Example
+
+  var boDesignerName = RELATED\_BO\_FRS\_WS\_DSM\_SOFTWAREREVISION\_DESIGNER\_NAME;
+
+  var arguments = \{ Requester: \{ BOName: CURRENT\_CONTEXT\_BO\_DESIGNER\_NAME } };
+
+  var scriptReturn = ExecuteScript(boDesignerName, arguments);
+
+
+
+
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## SetReturnData
+
+  ### Method
+
+  SetReturnData
+
+  ### Description
+
+  Uses the value to return data for a pick list or data that is called from another synchronization script.
+
+  If you call this method more than once, the application uses the value set by the last call.
+
+  ### Definition
+
+  SetReturnData(object)
+
+  SetReturnData(object\[] jsonObject)
+
+  ### Parameters
+
+  | jsonObject | When called from another script using the **ExecuteScript** web method, this is any JSON data that the script returns to the calling script.  <br />When called to retrieve records for a pick list, this is an array of key-value pairs. For example:  <br />function State(name, code)  <br />\{  <br />this.Name = name;  <br />this.Code = code;  <br />} |
+  | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+  ### Return Type
+
+  For a pick list, the return type is an array of objects that contains the fields defined in the external business objects.
+
+  For a synchronization script, the return type can be any type.
+
+  ### Example
+
+  // http\://www\.webservicex.net/uszip.asmx
+
+  function ZipInfo(city, state, zip, areaCode, timeZone)
+
+  \{
+
+  this.City = city;
+
+  this.State = state;
+
+  this.Zip = zip;
+
+  this.AreaCode = areaCode;
+
+  this.TimeZone = timeZone;
+
+  }
+
+  function getCities(state)
+
+  \{
+
+  if (!state)
+
+  return \[];
+
+  var serviceInstance = GetWebService("USZip", "USZip");
+
+  var xmlDoc = serviceInstance.InvokeMethod("GetInfoByState", \[ state ]);
+
+  var list = xmlDoc.ChildNodes;
+
+  if (!list)
+
+  return \[];
+
+  var cities = \{};
+
+  var count = list.Count;
+
+  for (i = 0; i \< count; i++)
+
+  \{
+
+  try \{
+
+  var node = list\[i];
+
+  var info = new ZipInfo(node\["CITY"].InnerText, node\["STATE"].InnerText, node\["ZIP"].InnerText,
+
+  node\["AREA\_CODE"].InnerText, node\["TIME\_ZONE"].InnerText);
+
+  cities\[info.City.toUpperCase()] = info;
+
+  } catch (error)
+
+  \{
+
+  console.log("Error during processing of city.");
+
+  }
+
+  }
+
+  var result = \[];
+
+  for (city in cities)
+
+  result.push(cities\[city]);
+
+  return result;
+
+  }
+
+  var state = null;
+
+  if (!!HeatContext.PickList)
+
+  \{
+
+  try \{
+
+  state = HeatContext.PickList.Constraint.Conditions\[0].Value;
+
+  } catch (error) \{
+
+  console.log(error.toString());
+
+  }
+
+  // We are returning this data for pick list
+
+  SetReturnDataForCondition(!state ? \[] : getCities(state), \{ State : state});
+
+  }
+
+  else if (!!HeatContext.Arguments && !!HeatContext.Arguments.Synchronize && !!HeatContext.Arguments.State)
+
+  \{ state = HeatContext.Arguments.State;
+
+  SynchronizeHeatData(HeatContext.BusinessObject.DesignerName, \["State", "City"], getCities(state), \{ State : state});
+
+  }
+
+  else if (!!HeatContext.Arguments && !!HeatContext.Arguments.State)
+
+  \{
+
+  // This will return the list of cities for a given state when it is called through ExecuteScript.
+
+  state = HeatContext.Arguments.State;
+
+  SetReturnData(!state ? \[] : getCities(state));
+
+  }
+
+
+
+
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## SetReturnDataForCondition
+
+  ### Method
+
+  SetReturnDataForCondition
+
+  ### Description
+
+  Returns data for a pick list.
+
+  If you call this method more than once, the application uses the value set by the last call.
+
+  ### Definition
+
+  SetReturnDataForCondition(object\[] records, object whereCondition)
+
+  ### Parameters
+
+  | records        | When called to retrieve records for a pick list, this is an array of key-value pairs. For example:  <br />function State(name, code)  <br />\{  <br />this.Name = name;  <br />this.Code = code;  <br />}                                                                                                                                                                                                      |
+  | -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | whereCondition | Defines the scope of the data that is being operated on. For example, in the example for :Link[SetReturnData]{label="SetReturnData" overridedLabel="SetReturnData" spaceId docId="ca6LQ56PrawqAFw9MnIVQ" version="v2" docAnchorId="#SetRetur" loadingMethod="dynamic" newTab="false" href="Web-Service-Methods.mdx"}, it is the current state code for which the data is being retrieved from external source. |
+
+  ### Return Type
+
+  An array of objects that contains the fields defined in the external business objects.
+
+  ### Example
+
+  See the example for :Link[SetReturnData]{label="SetReturnData" overridedLabel="SetReturnData" spaceId docId="ca6LQ56PrawqAFw9MnIVQ" version="v2" docAnchorId="#SetRetur" loadingMethod="dynamic" newTab="false" href="Web-Service-Methods.mdx"}.
+
+
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Create
+
+  ### Method
+
+  Create
+
+  ### Description
+
+  Creates a new record in \{\{FRS\_VARS.ProductName}}.
+
+  ### Definition
+
+  DbObject Create(string tableRef)
+
+  ### Parameters
+
+  | tableRef | The table reference of the table where the record is created. |
+  | -------- | ------------------------------------------------------------- |
+
+  ### Example
+
+  You can create a new incident with the following script:
+
+  var newIncident = Create('Incident#');
+
+
+
+
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Get
+
+  ### Method
+
+  Get
+
+  ### Description
+
+  Gets the object for an existing record using its record ID from the specified table reference.
+
+  ### Definition
+
+  Get(string tableRef, string recId)
+
+  Get(string tableRef, string fieldName, object value)
+
+  ### Parameters
+
+  | tableRef  | The table reference of the table where the record will be created. |
+  | --------- | ------------------------------------------------------------------ |
+  | recId     | The RecID of the record whose data is needed.                      |
+  | fieldName | The name of the field in the current business object.              |
+  | value     | The value of the field specified by the **fieldName** parameter.   |
+
+  ### Example
+
+  Use the following script to call the built-in function called **CurrentUserRecId** to read data, such as the last name of the current user:
+
+  var employee = Get('Employee#', '$(CurrentUserRecId())')
+
+  var lastName = employee.Fields\['LastName'];
+
+  The following example retrieves the incident with the incident number of 100001:
+
+  Get("Incident#", "IncidentNumber", 100001)
+
+
+
+
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Update
+
+  ### Method
+
+  Update
+
+  ### Description
+
+  Updates a record.
+
+  ### Definition
+
+  Update(object data)
+
+  ### Parameters
+
+  | data | A JSON-like object (\{\<key1>: '\<value>', \<key2>: '\<value2>', ...}) that contains the key-value pairs to be updated in the record object (DbObject) on which this method is invoked. |
+  | ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+
+  ### Example
+
+  You can use this method to edit or update a record. For example, to edit two fields, use the following script, which gets the number and RecID of the current incident and then updates the two fields called **Impact** and **Symptom**:
+
+  var incident = Get('Incident#', '$(RecId)');
+
+  incident.Update(\{
+
+  Impact: 'Medium',
+
+  Symptom: 'Problem'
+
+  });
+
+  Another use case is to automatically create a new incident with fields auto-filled whenever a domain account is locked. For example, the following script creates a new incident and then updates that incident with new field values stating the symptom clearly as domain account locked.
+
+  var newIncident = Create('Incident#');
+
+  newIncident.Update(\{
+
+  Category: 'Account Lockout',
+
+  Impact: 'Medium',
+
+  ProfileLink\_RecID: '$(CurrentUserRecId())',
+
+  Service: 'Desktop Service',
+
+  Status: 'Active',
+
+  Subject: 'Cannot login to Windows',
+
+  Symptom: 'Customer failed to login to windows for more'+ 'than 3 times and domain account is locked',
+
+  Urgency: 'Medium'
+
+  });
+
+
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## AddLink
+
+  ### Method
+
+  LinkWebService
+
+  ### Description
+
+  The web service is used to link two different business objects.
+
+  ### Definition
+
+  AddLink(string tableRef, string id, string otherTableRef, string otherId, string relationshipTag)
+
+  ### Parameters
+
+  | string tableRef        | Business object name.                         |
+  | ---------------------- | --------------------------------------------- |
+  | string id              | Business object rec ID.                       |
+  | otherTableRef          | Business object name that should be linked.   |
+  | string otherId         | Business object rec ID that should be linked. |
+  | string relationshiptag | Relationship of the two business objects.     |
+
+  ### Examples
+
+  **Linking an Incident to a Change:**
+
+  AddLink('Incident#','089ADDF649DC4ED1A8D2B8C067D2EA92', 'Change#', '0C88F78B5F4D42ACA95D202F42084B72', 'IncidentAssociatesChange');
+
+  **Linking Problem to an Incident:**
+
+  AddLink('Incident#','12DE7C19A6F94457BF8D168493DDA475', 'Problem#', '67DA12C70E5940BABB926FDE0D9E238D', 'ProblemAssociatesIncident');
+
+  ### UpdateField
+
+  ### Method
+
+  UpdateField
+
+  ### Description
+
+  Updates a field of a record.
+
+  ### Definition
+
+  UpdateField(string fieldname, string fieldValue)
+
+  ### Parameters
+
+  | fieldName  | The name of the field to update. |
+  | ---------- | -------------------------------- |
+  | fieldValue | The value of the field.          |
+
+  ### Example
+
+  Use the following script to edit the **Subject** field:
+
+  incident.UpdateField('Subject', 'Please open a new record');
+
+
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Search
+
+  ### Method
+
+  Search
+
+  ### Description
+
+  Gets a collection without any search conditions.
+
+  ### Definition
+
+  Search(string tableRef)
+
+  Search(string tableRef, string savedSearch)
+
+  Search(string tableRef, object simpleSearch)
+
+  ### Returns
+
+  Returns an object that provides two sets of functionalities.
+
+  <Paragraph listStyleType="disc" indent="2">
+    The first set of functions creates, joins, and customizes search behaviors:
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="3">
+    Use the **RelatedItems** property to access or join the current business object with its related items. Use the relationship name through **RelatedItems** to build join conditions.
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="3">
+    Use **Where(object simpleSearch)** to add conditions to the related business objects.
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="3">
+    Use **Distinct()** to add distinct behavior to the search function.
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="3">
+    Use **Top(nRecords)** to restrict the number of records that needs to be retrieved.
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    The second set of functions enumerates the result of the search operation:
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="3">
+    **TableRef**: The business object name of the search result.
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="3">
+    **First()**: Returns the first business object or 'null' if the result is empty. The returned business object has a property called **Fields** that is an object of fields and their values.
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="3">
+    **Current**: Returns the current business object when **MoveNext()** returns true. The returned business object has a property called **Fields** that is an object of fields and their values.
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="3">
+    **MoveNext()**: Moves the cursor to the next business object if present and returns true. Otherwise, it returns false indicating that there are no more business objects to access.
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="3">
+    **Reset()**: Resets the cursor to the beginning of the result list.
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="3">
+    **Close()**: Closes the result set and frees up any resources used by the search.
+  </Paragraph>
+
+  <hint type="info">
+    You must fully define the search criteria and behaviors before starting to process the results. Once you start processing the results, you must process the entire result set. Otherwise, further database operations can cause errors and throw exceptions. You can completely process the result set by either enumerating all business objects using the **MoveNext()** function it until it returns false, or by calling the **Close()** function.•
+  </hint>
+
+  ### Parameters
+
+  | tableRef     | The table reference of the table from which the results are retrieved. |
+  | ------------ | ---------------------------------------------------------------------- |
+  | savedSearch  | The name of the saved search.                                          |
+  | simpleSearch | Additional search filter.                                              |
+
+  ### Example
+
+  Use the following script to get a collection without any search conditions:
+
+  Search('IncidentStatus#');
+
+  The following is another example of a script to get a collection:
+
+  Search('Incident#', \{
+
+  Status: 'Active',
+
+  ProfileLink\_RecID: '$(CurrentUserRecId())'
+
+  });
+
+  Use any of the following scripts to get the incident with the number 10424:
+
+  • var incident = Get('Incident#', '8D9EDC222216490B895FF8C3D3B5D4EE');
+
+  • var incident = Get('Incident#', 'IncidentNumber', 10424);
+
+  • var incident = Search('Incident#', \{ IncidentNumber : 10424 }).First();
+
+  This is another example:
+
+  var incident = null;
+
+  var result = Search('Incident#', \{ Status: 'Active' });
+
+  while (result.MoveNext()) \{
+
+  var obj = result.Current;
+
+  if (obj.Fields\["IncidentNumber"] == 100) \{
+
+  incident = obj;
+
+  break;
+
+  }
+
+  }
+
+  result.Close();
+
+  Use the following script to search for records based on relationships. In this example, the script retrieves the tasks for the specified incident:
+
+  var tasks = Get('Incident#', '$(RecId)')
+
+  .RelatedItems\['Task#Assignment.Rev3'];
+
+
+
+  var votes = Search('Change#', \{Status: 'Scheduled'})
+
+  .RelatedItems\['FRS\_Approval#.']
+
+  .RelatedItems\['FRS\_ApprovalVoteTracking#.'];
+
+
+
+
+
+
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Where
+
+  ### Method
+
+  Where
+
+  ### Description
+
+  Filters a collection of objects that satisfy a condition. Use the **Where** method with the **Search** method.  See also :Link[Search]{label="Search" overridedLabel="Search" spaceId docId="ca6LQ56PrawqAFw9MnIVQ" version="v2" docAnchorId="#Search" loadingMethod="dynamic" newTab="false" href="Web-Service-Methods.mdx"}and :Link[Update]{label="Update" overridedLabel="Update" spaceId docId="ca6LQ56PrawqAFw9MnIVQ" version="v2" docAnchorId="#Update" loadingMethod="dynamic" newTab="false" href="Web-Service-Methods.mdx"}
+
+  ### Definition
+
+  DbObjectCollection Where(string condition)
+
+  ### Parameters
+
+  | condition | The conditional expression to base the output on. |
+  | --------- | ------------------------------------------------- |
+
+  ### Example
+
+  Use the following script to select records where the status of tasks is "rejected":
+
+  var rejectingItems = Search('Task#Assignment')
+
+  .Where(\{Status: 'Rejected'})
+
+  Use the following script to search for records using a set of validated fields. In this example, the script retrieves team members who have tasks with a rejected status:
+
+  var rejectingTeams = Search('Task#Assignment')
+
+  .Where(\{Status: 'Rejected'}) // select records where status of the tasks = rejected
+
+  .RelatedItems\['Owner => Employee#']
+
+  .RelatedItems\['Team => StandardUserTeam#']
+
+  .Distinct() // selects unique records without duplicates
+
+  .Top(20); // selects the top 20 records
+
+
+
+
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## ExecuteWebRequest
+
+  ### Method
+
+  ExecuteWebRequest
+
+  ### Description
+
+  Executes an HTTP web request and returns the response of the request.
+
+  ### Definition
+
+  ExecuteWebRequest(string method, string url, string postData, object settings);
+
+  ExecuteWebRequest(string method, string url, byte\[] postData, object settings);
+
+  ### Parameters
+
+  | method   | Valid HTTP request methods such as GET, POST, HEAD, and DELETE.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+  | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | url      | The HTTP request URL including the query string values.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+  | postData | Contains post data to be sent as part of the request, properly formatted and encoded in string or byte\[].                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+  | Settings | Optional. Contains a JSON object. Its members are also optional.  <br />**Headers**: A JSON object containing additional HTTP request headers including customer headers. For example:  <br />\{  <br />"Host" : "www\.example.com",  <br />"Referer": " ",  <br />"User-Agent" : "HEATSM Scripting",  <br />"Content-Type" : "application/x-www-form-urlencoded"  <br />}  <br />**Cookies**: JSON object and it is optional. If passed, cookie name is used as property name and its value as property value. For example:  <br />\{  <br />"CookieName" : "CookieValue"  <br />}  <br />**SkipServerCertificateValidation**: A Boolean value that controls how to handle the certificates error during an HTTPS request call.  <br />**ServerCertificateHash**: Optional. A string value. If provided, it skips certificate errors if the HASH value of a certificate matches this value.  <br />**AllowAutoRedirect**: Automatically processes the request call redirect and returns the response of the redirect request.  <br />**UserName**: Optional. The user name of the credential.  <br />**Password**: Optional. The password of the credential. |
+
+  ### Returns
+
+  Returns a response from an HTTP request call. This return value is a JSON object containing the following properties:
+
+  <Paragraph listStyleType="disc" indent="2">
+    **StatusCode**: The numerical value of the response status code. See [https://msdn.microsoft.com/en-us/library/system.net.httpstatuscode(v=vs.110).aspx](https://msdn.microsoft.com/en-us/library/system.net.httpstatuscode\(v=vs.110\).aspx).
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    **StatusDescription**: The description of the status code.
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    **CharacterSet**: The character set name of the r esponse data.
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    **ContentType**: The type of response content.
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    **ContentLength**: The length of the response content.
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    **LastModified**: The last modified header of the response.
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    **Cookies**: A JSON object containing cookies related to the response.
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    **Data**: Either string (for text content) or byte\[] (for non-text content).
+  </Paragraph>
+
+  ### Example
+
+
+
+  // JavaScript object to wrap REST API(s)
+
+
+
+  function CustomService(host, userName, password)
+
+  \{
+
+  'use strict';
+
+  // private members
+
+  var Host = host;
+
+  var UserName = userName;
+
+  var Password = password;
+
+  var Cookies = null;
+
+  var SessionInfo = null;
+
+  var getWWWFormUrlEncodedData = function (obj)
+
+  \{
+
+  var encoded = '', separator = '';
+
+  for (var key in obj)
+
+  \{
+
+  var value = obj\[key];
+
+  var encodedKey = HeatUtility.HtmlEncode(key.toString());
+
+  if (typeof value === 'undefined' || null == value)
+
+  encoded += separator + encodedKey;
+
+  else if (value instanceof Array)
+
+  \{
+
+  for (var i = 0; i \< value.length; i++)
+
+  \{
+
+  encoded += separator + encodedKey + '=' + HeatUtility.HtmlEncode(value\[i] + '');
+
+  separator = '&';
+
+  }
+
+  }
+
+  else
+
+  encoded += separator + encodedKey + '=' + HeatUtility.HtmlEncode(value.toString());
+
+  separator = '&';
+
+  }
+
+  return encoded;
+
+  };
+
+  var getRequestSettings = function ()
+
+  \{
+
+  return \{
+
+  Headers: \{},
+
+  Cookies: Cookies,
+
+  SkipServerCertificateValidation: true,
+
+  UserName: null,
+
+  Password: null,
+
+  AllowAutoRedirect: false
+
+  };
+
+  };
+
+  var getJsonRequestSettings = function ()
+
+  \{
+
+  return \{
+
+  Headers: \{ 'Content-Type': 'application/json' },
+
+  Cookies: Cookies,
+
+  SkipServerCertificateValidation: true,
+
+  UserName: null,
+
+  Password: null,
+
+  AllowAutoRedirect: false
+
+  };
+
+  };
+
+  var isAuthenticated = function ()
+
+  \{
+
+  return !!SessionInfo && !!SessionInfo.tenantID;
+
+  };
+
+  var login = function ()
+
+  \{
+
+  var url = Host + '/patchweb/tenant/v1/login?' + getWWWFormUrlEncodedData(\{ username: UserName, password: Password });
+
+  var response = ExecuteWebRequest('GET', url, null, getRequestSettings());
+
+  if ((response != null) && (response.StatusCode == 200) && (response.ContentType == 'application/json'))
+
+  \{
+
+  Cookies = response.Cookies;
+
+  var sessionInfo = JSON.parse(response.Data);
+
+  if (!!sessionInfo && !!sessionInfo.tenantID)
+
+  \{
+
+  SessionInfo = sessionInfo;
+
+  return true;
+
+  }
+
+  }
+
+  return false;
+
+  };
+
+  var getAllEndPoints = function (groups)
+
+  \{
+
+  if (!isAuthenticated())
+
+  throw 'Either login failed or please login.';
+
+  var url = Host + '/patchweb/patchmanagement/v1/' + SessionInfo.tenantID + '/endpointpatchstates?groups=' + HeatUtility.HtmlEncode(groups);
+
+  var response = ExecuteWebRequest('GET', url, null, getRequestSettings());
+
+  if ((response != null) && (response.StatusCode == 200) && (response.ContentType == 'application/json'))
+
+  return JSON.parse(response.Data);
+
+  console.error(response);
+
+  };
+
+  // public function
+
+  this.isAuthenticated = isAuthenticated;
+
+  this.login = login;
+
+  this.getAllEndPoints = getAllEndPoints;
+
+  }
+
+  var service = new CustomService('https\://www\.example.com', 'userName', 'password');
+
+  service.login();
+
+  if (service.isAuthenticated()) \{
+
+  var endpoints = service.getAllEndPoints('default,excluded');
+
+  console.debug(endpoints);
+
+  }
+
+  else
+
+  console.error('Login failed for user userName.');
+
+
+
+
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## SynchronizeAllHeatData
+
+  ### Method
+
+  SynchronizeAllHeatData
+
+  ### Description
+
+  Synchronizes the provided records against all records for the business object in the application by doing the following:
+
+  <Paragraph listStyleType="disc" indent="2">
+    Deletes any records in the application (for the business object) that are not found in the provided records.
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    Inserts any records in the application (for the business object) that are found in the provided records that do not already exist in the application.
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    Updates records in the application (for the business object) against the provided records.
+  </Paragraph>
+
+  ### Return Type
+
+  This function returns an array of RecIDs of the records.
+
+  ### Definition
+
+  object\[] SynchronizeAllHeatData(string designerName, string\[] primaryKey, object\[] records)
+
+  ### Parameters
+
+  | designerName | Name of the business object that is being synchronized.                             |
+  | ------------ | ----------------------------------------------------------------------------------- |
+  | primaryKey   | An array of fields that uniquely identify each record.                              |
+  | records      | A list of JSON key-value pairs that contains fields and their corresponding values. |
+
+  ### Example
+
+  function State(name, code)
+
+  \{
+
+  this.Name = name;
+
+  this.Code = code;
+
+  }
+
+  var result = \[];
+
+  result.push(new State('Alabama', 'AL'));
+
+  result.push(new State('Montana', 'MT'));
+
+  result.push(new State('Alaska', 'AK'));
+
+  result.push(new State('Nebraska', 'NE'));
+
+  result.push(new State('Arizona', 'AZ'));
+
+  result.push(new State('Nevada', 'NV'));
+
+  result.push(new State('Arkansas', 'AR'));
+
+  result.push(new State('New Hampshire', 'NH'));
+
+  result.push(new State('California', 'CA'));
+
+  result.push(new State('New Jersey', 'NJ'));
+
+  result.push(new State('Colorado', 'CO'));
+
+  result.push(new State('New Mexico', 'NM'));
+
+  result.push(new State('Connecticut', 'CT'));
+
+  result.push(new State('New York', 'NY'));
+
+  result.push(new State('Delaware', 'DE'));
+
+  result.push(new State('North Carolina', 'NC'));
+
+  result.push(new State('Florida', 'FL'));
+
+  result.push(new State('North Dakota', 'ND'));
+
+  result.push(new State('Georgia', 'GA'));
+
+  result.push(new State('Ohio', 'OH'));
+
+  result.push(new State('Hawaii', 'HI'));
+
+  result.push(new State('Oklahoma', 'OK'));
+
+  result.push(new State('Idaho', 'ID'));
+
+  result.push(new State('Oregon', 'OR'));
+
+  result.push(new State('Illinois', 'IL'));
+
+  result.push(new State('Pennsylvania', 'PA'));
+
+  result.push(new State('Indiana', 'IN'));
+
+  result.push(new State('Rhode Island', 'RI'));
+
+  result.push(new State('Iowa', 'IA'));
+
+  result.push(new State('South Carolina', 'SC'));
+
+  result.push(new State('Kansas', 'KS'));
+
+  result.push(new State('South Dakota', 'SD'));
+
+  result.push(new State('Kentucky', 'KY'));
+
+  result.push(new State('Tennessee', 'TN'));
+
+  result.push(new State('Louisiana', 'LA'));
+
+  result.push(new State('Texas', 'TX'));
+
+  result.push(new State('Maine', 'ME'));
+
+  result.push(new State('Utah', 'UT'));
+
+  result.push(new State('Maryland', 'MD'));
+
+  result.push(new State('Vermont', 'VT'));
+
+  result.push(new State('Massachusetts', 'MA'));
+
+  result.push(new State('Virginia', 'VA'));
+
+  result.push(new State('Michigan', 'MI'));
+
+  result.push(new State('Washington', 'WA'));
+
+  result.push(new State('Minnesota', 'MN'));
+
+  result.push(new State('West Virginia', 'WV'));
+
+  result.push(new State('Mississippi', 'MS'));
+
+  result.push(new State('Wisconsin', 'WI'));
+
+  result.push(new State('Missouri', 'MO'));
+
+  result.push(new State('Wyoming', 'WY'));
+
+  if (!!HeatContext.PickList)
+
+  \{
+
+  // We are returning this data for pick list
+
+  SetReturnData(result);
+
+  }
+
+  else if (!!HeatContext.Arguments && !!HeatContext.Arguments.WebService)
+
+  \{
+
+  if (HeatContext.Arguments.WebService.Synchronize == 'Selected')
+
+  \{
+
+  // This synchronizes only the records available in the given result list/array.
+
+  // Any records present here and in database will be updated.
+
+  // Any records present here and not in database will be inserted
+
+  SynchronizeHeatData(HeatContext.BusinessObject.DesignerName, \['Code'], result);
+
+  }
+
+  else if (HeatContext.Arguments.WebService.Synchronize == 'All')
+
+  \{
+
+  // This synchronizes only the records available in the given result list/array.
+
+  // Any records present here and in database will be updated.
+
+  // Any records present here and not in database will be inserted
+
+  // Any records in database but not in this list will be deleted
+
+  SynchronizeAllHeatData(HeatContext.BusinessObject.DesignerName, \['Code'], result);
+
+  }
+
+  else if (HeatContext.Arguments.WebService.Synchronize == 'Clear')
+
+  \{
+
+  // All records in database would be deleted since the given list is empty.
+
+  SynchronizeAllHeatData(HeatContext.BusinessObject.DesignerName, \['Code'], \[]);
+
+  }
+
+  }
+
+
+
+
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## SynchronizeAllHeatDataWithRelated
+
+  ### Method
+
+  SynchronizeAllHeatDataWithRelated
+
+  ### Description
+
+  Synchronizes the provided records against all records for the business object and any related business objects in the application by doing the following:
+
+  <Paragraph listStyleType="disc" indent="2">
+    Deletes any records in the application (for the business object and any related business objects) that are not found in the provided records.
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    Inserts any records in the application (for the business object and any related business objects) that are found in the provided records that do not already exist in the application.
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    Updates records in the application (for the business object and any related business objects) against the provided records.
+  </Paragraph>
+
+  ### Return Type
+
+  This function returns an array of RecIDs of the records.
+
+  ### Definition
+
+  object\[] SynchronizeAllHeatDataWithRelated(string designerName, string\[] primaryKey, object\[] records, object keysOfRelatedObjects)
+
+  ### Parameters
+
+  | designerName         | Name of the business object that is being synchronized.                                                         |
+  | -------------------- | --------------------------------------------------------------------------------------------------------------- |
+  | primaryKey           | An array of fields that uniquely identify each record.                                                          |
+  | records              | A list of JSON key-value pairs that contains fields and their corresponding values.                             |
+  | keysOfRelatedObjects | A JSON object that is constructed as follows:  <br />\{  <br />RelationshipName : string\[] primaryKey  <br />} |
+
+  ### Example
+
+  function getExternalData(ctx)
+
+  \{
+
+
+
+  // your code to get data from external source
+
+
+
+  return \[];
+
+  }
+
+  function ToHeatRecords(softwareList, sofrwareType, schemaTagToSoftwareType)
+
+  \{
+
+  var arrFinalizedSoftwareList = \[];
+
+  var isOptionalSoftware = (sofrwareType == 'OptionalSoftware');
+
+  for (var item in softwareList)
+
+  \{
+
+  var srcObject = softwareList\[item];
+
+  var dsmSoftwareGUID = srcObject.UniqueKey.UniqueId;
+
+  var softwareRevision = '';
+
+  var isLastReleasedRev = false;
+
+  var uninstallSupported = false;
+
+  var reinstallSupported = false;
+
+  for (var idx in srcObject.PropGroupList)
+
+  \{
+
+  var tmpObjPropGrp = srcObject.PropGroupList\[idx];
+
+  for (var idx2 in tmpObjPropGrp.PropertyList)
+
+  \{
+
+  var tmpObjProp = tmpObjPropGrp.PropertyList\[idx2];
+
+  if (tmpObjProp.Tag == 'SoftwareRevision')
+
+  softwareRevision = tmpObjProp.InternalValue;
+
+  if ((tmpObjProp.Tag == 'IsLastReleasedRev') && (tmpObjProp.InternalValue === true))
+
+  isLastReleasedRev = true;
+
+  if ((tmpObjProp.Tag == 'SupportsUninstall') && (tmpObjProp.InternalValue === true))
+
+  uninstallSupported = true;
+
+  if ((tmpObjProp.Tag == 'SupportsReinstall') && (tmpObjProp.InternalValue === true))
+
+  reinstallSupported = true;
+
+  }
+
+  }
+
+
+
+  // create/update software revision and heat software (FRS\_DSM\_SOFTWARE)
+
+
+
+  var relatedObjList = \{
+
+  'FRS\_WS\_DSM\_SoftwareContainsFRS\_WS\_DSM\_SoftwareRevision': \[\{
+
+  DSMSoftwareID: srcObject.ID,
+
+  DSMSoftwareGUID: dsmSoftwareGUID,
+
+  DSMCreatedDate: srcObject.CreationDate,
+
+  DSMModifiedDate: srcObject.ModificationDate,
+
+  GroupType: srcObject.GroupType,
+
+  SoftwareName: srcObject.Name,
+
+  ParentContainerID: srcObject.ParentContID,
+
+  Revision: softwareRevision,
+
+  SchemaTag: srcObject.SchemaTag,
+
+  SoftwareType: softType,
+
+  IsLastReleasedRev: isLastReleasedRev,
+
+  Uninstallable: uninstallSupported,
+
+  Reinstallable: reinstallSupported
+
+  }],
+
+  'FRS\_WS\_DSM\_SoftwareContainsFRS\_DSM\_Software': \{
+
+  IsSoftwarePackageReleased: true
+
+  }
+
+  };
+
+
+
+  // create/update software package
+
+
+
+  var finalizedSoftware = \{
+
+  Fields: \{
+
+  DSMSoftwareGUID: dsmSoftwareGUID,
+
+  HEATSMSoftwareType: sofrwareType
+
+  },
+
+  Related: relatedObjList
+
+  };
+
+  var softType = (!!srcObject.SchemaTag && !!schemaTagToSoftwareType\[srcObject.SchemaTag]) ? schemaTagToSoftwareType\[srcObject.SchemaTag].SoftwareType : 'Undefined';
+
+  if (isLastReleasedRev) \{
+
+  finalizedSoftware.Fields.Name = srcObject.Name;
+
+  finalizedSoftware.Fields.IsOptionalSoftware = isOptionalSoftware;
+
+  finalizedSoftware.Fields.SchemaTag = srcObject.SchemaTag;
+
+  finalizedSoftware.Fields.SoftwareType = softType;
+
+  finalizedSoftware.Fields.LastReleasedSoftwareID = srcObject.ID;
+
+  }
+
+  arrFinalizedSoftwareList.push(finalizedSoftware);
+
+  }
+
+  return arrFinalizedSoftwareList;
+
+  }
+
+
+
+  function GetSoftwareGUID(softwareList)
+
+  \{
+
+  if (Object.prototype.toString.call(softwareList) !== '\[object Array]')
+
+  return null;
+
+  var array = \[];
+
+  for (var i = 0; i \< softwareList.length; i++)
+
+  array.push(softwareList\[i].Fields.DSMSoftwareGUID);
+
+  return array;
+
+  }
+
+
+
+  function SynchronizeHeatSM(isAll, sofrwareType, schemaTagToSoftwareType)
+
+  \{
+
+  if (isAll)
+
+  \{
+
+  var arrFinalizedSoftwareList = \[];
+
+  Array.prototype.push.apply(arrFinalizedSoftwareList, ToHeatRecords(getExternalData('AvailableSoftware'), 'AvailableSoftware', schemaTagToSoftwareType));
+
+  Array.prototype.push.apply(arrFinalizedSoftwareList, ToHeatRecords(getExternalData('OptionalSoftware'), 'OptionalSoftware', schemaTagToSoftwareType));
+
+  return SynchronizeAllHeatDataWithRelated('FRS\_WS\_DSM\_Software', \['DSMSoftwareGUID'], arrFinalizedSoftwareList,
+
+
+
+  \{
+
+  'FRS\_WS\_DSM\_SoftwareContainsFRS\_WS\_DSM\_SoftwareRevision': \['DSMSoftwareGUID'],
+
+  'FRS\_WS\_DSM\_SoftwareContainsFRS\_DSM\_Software': \[]
+
+  });
+
+  }
+
+
+
+  else
+
+  \{
+
+  var arrFinalizedSoftwareList = ToHeatRecords(getExternalData(sofrwareType), sofrwareType, schemaTagToSoftwareType);
+
+  var arrDSMSoftwareGUIDList = GetDSMSoftwareGUID(arrFinalizedSoftwareList);
+
+  return SynchronizeHeatDataWithRelated('FRS\_WS\_DSM\_Software', \['DSMSoftwareGUID'], arrFinalizedSoftwareList,
+
+
+
+  \{
+
+  'FRS\_WS\_DSM\_SoftwareContainsFRS\_WS\_DSM\_SoftwareRevision': \['DSMSoftwareGUID'],
+
+  'FRS\_WS\_DSM\_SoftwareContainsFRS\_DSM\_Software': \[]
+
+  },
+
+
+
+  \{
+
+  DSMSoftwareGUID: arrDSMSoftwareGUIDList
+
+  });
+
+
+
+  }
+
+
+
+  }
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## SynchronizeHeatData
+
+  ### Method
+
+  SynchronizeHeatData
+
+  ### Description
+
+  Synchronizes the provided records against all records that meet a certain condition, for the business object in the application by doing the following:
+
+  <Paragraph listStyleType="disc" indent="2">
+    Deletes any records in the application (that meet a certain condition, for the business object) that are not found in the provided records.
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    Inserts any records in the application (that meet a certain condition, for the business object) that are found in the provided records that do not already exist in the application.
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    Updates records in the application (that meet a certain condition, for the business object) against the provided records.
+  </Paragraph>
+
+  ### Return Type
+
+  This function returns an array of RecIDs of the records.
+
+  ### Definition
+
+  object\[] SynchronizeHeatData(string designerName, string\[] primaryKey, object\[] records, object syncDataCondition)
+
+  ### Parameters
+
+  | designerName      | Name of the business object that is being synchronized.                             |
+  | ----------------- | ----------------------------------------------------------------------------------- |
+  | primaryKey        | An array of fields that uniquely identify each record.                              |
+  | records           | A list of JSON key-value pairs that contains fields and their corresponding values. |
+  | syncDataCondition | Specifies when to synchronize the data.                                             |
+
+  ### Example
+
+  See the example for :Link[SynchronizeAllHeatData]{label="SynchronizeAllHeatData" overridedLabel="SynchronizeAllHeatData" spaceId docId="ca6LQ56PrawqAFw9MnIVQ" version="v2" docAnchorId="#Synchron" loadingMethod="dynamic" newTab="false" href="Web-Service-Methods.mdx"}.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## SynchronizeHeatDataWithRelated
+
+  ### Method
+
+  SynchronizeHeatDataWithRelated
+
+  ### Description
+
+  Synchronizes the provided records against all records that meet a certain condition, for the business object and any related business objects, in the application by doing the following:
+
+  <Paragraph listStyleType="disc" indent="2">
+    Deletes any records in the application (that meet a certain condition, for the business object and any related business objects) that are not found in the provided records.
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    Inserts any records in the application (that meet a certain condition, for the business object and any related business objects) that are found in the provided records that do not already exist in the application.
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    Updates records in the application (that meet a certain condition, for the business object and any related business objects) against the provided records.
+  </Paragraph>
+
+  ### Return Type
+
+  This function returns an array of RecIDs of the records.
+
+  ### Definition
+
+  object\[] SynchronizeHeatDataWithRelated(string designerName, string\[] primaryKey, object\[] records, object keysOfRelatedObjects, object syncDataCondition)
+
+  ### Parameters
+
+  | designerName         | Name of the business object that is being synchronized.                                                         |
+  | -------------------- | --------------------------------------------------------------------------------------------------------------- |
+  | primaryKey           | An array of fields that uniquely identify each record.                                                          |
+  | records              | A list of JSON key-value pairs that contains fields and their corresponding values.                             |
+  | keysOfRelatedObjects | A JSON object that is constructed as follows:  <br />\{  <br />RelationshipName : string\[] primaryKey  <br />} |
+  | syncDataCondition    | Specifies when to synchronize the data.                                                                         |
+
+  ### Example
+
+  See the example for :Link[SynchronizeAllHeatDataWithRelated]{label="SynchronizeAllHeatDataWithRelated" overridedLabel="SynchronizeAllHeatDataWithRelated" spaceId docId="ca6LQ56PrawqAFw9MnIVQ" version="v2" docAnchorId="#Synchron2" loadingMethod="dynamic" newTab="false" href="Web-Service-Methods.mdx"}.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## HtmlEncode
+
+  ### Method
+
+  HeatUtility.HtmlEncode
+
+  ### Description
+
+  Encodes HTML special characters like ?, &, \<, >, and so on, that are found in the passed-in parameter string. See [https://msdn.microsoft.com/en-us/library/73z22y6h(v=vs.110).aspx](https://msdn.microsoft.com/en-us/library/73z22y6h\(v=vs.110\).aspx) for more information.
+
+  ### Returns
+
+  Encoded HTML string.
+
+  ### Definition
+
+  string HeatUtility.HtmlEncode(string s);
+
+  ### Parameters
+
+  | s | String containing the HTML special characters to be encoded. |
+  | - | ------------------------------------------------------------ |
+
+  ### Example
+
+  HeatUtility.HtmlEncode ("\<script>unsafe\</script>");
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## HtmlDecode
+
+  ###
+
+  ### Method
+
+  HeatUtility.HtmlDecode
+
+  ### Description
+
+  Decodes HTML special characters like ?, &, \<, >, and so on, that are found in the passed-in parameter string. See [https://msdn.microsoft.com/en-us/library/7c5fyk1k(v=vs.110).aspx](https://msdn.microsoft.com/en-us/library/73z22y6h\(v=vs.110\).aspx) for more information.
+
+  ### Returns
+
+  Decoded HTML string.
+
+  ### Definition
+
+  string HeatUtility.HtmlDecode(string s);
+
+  ### Parameters
+
+  | s | String containing the HTML special characters to be decoded. |
+  | - | ------------------------------------------------------------ |
+
+  ### Example
+
+  HeatUtility.HtmlDecode ("\&lt;script\&gt;unsafe\&lt;/script\&gt;");
+
+
+
+
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## HexToBytes
+
+  ### Method
+
+  HeatUtility.HexToBytes
+
+  ### Description
+
+  Converts a stream of bytes that are encoded in hex to bytes.
+
+  ### Returns
+
+  Bytes converted from hex.
+
+  ### Definition
+
+  byte\[] HeatUtility.HexToBytes(string hex);
+
+  ### Parameters
+
+  | hex | String containing hex characters. |
+  | --- | --------------------------------- |
+
+  ### Example
+
+  HeatUtility.HexToBytes ("0123456789ABCDEFabcdef");
+
+
+
+
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## BytesToString
+
+  ### Method
+
+  HeatUtility.BytesTo String
+
+  ### Description
+
+  Converts a stream of bytes to a string. See [https://msdn.microsoft.com/en-us/library/744y86tc(v=vs.110).aspx](https://msdn.microsoft.com/en-us/library/744y86tc\(v=vs.110\).aspx) for more information.
+
+  ### Returns
+
+  String converted from bytes.
+
+  ### Definition
+
+  string HeatUtility.BytesToString(byte\[] data, string encoding);
+
+  ### Parameters
+
+  | data     | Encoded stream of bytes.                                                                       |
+  | -------- | ---------------------------------------------------------------------------------------------- |
+  | encoding | The encoded format. Can be one of the following: ASCII, UTF7, UTF8, UTF16, UTF16BE, and UTF32. |
+
+  ### Example
+
+  HeatUtility.BytesToString(\[48, 49, 50, 51, 52, 53, 54, 55, 56, 57], 'UTF8');
+
+
+
+
+
+
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## LoadXml
+
+  ### Method
+
+  HeatUtility.LoadXml
+
+  ### Description
+
+  Creates an XML document object from the given XML text. See [https://msdn.microsoft.com/en-us/library/system.xml.xmldocument.loadxml(v=vs.110).aspx](https://msdn.microsoft.com/en-us/library/system.xml.xmldocument.loadxml\(v=vs.110\).aspx) for more information.
+
+  ### Returns
+
+  <Paragraph indent="1">
+    An XML document object created from the given XML string.
+  </Paragraph>
+
+  ### Definition
+
+  XmlElement HeatUtility.LoadXml(string xml);
+
+  ### Parameters
+
+  | xml | XML in string form. |
+  | --- | ------------------- |
+
+  ### Example
+
+  HeatUtility.LoadXml("\<Books>\<Book name="Author Name"Publisher="Some publisher">\</Book>\</Books>");
+
+
+
+
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## GetCultureInfo
+
+  ### Method
+
+  HeatUtility.GetCultureInfo
+
+  ### Description
+
+  Gets the culture instance for the given culture ID or locale ID. See [yck8b540(v=vs.110).aspx](https://msdn.microsoft.com/en-us/library/yck8b540\(v=vs.110\).aspx) or [w4deeh00(v=vs.110).aspx](https://msdn.microsoft.com/en-us/library/w4deeh00\(v=vs.110\).aspx) for more information.
+
+  ### Returns
+
+  A CultureInfo object for the given culture or locale.
+
+  ### Definition
+
+  CultureInfo HeatUtility.GetCultureInfo(string id);
+
+  CultureInfo HeatUtility.GetCultureInfo(int lcid);
+
+  ### Parameters
+
+  | id   | The culture ID. An example us en-US.         |
+  | ---- | -------------------------------------------- |
+  | lcid | The culture locale ID. An example is 0x0409. |
+
+  ### Example
+
+  HeatUtility.GetCultureInfo("en-US");
+
+  HeatUtility.GetCultureInfo(0x0409);
+
+  HeatUtility.GetCultureInfo(1033);
+
+
+
+
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## GetTimeZoneInfo
+
+  ### Method
+
+  HeatUtility.GetTimeZoneInfo
+
+  ### Description
+
+  Gets the time zone information for the given Microsoft Windows time zone or IANA time zone.  See [system.timezoneinfo.findsystemtimezonebyid(v=vs.110).aspx](https://msdn.microsoft.com/en-us/library/system.timezoneinfo.findsystemtimezonebyid\(v=vs.110\).aspx) for more information.
+
+  ### Returns
+
+  A TimeZoneInfo object for the given time zone. The TimeZoneInfo object contains the data from **TImezones&#x20;**&#x77;orkspace. See [Working with Dates, Times, and Time Zones](<../../ServiceDesk/Dates/Working with Dates Times and Time Zones.mdx>) for more information about **Timezone&#x20;**&#x77;orkspace.
+
+  ### Definition
+
+  TimeZoneInfo HeatUtility.GetTimeZoneInfo(string ianaOrWindowsTimeZone);
+
+  ### Parameters
+
+  | ianaOrWindowsTimeZone | The Microsoft Windows or IANA time zone. |
+  | --------------------- | ---------------------------------------- |
+
+  ### Example
+
+  HeatUtility.GetTimeZoneInfo("Pacific Standard Time");
+
+  HeatUtility.GetTimeZoneInfo("America/Los\_Angeles");
+
+
+
+
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Hash
+
+  ### Method
+
+  HeatUtility.Hash
+
+  ### Description
+
+  Generates the hash value of the given string text using the specified algorithm.  See [https://msdn.microsoft.com/en-us/library/wet69s13(v=vs.110).aspx](https://msdn.microsoft.com/en-us/library/wet69s13\(v=vs.110\).aspx) for more information.
+
+  ### Returns
+
+  The generated hash value.
+
+  ### Definition
+
+  byte\[]HeatUtility.Hash(string hashAlgorithm, string data);
+
+  byte\[]HeatUtility.Hash(string hashAlgorithm, byte\[] data);
+
+  ### Parameters
+
+  | hashAlgorithm | The hashing algorithm to use. |
+  | ------------- | ----------------------------- |
+  | data          | The data to be hashed.        |
+
+  ### Example
+
+  HeatUtility.Hash("SHA1","This message needs to be signed.");
+
+  HeatUtility.Hash("SHA1", \[100, 101,102,103, 104, 105, 200]);
+
+
+
+
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## KeyedHash
+
+  ### Method
+
+  HeatUtility.KeyedHash
+
+  ### Description
+
+  <Paragraph indent="1">
+    Generates the hash value of the given string text using the specified algorithm and the key.  See [https://msdn.microsoft.com/library/s5zz2x4d(v=vs.100).aspx](https://msdn.microsoft.com/library/s5zz2x4d\(v=vs.100\).aspx) for more information.
+  </Paragraph>
+
+  ### Returns
+
+  The generated hash value.
+
+  ### Definition
+
+  byte\[]HeatUtility.KeyedHash(string hashAlgorithm, byte\[] key, string data);
+
+  byte\[]HeatUtility.KeyedHash(string hashAlgorithm, byte\[] key, byte\[] data);
+
+  ### Parameters
+
+  | hashAlgorithm | The hashing algorithm to use.           |
+  | ------------- | --------------------------------------- |
+  | key           | An array of bytes that contain the key. |
+  | data          | The data to be hashed.                  |
+
+  ### Example
+
+  HeatUtility.KeyedHash ("HMACSHA1, \[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16], "This message needs to be signed.");
+
+  HeatUtility.KeyedHash ("HMACSHA1, \[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16], \[100, 101,102,103, 104, 105, 200]);
+</ExpandableHeading>

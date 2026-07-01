@@ -1,0 +1,61 @@
+---
+title: Exporting Data From Neurons for ITSM to Ivanti HEAT Discovery Release 9.x
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:52 GMT+0300 (Eastern European Summer Time)
+---
+
+- :Link[About Exporting Data From Neurons for ITSM]{label="About Exporting Data From Neurons for ITSM" overridedLabel="About Exporting Data From Neurons for ITSM" spaceId docId="WnevzW8wQIIMO9xOqRYlp" version="v2" docAnchorId="#About-Exporting-Data-From-Service-Manager" loadingMethod="dynamic" newTab="false" href="Disc_Data_Export.mdx"}
+- :Link[Setting Up the Data Export]{label="Setting Up the Data Export" overridedLabel="Setting Up the Data Export" spaceId docId="WnevzW8wQIIMO9xOqRYlp" version="v2" docAnchorId="#Setting-Up-the-Data-Export" loadingMethod="dynamic" newTab="false" href="Disc_Data_Export.mdx"}
+- :Link[Exporting Multiple Records]{label="Exporting Multiple Records" overridedLabel="Exporting Multiple Records" spaceId docId="WnevzW8wQIIMO9xOqRYlp" version="v2" docAnchorId="#Exporting-Multiple-Records" loadingMethod="dynamic" newTab="false" href="Disc_Data_Export.mdx"}
+
+## About Exporting Data From Neurons for ITSM
+
+To export data from \{\{FRS\_VARS.ProductName}} to Discovery Release 9.x, you must first set up an export connection from the Configuration Console for the quick action that you create to use. After you set up and test the export connection, set up a quick action to export records.
+
+## Setting Up the Data Export
+
+Use the following steps to set up your export:
+
+1. From the Configuration console, click **Extend > Data Export Connections** to open the **Data Export&#x20;**&#x77;orkspace. use the Data Integration Wizard to create and define your own connection.
+2. From the Configuration console, click **Build > Automation Tools > Quick Actions** to open the **Actions Manager** workspace.
+3. Select **Add/Edit** action for the configuration item to create a quick action for data exports to Discovery Release 9.x. See [Discovery 9.x Export Action](<../QuickActions/Classical Action Designer/templates/Disc_9.x_Export_QA.mdx>) for more information. You use this quick action to schedule data exports.
+
+<Paragraph indent="1">
+  Once created, the quick action (for example: Discovery Data Export) appears in **Your Actions tab > Configuration Management**.
+</Paragraph>
+
+4. To run the quick action that you configured, highlight a record (such as an item from the **CI** workspace), then select **Action Menu > Configuration Management >&#x20;*****Discovery\_export\_quick\_action\_name***.
+
+<Paragraph indent="1">
+  The application displays an XML file that contains information about the selected record in the server path location entered in the Configuration Console.
+</Paragraph>
+
+## Exporting Multiple Records
+
+To export multiple records (such as configuration item records) you must create a **Run for Search Workflow** item that connects all the pieces needed to export multiple records. You must select records for export. You can run the workflow at regularly scheduled intervals. The resulting data (one XML file per record) appears in the location defined in the data export connection. You must already have created a Data Export connection and a Quick Action for Data Exports before creating the Saved Search.
+
+Use the following steps as a guide to creating a workflow item to export multiple records:
+
+1. Configure an export connection. See also :Link[From the Configuration console, click Extend > Data Export Connections to open the Data Export workspace. use the Data Integration Wizard to create and define your own connection.]{label="From the Configuration console, click Extend > Data Export Connections to open the Data Export workspace. use the Data Integration Wizard to create and define your own connection." overridedLabel="From the Configuration console, click Extend > Data Export Connections to open the Data Export workspace. use the Data Integration Wizard to create and define your own connection." spaceId docId="WnevzW8wQIIMO9xOqRYlp" version="v2" docAnchorId="#Step_1" loadingMethod="dynamic" newTab="false" href="Disc_Data_Export.mdx"}
+2. Create a quick action. See also :Link[From the Configuration console, click Build > Automation Tools > Quick Actions to open the Actions Manager workspace.]{label="From the Configuration console, click Build > Automation Tools > Quick Actions to open the Actions Manager workspace." overridedLabel="From the Configuration console, click Build > Automation Tools > Quick Actions to open the Actions Manager workspace." spaceId docId="WnevzW8wQIIMO9xOqRYlp" version="v2" docAnchorId="#Create_QA" loadingMethod="dynamic" newTab="false" href="Disc_Data_Export.mdx"}
+3. Create a saved search that identifies the type of records to export and limits them to the ones that were changed during a specific time frame, such as the previous day or the previous week.
+
+<Paragraph indent="1">
+  See :Link[Creating a Saved Search]{label="Creating a Saved Search" overridedLabel="Creating a Saved Search" spaceId docId="i-hArcXiCYKMAm89aYfDR" version="v2" docAnchorId="#CreatingASavedSearch" loadingMethod="dynamic" newTab="false" githubPath="../../ServiceDesk/Search/Saved Searches.htm#CreatingASavedSearch" href="../../ServiceDesk/Search/Saved Searches.mdx"} for information about creating a new saved search. For information on finding and editing a default saved search to use as a baseline, see [Default Saved Searches](../Configuring-Search/Default_Saved_Searches.mdx). For example, to find and export records about Computers you can edit the **Computer CIs** default saved search.
+</Paragraph>
+
+4. Create a schedule to use in the workflow. For information on how to edit an existing schedule or on how to create a new schedule, see [About the Schedule Entry and Scheduled Jobs Workspaces](../Schedules/Schedule_Entry.mdx).
+
+<Paragraph indent="1">
+  For a list of default schedules, see [Default Schedules](<../Schedules/Default Schedules.mdx>).
+</Paragraph>
+
+5. Create a Run for Search workflow to specify a search that triggers a quick action. To create a workflow that is linked to a schedule, see :Link[Creating a Workflow]{label="Creating a Workflow" overridedLabel="Creating a Workflow" spaceId docId="f-ny8lxGIWX7YiVQvb6dB" version="v2" docAnchorId="#Creating-a-Workflow" loadingMethod="dynamic" newTab="false" githubPath="../Workflows/Using_Workflows.htm#Creating-a-Workflow" href="../Workflows/Using_Workflows.mdx"}, :Link[Creating a Scheduled Workflow]{label="Creating a Scheduled Workflow" overridedLabel="Creating a Scheduled Workflow" spaceId docId="f-ny8lxGIWX7YiVQvb6dB" version="v2" docAnchorId="#Creating-a-Scheduled-Workflow" loadingMethod="dynamic" newTab="false" githubPath="../Workflows/Using_Workflows.htm#Creating-a-Scheduled-Workflow" href="../Workflows/Using_Workflows.mdx"},
+6. Trigger the workflow by using the :Link[Configuring a Trigger]{label="Configuring a Trigger" overridedLabel="Configuring a Trigger" spaceId docId="f-ny8lxGIWX7YiVQvb6dB" version="v2" docAnchorId="#Configur" loadingMethod="dynamic" newTab="false" githubPath="../Workflows/Using_Workflows.htm#Configur" href="../Workflows/Using_Workflows.mdx"} procedure. At the **Trigger Definition** tab ensure that you select the schedule that you created.
+7. Publish the workflow. See :Link[Publishing, Editing, and Locking Workflow Versions]{label="Publishing, Editing, and Locking Workflow Versions" overridedLabel="Publishing, Editing, and Locking Workflow Versions" spaceId docId="f-ny8lxGIWX7YiVQvb6dB" version="v2" docAnchorId="#About3" loadingMethod="dynamic" newTab="false" githubPath="../Workflows/Using_Workflows.htm#About3" href="../Workflows/Using_Workflows.mdx"}.
+
+<hint type="info">
+  If your data exceeds 10,000 records you may need to create multiple saved searches using different filters (such as region, location, and so on), and schedule these searches to run separately.
+
+  You can modify the **Run for Search** field to use criteria such as "LastScanDate" Greater than "CurrentDate" - \<ScheduleInterval>, where **ScheduleInterval** is the data export schedule interval, such as 1 for daily export, 7 for weekly export, 30 for monthly, and so on.
+</hint>

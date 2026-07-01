@@ -1,0 +1,91 @@
+---
+title: Linking Related Articles to a Knowledge Article
+slug: linking-related-articles-to-a-knowledge-article
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:03 GMT+0300 (Eastern European Summer Time)
+---
+
+In the **Related Articles** tab, knowledge articles that contain information related to other knowledge articles can be linked. Users in the Self-Service Portal automatically see the related articles when they view the main knowledge article.
+
+### Viewing a Related Knowledge Articles
+
+1. Log in to the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Console}} console.
+2. Open the **Knowledge** workspace.
+3. Open a knowledge article.
+4. Click the **Related Articles** tab. The list of related articles is displayed (if any).
+
+### Adding a Related Knowledge Article
+
+1. Log in to the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Console}} console.
+2. Open the **Knowledge** workspace.
+3. Open a knowledge article.
+4. Click the **Related Articles** tab.
+5. Click **Link**. The list of all articles is displayed.
+6. Navigate to an article, then click **Select**. The article on the list is displayed.
+7. Click **Save**.
+
+### Modifying a Knowledge Article
+
+1. Log in to the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Console}} console.
+2. Open the **Knowledge** workspace.
+3. Open a knowledge article.
+4. Click the **Related Articles** tab.
+5. Double-click the related article to edit. The **Edit** window opens.
+6. Make changes as described in .
+7. Click **Save**.
+
+### Removing a Knowledge Article
+
+Removing a related article from the list does not delete the article from the Knowledge Base.
+
+1. Log in to the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Console}} console.
+2. Open the **Knowledge** workspace.
+3. Open a knowledge article.
+4. Click the **Related Articles** tab.
+5. Highlight the related article to remove from the list.
+6. Click **Unlink**. The article is removed from the list.
+7. Click **Save**.
+
+### Implementing Hyperlinks for Related Articles
+
+You can edit the **Knowledge** business object to add hyperlinks to related articles.
+
+1. From the **Configuration** console, click **Build > Business Objects** to open the **Business Objects** workspace.
+2. Open the business object called **FRS\_Knowlege.IssueResolution**.
+3. Click the **Forms** tab.
+4. Click **IssueResolution (FRS\_Knowledge.IssueResolution.ArticleView)**. Modify this form to add a **Related Objects** field that lists all related articles as hyperlinks.
+5. From the left pane, expand **Other** and click the **Related Objects List** control.
+6. Select and drag the **Related Objects List** control onto the form on the right.
+7. Set the height by doing the following:
+
+<Paragraph indent="1">
+  a. Highlight the **Related Objects List** control on the right.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. For the **Height** parameter, enter **1**.
+</Paragraph>
+
+8. Set the hyperlink value by doing the following:
+
+<Paragraph indent="1">
+  a. Highlight the **Related Objects List** control on the right.
+</Paragraph>
+
+<Paragraph indent="1">
+  a. Ensure that the **Configuration** parameter is set to **Flex Settings** .
+</Paragraph>
+
+<Paragraph indent="1">
+  b. In the **Related Object** field, select **FRS\_KnowledgeAssociatedFRS\_Knowledge (FRS\_Knowledge#)**.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. In the **Types** pane, select at least one (or more) knowledge document type.
+</Paragraph>
+
+<Paragraph indent="1">
+  d. In the **Type Configuration > Show As** drop-down list, select **Hyperlink**.
+</Paragraph>
+
+9. Click **Save**.

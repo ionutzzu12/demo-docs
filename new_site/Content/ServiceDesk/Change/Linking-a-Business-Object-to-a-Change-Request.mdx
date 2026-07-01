@@ -1,0 +1,26 @@
+---
+title: Linking a Business Object to a Change Request
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:48 GMT+0300 (Eastern European Summer Time)
+---
+
+A change request can be linked to an incident, problem, configuration item, service, or release to resolve any issues. Change requests created within an object are automatically linked.
+
+- **Incidents**: Incidents, not problems, should be created for any issues that arise during the change process. Problems arise from the underlying root cause of one or more incidents or potential incidents; for this reason, you cannot create a new problem from a change request. You can, however, view incidents that are linked to a problem from a change record.
+- **Problems**: An existing problem can get resolved when a change is implemented, so you can link an existing problem record to a change. All configuration items and services linked to the problem record get linked to the change by a default **Search and Link** business rule.
+- **Releases**: When the change request is linked to a release, link the problem record from the change request to the release record. A change request is usually scheduled to implement or deploy a configuration item through the release mechanism. In \{\{FRS\_VARS.ProductName}}, configuration items include physical assets as well as services. During the change, the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Change\_Manager}} needs to ask which configuration items have been affected, how have they been affected, and which services are impacted by the affected configuration items. For example, implementing a new Microsoft Exchange server (a configuration item) could potentially impact email services (a service).
+- **Configuration Item**: The \{\{FRS\_VARS.Neurons\_ITSM\_-\_Change\_Manager}} can view the CI map to view the services that might be impacted by or impact the change.
+- **Baseline**: The \{\{FRS\_VARS.Neurons\_ITSM\_-\_Change\_Manager}} can view the baseline of a configuration item before making the change. The application records a baseline of the associated configuration item in the **Baseline Comparison** tab of the configuration item record and in the **Baseline** tab of the change record when the change is in implemented status.
+- **Services**: Impacted services that are related to the change need to be linked to the **Service** tab of the release record when the change is linked to a release. See [Linking Configuration Items and Services to a Release](../ReleaseManagement/Linking-Configuration-Items-and-Services-to-a-Release.mdx).
+
+<hint type="info" indent="1">
+  By default, a **Validation on Save** business rule that the problem cannot be set to resolved or closed unless associated change records are set to "Implemented", "Closed", "Canceled", "Denied", or "Deferred". Your administrator can enable this rule for the business object, if needed.
+</hint>
+
+1. Log in to \{\{FRS\_VARS.ProductName}}.
+2. Open the **Change** workspace.
+3. Open the change record to link.
+4. Within the change request, click the business object tab (incident, problem, or release). A list of links is displayed, if any.
+5. Click **Link** from the toolbar. A list of business object records is displayed.
+6. Select a record, then click **Select**. The record is added to the list and links it to the change.
+7. Click **Save**.

@@ -1,0 +1,207 @@
+---
+title: Importing Employees using the Azure AD Connector
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:52 GMT+0300 (Eastern European Summer Time)
+---
+
+<hint type="danger">
+  In this feature, Azure AD currently operates using web scripts, which are deprecated starting with release 2026.1. Extended support will remain available until release 2026.2. To continue using the Azure AD Import feature, refer to [Azure AD Import](Entra-ID-Import.mdx).
+</hint>
+
+**Role**: \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}
+
+**Minimum Version**: 2022.4.
+
+**Package Installation**: Existing customers - import the latest package from the Ivanti Marketplace - [Azure AD Employee Import for Service Manager](https://marketplace.ivanticloud.com/packages/AzureADEmployeeImportforServiceManager/).
+
+## Configuring and setting up the required permissions from the Azure Portal
+
+<ExpandableHeading>
+  ## Scenario 1 - if you haven't created the application
+
+  **To create the application:**
+
+  1. From the  Azure portal, navigate to the  **Azure Active Directory** > **App Registrations**.
+  2. Click **New registration** and enter the name for the application.
+  3. Click the **Register** button.
+  4. Once the application is created, the following details are displayed:
+     - **Client ID** - Remember to note down the client ID somewhere safe.
+     - **Tenant ID** - Remember to note down the Tenant ID somewhere safe.
+     - **Client Secret ID**: Unique client secret ID. Refer to the next procedure for how to create one.
+
+  **To create a Client Secret ID:**
+
+  1. Click **Add a certificate or secret**.
+  2. Under **Client Secrets**, click on new client secret and enter a description.
+  3. Select the **Add** button to add this **Client Secret ID**, but before that, remember to check when it expires, as once it exceeds the expiry date, you will need to create a new **Client Secret**.
+
+  <hint type="info">
+    Ensure you make a note of the Client Secret value and save it somewhere safe, as it is not accessible later.
+  </hint>
+
+  **To add the necessary permissions:**
+
+  Once the application is created and the information in the previous section is noted, the next step is to add the necessary permissions required in the **Permission** tab.
+
+  1. Under **App Registrations** in Owner Applications, open the application which you just created in the previous section.
+  2. In the left panel under **Manage**, open **API permissions**.
+  3. Select **Add permissions** > **Microsoft Graph** > **Application Permissions** > **Directory** > **Directory.Read.All** > **Add Permissions**.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Scenario 2 - if you have created the application in the Azure portal
+
+  1. Navigate to the **Azure Active Directory** > **App Registrations** > **Owner Applications**.
+  2. Under **Owner Applications**, click the present application, and you will be able to see the **Client ID**, **Tenant ID** and the **Client Secret ID**.
+
+  <hint type="info">
+    In case you forgot or lost the Client Secret ID, you must create a new one.
+  </hint>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Configuration in ITSM
+
+  Once the Azure configuration is completed, the next step is to configure the \{\{FRS\_VARS.ITSM}} platform.
+
+  1. Login to \{\{FRS\_VARS.ITSM}} as an Administrator.
+  2. Open the Configuration Console.
+  3. Generate an API Key:
+
+  <Paragraph indent="1">
+    a. Navigate to **Security Controls** > **API Keys**.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    b. Click **Add Key Group** and enter a contextual name.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    c. Click **Add API Key** under the group you just created and enter the description.
+  </Paragraph>
+
+  <hint type="info">
+    When creating a key, ensure you create it with a user who has an Administrator role and ensure th&#x65;**&#x20;In Role** field is set to an Admin role.
+  </hint>
+
+  4. Click **Save**.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Azure AD Fields
+
+  To get a comprehensive understanding of importing employees using the Azure AD connector, it is important that you understand what each field in the Azure AD employee connector does.
+
+  | Field               | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+  | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | Enabled             | This enables the connector to import employees.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+  | Test Mode           | This is only used if you want to test the connector and sync 10 employees.  <br />Only the first 10 employees will be synced everytime you run the test.                                                                                                                                                                                                                                                                                                                                                                                                            |
+  | Client ID           | As mentioned in Configurations/Permissions Required from Azure Portal section.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+  | Tenant ID           | As mentioned in Configurations/Permissions Required from Azure Portal section.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+  | Client Secret       | As mentioned in Configurations/Permissions Required from Azure Portal section.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+  | API Key             | This is the API key generated from Ivanti ITSM and used to authenticate communications between ITSM and Azure AD.                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+  | Primary Key         | This key is used as a unique identifier to sync data from Azure to ITSM.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+  | AD filter           | This is used to filter the results fetched from Azure AD.  <br />Example: If you want to add a filter to not import inactive users, then the filter value would be:  <br />\{Azure AD Field} \{\{Operator}} \{\{Value}}  <br />accountEnabled eq true  <br />For more information on using filters, refer to the Microsoft document [Use the filter query parameter](https://learn.microsoft.com/en-us/graph/filter-query-parameter?tabs=http). In the examples shown here, the ones marked \* are not supported; they are part of the advanced query capabilities. |
+  | ISM Employee Field  | This drop down shows the list of fields in the employee business object.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+  | Azure AD fields     | This drop down shows the list of fields which can currently sync from Azure AD.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+  | Fixed Value         | Once checked, you can set a fixed value to sync employees.  <br />Example: Team is a mandatory field in ITSM, but there is no real value from Azure to sync to team, hence you can add a fixed value for syncing to work.                                                                                                                                                                                                                                                                                                                                           |
+  | Do not update field | Once **Do not update** is enabled for an added mapping, the Employee field selected in the mapping will not be updated after the first insert of the employees.                                                                                                                                                                                                                                                                                                                                                                                                     |
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Importing Employee Records
+
+  1. Open the **Azure AD Employee Connector** workspace.
+  2. Select the **Enabled** check box.
+  3. Create an API Key on the tenant with admin access.
+  4. Enter values in the **Client ID**, **Client Tenant ID**, and **Client Secret** fields.
+
+  <Paragraph indent="1">
+    You can get these values from your Azure Client account.
+  </Paragraph>
+
+  5. Enter the **API key**.
+  6. Under the **Please select only one option below** section, select any one of the listed options as the Primary Key.
+
+  <hint type="info" indent="1">
+    Ensure you select only one option.
+  </hint>
+
+  7. **AD Filter** - use this field to enter the filter details to filter results fetched from Azure AD.
+
+  <Paragraph indent="1">
+    For example, to filter out inactive users from getting imported, enter the following query:
+  </Paragraph>
+
+  <Paragraph indent="1">
+    \{Azure AD Field} \{\{Operator}} \{\{Value}}
+  </Paragraph>
+
+  <Paragraph indent="1">
+    accountEnabled eq true
+  </Paragraph>
+
+  <Paragraph indent="1">
+    For more information on using filters, refer to the Microsoft document [Use the filter query parameter](https://learn.microsoft.com/en-us/graph/filter-query-parameter?tabs=http).
+  </Paragraph>
+
+  <hint type="info">
+    Currently, advanced query capabilities on Azure AD directory objects is not supported. Refer to the Microsoft document [Advanced query capabilities on Azure AD directory objects](https://learn.microsoft.com/en-us/graph/aad-advanced-queries?tabs=http). Documentation will be updated when it is made available.
+  </hint>
+
+  8. A list of pre-mapped fields are displayed. You can add custom fields using:
+     - **&#x20;ISM Employee Field** - field in ITSM that should be mapped.
+     - **Azure AD Fields** - field in Azure AD that should be mapped.
+  9. Select the **Fixed Value field** and enter a value if there is no value for the **Azure AD Field** with respect to the \{\{FRS\_VARS.ProductName}} field.
+  10. Click **Add Mapping**. The mapped fields are displayed in the **Field Mappings** tab.
+
+  For the import to work, add mappings to mandatory fields of the employees.
+
+  **Example**:
+
+  - In the **ISM Employee Field** select **Team**
+  - In the **Is Fixed** - **True**
+  - **Fixed Value** - **QA**
+
+  <hint type="info">
+    If **QA** is not a team in your organization, enter an existing team as the default value instead.
+  </hint>
+
+
+
+  <Paragraph indent="1">
+    **Do not update Field** - when this check box is selected, the fields are updated only the first time upon inserting the fields. The next time onwards, it is ignored.
+  </Paragraph>
+
+  11. Save and exit by clicking **List View**.
+  12. From the **Action Menu** drop-down, select **Execute Employee Import**.
+  13. Open the record to check the import status.
+
+  <hint type="info" indent="1">
+    After importing, the records are fetched in the **Queue** tab of the record. After which, they go into the **Employee** workspace.
+  </hint>
+
+  14. Click the **Queue** tab. If the **RunOutPut** field displays *Completed without errors*, the import was successful.
+
+  <Paragraph indent="1">
+    The employee records will be fetched in the **Employee** workspace.
+  </Paragraph>
+
+  <hint type="info">
+    The \{\{FRS\_VARS.Company}}**&#x20;Azure AD Daily Schedule&#x20;**&#x69;s scheduled to run every day; therefore, the records are updated daily.
+  </hint>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Troubleshooting
+
+  If you get the *Invalid Input* error message while trying to import the Azure AD employees, it means the import failed. This happens if the **Server URL** field (not visible in the UI, present in the backend) in the **Azure AD Employee Connector** workspace is not populated with an appropriate value.
+
+  **To fix the issue:**
+
+  - From the **Azure AD Employee Connector** workspace list view, run the **SET SERVER URL** Quick Action.
+
+  <Paragraph indent="1">
+    This sets the appropriate value in the **Server URL** field, which resolves the issue.
+  </Paragraph>
+</ExpandableHeading>

@@ -1,0 +1,57 @@
+---
+title: Creating Hardware and Software Profiles
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:48 GMT+0300 (Eastern European Summer Time)
+---
+
+Hardware and software profiles are used when a new computer is provisioned or when a new software installation is requested in the Self-Service Portal. The application uses the information that you defined in a profile to populate the **Hardware Profile** and **Software Profile** fields whenever you submit a new request or incident or whenever a Service Desk Analyst creates one.
+
+## Defining Hardware Profiles
+
+When a requester submits a provisioning request in the Self-Service Portal, the application uses the information that they defined in the hardware profile to populate the **Hardware Profile** field and the **Incident Details** tab.
+
+<hint type="info">
+  The hardware profile that you create here will be linked to computers through the **Model** field in configuration item records as described in [Mapping Configuration Items to DSM-Managed Computers](Mapping-Configuration-Items-to-DSM-Managed-Computers.mdx). This allows all computers having the same model number to be included in a single hardware profile.
+</hint>
+
+1. Log in to the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Console}} console.
+2. Open the **Provisioning Profile Hardware - Legacy** workspace.
+3. Click **New Hardware Profile**.
+4. Enter information into the fields.
+
+| Field                  | Description                                                                                                                                                                                                                                                                                                                                        |
+| ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Name                   | The name of the hardware that is listed in the **Hardware Profile** field in **Incident Details** or **Request Detail** (in the \{\{FRS\_VARS.Self\_Service\_Portal-Self-Service}} portal) when a computer provisioning incident is created.                                                                                                       |
+| Model                  | The model of computer (as defined in the configuration item record **Model** field) that will be included in this hardware profile. For example, the model shown in the **Hardware Profile** record above specifies that all computers having that model in their configuration item record **Model** field are included in this hardware profile. |
+| Hardware Type          | An appropriate hardware type, such as desktop or server. To create a new type, click **Add**. In the **New Hardware Type** field, enter a new type of hardware and then click **Save**.                                                                                                                                                            |
+| OSType                 | Type of operating system.                                                                                                                                                                                                                                                                                                                          |
+| Price                  | Price for the hardware.                                                                                                                                                                                                                                                                                                                            |
+| Publish to SelfService | Option available to make the hardware profile available in the \{\{FRS\_VARS.Self\_Service\_Portal-Self-Service}} portal.                                                                                                                                                                                                                          |
+| Description            | A description of the profile.                                                                                                                                                                                                                                                                                                                      |
+
+5. Click **Save**.
+
+## Defining Software Profiles
+
+When a requester submits a provisioning request in the \{\{FRS\_VARS.Self\_Service\_Portal-Self-Service}} portal, the application uses the information that was defined in the software profile to populate the **Software Profile** field and the **Incident Details** tab.
+
+1. Log in to the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Console}} console.
+2. Open the **Provisioning Profile Software - Legacy** workspace.
+3. Click **New Software Profile**.
+4. Fill in the **Name**, **OS Type**, **OS Set**, and **Description** fields. The value that you enter in the **Name** field displays as a choice in the drop-down list in the **Software Profile** field in **Incident Details** when a computer provisioning incident is created.
+
+<Paragraph indent="1">
+  All activated operating system sets are available as choices in the **OS Set** field (See [Activating Software Packages, Software Sets, and Operating System Sets](Activating-Software-Packages-and-OS-Sets.mdx)). Your selection displays under **Included Software&#x20;**&#x69;n **Incident Details** and in the **Installation Package** field in the Self-Service Portal.
+</Paragraph>
+
+5. Select **Approval Required** to require approval for provisioning of this software profile.
+6. In the **DSM Managed Software** section, include the additional software packages or software sets in the software profile.
+7. Click **Link** to link DSM-managed software records to the software profile. The application displays the linked software packages and sets with the operating system set under **Included Software** in **Incident Details** and in the **Installation Package** field in the Self-Service Portal.
+
+<Paragraph indent="1">
+  The application displays a list of DSM-managed software records.
+</Paragraph>
+
+8. Choose a record to link to software profiles, then click **Select**.
+9. Repeat to link other software packages and sets.
+10. Click **Save**.

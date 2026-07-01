@@ -1,0 +1,233 @@
+---
+title: Accessing Self Service URLs in UI V2 and UI V3
+slug: accessing-self-service-urls-in-ui-v2-and-ui-v3
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:04 GMT+0300 (Eastern European Summer Time)
+---
+
+<ExpandableHeading>
+  ## Direct URLs supported in UI V2
+
+  \{\{FRS\_VARS.Self\_Service\_Portal-Self-Service}} UI V2 supports direct URLs that allow users open specific Self Service records, such as My Items, Service Requests, Knowledge Articles, FAQs, and Announcements directly in the Self Service interface. After authentication, the system opens the record based on the user’s assigned role and access permissions.
+
+  Direct links to open a my Items workspace with specific Rec Id
+
+  \[TenantURL]/Modules/SelfService/#myItems/view/\[RecId]
+
+  Example:
+
+  \[TenantURL]/Modules/SelfService/#myItems/view/0E86F13BACA44013A4CFB381FD5744D9
+
+  Direct links to open a specific \{\{FRS\_VARS.Service\_Catalog-Service-Catalogue.}} with specific Rec Id
+
+  \[TenantURL]/Modules/SelfService#serviceCatalog/request/\[RecId]
+
+  Example:
+
+  \[TenantURL]/Modules/SelfService/#serviceCatalog/request/500D8CD5F13C4766880B9BC2D7EED4BD
+
+  Direct links to open a specific \{\{FRS\_VARS.Knowledge-Knowledge}} articles with specific Rec Id
+
+  \[TenantURL]/Modules/SelfService/#knowledgeBase/view/\[RecId]
+
+  Example:
+
+  \[TenantURL]/Modules/SelfService/#knowledgeBase/view/67D7CE23A90647D2AF7FC1BF86C8DDEB
+
+  Direct links to open a specific FAQ with specific Rec Id
+
+  \[TenantURL]/Modules/SelfService/#faq/view/\[RecId]
+
+  Example:
+
+  \[TenantURL]/Modules/SelfService/#faq/view/0F21B2AE368740EAAF7FB4AF11DE5284
+
+  Direct links to open a specific \{\{FRS\_VARS.Announcements-Announcements}} with specific Rec Id
+
+  \[TenantURL]/Modules/SelfService/#announcements/view/\[RecId]
+
+  Example:
+
+  \[TenantURL]/Modules/SelfService/#announcements/view/2360C0219A4F452AB5269BA26CC1AAD4
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Direct URLs supported in UI V3
+
+  UI V3 supports direct workspace links for selected object types, including Knowledge Articles, FAQs, Announcements, and Alerts. These links allow users to open a specific record directly in the Object Workspace after authentication, based on their assigned role and access permissions.
+
+  Starting with release 2026.2, Self Service V3 supports the direct link URL format for my Items workspace.
+
+  Direct links to open a my Items workspace with specific Rec Id
+
+  \[TenantURL]/Modules/SelfService/#myItems/view/\[RecId]
+
+  Example:
+
+  \[TenantURL]/Modules/SelfService/#myItems/view/0E86F13BACA44013A4CFB381FD5744D9
+
+  Direct links to open a specific Knowledge article with specific Rec Id
+
+  \[TenantURL]/service/workspace/FRS\_Knowledge/read/\[FRS\_Knowledge\_RecId]
+
+  Example:
+
+  \[TenantURL]/service/workspace/FRS\_Knowledge/read/D78DE82D988E42A29E72DF1B9804E3C6
+
+  Direct links to open a specific FAQ with specific Rec Id
+
+  \[TenantURL]/service/workspace/FAQ/read/\[FAQ\_RecId]
+
+  Example:
+
+  \[TenantURL]/service/workspace/FAQ/read/5F1A6F28269E46BEA3590A489B9B559F
+
+  Direct links to view a specific announcement with specific Rec Id
+
+  \[TenantURL]/service/workspace/Announcement/read/\[Announcement\_RecId]
+
+  Example:
+
+  \[TenantURL]/service/workspace/Announcement/read/F873CF70BF8048538DFAB8685153414E
+
+  Direct links to open to view a specific alert
+
+  \[TenantURL]/service/workspace/Alert/read/\[Alert\_RecId]
+
+  Example:
+
+  \[TenantURL]/service/workspace/Alert/read/2E04AB058AC447758220CDE3C7F5E2E6
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Use redirect URLs
+
+  In UI V2, all redirect links are supported by default for all existing URLs. In UI V3, the links for opening tickets from emails work in the Open **My Item** and \{\{FRS\_VARS.Service\_Catalog-Service-Catalogue.}} workspaces . The system opens the target record and does not require layout-specific parameters. When a user selects the link, the system authenticates the user and opens the request or incident record. Previously generated links now open the correct record. This feature supports all **Form offerings** and custom **Business Objects** (BOs).
+
+  \{\{FRS\_VARS.My\_Items-My-Items}}**&#x20;workspace**
+
+  Redirecting links to open an Incident
+
+  https\://tenant\_URL/Login.aspx?
+
+  Scope=SelfService
+
+  \&Role=SelfService
+
+  \&CommandId=OpenMyItem
+
+  \&ItemType=Incident
+
+  \&ItemId=RecId
+
+  Redirecting links to open an existing Service Request
+
+  https\://tenant\_URL/Login.aspx?
+
+  Scope=SelfService
+
+  \&Role=SelfService
+
+  \&CommandId=OpenMyItem
+
+  \&ItemType=ServiceReq
+
+  \&ItemId=RecId
+
+  Redirecting links to view Approval Vote Tracking
+
+  https\://tenant\_URL/Login.aspx?
+
+  Scope=SelfService
+
+  \&Role=SelfService
+
+  \&CommandId=OpenMyItem
+
+  \&ItemType=FRS\_ApprovalVoteTracking
+
+  \&ItemId=RecId
+
+  Redirecting links to Security Incident
+
+  https\://tenant\_URL/Login.aspx?
+
+  Scope=SelfService
+
+  \&Role=SelfService
+
+  \&CommandId=OpenMyItem
+
+  \&ItemType=ivnt\_SecurityIncident
+
+  \&ItemId=RecId
+
+  Redirecting links to open a custom business object with \{\{FRS\_VARS.Self\_Service\_Portal-Self-Service}} mobile role
+
+  https\://tenant\_URL/Login.aspx?
+
+  Scope=SelfServiceMobile
+
+  \&Role=SelfServiceMobile
+
+  \&CommandId=OpenMyItem
+
+  \&ItemType=\[custom business object]
+
+  \&ItemId=6F5FD9A3D99644AB86E7B70E2B3E3DD3
+
+  Redirecting links to open a HR case with \{\{FRS\_VARS.Self\_Service\_Portal-Self-Service}} mobile role
+
+  https\://tenant\_URL/Login.aspx?
+
+  Scope=SelfServiceMobile
+
+  \&Role=SelfServiceMobile
+
+  \&CommandId=OpenMyItem
+
+  \&ItemType=ivnt\_HRcase
+
+  \&ItemId=398E90A653BE4AA08ACF7BB956AE3DA2
+
+  \{\{FRS\_VARS.Service\_Catalog-Service-Catalogue.}}**&#x20;workspace**
+
+  Redirecting links to open a specific request offering without role
+
+  https\://tenant\_URL/Login.aspx?
+
+  Scope=SelfService
+
+  \&Role=role
+
+  \&CommandId=NewServiceRequestByOfferingId
+
+  \&Tab=ServiceCatalog
+
+  \&Template=CD1A6F09651840759EFDEC74A82AB5AB
+
+  Redirecting links to open a specific request offering with \{\{FRS\_VARS.Self\_Service\_Portal-Self-Service}} mobile role
+
+  https\://tenant\_URL/Login.aspx?
+
+  Scope=SelfService
+
+  \&Role=SelfServiceMobile
+
+  \&CommandId=NewServiceRequestByOfferingId
+
+  \&Tab=ServiceCatalog
+
+  \&Template=CD1A6F09651840759EFDEC74A82AB5AB
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Limitations of accessing URLs in UI V3
+
+  - UI V3 supports legacy link redirection only when the layout name is included, ensuring records load fully with all details visible.
+  - For My Items workspace links:
+    - Include the layout name to open records correctly.
+    - Service Requests and Service Request Approvals do not require the layout name.
+  - When migrating from UI V2 to UI V3, update email notifications, bookmarks, and integrations to the UI V3 link format.
+  - UI V2 links may not function correctly in UI V3, as UI V2 links to My Items workspace can either redirect to the home page or display only the page banner without loading the full record.
+</ExpandableHeading>

@@ -1,0 +1,260 @@
+---
+title: Creating Group Business Objects via REST API
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:01 GMT+0300 (Eastern European Summer Time)
+---
+
+You can create records for group business objects (for example, Journal#Notes) using the REST OData API. Group names containing a hash (#) must be converted to a URL‑safe format before use. The following rules apply:
+
+1. If the group name contains a hash symbol (#), replace it with a double underscore (\_\_).
+   - Example:
+     - Original name: Journal#Notes
+     - API‑formatted name: Journal\_\_Notes
+2. All business object names used in the URL must be pluralized by appending an “s”.
+   - Example:
+     - Incident → Incidents
+     - Change → Changes
+     - Journal#Notes → Journal\_\_Notess
+3. The final URL/endpoint format is: https\://\{\{tenant-url}}/api/odata/businessobject/\{\{object}}\_\_\{\{group}}s
+4. REST Query format: GET https\://\{\{tenant}}/api/odata/businessobject/Journal\_\_Notess
+
+**Base URL**:
+
+https\://\{\{tenant-url}}/api/odata/businessobject/\{\{object}}\_\_\{\{group}}s
+
+<ExpandableHeading>
+  ## Get Group Business Objects - Example
+
+  Here is an example to get Group Business Objects.
+
+  | URL                                 | https\://\{\{tenant}}/api/odata/businessobject/\{\{object}}\_\_\{\{group}}s                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+  | ----------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | <font color="#ffffff">Method</font> | GET                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+  | Header Name                         | Authorization: JWT Token/Session Key/REST API Key                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+  | Status Code                         | 200                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+  | Response Payload                    |   <ExpandableHeading>
+      ## Click to view response payload
+
+      \{
+
+      "@odata.context": "https\://\{\{tenant}}/api/odata/$metadata#\{\{object}}\_\_\{\{group}}s",
+
+      "@odata.count": 337,
+
+      "value": \[
+
+      \{
+
+      "DisplayText": "",
+
+      "NotesBody": "\<sample-text>",
+
+      "Source\_Valid": "id\_001",
+
+      "Source": "Other",
+
+      "TimeSpent": 0,
+
+      "Category\_Valid": "id\_002",
+
+      "Category": "Memo",
+
+      "CreatedBy": "user\_001",
+
+      "CreatedDateTime": "2020-01-01T00:00:00Z",
+
+      "JournalType": "Notes",
+
+      "LastModBy": "user\_001",
+
+      "LastModDateTime": "2020-01-01T00🕙00Z",
+
+      "Owner\_Valid": "",
+
+      "Owner": "",
+
+      "OwnerTeam\_Valid": null,
+
+      "OwnerTeam": "",
+
+      "OwnerType": "",
+
+      "ParentLink\_Category": "ServiceReq",
+
+      "ParentLink\_RecID": "id\_003",
+
+      "ParentLink": null,
+
+      "RecId": "rec\_001",
+
+      "Subject": "Sample Subject",
+
+      "TypeAlias": null,
+
+      "PublishToWeb": true,
+
+      "AttachmentName": null,
+
+      "AttachmentExtension": null,
+
+      "AttachmentData": "",
+
+      "ReadOnly": false,
+
+      "IsNewRecord": false,
+
+      "IsUnRead": false,
+
+      "ParentOwner": null,
+
+      "UnreadTransition": false,
+
+      "ExternalCommentID": null
+
+      },
+
+      \{
+
+      "DisplayText": "Sample line 1\<BR/>Sample line 2",
+
+      "NotesBody": "Sample note",
+
+      "Source\_Valid": "",
+
+      "Source": "",
+
+      "TimeSpent": 0,
+
+      "Category\_Valid": "id\_002",
+
+      "Category": "Memo",
+
+      "CreatedBy": "user\_002",
+
+      "CreatedDateTime": "2020-01-02T00:00:00Z",
+
+      "JournalType": "Notes",
+
+      "LastModBy": "user\_003",
+
+      "LastModDateTime": "2020-01-02T00:00:00Z",
+
+      "Owner\_Valid": "",
+
+      "Owner": "",
+
+      "OwnerTeam\_Valid": "",
+
+      "OwnerTeam": "",
+
+      "OwnerType": "",
+
+      "ParentLink\_Category": "Incident",
+
+      "ParentLink\_RecID": "id\_004",
+
+      "ParentLink": null,
+
+      "RecId": "rec\_002",
+
+      "Subject": "Sample Subject",
+
+      "TypeAlias": null,
+
+      "PublishToWeb": false,
+
+      "AttachmentName": null,
+
+      "AttachmentExtension": null,
+
+      "AttachmentData": "",
+
+      "ReadOnly": false,
+
+      "IsNewRecord": false,
+
+      "IsUnRead": false,
+
+      "ParentOwner": null,
+
+      "UnreadTransition": false,
+
+      "ExternalCommentID": null
+
+      },
+
+      \{
+
+      "DisplayText": "Sample line A\<BR/>Sample line B",
+
+      "NotesBody": "Sample note",
+
+      "Source\_Valid": "",
+
+      "Source": "",
+
+      "TimeSpent": 0,
+
+      "Category\_Valid": "id\_002",
+
+      "Category": "Memo",
+
+      "CreatedBy": "user\_002",
+
+      "CreatedDateTime": "2020-01-03T17:59:50Z",
+
+      "JournalType": "Notes",
+
+      "LastModBy": "user\_002",
+
+      "LastModDateTime": "2020-01-03T17:59:51Z",
+
+      "Owner\_Valid": "",
+
+      "Owner": "",
+
+      "OwnerTeam\_Valid": "",
+
+      "OwnerTeam": "",
+
+      "OwnerType": "",
+
+      "ParentLink\_Category": "Incident",
+
+      "ParentLink\_RecID": "id\_005",
+
+      "ParentLink": null,
+
+      "RecId": "rec\_003",
+
+      "Subject": "Sample Subject",
+
+      "TypeAlias": null,
+
+      "PublishToWeb": false,
+
+      "AttachmentName": null,
+
+      "AttachmentExtension": null,
+
+      "AttachmentData": "",
+
+      "ReadOnly": false,
+
+      "IsNewRecord": false,
+
+      "IsUnRead": false,
+
+      "ParentOwner": null,
+
+      "UnreadTransition": false,
+
+      "ExternalCommentID": null
+
+      }
+
+      ]
+
+      }
+    </ExpandableHeading> |
+</ExpandableHeading>

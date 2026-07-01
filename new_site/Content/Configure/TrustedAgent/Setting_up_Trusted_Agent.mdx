@@ -1,0 +1,135 @@
+---
+title: Setting Up and Configuring Trusted Agent
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:53 GMT+0300 (Eastern European Summer Time)
+---
+
+***Role****: Administrators.*
+
+***Minimum Version****:&#x20;*\{\{Primary.Company}} \{\{Primary.Product}}*&#x20;2023.1*
+
+This topic provides an overview of the process to setup and configure a Trusted Agent for LDAP connection.
+
+## Overview of Trusted Agent Setup and Configuration
+
+This is an overview of the setup and configuration process for Trusted Agent.
+
+1. If you are not already provided with an \{\{FRS\_VARS.ProductName}} and/or \{\{FRS\_VARS.Neurons}} tenant, request tenant provision for Trusted Agent from [Ivanti Sales](https://www.ivanti.com/company/contacts).
+
+<hint type="info" indent="1">
+  Skip this step if you already have both tenants provided.
+</hint>
+
+2. When you receive email confirmation that the new tenants are provided, request integration of the tenants. The tenants must be integrated so that the \{\{FRS\_VARS.Neurons}} framework service can be used within \{\{FRS\_VARS.ProductName}}. Request the tenant integration by submitting a **Generic Request** to Operations, and include both tenant URL's. A typical message is shown in the following example.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/fWr8L16LB8-Q0THb6FfQ3_integrationrequestmessageexample.png" alt="Integration request message showing typical text for the request to integrate tenants" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/trustedAgents-images/integration_request_message_example.png" githubPath="Content/Resources/Images/trustedAgents-images/integration_request_message_example.png" showCaption="false"></Image>
+
+<hint type="info" indent="1">
+  Skip this step if you already have both tenants integrated.
+</hint>
+
+3. With a \{\{FRS\_VARS.ProductName}} and \{\{FRS\_VARS.Neurons}} tenant installed and integrated, proceed to enabling the **EnableTrustedAgent** global constant, as described in :Link[Enable the Global Constant for Trusted Agent]{label="Enable the Global Constant for Trusted Agent" overridedLabel="Enable the Global Constant for Trusted Agent" spaceId docId="XTiUfvyNLUQynrvlCZ-sn" version="v2" docAnchorId="#Enable_the_Global_Constant_for_Trusted_Agent" loadingMethod="dynamic" newTab="false" href="Setting_up_Trusted_Agent.mdx"}.
+4. Create a Trusted Agent connection and push the settings for policy creation. The procedure(s) to follow is dependent on you policy type; LDAP or Hybrid. Refer to the procedures linked below for your policy type.
+   - For LDAP policy settings, refer to :Link[Add a New LDAP Connection and Push Policy Settings]{label="Add a New LDAP Connection and Push Policy Settings" overridedLabel="Add a New LDAP Connection and Push Policy Settings" spaceId docId="qiCcju38kHr1LMAyL7lkc" version="v2" docAnchorId="#Add_a_New_Connection" loadingMethod="dynamic" newTab="false" githubPath="Configure_TA_for_LDAP_Connections.htm#Add_a_New_Connection" href="Configure_TA_for_LDAP_Connections.mdx"}.
+   - For Hybrid policy settings, the following procedures must be completed:
+     - :Link[Create a Self-Signed Certificate]{label="Create a Self-Signed Certificate" overridedLabel="Create a Self-Signed Certificate" spaceId docId="nKXYfrhJASQND9VFtbedg" version="v2" docAnchorId="#Create_a_Self-SIgned_Certificate" loadingMethod="dynamic" newTab="false" githubPath="Configure_TA_with_PowerShell.htm#Create_a_Self-SIgned_Certificate" href="Configure_TA_with_PowerShell.mdx"}.
+     - :Link[Export the Self-signed Certificate]{label="Export the Self-signed Certificate" overridedLabel="Export the Self-signed Certificate" spaceId docId="nKXYfrhJASQND9VFtbedg" version="v2" docAnchorId="#Export_the_Self-signed_Certificate" loadingMethod="dynamic" newTab="false" githubPath="Configure_TA_with_PowerShell.htm#Export_the_Self-signed_Certificate" href="Configure_TA_with_PowerShell.mdx"}.
+     - :Link[Create a Hybrid Policy]{label="Create a Hybrid Policy" overridedLabel="Create a Hybrid Policy" spaceId docId="nKXYfrhJASQND9VFtbedg" version="v2" docAnchorId="#Create_a_Hybrid_Policy" loadingMethod="dynamic" newTab="false" githubPath="Configure_TA_with_PowerShell.htm#Create_a_Hybrid_Policy" href="Configure_TA_with_PowerShell.mdx"}.
+
+<Paragraph indent="1">
+  After completing the procedures, use the enrollment key you create to activate the Trusted Agent installation on your private network.
+</Paragraph>
+
+5. Download the Windows agent installer files and install the Trusted Agent. Use the enrollment key you created when required during the installation process. See :Link[Install Trusted Agent]{label="Install Trusted Agent" overridedLabel="Install Trusted Agent" spaceId docId="XTiUfvyNLUQynrvlCZ-sn" version="v2" docAnchorId="#Install_Trusted_Agent" loadingMethod="dynamic" newTab="false" href="Setting_up_Trusted_Agent.mdx"}.
+6. Complete the Trusted Agent setup and configuration for either LDAP or PowerShell starting from the following topics:
+   - For LDAP, continue from :Link[Connect Trusted Agent to the Directory Server and Test the Connection]{label="Connect Trusted Agent to the Directory Server and Test the Connection" overridedLabel="Connect Trusted Agent to the Directory Server and Test the Connection" spaceId docId="qiCcju38kHr1LMAyL7lkc" version="v2" docAnchorId="#Test_the_Connection" loadingMethod="dynamic" newTab="false" githubPath="Configure_TA_for_LDAP_Connections.htm#Test_the_Connection" href="Configure_TA_for_LDAP_Connections.mdx"}.
+   - For PowerShell, continue from [Configuring Trusted Agent with PowerShell](Configure_TA_with_PowerShell.mdx).
+
+## Common Configuration Setup
+
+The configuration settings in this section apply to both LDAP and PowerShell.
+
+<ExpandableHeading>
+  ## Enable the Global Constant for Trusted Agent
+
+  1. Log in to \{\{FRS\_VARS.ProductName}} as Administrator.
+  2. Open the Configuration console.
+  3. Select **Build > Global Constants** to open the **Global Constants** list.
+  4. Locate **EnableTrustedAgent** in the list, and in the **Value** column, set the value to True.
+  5. Click **Save**.
+     The global constant is now enabled for Trusted Agent.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Install Trusted Agent
+
+  <hint type="info">
+    **System Specification**: The minimum requirement for the Trusted Agent engine is 16GB RAM.
+  </hint>
+
+  Perform this task only after you have completed setting up the Trusted Agent connection and successfully pushed the policy settings. The procedures linked below must be completed before continuing to install Trusted Agent.
+
+  - For LDAP policy settings, complete the following procedures:
+    - :Link[Add a New LDAP Connection and Push Policy Settings]{label="Add a New LDAP Connection and Push Policy Settings" overridedLabel="Add a New LDAP Connection and Push Policy Settings" spaceId docId="qiCcju38kHr1LMAyL7lkc" version="v2" docAnchorId="#Add_a_New_Connection" loadingMethod="dynamic" newTab="false" githubPath="Configure_TA_for_LDAP_Connections.htm#Add_a_New_Connection" href="Configure_TA_for_LDAP_Connections.mdx"}.
+  - For Hybrid policy settings, complete the following procedures:
+    - :Link[Create a Self-Signed Certificate]{label="Create a Self-Signed Certificate" overridedLabel="Create a Self-Signed Certificate" spaceId docId="nKXYfrhJASQND9VFtbedg" version="v2" docAnchorId="#Create_a_Self-SIgned_Certificate" loadingMethod="dynamic" newTab="false" githubPath="Configure_TA_with_PowerShell.htm#Create_a_Self-SIgned_Certificate" href="Configure_TA_with_PowerShell.mdx"}.
+    - :Link[Export the Self-signed Certificate]{label="Export the Self-signed Certificate" overridedLabel="Export the Self-signed Certificate" spaceId docId="nKXYfrhJASQND9VFtbedg" version="v2" docAnchorId="#Export_the_Self-signed_Certificate" loadingMethod="dynamic" newTab="false" githubPath="Configure_TA_with_PowerShell.htm#Export_the_Self-signed_Certificate" href="Configure_TA_with_PowerShell.mdx"}.
+    - :Link[Create a Hybrid Policy]{label="Create a Hybrid Policy" overridedLabel="Create a Hybrid Policy" spaceId docId="nKXYfrhJASQND9VFtbedg" version="v2" docAnchorId="#Create_a_Hybrid_Policy" loadingMethod="dynamic" newTab="false" githubPath="Configure_TA_with_PowerShell.htm#Create_a_Hybrid_Policy" href="Configure_TA_with_PowerShell.mdx"}.
+
+  The IvantiCloudAgent.exe file is installed on the same network as the private resource to which it connects. The IvantiCloudAgent.exe.options file contains the tenant ID and activation key, which together make up the enrollment key. These files are required on the server in your private network where you intend to install Trusted Agent.
+
+  1. Open fixed port 8883 from the Trusted Agent machine for Message Queuing Telemetry Transport (MQTT) connection.
+  2. Use the Test-NetConnection PowerShell command to test the connection, for example:
+
+  ```bash
+  Test-NetConnection -ComputerName <target computer name> -Port 8883 -InformationLevel "Detailed">
+  ```
+
+  3. Open IIS Crypto (if installed) and enable **TLS 1.2** for the Server and Client.
+
+  <hint type="info">
+    You can change the registry to enable **TLS 1.2**; however, it is recommended that you install IIS Crypto to do this.
+  </hint>
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/7L4_z7wLaQKhntqHGFZNY_iisconfigforta1660x456.png" alt="Enable TLS 1.2 in IIS" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/trustedAgents-images/IIS_config_for_TA_1_660x456.png" githubPath="Content/Resources/Images/trustedAgents-images/IIS_config_for_TA_1_660x456.png" showCaption="false"></Image>
+
+  4. Open the IvantiCloudAgent.exe installer file using "Run as Administrator" on the private network server.
+
+  <Paragraph indent="1">
+    The registration dialog opens.
+  </Paragraph>
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/wyDrRjyGkcIAFa9xZjazT_tainstallerregistrationdialog412x239.png" alt="Screenshot of the Ivanti Neurons Agent registration dialog" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/trustedAgents-images/ta_installer_registration_dialog_412x239.png" githubPath="Content/Resources/Images/trustedAgents-images/ta_installer_registration_dialog_412x239.png" showCaption="false"></Image>
+
+  <hint type="info" indent="1">
+    The **Activation key** field is automatically populated with the activation key.
+  </hint>
+
+  5. Click **Register**.
+  6. Open a command line interface and check-in the policy.
+
+  <Paragraph indent="1">
+    a. Ensure you are in directory C:\Program Files\Ivanti\Ivanti Cloud Agent
+  </Paragraph>
+
+  <Paragraph indent="1">
+    b. Enter the following command: .\STAgentCtl.exe update --checkin
+  </Paragraph>
+
+  <Paragraph indent="1">
+    c. When check-in is complete, enter the following command to check the status: .\STAgentCtl.exe status
+  </Paragraph>
+
+  7. Check the status shown on the command line interface. Once the registration state is "Registered", and all engines are installed (as shown below).
+
+  <hint type="info" indent="1">
+    You may need to wait up to 10 minutes for the engines to be installed. You can continue to wait, or run the .\STAgentCtl.exe status command again to recheck.
+  </hint>
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/IZ1sy2E6PuEBRaTsdGdnf_installedengines.png" alt="Screenshot of the command line interface after the status command in run, and showing the status and iinstalled engines" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/trustedAgents-images/installed_engines.png" githubPath="Content/Resources/Images/trustedAgents-images/installed_engines.png" showCaption="false"></Image>
+
+  When completed successfully:
+
+  - For LDAP, continue from :Link[Connect Trusted Agent to the Directory Server and Test the Connection]{label="Connect Trusted Agent to the Directory Server and Test the Connection" overridedLabel="Connect Trusted Agent to the Directory Server and Test the Connection" spaceId docId="qiCcju38kHr1LMAyL7lkc" version="v2" docAnchorId="#Test_the_Connection" loadingMethod="dynamic" newTab="false" githubPath="Configure_TA_for_LDAP_Connections.htm#Test_the_Connection" href="Configure_TA_for_LDAP_Connections.mdx"}.
+  - For PowerShell, continue from [Configuring Trusted Agent with PowerShell](Configure_TA_with_PowerShell.mdx).
+</ExpandableHeading>

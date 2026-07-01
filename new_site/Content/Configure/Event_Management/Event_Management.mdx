@@ -1,0 +1,220 @@
+---
+title: Configuring Event Management
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:53 GMT+0300 (Eastern European Summer Time)
+---
+
+- :Link[About Configuring Event Management]{label="About Configuring Event Management" overridedLabel="About Configuring Event Management" spaceId docId="xdxmIZqj4EoFBKZO15FZR" version="v2" docAnchorId="#About-Configuring-Event-Management" loadingMethod="dynamic" newTab="false" href="Event_Management.mdx"}
+- :Link[Creating and Adding the Event Tab]{label="Creating and Adding the Event Tab" overridedLabel="Creating and Adding the Event Tab" spaceId docId="xdxmIZqj4EoFBKZO15FZR" version="v2" docAnchorId="#Creating-and-Adding-the-Event-Tab" loadingMethod="dynamic" newTab="false" href="Event_Management.mdx"}
+- :Link[Creating and Adding an Event Tab for a Service]{label="Creating and Adding an Event Tab for a Service" overridedLabel="Creating and Adding an Event Tab for a Service" spaceId docId="xdxmIZqj4EoFBKZO15FZR" version="v2" docAnchorId="#Creating-and-Adding-an-Event-Tab-for-a-Service" loadingMethod="dynamic" newTab="false" href="Event_Management.mdx"}
+- :Link[Viewing the Availability Log]{label="Viewing the Availability Log" overridedLabel="Viewing the Availability Log" spaceId docId="xdxmIZqj4EoFBKZO15FZR" version="v2" docAnchorId="#Viewing-the-Availability-Log" loadingMethod="dynamic" newTab="false" href="Event_Management.mdx"}
+- :Link[Viewing, Editing, and Creating an Event]{label="Viewing, Editing, and Creating an Event" overridedLabel="Viewing, Editing, and Creating an Event" spaceId docId="xdxmIZqj4EoFBKZO15FZR" version="v2" docAnchorId="#Viewing-Editing-and-Creating-an-Event" loadingMethod="dynamic" newTab="false" href="Event_Management.mdx"}
+- :Link[Reporting an Event as an Outage]{label="Reporting an Event as an Outage" overridedLabel="Reporting an Event as an Outage" spaceId docId="xdxmIZqj4EoFBKZO15FZR" version="v2" docAnchorId="#Reporting-an-Event-as-an-Outage" loadingMethod="dynamic" newTab="false" href="Event_Management.mdx"}
+- :Link[Creating an Event for a Service]{label="Creating an Event for a Service" overridedLabel="Creating an Event for a Service" spaceId docId="xdxmIZqj4EoFBKZO15FZR" version="v2" docAnchorId="#Creating-an-Event-for-a-Service" loadingMethod="dynamic" newTab="false" href="Event_Management.mdx"}
+- :Link[Marking an Event as Closed]{label="Marking an Event as Closed" overridedLabel="Marking an Event as Closed" spaceId docId="xdxmIZqj4EoFBKZO15FZR" version="v2" docAnchorId="#Marking-an-Event-as-Closed" loadingMethod="dynamic" newTab="false" href="Event_Management.mdx"}
+- :Link[Creating an Incident from an Event]{label="Creating an Incident from an Event" overridedLabel="Creating an Incident from an Event" spaceId docId="xdxmIZqj4EoFBKZO15FZR" version="v2" docAnchorId="#Creating-an-Incident-from-an-Event" loadingMethod="dynamic" newTab="false" href="Event_Management.mdx"}
+- :Link[Associating an Incident with an Event]{label="Associating an Incident with an Event" overridedLabel="Associating an Incident with an Event" spaceId docId="xdxmIZqj4EoFBKZO15FZR" version="v2" docAnchorId="#Associating-an-Incident-with-an-Event" loadingMethod="dynamic" newTab="false" href="Event_Management.mdx"}
+- :Link[About Event Correlation]{label="About Event Correlation" overridedLabel="About Event Correlation" spaceId docId="xdxmIZqj4EoFBKZO15FZR" version="v2" docAnchorId="#About-Event-Correlation" loadingMethod="dynamic" newTab="false" href="Event_Management.mdx"}
+
+## About Configuring Event Management
+
+Event management allows you to capture events for configuration items. You can add an **Event** workspace to specific roles to enable the roles to view events as they are logged, and to list open and closed events. Within the **Event** workspace, you can sort events by number, source, status, if it is an outage, the start date and time, and the end date and time. See [Making Layouts Available to Users](<../Layouts/Making Layouts Avail to Users.mdx>) for information on how to add the **Event** workspace for a role.
+
+In addition, an **Event** tab displays the information for each configuration item. To learn more about event management, see [Working with Event Management](Event_Mgmt_Overview.mdx).
+
+To use event management in your deployment, do the following:
+
+- Add the **Event** service to your configuration.
+- If you are using a \{\{FRS\_VARS.ProductName}} release prior to \{\{FRS\_VARS.ProductName}} Release 2015.1, you must enable the functionality and create an **Event** tab (for each business object) to display within the **CI** workspace. See :Link[Creating and Adding the Event Tab]{label="Creating and Adding the Event Tab" overridedLabel="Creating and Adding the Event Tab" spaceId docId="xdxmIZqj4EoFBKZO15FZR" version="v2" docAnchorId="#Creat_Add_Event_Tab" loadingMethod="dynamic" newTab="false" href="Event_Management.mdx"}.
+
+## Creating and Adding the Event Tab
+
+Use the following procedure to create and add an **Event** tab for any configuration item other than a service. To add an **Event** tab for a service, see :Link[Creating and Adding an Event Tab for a Service]{label="Creating and Adding an Event Tab for a Service" overridedLabel="Creating and Adding an Event Tab for a Service" spaceId docId="xdxmIZqj4EoFBKZO15FZR" version="v2" docAnchorId="#Add_Event_Tab_for_Service" loadingMethod="dynamic" newTab="false" href="Event_Management.mdx"}.
+
+1. From the Configuration Console, click **Build > Page Layouts** to open the **Page Layouts** workspace.
+2. Find the **CI** layout.
+3. Click **Edit**.
+
+<Paragraph indent="1">
+  From the **Edit Layout: CI** workspace, you must edit each business object type such as server, workstation, computer, or service to add event management.
+</Paragraph>
+
+4. Click a business object type (such as server) listed in **Views in this layout** to go to the **Form View Editor** page.
+5. Navigate to the **Child Panels** list.
+6. Select then delete **Outage Log**. It is no longer required.
+7. Click **Add Child Panel** and edit the columns as follows to add an **Event** tab.
+
+| Column Title        | Description                                                                                                                                                                                                                                                                                                                                                            |
+| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Object              | At the **FormView Child Panel Relationship Editor** dialog box, for Direct Relationship: select **Frs\_EVT\_Event (via CIAssocFrs\_EVT\_Event)** for a device (such as computer, server, printer, and so on).                                                                                                                                                          |
+| Display Name        | Enter an appropriate name for the tab (such as **Event**).                                                                                                                                                                                                                                                                                                             |
+| Toolbar             | Remove the **Link** and **Unlink** buttons (since they cannot be used) by dragging them to the **Trash** icon. Click **Yes** when asked to confirm the deletions.<br />Add **Create Incident for CI Events** to the toolbar menu by dragging.<br />Make changes as needed at the toolbar button editor and click **Save**.<br />Click **Save** for the toolbar editor. |
+| List                | Select **Frs\_EVT\_Event.DefaultGrid**.                                                                                                                                                                                                                                                                                                                                |
+| Form(s)             | Select the default form for Frs\_EVT\_Event, then click **OK** to return to the **Edit Layout: CI** page.                                                                                                                                                                                                                                                              |
+| Show Count in Title | Optional. Enable the checkbox in this column to see the number of associated events displayed on the tab.                                                                                                                                                                                                                                                              |
+
+8. Make any other changes such as adding the availability log. See :Link[Click Add Child Panel and edit the columns as follows to add an Availability Log tab. ]{label="Click Add Child Panel and edit the columns as follows to add an Availability Log tab. " overridedLabel="Click Add Child Panel and edit the columns as follows to add an Availability Log tab. " spaceId docId="xdxmIZqj4EoFBKZO15FZR" version="v2" docAnchorId="#Step_Edit_Chil_Panel" loadingMethod="dynamic" newTab="false" href="Event_Management.mdx"}of :Link[Viewing the Availability Log]{label="Viewing the Availability Log" overridedLabel="Viewing the Availability Log" spaceId docId="xdxmIZqj4EoFBKZO15FZR" version="v2" docAnchorId="#Viewing-the-Availability-Log" loadingMethod="dynamic" newTab="false" href="Event_Management.mdx"}.
+9. Click **Save**.
+
+## Creating and Adding an Event Tab for a Service
+
+1. From the Configuration Console, click **Build > Business Objects** to open the **Business Objects** workspace.
+2. Open the **CI.Service** business object.
+3. Click the **Layouts** tab.
+4. Click the **CI.Service** layout. If multiple layouts are used at your installation, then you must edit all relevant configuration item layouts.
+5. Navigate to Views in this layout and click **formView**.
+6. Navigate to the **Child Panels** list and click **Add Child Panel**.
+7. Add or edit the following columns.
+
+| Column Title        | Description                                                                                                                                                                                                                                                                                                                                                                 |
+| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Object              | At the **FormView Child Panel Relationship Editor** dialog, for Direct Relationship select<br />**Frs\_EVT\_Event (via CIServiceAssocFrs\_EVT\_Event)**.                                                                                                                                                                                                                    |
+| Display Name        | Enter an appropriate name for the tab (such as **Event**).                                                                                                                                                                                                                                                                                                                  |
+| Toolbar             | Remove the **Link** and **Unlink** buttons (since they cannot be used) by dragging them to the **Trash** icon. Click **Yes** when asked to confirm the deletions.<br />Add **Create Incident for Service Events** to the toolbar menu by dragging.<br />Make changes as needed at the toolbar button editor and click **Save**.<br />Click **Save** for the toolbar editor. |
+| List                | Select the Frs\_EVT\_Event.DefaultGrid.                                                                                                                                                                                                                                                                                                                                     |
+| Form(s)             | Select the default form for Frs\_EVT\_Event then click **OK**.                                                                                                                                                                                                                                                                                                              |
+| Show Count in Title | Optional. Enable the checkbox in this column to see the number of associated events displayed on the tab.                                                                                                                                                                                                                                                                   |
+
+8. Select then delete **Outage Log**. It is no longer required.
+9. Make any other changes such as adding the availability log. See :Link[Click Add Child Panel and edit the columns as follows to add an Availability Log tab. ]{label="Click Add Child Panel and edit the columns as follows to add an Availability Log tab. " overridedLabel="Click Add Child Panel and edit the columns as follows to add an Availability Log tab. " spaceId docId="xdxmIZqj4EoFBKZO15FZR" version="v2" docAnchorId="#Step_Edit_Chil_Panel" loadingMethod="dynamic" newTab="false" href="Event_Management.mdx"}of :Link[Viewing the Availability Log]{label="Viewing the Availability Log" overridedLabel="Viewing the Availability Log" spaceId docId="xdxmIZqj4EoFBKZO15FZR" version="v2" docAnchorId="#Viewing-the-Availability-Log" loadingMethod="dynamic" newTab="false" href="Event_Management.mdx"}. When specified, use the settings for service.
+10. Click **Save**.
+
+## Viewing the Availability Log
+
+The availability log displays information about events for a device or service. The log calculates the downtime from the time an event is marked as an outage to the time the event is closed. See also :Link[Reporting an Event as an Outage]{label="Reporting an Event as an Outage" overridedLabel="Reporting an Event as an Outage" spaceId docId="xdxmIZqj4EoFBKZO15FZR" version="v2" docAnchorId="#Report_Event_Outage" loadingMethod="dynamic" newTab="false" href="Event_Management.mdx"} and :Link[Creating an Event for a Service]{label="Creating an Event for a Service" overridedLabel="Creating an Event for a Service" spaceId docId="xdxmIZqj4EoFBKZO15FZR" version="v2" docAnchorId="#Flag_Availability" loadingMethod="dynamic" newTab="false" href="Event_Management.mdx"}
+
+<hint type="info">
+  Outage Event impacts the Availability Log calculation only for CI Service and does not have any impact on other CI's Availability Log.
+</hint>
+
+Follow these steps to add an availability log:
+
+1. From the Configuration Console, click **Build > Page Layouts** to open the **Page Layouts** workspace.
+2. For the **CI** page layout, click **Edit**.
+
+<Paragraph indent="1">
+  From the **Edit Layout: CI** page, you must edit each business object type such as server, workstation, or computer to add the **Availability Log** tab.
+</Paragraph>
+
+3. Click on a business object type (such as server) listed in **Views in this layout** to go to the **Form View Editor** page.
+4. Navigate to the **Child Panels** list.
+5. Click **Add Child Panel** and edit the columns as follows to add an **Availability Log** tab.
+
+| Column Title        | Description                                                                                                                                                                                 |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Object              | At the **FormView Child Panel Relationship Editor** dialog box, for Direct Relationship select **CIAssocFRS\_AVL\_CILog**. For service, use **Frs\_AVL\_CILog (via CIAssocFrsAVL\_CILog)**. |
+| Display Name        | Enter an appropriate name for the tab (such as availability log).                                                                                                                           |
+| Toolbar             | Remove the **New**, **Delete**, **Link**, and **Unlink** buttons (since they cannot be used) by dragging them to the **Trash** icon. Click **Yes** when asked to confirm the deletion.      |
+| List                | Select the Frs\_AVL\_CILog.DefaultGrid.                                                                                                                                                     |
+| Form(s)             | Select the default form for Frs\_AVL\_CILog, then click **OK**.                                                                                                                             |
+| Show Count in Title | Optional. Enable the checkbox in this column to see the number of associated events displayed on the tab.                                                                                   |
+
+## Viewing, Editing, and Creating an Event
+
+<hint type="info">
+  Use the **Events** tab to track events created manually or by other integrations.
+</hint>
+
+1. Log in to \{\{FRS\_VARS.ProductName}}.
+2. Open the **CI** workspace.
+3. Double-click a configuration item to open it.
+4. Click the **Event** tab.
+5. Double-click an event to view and edit the event details. You can view the following information for each event:
+   - **Event number**: A unique number assigned to each event.
+   - **Description**: A description of the event.
+   - **Source**: The source of the event, such as manual entry or network monitor.
+   - **Status**: The status of the event. Can be either open or closed.
+   - **Event type**: The type of event. Can be exception, warning, or informational. You can use business rules and quick actions, depending on the event type. For example, whenever an event is classified as informational, you can configure the application to automatically close the event. You could also configure the application to send an alert or email to the administrator for events that are classified as exception or that cause an outage.
+   - **Priority**: The priority of the event. Can be a number between 1 and 5. You can adjust the priority based on the event type.
+   - **Is outage**: Specifies if this event is an outage.
+   - **Start date and time**: The date and time when the event started.
+   - **End date and time**: The date and time when the event ended.
+   - **Duration**: The duration of the event.
+   - **Configuration item name**: The name of the associated configuration item.
+   - **Configuration item state**: The state of the associated configuration item.
+   - **Configuration item type**: The type of the associated configuration item.
+6. When viewing events in a list view, you can sort, group, or filter on any column by clicking the arrow next to the column name and then doing any of the following:
+   - To sort events, click either **Sort Ascending** or **Sort Descending**.
+   - To add or remove columns from the view, click **Columns** and then select the columns to add or remove.
+   - To group events, click **Group By This Field** or **Show in groups**.
+   - To filter events, click **Filters** and then enter a filter. Depending on the column type, the filtering options may be based on keyword or a selectable list.
+7. If an event has one or more associated incidents, click the **search** icon to view the incident.
+
+## Reporting an Event as an Outage
+
+1. Log in to \{\{FRS\_VARS.ProductName}}.
+2. Open the **CI** workspace.
+3. Double-click a configuration item to open it.
+4. Click the **Event** tab.
+5. Double-click an event to view and edit the event details.
+6. Check **Is Outage** to mark an event as an outage.
+
+<Paragraph indent="1">
+  The duration of the outage is calculated when the end date is entered and the entry is saved.
+</Paragraph>
+
+## Creating an Event for a Service
+
+An event is usually created manually for a service. Close the event by editing the information.
+
+1. Log into the application.
+2. Open the **CI** workspace.
+3. Double-click a configuration item to open it.
+4. Click the **Event** tab.
+5. Click **New Event**.
+6. Enter the information into the fields as required.
+7. If this is an outage, check **Is Outage**.
+8. Enter the start date time to begin timing the duration of the outage.
+
+<Paragraph indent="1">
+  The duration of the outage is calculated when the end date of the event is entered and the entry is saved, and is reported as **Service Availability**.
+</Paragraph>
+
+9. Associate the event with an incident. See :Link[Associating an Incident with an Event]{label="Associating an Incident with an Event" overridedLabel="Associating an Incident with an Event" spaceId docId="xdxmIZqj4EoFBKZO15FZR" version="v2" docAnchorId="#Assoc_Incident_to_Event" loadingMethod="dynamic" newTab="false" href="Event_Management.mdx"} for more information. Or create a new incident for this event.
+10. Click **Save**.
+
+## Marking an Event as Closed
+
+1. Log in to \{\{FRS\_VARS.ProductName}}.
+2. Open the **CI** workspace.
+3. Double-click a configuration item to open it.
+4. Click the **Event** tab.
+5. Double-click an event to view it. The application displays the **Edit Event** dialog box.
+6. In the **Status** field, change the status to **closed**.
+7. In the **End Date Time** field, enter the end date time. (This is a required field when the event status is changed to closed.)
+8. Click **Save**.
+
+## Creating an Incident from an Event
+
+For a device or for a service, you can create an incident for an event by using the following steps:
+
+1. Log in to \{\{FRS\_VARS.ProductName}}.
+2. Open the **CI** workspace.
+3. Double-click a configuration item to open it.
+4. Click the **Event** tab to see a list of events.
+5. Select an event, then click **Create Incident** or **Create Incident for Service Events**. You added these quick action buttons when creating the **Event** tabs. See :Link[Creating and Adding the Event Tab]{label="Creating and Adding the Event Tab" overridedLabel="Creating and Adding the Event Tab" spaceId docId="xdxmIZqj4EoFBKZO15FZR" version="v2" docAnchorId="#Creat_Add_Event_Tab" loadingMethod="dynamic" newTab="false" href="Event_Management.mdx"}and :Link[Creating and Adding an Event Tab for a Service]{label="Creating and Adding an Event Tab for a Service" overridedLabel="Creating and Adding an Event Tab for a Service" spaceId docId="xdxmIZqj4EoFBKZO15FZR" version="v2" docAnchorId="#Add_Event_Tab_for_Service" loadingMethod="dynamic" newTab="false" href="Event_Management.mdx"}.
+
+<Paragraph indent="1">
+  The application automatically creates an incident associated with the event.
+</Paragraph>
+
+6. Double-click the event to open the **Edit Event** dialog box. The associated incident is listed in the **Incident** field.
+7. Go to the listed incident by clicking **Go to**.
+
+## Associating an Incident with an Event
+
+1. Log in to \{\{FRS\_VARS.ProductName}}.
+2. Open the **CI** workspace.
+3. Double-click a configuration item to open it.
+4. Click the **Event** tab to see a list of events.
+5. Double-click an event to view it. The application displays the **Edit Event** dialog box.
+6. In the **Incident** field, enter the incident number if known, then click the **search** icon.
+7. If the correct incident is displayed, click **Use Selected Incident** to link the incident with the event. You can also click the **search** icon to search for and find the appropriate incident. Then click **Use Selected Incident** to link the incident with the event.
+
+## About Event Correlation
+
+You can create custom business rules and saved searches to notify users about events based on the event type.
+
+For example, you can create a triggered action business rule that automatically creates an alert whenever there is a application outage. You can also create a triggered action business rule that links all events with the same description across all configuration items. For information about creating triggered action business rules, see :Link[Creating a Triggered Action]{label="Creating a Triggered Action" overridedLabel="Creating a Triggered Action" spaceId docId="4XSn5lf-Ocn14fHU5D_yY" version="v2" docAnchorId="#Creating_a_Triggered_Action" loadingMethod="dynamic" newTab="false" githubPath="../BusinessRules/Business_Rules.htm#Creating_a_Triggered_Action" href="../BusinessRules/Business_Rules.mdx"}.
+
+For a list of the default events-based saved searches, see :Link[Default Saved Searches for Events]{label="Default Saved Searches for Events" overridedLabel="Default Saved Searches for Events" spaceId docId="hEN6VIuCeietzMBJjRHLF" version="v2" docAnchorId="#Default-Saved-Searches-for-Events" loadingMethod="dynamic" newTab="false" githubPath="../Configuring-Search/Default_Saved_Searches.htm#Default-Saved-Searches-for-Events" href="../Configuring-Search/Default_Saved_Searches.mdx"}.

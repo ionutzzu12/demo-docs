@@ -1,0 +1,178 @@
+---
+title: Example: Logging Azure DevOps Pipeline Runs
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:01 GMT+0300 (Eastern European Summer Time)
+---
+
+## Scenario
+
+A company has a number of development build pipelines that it uses to run code against. This example shows how developers use existing Azure DevOps (ADO) events functionality and \{\{Primary.Company}} \{\{FRS\_VARS.ProductName}} webhooks to send pipeline data to \{\{FRS\_VARS.ITSM}}. This process transfers valuable information about runs on a particular pipeline into \{\{FRS\_VARS.ITSM}} business objects.
+
+### Prerequisites
+
+To recreate this example, you need an Administrator Role for \{\{FRS\_VARS.ITSM}} and ADO pipelines. You also need to set up your Azure DevOps instance to send pipeline results to the webhook that you've created. However, even without an ADO installation, you can understand the principles at work here.
+
+<ExpandableHeading>
+  ## Create a Business Object in ITSM
+
+  1. In \{\{FRS\_VARS.ITSM}}, create a business object called **Pipeline Run**. Create the following fields to hold ADO information from a pipeline run:
+
+  <table isTableHeaderOn="true">
+    <tr>
+      <td>
+        Field
+      </td>
+      <td>
+        Description
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Build ID
+      </td>
+      <td>
+        The ID for the development build that ran.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Message
+      </td>
+      <td>
+        Messages about build status appear in this field.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Build Link
+      </td>
+      <td>
+        An HTTPS link to open the build in Visual Studio (in this example).
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Git Hash
+      </td>
+      <td>
+        The Git hash is a unique content name made up of the following:
+        - The commit message.
+        - The file changes.
+        - The commit author (and committer- they can be different).
+        - The date.
+        - The parent commit hash.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Description
+      </td>
+      <td>
+        User friendly version of the message from the Message field.
+      </td>
+    </tr>
+  </table>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Create an Action in ITSM
+
+  1. Open the **Graphical Action Designer**.
+
+  <Paragraph indent="1">
+    See: [Using the Graphical Action Designer (GAD)](<../QuickActions/Graphical Action Designer/Using_the_Graphical_Action_Designer.mdx>).
+  </Paragraph>
+
+  <hint type="info">
+    **Tip:&#x20;**&#x59;ou can use the **Classic Action Designer** if you prefer.
+  </hint>
+
+  2. Create a new block using the **Update Variables and Stored Values** Action block type. This block updates the stored values and variables used in your Action.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/63Vs6cRewlZZWLgtcugIG_ado-eg-blocks1.png" position="flex-start" size="40" indent="1" initialPath="images/ado-eg-blocks1.png" githubPath="Content/Configure/Webhooks/images/ado-eg-blocks1.png" showCaption="false"></Image>
+
+  <Paragraph indent="1">
+    For more help see: [Update Stored Values and Variables Quick Action](<../QuickActions/Graphical Action Designer/Advanced Actions/Update Stored Values and Variables.mdx>)
+  </Paragraph>
+
+  3. Configure the **Update Variables and Stored Values** Action block to store the data given to the webhook endpoint in the required variable **WebhookBody**. Edit the values as follows:
+
+  | Field         | Value       |
+  | ------------- | ----------- |
+  | Variable Type | Variable    |
+  | Name          | WebhookBody |
+  | Data Type     | JSON        |
+  | Value         | \{}         |
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Wb_axOg4Vv-rjaI_NsF3t_csm-eg-itsm-qa1.png" position="flex-start" size="40" indent="1" initialPath="images/csm-eg-itsm-qa1.png" githubPath="Content/Configure/Webhooks/images/csm-eg-itsm-qa1.png" showCaption="false"></Image>
+
+  4. Create a new block using the **Create a New Record** block type, name it **New action - InsertObject**, and attach it to the **Update Stored Values and Variables Action** block.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/ex2t5SL6UXqxVUBeOOOrN_ado-eg-blocks2.png" position="flex-start" size="40" indent="1" initialPath="images/ado-eg-blocks2.png" githubPath="Content/Configure/Webhooks/images/ado-eg-blocks2.png" showCaption="false"></Image>
+
+  5. Edit the **New action - InsertObject** block.
+
+  <Paragraph indent="1">
+    For EACH field, create an expression using the Simplified Expression Editor to use the variable in the **Update Variables and Stored Values** Action block to populate that particular field. The expression retrieves a value for the JSON path and uses it to populate the field. For example, use this expression to populate the **Build ID** field:
+  </Paragraph>
+
+  <Paragraph indent="1">
+    $(JSONPathValue(Variable("WebhookBody"), "$.id"))
+  </Paragraph>
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/1oKZm7p15ZBjgGXoPuEVG_ado-eg-blocks3.png" position="flex-start" size="40" indent="1" initialPath="images/ado-eg-blocks3.png" githubPath="Content/Configure/Webhooks/images/ado-eg-blocks3.png" showCaption="false"></Image>
+
+  <Paragraph indent="1">
+    For help, see: [Using the Simplified Expression Editor](<../../Reference/Expressions/Simplified Expression Editor.mdx>)
+  </Paragraph>
+
+  6. Save your Action as **CreateBuildRun**.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Create the Webhook in ITSM
+
+  1. Create a webhook to trigger the **CreateBuildRun** Action when data is sent to the appropriate endpoint. In the **Settings&#x20;**&#x6D;enu, click on **Webhooks Manager** in the **Build&#x20;**&#x73;ection.
+
+  <Paragraph indent="1">
+    The **Webhooks Manager** opens.
+  </Paragraph>
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/HuxjsOA-IYsC8Mf6Qn3qw_creatingwebhook.png" position="flex-start" size="40" indent="1" initialPath="images/creating_webhook.png" githubPath="Content/Configure/Webhooks/images/creating_webhook.png" showCaption="false"></Image>
+
+  2. Click **Add a Webhook**.
+  3. Enter information into the fields:
+
+  | Field                  | Value                                                                                     |
+  | ---------------------- | ----------------------------------------------------------------------------------------- |
+  | Name                   | Log a Completed Pipeline                                                                  |
+  | Description            | This webhook will create a "Pipeline Run" business object record using the provided data. |
+  | Endpoint Extension     | CompletedPipeline  <br />**Note:** The endpoint extension is case-sensitive.              |
+  | Full Endpoint          | https\://\{tenant url}/api/rest/Webhooks/Execute?extension=CompletedPipeline              |
+  | Select Business Object | Pipeline Runs (PipelineFailure)                                                           |
+  | Select Action          | CreateBuildRun (Composite Action)                                                         |
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/7R6xeRP0FTh3aL2GE2ong_addwebhook1blanks.png" position="flex-start" size="40" indent="1" initialPath="images/add_webhook1_blanks.png" githubPath="Content/Configure/Webhooks/images/add_webhook1_blanks.png" showCaption="false"></Image>
+
+  4. Click **Save**.
+
+  <Paragraph indent="1">
+    A confirmation message appears saying **Webhook successfully created**. Your webhook appears in the list and is enabled by default.
+  </Paragraph>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Verify your Webhook Works
+
+  1. To see your webhook in action and test it, find a recently logged build in ADO.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/pT-ZQNHV9BO97pFm13o7I_ado-eg-pipeline1.png" position="flex-start" size="40" indent="1" initialPath="images/ado-eg-pipeline1.png" githubPath="Content/Configure/Webhooks/images/ado-eg-pipeline1.png" showCaption="false"></Image>
+
+  2. In \{\{FRS\_VARS.ITSM}} open the **Pipeline Runs** business object and select **Refresh** to check for new records.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/VYYRCV1YB4NmRtroGD_j4_ado-eg-pipeline2.png" position="flex-start" size="40" indent="1" initialPath="images/ado-eg-pipeline2.png" githubPath="Content/Configure/Webhooks/images/ado-eg-pipeline2.png" showCaption="false"></Image>
+
+  3. Open one of the records and check the fields. The record has been created automatically by th&#x65;**&#x20;CreateBuildRun** Action invoked by the **Log a Completed Pipeline** webhook.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/4ENUWpa7MkTFcUmjLOKae_ado-eg-pipeline3.png" position="flex-start" size="40" indent="1" initialPath="images/ado-eg-pipeline3.png" githubPath="Content/Configure/Webhooks/images/ado-eg-pipeline3.png" showCaption="false"></Image>
+</ExpandableHeading>

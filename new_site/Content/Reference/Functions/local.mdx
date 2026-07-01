@@ -1,0 +1,66 @@
+---
+title: Local
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:59 GMT+0300 (Eastern European Summer Time)
+---
+
+Returns the localized value of the input, if one exists in the application. This function only works for text values and not for other types such as DateTime values. The localized value is based on the user associated with the current session.
+
+## Syntax
+
+Local(value)
+
+## Enabled For
+
+For a description of the business object categories, see :Link[Notes on "Enabled For"]{label="Notes on &#x22;Enabled For&#x22;" overridedLabel="Notes on &#x22;Enabled For&#x22;" spaceId docId="xObv2pIDrk60jkEIWs8mD" version="v2" docAnchorId="#Notes" loadingMethod="dynamic" newTab="false" githubPath="_Built_in_Functions.htm#Notes" href="_Built_in_Functions.mdx"}.
+
+| Business Object Category                                                                    | Yes/No |
+| ------------------------------------------------------------------------------------------- | ------ |
+| Business Rules: Before-Save Rules                                                           | Yes1   |
+| Business Rules: Calculation Rules (After Save, with or without Also Recalculate on Load)    | Yes    |
+| Business Rules: Calculation Rules (Before Save or Always, without Also Recalculate On Load) | Yes1   |
+| Business Rules: Calculation Rules (Before Save or Always, with Recalculate On Load)         | Yes    |
+| Business Rules: Editing Rules                                                               | Yes1   |
+| Business Rules: Initialization Rules                                                        | Yes1   |
+| Business Rules: Read Only Rules                                                             | Yes1   |
+| Business Rules: Required Rules                                                              | Yes1   |
+| Business Rules: Validation Rules                                                            | Yes1   |
+| Client Expressions                                                                          | Yes    |
+| Object Permissions                                                                          | No     |
+| Services                                                                                    | Yes    |
+| LDAP                                                                                        | Yes    |
+| Mobile                                                                                      | Yes    |
+| Quick Actions (except UI Quick Actions)                                                     | Yes1   |
+| UI Quick Actions                                                                            | No     |
+| Reports                                                                                     | Yes1   |
+| Search/Dashboard without field references                                                   | Yes1   |
+| Search/Dashboard with field references                                                      | No     |
+| 1. Except when this field appears on a form or is triggered by such a field.                |        |
+
+## Parameters
+
+| Parameter | Description             |
+| --------- | ----------------------- |
+| value     | Text value to localize. |
+
+## Return Value
+
+<Paragraph indent="1">
+  Text value.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  When used with field references, if the field is validated, this function returns the local value. If no localized value exists, this function returns the original value.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  When used with literals, looks for and returns a translation in the frs\_def\_translations table.
+</Paragraph>
+
+## Example
+
+$(((((local("Change: ") + ChangeNumber) + " (") + local(Status)) + ")"))
+
+<Paragraph indent="1">
+  If the text in English is "Change: 10311 (Logged)" and the current user has French (France) as their locale, this function returns "Modifier: 10311 (consignÃ©s)".
+</Paragraph>

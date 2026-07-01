@@ -1,0 +1,73 @@
+---
+title: Start Remote Control Quick Action
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:56 GMT+0300 (Eastern European Summer Time)
+---
+
+- :Link[About the Start Remote Control Quick Action]{label="About the Start Remote Control Quick Action" overridedLabel="About the Start Remote Control Quick Action" spaceId docId="dkzYxPO74zdobvlb4Ow1c" version="v2" docAnchorId="#about_start_remote" loadingMethod="dynamic" newTab="false" href="Start Remote Control.mdx"}
+- :Link[Parameters]{label="Parameters" overridedLabel="Parameters" spaceId docId="dkzYxPO74zdobvlb4Ow1c" version="v2" docAnchorId="#Parameters" loadingMethod="dynamic" newTab="false" href="Start Remote Control.mdx"}
+
+## About the Start Remote Control Quick Action
+
+The **Start Remote Control** action allows you to create a remote control session as a part of a composite \{\{FRS\_VARS.Quick\_Action}}. Remote control settings are configured via [ITSM EPM Remote Control Integration](<../../../Endpoint Manager/ISM-EPM-Remote-Control-Integration.mdx>).
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/c1DZrot-TXpLYaGXZtmPZ_qa-start-remote-control-block.png" alt="The start remote control quick action block in the graphical action designer" position="flex-start" size="40" initialPath="../../../../Resources/Images/help-images/qa start remote control block.png" githubPath="Content/Resources/Images/help-images/qa start remote control block.png" showCaption="false"></Image>
+
+## Parameters
+
+To access the parameters, select the **Action Block** to display them in the **Settings** pane.
+
+### Action Block Settings
+
+**Block Label**: A unique name for the block. This is useful to identify each action when you have more than one of the same action block added or cloned in the design area.
+
+1. Click **Open SRC Editor** to open the **Remote Control Operator Options** workspace.
+   1. **Start Remote Control in Admin Mode**: Check this box to start the remote control session as an **Administrator**.
+   2. **Select Option for Launching Operator Console**: Select the correct option for the purpose of your action:
+      - **Run operator console plugin in browser**: Runs Operator Console as a plugin in the browser. The Plugin is available for **Chrome** as an **Extension** and for **Firefox** as an **Add-on**. If the plugin is not available, operatorconsole.exe will be downloaded, and you must launch it manually.
+
+<hint type="info" indent="4">
+  This option is not available for **Internet Explorer**.
+</hint>
+
+<Paragraph listStyleType="disc" indent="3">
+  **Download operatorconsole.exe**: Always downloads operatorconsole.exe; you must manually launch the application after download.
+</Paragraph>
+
+<Paragraph listStyleType="disc" listStart="2" indent="3">
+  **Run HTML5 operator console**: Runs the HTML5 version of **Operator Console** in the browser. If the browser does not support HTML5, the action will download operatorconsole.exe, and you must launch it manually.
+</Paragraph>
+
+<hint type="info" indent="4">
+  This option may not have some features like file transfer or launching console in Administrator Mode.
+</hint>
+
+<Paragraph listStyleType="decimal" listStart="3" indent="2">
+  **Use plugin for launching Remote control client exe**: Check this box to use a plugin on the client side to reuse and launch the remote control client.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="3">
+  Client.exe downloads once.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="3">
+  Available for **Chrome** as an **Extension** and for **Firefox** as an **Add-on**.
+</Paragraph>
+
+<hint type="info" indent="4">
+  If the plugin is unavailable, the \{\{FRS\_VARS.Quick\_Action}} downloads client.exe for every new session.
+</hint>
+
+<Paragraph listStyleType="decimal" listStart="4" indent="2">
+  **Ok**: Click **Ok&#x20;**&#x74;o commit and save your changes in the **SRC Editor**.
+</Paragraph>
+
+<Paragraph listStyleType="decimal" listStart="5" indent="2">
+  **Cancel**: Click **Cancel** to exit the **SRC Editor** without saving your changes.
+</Paragraph>
+
+2. Click **Save** to commit your changes.
+
+### Start Block Settings
+
+These settings are accessed by selecting the **Start Block**, refer to :Link[Start Block Settings]{label="Start Block Settings" overridedLabel="Start Block Settings" spaceId docId="T_2hq2qRJzWxiHLCfgn-7" version="v2" docAnchorId="#CommonTab" loadingMethod="dynamic" newTab="false" githubPath="../Using_the_Graphical_Action_Designer.htm#CommonTab" href="../Using_the_Graphical_Action_Designer.mdx"}.

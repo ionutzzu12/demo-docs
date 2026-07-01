@@ -1,0 +1,42 @@
+---
+title: Working with Currencies
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:54 GMT+0300 (Eastern European Summer Time)
+---
+
+You can define monetary denominations throughout the application. For example, you can designate the costs of your service requests in a specific currency, such as USD or Euros. The **Service Request** workspace does not show a specific currency symbol, but only the number value. However, the pricing is calculated based on the currency that you specify.
+
+Many functions support currency expressions, enabling you to customize saved searches, quick actions, and workflows.
+
+How currency works:
+
+- Empty currency fields and zero will be displayed as 0. Any value greater than zero will be displayed in the decimal format, for example, 0.01, 2.00, 500.00.
+- You cannot mix currency types. For example, if you have an initial price in USD, you cannot designate the recurring price in a different currency.
+- Values are rounded up (>=5) or down (\<5).
+
+## Adding a Currency
+
+1. From the Configuration console, click **Configure > Organizational Profile > Currencies**. The application displays the list of currencies.
+2. Click **New Currency**. The application displays a blank currency page.
+3. Enter information into the fields.
+
+| Field                    | Description                                                                                                                                                                                                                                                                                                                                         |
+| ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Code                     | The currency code. See [http://www.xe.com/iso4217.php](http://www.xe.com/iso4217.php) for the list of ISO 4217 currency codes.                                                                                                                                                                                                                      |
+| Country                  | The country issuing the currency.                                                                                                                                                                                                                                                                                                                   |
+| Name                     | The long name of the currency, such as United States Dollar or Turkey Lira.                                                                                                                                                                                                                                                                         |
+| Description              | How the currency is used (optional).                                                                                                                                                                                                                                                                                                                |
+| Currency                 | The currency symbol.                                                                                                                                                                                                                                                                                                                                |
+| Decimal                  | The type of decimal symbol to use (optional), such as dot (.) or comma (,).                                                                                                                                                                                                                                                                         |
+| Grouping                 | The grouping name (optional).                                                                                                                                                                                                                                                                                                                       |
+| Active                   | If the currency is active or not.                                                                                                                                                                                                                                                                                                                   |
+| Smallest Denomination    | The smallest denomination to use, such as 0.00. This means that the value will always have at least one digit before the decimal separator and only two digits after, when displayed in a price or cost field (such as service request).<br />You can specify up to 18 digits and 4 decimal places.<br />Values are rounded up (>=5) or down (\<5). |
+| Currency Symbol Position | The position of currency symbol. Whether it should appear before (prefix) or after (suffix) the currency value.                                                                                                                                                                                                                                     |
+| Use Locale Convention    | Uses the locale convention.                                                                                                                                                                                                                                                                                                                         |
+
+4. Click **Save**.
+
+## Deleting a Currency
+
+1. From the Configuration console, click **Configure > Organizational Profile > Currencies**. The application displays the list of currencies.
+2. Select the currency to be deleted and click **Delete**.

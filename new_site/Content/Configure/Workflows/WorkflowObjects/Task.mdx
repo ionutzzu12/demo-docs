@@ -1,0 +1,58 @@
+---
+title: Task Workflow Block
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:58 GMT+0300 (Eastern European Summer Time)
+---
+
+The **Task** workflow block assigns a task to an employee or team, including task priority and timelines.
+
+This workflow block only supports Profile.Employee (legacy default content) or Employee (MCT default content) as the assignee. Hence, the only team supported is StandardUserTeam. This block does not support other MCT user types, such as External\_Contact.
+
+This workflow block does not support the use of functions or expressions, except for limited support for the **Task Summary** and **Task Details** fields. If you need to use functions or expressions, use the **Extended Task** workflow block. See [Extended Task Workflow Block](<Extended Task.mdx>).
+
+For the **Task Summary** and **Task Details** fields, you can use context business object field expressions but not functions.
+
+If you edit a calculation rule for the **Employee** business object and if the field name is set to **DisplayName** and you check **Also Recalculate On Load**, if you open the **Task** workflow block, the application throws an error. To avoid this error, do not check **Also Recalculate On Load**.
+
+*Also Recalculate on Load Option*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/HX-MY6TUTqeLSyj2j3Zb3_task-wf-block-error.png" position="flex-start" size="40" indent="1" initialPath="../../../Resources/Images/help-images/task-wf-block-error.png" githubPath="Content/Resources/Images/help-images/task-wf-block-error.png" showCaption="false"></Image>
+
+*Task Workflow Block Properties*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Zj6RFtez2HDI84Xr71nZ6_tasksummary.png" position="flex-start" size="40" indent="1" initialPath="../../../Resources/Images/help-images/task_summary.png" githubPath="Content/Resources/Images/help-images/task_summary.png" showCaption="false"></Image>
+
+## Exit Ports
+
+You can define additional exit ports under the **Exits Configuration** tab. See :Link[Exits Configuration]{label="Exits Configuration" overridedLabel="Exits Configuration" spaceId docId="SaUQJmfwFZ-PqnlodqGKY" version="v2" docAnchorId="#Exits_Configuration" loadingMethod="dynamic" newTab="false" githubPath="Switch.htm#Exits_Configuration" href="Switch.mdx"}.
+
+| Exit Port            | Description                                                                                               |
+| -------------------- | --------------------------------------------------------------------------------------------------------- |
+| Accepted             | The task status is set to accepted.                                                                       |
+| Assigned             | The task status is set to assigned.                                                                       |
+| Logged               | The task status is set to logged.                                                                         |
+| Completed            | The task status is set to completed.                                                                      |
+| Cancelled            | The task status is set to canceled.                                                                       |
+| Acceptance Timed Out | The workflow is terminated as incomplete because an event acceptance exceeded the defined length of time. |
+| Timed Out            | The workflow is terminated as incomplete because an event exceeded the defined length of time.            |
+
+## Properties
+
+| Property                | Description                                                                                                                                                                                                                                          |
+| ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Title                   | A unique name for the workflow block.                                                                                                                                                                                                                |
+| Task Summary            | A summary description of the task.<br /><br />**NOTE**: In this field, you can use context business object field expressions but not functions.                                                                                                      |
+| Task Details            | A description of what the task does.<br /><br />**NOTE**: In this field, you can use context business object field expressions but not functions.                                                                                                    |
+| Team                    | The team assigned to this task.                                                                                                                                                                                                                      |
+| Assignee (Optional)     | A specific assignee for this task, if needed.                                                                                                                                                                                                        |
+| Relationship to Task BO | The business object relationship associated with this task. Select from the drop-down list.                                                                                                                                                          |
+| Priority                | **Field**: A field type for this task priority. Select from the drop-down list. Its numeric value determines the task priority.<br />**Value**: A numeric value for this task. Select from the drop-down list. A value of 1 is the highest priority. |
+| Accept Timeout Date     | A marker for the task timeout interval. Select from the drop-down list. This includes all date and time fields available for the business object, such as **Created on** and **Modified on**.                                                        |
+| Timeout Duration        | **Field**: The due date. Generated relative to the field selected from the drop-down list.<br />**Duration**: Defines the due date according to the interval defined in the **Days**, **Hrs** (hours), and **Mins** (minutes) fields.                |
+
+## Actions
+
+| Button | Action                 |
+| ------ | ---------------------- |
+| Save   | Commits your settings. |
+| Cancel | Exits without saving.  |

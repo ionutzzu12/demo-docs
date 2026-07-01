@@ -1,0 +1,73 @@
+---
+title: Using Related Items and Object Matching
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:45 GMT+0300 (Eastern European Summer Time)
+---
+
+When viewing or creating incidents, problems, or knowledge articles, \{\{FRS\_VARS.ProductName}} displays a list of related items in the right pane (called the **Related Items** pane) of the window. The related items list is triggered by keywords in the **Summary** field. The application uses object matching to search the database for records matching the keywords. Object matching performs a Microsoft SQL full-text search in all full-text indexed fields in the business object tables when business objects (such as incidents and problems) are searched. Ranking is also performed by the Microsoft SQL engine.
+
+### Viewing Related Items
+
+Items in the **Related Items** list are grouped by type: incident, problem, or knowledge.
+
+Do the following to view details about an item on the **Related Items** list:
+
+1. Log in to \{\{FRS\_VARS.ProductName}}.
+2. Open a workspace.
+3. Open a record within the workspace.
+
+<Paragraph indent="1">
+  The application displays the **Related Items** panel on the right.  (If it does not, either this feature is not enabled for the business object or it is hidden. If the **Related Items** panel is hidden, you can display it by clicking the side arrow.)
+</Paragraph>
+
+<Paragraph indent="1">
+  *Opening the Related Items Panel*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/2Dbtrh0p1C97xK3O7bnWw_openrelateditemspanel.png" alt="how to open the related items panel" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/OpenRelatedItemsPanel.png" githubPath="Content/Resources/Images/help-images/OpenRelatedItemsPanel.png" showCaption="false"></Image>
+
+4. Enter a search word and click the magnifying glass. The application displays search results.
+5. Click on the item in the **Related Items** list, to open the details window.
+6. To collapse or expand the group list, click the arrow beside the group header.
+7. To generate a different result, enter new criteria in the text field under **Related Items**, then click the magnifying glass.
+
+<hint type="info">
+  The default business objects for the search results are incident, knowledge, and problem, but the administrator can modify this.
+</hint>
+
+### Filtering the Related Items List
+
+You can reduce the number of items that appear in the **Related Items** list by filtering the items to show only items set to resolved or closed.
+
+1. Perform steps 1-4 in :Link[Viewing Related Items]{label="Viewing Related Items" overridedLabel="Viewing Related Items" spaceId docId="A8bM9OzzhsoynEc4it_dR" version="v2" docAnchorId="#ViewingRelatedItems" loadingMethod="dynamic" newTab="false" href="Related Items.mdx"}.
+2. Scroll to the bottom of the **Related Items** list.
+3. From the Filters drop-down list, choose a filter.
+
+<Paragraph indent="1">
+  *Filtering Related Items*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/55jSfqQNDvOaLgkyjjf_7_filteringrelateditems.png" alt="showing filtering of related items" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/FilteringRelatedItems.png" githubPath="Content/Resources/Images/help-images/FilteringRelatedItems.png" showCaption="false"></Image>
+
+<Paragraph indent="1">
+  The application automatically updates the **Related Items** list to only show items with that status.
+</Paragraph>
+
+### Linking and Resolving Related Items
+
+The business object workspace, for example, the **Incident** workspace, may have various options on the bottom, depending on the business object. You can optionally click any of the following:
+
+- **Link**: Links the item to your record. The item appears under the corresponding tab (knowledge, problem, or incident).
+  - You can link incidents to problems and Knowledge Base articles.
+  - You can link problems to incidents and Knowledge Base articles.
+  - You can link Knowledge Base articles to other Knowledge Base articles.
+- **Link Incident**: Links the incident to your record.
+- **Update to Known Error**: Sets the problem type to known error. Refer to [Working with Problems](<../Problem/Creating a Problem.mdx>).
+- **Link and Resolve**: Sets the incident status to resolved. Refer to [Managing Incidents](../Incidents/Managing-Incidents.mdx).
+- **Link Related Knowledge**: Click to relate a knowledge record to another knowledge record. This option does not change the status.
+- **Resolve Incident**: Resolves the incident.
+- **Link Problem with Incident**: Links the problem with the incident.
+- **Resolve via Resolution**: Resolves the problem.
+- **Resolve via Workaround**: Resolves the issue via a workaround.
+
+For information about configuring these settings, refer to [Configuring Search](<../../Configure/Configuring-Search/Configuring Search.mdx>).

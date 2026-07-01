@@ -1,0 +1,96 @@
+---
+title: Working with the Call Log
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:48 GMT+0300 (Eastern European Summer Time)
+---
+
+- :Link[About the Call Log]{label="About the Call Log" overridedLabel="About the Call Log" spaceId docId="4rKGwopxIy_x3F83t8qmj" version="v2" docAnchorId="#About_Call_Log" loadingMethod="dynamic" newTab="false" href="Call_Logging.mdx"}
+- :Link[About Call Log Dashboards and Roles]{label="About Call Log Dashboards and Roles" overridedLabel="About Call Log Dashboards and Roles" spaceId docId="4rKGwopxIy_x3F83t8qmj" version="v2" docAnchorId="#Call_Log_Dashboard-Roles" loadingMethod="dynamic" newTab="false" href="Call_Logging.mdx"}
+- :Link[Creating a Call Log]{label="Creating a Call Log" overridedLabel="Creating a Call Log" spaceId docId="4rKGwopxIy_x3F83t8qmj" version="v2" docAnchorId="#Creating_Call_Log" loadingMethod="dynamic" newTab="false" href="Call_Logging.mdx"}
+- :Link[Making Changes to the Call Log Workspace and Related Tabs]{label="Making Changes to the Call Log Workspace and Related Tabs" overridedLabel="Making Changes to the Call Log Workspace and Related Tabs" spaceId docId="4rKGwopxIy_x3F83t8qmj" version="v2" docAnchorId="#Making" loadingMethod="dynamic" newTab="false" href="Call_Logging.mdx"}
+- :Link[Resolving Call Log Loading Error]{label="Resolving Call Log Loading Error" overridedLabel="Resolving Call Log Loading Error" spaceId docId="4rKGwopxIy_x3F83t8qmj" version="v2" docAnchorId="#Log-error" loadingMethod="dynamic" newTab="false" href="Call_Logging.mdx"}
+
+## About the Call Log
+
+The call log is a separate module for logging service calls about IT or other operational or infrastructure issues, and is accessed from the **Call Log** workspace. This workspace is available to administrators, Call Log Support Desk Analysts, Call Log Support Desk Managers, and Call Log Self Service users.
+
+The call log allows both employees and support services to log a case about issues or outages. This module is not connected to and does not update the data in the **Incident** and **Service Request** modules.
+
+## About Call Log Dashboards and Roles
+
+Call log dashboards and roles are used when you implement the **Call Log** module. There are two dashboards specific to the call log that can be accessed by Call Log Support Desk Analysts and Call Log Support Desk Managers. For more information about these dashboards, see :Link[Call Log Default Dashboards]{label="Call Log Default Dashboards" overridedLabel="Call Log Default Dashboards" spaceId docId="KSONPjyjJ9_4FOBWWUYyt" version="v2" docAnchorId="#CallLogDashboard" loadingMethod="dynamic" newTab="false" githubPath="../Dashboard/Dashboard_Defaults.htm#CallLogDashboard" href="../Dashboard/Dashboard_Defaults.mdx"}.
+
+The call log roles must be assigned to users in order to grant access to create a support ticket or view ticket metrics.
+
+- **Support Desk Analyst for Call Log**: For support desk personnel. Has access to the **Call Log Support Agent** dashboard.
+- **Support Desk Manager for Call Log**: For support desk managers. Has access the **Call Log Support Manager** dashboard.
+- **Self Service with Call Log**: Assigned to employees who may need to create a support ticket using the call log in the Self-Service Portal.
+
+## Creating a Call Log
+
+You must have one of the roles listed in :Link[About Call Log Dashboards and Roles]{label="About Call Log Dashboards and Roles" overridedLabel="About Call Log Dashboards and Roles" spaceId docId="4rKGwopxIy_x3F83t8qmj" version="v2" docAnchorId="#Call_Log_Dashboard-Roles" loadingMethod="dynamic" newTab="false" href="Call_Logging.mdx"} before you can access the call log.
+
+1. Log in to the Service Desk Console as a Call Log Support Desk Manager or Call Log Support Desk Analyst.
+2. From the top header bar, select **Call Log** to open the workspace.
+3. Click **New HEAT Call Log**.
+4. Enter information into the fields and tabs. Mandatory fields are marked with an asterisk. Not all options are available to all users.
+
+<Paragraph indent="1">
+  The **Call Log** tab contains the following fields:
+</Paragraph>
+
+| Form Parts Name        | Description                                                                                                                                                                                 |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Customer Type          | Choose from company, department, or employee.                                                                                                                                               |
+| Call #                 | Automatically entered by the application.                                                                                                                                                   |
+| Employee ID            | Enter information to narrow choices or search for employee name. The **Contact Name**, **Phone Number**, **Email**, and **Customer ID** fields are automatically populated.                 |
+| Department             | Automatically entered from the info in the **Employee ID** field. You can also enter a department name.                                                                                     |
+| Facility               | Enter information.                                                                                                                                                                          |
+| Call Description       | Free-form text field to enter a description of the issue                                                                                                                                    |
+| Call Type              | Select how the issue was received by the support desk. The choices affect the information available under **Category** and **Priority**.                                                    |
+| Category               | Select from the available choices. The selection may affect the choices under **Priority**.                                                                                                 |
+| Priority               | Choices change based on selection for category.                                                                                                                                             |
+| Solution Description   | For support desk to enter the solution for the issue.                                                                                                                                       |
+| Cause                  | Select a cause type from the list.                                                                                                                                                          |
+| Owner                  | Lists the name of the person who was assigned the ticket.                                                                                                                                   |
+| Source                 | Select the source of the ticket from the choices.                                                                                                                                           |
+| Attachments            | Allows you to attach data or image files.                                                                                                                                                   |
+| Assets                 | Allows you to link to the affected asset.                                                                                                                                                   |
+| Closed on 1st Contact? | Specifies if the a solution was immediately provided to the caller.                                                                                                                         |
+| Suspend                | Allows a Call Log Service Desk Agnalyst to suspend the clock for the ticket. For example, when waiting for the delivery of a part or other item such as software, or access to the machine. |
+
+5. The **Assignment** tab allows you to create a new assignment or new task by clicking **New Assignment**.
+6. The **Journal** tab allows you to enter notes or send an email about the issue by clicking **Journal**.
+
+<Paragraph indent="1">
+  Call Log Support Desk Analysts and Call Log Support Desk Managers can change the default owner of a call. Normally, the person entering the call data is the default owner.
+</Paragraph>
+
+Call Log Support Desk Managers can also reopen a closed call.
+
+## Making Changes to the Call Log Workspace and Related Tabs
+
+You can change the choices available to the **Call Log** workspace and show or hide tabs by editing the interface. For example:
+
+- You can hide the **Suspend** button for Call Log Self Service users in the forms view.
+- Administrators can change or set different escalation schedules from the Configuration Console.
+
+## Resolving Call Log Loading Error
+
+In \{\{FRS\_VARS.ITSM}} version \{\{Primary.Year}}**.2** sometimes the following error occurs while rendering the Call Log page.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/-epZvNywudHIAT7o2wa5n_error-call-log.png" alt="Call log page loading error" caption="Call log page loading error" position="flex-start" size="40" initialPath="../../Resources/Images/ServiceDesk-Images/Error-Call-log.png" githubPath="Content/Resources/Images/ServiceDesk-Images/Error-Call-log.png" showCaption="true"></Image>
+
+To resolve this issue there is a workaround:
+
+1. Navigate to **Build > Business Objects** in the \{\{FRS\_VARS.Configuration\_console}} and search for **HEAT Call Log**.
+   :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/kcL2lDwuG-_2p2tcBgC1z_search-heat-call-log.png" alt="Search HEAT Call Log in Business Objects" caption="Search HEAT Call Log in Business Objects" size="21" width="210" height="250"}
+2. Select **Forms > FRS\_HC\_CallLog.CallLogForm**.
+   :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/gllwPOrKK94ELPEZ73o8q_call-log-forms.png" alt="Selecting the Form" caption="Selecting the Form" size="59" width="587" height="250"}
+3. Select **Assets > Flex settings**.
+   :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/ITifX8uHt4mwB2D3B6Oe__assets-flexsettings.png" alt caption size="58" width="582" height="250"}
+4. The **Flex Settings** form is shown. Change anything in this form and click **Save**.
+   :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/subWRoCSIFLX7veY2lQaX_submit-save.png" alt caption size="24" width="235" height="250"}
+5. Click **Save** in the **FRS\_HC\_CallLog.CallLogForm**.
+
+The error is resolved and the Call Log page renders accurately.

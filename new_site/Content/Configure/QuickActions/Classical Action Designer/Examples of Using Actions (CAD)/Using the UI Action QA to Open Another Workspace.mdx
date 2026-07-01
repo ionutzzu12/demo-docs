@@ -1,0 +1,28 @@
+---
+title: Example: Using the UI Action Quick Action to Open Another Workspace (CAD)
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:57 GMT+0300 (Eastern European Summer Time)
+---
+
+In the following example, you can use the **UI Action** \{\{FRS\_VARS.Quick\_Action}} to open a change form from the **Problem** workspace.
+
+See [UI Action Quick Action](<../templates/UI Action.mdx>).
+
+1. From the Configuration console, click **Build > Automation Tools > Quick Actions** to open the **Actions Manager** workspace. The list of business objects that have actions appears.
+2. Click **Add/Edit** for the **Problem** business object. The Actions Center appears.
+3. Click the **Create New Actions** tab.
+4. Click **UI Action**. The **UI Action Configuration** page appears.
+5. Enter information into the fields.
+
+| Field                    | Description                                                                                                                                                                                                                                                                                                                                                                                 |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Enter action name        | A name for this action.                                                                                                                                                                                                                                                                                                                                                                     |
+| Enter action description | An optional description.                                                                                                                                                                                                                                                                                                                                                                    |
+| Enter category           | The category. Select from the drop-down menu.                                                                                                                                                                                                                                                                                                                                               |
+| Publish to               | The roles that need access to this action.                                                                                                                                                                                                                                                                                                                                                  |
+| Scope                    | Enter **CurrentTab\:ObjectWorkspace\:ObjectView**.                                                                                                                                                                                                                                                                                                                                          |
+| Command ID               | Enter **NewChildObject**.                                                                                                                                                                                                                                                                                                                                                                   |
+| Confirmation             | Enter **null**.                                                                                                                                                                                                                                                                                                                                                                             |
+| Command Data             | Enter the following:<br />\{<br />ObjectType:"Problem#"<br />, ChildObjectType:"Change#"<br />, NewObjectType:"Change#"<br />}<br />In another example, from the same **Problem** workspace, to open a new announcement window, for **CommandData**, you would enter:<br />\{<br />ObjectType:"Problem#"<br />, ChildObjectType:"Announcement#"<br />, NewObjectType:"Announcement#"<br />} |
+
+6. Click **Save**.

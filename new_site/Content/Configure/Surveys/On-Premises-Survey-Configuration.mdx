@@ -1,0 +1,55 @@
+---
+title: On-Premises Survey Configuration
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:54 GMT+0300 (Eastern European Summer Time)
+---
+
+On‑Premises Survey Configuration enables you to configure and manage Modern Surveys in on‑premises deployments for collecting and evaluating user feedback. The configuration includes setting up the Trusted Host Addresses to allow access to the survey URL and configuring Survey Information to associate the required SQL user with the appropriate tenants for continued access to the Take Survey endpoint.
+
+To complete the on‑premises survey setup, configure the trusted host details and the survey information as described in the following sections.
+
+## Trusted Host Addresses
+
+Trusted Host Addresses specifies the host names that the application trusts and allows to access its endpoints for secure communication.
+
+To begin the configuration:
+
+1. Sign in to the CentralConfig and navigate to **Trusted Host Addresses**.
+2. Add the survey host by entering its Fully Qualified Domain Name (FQDN), and ensure that the FQDN is specified in lowercase.
+
+To complete the configuration, follow the detailed setup steps in [Modern‑Survey‑On‑prem](Modern-Survey-On-prem.mdx).
+
+*Trusted Host Addresses*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/xubAwzyDSw79MZI80vkex_trusted-hosted-addresses.png" position="flex-start" size="40" initialPath="../../Resources/Images/Trusted-Hosted-Addresses.png" githubPath="Content/Resources/Images/Trusted-Hosted-Addresses.png" showCaption="false"></Image>
+
+<hint type="info">
+  centralconfig.ism.svc.cluster.local represents the expected format of the FDQN. It does not correspond to a real customer environment.
+</hint>
+
+## Take Survey URL
+
+When an incident is closed, a Take Survey URL is generated to allow end users to submit survey responses. As part of security enhancements, this endpoint requires SQL user authentication. To ensure continued access, create the required SQL user and associate it with the appropriate tenants as part of the survey information configuration.
+
+To begin the configuration:
+
+1. Sign in to the CentralConfig and navigate to **Survey Information**.
+2. Provide **Take Survey end point** – https\://\{tenant url}/HEATSurvey/TakeSurvey?action=take\_survey
+
+For more information, refer to [Getting-Survey-URL-Setting-up-Connection.](Getting-Survey-URL-Setting-up-Connection.mdx)
+
+*Survey Information*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/7QmC9gC7s_FR8boh7MaE5_survey-information.png" position="flex-start" size="40" initialPath="../../Resources/Images/Survey-Information.png" githubPath="Content/Resources/Images/Survey-Information.png" showCaption="false"></Image>
+
+<hint type="info">
+  https\://\{tenant url}/HEATSurvey/TakeSurvey?action=take\_survey represents the expected format of the URL. It does not correspond to a real customer environment.
+</hint>
+
+<hint type="info">
+  You might encounter an “Invalid Session” error if any of the following conditions apply:
+
+  - The survey name configured in the Global Constant (GC) is incorrect. For more information, refer to [Default\_Global\_Constants.](../Constants/Default_Global_Constants.mdx)
+  - The survey user is not configured.
+  - Cached data is outdated; rebuilding the cache resolves the issue.
+</hint>

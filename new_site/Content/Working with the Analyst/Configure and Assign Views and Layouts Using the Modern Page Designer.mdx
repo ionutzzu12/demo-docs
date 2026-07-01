@@ -1,0 +1,1507 @@
+---
+title: Configure and Assign Views and Layouts Using the Modern Page Designer
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:45 GMT+0300 (Eastern European Summer Time)
+---
+
+**Role:**\{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}
+
+**Prerequisites**:
+
+- Administrator access is required.
+- The global constant **EnableNova** must be set to **True**.
+
+You can use the **Modern Page Designer** to create and assign role-based layouts for any **business object**. In this procedure, we use the **Incident** business object as an example use case. You will configure a **layout**, add a **view** (**Data grid**, **Kanban** or **Gallery View**), and publish a data grid layout.
+
+<ExpandableHeading>
+  ## Steps to create a Ivanti Service Management Portfolio UI V3
+
+  ### Enable the Modern Designer
+
+  1. Log in to \{\{FRS\_VARS.ProductName}} as an \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+  2. From the Configuration Console, click **Build** > **Global Constants**.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/lQ_pZeJuIu0wgN_0eHHSH_enable-global-constant.png" position="flex-start" size="40" indent="2" initialPath="Images/Enable Global Constant.png" githubPath="Content/Working with the Analyst/Images/Enable Global Constant.png" width="1900" height="621" darkWidth="1900" darkHeight="621" showCaption="false"></Image>
+
+  3. Search for the global constant **EnableNova**.
+     - If the constant exists, set the value to **True**.
+     - If the constant does not exist:
+       1. Select :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Kc7G2l98uGFtWPlc5ZMqC_add-icon.png" alt caption size="10" width="15" height="15"}**Add**.
+       2. In the **Name** field, enter **EnableNova**.
+       3. In the **Value** field, enter **True**.
+       4. In the **Type** field, select **Boolean** form the dropdown.
+       5. Select **Save**.
+  4. Select **Save**.
+
+  <hint type="info">
+    When you enable the global constant **EnableNova**, table widgets in the **Dashboard UI v2 workspace** display the **Ivanti Service Management Portfolio UI V3 Data Grid**. This behavior applies to all dashboards, both existing and new, in the Dashboard UI v2 workspace.
+  </hint>
+
+  ### Launch the Modern Page Designer
+
+  1. Navigate to **Build** > **Business Objects**, and select the **Incident** business object.
+  2. Select the **Layouts** tab.
+  3. Select **Add New Layout**.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/446r6wGs-u0LxA6RPRHv-_add-new-layout.png" position="flex-start" size="40" indent="2" initialPath="Images/Add New Layout.png" githubPath="Content/Working with the Analyst/Images/Add New Layout.png" width="1900" height="876" darkWidth="1900" darkHeight="876" showCaption="false"></Image>
+
+  4. When prompted, select **Try Modern Designer**.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/fdTVfY6i1fjfe8w47RLeY_try-modern-designer.png" position="flex-start" size="40" indent="2" initialPath="Images/Try Modern Designer.png" githubPath="Content/Working with the Analyst/Images/Try Modern Designer.png" width="616" height="275" darkWidth="616" darkHeight="275" showCaption="false"></Image>
+
+  <Paragraph indent="1">
+    The application displays an onboarding dialog box :
+  </Paragraph>
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/34x-f0aFBsLlQg5KjszDi_modern-designer-dailog-box-tour.png" position="flex-start" size="40" indent="2" initialPath="Images/Modern Designer Dailog box tour.png" githubPath="Content/Working with the Analyst/Images/Modern Designer Dailog box tour.png" width="1895" height="1028" darkWidth="1895" darkHeight="1028" showCaption="false"></Image>
+
+  <Paragraph indent="1">
+    An onboarding dialog box appears; you can **Start** or **Skip** the walkthrough. Select **Do not show again** to hide it in future sessions.
+  </Paragraph>
+
+  ### Modern Page Designer Home Page
+
+  The designer page is divided into three sections:
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/vxc877iLKjTRanoqIIKwI_designer-home-pages.png" position="flex-start" size="40" initialPath="Images/Designer Home Pages.png" githubPath="Content/Working with the Analyst/Images/Designer Home Pages.png" width="1907" height="991" darkWidth="1907" darkHeight="991" showCaption="false"></Image>
+
+  - **At the top:** Select the business object from the dropdown list.
+  - **Left pane:**
+    - **Layout:** Use the **ellipsis (⋮)** next to the layout dropdown to **Edit**, **Clone**, **Delete**, or **Add new** layouts.
+    - **Views:** Use the **ellipsis (⋮)** next to the Views dropdown to **Add new** or **Manage** views. When an existing view is selected, the menu also includes **Edit**, **Clone**, and **Delete** options.
+  - **Center pane:** Displays **Create a new layout to begin**.
+  - **Right pane (Configure):** The right pane properties appears only after a column is selected from the data grid.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/yERpw-UTYC_pcuWakNtNr_right-configure-pane.png" position="flex-start" size="40" indent="2" initialPath="Images/Right configure Pane.png" githubPath="Content/Working with the Analyst/Images/Right configure Pane.png" width="1935" height="1055" darkWidth="1935" darkHeight="1055" showCaption="false"></Image>
+
+  ### **Create a New Layout**
+
+  1. In the **Layout** dropdown, select the **ellipsis (⋮)** and then select **Add New**.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/H0LZgdaNo5EUKX6gn4Bc7_create-a-new-layout.png" position="flex-start" size="40" initialPath="Images/Create a New Layout.png" githubPath="Content/Working with the Analyst/Images/Create a New Layout.png" width="1907" height="948" darkWidth="1907" darkHeight="948" showCaption="false"></Image>
+
+  2. In the **Create layout** dialog box:
+
+  <table isTableHeaderOn="true" columnWidths="312,312">
+    <tr>
+      <td>
+        Field
+      </td>
+      <td>
+        Description
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Display Name
+      </td>
+      <td>
+        A unique name for this layout.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Enable Simple Search
+      </td>
+      <td>
+        Makes the simple search text box visible on the workspace. Also known as full-text search, this searches all full-text indexed fields. See [About the Different Search Types](<../ServiceDesk/Search/Text Searching.mdx>) for more information on how this works.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Use Type Ahead Search
+      </td>
+      <td>
+        Enables type ahead search. This option invokes a panel listing the results of what the user types into the search box, allowing them to click one of the results.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Search all full-text indexed fields
+      </td>
+      <td>
+        Only searches in full-text indexed fields. This option is checked by default and enables you to use Partial word results.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Partial word results
+      </td>
+      <td>
+        Shows partial word results in the **Type Ahead** panel and the results list.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Search primary display fields only
+      </td>
+      <td>
+        Limits the search to only the primary display field (as opposed to all full-text indexed fields). Use this option only if the search freezes due to an excessive number of records. Note that the results from this search option will be different from the list results.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Do not sort
+      </td>
+      <td>
+        Disables automatically sorted results. By default, **Type Ahead** search results are sorted in ascending alphabetical-numeric order. This might cause a slow-down in getting search results.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Show Saved Search Link
+      </td>
+      <td>
+        Shows the saved search link (see [Using a Saved Search](<../ServiceDesk/Search/Saved Searches.mdx>)).
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Enable Saved Search
+      </td>
+      <td>
+        Shows the list of saved searches with this layout.
+      </td>
+    </tr>
+  </table>
+
+  3. Select **Save**.
+
+  ### **Create a New View**
+
+  1. In the **Views** dropdown, select the **ellipsis (⋮)** and then select **Add New**.
+
+  The **Create new view** dialog appears.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/romhRqiCGNj7LEeAoKtTj_create-a-new-view.png" position="flex-start" size="40" initialPath="Images/Create a New View.png" githubPath="Content/Working with the Analyst/Images/Create a New View.png" width="1911" height="947" darkWidth="1911" darkHeight="947" showCaption="false"></Image>
+
+  2. From the **View** type dropdown, select one of the following:
+
+  - **Data grid**
+  - **Kanban**
+  - **Gallery View**
+
+  3. (Optional) Select the checkbox **Use existing data grids** to base the view on a previously created data grid.
+  4. In **View name**, enter a descriptive (e.g., Grid, Kanban or Gallery) name for the view.
+  5. Under Navigation to other views:
+
+  - Select the checkbox **Use form view from existing layout** to reuse a form layout.
+  - From the **On request to create new object** dropdown, select the view to display when creating a new object.
+  - From the **On request to edit existing object** dropdown, select the view to display when editing an existing object.
+
+  6. Select **Save** to continue to the **Properties** tab.
+  7. On the **Properties** tab, configure the following fields:
+
+  <hint type="info">
+    If you select **Use existing data grids** in the **Select View Type** tab, the **Properties** tab automatically populates with the settings from the selected data grid. You can review and modify them as needed.
+  </hint>
+
+  <table isTableHeaderOn="true" columnWidths="208,208,208">
+    <tr>
+      <td>
+        Field
+      </td>
+      <td>
+        Description
+      </td>
+      <td>
+        Values
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Name
+      </td>
+      <td>
+        Internal name for the data grid or Kanban view.
+      </td>
+      <td>
+        Free text
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Description
+      </td>
+      <td>
+        Optional description of the view.
+      </td>
+      <td>
+        Free text
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Style
+      </td>
+      <td>
+        UI style applied to the view.
+      </td>
+      <td>
+        Default
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Workspace paging
+      </td>
+      <td>
+        Number of records per page in the workspace.
+      </td>
+      <td>
+        0, 10, 15, 25, 50, 100
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Dashboard paging
+      </td>
+      <td>
+        Number of records per page in dashboard widgets.
+      </td>
+      <td>
+        0, 10, 15, 25, 50, 100
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Dialog paging
+      </td>
+      <td>
+        Number of records per page in dialogs.
+      </td>
+      <td>
+        0, 10, 15, 25, 50, 100
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Search paging
+      </td>
+      <td>
+        Number of records per page in search results.
+      </td>
+      <td>
+        0, 10, 15, 25, 50, 100
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Sort column
+      </td>
+      <td>
+        Column used for default sorting.
+      </td>
+      <td>
+        Any available field.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Sort order
+      </td>
+      <td>
+        Order applied to the sort column.
+      </td>
+      <td>
+        Ascending, Descending
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Group by
+      </td>
+      <td>
+        Field used to group data.
+      </td>
+      <td>
+        Any available field.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Open in new tab
+      </td>
+      <td>
+        Whether the view opens in a new tab.
+      </td>
+      <td>
+        Yes, No
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Go to
+      </td>
+      <td>
+        Object opened when a row is clicked.
+      </td>
+      <td>
+        This Object, AlternateContactLink, ClosingEscLink, Customer, EntityLink, GRCRiskLink, HRCaseLink, KnowledgeLink, MasterIncidentLink, nrn\_ClusterIncidentLink, nrn\_CorrelatedIncidentLink, OrgUnitLink, ProblemLink
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Permissions
+      </td>
+      <td>
+        These permissions are set internally and are not configurable by the Administrator.
+      </td>
+      <td>
+        Update or Delete
+      </td>
+    </tr>
+  </table>
+
+  8. Select **Save**.
+
+  ### Edit a View
+
+  You can edit an existing view to modify its configuration, including child business object mappings for Group business objects.
+
+  1. In the **Views** dropdown, select an existing view.
+  2. Select the **ellipsis (⋮)** next to the view name and select **Edit**.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/INLoOdXzyyOsRFczRA62h_edit-option.png" position="flex-start" size="40" indent="2" initialPath="Images/Edit option.png" githubPath="Content/Working with the Analyst/Images/Edit option.png" width="1667" height="858" darkWidth="1667" darkHeight="858" showCaption="false"></Image>
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/a6Zx1AIsvtXbvifEu_O8Q_edit-dialog-appears.png" position="flex-start" size="40" indent="2" initialPath="Images/Edit Dialog appears.png" githubPath="Content/Working with the Analyst/Images/Edit Dialog appears.png" width="1665" height="854" darkWidth="1665" darkHeight="854" showCaption="false"></Image>
+
+  <Paragraph indent="1">
+    The Edit view dialog appears.
+    You can modify the following settings:
+    Navigation to other views:
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    Select the checkbox **Use form view from existing layout** to reuse a form layout.
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" listStart="2" indent="2">
+    From the **On request to create new object** dropdown, select the view to display when creating a new object.
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" listStart="3" indent="2">
+    From the **On request to edit existing object** dropdown, select the view to display when editing an existing object.
+  </Paragraph>
+
+  <font color="#000000">Configure Child Business Object Mappings (Group Business Objects Only)</font>
+
+  When the parent business object is a Group BO (**Business Object**), the Edit view dialog for an existing view displays a collapsed **List of business objects \*** accordion section below Navigation to other views.
+
+  <font color="#000000">To configure child business object form view mappings:</font>
+
+  1. Expand the **List of business objects \*** accordion. The section auto-populates with one row per child member business object.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/4JWdw5pXSZlwy1vccotd4_list-of-business-object.png" position="flex-start" size="40" initialPath="Images/List of Business Object.png" githubPath="Content/Working with the Analyst/Images/List of Business Object.png" width="1671" height="860" darkWidth="1671" darkHeight="860" showCaption="false"></Image>
+
+  <font color="#000000">Each row displays the following columns:</font>
+
+  <table isTableHeaderOn="true" columnWidths="312,312">
+    <tr>
+      <td>
+        Column
+      </td>
+      <td>
+        <font color="#000000">Description</font>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Business objects
+      </td>
+      <td>
+        <font color="#000000">The name of the child member business object.</font>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <font color="#000000">On request to create new object</font>
+      </td>
+      <td>
+        Select the form view to display when a user creates a new object for this child business object. Defaults to **not set**.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <font color="#000000">On request to edit existing object</font>
+      </td>
+      <td>
+        Select the form view to display when a user edits an existing object for this child business object. Defaults to **not set**.
+      </td>
+    </tr>
+  </table>
+
+  2. For each child business object, select the appropriate form view from the **On request to create new object** and **On request to edit existing object** dropdowns.
+
+  <hint type="info">
+    The dropdowns display the available form views from the respective child business object's.
+  </hint>
+
+  3. Click **Save**.
+  4. Select **Save and publish** to apply the changes to the layout.
+  5. Reload the **Home page**.
+  6. <font color="#000000">Navigate to the workspace for the Group business object.</font>
+  7. <font color="#000000">Open a record belonging to a child business object.</font>
+  8. The application displays the form view that you configured for that child business object in the **List of business objects \*** accordion.
+  9. <font color="#000000">This also applies to migrated layouts. When you migrate a classic layout and configure child business object form view mappings using the Edit view dialog, the configured form views are displayed when you open the corresponding child business object records in the workspace.</font>
+
+  ### Manage Views
+
+  1. In the **Views** dropdown, select **Manage views**.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/TmgDT1uGitFL04JT8efZL_manage-views.png" position="flex-start" size="40" indent="2" initialPath="Images/Manage Views.png" githubPath="Content/Working with the Analyst/Images/Manage Views.png" width="1913" height="956" darkWidth="1913" darkHeight="956" showCaption="false"></Image>
+
+  2. In the **Manage views** dialog:
+     - Use the toggle under **Status** to enable or disable the view.
+     - From **Select data grid view**, select the view to use (e.g., Demo Grid).
+     - From **Select Kanban view**, select the view to use for Kanban display.
+     - From **Select Gallery view**, select the view to use for Gallery display.
+     - In the **Initial view** column, select the **Radio** button for the view you want to set as the **Initial view**.
+
+  <hint type="info" indent="3">
+    When the **Select data grid view** type is selected as **(e.g., Demo Grid)** grid, you must select the Initial view radio button. If you do not select this option, the data grid will not appear in the new **Ivanti Service Management Portfolio UI V3** page.
+  </hint>
+
+  3. Select **Save**.
+
+  ### Configure the data grid
+
+  1. In the **Layout** list, select the required layout (for example, Demo Layout).
+  2. In the **Views** list, select the required view (for example, Demo Grid).
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/uLfiWVOnPBkdwBzIc-Cnm_configure-data-grid.png" position="flex-start" size="40" initialPath="Images/Configure Data Grid.png" githubPath="Content/Working with the Analyst/Images/Configure Data Grid.png" width="1904" height="952" darkWidth="1904" darkHeight="952" showCaption="false"></Image>
+
+  3. Select **Configure data grid**.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/BthNhWBie8yADXf-ilC0N_to-configure-the-data-grid.png" position="flex-start" size="40" initialPath="Images/To Configure the data grid.png" githubPath="Content/Working with the Analyst/Images/To Configure the data grid.png" width="1908" height="954" darkWidth="1908" darkHeight="954" showCaption="false"></Image>
+
+  4. In Available fields (left pane) under the **Incident** business object in the **fields** pane, select the required fields.
+
+  - Select the checkboxes for the fields you want in the grid.
+
+  5. Select **Add selected** to add the fields to the grid.
+
+  - The columns appear in the center pane.
+
+  6. In the center pane, verify the displayed grid:
+
+  - Columns such as **Accuracy**, **Actual Service**, **ActualCategory**
+
+  7. Column configuration options
+
+  When you select a column in the grid, the **Configure pane** opens on the right. You can set the following properties:
+
+  <table isTableHeaderOn="true" columnWidths="208,208,208">
+    <tr>
+      <td>
+        Field
+      </td>
+      <td>
+        Description
+      </td>
+      <td>
+        Values
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Field title
+      </td>
+      <td>
+        Display name of the column.
+      </td>
+      <td>
+        Free text
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Width
+      </td>
+      <td>
+        Column width.
+      </td>
+      <td>
+        Free text (numeric)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Field
+      </td>
+      <td>
+        Field in the business object.
+      </td>
+      <td>
+        Displays the selected column.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Hidden Expression
+      </td>
+      <td>
+        Expression used to hide the column.
+        Boolean
+      </td>
+      <td>
+        Boolean, ƒ(x) expression editor
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Style
+      </td>
+      <td>
+        UI style for the column.
+      </td>
+      <td>
+        Select Open **Highlighter style** list or Open **Expression editor** from the dropdown.
+        When you configure a style for a column, you can choose from two options:
+        - **Fixed styles:** The **Highlighter Styles** dialog lists predefined, out-of-the-box styles. Each row shows the style name (for example, **AUSparkButton**, **AUSparkField**, **AUSparkFormBackground**) and a style preview so you can see how it will look when applied. The list is long, so not all styles are documented here.
+        <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/zDem1NhV0WfmSpTTLi0R5_style-highlighter.png" position="flex-start" size="40" indent="2" initialPath="Images/Style Highlighter.png" githubPath="Content/Working with the Analyst/Images/Style Highlighter.png" width="1904" height="949" darkWidth="1904" darkHeight="949" showCaption="false"></Image>
+        - **Custom styles:** The ƒ(x) **Expression editor** lets you define a conditional style expression. The editor includes tools grouped under **Incident** (business object fields), **Functions** (logic functions), **Time Zones**, and **Styles**. Use this option to apply conditional formatting. For example, you can highlight rows where the Priority field equals 1.
+        <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/oHVXZzxvqK8ddPD33vVgD_expression-editor.png" position="flex-start" size="40" indent="2" initialPath="Images/Expression Editor.png" githubPath="Content/Working with the Analyst/Images/Expression Editor.png" width="1905" height="952" darkWidth="1905" darkHeight="952" showCaption="false"></Image>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Renderer
+      </td>
+      <td>
+        How the value is rendered/aligned.
+      </td>
+      <td>
+        Left Aligned, Number, Right Aligned, Size
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Image
+      </td>
+      <td>
+        To render an image.
+      </td>
+      <td>
+        ƒ(x) expression editor
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Hyperlink
+      </td>
+      <td>
+        Whether the column shows as a hyperlink.
+      </td>
+      <td>
+        Yes, No
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Goto
+      </td>
+      <td>
+        Object to navigate to when hyperlink is selected.
+      </td>
+      <td>
+        This Object (default)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Sortable
+      </td>
+      <td>
+        Allow column to be sortable.
+      </td>
+      <td>
+        Toggle: On or Off
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Grouping
+      </td>
+      <td>
+        Allow data grouping by this column.
+      </td>
+      <td>
+        Toggle: On or Off
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Word wrap
+      </td>
+      <td>
+        Wraps text in the column.
+      </td>
+      <td>
+        Toggle: On or Off
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Initially hidden
+      </td>
+      <td>
+        Hides the column by default.
+      </td>
+      <td>
+        Toggle: On or Off
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Allow tooltip
+      </td>
+      <td>
+        Shows tooltips on hover.
+      </td>
+      <td>
+        Toggle: On or Off
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Remove column
+      </td>
+      <td>
+        To remove the column from the grid.
+      </td>
+      <td>
+        Action button
+      </td>
+    </tr>
+  </table>
+
+  8. (Optional) To change the order of the columns, select **Reorder columns** and arrange the columns as needed.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Bzk1x2ki87T49laduldQ1_reorder-columns.png" position="flex-start" size="40" initialPath="Images/Reorder Columns.png" githubPath="Content/Working with the Analyst/Images/Reorder Columns.png" width="1896" height="1033" darkWidth="1896" darkHeight="1033" showCaption="false"></Image>
+
+  9. Select **Save**.
+
+  ### Configure toolbar for data grid
+
+  After you configure the grid columns, you can edit the toolbar to control which tools and actions appear to end users.
+
+  1. In the grid, select **Configure toolbar**.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/2GuAWbF5-YNtaP-cKKcdE_change-toolbar.png" position="flex-start" size="40" initialPath="Images/Change Toolbar.png" githubPath="Content/Working with the Analyst/Images/Change Toolbar.png" width="1911" height="1045" darkWidth="1911" darkHeight="1045" showCaption="false"></Image>
+
+  2. The **Toolbar editor** opens.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/rLIRXSY9z-TUlGJgjXTo9_change-toolbar-window.png" position="flex-start" size="40" initialPath="Images/Change toolbar window.png" githubPath="Content/Working with the Analyst/Images/Change toolbar window.png" width="1902" height="1035" darkWidth="1902" darkHeight="1035" showCaption="false"></Image>
+
+  3. The **Toolbar editor** includes the following sections and controls:
+
+  The **Toolbar Editor** is available for **Data Grid**, **Kanban**, and **Gallery** views. You can use it to configure which tools and actions appear to end users in the workspace toolbar.
+
+  <table isTableHeaderOn="true" columnWidths="312,312">
+    <tr>
+      <td>
+        Field
+      </td>
+      <td>
+        Description
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Preview
+      </td>
+      <td>
+        Shows how the toolbar will appear to end users. Updates automatically as you add, remove, or reorder tools.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Overall tool list
+      </td>
+      <td>
+        Lists all available tools you can add to the toolbar. Use the **Search box** to locate a tool. Filter the list using the **Special buttons**, **Commands**, and **Actions** check boxes.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Selected tool list
+      </td>
+      <td>
+        Displays the tools currently assigned to the toolbar. Tools are displayed under the **Left section** or **Right section**, depending on where you place them.
+        Each tool in this list includes an Edit :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/to2V1ezvBbKi_XY8hWfZJ_edit-icon1.png" alt caption size="10" width="19" height="19"} icon. Select the icon to open the **Toolbar Editor** for that specific tool. From here, you can:
+        <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/6t_emcDZjxKe0Tig7dYCV_tool-pencil-icon.png" position="flex-start" size="40" initialPath="Images/Tool Pencil Icon.png" githubPath="Content/Working with the Analyst/Images/Tool Pencil Icon.png" width="1282" height="951" darkWidth="1282" darkHeight="951" showCaption="false"></Image>
+        <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/ktbcmGIqP6bnvIap4TM6C_tool-editor.png" position="flex-start" size="40" initialPath="Images/Tool editor.png" githubPath="Content/Working with the Analyst/Images/Tool editor.png" width="1293" height="947" darkWidth="1293" darkHeight="947" showCaption="false"></Image>
+        Modify the **Action** associated with the tool.
+        - Choose a **Button** type, **Icon and Text**, **Text only**, or **Icon only**.
+        - Update the **Text label** and **Tooltip** displayed in the toolbar.
+        - Define **Arguments** or **Shortcuts**, if applicable.
+        When you finish editing, select **OK** to save your changes and return to the main **Toolbar Editor** window.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Left section / Right section
+      </td>
+      <td>
+        Define the placement of tools in the toolbar. Use the arrow controls to move tools from the Overall tool list into either section.
+        <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/FvLSWmcRp55sFt_d8Bpy1_toolbar-editor.png" position="flex-start" size="40" initialPath="Images/Toolbar editor.png" githubPath="Content/Working with the Analyst/Images/Toolbar editor.png" width="1162" height="941" darkWidth="1162" darkHeight="941" showCaption="false"></Image>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Select all
+      </td>
+      <td>
+        In the **Selected tool list**, use this checkbox to select every tool at once. This is useful if you want to remove all tools.
+        <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Y3zvolvU1jNuM_PymoSBy_toolbar-editor1.png" position="flex-start" size="40" initialPath="Images/toolbar editor1.png" githubPath="Content/Working with the Analyst/Images/toolbar editor1.png" width="1153" height="926" darkWidth="1153" darkHeight="926" showCaption="false"></Image>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Delete
+      </td>
+      <td>
+        Removes selected tools from the **Selected tool list**. The tools return to the **Overall tool list**.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Arrow controls
+      </td>
+      <td>
+        Move tools between the **Overall tool list** and the **Selected tool list**.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Up and down arrows
+      </td>
+      <td>
+        Change the order of tools in the Selected tool list.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Ok
+      </td>
+      <td>
+        Saves changes made in the **Toolbar editor** and closes the window.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Cancel
+      </td>
+      <td>
+        Closes the **Toolbar editor** without saving changes.
+      </td>
+    </tr>
+  </table>
+
+  4. Select **Save and publish** to apply the changes to the grid.
+  5. Back on the grid page, do one of the following:
+
+  - Select **Preview** to review the updates before publishing.
+  - Select **Save and publish** to apply the changes to the grid.
+
+  6. Reload the **Home** page.
+
+  - Verify that the **Ivanti Service Management Portfolio UI V3** opens.
+  - Use the theme icon in the top-right corner to toggle between **Light mode** and **Dark mode**.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/gVApyFuNBsIDl3X5HRvW7_light-mode-or-dark-mode.png" position="flex-start" size="40" indent="2" initialPath="Images/Light mode or Dark Mode.png" githubPath="Content/Working with the Analyst/Images/Light mode or Dark Mode.png" width="1900" height="944" darkWidth="1900" darkHeight="944" showCaption="false"></Image>
+
+  - Navigate to the **Incident** workspace. The application displays the new data grid configured using the Modern Page Designer.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/T8pPPhdzH34Ze3MzBGNrD_incident-workspace-in-new-ui.png" position="flex-start" size="40" indent="2" initialPath="Images/Incident Workspace in New UI.png" githubPath="Content/Working with the Analyst/Images/Incident Workspace in New UI.png" width="1919" height="952" darkWidth="1919" darkHeight="952" showCaption="false"></Image>
+
+  - To return to the **Modern Page Designer** and make changes, select **Configure**.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Configure Kanban View
+
+  1. In the **Layout** list, select the required layout (for example, Demo Layout).
+  2. In the **Views** list, select the required view (for example, Kanban).
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Qyck48Jb_P5AOW2uR5CBI_configure-kanban.png" position="flex-start" size="40" indent="2" initialPath="Images/Configure Kanban.png" githubPath="Content/Working with the Analyst/Images/Configure Kanban.png" showCaption="false"></Image>
+
+  3. Select **Configure Kanban board**.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/ToGDOig8EodSChxsLhEvV_kanban-board.png" position="flex-start" size="40" indent="2" initialPath="Images/Kanban Board.png" githubPath="Content/Working with the Analyst/Images/Kanban Board.png" showCaption="false"></Image>
+
+  4. In **Columns configuration**, from **Select field**, choose the field used to group cards (for example, **Status**).
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/dtWG9WgYJXz-GWaAamAHb_columns-configuration.png" position="flex-start" size="40" indent="2" initialPath="Images/Columns Configuration.png" githubPath="Content/Working with the Analyst/Images/Columns Configuration.png" showCaption="false"></Image>
+
+  <hint type="info" indent="2">
+    **Prerequisite:** The field selected for **Columns configuration** must use a pick list that contains unique values.
+  </hint>
+
+  5. Define columns:
+     1. Enter a **Column name** (for example, **Open**, **Close**, **Wait**).
+     2. Select a **Color**.
+     3. From **Select field values**, assign values to each column.
+        - Example:
+          - **Open:** Logged, Active
+          - **Close:** Resolved, Closed
+          - **Wait:** Waiting for Customer, Waiting for 3rd Party, Waiting for Resolution
+  6. Select **Add column** to include more lanes as needed.
+  7. Select **OK**.
+  8. Open the **Card configuration** tab.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/5QPZklBwNUYje361m3Pbe_card-configuration.png" position="flex-start" size="40" indent="2" initialPath="Images/Card Configuration.png" githubPath="Content/Working with the Analyst/Images/Card Configuration.png" showCaption="false"></Image>
+
+  9. From **Available fields**, drag fields to the **Selected fields** area.
+     - Example fields: **Priority**, **Status**, **Incident ID**, **Owner**, **Category**, **Impact**, **Summary**, **Customer Name**.
+  10. From the **Template** dropdown, select a card style:
+      - **Default template**
+      - **Minimal template**
+      - **Classic template**
+  11. Select the Edit :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/to2V1ezvBbKi_XY8hWfZJ_edit-icon1.png" alt caption size="10" width="19" height="19"}icon next to a field to configure its properties. The :Link[Configure]{label="Configure" overridedLabel="Configure" spaceId docId="a7UWAYkjNDkZSTq0p26V_" version="v2" docAnchorId="#Configur" loadingMethod="dynamic" newTab="false" href="Configure and Assign Views and Layouts Using the Modern Page Designer.mdx"} pane opens on the right
+  12. Select **OK**.
+
+  ### Manage Views
+
+  1. From the **Views** dropdown, select **Manage views**.
+  2. In the **Manage views** dialog:
+     - Enable the Kanban view you created (for example, Incident Kanban).
+     - (Optional) Set it as the **Initial view.**
+  3. Select **Save**.
+
+  ### Verify the Kanban Layout
+
+  1. Reload the **Home** page.
+  2. Navigate to the **Incident** workspace.
+  3. Verify that the Kanban board opens in the**Ivanti Service Management Portfolio UI V3** with the configured columns and cards.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/myWUuFghm3W6TZMXNJjYP_kanban-view.png" position="flex-start" size="40" indent="2" initialPath="Images/Kanban View.png" githubPath="Content/Working with the Analyst/Images/Kanban View.png" showCaption="false"></Image>
+
+  <Paragraph listStyleType="disc" indent="2">
+    Example: **Open**, **Wait**, **Close** lanes with cards displaying **Incident ID**, **Priority**, and **Status**.
+  </Paragraph>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Configure Gallery View
+
+  1. In the **Layout** list, select the required layout (for example, Demo Layout).
+  2. In the **Views** list, select the required view (for example, Gallery View).
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/ZQgB62_L3th9f2fj1xW80_gallery-view.png" position="flex-start" size="40" initialPath="Images/Gallery View.png" githubPath="Content/Working with the Analyst/Images/Gallery View.png" showCaption="false"></Image>
+
+  3. Select **Configure Gallery View**.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/tf8vcEpzVBuGXzVUK6iM__configure-gallery-view.png" position="flex-start" size="40" initialPath="Images/Configure Gallery View.png" githubPath="Content/Working with the Analyst/Images/Configure Gallery View.png" showCaption="false"></Image>
+
+  4. In the **Available Fields** pane, select the fields you want to display.
+
+  Drag the fields into the **Selected Fields** area.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/wfmYGocPyjzHCdpo_ZGpd_configuration-gallery-view.png" position="flex-start" size="40" initialPath="Images/Configuration Gallery View.png" githubPath="Content/Working with the Analyst/Images/Configuration Gallery View.png" showCaption="false"></Image>
+
+  5. From the **Template** dropdown, choose one of the following templates:
+
+  | Field               | Description                                                 |
+  | ------------------- | ----------------------------------------------------------- |
+  | Single Row Detailed | Displays up to Six fields in a single, full-width row.      |
+  | Single Row Compact  | Displays up to three fields in a minimal single-row layout. |
+  | Card Detailed       | Displays up to eight fields in a detailed card layout.      |
+  | Card Compact        | Displays up to five fields in a compact card layout.        |
+
+  6. Use the **Preview icons** at the top to review the layout in different device modes:
+
+  - **Desktop**
+  - **Mobile**
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/bF7FlVrNI_5uPWyl57eYi_card-preview.png" position="flex-start" size="40" initialPath="Images/Card preview.png" githubPath="Content/Working with the Analyst/Images/Card preview.png" showCaption="false"></Image>
+
+  <hint type="info">
+    The **Desktop** and **Mobile** preview options are available only for **Row** templates.
+  </hint>
+
+  7. Select the Edit :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/to2V1ezvBbKi_XY8hWfZJ_edit-icon1.png" alt caption size="10" width="19" height="19"} icon next to a field to configure its properties. The :Link[Configure]{label="Configure" overridedLabel="Configure" spaceId docId="a7UWAYkjNDkZSTq0p26V_" version="v2" docAnchorId="#Configur" loadingMethod="dynamic" newTab="false" href="Configure and Assign Views and Layouts Using the Modern Page Designer.mdx"} pane opens on the right
+  8. Select **Save** to apply the configuration.
+
+  ### Manage Gallery View
+
+  1. In the **Views** list, select the **ellipsis (⋮)** and then select **Manage Views**.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/xgX69U-0tp4x3ZReKsBo0_gallery-view-radio-button-option.png" position="flex-start" size="40" indent="2" initialPath="Images/Gallery View Radio button option.png" githubPath="Content/Working with the Analyst/Images/Gallery View Radio button option.png" showCaption="false"></Image>
+
+  2. In the **Manage Views** dialog box:
+     - Use the **Status** toggle to enable the **Gallery view**.
+     - From Select **Gallery view**, choose the view you created (for example, Gallery View).
+     - Use the **Initial View** radio button to set the Gallery view as the default workspace view.
+
+  <Paragraph indent="1">
+    Select **Save**.
+  </Paragraph>
+
+  4. Select **Save and publish** to apply the changes.
+  5. Reload the **Home** page.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Clone Layouts and Views in the Modern Page Designer
+
+  The **Clone** option lets you duplicate existing layouts and views without recreating them manually. When you clone a layout or view, all its **properties**, **configurations**, and any **associated elements** such as views, fields, and toolbar settings are copied to the new item.
+
+  This helps you reuse complex configurations for different roles or use cases without rebuilding them from scratch.
+
+  ### Clone a Layout
+
+  1. In the **Modern Page Designer**, open the required **Business Object** (for example, Incident).
+  2. In the **Layout** dropdown, select the **ellipsis(⋮)** menu.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/7XyeAtBANAB6N9x9A23-U_clone-option.png" position="flex-start" size="40" indent="2" initialPath="Images/Clone option.png" githubPath="Content/Working with the Analyst/Images/Clone option.png" showCaption="false"></Image>
+
+  3. Select **Clone**.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/EGcx0_o7pVz6eXR6i_Cqz_dialog-box-for-clone.png" position="flex-start" size="40" indent="2" initialPath="Images/Dialog box for Clone.png" githubPath="Content/Working with the Analyst/Images/Dialog box for Clone.png" showCaption="false"></Image>
+
+  <Paragraph indent="1">
+    The **Clone layout** dialog box appears.
+  </Paragraph>
+
+  4. In the **Display name** field, review or update the layout name.
+     - By default, the cloned layout name appears as **\<LayoutName>(clone)**.
+  5. Update any required configurations in the cloned layout.
+  6. Select **Save and publish** to apply the changes.
+
+  ### Clone a View
+
+  1. In the **Views** dropdown, select the **ellipsis (⋮)** menu next to the view name.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/ogqOqOMwwcNYPNwuk7wtv_views-clone.png" position="flex-start" size="40" indent="2" initialPath="Images/Views clone.png" githubPath="Content/Working with the Analyst/Images/Views clone.png" showCaption="false"></Image>
+
+  2. Select **Clone**, the **Clone** view dialog box appears.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/JkJKY1tU-ZJsqHLFI9Lwf_dialog-box-for-views-clone.png" position="flex-start" size="40" indent="2" initialPath="Images/Dialog box for Views Clone.png" githubPath="Content/Working with the Analyst/Images/Dialog box for Views Clone.png" showCaption="false"></Image>
+
+  3. In the **Display name** field, review or update the name.
+     - By default, the cloned view name appears as **\<ViewName>(clone)**.
+  4. Select **Clone**.
+     - The cloned view appears in the **Views** list.
+     - All properties and configurations of the original view such as columns, field settings, and toolbar definitions are copied automatically.
+  5. Update any required configurations in the cloned view.
+  6. Select **Save and publish**.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Control Edit Permissions (Soft Lock via System Mode)
+
+  ### Enable System Mode
+
+  1. Sign in to **Admin UI**.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/WAZn2s8StChiYRoxSYl6t_soft-lock-logging-in-system-mode.png" position="flex-start" size="40" indent="2" initialPath="Images/Soft lock logging in System Mode.png" githubPath="Content/Working with the Analyst/Images/Soft lock logging in System Mode.png" showCaption="false"></Image>
+
+  2. Go to **Settings** and select **System mode**. (screenshot shows the System mode link on the right panel.)
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Vs6RVkm5LmJC81Ek8sROI_system-mode.png" position="flex-start" size="40" indent="2" initialPath="Images/System Mode.png" githubPath="Content/Working with the Analyst/Images/System Mode.png" showCaption="false"></Image>
+
+  3. In the **System Mode** dialog, enter your credentials and select **Authenticate**.
+
+  ### Set Permissions on a Layout
+
+  1. Open **Modern Page Designer**.
+  2. In **Layout**, select the **ellipsis (⋮)** and then select **Edit**.
+  3. In the **Edit layout** dialog, go to **Permissions**.
+  4. Select the check boxes:
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/5EfSaGmUOIJjsfvT_41zb_permission-option.png" position="flex-start" size="40" indent="2" initialPath="Images/Permission option.png" githubPath="Content/Working with the Analyst/Images/Permission option.png" showCaption="false"></Image>
+
+  <Paragraph listStyleType="disc" indent="2">
+    **Update** (allow edits)
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" listStart="2" indent="2">
+    **Delete** (allow delete)
+  </Paragraph>
+
+  5. Select **Save** (and **Save and publish**).
+
+  ### Set Permissions on Views
+
+  1. Open **Modern Page Designer**.
+  2. In **Views**, select the **ellipsis (⋮)** next to the view and then select **Edit**.
+  3. In the **Edit** dialog, go to Permissions and set **Update / Delete** as needed.
+  4. Select **Save** (and **Save and publish**).
+
+  <hint type="info">
+    When permissions restrict updates on a view, only the **Field title** is editable; other settings are not editable.
+  </hint>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Assign the New Layout to a Role
+
+  After you create a layout (for example, Demo Layout) and a list view (for example, Grid View, Kanban View or Gallery View), assign the layout to a role so that users with that role can access it in the Incident workspace.
+
+  1. In the Configuration Console, go to **Configure** > **Users and Permissions** > **Roles and Permissions**.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/k-VRXpoXH5Px2rbTG-Mwv_user-role-and-permissionns.png" position="flex-start" size="40" indent="2" initialPath="Images/User Role and permissionns.png" githubPath="Content/Working with the Analyst/Images/User Role and permissionns.png" showCaption="false"></Image>
+
+  2. In the **Roles and Permissions** list, select **Admin**.
+  3. Select the **Top Level Tabs** tab.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/pCH1h5h1rWQvP1RCPpVZs_top-level-tab.png" position="flex-start" size="40" indent="2" initialPath="Images/Top level tab.png" githubPath="Content/Working with the Analyst/Images/Top level tab.png" showCaption="false"></Image>
+
+  4. In the list of tabs, select the **Incident** workspace.
+  5. In the **Layout** list, select the layout you created. For example, select Demo Layout.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/z2rDf29LXBdPOtuALG3_h_select-demo-layout.png" position="flex-start" size="40" indent="2" initialPath="Images/Select Demo Layout.png" githubPath="Content/Working with the Analyst/Images/Select Demo Layout.png" showCaption="false"></Image>
+
+  6. Select **Save**.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## (Optional) Configure UI Exceptions for the Role
+
+  After assigning the layout to the role, configure the role to use the new UI version.
+
+  **Configure an UI exception for the role**
+
+  1. In the **Configuration Console**, go to **Build** > **User Interface Styles** > **Style Editor**.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/1pakX_IasMQ9uDbdLlU3w_add-new-exception.png" position="flex-start" size="40" indent="2" initialPath="Images/Add New Exception.png" githubPath="Content/Working with the Analyst/Images/Add New Exception.png" showCaption="false"></Image>
+
+  2. Select **Add exception**.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/TgK14gXSxSVpCPmZWFtWf_role-selection.png" position="flex-start" size="40" indent="2" initialPath="Images/Role selection.png" githubPath="Content/Working with the Analyst/Images/Role selection.png" showCaption="false"></Image>
+
+  3. In the **Role** list, select the role **Administrator**.
+  4. In the **UI** list, select **UI v3**.
+  5. Select **Save**.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Manage Saved Filters in the Modern Page Designer
+
+  Saved Filters are supported in Modern Page Designer, providing the same management capabilities that were previously available in the Ivanti Service Management Portfolio UI V3.
+
+  You can manage saved filters directly from the Modern Page Designer, without switching to the user workspace.
+
+  ### Access saved filters in the Modern Page Designer
+
+  1. Open the **Modern Page Designer**.
+  2. In the **Layout** list, select the required layout (for example, Demo Layout).
+  3. In the **Views** list, select the required view (for example, Demo Grid).
+  4. Select a business object (for example, **Incident**).
+  5. In the Configure pane, select **Saved filters**.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/EAFLUvIb6e9lhf93g_ZoC_saved-filter-in-modern-page-designer-new.png" position="flex-start" size="40" indent="2" initialPath="Images/Saved filter IN MODERN PAGE DESIGNER new.png" githubPath="Content/Working with the Analyst/Images/Saved filter IN MODERN PAGE DESIGNER new.png" showCaption="false"></Image>
+
+  6. Select **Edit saved filters**.
+     - The Edit saved filters page opens.
+
+  ### Edit saved filters page
+
+  The **Edit saved filters** page displays a list of saved filters for the selected business object.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/ITBAweaN7JRk66ShUnOLE_edit-page-saved-filter-in-modern-page-designer.png" position="flex-start" size="40" initialPath="Images/Edit page saved filter in modern page designer.png" githubPath="Content/Working with the Analyst/Images/Edit page saved filter in modern page designer.png" showCaption="false"></Image>
+
+  **Page controls**
+
+  **Below mentioned are the Edit saved filter page controls,**
+
+  - **Create new:** Creates a new saved filter.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/ZvbnNyy5WvDm9QE9MB2a__create-new-saved-filters-in-modern-page-designer.png" position="flex-start" size="40" indent="2" initialPath="Images/Create new saved filters in modern page designer.png" githubPath="Content/Working with the Analyst/Images/Create new saved filters in modern page designer.png" showCaption="false"></Image>
+
+  - **Add to favorite:** Marks selected filters as favorites.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/_k_xMTqjF9YPbm3kNdwvB_mark-search-as-favourite.png" position="flex-start" size="40" indent="2" initialPath="Images/Mark search as favourite.png" githubPath="Content/Working with the Analyst/Images/Mark search as favourite.png" showCaption="false"></Image>
+
+  - **Filter by keyword:** Searches saved filters by name.
+  - **Pagination controls:** Located at the bottom of the page. Use these to change the number of filters displayed per page (**10**, **25**, **50**, or **100**) and navigate between pages.
+
+  **Saved Filters page**
+
+  The Saved Filters page displays the following columns:
+
+  | Field              | Description                                                                                                                                            |
+  | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+  | Is favorite        | Indicates whether the filter is marked as a favorite. A star icon shows that the filter appears under **Favorites** in the **Saved filters** dropdown. |
+  | Filter name        | Displays the name of the saved filter. Select the filter name to view or edit its configuration.                                                       |
+  | Available to roles | Lists the roles that can access the saved filter.                                                                                                      |
+  | Published to       | Indicates whether the filter is published to specific teams.                                                                                           |
+  | Actions            | Provides additional options for the filter, such as **Export to Excel**, **Email**, **Edit**, **Clone**, **Dependency** and **Delete**.                |
+
+  **Actions menu**
+
+  Each saved filter includes an **Actions (⋮)** menu with the following options:
+
+  - **Export to Microsoft Excel:** Exports the saved filter details to an Excel file.
+  - **Email to yourself:** Sends the saved filter details to your email address.
+  - **Edit:** Opens the saved filter for modification.
+  - **Clone:** Creates a copy of the selected saved filter.
+  - **Dependency**
+    The Dependency action shows where a saved filter is used in the application.
+    To view dependencies:
+    - Select the **Actions (⋮)** menu for a saved filter.
+    - Select **Dependency**.
+
+  <Paragraph indent="1">
+    A dialog opens listing where the saved filter is referenced:
+  </Paragraph>
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/5Yhs02ujVHgGkrQNevQp1_dependency-in-saved-filter.png" position="flex-start" size="40" indent="2" initialPath="Images/Dependency in saved filter.png" githubPath="Content/Working with the Analyst/Images/Dependency in saved filter.png" showCaption="false"></Image>
+
+  <Paragraph indent="1">
+    This helps you understand the impact of editing or deleting a saved filter.
+  </Paragraph>
+
+  - **Delete:** Removes the saved filter.
+
+  These actions allow you to manage saved filters directly from the Modern Page Designer.
+
+  ### Create and Edit Saved Filter
+
+  The create and edit saved filter dialog box displays the following:
+
+  **Creating and Editing Saved Filters**
+
+  - Select **Create New** to create a **New saved filter** dialog box opens.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/ZvbnNyy5WvDm9QE9MB2a__create-new-saved-filters-in-modern-page-designer.png" position="flex-start" size="40" indent="2" initialPath="Images/Create new saved filters in modern page designer.png" githubPath="Content/Working with the Analyst/Images/Create new saved filters in modern page designer.png" showCaption="false"></Image>
+
+  - The filter editor includes three tabs:
+    1. **Filter**
+       - In the **Filter** tab, define the conditions for the filter:
+         - Use the dropdowns to select fields, operators, and values.
+         - Use AND or OR to Delete multiple conditions.
+       - Select **Save** or **Cancel** to clear the fields.
+    2. **Sorting**
+       - In the **Sort** tab, choose the field to sort by from the **Sort by** dropdown.
+       - Select the sort order: **Ascending** or **Descending**.
+       - Select **Save** or **Cancel** to clear the fields.
+    3. **Settings:**
+       - Use this tab to configure filter properties.
+       - **Filter name:** Enter a unique name for the filter.
+       - **Category:** Select a category (default is Saved Search).
+       - **Publish to roles:** Select roles that can access this filter.
+       - **Publish to teams:** Select teams that can access this filter.
+         - Filters published to teams appear between **Favorites** and **All** in the **Saved filters** dropdown.
+       - **Default for role:** Choose whether the filter should be the default for selected roles.
+       - **Personal default:** Checkbox to mark the filter as your personal default.
+       - **Add to favorite searches:** Checkbox to mark the filter as a favorite for quick access.
+       - **Permissions:** These permissions are set internally and are not configurable by the Administrator.
+       - Select **Save** or **Cancel** to clear the fields.
+       - **Hidden saved filters**
+         The Hidden saved filters dialog displays the following:
+         - The **Hidden** option controls the visibility of a saved filter.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/j2EmtJzNmvKhRkOu02c6L_expression-editor-in-modern-page-designer.png" position="flex-start" size="40" indent="5" initialPath="Images/Expression Editor in modern page designer.png" githubPath="Content/Working with the Analyst/Images/Expression Editor in modern page designer.png" showCaption="false"></Image>
+
+  <Paragraph indent="4">
+    **ƒ(x) (expression)** values:
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="5">
+    **Yes**
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" listStart="2" indent="5">
+    **No**
+  </Paragraph>
+
+  <hint type="info" indent="5">
+    - When a saved filter is hidden, it is not visible in the end user workspace.
+    - Hidden takes precedence over all other settings, including role defaults, personal defaults, and publishing.
+    - For more information about saved searches, refer [Using search](<../ServiceDesk/Search/Using Search.mdx>).
+  </hint>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Configure advanced expressions for filter criteria
+
+  When you create or edit a saved filter, you can define **advanced expressions** to control how filter conditions are evaluated.
+
+  From the **Filter** tab of the **Edit saved filter** dialog, select the **expression (ƒx)** icon next to a filter condition to open the **Expression editor**.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Hqo0tTGWB4uA-CiaRYA8w_expression-editor-for-page-designer.png" position="flex-start" size="40" initialPath="Images/Expression Editor for page designer.png" githubPath="Content/Working with the Analyst/Images/Expression Editor for page designer.png" showCaption="false"></Image>
+
+  **Expression editor**
+
+  - Use the **Expression editor** to build advanced filter logic using supported fields, functions, and date/time expressions.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/sSqDZU7BcnwH7UuhQSxmh_editor-expression.png" position="flex-start" size="40" indent="2" initialPath="Images/Editor Expression.png" githubPath="Content/Working with the Analyst/Images/Editor Expression.png" showCaption="false"></Image>
+
+  - The editor provides the following tools:
+    - **Incident**: Business object fields available for filtering.
+    - **Functions:** Built-in functions (for example, date and time functions).
+    - **Time Zones:** Time zone aware functions for date comparisons.
+  - Select **OK** to apply the expression and return to the saved filter editor.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Configure filter searches in the Modern Page Designer
+
+  Filter search configuration that was previously configured in the Configuration Console (Classic UI) is available in the Modern Page Designer for a business object Table (grid) view.
+
+  You configure filter categories and filter criteria directly in the layout designer. The configured filters appear in the Filter by menu in the workspace table view.
+
+  The Modern Page Designer also includes a Filter by search box in the Configure panel to locate filters during configuration.
+
+  **Open filter configuration**
+
+  1. Go to **Settings** > **Build**.
+  2. Open the required business object (for example, **Incident**).
+  3. Select a **Layout**.
+  4. Select a **View** (for example, **Grid** view).
+  5. Select **Filter by** in the preview toolbar.
+
+  The Configure panel appears.
+
+  ### Show or hide filter categories
+
+  In the Configure panel, enable or disable categories:
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/uHEB-b3UfkiskIf_OkpFV_fliter-by-option-in-page-designer.png" position="flex-start" size="40" initialPath="Images/Fliter by option in Page Designer.png" githubPath="Content/Working with the Analyst/Images/Fliter by option in Page Designer.png" showCaption="false"></Image>
+
+  - **Status**
+  - **Priority**
+  - **Assignment**
+  - **Created Date**
+  - **Respond By**
+  - **Resolve By**
+  - **More Options**
+
+  Turn a toggle **ON** to display the category in the workspace filter menu.
+
+  Turn a toggle **OFF** to hide the category.
+
+  ### Find a filter
+
+  Enter text in the Filter by search box in the Configure panel.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/v6uXKhh8O_A3H0PHObl35_filter-search-option-1.png" position="flex-start" size="40" initialPath="Images/Filter Search option 1.png" githubPath="Content/Working with the Analyst/Images/Filter Search option 1.png" showCaption="false"></Image>
+
+  The list displays only the filter categories and values that match the entered text, making it easier to locate and enable or disable a specific filter in the configuration list. This search does not filter or update the configuration details displayed in the middle pane.
+
+  ### Edit filter definitions
+
+  Select **Edit** filter.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/KjhEv3FOChkTreJ3LrLf0_select-edit-filter.png" position="flex-start" size="40" initialPath="Images/Select Edit Filter.png" githubPath="Content/Working with the Analyst/Images/Select Edit Filter.png" showCaption="false"></Image>
+
+  The filter editor opens.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Tf_9LLBKN6Om-xitDGfSA_filter-editor-space.png" position="flex-start" size="40" initialPath="Images/Filter Editor space.png" githubPath="Content/Working with the Analyst/Images/Filter Editor space.png" showCaption="false"></Image>
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/ox3qkWsfaDxWv_i35tlIk_edit-delete-and-add-option.png" position="flex-start" size="40" initialPath="Images/Edit delete and Add option.png" githubPath="Content/Working with the Analyst/Images/Edit delete and Add option.png" showCaption="false"></Image>
+
+  From this page you can **add**, **edit**, or **delete** filter categories.
+
+  ### Add a filter
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/270rApQHLB_E4qY_WDMj7_add-new-filter-option.png" position="flex-start" size="40" initialPath="Images/Add new filter option.png" githubPath="Content/Working with the Analyst/Images/Add new filter option.png" showCaption="false"></Image>
+
+  1. Select **Add new filter**.
+  2. Enter the filter name in the **Filter name** field.
+  3. Enter **Filter help** (tooltip text).
+  4. Enter the appropriate role in the **Roles** field.
+  5. Specify the appropriate team in the **Teams** field
+  6. Select **Save**.
+
+  <hint type="info">
+    If you configure a filter with roles or teams conditions, the filter is not visible in the Classic interface.
+  </hint>
+
+  ### Configure filter criteria
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/VeJIo6dNMFt4YquoJlSJu_add-new-criteria-option.png" position="flex-start" size="40" initialPath="Images/Add New Criteria option.png" githubPath="Content/Working with the Analyst/Images/Add New Criteria option.png" showCaption="false"></Image>
+
+  1. Expand a filter category.
+  2. Select **Add new criteria**.
+  3. Enter **Criteria name**.
+  4. Select a **Control**:
+     - **None**
+     - **Calendar**
+     - **Checkbox**
+     - **Pick List**
+     - **Textbox**
+  5. Select **Save**.
+
+  ### Edit or Delete criteria
+
+  1. Expand a filter category.
+  2. Click :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/XoBHbFgyDeNnNtn2gCeXy_edit-icon.png" alt caption size="10" width="19" height="19"}**Edit** or :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/KX67MNSQKxFL8wq3baGCY_delete-section-icon.png" alt caption size="10" width="14" height="16"}**Delete** a value using the action icons.
+  3. Change S**how by default** if required.
+  4. Select **Save**(and **Save and publish**).
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Migrate Classic Layouts to Modern Page Designer
+
+  You can migrate existing classic layouts of a business object to the Modern Page Designer. The migration process converts the selected classic layout to a modern layout while preserving its configuration.
+
+  You can initiate migration from two locations in the Layout section.
+
+  ### Migrate a Classic Layout
+
+  1. In the **Modern Page Designer**, select the required business object (for example, **Incident**).
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/qTehfLIITTm6Ar-geeK0b_select-business-object.png" position="flex-start" size="40" indent="2" initialPath="Images/Select Business Object.png" githubPath="Content/Working with the Analyst/Images/Select Business Object.png" showCaption="false"></Image>
+
+  2. Select **Migrate classic layouts** option from either of the following locations:
+     - The **Layout** action menu.
+     - The **Migrate classic layouts** button displayed in the page designer area.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/JPNQZSL_H99kyYB1XuBzh_migrate-classic-layout.png" position="flex-start" size="40" indent="3" initialPath="Images/Migrate Classic layout.png" githubPath="Content/Working with the Analyst/Images/Migrate Classic layout.png" showCaption="false"></Image>
+
+  <Paragraph listStyleType="disc" listStart="3" indent="2">
+    The **Migrate classic layouts** option appears in the **Layout** action menu **ellipsis (⋮)** only when a layout is selected in the **Layout** field.
+  </Paragraph>
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/UzKRhnUC4HCmQWGKJchoO_layout-option-in-the-layout-action-menu.png" position="flex-start" size="40" indent="3" initialPath="Images/Layout option in the layout action menu.png" githubPath="Content/Working with the Analyst/Images/Layout option in the layout action menu.png" showCaption="false"></Image>
+
+  3. The **Migrate classic layouts** dialog opens.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/lcd_kklwoAaeBVCwYFfH5_migrate-classic-layout-dialog.png" position="flex-start" size="40" indent="2" initialPath="Images/Migrate classic layout dialog.png" githubPath="Content/Working with the Analyst/Images/Migrate classic layout dialog.png" showCaption="false"></Image>
+
+  <hint type="info" indent="2">
+    Currently, you can migrate layouts from only one **Business Object** at a time. Select the correct **Business Object** and click **Migrate classic layouts**.
+  </hint>
+
+  4. Click **Next**.
+  5. Select the layout that you want to migrate.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/dSNNLwtcDzAekMufJe3hz_select-layout.png" position="flex-start" size="40" indent="2" initialPath="Images/Select Layout.png" githubPath="Content/Working with the Analyst/Images/Select Layout.png" showCaption="false"></Image>
+
+  <hint type="info" indent="2">
+    - Some **FRS** layouts are disabled and cannot be migrated in non-system mode.
+    - If you log in using :Link[System mode]{label="System mode" overridedLabel="System mode" spaceId docId="a7UWAYkjNDkZSTq0p26V_" version="v2" docAnchorId="#Enable" loadingMethod="dynamic" newTab="false" href="Configure and Assign Views and Layouts Using the Modern Page Designer.mdx"}, these layouts become available for migration.
+  </hint>
+
+  6. Click **Next**.
+  7. Review & Confirm, review the selected **Business Object** and **Layout**.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/15qwGbia8NyTYD6aqlmKb_start-migration.png" position="flex-start" size="40" indent="2" initialPath="Images/Start Migration.png" githubPath="Content/Working with the Analyst/Images/Start Migration.png" showCaption="false"></Image>
+
+  8. Click **Start Migration**.
+  9. After the migration completes, a notification appears confirming that the layout was **Migration successful**.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/rtZTl1jxaUIEpfaMHVN_K_migration-successful.png" position="flex-start" size="40" indent="2" initialPath="Images/Migration successful.png" githubPath="Content/Working with the Analyst/Images/Migration successful.png" showCaption="false"></Image>
+
+  10. You can import the same layout multiple times. Each imported layout includes a time stamp appended to the layout name, which helps you differentiate between multiple imported versions of the same layout.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/ApD35zxljZPadfBaAEA8A_time-stamp-for-layout.png" position="flex-start" size="40" indent="2" initialPath="Images/Time stamp for layout.png" githubPath="Content/Working with the Analyst/Images/Time stamp for layout.png" showCaption="false"></Image>
+
+  <Paragraph indent="1">
+    **Example:** **\{\{classic\_layout\_name}}****\_****\{\{utc\_timestamp}}**
+  </Paragraph>
+
+  <hint type="info" indent="2">
+    When you migrate a classic (V1) layout that includes Preview Forms mappings for a Group business object, the migration produces a V3 view with the equivalent data preserved in child business object mappings. No data is lost during migration. You can verify and modify the migrated mappings by editing the existing view and expanding the List of business objects \* accordion.
+  </hint>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Configuring Command Buttons in Forms views
+
+  You can configure a form to include **Command buttons** for executing commands such as Quick Actions or predefined system actions.
+
+  The Command button control is available in the Angular-based form designer and provides functionality similar to the Classic UI.
+
+  To configure a Command button in a form view
+
+  1. Go to **Build** > **Business Objects**, and select the **Incident** business object.
+  2. Select the **Layouts** tab.
+  3. Select **Add New Layout**.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/446r6wGs-u0LxA6RPRHv-_add-new-layout.png" position="flex-start" size="40" indent="2" initialPath="Images/Add New Layout.png" githubPath="Content/Working with the Analyst/Images/Add New Layout.png" showCaption="false"></Image>
+
+  4. When prompted, select **Try Modern Designer**.
+  5. In the **Layout** list, select the required layout.
+  6. In the **Views** list, select the required form view.
+  7. In the form designer, select **Step 3: Controls**.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/_QJW4ldV3yFPqIT3XdoTG_step-3.png" position="flex-start" size="40" indent="2" initialPath="Images/Step 3.png" githubPath="Content/Working with the Analyst/Images/Step 3.png" showCaption="false"></Image>
+
+  8. Expand the **Other section**.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/sUkPQiFHf9KYZC0OIv9c0_commnad-button.png" position="flex-start" size="40" indent="2" initialPath="Images/commnad button.png" githubPath="Content/Working with the Analyst/Images/commnad button.png" showCaption="false"></Image>
+
+  9. Scroll to locate the **Command button** control.
+  10. Drag the Command button and drop it in the required section of the form.
+  11. Select the button that you added, and then configure it in the **Configure** panel.
+
+  **Command Button**
+
+  1. **Select an Action**
+  2. In the **Configure** panel, select the **Action** dropdown.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/yLXgWMMgkl8hBhpbIzb1p_select-the-button.png" position="flex-start" size="40" indent="2" initialPath="Images/Select the button.png" githubPath="Content/Working with the Analyst/Images/Select the button.png" showCaption="false"></Image>
+
+  3. In the **Select action** dialog box:
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/ysP4Nnq-GsmaDypJkA1Pm_select-action.png" position="flex-start" size="40" indent="2" initialPath="Images/Select Action.png" githubPath="Content/Working with the Analyst/Images/Select Action.png" showCaption="false"></Image>
+
+  <Paragraph listStyleType="disc" indent="2">
+    Expand the required category, such as **Form Actions**.
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" listStart="2" indent="2">
+    The list displays all available Quick Actions and predefined commands.
+  </Paragraph>
+
+  4. Select the required action (You can select predefined commands such as **Save** and **Reload** for **Refresh**, available under categories such as **Form Actions**.).
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/V_e8Pi_5wh1gInvXkhtDv_select-the-form-action.png" position="flex-start" size="40" indent="2" initialPath="Images/Select the Form Action.png" githubPath="Content/Working with the Analyst/Images/Select the Form Action.png" showCaption="false"></Image>
+
+  5. Click **Select** to confirm.
+
+  <hint type="info">
+    - The Action list includes all configured **Quick Actions** and system commands.
+    - Ensure that the required actions are available before associating them with a Command button.
+  </hint>
+
+  The Button executes a specific command, such as running a report or a quick action. In the **Configure** panel you can configure the button.
+
+  | Property            | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+  | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+  | Action              | Choose a quick action to be performed when a user clicks the button.                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+  | Causes Validation   | Specifies whether the button triggers validation before executing the action. Select **Yes** to validate the form before execution, or **No** to execute the action without validation.  <br /><Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/JUojr_AEoOX_R7HcSc-_m_casues-validation.png" position="flex-start" size="40" initialPath="Images/Casues Validation.png" githubPath="Content/Working with the Analyst/Images/Casues Validation.png" showCaption="false"></Image> |
+  | Control Type        | User interface command button.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+  | Disabled Expression | Create an expression, or choose from the drop-down list.                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+  | Height              | The control height (lines).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+  | Image               | An image to associate with this control.                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+  | Label               | The text to appear on the field or control label.                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+  | Label Expression    | An expression to apply to this label, if needed. For example, on the **KnowledgeSelfService** form, the following expression has been added to the **Details** cells: **$(("Article ID: " + KnowledgeNumber))**. This adds the label **Article ID** to the label and the Knowledge Base number assigned to this record.                                                                                                                                                                                            |
+  | Quick Action        | Choose a quick action from the drop down list.                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+  | Quick Action        | Choose a quick action from the drop-down list.                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+  | Style               | See [Using Highlighter Styles](<../Configure/Styles/Using Highlighter Styles.mdx>).                                                                                                                                                                                                                                                                                                                                                                                                                                |
+  | Style Rule          | See [About Using Expressions in Styles](<../Reference/Expressions/Using Expressions in Styles.mdx>).                                                                                                                                                                                                                                                                                                                                                                                                               |
+  | Tab Index           | The order in which users can tab into this field.                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+  | Visible Expression  | Accepts the expression $(true) to make the expression control visible, or $(false) to hide it from the user.                                                                                                                                                                                                                                                                                                                                                                                                       |
+  | Width               | The control width (ems).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+
+  **Cancel Button**
+
+  The Cancel button is available as an out-of-the-box (OOTB) control.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/7qRxTVpHDTa0Yupmi_Ozv_cancel-button-as-command-button.png" position="flex-start" size="40" initialPath="Images/Cancel button as command button.png" githubPath="Content/Working with the Analyst/Images/Cancel button as command button.png" showCaption="false"></Image>
+
+  - When a user selects **Cancel**, the system cancels the current operation and navigates back to the list view from the form view.
+  - If the form contains unsaved changes, the system displays a confirmation prompt.
+
+  Adds a **Cancel** button to the form. In the **Configure** panel you can configure the button.
+
+  | Property           | Description                                                                                                                                                                                                                                                                                                             |
+  | ------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | Control Type       | Cancel Button                                                                                                                                                                                                                                                                                                           |
+  | Height             | The control height (lines).                                                                                                                                                                                                                                                                                             |
+  | Image              | An image to associate with this control.                                                                                                                                                                                                                                                                                |
+  | Label              | Cancel                                                                                                                                                                                                                                                                                                                  |
+  | Label Expression   | An expression to apply to this label, if needed. For example, on the **KnowledgeSelfService** form, the following expression has been added to the **Details** cells: **$(("Article ID: " + KnowledgeNumber))**. This adds the label **Article ID** to the label and the Knowledge Base number assigned to this record. |
+  | Style              | See [Using Highlighter Styles](<../Configure/Styles/Using Highlighter Styles.mdx>).                                                                                                                                                                                                                                     |
+  | Style Rule         | See [About Using Expressions in Styles](<../Reference/Expressions/Using Expressions in Styles.mdx>).                                                                                                                                                                                                                    |
+  | Tab Index          | The order in which users can tab into this field.                                                                                                                                                                                                                                                                       |
+  | Visible Expression | Accepts the expression $(true) to make the expression control visible, or $(false) to hide it from the user.                                                                                                                                                                                                            |
+  | Width              | The control width (ems).                                                                                                                                                                                                                                                                                                |
+</ExpandableHeading>
+

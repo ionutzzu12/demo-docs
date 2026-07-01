@@ -1,0 +1,132 @@
+---
+title: Search Examples
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:45 GMT+0300 (Eastern European Summer Time)
+---
+
+The following are some examples of how to use search.
+
+<ExpandableHeading>
+  ## Example: Creating a Saved Search with Expressions
+
+  To search for all incidents that are breaching within the next 24 hours, set up the search query fields as follows:
+
+  1. Log into the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Console}}.
+  2. Open the **Incident** workspace.
+  3. Open the **Saved Searches** menu. See :Link[Viewing the List of Saved Searches Available to Your Role]{label="Viewing the List of Saved Searches Available to Your Role" overridedLabel="Viewing the List of Saved Searches Available to Your Role" spaceId docId="RYWYC0IvsLLi8QWlusgWZ" version="v2" docAnchorId="#ViewingTheListOfSavedSearch" loadingMethod="dynamic" newTab="false" githubPath="Saved Searches.htm#ViewingTheListOfSavedSearch" href="Saved Searches.mdx"} for information about opening the **Saved Searches** menu.
+  4. Click **New Saved Search**. A blank search form appears.
+  5. Enter a search name, such as "Expression Example", and click **Save**.
+  6. Set up your query as shown in the example below:
+
+  | Business Object  | Field          | Operator         | Criteria                                                                            |
+  | ---------------- | -------------- | ---------------- | ----------------------------------------------------------------------------------- |
+  | Incident         | Status         | In List          | Active, Logged, Waiting for 3rd Party, Waiting for Customer, Waiting for Resolution |
+  | AND              |                |                  |                                                                                     |
+  | Is Related To    | At least       | 1                | Escalation Watch via IncidentAssociatedEscalationWatch (0...1 : 0...N)              |
+  | WHERE            |                |                  |                                                                                     |
+  | Escalation Watch | BreachDateTime | Greater or Equal | $(Today())                                                                          |
+  | AND              |                |                  |                                                                                     |
+  | Escalation Watch | BreachDateTime | Less than        | $(Tomorrow())                                                                       |
+
+  <Paragraph indent="1">
+    *Example of Creating a Saved Search with Expressions*
+  </Paragraph>
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Sj8Il3UrNiiylk4qogdn8_newsavedsearchexample.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/NewSavedSearchExample.png" githubPath="Content/Resources/Images/help-images/NewSavedSearchExample.png" showCaption="false"></Image>
+
+  7. Click **Run Search** to see the results.
+  8. Click **Save**.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Example: Using Find and Replace
+
+  You can create a quick action that enables you to find and replace specific values in specific fields in an entire saved search list, a selection of items, or a single item.
+
+  The **Find and Replace** quick action looks through the records for any instances of the specified field that contain the specified current value. When it finds that field and current value, it replaces the current value with the new value.
+
+  *Find and Replace Quick Action -- Before*
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/3qlviqh6tXM6BdQH5POmE_findandreplacenew.png" position="flex-start" size="40" initialPath="../../Resources/Images/help-images/find_and_replace_new.png" githubPath="Content/Resources/Images/help-images/find_and_replace_new.png" showCaption="false"></Image>
+
+  In this example, the name is Owner Change. No description is added. The category is Form Actions.  (If you do not choose a category, the quick action is listed in **No Category**.)
+
+  *Find and Replace Quick Action -- After*
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/vHOW4aUbZS-489Z-YKCrR_findandreplacenewqa.png" position="flex-start" size="40" initialPath="../../Resources/Images/help-images/find_and_replace_new_qa.png" githubPath="Content/Resources/Images/help-images/find_and_replace_new_qa.png" showCaption="false"></Image>
+
+  In this example, we use the **Find and Replace** quick action created above to replace the name of an incident owner with the name of a different owner for all results in the current saved search.
+
+  *Individual Incident Before Search and Replace*
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/5U28kkFTBnasGkuSAaPT5_findandreplaceform1.png" position="flex-start" size="40" initialPath="../../Resources/Images/help-images/find_and_replace_form1.png" githubPath="Content/Resources/Images/help-images/find_and_replace_form1.png" showCaption="false"></Image>
+
+  *Incident List Before Search and Replace*
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/zlfA1-iaFcV3AxnITdRqL_findandreplaceowner1.png" position="flex-start" size="40" initialPath="../../Resources/Images/help-images/find_and_replace_owner1.png" githubPath="Content/Resources/Images/help-images/find_and_replace_owner1.png" showCaption="false"></Image>
+
+  In this example, the category is form actions and the name of the quick action is Owner Change.
+
+  *Owner Change Quick Action*
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/QyBODM8XdfVC504MYhlVe_findandreplaceowner2.png" position="flex-start" size="40" initialPath="../../Resources/Images/help-images/find_and_replace_owner2.png" githubPath="Content/Resources/Images/help-images/find_and_replace_owner2.png" showCaption="false"></Image>
+
+  In this example, the field is Owner. The current value is Ron B Davis and the replacement value is Chris Lawton.
+
+  1. Check one of the following:
+     - **Find results in selected rows**: Finds individual incidents that you previously highlighted.
+     - **Find all results in current Saved Search**: Finds the entire list of incidents that is currently displayed.
+
+  <Paragraph indent="1">
+    In this example, we checked **Find all results in current Saved Search**.
+  </Paragraph>
+
+  2. Click **Replace**.
+
+  <Paragraph indent="1">
+    The quick action looks through the records for instances of the **Owner** field that contain Ron B Davis. When it finds such an instance, it replaces Ron B Davis with Clawton.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    When the quick action is finished, it displays a message with the results.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    *Incident List After Search and Replace*
+  </Paragraph>
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/gWeDd_TMdYt2I8skOJdPF_findandreplaceowner5.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/find_and_replace_owner5.png" githubPath="Content/Resources/Images/help-images/find_and_replace_owner5.png" showCaption="false"></Image>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Example: Finding Records that will Breach
+
+  This topic describes how to create a saved search that searches for records that will breech within a specific time, in this case, records that will breach in the next seven days. This search uses expressions.
+
+  1. Log into the Service Desk Console.
+  2. Open a workspace.
+  3. Open the **Saved Searches** menu. See :Link[Viewing the List of Saved Searches Available to Your Role]{label="Viewing the List of Saved Searches Available to Your Role" overridedLabel="Viewing the List of Saved Searches Available to Your Role" spaceId docId="RYWYC0IvsLLi8QWlusgWZ" version="v2" docAnchorId="#ViewingTheListOfSavedSearch" loadingMethod="dynamic" newTab="false" githubPath="Saved Searches.htm#ViewingTheListOfSavedSearch" href="Saved Searches.mdx"} for information about opening the **Saved Searches** menu.
+  4. Click **New Saved Search** to create a new search. See [Using Saved Search](<Saved Searches.mdx>) for more information on how to create a saved search.
+  5. In the search criteria area, choose the following:
+
+  | Business Object                                                      | Field          | Operator     | Criteria             |
+  | -------------------------------------------------------------------- | -------------- | ------------ | -------------------- |
+  | Escalation Watch via IncidentAssocResolutionEscWatch (0...1 : 0...1) | BreachDateTime | Equal to     | $(BeginningOfDay(7)) |
+  | AND                                                                  |                |              |                      |
+  | Escalation Watch via IncidentAssocResolutionEscWatch (0...1 : 0...1) | BreachDateTime | Greater than | $(CurrentDate())     |
+  | AND                                                                  |                |              |                      |
+  | Incident                                                             | Status         | Not In List  | Closed, Resolved     |
+
+  <Paragraph indent="1">
+    For more information, see [About Using Expressions in Searches and Dashboards](../../Reference/Expressions/Expressions_in_Searches_.mdx)
+  </Paragraph>
+
+  <Paragraph indent="1">
+    *Example: Search the Next 7 Days*
+  </Paragraph>
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Kgw2c_ZytgEDVeYo0z8Mu_next-7-days.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/next 7 days.png" githubPath="Content/Resources/Images/help-images/next 7 days.png" showCaption="false"></Image>
+
+  6. Click **Preview** to check your search results.
+  7. Click **Save**.
+</ExpandableHeading>

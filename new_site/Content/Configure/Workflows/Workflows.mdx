@@ -1,0 +1,76 @@
+---
+title: About Workflows
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:57 GMT+0300 (Eastern European Summer Time)
+---
+
+A business process is a set of activities that performs a specific task. A workflow is a type of business process, structured in \{\{FRS\_VARS.ProductName}} to handle support tickets and escalations. Workflows can be triggered by a user action, a time-based event, or another business process.
+
+A workflow executes in parallel to the client user interface and interacts with the \{\{FRS\_VARS.ProductName}} application server and the database. It can include timing-based logic, function along logical if-then paths, occur on the server independent of the activities of a client or user, and can create or update records behind the scene.
+
+A workflow process is created (a copy of the workflow design) for a record (incident, change, etc.) with an event (trigger) that satisfies the conditions of that workflow. These events are added to a queue and are processed in a first-in-first-out basis by the workflow engine. There is no preset time limit on how long a workflow can take to execute and finish.
+
+By default, \{\{FRS\_VARS.ProductName}} comes with a variety of workflows, but you can create your own to service your organization. The default business objects that use workflows are change, release, release milestones, problem, knowledge, and service requests.
+
+A workflow can take up to 20 minutes to start executing the blocks after the events are queued. Do not expect immediate response when triggering a workflow.
+
+If you have one or more workflows for a parent business object and one or more workflows for a child business object, when the trigger condition is met for both the parent and child business objects, the application executes the workflows for both the parent and the child business objects.
+
+- :Link[About the Language Used in Workflows]{label="About the Language Used in Workflows" overridedLabel="About the Language Used in Workflows" spaceId docId="XwP31dSOBPmyoztYPkSC7" version="v2" docAnchorId="#AboutTheLanguageUsedInWorkFlow" loadingMethod="dynamic" newTab="false" href="Workflows.mdx"}
+- :Link[About Nested Workflows]{label="About Nested Workflows" overridedLabel="About Nested Workflows" spaceId docId="XwP31dSOBPmyoztYPkSC7" version="v2" docAnchorId="#AboutNestedWorkflow" loadingMethod="dynamic" newTab="false" href="Workflows.mdx"}
+- :Link[About the Workflow Designer]{label="About the Workflow Designer" overridedLabel="About the Workflow Designer" spaceId docId="XwP31dSOBPmyoztYPkSC7" version="v2" docAnchorId="#AboutWorkflowDesigner" loadingMethod="dynamic" newTab="false" href="Workflows.mdx"}
+- :Link[How a Workflow Functions]{label="How a Workflow Functions" overridedLabel="How a Workflow Functions" spaceId docId="XwP31dSOBPmyoztYPkSC7" version="v2" docAnchorId="#HowWorkflowFunctions" loadingMethod="dynamic" newTab="false" href="Workflows.mdx"}
+- [Using Workflows](Using_Workflows.mdx)
+- [Validating Workflows](Validating_Workflows.mdx)
+- [Importing and Exporting a Workflow](Import_a_Workflow.mdx)
+- [Example: Canceling a Workflow that is Awaiting Approval](<Cancel a Workflow Awaiting Approval.mdx>)
+- [Example: Defining an Approval Block for the Service Request Business Object](<Define an Approval Block for the Service Request Business Object.mdx>)
+- [Example: Using Task Status with the WaitForChild Workflow Block](<Using Task Status with WaitForChild.mdx>)
+- [Troubleshooting the WaitForChild Workflow Block](<WaitForChild Block Does Not Execute.mdx>)
+- [About the Change Approval Workflow](<The Change Approval Workflow.mdx>)
+- [Workflow Object Blocks](WorkflowObjects/Workflow_Object_Blocks.mdx)
+
+## About the Language Used in Workflows
+
+Workflows always use English if no language is specified. To change the language associated with a workflow to the language associated with the user who initially created the incident, follow these steps:
+
+1. Add a new field called **BrowserCulture** to the **Incident** business object. See [Creating a Field](../BusinessObjects/Creating-a-Field.mdx).
+2. Add a before-save business rule to the **Incident** business object that sets the newly-created **BrowserCulture** field to **$(CurrentBrowserCulture)**. See :Link[Creating a Business Rule]{label="Creating a Business Rule" overridedLabel="Creating a Business Rule" spaceId docId="4XSn5lf-Ocn14fHU5D_yY" version="v2" docAnchorId="#3Creating" loadingMethod="dynamic" newTab="false" githubPath="../BusinessRules/Business_Rules.htm#3Creating" href="../BusinessRules/Business_Rules.mdx"}.
+3. In the workflow, update the fields that you want to use the new language to use **:language(BrowserCulture)** instead of **:language()**.
+
+<Paragraph indent="1">
+  For example, in the **Subject** field of the **Notification** workflow block, instead of entering **$(Status)**, enter **$(Status\:language(BrowserCulture)** to have the subject of the email be equal to the value of the **Status** field, but in the language of the user who created the incident. See :Link[Referencing a Translated Value of a Business Object Field]{label="Referencing a Translated Value of a Business Object Field" overridedLabel="Referencing a Translated Value of a Business Object Field" spaceId docId="LE0re3RODaLD2TMvD4oNG" version="v2" docAnchorId="#Translated" loadingMethod="dynamic" newTab="false" githubPath="../../Reference/Expressions/Field References.htm#Translated" href="../../Reference/Expressions/Field References.mdx"}.
+</Paragraph>
+
+## About Nested Workflows
+
+You can add other workflows to your workflow, creating a nested workflow.
+
+To invoke a workflow from another, ensure that the trigger condition cannot be met. Otherwise, it does not invoke because it is triggered by the trigger condition that you set up in the workflow configuration.
+
+## About the Workflow Designer
+
+You use the Workflow Designer to define workflows. The Workflow Designer is a graphical tool that allows you to arrange blocks of activities using a drag-and-drop interface to create workflows. The Workflow Engine executes the activities created within the Workflow Designer. Workflows are distinguished by the following characteristics:
+
+- Defined for individual business objects.
+- Unlimited run time.
+- Can define time-based events such as start times, delays, etc.
+- Can be triggered by an action, a time-based event, or another workflow.
+
+The Workflow Designer allows you to define an end-to-end workflow for a specific business object.
+
+## How a Workflow Functions
+
+1. A workflow is designed to be activated by a trigger event (similar to a Microsoft SQL procedure). You can also execute a workflow on demand.
+2. The trigger causes the business object details to be added to a queue for processing when a record is saved.
+3. The workflow engine takes the item from the queue and starts a copy of the workflow template.
+   - Active monitor or timing sub-processes are generated to monitor for event occurrences that might cause the workflow to continue.
+   - The Workflow Engine monitors the Microsoft SQL database for insert or update business object operations in a queue corresponding to the business object items monitored by the workflow, or performs timing-based processes.
+4. The workflow updates or creates records, sends email, etc. based on the logical blocks in the design.
+5. Upon completion of the workflow, the process is terminated.
+
+<hint type="info">
+  - Workflows use UTC as the default timezone. Client-centered functions, such as business rules, use the local timezone by default.
+  - When you apply a workflow and a business rule to the same business object, depending on your local time zone, the resulting action may report or occur earlier or later than you expect.
+  - Use the expression editor to specify your workflow and business rule use the same time zone. See [Using the Expression Editor](<../../Reference/Expressions/Using Expression Editor.mdx>).
+</hint>

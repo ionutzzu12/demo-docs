@@ -1,0 +1,45 @@
+---
+title: Configuring Ivanti Voice Integration
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:54 GMT+0300 (Eastern European Summer Time)
+---
+
+To enable a **Start IPCM Voice Activity** quick action, you must first configure \{\{FRS\_VARS.ProductName}} to connect to \{\{FRS\_VARS.Company-short}} Voice.
+
+## On-Premise Configuration
+
+Contact your \{\{FRS\_VARS.Company-short}} representative for information on implementing this feature. See [More Information](../../More-Information.mdx) for contact details.
+
+## Hybrid Configuration
+
+1. From the Configuration Console, click **Extend > Voice Integration > Hybrid Configuration** to display a list of hybrid connections.
+2. Double-click the connection to use. The system displays the **IPCM Integration** page.
+3. Enter information into the fields.
+
+<Paragraph indent="1">
+  *IPCM Hybrid Configuration Page*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/OKAC1W2viE0Sml-JJL5RR_voice-hybrid-config.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/voice hybrid config.png" githubPath="Content/Resources/Images/help-images/voice hybrid config.png" showCaption="false"></Image>
+
+| Field                      | Description                                                                                                                                                                                                                    |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| IPCM Server Host Name      | A domain name or IP address that can be resolved from the \{\{FRS\_VARS.ProductName}} server.                                                                                                                                  |
+| IPCM Server Port           | The port number is set to 5743 by default.                                                                                                                                                                                     |
+| IPCM Web Services User ID  | A valid user ID configured in \{\{FRS\_VARS.Company-short}} Voice. No specific role is required.                                                                                                                               |
+| IPCM Web Services Password | A valid password for the user ID configured in \{\{FRS\_VARS.Company-short}} Voice. No specific role is required.                                                                                                              |
+| IPCM Web Services Port     | Set to match the web services port set in the \{\{FRS\_VARS.Company-short}} Voice management portal<br />(**System Configuration > Voice Server > Advanced Configuration > App Server**).<br />This is set to 2323 by default. |
+| IPCM Web Service URL       | The URL to the \{\{FRS\_VARS.Company-short}} Voice web service.                                                                                                                                                                |
+| Voice Recording UNC Path   | The UNC path to the voice recording application.                                                                                                                                                                               |
+| Voice Recording HTTP Path  | The HTTP path to the voice recording application.                                                                                                                                                                              |
+| Customer PBX Host          | The customer PBX host.                                                                                                                                                                                                         |
+| Customer PBX Port          | The customer PBX port.                                                                                                                                                                                                         |
+| Register to Customer PBX   | Registers the connection to the customer PBX.                                                                                                                                                                                  |
+| Trunk Registration Number  | The trunk registration number.                                                                                                                                                                                                 |
+| Trunk User Name            | A valid user name for the trunk.                                                                                                                                                                                               |
+| Trunk Password             | A valid password for the trunk user.                                                                                                                                                                                           |
+
+4. Under the **Employee** tab, click **Link** to link employees to this connection.
+5. Click **Save**.
+
+You can now define the **Start IPCM Voice Activity** quick action. See [Start Ivanti Voice Activity Action](<../QuickActions/Classical Action Designer/templates/Start IPCM Voice Activity.mdx>).  

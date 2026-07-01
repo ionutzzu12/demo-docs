@@ -1,0 +1,289 @@
+---
+title: Using the UpdateObject Web Method
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:01 GMT+0300 (Eastern European Summer Time)
+---
+
+This web method updates a single object by changing its field values, and may also establish or break relationships with other objects. The auto-fill, calculated, save, and business rules run during the update and may trigger additional field changes. Validation rules are also executed and they might block the update operation if the resulting object field values do not pass the validation.
+
+The order of operations is preserved during the update.
+
+## Request Syntax
+
+FRSHEATIntegrationUpdateBOResponse UpdateObject(string sessionKey, string tenantId, ObjectCommandData commandData)
+
+## Parameters
+
+- **sessionKey**: The session key from the **Connect** web method.
+- **tenantId**: The tenant for which the session key is authenticated.
+- **commandData**: A structure containing information about the creation request.
+
+## Return Value
+
+**FRSHEATIntegrationUpdateBOResponse** object, defined as follows:
+
+public class FRSHEATIntegrationUpdateBOResponse
+
+\{
+
+public string status \{ get; set; }
+
+public string exceptionReason \{ get; set; }
+
+public string recId \{ get; set; }
+
+public WebServiceBusinessObject obj \{ get; set; }
+
+}
+
+The **FRSHEATIntegrationUpdateBOResponse** class has the following fields:
+
+- **status**: Provides a status about the state of the operation. The table below contains a full description of the available status values.
+- **exceptionReason**: Contains exception information, if the application throws an exception when running this web method.
+- **recId**: The Rec ID of the updated record, if the status of the web method is "success".
+- **obj**: Returns the updated record as an **WebServiceBusinessObject** object, if the business object record is updated successfully.
+
+The following table lists the available status values and describes how to interpret them.
+
+| Status  | Explanation                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Success | Successfully updated the business object.<br /><br />The **recId** field of the response object contains the Rec ID of the newly created record. The **obj** field references the newly created **WebServiceBusinessObject**.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Error   | Cannot create the business object.  The **recId** and **obj** fields are null.  Inspect the corresponding **exceptionReason** field to determine why the web method has failed.<br />One typical error is **Table not found**, which occurs when the specified business object does not exist in the tenant. Ensure that the name of the business object is spelled properly.<br />Another common error is that the specified field does not exist for the business object. The error message is:<br />ObjectTableMap: field \<FieldName> is not found in table \<Business Object>#<br />Ensure that the field name is spelled correctly, and that it is defined for the specified business object.<br />Another common error is to specify a value for a field that does not exist in the associated validation list. The error message is:<br />\<BusinessObject>.\<Field>:\`\<FieldValue>\` is not in the validation list |
+
+To specify DateTime values, specify the string value using ISO 8601 format. The value itself should be relative to UTC. The DateTime value can be specified in one of the following two ways:
+
+- yyyy-mm-dd  hh\:mm
+- yyyy-mm-ddThh\:mm
+
+Use either a space character or "T" character to separate the date and time values.
+
+The following are two examples of specifying a DateTime value of March 26th, 2013, 18:38 UTC, relative to the above two formats:
+
+- 2013-03-26 18:38
+- 2013-03-26**T**18:38
+
+## Example
+
+The following example locates an existing change record and CI.Computer record, by means of the **Search** web method, and links the two records together by using the **UpdateObject** web method.
+
+// First, locate the change record to update, using the ChangeNumber
+
+// (e.g. change 21)
+
+ObjectQueryDefinition changeQuery = new ObjectQueryDefinition();
+
+// Just retrieve only the RecId field for the Change record
+
+FieldClass\[] changeFieldObjects = new FieldClass\[] \{
+
+new FieldClass()
+
+\{
+
+Name = "RecId",
+
+Type = "Text"
+
+}
+
+};
+
+changeQuery.Select = new SelectClass();
+
+changeQuery.Select.Fields = changeFieldObjects;
+
+changeQuery.From = new FromClass();
+
+// Search for the record against the Change object
+
+changeQuery.From.Object = "Change";
+
+changeQuery.Where = new RuleClass\[] \{
+
+new RuleClass()
+
+\{
+
+// Provide the criteria to search for the Change
+
+// Here, we will search for the Change by its ChangeNumber
+
+Condition = "=",
+
+Field = "ChangeNumber",
+
+Value = "21"
+
+}
+
+};
+
+// Pass in the ObjectQueryDefinition for the query
+
+FRSHEATIntegrationSearchResponse changeSearchResponse = frSvc.Search(authSessionKey, tenantId, changeQuery);
+
+WebServiceBusinessObject\[]\[] changeList = changeSearchResponse.objList;
+
+// Assuming that the Change record is uniquely identified by the
+
+// ChangeNumber, and because the above query does not join with other
+
+// tables, we should be able to locate the Change record, by accessing
+
+// changeList\[0]\[0], in the list of list of WebServiceBusinessObjects
+
+WebServiceBusinessObject change = changeList\[0]\[0];
+
+string changeRecId = change.RecID;
+
+// Now locate the CI.Computer record, to link with the existing Change
+
+// Here we will attempt to locate the CI.Computer record with
+
+// the name of "APAC-DEPOT-SERV01" and retrieve its RecId
+
+ObjectQueryDefinition ciQuery = new ObjectQueryDefinition();
+
+// Just retrieve only the RecId field of the CI for the matching result
+
+FieldClass\[] ciFieldObjects = new FieldClass\[] \{
+
+new FieldClass()
+
+\{
+
+Name = "RecId",
+
+              Type = "Text"
+
+}
+
+};
+
+ciQuery.Select = new SelectClass();
+
+ciQuery.Select.Fields = ciFieldObjects;
+
+ciQuery.From = new FromClass();
+
+// Search for the record against the CI.Computer member object
+
+ciQuery.From.Object = "CI.Computer";
+
+ciQuery.Where = new RuleClass\[]
+
+\{
+
+// Search for the CI.Computer by its Name
+
+new RuleClass()
+
+\{
+
+Condition = "=",
+
+Field = "Name",
+
+Value = "EMEA-EXCH-SERV01"
+
+}
+
+};
+
+// Pass in the ObjectQueryDefinition for the query
+
+FRSHEATIntegrationSearchResponse ciSearchResponse = frSvc.Search(authSessionKey, tenantId, ciQuery);
+
+WebServiceBusinessObject\[]\[] cilist = ciSearchResponse.objList;
+
+// Assuming that the CI record is uniquely identified by Name, and
+
+// because the above query does not join with other tables, we should
+
+// be able to locate the CI record, by accessing cilist\[0]\[0], in the
+
+// list of list of WebServiceBusinessObjects
+
+WebServiceBusinessObject ci = cilist\[0]\[0];
+
+// Since we are only retrieving the RecId field for CI, it will appear
+
+// as the first item in the list of Fields, i.e. ci.FieldValues\[0]
+
+string ciRecId = (string)ci.FieldValues\[0].Value;
+
+// At this point, we now have the RecId of the Change and CI records,
+
+// and can proceed with the update
+
+// For the ObjectCommandData, use the changeRecId value that was
+
+// determined above, for looking up the record to update
+
+ObjectCommandData data = new ObjectCommandData();
+
+data.ObjectType = "Change#";
+
+data.ObjectId = changeRecId;
+
+List\<ObjectCommandDataFieldValue> dataFields = new List\<ObjectCommandDataFieldValue>();
+
+Dictionary\<string, object> fields = new Dictionary\<string, object>();
+
+// To demonstrate that the existing field value can be updated, set the
+
+// Urgency of the existing Change record to "High"
+
+fields\["Urgency"] = "Medium";
+
+// Update the CABVoteExpirationDateTime to a specific date/time value
+
+fields\["CABVoteExpirationDateTime"] = "2013-03-26 18:38:30";
+
+foreach (string key in fields.Keys)
+
+\{
+
+dataFields.Add(new ObjectCommandDataFieldValue()
+
+       \{
+
+Name = key,
+
+              Value = fields\[key].ToString()
+
+       });
+
+}
+
+data.Fields = dataFields.ToArray();
+
+data.LinkToExistent = new LinkEntry\[]
+
+\{
+
+new LinkEntry()
+
+       \{
+
+Action = "Link",
+
+              Relation = "",
+
+RelatedObjectType = "CI#",
+
+RelatedObjectId = ciRecId
+
+}
+
+};
+
+FRSHEATIntegrationUpdateBOResponse response = frSvc.UpdateObject(authSessionKey, tenantId, data);
+
+if (response.exceptionReason != null)
+
+\{
+
+Console.WriteLine("Encountered the following error while updating the record: \{\{0}}", response.exceptionReason);
+
+}

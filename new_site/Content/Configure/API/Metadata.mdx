@@ -1,0 +1,257 @@
+---
+title: Metadata
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:01 GMT+0300 (Eastern European Summer Time)
+---
+
+Fetches details such as the list of fields, relationships, fields of related business objects, saved search names, template names and quick action names for a business object.
+
+## Reading the Metadata
+
+In the response returned after executing the Metadata API, details are grouped under different OData elements, such as the **NavigationProperty** element contains the Relationship details, **Actions** element contains either template or quick action details.
+
+The following table lists the OData elements mapped to ISM elements.
+
+| OData Standard Element | ISM Specific Element        |
+| ---------------------- | --------------------------- |
+| NavigationProperty     | Relationships               |
+| Actions                | Templates and Quick Actions |
+| Property Name          | Fields                      |
+| Function               | Saved Search                |
+
+**Base URL:**
+
+https\://\{tenant url}/api/odata/\{business object name}/$metadata
+
+<hint type="info">
+  Ensure the business object name is suffixed with an "s".
+</hint>
+
+<ExpandableHeading>
+  ## Metadata - Example
+
+  Here is an example to fetch the metadata for incidents.
+
+  | URL                                           | https\://\{tenant url}/api/odata/incidents/$metadata                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+  | --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | <font color="#ffffff">Method</font>           | GET                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+  | Header Name                                   | Authorization: JTW Token/Session Key/REST API Key                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+  | <font color="#ffffff">Status Code</font>      | 200                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+  | <font color="#ffffff">Response Payload</font> |   <ExpandableHeading>
+      ## Click to view response payload
+
+      \<?xml version="1.0" encoding="utf-8"?>
+
+      \<edmx\:Edmx Version="4.0" xmlns\:edmx="http\://docs.oasis-open.org/odata/ns/edmx">
+
+      \<edmx\:DataServices>
+
+      \<Schema Namespace="MetaData" xmlns="http\://docs.oasis-open.org/odata/ns/edm">
+
+      \<EntityType Name="frs\_knowledge">
+
+      \<Key>
+
+      \<PropertyRef Name="RecId" />
+
+      \</Key>
+
+      \<Property Name="FRS\_KnowledgeType" Type="Edm.String" MaxLength="30" Unicode="false" />
+
+      \<Property Name="RecId" Type="Edm.String" Nullable="false" MaxLength="32" Unicode="false" />
+
+      \<Property Name="LastModDateTime" Type="Edm.DateTimeOffset" />
+
+      \<Property Name="LastModBy" Type="Edm.String" MaxLength="200" />
+
+      \<Property Name="CreatedDateTime" Type="Edm.DateTimeOffset" />
+
+      \<Property Name="CreatedBy" Type="Edm.String" MaxLength="200" />
+
+      \<Property Name="OwnerType" Type="Edm.String" MaxLength="30" Unicode="false" />
+
+      \<Property Name="Owner\_Valid" Type="Edm.String" MaxLength="32" Unicode="false" />
+
+      \</EntityType>
+
+      \<EntityType Name="employee">
+
+      \<Key>
+
+      \<PropertyRef Name="RecId" />
+
+      \</Key>
+
+      \<EntityType Name="frs\_myitem">
+
+      \<Key>
+
+      \<PropertyRef Name="RecId" />
+
+      \</Key>
+
+      \<Property Name="RecId" Type="Edm.String" Nullable="false" MaxLength="32"
+
+      Unicode="false" />
+
+      \<Property Name="LastModDateTime" Type="Edm.DateTimeOffset" />
+
+      \<Property Name="LastModBy" Type="Edm.String" MaxLength="200" />
+
+      \<Property Name="CreatedDateTime" Type="Edm.DateTimeOffset" />
+
+      \<Property Name="CreatedBy" Type="Edm.String" MaxLength="200" />
+
+      \<Property Name="OwnerType" Type="Edm.String" MaxLength="30" Unicode="false" />
+
+      \<Property Name="Owner\_Valid" Type="Edm.String" MaxLength="32" Unicode="false" />
+
+      \<Property Name="Owner" Type="Edm.String" MaxLength="200" />
+
+      \<Property Name="OwnerTeam\_Valid" Type="Edm.String" MaxLength="32"
+
+      Unicode="false" />
+
+      \</EntityType>
+
+      \<EntityType Name="journal">
+
+      \<Key>
+
+      \<Function Name="My\_Team's\_Active\_Incidents\_All\_Tasks\_Completed">
+
+      \<Parameter Name="ActionId" Type="Edm.String" Nullable="false" Unicode="false">
+
+      \<Annotation Term="Org.OData.Core.V1.OptionalParameter">
+
+      \<Record>
+
+      \<PropertyValue Property="DefaultValue" String="c5d882f8-918d-466a-9048-02c3449bc7f0" />
+
+      \</Record>
+
+      \</Annotation>
+
+      \</Parameter>
+
+      \<ReturnType Type="Edm.ComplexType" />
+
+      \</Function>
+
+      \<NavigationProperty Name="IncidentAssociatedEscalationWatch"
+
+      Type="Collection(MetaData.frs\_data\_escalation\_watch)">
+
+      \<OnDelete Action="Cascade" />
+
+      \</NavigationProperty>
+
+      \<NavigationProperty Name="IncidentContainsTask" Type="Collection(MetaData.task)">
+
+      \<OnDelete Action="Cascade" />
+
+      \</NavigationProperty>
+
+      \<NavigationProperty Name="IncidentAssociatesCI" Type="Collection(MetaData.ci)">
+
+      \<OnDelete Action="Cascade" />
+
+      \</NavigationProperty>
+
+      \<NavigationProperty Name="IncidentAssociatedSoftwareAction"
+
+      Type="Collection(MetaData.softwareaction)">
+
+      \<OnDelete Action="Cascade" />
+
+      \</EntityType>
+
+      \<Action Name="New\_Document\_Article">
+
+      \<Parameter Name="ActionId" Type="Edm.String" Nullable="false" Unicode="false">
+
+      \<Annotation Term="Org.OData.Core.V1.OptionalParameter">
+
+      \<Record>
+
+      \<PropertyValue Property="DefaultValue" String="1e16a70f-cea5-4e56-bb6c-000eecfa5e42" />
+
+      \</Record>
+
+      \</Annotation>
+
+      \</Parameter>
+
+      \<Parameter Name="ActionParams" Type="Edm.ComplexType">
+
+      \<Annotation Term="Org.OData.Core.V1.OptionalParameter" />
+
+      \</Parameter>
+
+      \<Parameter Name="PromptParams" Type="Edm.ComplexType">
+
+      \<Annotation Term="Org.OData.Core.V1.OptionalParameter" />
+
+      \</Action>
+
+      \<Action Name="Create\_Assignment">
+
+      \<Parameter Name="ActionId" Type="Edm.String" Nullable="false" Unicode="false">
+
+      \<Annotation Term="Org.OData.Core.V1.OptionalParameter">
+
+      \<Record>
+
+      \<PropertyValue Property="DefaultValue" String="0d260a06-d203-4c72-8929-22a09038cefc" />
+
+      \</Record>
+
+      \</Annotation>
+
+      \</Parameter>
+
+      \<Parameter Name="ActionParams" Type="Edm.ComplexType">
+
+      \<Annotation Term="Org.OData.Core.V1.OptionalParameter" />
+
+      \</Action>
+
+      \<Action Name="Resolve\_Incident">
+
+      \<Parameter Name="ActionId" Type="Edm.String" Nullable="false" Unicode="false">
+
+      \<Annotation Term="Org.OData.Core.V1.OptionalParameter">
+
+      \<Record>
+
+      \<PropertyValue Property="DefaultValue" String="43a31840-2689-405f-88cc-a63a2539be99" />
+
+      \</Record>
+
+      \</Annotation>
+
+      \</Parameter>
+
+      \<Parameter Name="ActionParams" Type="Edm.ComplexType">
+
+      \<Annotation Term="Org.OData.Core.V1.OptionalParameter" />
+
+      \</Parameter>
+
+      \<Parameter Name="PromptParams" Type="Edm.ComplexType">
+
+      \<Annotation Term="Org.OData.Core.V1.OptionalParameter" />
+
+      \</Parameter>
+
+      \<Parameter Name="ShouldSave" Type="Edm.String" Unicode="false">
+
+      \<Annotation Term="Org.OData.Core.V1.OptionalParameter" />
+
+      \</Parameter>
+
+      \<ReturnType Type="Edm.ComplexType" />
+
+      \</Action>
+    </ExpandableHeading> |
+</ExpandableHeading>

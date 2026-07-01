@@ -1,0 +1,39 @@
+---
+title: Watching Escalations
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:57 GMT+0300 (Eastern European Summer Time)
+---
+
+An escalation occurs when the response time has exceeded the defined period of time. At this point, the escalation clock starts, the **Resolution Details** tab is updated, the **Escalation Watch** tab is activated, and the application sends notifications to the task owner and team. It is up to the owner and team manager to take appropriate action based on such notifications.
+
+The **Escalation Watch** tab shows the results of each phase of an escalation, including the amount of time spent in a certain state, date and time of escalation, and total running time.
+
+By default, the **Escalation Watch** tab is enabled for incidents, service requests, and tasks.
+
+The following illustrates an escalation watch for a service request:
+
+*Escalation Watch for a Service Request*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/lpIvnMnhqL5uxPeKyds11_escalation-watch.png" position="flex-start" size="40" initialPath="../../Resources/Images/help-images/escalation watch.png" githubPath="Content/Resources/Images/help-images/escalation watch.png" showCaption="false"></Image>
+
+Double-click an item from the list to see details.
+
+The default escalation clock state is automatically run. However, you can define other states, such as the following, when creating an escalation:
+
+- **Reset and Run**: The escalation clock is set to zero and restarted.
+- **Run**: The escalation clock starts or continues to run.
+- **Completed**: The escalation clock stops and does not restart.
+- **Obsolete**: The escalation was instantiated, but the escalation schedule is no longer applicable. For example, if the priority, and therefore the escalation schedule, was changed. The application automatically sets this value when an escalation schedule becomes obsolete; it is not a value that you set.
+- **Pause**: The escalation clock stops and restarts at some point.
+
+<hint type="info" indent="1">
+  During the Paused state, the breach date and time remain visible. Once the state changes back to Run, the breach date and time is recalculated.
+</hint>
+
+If another service is selected, the application stops the previous escalation clock and marks the records of the previous escalation schedule as obsolete. A new escalation schedule goes into effect.
+
+- If the incident is logged from the Self-Service Portal, but the response time has not been reached yet, the bar remains gray (since it is not determined whether the response target is met or breached).
+- If the incident changes from logged to any other status (for example, active), the response target has been met, and the response bar indicates met accordingly.
+- If the incident remains in logged status and passes the response time, the response bar indicates breached.
+- After an incident response escalation has been breached, even if the status is updated to active, the bar still indicates breached, because the incident was not responded to in a timely manner.
+- The resolution target progress bar shows the resolution date and time for the incident, including the dates and time the incident is considered breached.

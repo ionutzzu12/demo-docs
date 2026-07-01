@@ -1,0 +1,95 @@
+---
+title: Using the Ivanti Neurons for ITSM Development Project
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:54 GMT+0300 (Eastern European Summer Time)
+---
+
+Prior to \{\{FRS\_VARS.ProductName}} Release 2014, the only way that you could migrate data from one instance of a tenant to another was by using the \{\{FRS\_VARS.ProductName}} Operations Console.  Starting in 2014, you can use the \{\{FRS\_VARS.ProductName}} development project to easily migrate data.
+
+Use the \{\{FRS\_VARS.ProductName}} development project feature to create packages to migrate data from one instance of a tenant (such as staging) to another instance of a tenant (such as UAT). You can also migrate data from one application to another. Using packages, you can pick and choose which data to migrate instead of migrating the entire application.
+
+This feature allows \{\{FRS\_VARS.ProductName}} to maintain a history of changes in metadata, validation data, configuration settings, and a few specific master data business objects. It also allows you to package a unit of integral changes into a package for migration to another tenant instance. If you have the \{\{FRS\_VARS.ProductName}} Operations Console deployed in your environment, we highly recommend that you perform the migration there, between staging, UAT, and production, instead of using the package import feature described later in this topic.
+
+<hint type="info">
+  Refer to the *Operations Console Guide for&#x20;*\{\{Primary.Company}}\{\{FRS\_VARS.ProductName}} for additional information on this feature.
+</hint>
+
+<ExpandableHeading>
+  ## Recommendations
+
+  This feature gives you the ability to update the production instance of your tenant with configuration changes made in the staging instance of the tenant. If these changes conflict in some way with your application, they cannot be undone.
+
+  Occasionally, migrating data using the \{\{FRS\_VARS.ProductName}} development project can take a long time and cause the application to time out. The amount of time it takes to push a package depends on the number of transactions in the package, the amount of data in the tables, the number of indexes that are rebuilt, and more. In general, a package under 5 MB takes less than 5 minutes to complete and a 20 MB package may take around 20 minutes. If your package is larger than 20 MB, we recommend that you split it up into smaller packages to ensure that each smaller package completes the migration process and does not cause the application to time out.
+
+  We recommend that you plan and prepare for moving a package as described in this section. We strongly encourage you to make a complete backup of the target tenant instance and to create a procedure for restoring the backup if need be:
+
+  - If there is a problem with the UAT instance of your tenant, you can restore it from the production instance of your tenant using the \{\{FRS\_VARS.ProductName}} Operations Console, by refreshing the UAT instance of your tenant.
+  - If there is a problem with the production instance of your tenant, you need to restore the production instance of the tenant from the backup as quickly as possible using Microsoft SQL tools, as any transactions that are created in the production instance of the tenant after a backup and before a restore will be lost.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Limitations
+
+  - The \{\{FRS\_VARS.ProductName}} development project has not yet provided a way to validate package dependency. You need to ensure that if you make a change that depends on another change, you migrate both changes.
+  - Before handing out a package for migration, determine whether the package is complete and self-contained. The package should contain all dependent changes. Not having all the required changes in the package may cause the application to fail when you migrate the package and you may have to restore the target application from the back-up application.
+  - You cannot use the \{\{FRS\_VARS.ProductName}} development project and Simple Mode at the same time. To use Simple Mode, you must disable the \{\{FRS\_VARS.ProductName}} development project.
+  - You cannot use the \{\{FRS\_VARS.ProductName}} development project to migrate certain types of data. For a list of the data that cannot be migrated, see the *Operations Console Guide for&#x20;*\{\{Primary.Company}}\{\{FRS\_VARS.ProductName}} for additional information on this feature.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Terminology
+
+  The \{\{FRS\_VARS.ProductName}} development project feature uses the following terms:
+
+  - **Transaction**: An individual change to the database.
+  - **Transaction set**: A group of transactions. For more information refer to [Managing Transaction Sets](Managing-Transaction-Sets.mdx).
+  - **Project**: A group of transaction sets. For more information refer to [Managing Projects](Managing-Projects.mdx).
+  - **Package**: Contains the transaction sets from multiple projects. For more information refer to [Managing Packages](Managing-Packages.mdx).
+  - **Aspect**: Information about a feature, a component, a patch, or even a configuration. An aspect presence indicates the presence of the feature.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## About Using Your Named Account to Log In
+
+  The first time that you log into the \{\{FRS\_VARS.ProductName}}  application as an administrator, the application displays a message stating that you are logging in as an administrator. This is not suitable for making configuration changes. If you make configuration changes while logged in as an administrator, you may not be able to package the changes properly.
+
+  We recommend that you no longer use a generic administrator account when you are in the Configuration Console. With the \{\{FRS\_VARS.ProductName}} development project, the application tracks all the changes made and attributes them to the user who made the changes.  If all users log in using the generic administrator account, there is no way to know who made the changes.  
+
+  If you log into the application using the generic administrator account, the application displays a warning message. If you see this message, click **OK** and then log out as an administrator and log back in using your named account.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## About the Metadata Read Only Mode Message
+
+  When you use the \{\{FRS\_VARS.ProductName}} Operations Console to migrate data, the production and UAT instances of the tenant are always in metadata read-only mode, which is equivalent to being locked, and the application displays a message stating that the Configuration Console is in production metadata read-only mode. When the application is locked, you cannot make changes to most types of metadata in the Configuration Console. (You can only make changes to the following four items: saved searches, reports, quick actions, and dashboards.) While migrating data, the application temporarily unlocks the metadata on the target application.
+
+  **For&#x20;**\{\{FRS\_VARS.ProductName}}**&#x20;Cloud customers**: To unlock the application, create a service request with Ivanti Software, who can unlock the data temporarily.
+
+  **For&#x20;**\{\{FRS\_VARS.ProductName}}**&#x20;on-premise customers**: To unlock the application, use the \{\{FRS\_VARS.ProductName}} Operations Console. See the *Operations Console Guide for&#x20;*\{\{Primary.Company}}\{\{FRS\_VARS.ProductName}} for information on doing this.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## About Data Validation
+
+  When you export and import packages between tenant instances or different systems, it is possible that the target environment may not match the source environment. For example, if the source environment includes a form called "Incident 1".  and the target environment also has a form called "Incident 1", the migration process overwrites the source form with the target form. This could cause problems if the forms were used for different purposes.
+
+  In earlier releases, \{\{FRS\_VARS.ProductName}} implemented basic metadata validation before importing projects, such as checking the database schema and some business objects. In \{\{FRS\_VARS.ProductName}} Release 2015.2, we extend the validation to include additional business objects such as forms, lists, layouts, quick actions, business rules, searches, indexes, counters, and pick lists.
+
+  In this release, in addition to checking metadata, we also check configuration data (also known as settings, which include things such as roles, workflows, and dashboards definitions) and some constraints.
+
+  This internal validation is done in memory. The application applies the package to the target environment, but does not apply the changes to the database. The changes are kept in memory and the application reviews the output. The application displays warnings and errors so that you can see potential problems before importing the package. You can only import the package if the validation returns no errors, although you can still import the package with warnings. Note that when you apply the package, there could still be validation errors even if the application does not show them. These errors could come from the actual data in the database, from database connectivity, from database size, and so on.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## About logs
+
+  The **frs\_ops\_change\_log** business object stores historical changes in XML format for all metadata and settings, and for some data such as request offerings and authentication provider data. You can view the list of changes in the **Transaction Details** workspace.
+
+  The **frs\_ops\_metadata\_history** business object has been deprecated, but remains a part of \{\{FRS\_VARS.ProductName}}, as its data is still used in some workspaces. It stores historical metadata changes in JSON format. However, it does not contain the complete historical changes for all metadata.
+
+  You can archive the **frs\_ops\_metadata\_history** business object and delete the data. Once you do that, you will not see the change history of the deleted data.
+
+  You can also archive and delete the **frs\_ops\_change\_log** business object, but only if you will not use these changes in the packages. Once you do that, you cannot package or export the changes of the deleted table.
+
+  See [Archiving and Deleting Log Data from the Neurons for ITSM Databases](<../Performance/Archiving Business Objects.mdx>) for more information about archiving data.
+</ExpandableHeading>

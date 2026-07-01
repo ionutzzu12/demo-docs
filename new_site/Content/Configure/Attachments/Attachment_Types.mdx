@@ -1,0 +1,46 @@
+---
+title: Working with Attachment Types
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:51 GMT+0300 (Eastern European Summer Time)
+---
+
+You can view the allowed attachment file types, add new file type, and delete existing file type from the allowed list. For information on limiting attachment sizes, refer to [Limiting Attachment Size](<How to Limit Attachment Size.mdx>).
+
+### Default Attachment Types
+
+The default attachment types are:
+
+| `.avi`   | `.bmp`  | `.cer`  | `.csv`  |
+| -------- | ------- | ------- | ------- |
+| `.doc`   | `.docx` | `.eml`  | `.flv`  |
+| `.gif`   | `.html` | `.jpg`  | `.mht`  |
+| `.mhtml` | `.msg`  | `.pdf`  | `.pfx`  |
+| `.png`   | `.pps`  | `.ppt`  | `.pptx` |
+| `.rar`   | `.rtf`  | `.tif.` | `.txt`  |
+| `.wmv`   | `.xls`  | `.xlsx` | `.xml`  |
+| `.xps`   | `.zip`  |         |         |
+
+Only administrators can add and delete attachment file types.
+
+<hint type="info">
+  To use **.svg** files, you should first add **\*.svg** to the list of **Allowed File Extensions**. By default, **.svg** is not included in the out-of-the-box (OOTB) list. If it is not added, the application will display an error when you attempt to upload the file.
+</hint>
+
+## Adding an Attachment File Type
+
+Follow these steps to create an attachment type that is not listed.
+
+1. From the Configuration console, click **Configure** > **Security Controls** > **Allowed File Extensions**. The application lists the file extensions that are allowed.
+2. Click **Add New**. The **Add File Mask** dialog box is displayed.
+3. Enter the file type in the **File Mask** field in the format \*.\<extension type>. For example, `*.exe` or `*.jpg`.
+4. Click **Save**.  The new file type is added to the list.
+
+## Deleting an Attachment File Type
+
+1. From the Configuration console, click **Configure** > **Security Controls** > **Allowed File Extensions**. The application lists the file extensions that are allowed.
+2. Click the **delete** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/USPl9Egu4Y2Blx7HKC3mA_deleteredx.png" alt caption size="10" width="14" height="13"} next to the file type to remove.
+3. Click **Yes** to confirm the deletion. The deleted file type is removed from the list.
+
+<hint type="info">
+  Deleting a file type from the list does not remove attached files from the database.
+</hint>

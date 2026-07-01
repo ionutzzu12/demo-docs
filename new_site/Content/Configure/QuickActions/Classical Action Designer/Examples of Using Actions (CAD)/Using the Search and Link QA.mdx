@@ -1,0 +1,28 @@
+---
+title: Example: Using the Search and Link Action (CAD)
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:57 GMT+0300 (Eastern European Summer Time)
+---
+
+You can use the **Search and Link** action to perform an action on a child business object of another child business object that is associated to a business object. For example, you might want to search for all configuration items associated to a change that is associated to a release in order to directly link all the configuration items from the change to the release.
+
+See [Search and Link Action](<../templates/Search and Link.mdx>).
+
+1. From the Configuration console, click **Build > Automation Tools > Quick Actions** to open the **Actions Manager** workspace. The list of business objects that have actions appears.
+2. Click **Add/Edit** for the **Release** business object. The application displays the Action Designer selection popup.
+3. Select **Classic Action Designer**
+4. Click the **Create New Actions** tab.
+5. Click **Search and Link**.
+6. Enter information into the fields.
+
+| Field                                                                       | Description                                                                                                                                                                                                                                                                                                             |
+| --------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Enter action name                                                           | A name for this action.                                                                                                                                                                                                                                                                                                 |
+| Enter action description                                                    | An optional description.                                                                                                                                                                                                                                                                                                |
+| Enter category                                                              | The category. Select from the drop-down list.                                                                                                                                                                                                                                                                           |
+| Relationship                                                                | The relationship. Select **ReleaseProjectAssocCI**.                                                                                                                                                                                                                                                                     |
+| Find CI where                                                               | Specifies where to find the configuration item. Select **CI** from the first drop-down menu, then enter RecId. Then select **Equal to** and enter $(RecId).<br />The query should be as follows:<br />![](https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/-wkxWJf2z0VO1KfNih2vY_srchlinkeg.jpg) |
+| Publish to                                                                  | The roles that need access to this action.                                                                                                                                                                                                                                                                              |
+| Auto-save: Automatically save changes when action is run in UI form context | Saves the action automatically. Check this option.                                                                                                                                                                                                                                                                      |
+
+7. Click **Save**.

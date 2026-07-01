@@ -1,0 +1,180 @@
+---
+title: Import Discovery Data from Ivanti Neurons
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:52 GMT+0300 (Eastern European Summer Time)
+---
+
+**Role**: Administrator
+
+## Overview
+
+Neurons Platform Integration enables Ivanti Neurons device discovery data to flow into the ITSM CI workspace. Existing devices and automatically synchronizes newly discovered devices, keeping configuration item data accurate and up to date.
+
+<hint type="info">
+  The Ivanti **Neurons Asset Import Configuration** process used to configure Neurons import is disabled from 2025.3 release. All device discovery integration is now handled exclusively through Neurons Platform Integration, providing a centralized, self-service experience for ITSM Administrators.
+</hint>
+
+To configure Neurons import, refer [Neurons Platform Integration ](../Integrations/ITSM-Neurons-Integration.mdx)After configuring \{\{Primary.Company}} \{\{FRS\_VARS.Neurons}} to \{\{Primary.Company}} \{\{FRS\_VARS.ProductName}} Integration, the devices should start syncing in \{\{FRS\_VARS.ProductName}} based on the \{\{FRS\_VARS.ProductName}} scheduled connectors.
+
+### Post Import Verification
+
+1. Log in to \{\{Primary.Product}} as Administrator.
+2. Open the **CI** workspace.
+3. Ensure the newly imported devices appear in the **CI** workspace.
+
+*Imported Devices*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/iKtj9MJOwZSIniKp1hX6W_cmdb-turnkey-3.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/Configure/CMDB Turnkey/CMDB Turnkey 3.png" githubPath="Content/Resources/Images/Configure/CMDB Turnkey/CMDB Turnkey 3.png" showCaption="false"></Image>
+
+4. Open the **Message Queue Journal** workspace.
+5. Review the **Message Queue Journal** workspace for the incoming device messages processed from the **Ivanti Neurons**.
+
+*Message Queue Journal*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/qB4MNWTnlSSyu45edGQ-A_cmdb-turnkey-4.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/Configure/CMDB Turnkey/CMDB Turnkey 4.png" githubPath="Content/Resources/Images/Configure/CMDB Turnkey/CMDB Turnkey 4.png" showCaption="false"></Image>
+
+6. Run the **Decompress Message** Quick Action for a selected message in the **Message Queue Journal** workspace to view the discovered Device details.
+
+*Device Details*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/2_BoVIemET5Pp3076WoPl_cmdb-turnkey-5.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/Configure/CMDB Turnkey/CMDB Turnkey 5.png" githubPath="Content/Resources/Images/Configure/CMDB Turnkey/CMDB Turnkey 5.png" showCaption="false"></Image>
+
+Initially by default, the **Decompress Message** Quick Action will be disabled for device messages. To enable the **Decompress Message** Quick Action of **Message Queue Journal** business object, follow the below steps:
+
+1. Click **Configure Application** to go to the Configuration console.
+2. From the Configuration Console, click **Build > Automation Tools > Quick Actions** to open the **Quick Actions** workspace.
+3. Click **Frs\_MessageQueueJournal** from the **Action Manager** list.
+4. Click **Quick Action** tab.
+5. On the left side panel, click **Decompress Message**.
+6. Click **Edit** to open the Edit Expression window.
+7. Ad&#x64;**&#x20;Device** type in Quick Action expression field “Disable in UI when” as shown below.
+
+*Edit Expression*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/cSJ4Z4ybuIkau3_Zmz5CN_cmdb-turnkey-6.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/Configure/CMDB Turnkey/CMDB Turnkey 6.png" githubPath="Content/Resources/Images/Configure/CMDB Turnkey/CMDB Turnkey 6.png" showCaption="false"></Image>
+
+## Verifying as Asset Administrator
+
+1. Log in to Neurons for ITSM as **Asset Administrator**.
+2. Open the Hardware Asset workspace.
+
+<Paragraph indent="1">
+  The list of assigned devices are displayed.
+</Paragraph>
+
+3. Select a device to view the details.
+4. Select the **Discovery** tab, see **Modified On field** to view the last sync date and time of the device.
+5. Select **Licensable Software** tab, to view list and count of software imported from Neurons. Software details modified such as title or other attributes in Neurons update in ITSM after syncing the device.
+
+## Customizing Asset Data Imports from Ivanti Neurons
+
+### Device Filter in Mapping
+
+The **Filter Manager** in IN connector (Ivanti Neurons Connector- Device) enables filtering inflow of device types based on the filter criteria. For instance, an Administrator can select to import an Asset Type “Laptop” only by creating the filter value as “Laptop” as shown below:
+
+*Filter Manager*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/2gLS7I6lcF7FwX6KXuLKb_cmdb-turnkey-7.png" position="flex-start" size="40" initialPath="../../Resources/Images/Configure/CMDB Turnkey/CMDB Turnkey 7.png" githubPath="Content/Resources/Images/Configure/CMDB Turnkey/CMDB Turnkey 7.png" showCaption="false"></Image>
+
+<hint type="info">
+  - The filter settings made during import remains saved for further import.
+  - Based on the filter settings, only those messages which are relevant to mapping will be processed by \{\{Primary.Product}} tenant and rest of the messages will be discarded.
+  - The filter works only for single value filter per row. If the field selected in the left panel of the mapping results multiple values, then those filters will not work. It is advised to use the filter settings accordingly.
+  - Use only fields on the Device table in the filter.
+</hint>
+
+### Sample Mapping Scenarios
+
+**Use case 1:** In the below screenshot, for mapping
+
+\<Portable > Computer> = \<CIParentType> = \<ComputerSystem.Property.CIType>
+
+The asset imported from IN connector having **Device.Type > Portable** has mapped to parent type Computer in \{\{FRS\_VARS.ProductName}} and hence, device is imported under category “Computer”.
+
+**Use case 2:** For instance,
+
+\<Laptop > Computer> = \<CIParentType> = \<ComputerSystem.Property.CIType>
+
+If the required mapping does not exist for Laptop as shown below, then the device type "Laptop" will be moved to the default setting mentioned in **Asset Processor Configuration** workspace.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/ePFaG9uJ9kYDYf5qrwoWW_cmdb-turnkey-10.png" position="flex-start" size="40" initialPath="../../Resources/Images/Configure/CMDB Turnkey/CMDB Turnkey 10.png" githubPath="Content/Resources/Images/Configure/CMDB Turnkey/CMDB Turnkey 10.png" showCaption="false"></Image>
+
+**Use case 3**: If CIParentType mapping is not defined in IN connector field Mapping section, then default setting mentioned in **Asset Processor Configuration** workspace will be considered.
+
+### Export and Import Ivanti Neurons connector
+
+An Administrator can now edit the mapping in IN Connector and export it as metadata package and import on other \{\{Primary.Product}} tenants on demand. The exported connector will include the default Table selection, Filter option, and Field Mapping changes.
+
+This functionality is intended to help the Asset Administrator to have controlled import in STG/UAT, verify the imported asset, and update the mapping before imported all the assets into the PRD landscape.
+
+<hint type="info">
+  - This feature is applicable only for “Update” scenario, package exported from here will not create a new connection if connector does not exist.
+  - After importing the package, you are advised to review the changes once before start syncing the devices.
+  - Clone and delete actions for Ivanti Neurons Connector – Device is disabled or removed.
+</hint>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/a9QFo-J4HZjZMMl2k28s-_cmdb-turnkey-11.png" position="flex-start" size="40" initialPath="../../Resources/Images/Configure/CMDB Turnkey/CMDB Turnkey 11.png" githubPath="Content/Resources/Images/Configure/CMDB Turnkey/CMDB Turnkey 11.png" showCaption="false"></Image>
+
+### Non-Device type import support
+
+The Administrator can import non-computer type devices to \{\{FRS\_VARS.ProductName}}. For instance, the Printer received fro&#x6D;**&#x20;Ivanti Neurons&#x20;**&#x63;an be imported as a Printer in \{\{Primary.Product}} tenant.
+
+**Scheduling and Publishing&#x20;**\{\{FRS\_VARS.Neurons}}**&#x20;Discovery Data Imports**
+
+Detailed instructions for scheduling and publishing the data imports can be found on the [Scheduling API Data Sync from Ivanti Neurons for Discovery to Ivanti Neurons for ITSM](<Scheduling Sync From Neurons Discovery to ISM.mdx>) help topic.
+
+<hint type="info">
+  Microsoft Intune connector, MobileIron connector, and Airwatch connector can be configured and fetched from \{\{FRS\_VARS.Company-short}} Neurons to \{\{Primary.Product}}.
+</hint>
+
+### To Map Device Software Data (Windows, macOS, and Linux)
+
+The **Ivanti Neurons Connector** (Device) supports importing installed software information from **Windows**, **macOS**, and **Linux (Ubuntu)** devices. To ensure complete and accurate software data, configure the field mapping in the **Data Import Connection** workspace as described below.
+
+<hint type="info">
+  Starting with release 2026.2, a new API synchronizes installed software data from \{\{FRS\_VARS.Company-short}} Neurons to \{\{Primary.Product}}, ensuring that installed software records and counts remain consistent. The payload uses a unique Discovery ID to map each item to a corresponding product identifier while preserving key attributes such as title, manufacturer, and version, ensuring accurate and consistent data aligned with the user interface and existing workflows.
+</hint>
+
+1. Log in to \{\{Primary.Product}} as \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+2. Open the Configuration console and select **Extend**> **Data Import Connection**.
+3. In **Data Source Manager**, select **Ivanti Neurons Connector – Device**.
+4. Select **Device.Software.Product** in the root table to use its key in field mapping.
+5. Click **Field Mapping**, and select the fields from dropdown as shown in below table:
+
+| Source Field                                | Mapping    | Target Field                                                                |
+| ------------------------------------------- | ---------- | --------------------------------------------------------------------------- |
+| Device.Software.Product.ProductGUID         | CategoryID | Category.Component.Property-SoftwarePackages.SoftwarePackage.ID             |
+| -                                           |            |                                                                             |
+| Device.Software.Product.TitleWithoutVersion |            |                                                                             |
+| -                                           |            |                                                                             |
+| Device.Software.Product.Version             |            |                                                                             |
+| Device.Software.Product.TitleWithoutVersion | ->         | Category.Component.Property-SoftwarePackages.SoftwarePackage.DisplayName    |
+| Device.Software.Product.Version             | ->         | Category.Component.Property-SoftwarePackages.SoftwarePackage.DisplayVersion |
+| Device.Software.Product.ProductGUID         | ->         | Category.Component.Property-SoftwarePackages.SoftwarePackage.Product ID     |
+| Device.Software.Product.ManufacturerName    | ->         | Category.Component.Property-SoftwarePackages.SoftwarePackage.Publisher      |
+
+### For More Information on Mapping
+
+- **Common Mapping in ITSM for Device Sync**
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/D-mWFPdvLMrcmSY5glsCL_common-mapping-in-itsm.png" position="flex-start" size="40" indent="2" initialPath="../../Resources/Images/ImportExportData-images/Common Mapping in ITSM.png" githubPath="Content/Resources/Images/ImportExportData-images/Common Mapping in ITSM.png" showCaption="false"></Image>
+
+<Paragraph indent="1">
+  After applying the common mapping in ITSM for all device types, you can import devices from Ivanti Neurons. The installed software information for each operating system is updated automatically with accurate values.
+</Paragraph>
+
+- **Windows Device CI with Installed Software**
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/0Ki_Fws0OtHJ-qUdTnZ2H_windows-device-ci-with-installed-software.png" position="flex-start" size="40" indent="2" initialPath="../../Resources/Images/ImportExportData-images/Windows Device CI with Installed software.png" githubPath="Content/Resources/Images/ImportExportData-images/Windows Device CI with Installed software.png" showCaption="false"></Image>
+
+- **macOS Device CI with Installed Software**
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/LAk51aVlnqrV_u8KALpIL_macos-device-ci-with-installed-software.png" position="flex-start" size="40" indent="2" initialPath="../../Resources/Images/ImportExportData-images/MacOS Device CI with installed software.png" githubPath="Content/Resources/Images/ImportExportData-images/MacOS Device CI with installed software.png" showCaption="false"></Image>
+
+- **Ubuntu Device on Ivanti Neurons**
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Ca0ZKjO-gLl3vJ1dJnvUg_ubuntu-deivce-on-ivanti-neurons.png" position="flex-start" size="40" indent="2" initialPath="../../Resources/Images/ImportExportData-images/Ubuntu Deivce on Ivanti Neurons.png" githubPath="Content/Resources/Images/ImportExportData-images/Ubuntu Deivce on Ivanti Neurons.png" showCaption="false"></Image>
+
+- **Ubuntu Device CI with Installed Software**
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/obEC7qB-HRfYW9l4adIEZ_ubuntu-deivce-ci-with-installed-software.png" position="flex-start" size="40" indent="2" initialPath="../../Resources/Images/ImportExportData-images/Ubuntu Deivce CI with Installed Software.png" githubPath="Content/Resources/Images/ImportExportData-images/Ubuntu Deivce CI with Installed Software.png" showCaption="false"></Image>

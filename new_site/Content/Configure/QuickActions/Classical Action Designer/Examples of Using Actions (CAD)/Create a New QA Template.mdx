@@ -1,0 +1,55 @@
+---
+title: Example: Creating a New Action Template (CAD)
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:57 GMT+0300 (Eastern European Summer Time)
+---
+
+A powerful use for an action involves creating a template, which is a record with several fields already completed by default. An example of such a template is the **Desktop Application Failure** template, used to create incident records when such failures are reported. You can create such a template as part of a form action.
+
+1. From the Configuration console, click **Build > Automation Tools > Quick Actions** to open the **Actions Manager** workspace. The list of business objects that have actions appears.
+2. Click **Add/Edit** for the business object for which to create a template. The Actions Center appears.
+3. Under the **Create New Actions** tab, click **Template**. The **Template Preview** page appears.
+4. Enter information as needed in the following fields:
+
+*Create an Action Template*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/OAT3DfjGzKQiyR2DqGpfl_qatemplateexample.png" position="flex-start" size="40" indent="1" initialPath="../../../../Resources/Images/help-images/qa_template_example.png" githubPath="Content/Resources/Images/help-images/qa_template_example.png" showCaption="false"></Image>
+
+| Field                    | Description                                                                                                                                                       |
+| ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Enter action Name        | Enter **Desktop Application Failure**.                                                                                                                            |
+| Enter action description | Enter **template example**.                                                                                                                                       |
+| Enter category           | Select **Templates** from the drop-down menu. This category field merely groups the templates in different categories. It is not related to the service category. |
+
+5. From the **Field Name** drop-down list, select **Service**, then from the **Field Value** drop-down list, select **Desktop Service**.
+6. Click the **add** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/JtIxGMfjslfCSitXWBu4o_addgreen.png" alt caption size="10" width="17" height="15"} to add a row.
+7. From the **Field Name** drop-down list, select **Category**, then from the **Field Value** drop-down list, select **Application Error**.
+
+<hint type="info">
+  Ensure that the **Service** field is above the **Category** field so that the list of items in the **Category** menu is constrained by the service. If you select category before you select a service, the list of items in the **Category** menu is not constrained to the selected service. Users get validation errors when they use this template. By selecting service first, you see only the categories that are associated with the selected service.
+</hint>
+
+8. From the **Actions Settings** tab, set the following:
+
+| Field      | Description                                                                                                                    |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| Publish to | Lists the roles that need access to this template.                                                                             |
+| Hide in UI | Leave this option unchecked to make this template available to the \{\{FRS\_VARS.ProductName}} user roles that you publish to. |
+
+9. Click **Save**. The action now appears on the list of actions.
+
+*Action List*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/4AgVRgz0mQWQ6jLr8cPTB_qadesktopfail.png" position="flex-start" size="40" indent="1" initialPath="../../../../Resources/Images/help-images/qa_desktop_fail.png" githubPath="Content/Resources/Images/help-images/qa_desktop_fail.png" showCaption="false"></Image>
+
+<hint type="info">
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/3j-jy9HzCtDdqmc1NkEcc_html-vs-text.png" position="flex-start" size="40" initialPath="../../../../Resources/Images/help-images/HTML vs text.png" githubPath="Content/Resources/Images/help-images/HTML vs text.png" showCaption="false"></Image>
+
+  If you add a text field to your template, such as adding a **Description** field, you can enter HTML-formatted text to input into HTML controls.
+
+  When you view the **Action Template**, you see parsed HTML as formatted text.
+
+  However, when you click **Edit** to edit the action template, you see plain text, with the HTML tags.  
+
+  This is as designed.
+</hint>

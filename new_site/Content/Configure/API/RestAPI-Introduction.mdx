@@ -1,0 +1,116 @@
+---
+title: Rest API
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:00 GMT+0300 (Eastern European Summer Time)
+---
+
+With the Rest API, a new interface to perform data operations on the business objects of \{\{FRS\_VARS.ProductName}} is available. A set of intuitive and customer definable APIs allow you to automate many of your day-to-day operations.
+
+To know more about the supported APIs in \{\{FRS\_VARS.Company}} \{\{FRS\_VARS.ProductName}}, click the respective links:
+
+- [Create Business Object](Create-a-Business-Object.mdx) - Create out-of-the-box or custom business objects of your choice.
+- [Get Business Objects](Get-Business-Objects.mdx) - Fetch all or specific business objects such as by **RecID**, in a particular order or number, by filtering out or by searching by keyword.
+- [Update Business Object](Update-a-Business-Object.mdx) - Update a specific business object.
+- [Delete Business Object](Delete-Business-Object-API.mdx) - Delete a specific business object.
+- [Search](Search-API.mdx) - Search business objects by a keyword or a saved search.
+- [Relationship APIs](Relationship-APIs.mdx) - You can link multiple business objects, get related business objects or delete related business objects that are linked to a particular business object.
+- [Attachment](Attachment-APIs.mdx) - Upload or delete files to a business object.
+- [Quick Actions](Quick-Actions-API.mdx) - Perform quick action such as close, clone, or resolve a business object.
+- [Templates](Templates-API.mdx) - Apply template to a business object.
+- [Metadata](Metadata.mdx) - Fetches details such as the list of fields, relationships, fields of related business objects, saved search names, template names and quick action names for a business object.
+
+## Rest API V2
+
+Rest API V2 introduces support for nested filters using brackets, enabling more complex and precise queries. This enhancement improves logical grouping and filter mapping for advanced query conditions.
+
+**Endpoint Example:**
+
+https\://xyz.api-example.com/api/odatav2/businessobject/Employees
+
+### Key Improvements
+
+**Nested Filter Support**
+
+Rest API V2 implementation supports logical grouping with brackets, allowing advanced query conditions.
+
+Query Examples:
+
+<ExpandableHeading>
+  ## Basic Filter
+
+  Query: $filter=FirstName eq 'Allen'
+
+  Result: FirstName = 'Allen'
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Filter with Multiple Conditions
+
+  Query: $filter=FirstName eq 'Allen' and LastName eq 'Davis'
+
+  Result: FirstName = 'Allen' AND LastName = 'Davis'
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Nested Filter
+
+  Query: $filter=FirstName eq 'Allen' and (LastName eq 'Davis' or LastName eq 'Cope')
+
+  Result: FirstName = 'Allen' AND (LastName = 'Davis' OR LastName = 'Cope')
+</ExpandableHeading>
+
+**Improved Filter Mapping**
+
+Rest API V2 provides enhanced mapping of filter expressions. Each parsed filter rule includes:
+
+<table isTableHeaderOn="true" columnWidths="330,331">
+  <tr>
+    <td>
+      Property
+    </td>
+    <td>
+      Description
+    </td>
+  </tr>
+  <tr>
+    <td>
+      FieldName
+    </td>
+    <td>
+      Name of the filtered field.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Value
+    </td>
+    <td>
+      Value used in the filter.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Join
+    </td>
+    <td>
+      Logical join operator (AND, OR).
+    </td>
+  </tr>
+  <tr>
+    <td>
+      BracketLevel
+    </td>
+    <td>
+      Nesting level of the filter condition.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      IsClosingBracket
+    </td>
+    <td>
+      Indicates the end of a grouped condition.
+    </td>
+  </tr>
+</table>
+

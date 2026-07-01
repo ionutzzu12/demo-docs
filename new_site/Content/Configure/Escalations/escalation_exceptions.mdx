@@ -1,0 +1,89 @@
+---
+title: Working with Escalation Exceptions
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:57 GMT+0300 (Eastern European Summer Time)
+---
+
+**Role**: Administrator
+
+**Minimum Version**: \{\{FRS\_VARS.Company}} \{\{FRS\_VARS.ProductName}} 2023.4
+
+## About Escalation Exceptions
+
+You can define exceptions to the escalation lifecycle based on field values within the escalation. You can nest exceptions within other exceptions.
+
+For example, the **Incident Waiting** escalation is based on the **Incident Status** field.  It sends a reminder email to the customer after 14 days, and it closes the incident if the customer does not respond to the request for information after 28 days.
+
+<hint type="info">
+  Escalation schedules do not support Quick Actions that include prompts ($Prompt(...)). Escalations run in a non-interactive context, and prompt-based Quick Actions require user input, which prevents them from executing automatically. To make a Quick Action usable in escalation schedules, design it so that all required values are provided automatically using default values or field-based logic instead of requiring user input.
+</hint>
+
+*Incident Waiting (Without Exceptions)*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/0ploCzFTpxuaUFVV6Kdfn_exceptionwaiting.png" position="flex-start" size="40" initialPath="../../Resources/Images/help-images/exception_waiting.png" githubPath="Content/Resources/Images/help-images/exception_waiting.png" showCaption="false"></Image>
+
+## Defining an Escalation Exception
+
+1. From the Configuration Console, click **Build > Automation Tools > Escalation Schedules** to open the **Escalation Schedules** workspace.
+2. Select a schedule.
+3. Click **Edit Schedule**. The **Edit Escalation Settings** window appears.
+
+<Paragraph indent="1">
+  *Edit Escalation Settings Window*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/LpXY8mERU38Y6SN1J3eD9_escalation-schedule-edit.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/escalation schedule edit.png" githubPath="Content/Resources/Images/help-images/escalation schedule edit.png" showCaption="false"></Image>
+
+4. Select a field from the **field** drop-down list. The available fields correspond to the associated business object. If viable, the **Value** area shows each member of the pick list associated with this field.
+5. Select one or more options to select pick list items.
+6. Click **Save** to save the exception. The application changes the escalation schedule to display each selected pick list item listed as an individual exception beneath the parent field.
+7. To delete an exception from the database, do the following:
+
+<Paragraph indent="1">
+  a. Select an exception.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Click **Delete Exceptions**.
+</Paragraph>
+
+## About Extending Escalation Exceptions
+
+You can extend an escalation exception with additional exception settings. To do so, follow these steps:
+
+1. From the Configuration Console, click **Build > Automation Tools > Escalation Schedules** to open the **Escalation Schedules** workspace.
+2. Select a schedule.
+3. Click **Edit Schedule**. The **Edit Escalation Settings** window appears.
+4. Select an exception from the list.
+5. Modify the exception, selecting additional fields and values to build out very specific exception circumstances.
+
+## Setting Escalation Exception Thresholds
+
+You can customize escalation exceptions by adding specific threshold settings as needed, or by populating the exception with thresholds inherited from the parent schedule.
+
+To set additional exception thresholds, do the following:
+
+1. From the Configuration Console, click **Build > Automation Tools > Escalation Schedules** to open the **Escalation Schedules** workspace.
+2. Click **Set Thresholds**. The **Escalation Parameters for** window appears.
+3. Enter information into the fields.
+
+| Field                 | Description                                                                                           |
+| --------------------- | ----------------------------------------------------------------------------------------------------- |
+| Schedule is enabled   | Makes the escalation schedule active upon save. You can now edit the fields.                          |
+| Target Duration       | Defines the interval used to track this escalation by a specific time in days, hours, minutes.        |
+| Target DateTime Field | Uses a field for the target schedule.                                                                 |
+| Hours of Operation    | Set the hours of operation. See [Setting Up Hours of Operation](../HoursOfOp/Hours_of_Operation.mdx). |
+| On breach, run action | The quick action to run if the escalation lifecycle exceeds the time defined.                         |
+
+4. Edit the settings on the **Escalation Level 1**, **2** and **3** tabs as needed.
+5. Select **OK** to save the exception.
+
+<Paragraph indent="1">
+  The application changes the escalation schedule to show each selected pick list item, listed as an additional exception tier beneath the parent field.
+</Paragraph>
+
+<Paragraph indent="1">
+  *Escalation Incident - Waiting Settings*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/LpXY8mERU38Y6SN1J3eD9_escalation-schedule-edit.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/escalation schedule edit.png" githubPath="Content/Resources/Images/help-images/escalation schedule edit.png" showCaption="false"></Image>

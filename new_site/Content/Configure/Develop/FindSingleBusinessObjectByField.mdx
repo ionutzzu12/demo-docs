@@ -1,0 +1,92 @@
+---
+title: Using the FindSingleBusinessObjectByField Web Method
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:01 GMT+0300 (Eastern European Summer Time)
+---
+
+Returns a single business object based on the given field or value. This is a convenience web method introduced for searching for a matching record by a unique field.
+
+Here are some common use cases, where this web method can come in handy:
+
+- Searching for a specific employee record by the **Login ID** field.
+- Searching for a specific employee record by the **PrimaryEmail** field.
+- Searching for a specific standard user team record by the **Team** field.
+- Searching for a specific organizational unit record by the **Name** field.
+
+## Request Syntax
+
+FRSHEATIntegrationFindBOResponse FindSingleBusinessObjectByField(string sessionKey, string tenantId, string boType, string fieldName, string fieldValue)
+
+## Parameters
+
+- **sessionKey**: The session key from the **Connect** web method.
+- **tenantId**: The tenant for which the session key is authenticated.
+- **boType**: The type of business object to retrieve.  
+- **recId**:  The unique identifier for the business object.
+- **fieldName**: The name of the field in the business object to search against (for example, status).
+- **fieldValue**: The value of the field to search for in the matching record (for example, active).
+
+## Return Value
+
+**FRSHEATIntegrationFindBOResponse** object, defined as follows:
+
+public class FRSHEATIntegrationFindBOResponse
+
+    \{
+
+public string status \{ get; set; }
+
+public string exceptionReason \{ get; set; }
+
+public WebServiceBusinessObject obj \{ get; set; }
+
+    }
+
+The **FRSHEATIntegrationFindBOResponse** class has the following fields:
+
+- **status**: Provides a status value indicating whether the operation was successful. A full description of the available status values is provided in the table below.
+- **exceptionReason**: Contains exception information, if the application throws an exception when running the **Connect** web method.
+- **obj**: The field by which the business object can be accessed, if the exact record is found via the **FindBusinessObject** web method (that is, if the the value of the status field is *success*).
+
+The following table lists the available status values and describes how to interpret them.
+
+| <font color="#FFFFFF">Status</font> | <font color="#FFFFFF">Explanation</font>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Success                             | Successfully found the business object. Access the business object from the **obj** field.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| Error                               | Cannot find the business object. The **obj** field is null.  Inspect the corresponding **exceptionReason** field to determine why the web method failed.<br />One typical error is **Table not found**, which occurs when the specified business object does not exist in the tenant. Ensure that the name of the business object is spelled properly.<br />Another common error is that the specified field does not exist for the business object. The error message is:<br />ObjectTableMap: field \<FieldName> is not found in table \<Business Object>#<br />Ensure that the field name is spelled correctly, and that it is defined for the given business object. |
+| NotFound                            | The specified business object exists in the tenant, but the given RecID does not match any of the existing records in the object.<br />Since this is not an exceptional condition, no exception is stored in the **exceptionReason** field but the **obj** field is null. Ensure that the RecID for the intended record exists in the tenant. Consider using a different web method, such as **FindSingleBusinessObjectByField**.                                                                                                                                                                                                                                        |
+| MultipleResults                     | The provided search criteria returned more than one matching result. Because the purpose of this web method is to return a single matching business object, the **obj** field is null.<br />Consider using the **FindSingleBusinessObjectByField** web method instead.                                                                                                                                                                                                                                                                                                                                                                                                   |
+
+## Example
+
+FRSHEATIntegrationFindBOResponse res = frSvc.FindSingleBusinessObjectByField(authSessionKey, tenantId, "Incident", "IncidentNumber", "10001");
+
+if (res.status == "Success")
+
+\{
+
+foreach (WebServiceFieldValue f in res.obj.FieldValues)
+
+\{
+
+if (string.Compare(f.Name, "LastModDateTime", true) == 0)
+
+\{
+
+DateTime lastMod;
+
+if (f.Value != null)
+
+\{
+
+lastMod = (DateTime)f.Value;
+
+Console.WriteLine("The LastModDateTime of the record is " + lastMod.ToString());
+
+}
+
+}
+
+}
+
+}

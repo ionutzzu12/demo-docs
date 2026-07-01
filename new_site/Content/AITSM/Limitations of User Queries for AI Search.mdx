@@ -1,0 +1,147 @@
+---
+title: Limitations of User Queries for AI Search
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:00 GMT+0300 (Eastern European Summer Time)
+---
+
+**Role:** Administrator.
+
+**Platform:** SaaS only.
+
+**Minimum Version:** Ivanti Neurons for ITSM 2026.2.
+
+## Overview
+
+AI Search allows you to retrieve records by using natural language queries. The system interprets supported queries and generates filter criteria.
+
+In the current release, AI Search supports a limited set of user query patterns. Queries outside the supported patterns might not return the expected results.
+
+### Unsupported query patterns
+
+The following query patterns are not supported in the current release.
+
+### Grouping queries
+
+AI Search does not currently support grouping records in the data grid.
+
+- **Single group by with non-date-time field**
+  - **User query**
+  - "Show me all change records grouped by category."
+  - **Description**
+  - Displays all change records categorized by the category field.
+- **Group by records with date-time field**
+  - **User query**
+  - "Show me all change records grouped by the year of CreatedDateTime field."
+  - **Description**
+  - Groups change records by the year part of the CreatedDateTime field.
+- **Single group by records with date-time field where the date part is not specified**
+  - **User query**
+  - "Show me all change records grouped by createddatetime."
+  - **Description**
+  - Groups change records by the CreatedDateTime field as is.
+- **Single group by ordered in descending order of aggregation field**
+  - **User query**
+  - "I want to see all the change records grouped by priority, ordered in descending order of the count of records."
+  - **Description**
+  - Groups change records by the priority field and orders the groups in descending order based on the count of records within each group.
+- **Single group by ordered in descending order of grouping field**
+  - **User query**
+  - "I want to see all change records grouped by priority, ordered in descending order of the grouping field."
+  - **Description**
+  - Groups change records by the priority field and orders the groups in descending order based on the priority values.
+- **Single group by ordered in ascending order of grouping field**
+  - **User query**
+  - "I want to see all change records grouped by priority, ordered in ascending order of the grouping field."
+  - **Description**
+  - Groups change records by the priority field and orders the groups in ascending order based on the priority values.
+- **Single group by with top filter**
+  - **User query**
+  - "I want to see the top five change records grouped by category."
+  - **Description**
+  - Groups change records by the category field and filters to display only the top five groups based on the count of records.
+- **Single group by grouped by month of date-time field**
+  - **User query**
+  - "I want to see all change records grouped by the month of createddatetime."
+  - **Description**
+  - Groups change records by the month part of the CreatedDateTime field.
+- **Single group by grouped by day of date-time field**
+  - **User query**
+  - "I want to see all change records grouped by the day of createddatetime."
+  - **Description**
+  - Groups change records by the day part of the CreatedDateTime field.
+- **Single group by records grouped by year of date-time field**
+  - **User query**
+  - "I want to see all change records grouped by the year of createddatetime."
+  - **Description**
+  - Groups change records by the year part of the CreatedDateTime field.
+- **Double group by records**
+  - **User query**
+  - "Show me all change records grouped by category and priority."
+  - **Description**
+  - Groups change records first by category and then by priority within each category.
+- **Double group by records where the first field is a date-time field**
+  - **User query**
+  - "Show me all change records grouped by the month of closeddatetime and impact."
+  - **Description**
+  - Groups change records first by the month part of the ClosedDateTime field and then by impact within each month.
+
+### Incident-related queries
+
+The following incident-related user queries do not return expected results.
+
+### User queries
+
+- Incident related to atleast 1 task
+- All Active and Logged incidents
+- All breached incidents
+- Show all incidents created in this year
+- My team's active incidents
+- Show all VIP incidents
+- Show all incidents which are not closed
+- Incidents with high impact and low urgency
+- All incidents which are in waiting for customer status
+- All incidents which are related to atleast one task
+- All Incidents which are Resolved via FirstCallResolution (1 instead of Yes)
+
+<hint type="info">
+  * The user queries described in this topic are not supported in the current release.
+  * The scope of widget creation using Neurons AI is limited to Business Object (BO). For any BO created in the application, you can generate a widget using AI search as long as you specify the BO name and at least one field name.
+  * For instructions on using AI Search, see [AI Search](<../Working with the Analyst/Ivanti Service Management Portfolio UI V3 Incident Workspace.mdx>).
+</hint>
+
+### Supported query patterns
+
+AI Search supports filtering records in the data grid using natural language queries with single or multiple conditions.
+
+### List filter queries (conversational)
+
+- **List with two conditions**
+  - **User query**
+  - "Show me all changes where status is 'Logged' and typeofchange is 'Major'."
+  - **Description**
+  - Filters the change records to display only those where the status is 'Logged' and the typeofchange is 'Major'.
+- **List with three conditions**
+  - **User query**
+  - "Can you further filter the results and show me only those changes where category is 'Software'."
+  - **Description**
+  - Further filters the already filtered change records to show only those where the category is 'Software', in addition to the previous conditions.
+- **List with less than condition for date-time field**
+  - **User query**
+  - "Show me all changes created before 1st Jan 2015."
+  - **Description**
+  - Filters the change records to display only those where the CreatedDateTime is before 1st January 2015.
+- **List with greater than condition for date-time field**
+  - **User query**
+  - "Now, show me all changes created after 15th February 2015."
+  - **Description**
+  - Filters the change records to display only those where the CreatedDateTime is after 15th February 2015.
+- **List with between condition for date-time field**
+  - **User query**
+  - "Now, show me all changes created between 1st January and 1st June 2011."
+  - **Description**
+  - Filters the change records to display only those where the CreatedDateTime is between 1st January 2011 and 1st June 2011.
+- **List with less than condition for number field**
+  - **User query**
+  - "Now, show me all changes whose priority is less than 3."
+  - **Description**
+  - Filters the change records to display only those where the priority is less than 3.

@@ -1,0 +1,101 @@
+---
+title: Configuring custom business objects for the Mobile Analyst portal
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:50 GMT+0300 (Eastern European Summer Time)
+---
+
+You can configure and use custom business objects for the \{\{FRS\_VARS.Mobile\_Analyst\_portal}}. The list view of Incident, Task, Service Request, or any other page in the \{\{FRS\_VARS.Mobile\_Analyst\_portal}} can be customized as needed so that your Mobile Analysts can view information that is most useful for them.
+
+## Sample scenario - customizing the Incident page
+
+1. Log in to \{\{FRS\_VARS.ProductName}} as an Administrator.
+2. Open the Configuration console > **Business Objects** > **Incident** > **Lists**.
+3. Select the List that is applicable for the \{\{FRS\_VARS.Mobile\_Analyst}} Incident business object.
+4. Customize the List properties as needed. A sample of how and what elements you can customize is detailed below:
+
+<hint type="info" indent="1">
+  Only the first 5 columns can be customized and only these are displayed in the \{\{FRS\_VARS.Mobile\_Analyst\_portal}}.
+</hint>
+
+<Paragraph indent="1">
+  **Change the columns order:**
+</Paragraph>
+
+<Paragraph indent="1">
+  Choose the columns order as needed. Drag and drop the column header at the required position.
+</Paragraph>
+
+<Paragraph indent="1">
+  a. Drag the **Priority** column and drop it in the first position.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Drag and drop **Status** column in the second position followed by **Summary**, **Incident**, and **Customer**.
+</Paragraph>
+
+<Paragraph indent="1">
+  **Define the column span:**
+</Paragraph>
+
+<Paragraph indent="1">
+  Column span helps you to control the number of columns to be displayed in a line. Define the column range between 1-12.
+</Paragraph>
+
+<Paragraph indent="1">
+  For example, if you want 2 columns to be displayed in the same line - ensure the sum of the span of both the consecutive columns is equal to 12. It can be less than 12 but the sum of these 2 columns and the following columns should be higher than 12, else even those columns be displayed in the same line.
+</Paragraph>
+
+<Paragraph indent="1">
+  If you want only one column in a line then set the span as 12 or ensure the sum of the span of this column and the following columns are higher than 12.
+</Paragraph>
+
+<Paragraph indent="1">
+  a. Set the value of **Span** for **Priority** as 1, **Status** as 5, and **Summary** as 12. **Priority** and **Status** are displayed on the first line and **Summary** is moved to the second line.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Set the value of **Span** for **Incident** as 8 and **Customer** as 4. Both these columns will be displayed on the third line.
+</Paragraph>
+
+<Paragraph indent="1">
+  **Define Style:**
+</Paragraph>
+
+<Paragraph indent="1">
+  a. Choose the **Style** for **Status**, **Priority** and **Incident** as **RAText**.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Choose the **Style** for **Summary** as **RASummary**.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. Choose the **Style** for **Customer** as **RAUserProfile**.
+</Paragraph>
+
+<hint type="info">
+  - The **RAText** and **RASummary**, and are pre-defined styles provided out-of-the-box for easy styling text. To know the definition, from the Configuration console, navigate to **User Interface Styles**> **Highlighter Styles** > select the style element, the definition is displayed.
+  - The **RAUserProfile** is also a pre-defined style provided out-of-the-box for easy styling text. It is suitable for fields such as Customer or Owner or any other field which has names. When this style is used, the initials of the first name and the last name is picked and displayed in a circle.
+</hint>
+
+<Paragraph listStyleType="decimal" listStart="5" listRestartPolite="5" indent="2">
+  Click **Save**.
+</Paragraph>
+
+<Paragraph indent="1">
+  *Incident Page in the Mobile Analyst portal displayed as customized*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/oQDpiD6Nd_m8ab-lR1UAI_custom-bo-ra.jpeg" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/Configure/Mobile-Analyst-Config/Custom-BO-RA.jpeg" githubPath="Content/Resources/Images/Configure/Mobile-Analyst-Config/Custom-BO-RA.jpeg" showCaption="false"></Image>
+
+## Configuring UI cards
+
+You can configure the view of Incident, Task, and Service Request; when you hover over the Incident card, the info card appears and offers additional information about the Incident, Task, and Service Request. To configure UI cards:
+
+1. Log in to \{\{FRS\_VARS.ProductName}} as an Administrator.
+2. Click the Settings :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/iYSaSr9aEReOMXTxoOB5P_settingsicon-configure22x22.png" alt caption size="10" width="22" height="22"} icon and navigate to \{\{FRS\_VARS.Configuration\_console}} > **Users and Permissions** > **Roles**.
+3. Select **ResponsiveAnalyst** role.
+4. On the **Role Details** page, in the **User Interface Options**, select **Modern Analyst UI**.
+5. Click **Save**.
+6. Navigate to **Build** > **Global Constants** > set the **EnableCardConfiguration** option as True.
+7. Click **Save**.

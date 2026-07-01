@@ -1,0 +1,109 @@
+---
+title: FedRAMP Configurations
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:54 GMT+0300 (Eastern European Summer Time)
+---
+
+The Federal Risk and Authorization Management Program (FedRAMP) is a government-wide program that provides a standardized approach to security assessment, authorization, and continuous monitoring for cloud products and services.
+
+Listed below are features that are required to be FedRAMP compliant in \{\{Primary.Company}} \{\{FRS\_VARS.ProductName}}
+
+<ExpandableHeading>
+  ## Password Complexity
+
+  The Password Complexity specifies the password complexity requirements for application users. FedRAMP requires specific values to be set for the **Password Complexity** and **Minimum Password Length** fields.
+
+  1. From the **Configuration** console, go to **Configure > Security Controls > Security and Session** to open the **Security and Session** workspace.
+  2. Go to the **Password Policy** section and set the **Minimum Password Length**. The minimum password legth should be 8 to comply with FedRAMP standards.
+  3. Select **FedRamp** from the **Password Complexity** list.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/-HsrltdKy__IZM9ClzQZj_passwordpolicy-passwordcomplexity.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/fedRAMP/password_policy_-_password_complexity.png" githubPath="Content/Resources/Images/fedRAMP/password_policy_-_password_complexity.png" showCaption="false"></Image>
+
+  4. (Optional) You can define the **Complexity Regular Expression**. If this is set, the value defined here for the minimum password length will take effect and not the one defined in the **Minimum Password Length** field.
+  5. Click **Save**.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Password History
+
+  Password History defines the number of times a user can change the password in \{\{FRS\_VARS.ProductName}}.
+
+  1. From the **Configuration** console, go to **Configure > Security Controls > Security and Session** to open the **Security and Session** workspace.
+  2. Go to the **Password Policy** section and set the **History Depth** to **24**. This is the minimum value required, according to FedRAMP standards. A user will be unable to change the application password using any one of the last 24 previous passwords.
+  3. Click **Save**.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Minimum Password Age in Days
+
+  Minimum Password Age defines the number of days for a password before it can be reset by a user. For example, if the value is set to 2, then a user will be unable to reset the password for two days. If the **Minimum Password Age in Days** value is set to zero, then the password can be reset at any point in time. If a user wants to reset the password before meeting the set value, then the user must contact the administrator.
+
+  1. From the **Configuration** console, click **Configure > Security Controls > Security and Session** to open the **Security and Session** workspace.
+  2. Go to the **Password Policy** section, and type the desired number of days in the **Minimum Password Age in Days** field.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/CNeCrdLAQacTqWiKyaWkm_minimumpasswordageindaysfield.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/fedRAMP/minimum_password_age_in_days_field.png" githubPath="Content/Resources/Images/fedRAMP/minimum_password_age_in_days_field.png" showCaption="false"></Image>
+
+  3. Click **Save**.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Limit Concurrent Session (Internal Auth)
+
+  Concurrent interactive sessions refer to the number of active sessions a user can have simultaneously on one or more devices or browsers. When users reach the concurrent session limit, an error message will be displayed and an option will be provided to do a force login, which will terminate all their existing sessions.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/1NGO3eSVwocI_Ln8bYC4X_limitconcurrentsessioninternalerrormessage.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/fedRAMP/limit_concurrent_session_internal_error_message.png" githubPath="Content/Resources/Images/fedRAMP/limit_concurrent_session_internal_error_message.png" showCaption="false"></Image>
+
+  1. From the **Configuration** console, click **Configure > Security Controls > Security and Session** to open the **Security and Session** workspace.
+  2. Go to the **Concurrent Session** section, and enter the number of concurrent sessions for all three types of users - **Named User**, **Privileged User**, and **Non Privileged User**.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/ohreeZGXEa5JDcDln0Emi_concurrentsessionsection.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/fedRAMP/concurrent_session_section.png" githubPath="Content/Resources/Images/fedRAMP/concurrent_session_section.png" showCaption="false"></Image>
+
+  3. Click **Save**.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Limit Concurrent Session (External Auth)
+
+  These configurations are applicable to users who reach the concurrent session limit, when they are connected to \{\{FRS\_VARS.ProductName}} through Active Directory (AD), LDAP, or other single sign on (SSO) technologies.
+
+  1. From the **Configuration** console, click **Configure > Security Controls > Authentication Providers** to open the **Authentication Providers** workspace.
+  2. Select an existing record or click New Record Menu and then select **New ADFS/SAML** from the list.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/SGrw2v-MtbEIbQYlH4eGT_newadfssamlpage-forcelogincheckbox.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/fedRAMP/new_adfs_saml_page_-_force_login_checkbox.png" githubPath="Content/Resources/Images/fedRAMP/new_adfs_saml_page_-_force_login_checkbox.png" showCaption="false"></Image>
+
+  3. The **Force Login** option is applicable to users reaching concurrent session limits, in the case of external authentication.
+     - If the option is selected, when users reach a concurrent session limit, the application terminates all existing sessions and devices and automatically logs them into a new session.
+     - If the option is not selected, when users reach a concurrent session limit, an error message will appear on the page, and the users will need to log out of existing sessions or devices, and then try logging in again.
+
+  <hint type="info" indent="2">
+    If the value is set to zero, the number of times a user can login is unlimited. This means, infinite number of active sessions are possible at the same time.
+  </hint>
+
+  4. Click **Save**.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Auto Deactivate User if Idle for \[n] days
+
+  As per FedRAMP standards, the **Auto-Deactivate User** feature sets the duration to automatically deactivate users who do not log in to the \{\{Primary.Company}} \{\{FRS\_VARS.ProductName}}. To set the auto-deactivate feature for a user, do the following steps:
+
+  1. From the **Configuration** console, click **Build** > **Global Constants** to open the Global Constants workspace.
+  2. Select **UserDeactivationDuration** from the list.
+  3. The following information is displayed for the global constant.
+
+  | Field       | Description                                                                                                                                                                                                                                                                      |
+  | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | Name        | A unique name for the global constant. For example, UserDeactivationDuration.                                                                                                                                                                                                    |
+  | Value       | The value for the global constant. By default, the value will be displayed as **5184000**, for 60 days. To adapt to FedRAMP specifications, the value can be changed to 35 days. The calculation can be done as follows: 35 days X 24 hours X 60 minutes X 60 seconds = 3024000. |
+  | Type        | Field type - Text, Number, Boolean. In this case, type in the value **Number**.                                                                                                                                                                                                  |
+  | Description | A description of what the global constant is used for. For example, Duration set for a user who does not log in to \{\{FRS\_VARS.ProductName}} for \[n] number of days. Once the set number of days has passed, the user will get disabled, as per FedRAMP standards.            |
+
+  4. Click **Save** to save any changes done.
+  5. From the Configuration Console, click **Build** > **Workflow** > **Workflows** to open the Workflows workspace.
+  6. Go to the **Schedule Entry** section, and select **Disable Inactive User**.
+  7. Select **More Actions**, and then select **Activate version** from the list.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/z_lzOig0y2N4LYXHlumLt_disableinactiveuserworkflowactivateversion.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/fedRAMP/disable_inactive_user_workflow_activate_version.png" githubPath="Content/Resources/Images/fedRAMP/disable_inactive_user_workflow_activate_version.png" showCaption="false"></Image>
+
+  8. Click **Save**. The workflow will run daily, based on the "Disable User Not logged In Last N days" daily schedule. If there are any users who did not log into the application for \[n] days, they will get disabled automatically.
+</ExpandableHeading>

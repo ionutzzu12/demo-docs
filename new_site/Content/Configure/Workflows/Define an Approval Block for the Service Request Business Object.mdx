@@ -1,0 +1,73 @@
+---
+title: Example: Defining an Approval Block for the Service Request Business Object
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:58 GMT+0300 (Eastern European Summer Time)
+---
+
+- :Link[Determining the Approver Field]{label="Determining the Approver Field" overridedLabel="Determining the Approver Field" spaceId docId="OGAYV9hy47SO1lYyAxixw" version="v2" docAnchorId="#Determining1" loadingMethod="dynamic" newTab="false" href="Define an Approval Block for the Service Request Business Object.mdx"}
+- :Link[Determining the Pick List Value]{label="Determining the Pick List Value" overridedLabel="Determining the Pick List Value" spaceId docId="OGAYV9hy47SO1lYyAxixw" version="v2" docAnchorId="#Determining2" loadingMethod="dynamic" newTab="false" href="Define an Approval Block for the Service Request Business Object.mdx"}
+- :Link[Creating an Approval Workflow]{label="Creating an Approval Workflow" overridedLabel="Creating an Approval Workflow" spaceId docId="OGAYV9hy47SO1lYyAxixw" version="v2" docAnchorId="#Creating" loadingMethod="dynamic" newTab="false" href="Define an Approval Block for the Service Request Business Object.mdx"}
+
+## Determining the Approver Field
+
+1. From the Configuration Console, click **Build > Business Objects** to open the **Business Objects** workspace.
+2. Select **Service Request**. The **Service Request Details** page appears.
+3. Click the **Fields** tab. The service request fields are listed.
+4. Click **DefaultApprover**. The **DefaultApprover** field is a pick list and it uses the list name **Contacts in Contact Store**.
+
+*Default Approver Pick List*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/7LYtHvN2usKXfA3p7YKQP_servicerequestpicklist.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/service_request_picklist.png" githubPath="Content/Resources/Images/help-images/service_request_picklist.png" showCaption="false"></Image>
+
+5. Make a note of this.
+
+## Determining the Pick List Value
+
+1. From the Configuration Console, click **Build > Pick Lists** to open the **Pick Lists** workspace. The pick lists are listed.
+2. Click **LoginID of Employee**. The **Validation List** page appears.
+3. The value of the **List Name** field is **LoginID of Employee**.
+
+*Validation List*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Bdga4o1OFH27LeHm7qjJC_servicerequestpicklistvalue.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/service_request_picklist_value.png" githubPath="Content/Resources/Images/help-images/service_request_picklist_value.png" showCaption="false"></Image>
+
+4. Make a note of this.
+
+## Creating an Approval Workflow
+
+1. From the Configuration Console, click **Build > Business Objects** to open the **Business Objects** workspace.
+2. Select **Service Request**. The application displays the **Service Request Details** workspace.
+3. Click **Workflows**. The application displays the workflows.
+4. Click **Add new\...**. (Optional. You can modify an existing workflow instead.) The application displays the **Add New Workflow** page.
+5. Enter information as needed in the following fields:
+
+| Field           | Description                                        |
+| --------------- | -------------------------------------------------- |
+| Business Object | Service request.                                   |
+| List Name       | A unique name for the workflow. Do not use spaces. |
+| Display Name    | The name as it appears in a form.                  |
+| Description     | A description of what the workflow does.           |
+
+*Add New Workflow Page*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/ko3RP_KMPOTzy9Ri8I2WL_approverworkflow.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/approver_workflow.png" githubPath="Content/Resources/Images/help-images/approver_workflow.png" showCaption="false"></Image>
+
+6. Click **Save**. The workflow page appears.
+7. Click **Add Version**. The Workflow Editor appears.
+8. Drag and drop the **Get Approval** block onto the Workflow Editor.
+9. Double-click the **Get Approval** block header and set the following
+10. Select **User from Context BO field/Service Request Parameter** and select **LoginId** from the drop-down list.
+
+<hint type="info">
+  Because the **contact group** field is not a business object field by default in the **Service Request** business object, this use case describes specifying a default approver from the business object in context option and not from a contact group from a business object in context.
+</hint>
+
+*Get Approval Workflow Block Properties Example*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/2qnC4MQ5DnrUzIfpvrPDz_getapprovalproperties.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/get_approval_properties.png" githubPath="Content/Resources/Images/help-images/get_approval_properties.png" showCaption="false"></Image>
+
+11. Save your changes.
+
+<Paragraph indent="1">
+  Now the service request workflow is set up to get approval from the owner of the organization to which the request offering is published.
+</Paragraph>

@@ -1,0 +1,42 @@
+---
+title: Making Database Schema Changes for Large Business Object Tables
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:55 GMT+0300 (Eastern European Summer Time)
+---
+
+In the production instance of the tenant, database schema changes (such as creating new fields or changing the data type) to business objects that have a large number of records can cause the application to slow down and potentially not respond to regular \{\{FRS\_VARS.ProductName}} users.
+
+To protect the application from this, you cannot make database schema changes in the production instance of the tenant to business object tables that contain a large number of records. If you try to make the change directly in the production instance, the application displays an error message stating that "The *table\_name* table contains a large number of records. Schema changes cannot be done now." The schema changes are not made.
+
+Instead, makes the changes in the staging instance of the tenant and follow the lifecycle process, via the \{\{FRS\_VARS.ProductName}} Operations console. Add the fields in the staging instance of the tenant first (with a smaller number of records in the table), and then use the \{\{FRS\_VARS.ProductName}} Operations console to transfer the corresponding fields into the production instance of the tenant.
+
+See the [Operations Console Guide for IvantiNeurons for ITSM](https://help.ivanti.com/ht/help/en_US/ISM/2023/OpsConsoleOLE/Content/ops_console_ug/OpsConsole.htm) for information about using the \{\{FRS\_VARS.ProductName}} Operations Console.
+
+### Changing the Timeout Value for DDL Queries
+
+When you make database schema changes in the Configuration console, you have 30 minutes before the application times out. You can change the timeout value.
+
+<hint type="info">
+  If this parameter is missing or set to less than two minutes, the application reverts the value back to 30 minutes.
+</hint>
+
+To change the timeout value, do the following:
+
+1. Open the \AppServer\Web.config file with a text editor, such as Notepad.
+2. Navigate to the following code:
+
+\<appSettings>
+
+<Paragraph indent="1">
+  \<!-- DDL query execution timeout in seconds -->
+</Paragraph>
+
+<Paragraph indent="1">
+  \<add key="DDLQueryTimeout" value="1800" />
+</Paragraph>
+
+\</appSettings>
+
+3. Change the value of the **DDLQueryTimeout** parameter. This parameter is specified in seconds. For example, value="1800" reflects the 30-minute timeout value.
+4. Save the file.
+5. Perform a Microsoft IIS reset.

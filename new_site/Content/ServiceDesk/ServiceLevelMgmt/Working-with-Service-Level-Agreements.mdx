@@ -1,0 +1,138 @@
+---
+title: Working with Service Level Agreements
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:47 GMT+0300 (Eastern European Summer Time)
+---
+
+ITIL defines a Service Level Agreement (SLA) as an agreement between you (an IT service provider) and an end user customer. A Service Level Agreement does the following:
+
+- Describes the IT services. A single Service Level Agreement can only cover one IT service or customer.
+- Documents the Service Level Targets.
+- Specifies the vendor and the customer's responsibilities.
+
+Service Level Agreement determines the level of service outlined in the Service Level Package (constrained by Service Level Targets). Each organization has a Service Level Agreement for all its published services. A single Service Level Agreement is attached to only one organization. But a Service and its corresponding Service Level Package can be attached to one or more organizations.
+
+If there is no Service Level Agreement, requirements for handling Incidents and Service Requests are covered by the default escalation schedules. Refer to :Link[Default Escalations]{label="Default Escalations" overridedLabel="Default Escalations" spaceId docId="kfxL4A-RzHCCUz0SnOzem" version="v2" docAnchorId="#Default-Escalations" loadingMethod="dynamic" newTab="false" githubPath="../../Configure/Escalations/Escalations.htm#Default-Escalations" href="../../Configure/Escalations/Escalations.mdx"}.
+
+For example, a customer submits a Service Request against the Data Services organization. The Data Services organization has a Gold Service Level Package defined for it. Per the agreements of the Gold Service Level Package, the Sales organizational unit is defined. When a Service Level Agreement subscription is created for the Data Services service for the Sales organizational unit, the targets defined in the Gold package are copied over. When an employee from the Sales organizational unit submits a Service Request for Data Services, the Service Level Agreement field shows the agreement for the organizational unit of the customer.
+
+When a customer creates a Service Request from the Service Desk, the system populates the **Service Level Agreement** field only if there is a Service Level Agreement defined for that Service. If the customer's organization does not subscribe to the Request Offering, the system auto-fills the **Service Level Agreement** field with default Service Level Agreement values (for example, for the entire corporate organization). If the customer's organization does subscribe to the Request Offering, the system auto-fills the **Service Level Agreement** field with the Service Level Agreement value defined for the organizational unit.
+
+## Creating a new Service Level Agreements
+
+1. Log in to the \{\{FRS\_VARS.ProductName}} as a **Service Owner**.
+2. Navigate to the **Service** tab and click **New Service**. The **New Record** window appears.
+3. In the **Details** tab, enter the required service name, select Production from the **Status** drop-down list, and enter the data in all mandatory fields, and click **Save**.
+4. Click **List View**, then double-click the newly created service to open it. Select the **Service Desk Category** tab. The **Service Desk Category** tab appears.
+5. Click the **Link** icon, select the appropriate category to assign, and click **Select**.
+
+<hint type="info" indent="2">
+  You can view the assigned service level package under the **Service Level Package** tab.
+</hint>
+
+6. Navigate **More** > **Service Package**. The **Service Package** window appears.
+7. To modify the service package name, double-click the **SLA**, edit the details, and click **Save**.
+8. Click **Request Offerings**, in the application. The **Request Offerings** window appears.<Paragraph indent="1">
+     a. Click **New&#x20;**> **Request Offering**.
+   </Paragraph><Paragraph indent="1">
+     b. In the **Define Request Offering** tab, select the created service from the **Service** drop-down list, enter data in the mandatory fields and click **Next**.
+   </Paragraph><Paragraph indent="1">
+     c. In the **Design Request Form** tab, select the required tools from the **Form Designer Tools** list and click **Next**.
+   </Paragraph><Paragraph indent="1">
+     d. In the **Plan Request Fulfillment** tab, select the appropriate and click **Next**.
+   </Paragraph><Paragraph indent="1">
+     e. In the **Publish Action Access** tab, click **Add**, select **Published** from the **Status** drop-down list, and click **Save**.
+   </Paragraph>
+9. Refresh the application.
+10. Click **SLA Subscription** and then click **Create Agreement**.
+11. In the **Select Service** tab, select **created SLA**, click **Create Agreement**, choose required options for each tab and click **Save**.
+
+## Verifying the new Service Level Agreement
+
+1. Log in to\{\{FRS\_VARS.ProductName}} as a \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+2. Click the **Configure** icon. The **Admin Default** window appears.
+3. Navigate to **Build > Automation Tools > Escalation Schedules**.
+4. To view the created SLA, select the category assigned during its creation.
+
+Now you can view new SLA for review and management within the ISM application.
+
+## Creating a Service Level Agreement Subscription
+
+Before creating a Service Level Agreement, you must create your Request Offerings and any optional Service Level Packages. \{\{FRS\_VARS.ProductName}} includes various basic services that you can use or modify to fit your organization.
+
+1. Log in to \{\{FRS\_VARS.ProductName}} as a **Service Owner**.
+2. Open the **SLA Subscription** workspace. The system displays a list of agreements.
+3. Do either of the following:
+   1. Click **All Services** from the left pane to view all the Service Level Agreements.
+   2. Click on a Service name to view agreements for a specific Service.
+4. Click **Create Agreement**. The system displays the **Select Service** page and displays **Selected** next to the service that is currently selected.
+5. Click **Select** next to a Service to add it to the agreement. The system adds the Service to the agreement.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/fVbBVj9jzD0eXoSn6cmfZ_serviceselect.png" alt="Select a service to add to an agreement" position="flex-start" size="40" indent="2" initialPath="../../Resources/Images/help-images/service_select.png" githubPath="Content/Resources/Images/help-images/service_select.png" showCaption="false"></Image>
+
+6. To see the Service details, click **More**.
+7. Click **Next**. The system displays the **Service Information** page.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/TGtfeMxCUZgf9JeEPnFhf_slaorganization.png" alt="Service Information page" position="flex-start" size="40" indent="2" initialPath="../../Resources/Images/help-images/sla_organization.png" githubPath="Content/Resources/Images/help-images/sla_organization.png" showCaption="false"></Image>
+
+8. Choose an organizational unit for this subscription from the **Select Organizational Unit** pane. If you select the top level, the agreement applies to all users under this organization.
+9. From the **Select Service Level Package** section, select a service level package. The system displays **Selected** next to the package that is currently selected.
+10. Click **Next**. The system displays the **Customize Service Options** page.
+11. Click **Customize** to configure the service options for the service, then select the options, if any.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Dft5zKqs7hpM2ARMD-uhG_slacustomize.png" alt="Customize a Service" position="flex-start" size="40" indent="2" initialPath="../../Resources/Images/help-images/sla_customize.png" githubPath="Content/Resources/Images/help-images/sla_customize.png" showCaption="false"></Image>
+
+12. Click **Next**. The system displays the **Review and Save** page.
+13. Review the Service Level Package. To modify any part of the package, click **change** next to an option and edit it.
+14. Click **Save**. The system lists the Service Level Agreement that you created in the **SLA Subscription** workspace.## Viewing Service Level Agreements Subscription
+    1. Log in to \{\{FRS\_VARS.ProductName}} as a **Service Owner**.
+    2. Open the **SLA Subscription** workspace. The system displays a list of agreements.
+       *SLA Subscription Workspace*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/nBI0L2L6GxvT2O8E6VHrQ_slasubscription.png" alt="SLA Subscription Workspace" position="flex-start" size="40" indent="3" initialPath="../../Resources/Images/help-images/sla_subscription.png" githubPath="Content/Resources/Images/help-images/sla_subscription.png" showCaption="false"></Image>
+
+<Paragraph listStyleType="decimal" listStart="3" indent="2">
+  Click on an agreement to open and view its details.
+</Paragraph>
+
+## Deleting a Service Level Agreement Subscription
+
+When you delete a Service Level Agreement, all the associated links to it in Service, Service Level Package, Request Offering, and Delivery Escalation will be removed.
+
+1. Log in to \{\{FRS\_VARS.ProductName}} as a **Service Owner**.
+2. Open the **SLA Subscription** workspace. The system displays a list of agreements.
+3. Select the agreement to delete and click the **Delete** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/USPl9Egu4Y2Blx7HKC3mA_deleteredx.png" alt caption size="10" width="14" height="13"}.
+4. Click **Yes** in the prompt message.
+
+<hint type="info" indent="2">
+  You cannot delete a Service Level Agreement if it is used in a Service Request. In such a scenario, first delete the Service Request and then delete the SLA.
+</hint>
+
+## Adding Request Offerings to an Existing SLA Subscription
+
+1. Log in to \{\{FRS\_VARS.ProductName}} as an **Administrator**.
+2. Open the **Request Offering** workspace.
+3. Create a new request offering and select the name of the SLA Subscription from the **Service** drop-down list. For more information, refer to [Creating a Request Offering](../RequestOfferings/Creating-a-Request-Offering.mdx).
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/PfexPLcmHvuLBN-6JRovF_create-request-offering.png" alt="Create a new request offering and select the name of the SLA Subscription from the Service drop-down list" position="flex-start" size="40" indent="2" initialPath="../../Resources/Images/Request_Offering/create-request-offering.png" githubPath="Content/Resources/Images/Request_Offering/create-request-offering.png" showCaption="false"></Image>
+
+4. Change the role to **Service Owner**.
+5. Open the **SLA Subscription** workspace.
+6. Select an agreement from the list.
+7. The Request Offerings created in step 3 are listed, with the text **Add to SLA** next to them, indicating that they need to be added to the selected SLA.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/seFgmxbIJ-oOhYzEnaiF6_sla-subscription-add-to-sla-2.png" alt="The Request Offerings are listed, with the text Add to SLA next to them, indicating that they need to be added to the selected SLA. " position="flex-start" size="40" indent="2" initialPath="../../Resources/Images/Request_Offering/sla-subscription-add-to-sla-2.png" githubPath="Content/Resources/Images/Request_Offering/sla-subscription-add-to-sla-2.png" showCaption="false"></Image>
+
+<hint type="info" indent="2">
+  The **Add to SLA** text is also visible for Request Offering when a new agreement is created.
+</hint>
+
+8. Select **Add all to published SLA**.
+   The request offerings are linked to the SLA subscription.
+9. Select the SLA subscription again to view all the request offerings that you just added.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/c-LryjFiIIEBJoGc4JcTh_sla-subscription-add-to-sla-3.png" alt="Select the SLA subscription again to view all the request offerings that you just added. " position="flex-start" size="40" indent="2" initialPath="../../Resources/Images/Request_Offering/sla-subscription-add-to-sla-3.png" githubPath="Content/Resources/Images/Request_Offering/sla-subscription-add-to-sla-3.png" showCaption="false"></Image>
+
+<hint type="info" indent="2">
+  The **Add to SLA** text is no longer visible once you add the Request Offerings to the agreement.
+</hint>

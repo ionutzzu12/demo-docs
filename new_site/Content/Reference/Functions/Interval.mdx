@@ -1,0 +1,74 @@
+---
+title: Interval
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:59 GMT+0300 (Eastern European Summer Time)
+---
+
+Returns an interval covering the period between the start date and time and the end date and time, inclusive.
+
+## Syntax
+
+Interval(startDateTime, endDateTime)
+
+## Enabled For
+
+For a description of the business object categories, see :Link[Notes on "Enabled For"]{label="Notes on &#x22;Enabled For&#x22;" overridedLabel="Notes on &#x22;Enabled For&#x22;" spaceId docId="xObv2pIDrk60jkEIWs8mD" version="v2" docAnchorId="#Notes" loadingMethod="dynamic" newTab="false" githubPath="_Built_in_Functions.htm#Notes" href="_Built_in_Functions.mdx"}.
+
+| Business Object Category                                                                    | Yes/No |
+| ------------------------------------------------------------------------------------------- | ------ |
+| Business Rules: Before-Save Rules                                                           | Yes    |
+| Business Rules: Calculation Rules (After Save, with or without Also Recalculate on Load)    | Yes    |
+| Business Rules: Calculation Rules (Before Save or Always, without Also Recalculate On Load) | Yes    |
+| Business Rules: Calculation Rules (Before Save or Always, with Recalculate On Load)         | Yes    |
+| Business Rules: Editing Rules                                                               | Yes    |
+| Business Rules: Initialization Rules                                                        | Yes    |
+| Business Rules: Read Only Rules                                                             | Yes    |
+| Business Rules: Required Rules                                                              | Yes    |
+| Business Rules: Validation Rules                                                            | Yes    |
+| Client Expressions                                                                          | Yes    |
+| Object Permissions                                                                          | Yes    |
+| Services                                                                                    | Yes    |
+| LDAP                                                                                        | Yes    |
+| Mobile                                                                                      | Yes    |
+| Quick Actions (except UI Quick Actions)                                                     | Yes    |
+| UI Quick Actions                                                                            | Yes    |
+| Reports                                                                                     | Yes    |
+| Search/Dashboard without field references                                                   | Yes    |
+| Search/Dashboard with field references                                                      | Yes    |
+
+## Parameter
+
+| Parameter     | Description                                         |
+| ------------- | --------------------------------------------------- |
+| startDateTime | The date and time of the beginning of the interval. |
+| endDateTime   | The date and time of the end of the interval.       |
+
+## Return Value
+
+<Paragraph indent="1">
+  DateTime interval in UTC time.
+</Paragraph>
+
+## Example
+
+$(Interval("1/31/2014 11:36 AM", "2/2/2014 11:36 AM"))
+
+<Paragraph indent="1">
+  returns the interval between the two dates.
+</Paragraph>
+
+<hint type="info">
+  Although the values for the **startDateTime** and **endDateTime** parameters are in UTC, as with all DateTime literals in expressions, these are written in the locale and time zone of the current user.
+</hint>
+
+$(mydate during Interval("1/31/2014 11:36 AM", "2/2/2014 11:36 AM"))
+
+<Paragraph indent="1">
+  returns true if **mydate** is between the two DateTime values, inclusive.  This function returns false otherwise.
+</Paragraph>
+
+$(mydate during Interval(BeginningOfMonth(-3), EndOfMonth(0)))
+
+<Paragraph indent="1">
+  returns true if **mydate** is in the four-month interval between the start of the month that was 3 months ago and the end of the current month.
+</Paragraph>

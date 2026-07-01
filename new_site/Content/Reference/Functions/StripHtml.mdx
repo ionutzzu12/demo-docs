@@ -1,0 +1,69 @@
+---
+title: StripHtml
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:59 GMT+0300 (Eastern European Summer Time)
+---
+
+Returns the text value of the input without HTML markup. Use the optional **keepLineBreaks** parameter to specify whether to keep line breaks in.
+
+## Syntax
+
+StripHtml(htmlString, keepLineBreaks)
+
+## Enabled For
+
+For a description of the business object categories, see :Link[Notes on "Enabled For"]{label="Notes on &#x22;Enabled For&#x22;" overridedLabel="Notes on &#x22;Enabled For&#x22;" spaceId docId="xObv2pIDrk60jkEIWs8mD" version="v2" docAnchorId="#Notes" loadingMethod="dynamic" newTab="false" githubPath="_Built_in_Functions.htm#Notes" href="_Built_in_Functions.mdx"}.
+
+| Parameter                                                                                   | Yes/No |
+| ------------------------------------------------------------------------------------------- | ------ |
+| Business Rules: Before-Save Rules                                                           | Yes    |
+| Business Rules: Calculation Rules (After Save, with or without Also Recalculate on Load)    | Yes    |
+| Business Rules: Calculation Rules (Before Save or Always, without Also Recalculate On Load) | Yes    |
+| Business Rules: Calculation Rules (Before Save or Always, with Recalculate On Load)         | Yes    |
+| Business Rules: Editing Rules                                                               | Yes    |
+| Business Rules: Initialization Rules                                                        | Yes    |
+| Business Rules: Read Only Rules                                                             | Yes    |
+| Business Rules: Required Rules                                                              | Yes    |
+| Business Rules: Validation Rules                                                            | Yes    |
+| Client Expressions                                                                          | Yes    |
+| Object Permissions                                                                          | No     |
+| Services                                                                                    | Yes    |
+| LDAP                                                                                        | Yes    |
+| Mobile                                                                                      | Yes    |
+| Quick Actions (except UI Quick Actions)                                                     | Yes    |
+| UI Quick Actions                                                                            | Yes    |
+| Reports                                                                                     | Yes    |
+| Search/Dashboard without field references                                                   | Yes    |
+| Search/Dashboard with field references                                                      | No     |
+| Export to Excel                                                                             | No     |
+
+## Parameters
+
+| Parameter      | Description                                                                                                                                                                                                                                                                                                                 |
+| -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| htmlString     | The HTML text to strip.                                                                                                                                                                                                                                                                                                     |
+| keepLineBreaks | (Optional) A Boolean value that specifies if the line breaks in the HTML text to strip should be converted to a new line before the conversion.  If this value is true, the function takes all the \<br> tags and replaces them with new lines before it does the stripping to prevent all the lines from running together. |
+
+## Return Value
+
+Text value.
+
+## Example
+
+Example of StripHtml function with htmlString only:
+
+$(StripHtml ("\<b>Use this sample code to fix the issue\</b>\<br> \<a href='' onmouseover='alert(/executed js/)' >Link\</a>"))
+
+The example above removes the HTML tags and returns the following:
+
+Use this sample code to fix the issue Link
+
+Example of StripHtml function with keepLineBreaks as *true*:
+
+$(StripHtml ("\<b>Use this sample code to fix the issue\</b>\<br> \<a href='' onmouseover='alert(/executed js/)' >Link\</a>", true))
+
+The example above removes the HTML tags and returns the following:
+
+Use this sample code to fix the issue
+
+Link

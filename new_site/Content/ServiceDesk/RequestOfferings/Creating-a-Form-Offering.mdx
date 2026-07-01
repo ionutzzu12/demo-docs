@@ -1,0 +1,65 @@
+---
+title: Creating a Form Offering
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:48 GMT+0300 (Eastern European Summer Time)
+---
+
+\{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Owner}}s have the ability to create new or modify templates from any business object configured for **My Items**, and not depend on the administrator to provide new templates.
+
+The request offering template enables \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Owner}}s to create incident, change, request, and approval templates for requesters in the Self-Service Portal. Like other request offerings, these templates can be made available to all organizational units that exist on the tenant or only to specific organizational units. By default, the new offering templates are published to the entire organization.
+
+Any business object that is part of the **MyItem** configuration (by default, incident, service request, and approval) can be made available through a form offering. You can add relationships to other business objects (for example, change) to **MyItem**, then use the corresponding templates. See [Using Relationships](../../Configure/Relationships/Adding_a_Relationship_to.mdx).
+
+1. Log in to \{\{FRS\_VARS.ProductName}} as a \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Owner}}.
+2. Open the **Request Offering** workspace.
+3. Click **New > Form Offering** from the toolbar. The **Define form offering** page opens.
+4. Enter information into the fields.
+
+| Field            | Description                                                                                                                     |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| Service          | The service for which the form applies. Select from the drop-down list. This list is populated from the **Services** workspace. |
+| Name             | A unique name for the service.                                                                                                  |
+| Description      | Describes how the form is used.                                                                                                 |
+| Anonymous Submit | Allows anonymous users to submit a request.                                                                                     |
+
+5. Click **Next**. The **Select form layout** page opens.
+6. Click **Change Image** to edit the default image. See [Default Icons for Request Offerings](Default-Icons-for-Request-Offerings.mdx).
+   - The image size cannot be larger than 50 KB.
+   - We recommend square images.
+   - The image dimensions can be as large as you like, but is scaled down to 48 by 48 pixels.
+7. Enter information into the fields.
+
+| Field           | Description                                                                                                                                                                  |
+| --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Business Object | Business object in \{\{FRS\_VARS.ProductName}}.                                                                                                                              |
+| Object Layout   | The available object layouts that are related to the chosen business object. Additional fields appear on the page. See [Using Layouts](../../Configure/Layouts/Layouts.mdx). |
+| Apply Template  | Template that automatically populates certain fields.                                                                                                                        |
+
+8. Enter information into the remaining fields. These fields vary according to the chosen business object and object layout.
+9. Click **Next**. The **Publish Action** page opens.
+10. Select an option from the **Status** drop-down list.
+
+| Field     | Description                                                                                                                                                                                                                                                                                                                      |
+| --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| In Design | Saves the form offering without publishing it to users. You can modify this form offering later.                                                                                                                                                                                                                                 |
+| Published | Saves the form offering and makes it available under request offerings, but not under the Service Catalog. When setting this status, by default the organizational unit of the owner is added with all permissions checked. This form offering is available in the Service Catalog for this organizational unit unless modified. |
+
+11. Click **Add**.
+
+| Field     | Description                                                                                                                                                                                                                                                                                                                    |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Org. Unit | Selects an organizational unit from the list. You can only publish request offerings to organizational units to which you have access. For example, if you do not have access to the entire organization, your published offering will only be available to users in the organizational unit that you have selected and below. |
+| Location  | Only publishes to specific locations. You can designate multiple locations.                                                                                                                                                                                                                                                    |
+| Submit    | To submit the request offering from the Service Catalog by the designated organizational unit.                                                                                                                                                                                                                                 |
+| Edit      | To modify the request offering (not the resulting service request).                                                                                                                                                                                                                                                            |
+| Cancel    | To cancel the request offering.                                                                                                                                                                                                                                                                                                |
+| Delete    | To delete the request offering (not the resulting service request).                                                                                                                                                                                                                                                            |
+| Copy      | To duplicate the request offering (not the resulting service request).                                                                                                                                                                                                                                                         |
+
+12. Click **Save**, **Save & Exit**, or **Cancel**.
+
+Related Topics:
+
+[Creating Forms](../../Configure/Forms/CreatingForms.mdx)
+
+:Link[Supported Controls for Responsive Business Object Form]{label="Supported Controls for Responsive Business Object Form" overridedLabel="Supported Controls for Responsive Business Object Form" spaceId docId="C_X70y7oPeK5XwoyghuJO" version="v2" docAnchorId="#SupportedControlsForResponsiveBOForm" loadingMethod="dynamic" newTab="false" githubPath="../../Configure/Forms/CreatingForms.htm#SupportedControlsForResponsiveBOForm" href="../../Configure/Forms/CreatingForms.mdx"}

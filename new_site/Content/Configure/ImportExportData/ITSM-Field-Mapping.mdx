@@ -1,0 +1,353 @@
+---
+title: ITSM Field Mapping
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:52 GMT+0300 (Eastern European Summer Time)
+---
+
+## Field Mappings for the Ivanti Neurons - Device Connector
+
+The following mappings are available for the device connector:
+
+<ExpandableHeading>
+  ## Audit Mappings
+
+  Mappings that start with Audit belong to the Audit table of the CI BO.
+
+  | Field Mapping       | Business Object Name | Field Name |
+  | ------------------- | -------------------- | ---------- |
+  | Audit.TimeStamp     |                      |            |
+  | Audit.RequestId     |                      |            |
+  | Audit.FirstSequence |                      |            |
+  | Audit.LastSequence  |                      |            |
+  | Audit.Type          |                      |            |
+  | Audit.Type          |                      |            |
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Identity.Property Mappings
+
+  Mappings that start with Identity.Property are the fields of CI Parent BO. Some mappings also refer to fields of other BOs like Enterprise Application, Service, Computer etc.
+
+  | Field Mapping                                | Business Object Name           | Field Name                 |
+  | -------------------------------------------- | ------------------------------ | -------------------------- |
+  | Identity.Property.AgentID                    | CI                             | AgentID                    |
+  | Identity.Property.AgentVersion               | CI                             | AgentVersion               |
+  | Identity.Property.AppID                      | Enterprise Application         | AppID                      |
+  | Identity.Property.AppVersion                 | Enterprise Application         | AppVersion                 |
+  | Identity.Property.BIOSGuid                   | Computer/MobileDevice          | BIOSGuid                   |
+  | Identity.Property.ClientID                   | CI                             | ClientID                   |
+  | Identity.Property.DefaultHOP                 | CI                             | DefaultHOP                 |
+  | Identity.Property.DeviceDescription          | CI                             | Description                |
+  | Identity.Property.DeviceType                 |                                |                            |
+  | Identity.Property.DomainName                 | CI                             | DomainName                 |
+  | Identity.Property.EPMComputerID              | CI                             | EPMComputerID              |
+  | Identity.Property.EPMLDAPLocation            | CI                             | EPMLDAPLocation            |
+  | Identity.Property.FullyQualifiedDomainName   | CI                             | FullyQualifiedDomainName   |
+  | Identity.Property.hasAssetData               | Enterprise Application         | hasAssetData               |
+  | Identity.Property.HostName                   | CI                             | Name                       |
+  | Identity.Property.IPAddress                  | Computer, MobileDevice         | IPAddress                  |
+  | Identity.Property.ivnt\_InventorySeverName   | CI                             | ivnt\_InventorySeverName   |
+  | Identity.Property.ivnt\_LastImportSource     | CI                             | ivnt\_LastImportSource     |
+  | Identity.Property.ivnt\_OriginalImportSource | CI                             | ivnt\_OriginalImportSource |
+  | Identity.Property.ivnt\_WarrantyExpiry       | CI                             | ivnt\_WarrantyExpiry       |
+  | Identity.Property.ivnt\_WarrantyStartDate    | CI                             | ivnt\_WarrantyStartDate    |
+  | Identity.Property.LastComplianceCheck        | Enterprise Application         | LastComplianceCheck        |
+  | Identity.Property.MACaddress                 | CI                             | MACaddress                 |
+  | Identity.Property.MachineName                |                                |                            |
+  | Identity.Property.NonBillableCost            | Service                        | NonBillableCost            |
+  | Identity.Property.OperatingSystem\_ReleaseID | CI                             | OperatingSystem\_ReleaseID |
+  | Identity.Property.ReadyforDSMAssignment      | Enterprise Application/Service | ReadyforDSMAssignment      |
+  | Identity.Property.ScanMethod                 | CI                             | ScanMethod                 |
+  | Identity.Property.SCCMID                     | CI                             | SCCMID                     |
+  | Identity.Property.SerialNumber               | CI                             | SerialNumber               |
+  | Identity.Property.PriceDescription           | Service                        | PriceDescription           |
+  | Identity.Property.SubnetMask                 | Computer                       | Subnet                     |
+  | Identity.Property.Summary                    | CI                             | Summary                    |
+  | Identity.Property.TypeOfService              | Service                        | TypeOfService              |
+  | Identity.Property.UserName                   | CI                             | LoginName                  |
+  | Identity.Property.ValueProposition           | Service                        | ValueProposition           |
+  | Identity.Property.VM UUID                    |                                |                            |
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Category.Component.Property Mappings
+
+  Most mappings that start with Category.Component.Property refer to the fields of Business Objects which are the “Extension To” FRS\_CIComponent BO. Others belong to DisplayNamethe BOs mentioned against each mapping.
+
+  | Field Mapping                                                                              | Business Object Name        | Field Name              |
+  | ------------------------------------------------------------------------------------------ | --------------------------- | ----------------------- |
+  | Category.Component.Property-Custom Data.UserInputField.Name                                | Custom Data                 | DisplayName             |
+  | Category.Component.Property-Custom Data.UserInputField.Value                               | Custom Data                 | Value                   |
+  | Category.Component.Property-Extension Histogram.ExtHistogram.Description                   | Extension Histogram         | Description             |
+  | Category.Component.Property-Extension Histogram.ExtHistogram.Ext                           | Extension Histogram         | DisplayName             |
+  | Category.Component.Property-Extension Histogram.ExtHistogram.Occurences                    | Extension Histogram         | Occurences              |
+  | Category.Component.Property-Extension Histogram.ExtHistogram.Total Size                    | Extension Histogram         | Total Size              |
+  | Category.Component.Property-Extension Histogram.ExtHistogram.Total Size\_Unit              | Extension Histogram         | Total Size\_Unit        |
+  | Category.Component.Property-Gateway.Subnet.Address                                         | Gateway Subnet              | IPAddress               |
+  | Category.Component.Property-Gateway.Subnet.ID                                              | Gateway Subnet              |                         |
+  | Category.Component.Property-Gateway.Subnet.Mask                                            | Gateway Subnet              | SubnetMask              |
+  | Category.Component.Property-Gateway.Subnet.Name                                            | Gateway Subnet              | Name                    |
+  | Category.Component.Property-Hardware.DisplayAdapter.Description                            | DisplayAdapter              | Description/DisplayName |
+  | Category.Component.Property-Hardware.DisplayAdapter.ID                                     | DisplayAdapter              |                         |
+  | Category.Component.Property-Hardware.DisplayAdapter.Manufacturer                           | DisplayAdapter              | Manufacturer            |
+  | Category.Component.Property-Hardware.DisplayAdapter.MaxBitsPerPixel                        | DisplayAdapter              | MaxBitsPerPixel         |
+  | Category.Component.Property-Hardware.DisplayAdapter.OriginalManufacturer                   | DisplayAdapter              | OriginalManufacturer    |
+  | Category.Component.Property-Hardware.DisplayAdapter.PCIDeviceID                            | DisplayAdapter              | PCIDeviceID             |
+  | Category.Component.Property-Hardware.DisplayAdapter.PCIVendorID                            | DisplayAdapter              | PCIVendorID             |
+  | Category.Component.Property-Hardware.DisplayAdapter.PixelShaderVersion                     | DisplayAdapter              | PixelShaderVersion      |
+  | Category.Component.Property-Hardware.DisplayAdapter.RamSize                                | DisplayAdapter              | Memory                  |
+  | Category.Component.Property-Hardware.LogicalStorage.Description                            | Logical Storage             | Description             |
+  | Category.Component.Property-Hardware.LogicalStorage.DiskNumber                             | Logical Storage             | DiskNumber              |
+  | Category.Component.Property-Hardware.LogicalStorage.DriveLetter                            | Logical Storage             | DriveLetter/DisplayName |
+  | Category.Component.Property-Hardware.LogicalStorage.Format                                 | Logical Storage             | DriveFormat             |
+  | Category.Component.Property-Hardware.LogicalStorage.FreeSpace                              | Logical Storage             | FreeSpace               |
+  | Category.Component.Property-Hardware.LogicalStorage.ID                                     | Logical Storage             |                         |
+  | Category.Component.Property-Hardware.LogicalStorage.Manufacturer                           | Logical Storage             | Manufacturer            |
+  | Category.Component.Property-Hardware.LogicalStorage.Size                                   | Logical Storage             | capacity                |
+  | Category.Component.Property-Hardware.MemorySlot.Description                                | Memory                      | DisplayName             |
+  | Category.Component.Property-Hardware.MemorySlot.FormFactor                                 | Memory                      | FormFactor              |
+  | Category.Component.Property-Hardware.MemorySlot.ID                                         | Memory                      |                         |
+  | Category.Component.Property-Hardware.MemorySlot.Manufacturer                               | Memory                      | Manufacturer            |
+  | Category.Component.Property-Hardware.MemorySlot.MemoryType                                 | Memory                      | MemoryType              |
+  | Category.Component.Property-Hardware.MemorySlot.Size                                       | Memory                      | MemorySize              |
+  | Category.Component.Property-Hardware.MemorySlot.SlotNumber                                 | Memory                      | SlotNumber              |
+  | Category.Component.Property-Hardware.Monitor.EDID Manufacturer ID                          | Monitor                     | Manufacturer            |
+  | Category.Component.Property-Hardware.Monitor.Date of Manufacture                           | Monitor                     | ManufacturedDate        |
+  | Category.Component.Property-Hardware.Monitor.HardwareID                                    | Monitor                     | HardwareID              |
+  | Category.Component.Property-Hardware.Monitor.ID                                            | Monitor                     |                         |
+  | Category.Component.Property-Hardware.Monitor.Max Horizontal Size                           | Monitor                     | MaxHorizontalSize       |
+  | Category.Component.Property-Hardware.Monitor.Max Horizontal Size\_Unit                     | Monitor                     | MaxHorizontalSizeUnit   |
+  | Category.Component.Property-Hardware.Monitor.Max Vertical Size                             | Monitor                     | MaxVerticalSize         |
+  | Category.Component.Property-Hardware.Monitor.Max Vertical Size\_Unit                       | Monitor                     | MaxVerticalSizeUnit     |
+  | Category.Component.Property-Hardware.Monitor.Model                                         | Monitor                     | DisplayName             |
+  | Category.Component.Property-Hardware.Monitor.Serial Number                                 | Monitor                     | Serial Number           |
+  | Category.Component.Property-Hardware.NetworkAdapter.Description                            | Network Adapter             | DisplayName             |
+  | Category.Component.Property-Hardware.NetworkAdapter.ID                                     | Network Adapter             |                         |
+  | Category.Component.Property-Hardware.NetworkAdapter.IPAddress                              | Network Adapter             | IPAddress               |
+  | Category.Component.Property-Hardware.NetworkAdapter.IPEnabled                              | Network Adapter             | IPEnabled               |
+  | Category.Component.Property-Hardware.NetworkAdapter.MACaddress                             | Network Adapter             | MACaddress              |
+  | Category.Component.Property-Hardware.NetworkAdapter.Manufacturer                           | Network Adapter             | Manufacturer            |
+  | Category.Component.Property-Hardware.NetworkAdapter.PCIDeviceID                            | Network Adapter             | PCIDeviceID             |
+  | Category.Component.Property-Hardware.NetworkAdapter.PCIVendorID                            | Network Adapter             | PCIVendorID             |
+  | Category.Component.Property-Hardware.NetworkAdapter.SubnetMask                             | Network Adapter             | Subnet                  |
+  | Category.Component.Property-Hardware.PhysicalStorage.DiskNumber                            | Physical Storage            | DiskNumber              |
+  | Category.Component.Property-Hardware.PhysicalStorage.ID                                    | Physical Storage            |                         |
+  | Category.Component.Property-Hardware.PhysicalStorage.Manufacturer                          | Physical Storage            | Manufacturer            |
+  | Category.Component.Property-Hardware.PhysicalStorage.Model                                 | Physical Storage            | Model/Description       |
+  | Category.Component.Property-Hardware.PhysicalStorage.Serial Number                         | Physical Storage            | SerialNumber            |
+  | Category.Component.Property-Hardware.PhysicalStorage.Size                                  | Physical Storage            | DiskSize                |
+  | Category.Component.Property-Hardware.PhysicalStorage.StorageType                           | Physical Storage            | DiskType                |
+  | Category.Component.Property-Hardware.Warranties.ID                                         | FRS\_CIComponent.Warranties |                         |
+  | Category.Component.Property-Hardware.Warranties.Number                                     | FRS\_CIComponent.Warranties | Number                  |
+  | Category.Component.Property-Hardware.Warranties.Provider                                   | FRS\_CIComponent.Warranties | Provider                |
+  | Category.Component.Property-Hardware.Warranties.ServiceLevel                               | FRS\_CIComponent.Warranties | ServiceLevel            |
+  | Category.Component.Property-Hardware.Warranties.StartDate                                  | FRS\_CIComponent.Warranties | StartDate               |
+  | Category.Component.Property-Hardware.Warranties.Title                                      | FRS\_CIComponent.Warranties | Title                   |
+  | Category.Component.Property-Hardware.Warranties.WarrentyDescription                        | FRS\_CIComponent.Warranties | WarrentyDescription     |
+  | Category.Component.Property-SoftwareFiles.SoftwareFile.File Version                        | Software File               | FileVersion             |
+  | Category.Component.Property-SoftwareFiles.SoftwareFile.Description                         | Software File               | Description             |
+  | Category.Component.Property-SoftwareFiles.SoftwareFile.Date                                | Software File               |                         |
+  | Category.Component.Property-SoftwareFiles.SoftwareFile.LanguageID                          | Software File               | LanguageCode            |
+  | Category.Component.Property-SoftwareFiles.SoftwareFile.Internal Name                       | Software File               | InternalName            |
+  | Category.Component.Property-SoftwareFiles.SoftwareFile.ID                                  | Software File               |                         |
+  | Category.Component.Property-SoftwareFiles.SoftwareFile.FrequencyId                         | Software File               |                         |
+  | Category.Component.Property-SoftwareFiles.SoftwareFile.Freq                                | Software File               |                         |
+  | Category.Component.Property-SoftwareFiles.SoftwareFile.FileVersion String                  | Software File               | FileVersionFull         |
+  | Category.Component.Property-SoftwareFiles.SoftwareFile.FileID                              | Software File               | FileID                  |
+  | Category.Component.Property-SoftwareFiles.SoftwareFile.Last Used                           | Software File               |                         |
+  | Category.Component.Property-SoftwareFiles.SoftwareFile.Manufacturer                        | Software File               | Manufacturer            |
+  | Category.Component.Property-SoftwareFiles.SoftwareFile.Name                                | Software File               | Filename                |
+  | Category.Component.Property-SoftwareFiles.SoftwareFile.Original Name                       | Software File               | OriginalName            |
+  | Category.Component.Property-SoftwareFiles.SoftwareFile.Path                                | Software File               |                         |
+  | Category.Component.Property-SoftwareFiles.SoftwareFile.Product                             | Software File               | Product                 |
+  | Category.Component.Property-SoftwareFiles.SoftwareFile.Product ID                          | Software File               | SWID                    |
+  | Category.Component.Property-SoftwareFiles.SoftwareFile.RawDescription                      | Software File               | RawDescription          |
+  | Category.Component.Property-SoftwareFiles.SoftwareFile.SerialNumber                        | Software File               |                         |
+  | Category.Component.Property-SoftwareFiles.SoftwareFile.Size                                | Software File               | Size                    |
+  | Category.Component.Property-SoftwareFiles.SoftwareFile.Version                             | Software File               | ProductVersion          |
+  | Category.Component.Property-SoftwarePackages.SoftwarePackage.DiscoveryMethod               | Installed Software          | DiscoveryMethod         |
+  | Installed SoftwareCategory.Component.Property-SoftwarePackages.SoftwarePackage.DisplayName | Installed Software          | DisplayName             |
+  | Category.Component.Property-SoftwarePackages.SoftwarePackage.DisplayVersion                | Installed Software          | VersionNumber           |
+  | Category.Component.Property-SoftwarePackages.SoftwarePackage.DSMInstalled                  | Installed Software          | DSMInstalled            |
+  | Category.Component.Property-SoftwarePackages.SoftwarePackage.ExecutionEnvironment          | Installed Software          | ExecutionEnvironment    |
+  | Category.Component.Property-SoftwarePackages.SoftwarePackage.Freq                          | Installed Software          | UsageFrequency          |
+  | Category.Component.Property-SoftwarePackages.SoftwarePackage.FrequencyId                   | Installed Software          | FrequencyValue          |
+  | Category.Component.Property-SoftwarePackages.SoftwarePackage.Greynet                       | Installed Software          |                         |
+  | Category.Component.Property-SoftwarePackages.SoftwarePackage.Guid                          | Installed Software          | Guid                    |
+  | Category.Component.Property-SoftwarePackages.SoftwarePackage.ID                            | Installed Software          |                         |
+  | Category.Component.Property-SoftwarePackages.SoftwarePackage.InstallDate                   | Installed Software          | InstallDate             |
+  | Category.Component.Property-SoftwarePackages.SoftwarePackage.KeyClient                     | Installed Software          |                         |
+  | Category.Component.Property-SoftwarePackages.SoftwarePackage.KeyName                       | Installed Software          | KeyName                 |
+  | Category.Component.Property-SoftwarePackages.SoftwarePackage.KeyPrimary                    | Installed Software          |                         |
+  | Category.Component.Property-SoftwarePackages.SoftwarePackage.KeySecondary                  | Installed Software          |                         |
+  | Category.Component.Property-SoftwarePackages.SoftwarePackage.LanguageID                    | Installed Software          | LanguageCode            |
+  | Category.Component.Property-SoftwarePackages.SoftwarePackage.Last Used                     | Installed Software          | LastUsedDateTime        |
+  | Category.Component.Property-SoftwarePackages.SoftwarePackage.MDI                           | Installed Software          | MDI                     |
+  | Category.Component.Property-SoftwarePackages.SoftwarePackage.Name                          | Installed Software          |                         |
+  | Category.Component.Property-SoftwarePackages.SoftwarePackage.Package                       | Installed Software          | Package                 |
+  | Category.Component.Property-SoftwarePackages.SoftwarePackage.Path                          | Installed Software          | PathName                |
+  | Category.Component.Property-SoftwarePackages.SoftwarePackage.Product ID                    | Installed Software          | ProductID               |
+  | Category.Component.Property-SoftwarePackages.SoftwarePackage.ProductKey                    | Installed Software          | ProductKey              |
+  | Category.Component.Property-SoftwarePackages.SoftwarePackage.Publisher                     | Installed Software          | Manufacturer            |
+  | Category.Component.Property-SoftwarePackages.SoftwarePackage.SoftwareTypeId                | Installed Software          | TypeAlias               |
+  | Category.Component.Property-SoftwarePackages.SoftwarePackage.Subkey                        | Installed Software          | Tag                     |
+  | Category.Component.Property-SoftwarePackages.SoftwarePackage.SystemPackage                 | Installed Software          |                         |
+  | Category.Component.Property-SoftwarePackages.SoftwarePackage.UninstallString               | Installed Software          | UninstallString         |
+  | Category.Component.Property-SoftwarePackages.SoftwarePackage.UpdatePackage                 | Installed Software          |                         |
+  | Category.Component.Property-WMI.Win32\_QuickFixEngineering.Description                     | Patch                       | Description             |
+  | Category.Component.Property-WMI.Win32\_QuickFixEngineering.FixComments                     | Patch                       | FixComments             |
+  | Category.Component.Property-WMI.Win32\_QuickFixEngineering.HotfixID                        | Patch                       | HotfixID                |
+  | Category.Component.Property-WMI.Win32\_QuickFixEngineering.ID                              | Patch                       |                         |
+  | Category.Component.Property-WMI.Win32\_QuickFixEngineering.InstalledBy                     | Patch                       | InstalledBy             |
+  | Category.Component.Property-WMI.Win32\_QuickFixEngineering.InstalledOn                     | Patch                       | InstallDate             |
+  | Category.Component.Property-WMI.Win32\_QuickFixEngineering.Manufacturer                    | Patch                       | Manufacturer            |
+  | Category.Component.Property-WMI.Win32\_QuickFixEngineering.PatchType                       | Patch                       | PatchType               |
+  | Category.Component.Property-WMI.Win32\_QuickFixEngineering.ServicePackInEffect             | Patch                       | ServicePackInEffect     |
+  | Category.Component.Property-WMI.Win32\_Service.Caption                                     | Service                     | Caption                 |
+  | Category.Component.Property-WMI.Win32\_Service.Description                                 | Service                     | Description             |
+  | Category.Component.Property-WMI.Win32\_Service.DesktopInteract                             | Service                     | DesktopInteract         |
+  | Category.Component.Property-WMI.Win32\_Service.ID                                          | Service                     |                         |
+  | Category.Component.Property-WMI.Win32\_Service.Manufacturer                                | Service                     | Manufacturer            |
+  | Category.Component.Property-WMI.Win32\_Service.PathName                                    | Service                     | PathName                |
+  | Category.Component.Property-WMI.Win32\_Service.ProcessId                                   | Service                     | ProcessId               |
+  | Category.Component.Property-WMI.Win32\_Service.StartMode                                   | Service                     | StartMode               |
+  | Category.Component.Property-WMI.Win32\_Service.StartName                                   | Service                     | StartName               |
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Contract.Property Mappings
+
+  Mappings that start with Contract.Property belong to Contract Business Object.
+
+  | Field Mapping                                        | Business Object Name | Field Name                         |
+  | ---------------------------------------------------- | -------------------- | ---------------------------------- |
+  | Contract.Property.CIType                             | Contract             | CIType                             |
+  | Contract.Property.Description                        | Contract             | Description                        |
+  | Contract.Property.ivnt\_AssetFullType                | Contract             | ivnt\_AssetFullType                |
+  | Contract.Property.ivnt\_DateSigned                   | Contract             | ivnt\_DateSigned                   |
+  | Contract.Property.ivnt\_ExpiryDate                   | Contract             | ivnt\_ExpiryDate                   |
+  | Contract.Property.ivnt\_InternalID                   | Contract             | ivnt\_InternalID                   |
+  | Contract.Property.ivnt\_TerminationNoticeDays        | Contract             | ivnt\_TerminationNoticeDays        |
+  | Contract.Property.ivnt\_VendorContractLink\_Category | Contract             | ivnt\_VendorContractLink\_Category |
+  | Contract.Property.ivnt\_VendorContractLink\_RecID    | Contract             | ivnt\_VendorContractLink\_RecID    |
+  | Contract.Property.ivnt\_VendorName                   | Contract             | ivnt\_VendorName                   |
+  | Contract.Property.Name                               | Contract             | Name                               |
+  | Contract.Property.RecId                              | Contract             | RecId                              |
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## ContractLineItem.Property Mappings
+
+  Mappings that start with ContractLineItem.Property belong to Contract Line Item Business Object.
+
+  | Field Mapping                                        | Business Object Name | Field Name                 |
+  | ---------------------------------------------------- | -------------------- | -------------------------- |
+  | ContractLineItem.Property.ContractLineItemName       | Contract Line Item   | ContractLineItemName       |
+  | ContractLineItem.Property.ContractLink\_Category     | Contract Line Item   | ContractLink\_Category     |
+  | ContractLineItem.Property.ContractLink\_RecId        | Contract Line Item   | ContractLink\_RecId        |
+  | ContractLineItem.Property.CreatedDateTime            | Contract Line Item   | CreatedDateTime            |
+  | ContractLineItem.Property.Description                | Contract Line Item   | Description                |
+  | ContractLineItem.Property.EffectiveDate              | Contract Line Item   | EffectiveDate              |
+  | ContractLineItem.Property.EndDate                    | Contract Line Item   | EndDate                    |
+  | ContractLineItem.Property.InitialTotalCost           | Contract Line Item   | InitialTotalCost           |
+  | ContractLineItem.Property.InitialUnitCost            | Contract Line Item   | InitialUnitCost            |
+  | ContractLineItem.Property.ivnt\_ContractLineItemType | Contract Line Item   | ivnt\_ContractLineItemType |
+  | ContractLineItem.Property.LCMUniqueId                | Contract Line Item   | LCMUniqueId                |
+  | ContractLineItem.Property.LicenseKey                 | Contract Line Item   | LicenseKey                 |
+  | ContractLineItem.Property.LicensesAllocated          | Contract Line Item   | LicensesAllocated          |
+  | ContractLineItem.Property.PurchaseDate               | Contract Line Item   | PurchaseDate               |
+  | ContractLineItem.Property.Quantity                   | Contract Line Item   | Quantity                   |
+  | ContractLineItem.Property.RecId                      | Contract Line Item   | RecId                      |
+  | ContractLineItem.Property.SupplierSKU                | Contract Line Item   | SupplierSKU                |
+  | ContractLineItem.Property.VendorText                 | Contract Line Item   | VendorText                 |
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## ComputerSystem.Property
+
+  Mappings that start with ComputerSystem.Property refer to the fields of one or more Business Objects which are the “Extension To” CI Business Object.
+
+  | Field Mapping                                    | Business Object Name                                                    | Field Name                    |
+  | ------------------------------------------------ | ----------------------------------------------------------------------- | ----------------------------- |
+  | ComputerSystem.Property.AgentStatus              | Computer/Unmanaged Asset/MobileDevice BO                                | AgentStatus                   |
+  | ComputerSystem.Property.AssetTag                 | Computer/Unmanaged Asset/MobileDevice/Infrastructure/ PeripheralDevice  | AssetTag                      |
+  | ComputerSystem.Property.AssignedManufacturer     | Computer/ PeripheralDevice /MobileDevice/Infrastructure                 | Ivnt\_AssignedManufacturer    |
+  | ComputerSystem.Property.AssignedModel            | Computer/ PeripheralDevice /MobileDevice                                | Ivnt\_AssignedModel           |
+  | ComputerSystem.Property.BuildNumber              | Computer/MobileDevice                                                   | OSBuildNumber                 |
+  | ComputerSystem.Property.ChassisType              | Computer/Unmanaged Asset                                                | ChassisType                   |
+  | ComputerSystem.Property.CIType                   | Computer/Unmanaged Asset/MobileDevice/ PeripheralDevice /Infrastructure | CIType                        |
+  | ComputerSystem.Property.ClientType               | Computer                                                                | ClientType                    |
+  | ComputerSystem.Property.CloudID                  | MobileDevice                                                            | DeviceId                      |
+  | ComputerSystem.Property.CPUArchitecture          | Computer/MobileDevice                                                   | CPUArchitecture               |
+  | ComputerSystem.Property.CPUCount                 | Computer                                                                | CPUCount                      |
+  | ComputerSystem.Property.DeviceName               | MobileDevice                                                            | Name                          |
+  | ComputerSystem.Property.DeviceToken              | MobileDevice                                                            | DeviceToken                   |
+  | ComputerSystem.Property.DiskSpace\_Unit          | Computer                                                                | FreeDiskSpaceUnit             |
+  | ComputerSystem.Property.DisplayResolution        | MobileDevice                                                            | DisplayResolution             |
+  | ComputerSystem.Property.EnrolledDateTime         | MobileDevice                                                            | PushNotificationRegDateTime   |
+  | ComputerSystem.Property.ExecutionEnvironment     | Computer/Unmanaged Asset/ Infrastructure                                | ExecutionEnvironment          |
+  | ComputerSystem.Property.FreeDiskSpace            | Computer                                                                | FreeDiskSpace                 |
+  | ComputerSystem.Property.IMEI                     | MobileDevice                                                            | IMEINumber                    |
+  | ComputerSystem.Property.InstalledApplicationList | MobileDevice                                                            | InstalledApplicationList      |
+  | ComputerSystem.Property.IosApplicationPushToken  | MobileDevice                                                            | IosApplicationPushToken       |
+  | ComputerSystem.Property.IosMdmPushMagic          | MobileDevice                                                            | IosMdmPushMagic               |
+  | ComputerSystem.Property.IosMdmPushToken          | MobileDevice                                                            | IosMdmPushToken               |
+  | ComputerSystem.Property.IsJailbroken             | MobileDevice                                                            | IsJailbroken                  |
+  | ComputerSystem.Property.MACAddress               | MobileDevice                                                            | MACAddress                    |
+  | ComputerSystem.Property.MajorVersion             | Computer/MobileDevice                                                   | OSMajorVersion /MajorVersion  |
+  | ComputerSystem.Property.Manufacturer             | Computer/Unmanaged Asset/MobileDevice/Infrastructure/ PeripheralDevice  | Manufacturer                  |
+  | ComputerSystem.Property.MemorySlotCount          | computer                                                                | MemorySlotCount               |
+  | ComputerSystem.Property.MinorVersion             | Computer/MobileDevice                                                   | OSMinorVersion / MinorVersion |
+  | ComputerSystem.Property.MobilePlatform           | MobileDevice                                                            | MobilePlatform                |
+  | ComputerSystem.Property.Model                    | Computer/Unmanaged Asset/MobileDevice/Infrastructure/ PeripheralDevice  | Model                         |
+  | ComputerSystem.Property.ModelName                | MobileDevice                                                            | ModelName                     |
+  | ComputerSystem.Property.OperatingSystem          | Computer/Unmanaged Asset/MobileDevice/Infrastructure/ PeripheralDevice  | OperatingSystem               |
+  | ComputerSystem.Property.OSEdition                | Computer                                                                | OSEdition                     |
+  | ComputerSystem.Property.Owner                    | Computer                                                                | Owner                         |
+  | ComputerSystem.Property.PercentFreeDiskSpace     | Computer/ Unmanaged Asset                                               | PercentFreeDiskSpace          |
+  | ComputerSystem.Property.PhoneNumber              | MobileDevice                                                            | PhoneNumber                   |
+  | ComputerSystem.Property.PhysicalHost             | Computer/PeripheralDevice                                               | PhysicalHostName              |
+  | ComputerSystem.Property.PhysicalLocation         | MobileDevice                                                            | PhysicalLocation              |
+  | ComputerSystem.Property.Private                  | MobileDevice                                                            | Private                       |
+  | ComputerSystem.Property.ProcessList              | MobileDevice                                                            | ProcessList                   |
+  | ComputerSystem.Property.ServicePack              | Computer                                                                | OSServicePackLevel            |
+  | ComputerSystem.Property.ServiceTag               | Computer                                                                | ServiceTag                    |
+  | ComputerSystem.Property.SIMCarrierNetwork        | MobileDevice                                                            | Carrier                       |
+  | ComputerSystem.Property.Status                   | MobileDevice/Infrastructure/ PeripheralDevice                           | Status                        |
+  | ComputerSystem.Property.SubType                  | MobileDevice/Infrastructure/ PeripheralDevice                           | ivnt\_AssetSubtype            |
+  | ComputerSystem.Property.TotalDiskSpace           | Computer/ MobileDevice                                                  | TotalDiskSpace                |
+</ExpandableHeading>
+
+## Field Mappings for Ivanti Neurons - Invoice Connector
+
+| Field Mapping                                      | Business Object Name | Field Name                 |
+| -------------------------------------------------- | -------------------- | -------------------------- |
+| ivnt\_PurchaseOrder#.ivnt\_PurchaseOrderNumber     | Purchase Order       | ivnt\_PurchaseOrderNumber  |
+| ivnt\_PurchaseOrder#.ivnt\_VendorLink              | Purchase Order       | ivnt\_VendorLink           |
+| ivnt\_PurchaseOrder#.ivnt\_Vendor                  | Purchase Order       | ivnt\_Vendor               |
+| ivnt\_PurchaseOrder#.ivnt\_InvoiceTotal            | Purchase Order       | ivnt\_InvoiceTotal         |
+| ivnt\_PurchaseOrder#.ivnt\_DateSubmitted           | Purchase Order       | ivnt\_DateSubmitted        |
+| ivnt\_InvoiceNumber                                | Invoice              | ivnt\_InvoiceNumber        |
+| ivnt\_InvoiceDate                                  | Invoice              | ivnt\_InvoiceDate          |
+| ivnt\_FreightCharge                                | Invoice              | ivnt\_FreightCharge        |
+| ivnt\_InvoiceTotal                                 | Invoice              | ivnt\_InvoiceTotal         |
+| ivnt\_PurchaseOrderNumber                          | Invoice              | ivnt\_PurchaseOrderNumber  |
+| ivnt\_PurchaseOrderLink                            | Invoice              | ivnt\_PurchaseOrderLink    |
+| Address#Mail.Purpose                               | Mail                 | Purpose                    |
+| Address#Mail.TypeAlias                             | Mail                 | TypeAlias                  |
+| Address#Mail.DisplayText                           | Mail                 | DisplayText                |
+| Address#Mail.State                                 | Mail                 | State                      |
+| Address#Mail.Address                               | Mail                 | AddressAddress#Mail.City   |
+| Address#Mail.City                                  | Mail                 | City                       |
+| Address#Mail.Zip                                   | Mail                 | Zip                        |
+| ivnt\_PurchaseLineItem#.ivnt\_PurchaseLineItemType | Purchase Line Item   | ivnt\_PurchaseLineItemType |
+| ivnt\_PurchaseLineItem#.ivnt\_CostPerUnit          | Purchase Line Item   | ivnt\_CostPerUnit          |
+| ivnt\_PurchaseLineItem#.ivnt\_ItemName             | Purchase Line Item   | ivnt\_ItemName             |
+| ivnt\_PurchaseLineItem#.ivnt\_Model                | Purchase Line Item   | ivnt\_Model                |
+| ivnt\_PurchaseLineItem#.ivnt\_PartNumber           | Purchase Line Item   | ivnt\_PartNumber           |
+| ivnt\_PurchaseLineItem#.ivnt\_TotalCost            | Purchase Line Item   | ivnt\_TotalCost            |
+| ivnt\_PurchaseLineItem#.ivnt\_PurchaseOrderLink    | Purchase Line Item   | ivnt\_PurchaseOrderLink    |
+| ivnt\_PurchaseLineItem#.ivnt\_VendorProductSKU     | Purchase Line Item   | ivnt\_VendorProductSKU     |
+| ivnt\_PurchaseOrder#.ivnt\_SubmittedBy             | Purchase Line Item   | ivnt\_SubmittedBy          |
+| ivnt\_PurchaseLineItem#.ivnt\_Quantity             | Purchase Line Item   | ivnt\_Quantity             |
+| ivnt\_PurchaseLineItem#.ivnt\_LineItemId           | Purchase Line Item   | ivnt\_LineItemId           |

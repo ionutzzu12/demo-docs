@@ -1,0 +1,100 @@
+---
+title: About Advanced Email Monitoring
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:51 GMT+0300 (Eastern European Summer Time)
+---
+
+Use advanced email monitoring to monitor email accounts and perform an action to create or modify a business object record based on email content.
+
+To use advanced email monitoring, at least one email account must be configured in \{\{FRS\_VARS.ProductName}}.
+
+Access advanced email monitoring from the **Inbox Configuration** workspace in the \{\{FRS\_VARS.ProductName}} Administrator Configuration console. In \{\{FRS\_VARS.ProductName}}, log in as Administrator, open the Configuration console, and select **Email Configuration > Mail Boxes**.
+
+An email monitor item scans incoming emails for specific content in accordance with the configuration and condition operators you define for it. If the conditions you defined are met by the incoming email, the email monitor item performs the action you specified for it. The action you specify can be performed to create a new business object record, or performed on an existing business object record.
+
+All the monitor items you create are listed under the **Monitor Items** tab, which is displayed when you select **Advanced Monitoring** in the **Email Processor** field on the **Inbox Configuration** form. See [Working with Email Inboxes](Inbox_Configuration.mdx).
+
+- Double-click an existing email monitor item to open it.
+- To create a new email monitor item, click **New Inbox Monitor Item**.
+- To delete an existing email monitor item, select it in the list, and click **Delete**.
+
+For detailed information on creating an email monitor item, see [Using the Monitor Items Tab](Monitor_Items_Tab.mdx).
+
+You can create one or more email monitor items to monitor an email address and execute an action. To create a new email monitor item, click **New Inbox Monitor Item** in the **Monitor Items** tab, and then define the monitor item parameters in the **New Inbox Monitor Item** form. See [Using the Monitor Items Tab](Monitor_Items_Tab.mdx).
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/gPPEC9ByEhFS6-mxaEaHS_newinboxmonitoritemgui1.png" position="flex-start" size="40" initialPath="../../Resources/Images/Email-images/new_inbox_monitor_item_gui1.png" githubPath="Content/Resources/Images/Email-images/new_inbox_monitor_item_gui1.png" showCaption="false"></Image>
+
+<hint type="info">
+  The **Name**, **Execution Order** and **Business Object** fields on the **New Inbox Monitor** Item form are required fields, these are marked with an asterisk.
+</hint>
+
+## Matching Section
+
+You can configure the email monitor item to attempt to find an existing record using results returned by searching an incoming email. There are several options you can select to configure the search criteria to apply to an incoming email. To enable this search, select the **Attempt to find existing record** option. Selecting this option also enables other search criteria options in the form. See [Using the Monitor Items Tab](Monitor_Items_Tab.mdx) for more information on the options available in the section.
+
+### Example
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/JBlJ-BIHX5NQ8Mhy9jvFb_businessobjectfieldforexample1.png" position="flex-start" size="40" initialPath="../../Resources/Images/Email-images/business_object_field_for_example1.png" githubPath="Content/Resources/Images/Email-images/business_object_field_for_example1.png" showCaption="false"></Image>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/blHTwPYU9mfucbggw4EGr_exampleidexistingrecord2.png" position="flex-start" size="40" initialPath="../../Resources/Images/Email-images/example_id_existing_record2.png" githubPath="Content/Resources/Images/Email-images/example_id_existing_record2.png" showCaption="false"></Image>
+
+In the example, the email monitor searches an incoming email subject for an ID, after the term "*Incident#*", and until the next word or number in the subject line. If found, the email monitor uses the search result in an attempt to find an existing **Incident** business object record with a matching ID.
+
+In the **Conversation ID Behaviour** dropdown, the **Only Monitored Business Object** option is selected. This means that the search is limited to Incident business object records only, no other business object type records are returned.
+
+<hint type="info">
+  The email monitor item may continue to execute, even if a matching record is not found. It will only exit at this point if the record is not found, and you have selected the **Only if existing record found** in the **Conditions** section.
+</hint>
+
+## Conditions Section
+
+Select condition options to apply to the email monitor and action condition criteria to apply a search to the incoming email. If the condition options and search condition criteria are met, the email monitor performs its action on the business object record.
+
+There are two condition options:
+
+- **Only if existing record found**: Associated actions are executed only if an existing record is found (using the options and criteria defined in the **ID Existing Record** section above).
+- **Only if contact found**: Associated actions are executed only if a contact is identified.
+
+You can apply four action conditions to search for the incoming email. For this you specify the part of the email to apply the search to (the email property), a condition operator, and the search term (or criteria). The email properties and condition operators are available to select from dropdown lists.
+
+If you apply more than one action condition, all the action conditions must be met for the email monitor to perform it's associated action.
+
+### Example
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/vZkirlcaMDcTkx5-8AzkC_exampleconditionscriteriarecord1861x206.png" position="flex-start" size="40" initialPath="../../Resources/Images/Email-images/example_conditions_criteria_record1_861x206.png" githubPath="Content/Resources/Images/Email-images/example_conditions_criteria_record1_861x206.png" showCaption="false"></Image>
+
+In the example, the email monitor searches the subject line of the incoming email, and determines if it contains "Incident#".
+
+- If the subject line contains "Incident#", the condition is met, and the email monitor performs its associated action.
+- If the subject line does not contain "Incident#", the condition is not met, and the email monitor exits without performing associated action.
+
+<hint type="info">
+  If you have created more than one email monitor to monitor an email address, the execution order comes into play when an email monitor exits without performing its associated action. If there is an email monitor with lower priority following the one that has exited, then it will execute. See the :Link[Execution Order]{label="Execution Order" overridedLabel="Execution Order" spaceId docId="5TIJl5DWkUhVHpHpiE9BQ" version="v2" docAnchorId="#AdvMonitorExecutionOrder" loadingMethod="dynamic" newTab="false" href="About_Advanced_Email_Monitoring.mdx"} section below for more information.
+</hint>
+
+## Actions Section
+
+Enter the business object and the action you want the email monitor to perform on the business object.
+
+The email monitor performs the action if it meets the configuration options and specified conditions.
+
+<hint type="info">
+  If you leave the **Action Business Object** field blank, the email monitor performs the action on the business object you entered in the **Business Object** field at the top of the form.
+</hint>
+
+### Example
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/YojAvZMUNbFrmCI3Ev_Hp_exampleactionssectionrecord1678x88.png" position="flex-start" size="40" initialPath="../../Resources/Images/Email-images/example_actions_section_record1_678x88.png" githubPath="Content/Resources/Images/Email-images/example_actions_section_record1_678x88.png" showCaption="false"></Image>
+
+In the example above, the email monitor will perform the "Updateincident" action on an **Incident** business object record.
+
+## Execution Order
+
+Where you have more than one email monitor item, each item must be given a priority to establish the order in which the email monitor items are executed. The execution process is ended following either of the two following scenarios:
+
+- An email monitor item's conditions are met, its action is executed, and the execution order process ends.
+- All email monitor items are executed, in priority order, but none of the items conditions are met, no actions are executed, and the execution order process ends.
+
+The diagram below displays the execution order process, where three monitor items are available and you have configured them to find an existing record.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/5n5veRifQSmexTzxgjUvQ_monitoritemexecutionorder.png" alt="THe execution order process for advance email monitor items" position="flex-start" size="40" initialPath="../../Resources/Images/Email-images/monitor_item_execution_order.png" githubPath="Content/Resources/Images/Email-images/monitor_item_execution_order.png" showCaption="false"></Image>

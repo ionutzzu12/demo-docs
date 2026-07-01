@@ -1,0 +1,20 @@
+---
+title: Example: Translating Label Expressions
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:53 GMT+0300 (Eastern European Summer Time)
+---
+
+You can translate labels, including form headers, using the [Local](../../Reference/Functions/local.mdx) built-in function. The translation tool finds the fields marked **Is Localizable** and matches them with their corresponding localized values.
+
+The following is an example of changing the currency label to the local currency:
+
+1. From the Configuration Console, click **Build > Business Objects** to open the **Business Objects** workspace.
+2. Open the **Incident** business object.
+3. Click the **Forms** tab.
+4. Open an incident form with the cost label expression. For example, open the form called **IncidentDetails.HelpDesk.Resolution**.
+5. On the left, expand **Incident** and then expand **Fields**.
+6. Click **Cost**.
+7. On the right side of the form, click the **cost** label.
+8. On the bottom left, click the **Control Properties** tab.
+9. For the **Label Expression** field, enter this in the **Value** field: **$((((local("Cost") + " (") + CurrentGlobalCurrency()) + ") :"))**.
+10. Click **Save**.

@@ -1,0 +1,69 @@
+---
+title: FindAncestor
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:58 GMT+0300 (Eastern European Summer Time)
+---
+
+Returns the closest ancestor of a specified business object instance in a hierarchy of business objects.
+
+For each ancestor business object going upward from a starting business object, this function evaluates the search predicate on the related business object. If a hierarchy business object is not related to one of the related business objects, the application skips it.  See [Expression Grammar](<../Expressions/Expression Grammar.mdx>), :Link[Defining a CI relationship]{label="Defining a CI relationship" overridedLabel="Defining a CI relationship" spaceId docId="BVbRfa1nz6OVrJJFsqBU6" version="v2" docAnchorId="#configuration_items_400625368_1237561" loadingMethod="dynamic" newTab="false" githubPath="../../ServiceDesk/ConfigurationMgmt/Working_with_the_CI_Map.htm#configuration_items_400625368_1237561" href="../../ServiceDesk/ConfigurationMgmt/Working_with_the_CI_Map.mdx"}, and [Using Relationships](../../Configure/Relationships/Adding_a_Relationship_to.mdx).
+
+## Syntax
+
+FindAncestor(hierarchyBoRef, relatedBoRef, recId, searchPredicate)
+
+## Enabled For
+
+For a description of the business object categories, see :Link[Notes on "Enabled For"]{label="Notes on &#x22;Enabled For&#x22;" overridedLabel="Notes on &#x22;Enabled For&#x22;" spaceId docId="xObv2pIDrk60jkEIWs8mD" version="v2" docAnchorId="#Notes" loadingMethod="dynamic" newTab="false" githubPath="_Built_in_Functions.htm#Notes" href="_Built_in_Functions.mdx"}.
+
+| Business Object Category                                                                    | Yes/No |
+| ------------------------------------------------------------------------------------------- | ------ |
+| Business Rules: Before-Save Rules                                                           | Yes    |
+| Business Rules: Calculation Rules (After Save, with or without Also Recalculate on Load)    | Yes    |
+| Business Rules: Calculation Rules (Before Save or Always, without Also Recalculate On Load) | Yes    |
+| Business Rules: Calculation Rules (Before Save or Always, with Recalculate On Load)         | Yes    |
+| Business Rules: Editing Rules                                                               | Yes1   |
+| Business Rules: Initialization Rules                                                        | Yes    |
+| Business Rules: Read Only Rules                                                             | No     |
+| Business Rules: Required Rules                                                              | Yes1   |
+| Business Rules: Validation Rules                                                            | Yes    |
+| Client Expressions                                                                          | No     |
+| Object Permissions                                                                          | No     |
+| Services                                                                                    | Yes    |
+| LDAP                                                                                        | Yes    |
+| Mobile                                                                                      | Yes    |
+| Quick Actions (except UI Quick Actions)                                                     | Yes    |
+| UI Quick Actions                                                                            | No     |
+| Reports                                                                                     | Yes    |
+| Search/Dashboard without field references                                                   | Yes    |
+| Search/Dashboard with field references                                                      | No     |
+| 1. Except when this field appears on a form or is triggered by such a field.                |        |
+
+## Parameters
+
+| Parameter          | Description                                                                                                                                                     |
+| ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| hierarchyObjectRef | The name of the business object (the starting business object) that forms the hierarchy in which to find the ancestor. This is not a business object reference. |
+| relatedObjectRef   | The name of the related business object.                                                                                                                        |
+| recId              | The RecID of the hierarchy business object instance.                                                                                                            |
+| searchPredicate    | (Optional)  Boolean filter expression to evaluate on the related business object.                                                                               |
+
+## Return Value
+
+<Paragraph indent="1">
+  Text value. The RecID of the ancestor instance found.
+</Paragraph>
+
+## Example
+
+$(FindAncestor("Frs\_CompositeContract\_Entity", "ServiceAgreement", EntityLink\_RecID,
+
+<Paragraph indent="1">
+  "$((ServiceLink == \[OtherObject]Service\_Valid) && (Status == \\"Published\\"))"
+</Paragraph>
+
+))
+
+<Paragraph indent="1">
+  In the example above, the application goes up the through the ancestors of the business object specified by the **hierarchyObjectRef** parameter (in this case, Frs\_CompositeContract\_Entity) and looks for the nearest ancestor that has a related business object or a business object related by the **relatedObjectRef** parameter (in this case, a published service agreement) for which the **searchPredicate** parameter evaluates to true.
+</Paragraph>

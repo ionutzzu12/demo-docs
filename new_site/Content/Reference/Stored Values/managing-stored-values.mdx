@@ -1,0 +1,75 @@
+---
+title: Managing Stored Values
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:58 GMT+0300 (Eastern European Summer Time)
+---
+
+## Using the Stored Values Workspace
+
+The **Stored Values** workspace is used to create, delete, and edit stored values. You can access it from the **Build** list in the **Configuration** console.
+
+<ExpandableHeading>
+  ## Creating Stored Values
+
+
+
+  1. From the **Configuration** console's **Build** list, select **Stored Values**.
+  2. From the **Stored Values** workspace, click the **Add** icon.
+  3. Enter the specific details for the stored value:
+     - **Name**: Give the stored value a descriptive name.
+     - **Data Type**: Set the data type returned for the stored value (find a list of Stored Values data types in [About Stored Values](about-stored-values.mdx)).
+     - **Value**: Enter the value that should be stored and returned when the stored value is called.
+       - If your stored value will be used globally (for example, in a dashboard) do not mark it as user specific.
+       - **User Specific**: A user-specific stored value returns a value that is specific to the user calling the stored value.
+       - **Session Persistent**: The stored value retains the user-specific value entered between login sessions.
+
+  <hint type="info" indent="4">
+    - Stored values can only be session persistent when they are set as user-specific; however, session persistence is not a requirement of being user specific.
+    - Stored values always display the default value when viewed in the Stored Values workspace regardless of the user or the stored value's session persistence. The stored value returns the user-specific value an expression calls the value for that user.
+  </hint>
+
+  <Paragraph indent="1">
+    Click the **Save** icon.
+  </Paragraph>
+
+
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Editing Stored Values
+
+  The \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}} edits stored values from the **Stored Values** workspace.
+
+  1. Open the **Configuration** console and select **Stored Values** from the **Build** list.
+  2. Use the column headings to sort and filter the stored values and find the one you want to edit.
+  3. Double-click the field you want to edit and make your changes.
+  4. Click the **Save** icon.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Deleting Stored Values
+
+  The \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}} can delete stored values from the **Stored Values** workspace.
+
+  1. Open the **Configuration** console and select **Stored Values** from the **Build** list.
+  2. Use the workspace column headings to sort and filter the stored values and find the one you want to delete.
+  3. Click the **Delete** icon.
+
+  <hint type="info" indent="2">
+    You can't delete a stored value if it is in use anywhere in \{\{FRS\_VARS.ProductName}}.
+  </hint>
+
+  <Paragraph listStyleType="disc" indent="2">
+    On the pop-up window, click **Yes** to confirm deletion.
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    If the stored value is in use, \{\{FRS\_VARS.ProductName}} shows an error message. Click **See More ...** to see where the stored value is in use.
+  </Paragraph>
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/v_QOHH1KwLAdvVw_MzxZM_stored-value-delete-error.png" size="94" alt="System displays where stored values are in use." isUploading="false" initialPath="i/stored-value-delete-error.png" githubPath="Content/Reference/Stored Values/i/stored-value-delete-error.png" width="944" height="252" showCaption="false" indent="3"></Image>
+
+  <Paragraph indent="1">
+    Click the **Save** icon.
+  </Paragraph>
+</ExpandableHeading>

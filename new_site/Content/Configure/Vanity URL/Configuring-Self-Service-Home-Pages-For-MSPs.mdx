@@ -1,0 +1,71 @@
+---
+title: Configuring Self Service Home Pages for Managed Service Providers
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:53 GMT+0300 (Eastern European Summer Time)
+---
+
+You can customize the Self Service home pages for different roles and/or organization units. The organization unit can either be internal department or an external organization.
+
+<hint type="info">
+  This feature is available in \{\{FRS\_VARS.Company}} \{\{FRS\_VARS.ProductName}} from version 2021.1 onwards.
+</hint>
+
+## Customizing the Self Service Home Page
+
+1. Apply the package available in the MarketPlace.
+
+<Paragraph indent="1">
+  For more information on which package to install and the packages' MarketPlace links, see :Link[Configuring Vanity URL]{label="Configuring Vanity URL" overridedLabel="Configuring Vanity URL" spaceId docId="CpEf4oK8g52_ItgfFmxxw" version="v2" docAnchorId="#Prerequisites" loadingMethod="dynamic" newTab="false" githubPath="Configuring-Vanity-URL.htm#Prerequisites" href="Configuring-Vanity-URL.mdx"}.
+</Paragraph>
+
+2. Enable the Global Constant.
+
+<Paragraph indent="1">
+  a. Log in to \{\{FRS\_VARS.ProductName}} as an Administrator.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Open the Configuration console > **Global Constant** > set **Config Homepage for MSP** as **True**.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. Set **EnableMSPUserValidation** as **True**.
+</Paragraph>
+
+<hint type="info">
+  If the value of the Global constant is **False**, then application will work the same way it did before 2021.1 release.
+</hint>
+
+3. Configure the Self Service Mobile portal from the Configuration console > **Style Editor**.
+
+<Paragraph indent="1">
+  The configuration is done with the combination of **OrgUnit** and **Role** when the [Vanity URL package](https://marketplace.ivanticloud.com/packages/IvantiServiceManagerVanityURLConfiguration) is applied.
+</Paragraph>
+
+<hint type="info">
+  A user belonging to an OrgUnit cannot log in using the vanity URL of another OrgUnit. If the Orgunit has child units, then the users belonging to child OrgUnits can access the vanity URL of the parent OrgUnit. Though the main tenant URL is accessible to all users in any OrgUnit.
+</hint>
+
+<Paragraph indent="1">
+  For more information, see Styling the [Self Service Mobile portal.](../Styles/Styling-the-Self-Service-Mobile-Portal.mdx)
+</Paragraph>
+
+4. Configure the Self Service home pages for Managed Service Providers.
+
+<Paragraph indent="1">
+  a. Log in to the \{\{FRS\_VARS.Self\_Service\_Mobile\_portal}} portal as an Administrator.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Select the **Role** and **Org Unit** for which you want to customize the pages.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. Click the Settings icon <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/iGOb1ol9b6RwQeytAx2zD_settingsicon-ssm.png" size="10" isUploading="false" initialPath="../../Resources/Images/buttons/SettingsIcon-SSM.png" githubPath="Content/Resources/Images/buttons/SettingsIcon-SSM.png" width="16" height="15" showCaption="false"></Image> and edit the widgets as need be.
+</Paragraph>
+
+<Paragraph indent="2">
+  The users belonging to specific OrgUnits will view pages as configured for their OrgUnit.
+</Paragraph>
+
+For more information, see [Configuring Vanity URL](Configuring-Vanity-URL.mdx).

@@ -1,0 +1,62 @@
+---
+title: Roll back from V3 version
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:50 GMT+0300 (Eastern European Summer Time)
+---
+
+**Role**: Administrator
+
+The table below lists the rollback paths supported for each role type when migrating from V3.
+
+| Roles                                                     | Supported Versions                                                                   |
+| --------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| \{\{FRS\_VARS.Neurons\_ITSM\_-\_Self\_Service\_User}}     | V2 (Modern) \{\{FRS\_VARS.Neurons\_ITSM\_-\_Self\_Service\_User}} UI or V1 (Classic) |
+| Non \{\{FRS\_VARS.Neurons\_ITSM\_-\_Self\_Service\_User}} | V1 (Classic) only                                                                    |
+
+<hint type="info">
+  By default, the self service portal uses V3 for new customers. You can change it to V2 (Modern) if required.
+</hint>
+
+### Change the Self Service portal to V2 or V1
+
+To roll back from V3 portal to required version, do the following:
+
+1. Log in to \{\{Primary.Product}} as an \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+2. In the Configuration console, click **Build** > **User Interface Styles** > **Style Editor**.
+3. In the **Exceptions / Custom Roles** section:
+
+<Paragraph indent="1">
+  a. Select **Self Service** from the **Role** dropdown list.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Select **UI v2 (formerly Modern)** or **UI V1** from the **UI** dropdown list.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. Click **Save**.
+</Paragraph>
+
+4. To verify the change, Login as a \{\{FRS\_VARS.Neurons\_ITSM\_-\_Self\_Service\_User}} user. The portal displays the selected UI version.
+
+**For non self service roles to rollback to V1 (Classic)**
+
+To roll back a non self service user role from V3 portal to V1 (Classic), do the following:
+
+1. Log in to \{\{Primary.Product}} as an \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+2. In the Configuration console, click **Build** > **User Interface Styles** > **Style Editor**.
+3. In the **Exceptions / Custom Roles** section:
+
+<Paragraph indent="1">
+  a. Select **Self Service** from the **Role** dropdown list.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Select **UI V1** from the **UI** dropdown list
+</Paragraph>
+
+<Paragraph indent="1">
+  c. Click **Save**.
+</Paragraph>
+
+4. Log in using the selected role to confirm that the portal displays UI V1 (Classic).

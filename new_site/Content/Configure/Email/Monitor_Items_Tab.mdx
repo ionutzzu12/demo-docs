@@ -1,0 +1,322 @@
+---
+title: Using the Monitor Items Tab
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:51 GMT+0300 (Eastern European Summer Time)
+---
+
+Use the **Monitor Items** tab to view existing email monitor items, open a monitor item for editing, delete it, or create a new monitor item.
+
+<hint type="info">
+  The **Monitor Items** tab only appears if you selec&#x74;**&#x20;Advanced Monitoring** from the **Email Processor** field for the inbox configuration. See :Link[Creating an Inbox]{label="Creating an Inbox" overridedLabel="Creating an Inbox" spaceId docId="oxavypV7mXubKfaNhVDO1" version="v2" docAnchorId="#Creating-an-Inbox" loadingMethod="dynamic" newTab="false" githubPath="Inbox_Configuration.htm#Creating-an-Inbox" href="Inbox_Configuration.mdx"}.
+</hint>
+
+New monitor items are created and configured in the **New Inbox Monitor Item** form.
+
+## Create a New Advanced Email Monitor Item
+
+1. Select **New Inbox Monitor Item**. The application displays the **New Inbox Monitor Item** workspace.
+2. Enter the monitor item information.
+
+<table isTableHeaderOn="true">
+  <tr>
+    <td>
+      Field/Parameter
+    </td>
+    <td>
+      Description
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Name
+    </td>
+    <td>
+      This is a mandatory field. Enter a name for the monitor item. This must be a unique name up to a maximum of 50 characters.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Description
+    </td>
+    <td>
+      Enter a description for the monitor item. The description can contain up to a maximum of 255 characters.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Execution Order
+    </td>
+    <td>
+      This is a mandatory field. Enter a number in this numerical field to determine the monitor item execution order. For example, if you enter "2", the monitor item executes if the preceding monitor item with execution order "1" fails.
+      See :Link[Execution Order]{label="Execution Order" overridedLabel="Execution Order" spaceId docId="5TIJl5DWkUhVHpHpiE9BQ" version="v2" docAnchorId="#AdvMonitorExecutionOrder" loadingMethod="dynamic" newTab="false" githubPath="About_Advanced_Email_Monitoring.htm#AdvMonitorExecutionOrder" href="About_Advanced_Email_Monitoring.mdx"} for more information.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Business Object
+    </td>
+    <td>
+      This is a mandatory field. Enter the business object that the monitor item applies to (example: Incident).
+      All group business objects except for Journal are supported.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      **Matching**
+    </td>
+    <td>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Attempt to find existing record
+    </td>
+    <td>
+      Select this checkbox if you want an attempt to be made by the monitor item to identify an existing business object record based on the search options you define in this section. The incoming email is searched in accordance with the search criteria specified. if the search finds the content in the email, it is used to identify an existing business object record.
+      The following options are enabled for selection when this option is selected:
+      - Look for conversation ID.
+      - Try to match based on subject.
+      - Ignore closed records.
+      - Search subject for ID.
+      - Search body for ID.
+      If no existing record is found, the monitor item will continue to execute, and evaluate any conditions you have defined in the **Conditions** section, except where:
+      - You have selected the **Only if existing record found** option.
+      - You have selecte&#x64;**&#x20;Only if contact found** option.
+      If you have selected either one or both of these options in the **Conditions** section, and no record or contact is found, the email monitor will end processing.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Look for conversation ID
+    </td>
+    <td>
+      \{\{FRS\_VARS.ProductName}} identifies an existing record from the **Conversation ID** in an email message.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Try to match based on subject
+    </td>
+    <td>
+      \{\{FRS\_VARS.ProductName}} identifies an existing record based on the subject line of an email message.
+      The following option is available when this option is selected:
+      - Ignore short subjects.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Ignore short subjects
+    </td>
+    <td>
+      \{\{FRS\_VARS.ProductName}} ignores subject lines that are less than 10 characters.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Ignore closed records
+    </td>
+    <td>
+      Selecting this checkbox prevents incoming emails from being matched to records that are in a closed state.
+      - For customers using \{\{FRS\_VARS.ProductName}} 2025.3 or earlier: In addition to ignoring closed records, the system automatically creates a new record and links it to the incoming email.
+      - For customers using \{\{FRS\_VARS.ProductName}} 2025.4 or later: The system ignores the closed record and does not create a new record.
+      Clearing this checkbox displays the **Create new record** and **Append to closed record’s journal** radio buttons for further configuration.
+      - By default, the **Ignore closed records checkbox** is selected.
+      - When you clear the **Ignore closed records** checkbox, the **Append to closed record’s journal** radio button will be selected by default.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Create new record
+    </td>
+    <td>
+      Select this radio button to create a new record when an incoming email references a closed record. The system links the email to a newly created record.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Append to closed record’s journal
+    </td>
+    <td>
+      Select this radio button to allow the system to treat incoming emails that reference a closed record as updates to that record. In this case, the email links to the closed record and is stored as a journal entry.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Look for alphanumeric ID
+    </td>
+    <td>
+      Select this option to return alphanumeric characters (letters and numbers) in the search results.
+      Deselect this option to return only numbers in the search result.
+      Use this option if your Record ID's include letter characters as well as number characters.
+      Two non-alphanumeric characters, underscore "\_", and hyphen "-", are permitted in the returned search result with this option selected.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Conversation ID Behaviour
+    </td>
+    <td>
+      The drop-down list is enabled if you have selected the **Attempt to find existing record** option. Select an option from the list to match records using a conversation ID in an email message:
+      **None**: Does not use conversation ID when searching existing records.
+      **All Business Objects**: The email monitor identifies existing business object records, regardless of business object type, by matching a conversation ID in an email message.
+      **Only Monitored Business Object**: The email monitor only identifies existing business object records that are the same type as the monitored item's business object, by matching a conversation ID in an email message.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Search subject for ID
+    </td>
+    <td>
+      \{\{FRS\_VARS.ProductName}} identifies an existing record from a **Record ID** in the subject of an email message. This is useful receiving messages from automated systems, or if email senders use a template that always includes the **Record ID** in the subject.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Search subject details
+    </td>
+    <td>
+      \{\{FRS\_VARS.ProductName}} identifies an existing record in the subject line of an email message based on the criteria selected in this drop-down, which are described below.
+      If you have selected the **Look for alphanumeric ID** option, both letter and number characters (and the two permitted non-alphanumeric characters, if present) are returned in the search result.
+      - **After term until end of line**: Searches for a **Record ID** that appears after the term provided in the **Search subject after term** field.
+      - **After term until next word/number**: Searches for a **Record ID** that appears after the term provided in the **Search subject after term** field, and then searches until the next word or number.
+      - **Between**: Searches for a **Record ID** between two specified terms provided in the **Search subject between start** and **Search subject between end** fields.
+      - **Look for number**: Searches for the first whole number in the subject. This option is not available if you have selected the **Look for alphanumeric ID** option.
+      - **Number at end of subject**: Searches for a number as the last item in the subject. This option is not available if you have selected the **Look for alphanumeric ID** option.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Search body for ID
+    </td>
+    <td>
+      \{\{FRS\_VARS.ProductName}} identifies an existing record from a **Record ID** in the body of an email message.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Search body details
+    </td>
+    <td>
+      \{\{FRS\_VARS.ProductName}} identifies an existing record in the body of an email message based on the criteria selected in this drop-down list, which are described below.
+      If you have selected the **Look for alphanumeric ID** option, both letter and number characters (and the two permitted non-alphanumeric characters, if present) are returned in the search result.
+      - **After term until end of line**: Searches for a **Record ID** that appears after the term provided in the **Search body after term** field.
+      - **After term until next word/number**: Searches for a **Record ID** that appears after the term provided in the **Search body after term** field, and then searches until the next word or number.
+      - **Between**: Searches for a **Record ID** between two specified terms provided in the **Search body between start** and **Search body between end** fields.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      **Conditions**
+    </td>
+    <td>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Only if existing record found
+    </td>
+    <td>
+      Associated actions are executed only if an existing record is found (using the options and criteria defined in the **ID Existing Record** section above).
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Only if contact found
+    </td>
+    <td>
+      Associated actions are executed only if a contact is identified.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Action condition email property
+    </td>
+    <td>
+      Select a part of the email message from the drop-down list (example: **Subject and body combined**) to search.
+      Some property options seem similar but produce different results when searching for matched values. For example, if you select th&#x65;**&#x20;From** property, validation is performed against a concatenation of the user's name and email address (e.g. "(Henri Bryce) henri.bryce\@address.com"). If you want the validation to run against a name or email address only, choose **From (just name)** or **From (just address)**.
+      You can enter up to four different action conditions for your search. All action conditions you enter must be true for the action to execute (example: If you specify four conditions, then all four conditions must evaluate to true for the action to execute).
+      See the :Link[Email property action condition operators]{label="Email property action condition operators" overridedLabel="Email property action condition operators" spaceId docId="4RRvJ0oyaQtewWDNeeS9y" version="v2" docAnchorId="#ListOfEmailPropertyConditionOperators" loadingMethod="dynamic" newTab="false" href="Monitor_Items_Tab.mdx"} and their descriptions in the table below.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Action condition operator
+    </td>
+    <td>
+      Select an operator from the drop-down list.
+      See the :Link[Action condition operators]{label="Action condition operators" overridedLabel="Action condition operators" spaceId docId="4RRvJ0oyaQtewWDNeeS9y" version="v2" docAnchorId="#ListOfConditionOperators" loadingMethod="dynamic" newTab="false" href="Monitor_Items_Tab.mdx"} and their descriptions in the table below.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Action condition criteria
+    </td>
+    <td>
+      Provide a keyword or phrase, date/time, etc.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      **Actions**
+    </td>
+    <td>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Action Business Object
+    </td>
+    <td>
+      Enter the Business Object the action is associated with.
+      All group business objects except for Journal are supported.
+      This is usually the same business object that the monitor item applies to (as entered in the **Business Object** field above). If you leave this field blank the monitor item looks for the named action associated with the business object entered in the **Business Object** field above. If it fails to find the associated action the monitor item does nothing.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Action Name
+    </td>
+    <td>
+      This is the action the monitor item executes on the monitor item conditions being met.
+      You can display a list of available actions, see :Link[Viewing a List of Quick Actions for a Business Object]{label="Viewing a List of Quick Actions for a Business Object" overridedLabel="Viewing a List of Quick Actions for a Business Object" spaceId docId="L1rMpfFaNyzNJyXZb8B_j" version="v2" docAnchorId="#Viewing-a-List-of-Quick-Actions-for-a-Business-Object" loadingMethod="dynamic" newTab="false" githubPath="../QuickActions/Using_Quick_Actions.htm#Viewing-a-List-of-Quick-Actions-for-a-Business-Object" href="../QuickActions/Using_Quick_Actions.mdx"}. If the action you want the monitor item to execute is not available, you can create a new action, see [Using the Classic Action Designer (CAD)](<../QuickActions/Classical Action Designer/Using_the_Classic_Action_Designer.mdx>) or [Using the Graphical Action Designer (GAD)](<../QuickActions/Graphical Action Designer/Using_the_Graphical_Action_Designer.mdx>).
+    </td>
+  </tr>
+</table>
+
+3. Click **Save**.
+
+### Email property action condition operators
+
+The property action condition operators are available in the **Action condition email property** drop-down list. They are listed as named in the **Title** column in the table below. The entries in the **Function Syntax** column are the equivalent naming as used in the **Expression Editor**.
+
+Each email property returns a specific value type used to evaluate the condition, this can be plain text, HTML, number, etc. The returned values are subsequently evaluated to determine if true or false according to the evaluating condition (example: Greater than, Less than, Equals, Ends with, etc).
+
+Consideration should be given to the evaluating condition operator used for the query so that it is compatible with, and can be used to correctly evaluate the value returned by the selected email property (see :Link[Action condition operators]{label="Action condition operators" overridedLabel="Action condition operators" spaceId docId="4RRvJ0oyaQtewWDNeeS9y" version="v2" docAnchorId="#ListOfConditionOperators" loadingMethod="dynamic" newTab="false" href="Monitor_Items_Tab.mdx"} below).
+
+Example: If you use "Ends with" and the email property selected returns HTML, then you may get an unexpected result as the returned content ends with an HTML tag. For this example, it is advised that you use the "Contains" action condition operator to return the expected result.
+
+### Action condition operators
+
+The action condition operators are available in the **Action condition operator** drop-down list.
+
+| Operator         | Description                                                                                                                            |
+| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| Begins with      | Finds email items that begin with the value in the criteria field.                                                                     |
+| Contains         | Does an SQL Server Full-Text search to find email items that contain the text in the criteria field.                                   |
+| Does not contain | Finds email items that do not contain the text in the criteria field.                                                                  |
+| Empty            | Finds all email items where the field value is empty.                                                                                  |
+| Ends with        | Finds email items that end with the value in the criteria field.                                                                       |
+| Equals           | Finds email items where value in field equals value in the criteria field.                                                             |
+| Greater or equal | Finds all email items where the value is greater than or equal to the value in the criteria field.                                     |
+| Greater than     | Finds all email items where the value is greater than the value in the criteria field.                                                 |
+| Less or equal    | Finds all email items where the value is less than or equal to the value in the criteria field.                                        |
+| Less than        | Finds all email items where the value is less than the value in the criteria field.                                                    |
+| Like             | Finds email items where the value matches the value and its wildcard in the criteria field. For example, Jo% will find Joe, John, etc. |
+| Not empty        | Finds all email items where the field value is not empty.                                                                              |
+| Not equal        | Finds email items where value in field does not equal the value in the criteria field.                                                 |
+| Not like         | Finds all email items that do not match a value and its wildcard.                                                                      |
+
+## Delete a Monitor Item
+
+1. Select the monitor item you want to delete in the **Monitor Items** tab list.
+2. Click **Delete**.

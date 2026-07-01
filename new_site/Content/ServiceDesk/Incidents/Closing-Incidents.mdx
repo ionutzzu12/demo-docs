@@ -1,0 +1,57 @@
+---
+title: Closing Incidents
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:47 GMT+0300 (Eastern European Summer Time)
+---
+
+Attributing a cause code and then closing the incident lets you determine when incidents are resolved and helps you classify root causes.
+
+When an incident is resolved, the application notifies the customer, who has the option of changing the status of the incident if the resolution is not satisfactory. After a certain number of days in the resolved status, the application automatically sets the incident to closed.
+
+<hint type="info">
+  By default, the requester has 7 business days to respond to the incident resolution; else, the application sets the incident status to **Closed**.
+</hint>
+
+When an incident is resolved, the application updates the cost of the incident by rolling up the cost of all the associated tasks. The application also updates the cost when the incident is closed (in case additional tasks were completed after the incident was resolved). Along with the cost, the application also rolls up the time specified in the **Actual Effort** field of each completed task to show the total time spent on the incident, as shown in the **Time** field.
+
+1. Log in to the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Console}} console.
+2. Open the **Incident** workspace.
+3. Open the incident to close.
+4. Ensure that all of the fields accurately reflect the issue and resolution.
+5. Ensure that any pending tasks are set to closed or canceled.
+6. From the **Status** drop-down list, select **Closed**.
+7. Click **Save**.
+
+<Paragraph indent="1">
+  The application closes the incident and emails the requester of the closure, along with a link to a survey.
+</Paragraph>
+
+## Using "Quick Close" to Close an Incident
+
+"Quick close" lets you close an incident with a single click, assuming that the data has been updated. If any required fields are blank, the application displays the **Quick Close Failed** window and allows you to update the incomplete fields.
+
+1. Log in to the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Console}} console.
+2. Open the **Incident** workspace.
+3. Open the incident to close.
+4. From the toolbar, click **Close**.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/07qnbYF4Nnm-u1D1-yh-Y_close-incident.jpg" alt="Quick close button on an Incident record" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/close-incident.jpg" githubPath="Content/Resources/Images/help-images/close-incident.jpg" showCaption="false"></Image>
+
+<Paragraph indent="1">
+  The application displays a dialog box.
+</Paragraph>
+
+5. Enter information.
+
+| Field                     | Description                                                                                                                                                                                                                        |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Select Cause Code         | The cause of the incident.<br />Configuration<br />Documentation Request<br />Hardware<br />Install Request<br />Installation<br />Linked Problem<br />Other<br />Reference Request<br />Session Reset<br />Software<br />Training |
+| Is first call resolution? | Specifies if the incident was resolved during the initial call.                                                                                                                                                                    |
+| Resolution                | Describe the actions taken to resolve this incident.                                                                                                                                                                               |
+
+6. Click **OK** to close the dialog box.
+7. Click **Save**.
+
+<Paragraph indent="1">
+  The application closes the incident and emails the requester of the closure. A link to a survey is also sent to the requester.
+</Paragraph>

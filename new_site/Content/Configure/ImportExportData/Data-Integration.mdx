@@ -1,0 +1,92 @@
+---
+title: Importing and Exporting Data
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:52 GMT+0300 (Eastern European Summer Time)
+---
+
+The \{\{FRS\_VARS.ProductName}} architecture easily connects to and integrates with data sources and simplifies the import of external data from other applications.
+
+Use the Data Integration Wizard to import data from external sources into \{\{FRS\_VARS.ProductName}}. Importing records is an important activity when setting up your Service Desk. In \{\{FRS\_VARS.ProductName}}, importing records helps to quickly create new employees, incidents, tasks, or other business object records.
+
+You can import files up to 250 MB using manual file upload or files up to 500 MB using an FTP, Secure FTP, or shared file connection. (File share is only available for on-premises deployments.)
+
+To import a file from the network (with VPN access) or from an FTP site, ensure that you have the necessary permissions to access the file.
+
+- :Link[About the Data Integration Wizard]{label="About the Data Integration Wizard" overridedLabel="About the Data Integration Wizard" spaceId docId="Bqdqz7jP_wiYj2synDcym" version="v2" docAnchorId="#About2" loadingMethod="dynamic" newTab="false" href="Data-Integration.mdx"}
+- :Link[How Data Integration Works]{label="How Data Integration Works" overridedLabel="How Data Integration Works" spaceId docId="Bqdqz7jP_wiYj2synDcym" version="v2" docAnchorId="#How" loadingMethod="dynamic" newTab="false" href="Data-Integration.mdx"}
+- :Link[About Importing Multiple Files]{label="About Importing Multiple Files" overridedLabel="About Importing Multiple Files" spaceId docId="Bqdqz7jP_wiYj2synDcym" version="v2" docAnchorId="#Import_multiple_files" loadingMethod="dynamic" newTab="false" href="Data-Integration.mdx"}
+- [About Configuring Data Integration](About-Configuring-Data-Integration.mdx)
+- [Configuring Data Import Connections](Data-Import-Connections.mdx)
+- [Importing Discovery Data from Ivanti Neurons](Import-Discovery-Data-From-Neurons.mdx)
+- [Scheduling Sync from Neurons Discovery to Neurons for ITSM](<Scheduling Sync From Neurons Discovery to ISM.mdx>)
+- [About Importing Data from SCCM into Neurons for ITSM](SCCM-Configuration.mdx)
+- [Importing Data from Ivanti HEAT Discovery Release 9.3.x or Later](Disc_Data_Import.mdx)
+- [Importing Hierarchical XML Data](About-Hierarchical-XML-Format.mdx)
+- [Using the Run Program for the Remote Host](Run-Program.mdx)
+- [Exporting Data](Data-Export.mdx)
+- [Exporting Data From Neurons for ITSM to Ivanti HEAT Discovery Release 9.x](Disc_Data_Export.mdx)
+- [Viewing the Integration Status and History](<Integration Status and History.mdx>)
+- [Configuring LDAP Settings](LDAP_Settings.mdx)
+
+## About the Data Integration Wizard
+
+To access the Data Integration Wizard, from the Configuration Console, click **Extend** > **Integration Tool**.
+
+The Data Integration Wizard allows you to:
+
+- Map the source file to the target business object while setting up the import instead of setting up the mapping prior to importing as in the existing Business Object Uploader.
+- Specify a template file to set up the mapping if the actual data file is too large.
+- View details of all the existing schedules in \{\{FRS\_VARS.ProductName}} when setting up the import.
+
+## How Data Integration Works
+
+Integration enables you to set up and maintain data across two systems.
+
+From the **Integration** workspace, you can access your configured import files. You can schedule imports to run at specific times, or manually import data as needed.
+
+- You have a file containing the data to import. The file can be in .CSV, .XLS, or .XLSX (Microsoft Excel) format.
+- You must have share access to both the file (and its enclosing directories) and the \{\{FRS\_VARS.ProductName}} server receiving the data.
+- The data goes into the database as new records.
+
+## About Importing Multiple Files
+
+To import multiple files, you can use the asterisk wildcard in the **Data File Name** field. For example, if you enter Test\*.csv, all CSV files beginning with Test are imported.
+
+<hint type="info">
+  You cannot use wildcards to import multiple files when importing data via FTP. You can only use wildcards to import multiple files when importing data from a shared network folder.
+</hint>
+
+If you have the following files, for example:
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Ww154MGt40TfYcYeec5lW_data-import-example.png" alt="Image of file examples." position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/data import example.png" githubPath="Content/Resources/Images/help-images/data import example.png" showCaption="false"></Image>
+
+- Files are processed based on their creation date and time, so TesterData\_o1.csv is processed first, although alphabetically it is fifth, and TesterData\_1.csv is processed fifth, although it is first alphabetically.
+- A \Processed folder is created in the path if it does not exist. For this example, it is \\\CA-L02540\test\Processed\\. As each file is imported, it is moved to the \Processed folder. When the import is complete, all six files above will be moved from the \test folder into the \test\Processed folder.
+- As each file is processed, the **Integration History - Source Name** column is updated by appending each processed file name, so it will be
+  - TesterData\_1.csv
+
+<Paragraph indent="1">
+  Then
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  TesterData\_2.csv,
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  TesterData\_3.csv
+</Paragraph>
+
+<Paragraph indent="1">
+  And so on ...
+</Paragraph>
+
+You can import CSV, XLSX, and XML files with wild card entries or common file name entries and also view the number of files imported along with the number of rows imported. The application displays the Error Stats message for the files that are not imported.
+
+*Files Imported Status Along with the Number of Rows Imported - Example 1*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/02K6FLt1rS9cReZ6tvORB_integration-history.JPG" alt="Files imported status along with the number of rows imported - Example 1." position="flex-start" size="40" initialPath="../../Resources/Images/help-images/integration history.JPG" githubPath="Content/Resources/Images/help-images/integration history.JPG" showCaption="false"></Image>
+
+*Error Stats Message for Files not imported - Example 2*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/9kAX25aOFs8yWf5SOo1fW_integration-log.JPG" alt="Error Stats Message for files not imported - Example 2 " position="flex-start" size="40" initialPath="../../Resources/Images/help-images/integration log.JPG" githubPath="Content/Resources/Images/help-images/integration log.JPG" showCaption="false"></Image>

@@ -1,0 +1,49 @@
+---
+title: Example: Using the Clone Object Quick Action (CAD)
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:57 GMT+0300 (Eastern European Summer Time)
+---
+
+Use the **Clone Object** \{\{FRS\_VARS.Quick\_Action}} to copy and overwrite specified fields from a business object record. This example will use the **Clone Object** \{\{FRS\_VARS.Quick\_Action}} to clone an Incident record in the Incident Workspace while updating values for various fields:
+
+- **Status**: Update the value to prompt the user to select a status.
+- **Owner**: Update the value to make the user who is cloning the record the default owner.
+- **Owner Team (Team)**: Update the value to make the \{\{FRS\_VARS.Quick\_Action}} user's team the default
+- **Cost**: Remove values from this field when cloning.
+- **Total Time Spent**: Remove values from this field when cloning.
+- **LastModBy**: Update the modified date to match the current user's date and time.
+
+See [Clone Object Action](<../templates/Clone Object.mdx>).
+
+*Clone Object Action*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/8QLAAyEmtSiggFAriKxzd_qacloneexample.png" size="40" isUploading="false" initialPath="../../../../Resources/Images/help-images/qa_clone_example.png" githubPath="Content/Resources/Images/help-images/qa_clone_example.png" width="1153" height="599" showCaption="false"></Image>
+
+1. From the Configuration Console, click **Build > Automation Tools > Quick Actions** to open the **Actions Manager** workspace. The list of business objects that have actions appears.
+2. Click **Add/Edit** for the **Incident** business object. The Actions Center appears.
+3. Click the **Create New Actions** tab.
+4. Select **Clone Object** from the list of options.
+5. From the **Clone Object** page, configure the :Link[Parameters]{label="Parameters" overridedLabel="Parameters" spaceId docId="OeCUgo0JJVzdjl4q7sqCp" version="v2" docAnchorId="#Parameters" loadingMethod="dynamic" newTab="false" githubPath="../templates/Clone Object.htm#Parameters" href="../templates/Clone Object.mdx"}.
+6. Choose multiple fields to update when you clone the record:
+   1. Update the value for **Status** with a user prompt:
+      1. Choose **Status** from the **Field Name** dropdown list.
+      2. Create a user prompt by entering $(Prompt("Select a status for the new incident", "")) in the **Field Value** parameter.
+   2. Click :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/JtIxGMfjslfCSitXWBu4o_addgreen.png" alt="add" caption size="10" width="17" height="15"} to add a row.
+   3. Update the value for **Owner&#x20;**&#x74;o make the default owner of the new record the person who runs the **Clone Object** \{\{FRS\_VARS.Quick\_Action}}.
+      1. Choose **Owner** from the **Field Name** dropdown list.
+      2. Change the default owner to the user who runs the \{\{FRS\_VARS.Quick\_Action}} by entering $(CurrentLoginId()) in the in the **Field Value** parameter.
+   4. Click :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/JtIxGMfjslfCSitXWBu4o_addgreen.png" alt="add" caption size="10" width="17" height="15"} to add a row.
+   5. Update the **Owner Team (Team)** field to be the same as the user who runs the **Clone Object** \{\{FRS\_VARS.Quick\_Action}}.
+      1. Choose **Owner Team (Team)** from the **Field Name** dropdown list.
+      2. Enter $(CurrentUserTeam()) in the **Field Value** parameter to update this field with the acting user's team.
+   6. Click :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/JtIxGMfjslfCSitXWBu4o_addgreen.png" alt="add" caption size="10" width="17" height="15"} to add a row.
+   7. Prevent copying values from specific fields; for example, **Cost** and **Total Time Spent**.
+      1. Choose the field you want to leave blank in the cloned record (**Cost** and **Total Time Spent** in this example).
+      2. For each field you choose to leave blank, enter 0 in the corresponding **Field Value** parameter.
+   8. Click :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/JtIxGMfjslfCSitXWBu4o_addgreen.png" alt="add" caption size="10" width="17" height="15"} to add a row.
+   9. Change the **LastModBy&#x20;**&#x64;ate to the current date and time.
+      1. Choose **LastModBy&#x20;**&#x66;rom the **Field Name** dropdown list.
+      2. Enter $(CurrentDateTime()) in the **Field Value** parameter.
+   10. Click **Save**.
+7. Navigate to an Incident record.
+8. Run the **Clone Object** Quick Action you created to observe the outcome.

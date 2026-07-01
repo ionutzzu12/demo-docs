@@ -1,0 +1,544 @@
+---
+title: Configuring the Salesforce.com Integration
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:53 GMT+0300 (Eastern European Summer Time)
+---
+
+<hint type="info">
+  The Salesforce.com integration was first introduced in \{\{FRS\_VARS.ProductName}} Release 2015.2 as an optional feature. The feature has been enhanced in \{\{FRS\_VARS.ProductName}} Release 2016.1.
+</hint>
+
+- :Link[About the Salesforce.com Integration]{label="About the Salesforce.com Integration" overridedLabel="About the Salesforce.com Integration" spaceId docId="OCcKfzf85OCyeXvEhYuIe" version="v2" docAnchorId="#About_the_Salesforce.comIntegration" loadingMethod="dynamic" newTab="false" href="SalesForce Integration.mdx"}
+- :Link[Setting Up the Salesforce.com System]{label="Setting Up the Salesforce.com System" overridedLabel="Setting Up the Salesforce.com System" spaceId docId="OCcKfzf85OCyeXvEhYuIe" version="v2" docAnchorId="#Setting_Up_the_SalesForce.comSystem" loadingMethod="dynamic" newTab="false" href="SalesForce Integration.mdx"}
+- :Link[Installing the SalesForce.com Integration in Ivanti]{label="Installing the SalesForce.com Integration in Ivanti" overridedLabel="Installing the SalesForce.com Integration in Ivanti" spaceId docId="OCcKfzf85OCyeXvEhYuIe" version="v2" docAnchorId="#Installing_the_SalesForce.comIntegration" loadingMethod="dynamic" newTab="false" href="SalesForce Integration.mdx"}
+- :Link[Additional Ivanti Information]{label="Additional Ivanti Information" overridedLabel="Additional Ivanti Information" spaceId docId="OCcKfzf85OCyeXvEhYuIe" version="v2" docAnchorId="#Configuring_the_HEATSettings" loadingMethod="dynamic" newTab="false" href="SalesForce Integration.mdx"}
+- :Link[Additional Salesforce.com Information]{label="Additional Salesforce.com Information" overridedLabel="Additional Salesforce.com Information" spaceId docId="OCcKfzf85OCyeXvEhYuIe" version="v2" docAnchorId="#Additional_Salesforce.comInformation" loadingMethod="dynamic" newTab="false" href="SalesForce Integration.mdx"}
+
+## About the Salesforce.com Integration
+
+- :Link[About the Integration]{label="About the Integration" overridedLabel="About the Integration" spaceId docId="OCcKfzf85OCyeXvEhYuIe" version="v2" docAnchorId="#About_the_Integration" loadingMethod="dynamic" newTab="false" href="SalesForce Integration.mdx"}
+- :Link[Prerequisites]{label="Prerequisites" overridedLabel="Prerequisites" spaceId docId="OCcKfzf85OCyeXvEhYuIe" version="v2" docAnchorId="#Prerequisites" loadingMethod="dynamic" newTab="false" href="SalesForce Integration.mdx"}
+
+### About the Integration
+
+The Salesforce.com integration is an optional integration. This integration allows you to synchronize contacts and accounts between Salesforce.com and \{\{FRS\_VARS.ProductName}}. There are three supported mechanisms in this integration:
+
+- You can do a bulk import of accounts and contacts from Salesforce.com to \{\{FRS\_VARS.ProductName}} to initially synchronize the two systems.
+- You can configure Salesforce.com to send updates to \{\{FRS\_VARS.ProductName}} when new accounts and contacts are created or existing ones are updated.
+- \{\{FRS\_VARS.ProductName}} can update Salesforce.com contacts when modified through a quick action. You can call the quick action manually or configure a workflow to automate the quick action, depending on whether you want all updates to \{\{FRS\_VARS.ProductName}} contacts to be reflected back to Salesforce.com.
+
+You must configure both \{\{FRS\_VARS.ProductName}} and Salesforce.com to enable this integration. :Link[Additional Ivanti Information]{label="Additional Ivanti Information" overridedLabel="Additional Ivanti Information" spaceId docId="OCcKfzf85OCyeXvEhYuIe" version="v2" docAnchorId="#Configuring_the_HEATSettings" loadingMethod="dynamic" newTab="false" href="SalesForce Integration.mdx"} describes changes to \{\{FRS\_VARS.ProductName}} to support importing records, to receive the notifications of changes from Salesforce.com, and to be able to send updates to Salesforce.com. :Link[Setting Up the Salesforce.com System]{label="Setting Up the Salesforce.com System" overridedLabel="Setting Up the Salesforce.com System" spaceId docId="OCcKfzf85OCyeXvEhYuIe" version="v2" docAnchorId="#Setting_Up_the_SalesForce.comSystem" loadingMethod="dynamic" newTab="false" href="SalesForce Integration.mdx"} describes how to configure Salesforce.com to notify \{\{FRS\_VARS.ProductName}} when an account or contact is created or edited.
+
+### Prerequisites
+
+To use the Salesforce.com integration, you must have originally installed \{\{FRS\_VARS.ProductName}} Release 2013.2 or later on your application. If you originally installed an earlier version of \{\{FRS\_VARS.ProductName}} and then upgraded to \{\{FRS\_VARS.ProductName}} Release 2013.2 or later, the Salesforce.com integration will not work.
+
+You must have the following components installed and running on your \{\{FRS\_VARS.ProductName}} application for the Salesforce.com integration to work:
+
+- Message queue
+- Integration service
+- Workflow service
+
+## Setting Up the Salesforce.com System
+
+- :Link[Getting Ready to Configure the Salesforce.com System]{label="Getting Ready to Configure the Salesforce.com System" overridedLabel="Getting Ready to Configure the Salesforce.com System" spaceId docId="OCcKfzf85OCyeXvEhYuIe" version="v2" docAnchorId="#Getting_Ready_to_Configure_the_Salesforce.com_System" loadingMethod="dynamic" newTab="false" href="SalesForce Integration.mdx"}
+- :Link[Creating or Resetting the Security Token]{label="Creating or Resetting the Security Token" overridedLabel="Creating or Resetting the Security Token" spaceId docId="OCcKfzf85OCyeXvEhYuIe" version="v2" docAnchorId="#Creating_or_Resetting_the_Security_Token" loadingMethod="dynamic" newTab="false" href="SalesForce Integration.mdx"}
+- :Link[Creating a Remote Site]{label="Creating a Remote Site" overridedLabel="Creating a Remote Site" spaceId docId="OCcKfzf85OCyeXvEhYuIe" version="v2" docAnchorId="#Editing_the_Remote_Site_Settings" loadingMethod="dynamic" newTab="false" href="SalesForce Integration.mdx"}
+
+### Getting Ready to Configure the Salesforce.com System
+
+- Before you begin, you must have a valid Salesforce.com account. If you do not have one, you can create a developer account in Salesforce.com for testing purposes. Go to [https://developer.salesforce.com/signup](https://developer.salesforce.com/signup) to create the account.
+
+<hint type="info">
+  * You must copy and paste the link above. You cannot click on it to launch it as it does not work correctly when you click on it.
+  * If you are installing the Salesforce.com integration into a sandbox organization you must replace the initial portion of the URL with [https://test.salesforce.com](http://tests.salesforce.com/).
+</hint>
+
+### Creating or Resetting the Security Token
+
+1. Log into Salesforce.com. The application displays the Salesforce.com home page.
+2. At the top of the page, click the down arrow next to your name and select either **Setup** or **My Settings**.
+3. From the left panel, do one of the following:
+   - If you clicked **Setup**, select **My Personal Information > Reset My Security Token**.
+   - If you clicked **My Settings**, select **Personal > Reset My Security Token**.
+4. Click **Reset Security Token**. Salesforce.com emails you a new security token. Keep this email.
+
+### Creating a Remote Site
+
+1. Log into Salesforce.com. The application displays the Salesforce.com home page.
+2. Click **Remote Site Settings**. Salesforce.com displays the **All Remote Sites** page.
+3. Create a new remote site by clicking **New Remote Site**. Salesforce.com displays the **Remote Site Edit** page.
+4. Enter information into the fields.
+
+| Field                     | Description                                                                           |
+| ------------------------- | ------------------------------------------------------------------------------------- |
+| Remote Site Name          | The name of the new remote site. For example, enter **HEATTarget**.                   |
+| Remote Site URL           | The URL of the new remote site. For example, enter **https\://mycompany.saasit.com**. |
+| Disable Protocol Security | Disables security for the new remote site.  Leave unchecked.                          |
+| Description               | An optional description.                                                              |
+| Active                    | Specifies if the new remote site is active. Check this option.                        |
+
+5. Click **Save**.
+
+## Installing the SalesForce.com Integration in Ivanti
+
+- :Link[About Configuring the Settings in Ivanti]{label="About Configuring the Settings in Ivanti" overridedLabel="About Configuring the Settings in Ivanti" spaceId docId="OCcKfzf85OCyeXvEhYuIe" version="v2" docAnchorId="#About_Configuring_the_Settings_in_HEAT" loadingMethod="dynamic" newTab="false" href="SalesForce Integration.mdx"}
+- :Link[Verifying the External Contact Business Object]{label="Verifying the External Contact Business Object" overridedLabel="Verifying the External Contact Business Object" spaceId docId="OCcKfzf85OCyeXvEhYuIe" version="v2" docAnchorId="#Verifying_the_External_Contact_Business_Object" loadingMethod="dynamic" newTab="false" href="SalesForce Integration.mdx"}
+- :Link[Configuring the Salesforce.com External Contact Layout]{label="Configuring the Salesforce.com External Contact Layout" overridedLabel="Configuring the Salesforce.com External Contact Layout" spaceId docId="OCcKfzf85OCyeXvEhYuIe" version="v2" docAnchorId="#Configuring_the_Salesforce.comLayout" loadingMethod="dynamic" newTab="false" href="SalesForce Integration.mdx"}
+- :Link[Configuring the Salesforce.com Account Layout]{label="Configuring the Salesforce.com Account Layout" overridedLabel="Configuring the Salesforce.com Account Layout" spaceId docId="OCcKfzf85OCyeXvEhYuIe" version="v2" docAnchorId="#Configuring_the_Salesforce.comAccount_Layout" loadingMethod="dynamic" newTab="false" href="SalesForce Integration.mdx"}
+- :Link[Adding the Salesforce.com Configuration to Ivanti]{label="Adding the Salesforce.com Configuration to Ivanti" overridedLabel="Adding the Salesforce.com Configuration to Ivanti" spaceId docId="OCcKfzf85OCyeXvEhYuIe" version="v2" docAnchorId="#Adding_the_Salesforce.comConfiguration_toHEAT" loadingMethod="dynamic" newTab="false" href="SalesForce Integration.mdx"}
+- :Link[Specifying Trusted IP Addresses]{label="Specifying Trusted IP Addresses" overridedLabel="Specifying Trusted IP Addresses" spaceId docId="OCcKfzf85OCyeXvEhYuIe" version="v2" docAnchorId="#Specifying_Trusted_IPAddresses" loadingMethod="dynamic" newTab="false" href="SalesForce Integration.mdx"}
+- :Link[Updating the CreateSFContact Quick Action]{label="Updating the CreateSFContact Quick Action" overridedLabel="Updating the CreateSFContact Quick Action" spaceId docId="OCcKfzf85OCyeXvEhYuIe" version="v2" docAnchorId="#Updating_the_CreateSFContact_QuickAction" loadingMethod="dynamic" newTab="false" href="SalesForce Integration.mdx"}
+- :Link[Updating the Salesforce.com Connector]{label="Updating the Salesforce.com Connector" overridedLabel="Updating the Salesforce.com Connector" spaceId docId="OCcKfzf85OCyeXvEhYuIe" version="v2" docAnchorId="#Updating_the_Salesforce.comConnector" loadingMethod="dynamic" newTab="false" href="SalesForce Integration.mdx"}
+- :Link[Adding an API Key]{label="Adding an API Key" overridedLabel="Adding an API Key" spaceId docId="OCcKfzf85OCyeXvEhYuIe" version="v2" docAnchorId="#Adding_an_APIKey" loadingMethod="dynamic" newTab="false" href="SalesForce Integration.mdx"}
+- :Link[Editing the Outbound Messages]{label="Editing the Outbound Messages" overridedLabel="Editing the Outbound Messages" spaceId docId="OCcKfzf85OCyeXvEhYuIe" version="v2" docAnchorId="#Editing_the_Outbound_Messages" loadingMethod="dynamic" newTab="false" href="SalesForce Integration.mdx"}
+- :Link[Customizing the Salesforce.com Form]{label="Customizing the Salesforce.com Form" overridedLabel="Customizing the Salesforce.com Form" spaceId docId="OCcKfzf85OCyeXvEhYuIe" version="v2" docAnchorId="#Customizing_the_Salesforce.com_Form" loadingMethod="dynamic" newTab="false" href="SalesForce Integration.mdx"}
+
+### About Configuring the Settings in Ivanti
+
+You can import data from Salesforce.com into \{\{FRS\_VARS.ProductName}} by importing a .CSV file using the \{\{FRS\_VARS.ProductName}} data import tool (as described in [Configuring Data Import Connections](../ImportExportData/Data-Import-Connections.mdx)). There are connectors created already in \{\{FRS\_VARS.ProductName}} for importing account and contact data. These connections are called **Account Import** and **Contact Import**.
+
+The subsequent data flow between \{\{FRS\_VARS.ProductName}} and Salesforce.com is bi-directional. From the Salesforce.com side, any new accounts or contact business objects and succeeding updates on either business object triggers a web service call to insert or update into \{\{FRS\_VARS.ProductName}}. From the \{\{FRS\_VARS.ProductName}} side, any update on an existing contact triggers a \{\{FRS\_VARS.ProductName}} workflow where a quick action calls the Salesforce.com web service to update the corresponding contact in Salesforce.com.
+
+### Verifying the External Contact Business Object
+
+You must verify and remove certain required attributes in some of the fields in the **External Contact** business object if the **Primary Email** and **LoginID** fields are required. 
+
+- :Link[Determining if the PrimaryEmail and LoginID Fields are Required]{label="Determining if the PrimaryEmail and LoginID Fields are Required" overridedLabel="Determining if the PrimaryEmail and LoginID Fields are Required" spaceId docId="OCcKfzf85OCyeXvEhYuIe" version="v2" docAnchorId="#Determining_if_the_PrimaryEmail_and_LoginID_Fields_are_Required" loadingMethod="dynamic" newTab="false" href="SalesForce Integration.mdx"}
+- :Link[Configuring the LoginID Field]{label="Configuring the LoginID Field" overridedLabel="Configuring the LoginID Field" spaceId docId="OCcKfzf85OCyeXvEhYuIe" version="v2" docAnchorId="#Configuring_the_LoginIDField" loadingMethod="dynamic" newTab="false" href="SalesForce Integration.mdx"}
+- :Link[Configuring the PrimaryEmail Field]{label="Configuring the PrimaryEmail Field" overridedLabel="Configuring the PrimaryEmail Field" spaceId docId="OCcKfzf85OCyeXvEhYuIe" version="v2" docAnchorId="#Configuring_the_PrimaryEmailField" loadingMethod="dynamic" newTab="false" href="SalesForce Integration.mdx"}
+- :Link[Disabling the PrimaryEmail and LoginID Fields]{label="Disabling the PrimaryEmail and LoginID Fields" overridedLabel="Disabling the PrimaryEmail and LoginID Fields" spaceId docId="OCcKfzf85OCyeXvEhYuIe" version="v2" docAnchorId="#Disabling_the_PrimaryEmail_and_LoginID_Fields" loadingMethod="dynamic" newTab="false" href="SalesForce Integration.mdx"}
+
+### Determining if the PrimaryEmail and LoginID Fields are Required
+
+Follow these steps to determine if those fields are required:
+
+1. From the Configuration Console, click **Build > Business Objects**.
+2. Open the **External Contact** business object.
+3. Click the **Business Rules** tab.
+4. Click **Required Rules**.
+5. Look at the rules. If the **LoginID** and **PrimaryEmail** fields are required, there are rules for them listed in this section.
+
+### Configuring the LoginID Field
+
+If the **LoginID** field is required, do the following:
+
+1. From the Configuration Console, click **Build > Business Objects**.
+2. Open the **FRS\_CompositeContract\_Identity** business object.
+3. Click the **Fields** tab.
+4. Open the **LoginID** field.
+5. Under the **Field Attributes** header, check **Nullable**.
+6. Click the **Indexes** tab.
+7. Open the **UN\_IdentityContract\_Name** index.
+8. Add two new filters by doing the following:
+
+<Paragraph indent="1">
+  a. Under the **Filter Expression** header, click the **add filter** <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/JtIxGMfjslfCSitXWBu4o_addgreen.png" size="10" isUploading="false" initialPath="../../Resources/Images/buttons/add_green.png" githubPath="Content/Resources/Images/buttons/add_green.png" width="17" height="15" showCaption="false"></Image> icon.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Under the **Field** heading, click **not set**.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. From the drop-down menu, select **Login ID**.
+</Paragraph>
+
+<Paragraph indent="1">
+  d. Under the **Filter Expression** header, click the **add filter** <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/JtIxGMfjslfCSitXWBu4o_addgreen.png" size="10" isUploading="false" initialPath="../../Resources/Images/buttons/add_green.png" githubPath="Content/Resources/Images/buttons/add_green.png" width="17" height="15" showCaption="false"></Image> icon.
+</Paragraph>
+
+<Paragraph indent="1">
+  e. Under the **Field** heading, click **not set**.
+</Paragraph>
+
+<Paragraph indent="1">
+  f. From the drop-down menu, select **Login ID**.
+</Paragraph>
+
+<Paragraph indent="1">
+  g. Under the **Operation** heading, click **NotNull**.
+</Paragraph>
+
+<Paragraph indent="1">
+  h. From the drop-down menu, select **NotEquals**.
+</Paragraph>
+
+<Paragraph indent="1">
+  i. Under the **Value** heading, click **not set**.
+</Paragraph>
+
+<Paragraph indent="1">
+  j. From the drop-down menu, enter **"**.
+</Paragraph>
+
+9. Click **Save**.
+
+### Configuring the PrimaryEmail Field
+
+If the **Primary Email** field is required, do the following:
+
+1. From the Configuration Console, click **Build > Business Objects**.
+2. Open the **FRS\_CompositeContract\_Contact** business object.
+3. Click the **Fields** tab.
+4. Open the **PrimaryEmail** field.
+5. Under the **Field Attributes** header, check **Nullable**.
+6. Click the **Indexes** tab.
+7. Open the **UN\_ContactContract\_Email** index.
+8. Add two new filters by doing the following:
+
+<Paragraph indent="1">
+  a. Under the **Filter Expression** header, click the **add filter** <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/JtIxGMfjslfCSitXWBu4o_addgreen.png" size="10" isUploading="false" initialPath="../../Resources/Images/buttons/add_green.png" githubPath="Content/Resources/Images/buttons/add_green.png" width="17" height="15" showCaption="false"></Image> icon.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Under the **Field** heading, click **not set**.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. From the drop-down menu, select **PrimaryEmail**.
+</Paragraph>
+
+<Paragraph indent="1">
+  d. Under the **Filter Expression** header, click the **add filter** <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/JtIxGMfjslfCSitXWBu4o_addgreen.png" size="10" isUploading="false" initialPath="../../Resources/Images/buttons/add_green.png" githubPath="Content/Resources/Images/buttons/add_green.png" width="17" height="15" showCaption="false"></Image> icon.
+</Paragraph>
+
+<Paragraph indent="1">
+  e. Under the **Field** heading, click **not set**.
+</Paragraph>
+
+<Paragraph indent="1">
+  f. From the drop-down menu, select **PrimaryEmail**.
+</Paragraph>
+
+<Paragraph indent="1">
+  g. Under the **Operation** heading, click **NotNull**.
+</Paragraph>
+
+<Paragraph indent="1">
+  h. From the drop-down menu, select **NotEquals**.
+</Paragraph>
+
+<Paragraph indent="1">
+  i. Under the **Value** heading, click **not set**.
+</Paragraph>
+
+<Paragraph indent="1">
+  j. From the drop-down menu, enter **"**.
+</Paragraph>
+
+9. Click **Save**.
+
+### Disabling the PrimaryEmail and LoginID Fields
+
+1. From the Configuration Console, click **Build > Business Objects**.
+2. Open the **External Contact** business object.
+3. Click the **Business Rules** tab.
+4. Click **Required Rules**.
+5. If the **LoginID** and **PrimaryEmail** fields are required, disable them by clicking the **On** :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/MVsOCWjTYWhE2u1kU_45Z_activate23x10.png" alt caption size="10" width="23" height="10"} icon under the **Status** column for each field.
+6. Click **Save**.
+
+### Configuring the Salesforce.com External Contact Layout
+
+1. From the Configuration Console, click **Build > Business Objects**.
+2. Open the **External Contact** business object.
+3. Click the **Layouts** tab.
+4. Open the **Profile.ExternalContact** layout.
+5. Under the **Views in this layout** section, click **formView**.
+6. Ensure that you are not in the **Try our new look!** view. (If you see a link on the top right that says **Switch to old view**, click it.)
+7. In the **Main Form** field, select **Profile.ExternalContact\_Salesforce**.
+8. Click **Save**.
+
+### Configuring the Salesforce.com Account Layout
+
+1. From the Configuration Console, click **Build > Business Objects**.
+2. Open the **Account** business object.
+3. Click the **Layouts** tab.
+4. Open the **Account.Layout** layout.
+5. Under the **Views in this layout** section, click **formView**.
+6. Ensure that you are not in the **Try our new look!** view. (If you see a link on the top right that says **Switch to old view**, click it.)
+7. In the **Main Form** field, select **Account.Form\_Salesforce**.
+8. Click **Save**.
+
+### Adding the Salesforce.com Configuration to Ivanti
+
+If your application does not have a Salesforce.com configuration, create one by following these steps:
+
+1. Log into the Service Desk Console.
+2. Open the **Salesforce Configuration** workspace.
+3. Click **New Salesforce Configuration**.
+4. Enter information into the fields.
+
+| Field               | Description                                                                                                                                                                                                                                                                  |
+| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Record Identifier   | This field is automatically populated. It is the RecID for this configuration.                                                                                                                                                                                               |
+| WSDL Address        | The WSDL address. Enter **Salesforce/enterprise.wsdl**.                                                                                                                                                                                                                      |
+| Salesforce URL      | The Salesforce URL. Enter **https\://login.salesforce.com/services/Soap/c/33.0**.                                                                                                                                                                                            |
+| Salesforce User ID  | The account used to log into Salesforce.com.                                                                                                                                                                                                                                 |
+| Salesforce Password | The password associated with the Salesforce user ID.  You must enter the security token at the end of the password.<br /><br />**Note**: You must enter the security token at the end of the password. If you do not enter it, the application does not accept the password. |
+
+5. Click **Save**.
+
+### Specifying Trusted IP Addresses
+
+Specify three trusted host ranges. Check [https://help.salesforce.com/apex/HTViewSolution?id=000003652](https://help.salesforce.com/apex/HTViewSolution?id=000003652) for a list of all of the published Salesforce IP addresses. The following IP ranges are for the American registry:
+
+- Name: SF1, starting IP: 96.43.144.0, ending IP: 96.43.159.254
+- Name: SF2, starting IP: 136.146.0.0, ending IP: 136.147.255.254
+- Name: SF3, starting IP: 204.14.232.0, ending IP: 204.14.239.254
+
+Follow these steps to specify a trusted host range:
+
+1. Log into the Service Desk Console.
+2. Open the **Integration Trusted Host** workspace.
+3. Click **New Integration Trusted Host**.
+4. Enter information into the fields.
+
+| Field       | Description                                                |
+| ----------- | ---------------------------------------------------------- |
+| Name        | A unique name for this trusted host.                       |
+| Description | (Optional). A description of this trusted host.            |
+| Start IP    | The first IP address in a series of IP addresses to allow. |
+| End IP      | The last IP address in a series of IP addresses to allow.  |
+
+5. Click **Save**.
+
+### Updating the CreateSFContact Quick Action
+
+The **External Contact** business object has a workflow for the outbound flow from \{\{FRS\_VARS.ProductName}} to Salesforce.com. You implement a quick action from within the workflow. The quick action calls the Salesforce.com web service to update an existing contact record.
+
+Before you begin, go to the Service Desk Console and open the Salesforce.com configuration that you added in :Link[Adding the Salesforce.com Configuration to Ivanti]{label="Adding the Salesforce.com Configuration to Ivanti" overridedLabel="Adding the Salesforce.com Configuration to Ivanti" spaceId docId="OCcKfzf85OCyeXvEhYuIe" version="v2" docAnchorId="#Adding_the_Salesforce.comConfiguration_toHEAT" loadingMethod="dynamic" newTab="false" href="SalesForce Integration.mdx"}. Make a note of the RecID.
+
+You need to add the RecID to the quick action. Follow these steps:
+
+1. From the Configuration Console, click **Build > Automation Tools > Quick Actions**.
+2. For the **ExternalContact** quick action, click **Add/Edit** next to it.
+3. In the quick action editor, click the **Your Actions** tab and click **CreateSFContact**.
+4. Make a note of the connection name. By default, it is called **CreateSFContact**.
+5. From the Configuration Console, click **Extend > Integration Tools > Web Service Connections (BETA)** to open the **Web Service Connections (BETA)** workspace.
+6. Under the **Calls from Ivanti to external web services (outgoing)** section, view the script called **CreateSFContact\_ExternalContact**.
+7. On the **Integration Script** field, under the **Scripts** heading, in the line that starts with var sfConfig = Get("Frs\_def\_integration\_sfdc\_config#", enter the RecID at the end. The line should look like this: var sfConfig = Get("Frs\_def\_integration\_sfdc\_config#",*RecID*).
+8. Click **Save**.
+
+### Updating the Salesforce.com Connector
+
+Before you begin, go to the Service Desk Console and open the Salesforce.com configuration that you added in :Link[Adding the Salesforce.com Configuration to Ivanti]{label="Adding the Salesforce.com Configuration to Ivanti" overridedLabel="Adding the Salesforce.com Configuration to Ivanti" spaceId docId="OCcKfzf85OCyeXvEhYuIe" version="v2" docAnchorId="#Adding_the_Salesforce.comConfiguration_toHEAT" loadingMethod="dynamic" newTab="false" href="SalesForce Integration.mdx"}. Make a note of the RecID.
+
+You need to modify some of the settings of the Salesforce.com connector to make it compatible for your application.
+
+1. From the Configuration Console, click **Extend > Integration Tools > Web Service Connections (BETA)** to open the **Web Service Connections (BETA)** workspace.
+2. Under the **Calls from external web services to System (incoming)** section, click the **edit** :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/WTLKbMa5PI7qeazzbj0FD_edit-old.png" alt caption size="10" width="16" height="16"} icon next to **HEAT Salesforce Connection**.
+3. Click **Next**.
+4. For the **SF Contact Reference&#x20;**&#x73;ervice reference, in the **Scripts** area, ensure that this line exists: var sfConfig = Get("Frs\_def\_integration\_sfdc\_config#","*RecID*").
+5. For the **SF Account Reference** service reference, in the **Scripts** area, ensure that this line exists: var sfConfig = Get("Frs\_def\_integration\_sfdc\_config#","*RecID*").
+6. Click **Save**.
+7. Go back to the **Web Service Connections (BETA)** workspace.
+8. Click the **expand** icon next to the **Ivanti Salesforce Connection** entry. The application displays the associated service references.
+9. Click the **edit** :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/WTLKbMa5PI7qeazzbj0FD_edit-old.png" alt caption size="10" width="16" height="16"} icon next to the **SF Contact Reference** service reference. The application displays the **Edit Service Reference** dialog box.
+10. For the **Service Address (URL)** field, enter the URL of the \{\{FRS\_VARS.ProductName}} Application Server. An example is https\://*HEAT\_SM\_Server*:*Port*/*Tenant\_URL*/UpdateContact.asmx.
+11. Click **Save**.
+12. Repeat steps 8 to 11 for the **SF Account Reference** service reference, entering the URL https\://*HEAT\_SM\_Server*:*Port*/*Tenant\_URL*/UpdateAccount.asmx.
+
+### Adding an API Key
+
+You need an API key for the outbound messages, described in :Link[Editing the Outbound Messages]{label="Editing the Outbound Messages" overridedLabel="Editing the Outbound Messages" spaceId docId="OCcKfzf85OCyeXvEhYuIe" version="v2" docAnchorId="#Editing_the_Outbound_Messages" loadingMethod="dynamic" newTab="false" href="SalesForce Integration.mdx"}. Create the API key by doing the following:
+
+1. From the Configuration Console, click **Configure > Security Controls > API Keys** to open the **API Keys** workspace.
+2. From the **Key groups** section, click **Add Key Group**. 
+3. For the **Name** field, enter **Dynamic Web Services**.
+4. Click **Save Key Group**.
+5. Click **Back**.
+6. Under the **Key groups** header, highlight **Dynamic Web Services**.
+7. Click **Add API Key**. The application displays the **New API Key** page.
+8. Click **Save Key**.
+9. Click **Back**. The application displays the new API key.
+10. Make a note of the API key.
+
+### Editing the Outbound Messages
+
+1. Log into Salesforce.com. The application displays the Salesforce.com home page.
+2. At the top of the page, click the down arrow next to your name and select **Setup**.
+3. From the left panel, click **Build > Create > Workflow & Approvals > Outbound Messages**. The application displays two outbound messages.
+4. Click **Edit** to edit the first outbound message.
+5. Update the value for the **Endpoint URL** parameter to match the value from \{\{FRS\_VARS.ProductName}}. Be sure to update the API key portion of the endpoint URL. See :Link[Updating the Salesforce.com Connector]{label="Updating the Salesforce.com Connector" overridedLabel="Updating the Salesforce.com Connector" spaceId docId="OCcKfzf85OCyeXvEhYuIe" version="v2" docAnchorId="#Updating_the_Salesforce.comConnector" loadingMethod="dynamic" newTab="false" href="SalesForce Integration.mdx"} for the API key.
+6. Click **Edit** to edit the second outbound message.
+7. Update the value for the **Endpoint URL** parameter to match the value from \{\{FRS\_VARS.ProductName}}. Be sure to update the API key portion of the endpoint URL. See :Link[Updating the Salesforce.com Connector]{label="Updating the Salesforce.com Connector" overridedLabel="Updating the Salesforce.com Connector" spaceId docId="OCcKfzf85OCyeXvEhYuIe" version="v2" docAnchorId="#Updating_the_Salesforce.comConnector" loadingMethod="dynamic" newTab="false" href="SalesForce Integration.mdx"} for the API key.
+
+### Customizing the Salesforce.com Form
+
+1. From the Configuration Console, click **Build > Business Objects**.
+2. Open the **External Contact** business object.
+3. Click the **Forms** tab.
+4. Open the form to use to display the contact details. For example, open the **Profile.ExternalContact** form.
+5. Modify the form to add or rearrange the fields for the Salesforce.com contact data listed below:
+   - AccRecId
+   - ContactOwner
+   - ReportsTo
+   - Fax
+   - OtherStreet
+   - OtherCity
+   - OtherState
+   - OtherZip
+   - OtherCountry
+   - OtherPhone
+6. Click **Save**.
+7. From the Configuration Console, click **Build > Business Objects**.
+8. Open the **Account** business object.
+9. Click the **Forms** tab.
+10. Open the form to use to display the account details. For example, open the **Account.Form** form.
+11. Modify the form to add or rearrange the fields for the Salesforce.com account data listed below:
+    - SFAccountOwner
+    - AccountSite
+    - Industry
+    - Type
+    - URL
+    - ShippingAddress
+    - ShippingCity
+    - ShippingZip
+    - ShippingState
+    - ShippingCountry
+12. Click **Save**.
+
+## Additional Ivanti Information
+
+- :Link[About the Workflow for an External Business Object]{label="About the Workflow for an External Business Object" overridedLabel="About the Workflow for an External Business Object" spaceId docId="OCcKfzf85OCyeXvEhYuIe" version="v2" docAnchorId="#Creating_a_Workflow_for_an_External_Business_Object" loadingMethod="dynamic" newTab="false" href="SalesForce Integration.mdx"}
+- :Link[About the Salesforce.com Web Service Connection]{label="About the Salesforce.com Web Service Connection" overridedLabel="About the Salesforce.com Web Service Connection" spaceId docId="OCcKfzf85OCyeXvEhYuIe" version="v2" docAnchorId="#Creating_the_Salesforce.comWeb_Service_Connection" loadingMethod="dynamic" newTab="false" href="SalesForce Integration.mdx"}
+
+### About the Workflow for an External Business Object
+
+The **External Contact** business object has a workflow for the outbound flow from \{\{FRS\_VARS.ProductName}} to Salesforce.com. You implement a quick action from within the workflow. The quick action calls the Salesforce.com web service to update an existing contact record.
+
+Do the following to find the script:
+
+1. From the Configuration Console, click **Extend > Integration Tools > Web Service Connections (BETA)** to open the **Web Service Connections (BETA)** workspace.
+
+<Paragraph indent="1">
+  Under the **Calls from System to external web services (outgoing)** section, the script is called **Create SFContact\_ExternalContact**.
+</Paragraph>
+
+### About the Salesforce.com Web Service Connection
+
+To view the Salesforce.com web service connection, follow these steps:
+
+1. From the Configuration Console, click **Extend > Integration Tools > Web Service Connections (BETA)** to open the **Web Service Connections (BETA)** workspace.
+2. Under the **Calls from external web services to System (incoming)** section, click the **edit** :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/WTLKbMa5PI7qeazzbj0FD_edit-old.png" alt caption size="10" width="16" height="16"} icon next to **HEAT Salesforce Connection**.
+
+<Paragraph indent="1">
+  The following is displayed in the **Response XML (optional)** field:
+</Paragraph>
+
+\<soapenv\:Envelope xmlns\:soapenv="http\://schemas.xmlsoap.org/soap/envelope/" xmlns\:xsd="http\://www\.w3.org/2001/XMLSchema" xmlns\:xsi="http\://www\.w3.org/2001/XMLSchema-instance">
+
+\<soapenv\:Body>
+
+\<notificationsResponse xmlns="http\://soap.sforce.com/2005/09/outbound">
+
+\<Ack>True\</Ack>
+
+\</notificationsResponse>
+
+\</soapenv\:Body>
+
+\</soapenv\:Envelope>
+
+## Additional Salesforce.com Information
+
+- :Link[About the Contact and Account Workflows]{label="About the Contact and Account Workflows" overridedLabel="About the Contact and Account Workflows" spaceId docId="OCcKfzf85OCyeXvEhYuIe" version="v2" docAnchorId="#Creating_a_Workflow" loadingMethod="dynamic" newTab="false" href="SalesForce Integration.mdx"}
+- :Link[Monitoring Outbound Messages]{label="Monitoring Outbound Messages" overridedLabel="Monitoring Outbound Messages" spaceId docId="OCcKfzf85OCyeXvEhYuIe" version="v2" docAnchorId="#Monitoring_Outbound_Messages" loadingMethod="dynamic" newTab="false" href="SalesForce Integration.mdx"}
+- :Link[Generating the Enterprise.WSDL API File]{label="Generating the Enterprise.WSDL API File" overridedLabel="Generating the Enterprise.WSDL API File" spaceId docId="OCcKfzf85OCyeXvEhYuIe" version="v2" docAnchorId="#Generating_the_Enterprise.WSDLFile" loadingMethod="dynamic" newTab="false" href="SalesForce Integration.mdx"}
+- :Link[Adding Files to the WSDL and Script Repository]{label="Adding Files to the WSDL and Script Repository" overridedLabel="Adding Files to the WSDL and Script Repository" spaceId docId="OCcKfzf85OCyeXvEhYuIe" version="v2" docAnchorId="#Adding" loadingMethod="dynamic" newTab="false" href="SalesForce Integration.mdx"}
+
+### About the Contact and Account Workflows
+
+Salesforce.com has two workflows: one for the **Contact** object and one for the **Account** object. Follow these steps to view them:
+
+1. Log into Salesforce.com. The application displays the Salesforce.com home page.
+2. At the top of the page, click the down arrow next to your name and select **Setup**.
+3. Click **Build > Create > Workflow & Approvals > Workflow Rules**.
+4. Select the workflow to view, either **Contact** or **Account**.
+
+<Paragraph indent="1">
+  Salesforce.com displays the **Step 2: Configure Workflow Rule** page with this information:
+</Paragraph>
+
+| Field                              | Description                                                                                                                       |
+| ---------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| Edit Rule                          |                                                                                                                                   |
+| Object                             | This value is prepopulated based on what you entered on the previous page. In this case, it is either **Contact** or **Account**. |
+| Rule Name                          | The name of the workflow rule.                                                                                                    |
+| Description                        | An optional description.                                                                                                          |
+| Evaluation Criteria                |                                                                                                                                   |
+| Evaluate the rule when a record is | Specifies when to evaluate the rule.                                                                                              |
+| Rule Criteria                      |                                                                                                                                   |
+| Run this rule if the following     | Specifies when to run this rule.                                                                                                  |
+| Insert Field                       | The field to evaluate.                                                                                                            |
+| Functions                          | Lists functions that you can enter into the **Insert Field** area.                                                                |
+
+5. Click **Next**. Salesforce.com displays the **Step 3: Specify Workflow Actions** page.
+
+<Paragraph indent="1">
+  Salesforce.com displays the **Edit Outbound Message** page with the following information:
+</Paragraph>
+
+| Field                  | Description                                                                                                                                                                                                                                                                                                                                                                           |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Name                   | The name of the outbound message.                                                                                                                                                                                                                                                                                                                                                     |
+| Unique Name            | A unique name for the outbound message.                                                                                                                                                                                                                                                                                                                                               |
+| Description            | An optional description.                                                                                                                                                                                                                                                                                                                                                              |
+| Endpoint URL           | The URL of the endpoint followed by ?APIKey= and a valid API key.<br /><br />An example for the **Contact** object is https\://mycompany.saasit.com/ frs-ctp-demo1/UpdateContact.asmx?APIKey= D6EFD03356CD41CAADDCF37443E33C61 and an example for the **Account** object is https\://mycompany.saasit.com/ frs-ctp-demo1/UpdateAccount.asmx?APIKey= D6EFD03356CD41CAADDCF37443E33C61. |
+| User to send as        | The name of the user sending the outbound message.                                                                                                                                                                                                                                                                                                                                    |
+| Protected Component    | Specifies if the component is protected.                                                                                                                                                                                                                                                                                                                                              |
+| Send Session ID        | Specifies to send the session ID.                                                                                                                                                                                                                                                                                                                                                     |
+| Contact fields to send | The fields to include in the outbound message.                                                                                                                                                                                                                                                                                                                                        |
+
+### Monitoring Outbound Messages
+
+Follow these steps to monitor the outbound messages:
+
+1. Log into Salesforce.com. The application displays the Salesforce.com home page.
+2. At the top of the page, click the down arrow next to your name and select **Setup**.
+3. Select **Monitor > Outbound Messages**.
+4. Verify that there are no delivery failures.
+
+*Outbound Message Delivery Failure*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/BQ36ldLeOD5G41T-MypC6_salesforce-delivery-failure.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/Salesforce-Delivery-failure.png" githubPath="Content/Resources/Images/help-images/Salesforce-Delivery-failure.png" showCaption="false"></Image>
+
+### Generating the Enterprise.WSDL API File
+
+The Salesforce.com package includes the **Enterprise.WSDL** file for Salesforce.com for the \{\{FRS\_VARS.ProductName}} integration.
+
+If you modify the schema for the **Account** or **Contact** business objects from Salesforce.com, you must regenerate an updated WSDL from Salesforce.com. Follow the steps below to update the file after you regenerate it:
+
+1. Log into Salesforce.com. The application displays the Salesforce.com home page.
+2. At the top of the page, click the down arrow next to your name and select **Setup**.
+3. From the left panel, click **Build > Develop > API**.
+4. Click **Generate Enterprise WSDL**.
+5. Save the **Enterprise.WSDL** file to a convenient location.
+6. Open the **Enterprise.WSDL** file with a text editor.
+7. Every time that you regenerate the **Enterprise.WSDL** file, you must add the xsd\:attribute as shown below:
+
+\<complexType name="ListViewRecord">
+
+\<sequence>
+
+\<element name="columns"type="tns\:ListViewRecordColumn" maxOccurs="unbounded"/>
+
+\</sequence>
+
+\<xsd\:attribute name="tmp" type="xsd\:string" />
+
+\</complexType>
+
+### Adding Files to the WSDL and Script Repository
+
+In \{\{FRS\_VARS.ProductName}} Release 2016.1, we introduced a repository where you can store WSDL files and scripts. We recommend that you store the Salesforce WSDL files in the repository. Make sure that the name of the WSDL file that you add to the repository matches the name of the file in Salesforce.
+
+Follow these steps to add a WSDL file to the repository:
+
+1. From the Configuration Console, click **Extend > Integration Tools > WSDL and Script Repository** to open the **WSDL and Script Repository** workspace.
+2. Click **New File** to add a WSDL file.
+3. In the **Type** field, select **WSDL**.
+4. Enter a name in the **Name** field.
+5. Click **Upload** to upload the new WSDL file. Navigate to the file and click **Open**.
+6. Click **Save**.

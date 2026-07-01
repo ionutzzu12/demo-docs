@@ -1,0 +1,134 @@
+---
+title: Working with a Universal Worklist
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:58 GMT+0300 (Eastern European Summer Time)
+---
+
+## About Universal Worklists
+
+The universal worklist feature enables you to simultaneously view worklists from multiple tenants. A worklist is a list of items (usually issues, changes, or problems) and is typically the result of a saved search.
+
+To use this feature correctly, the following conditions apply:
+
+- The databases must all be in the same landscape (such as domain or sub-domain).
+- The databases must all contain the same saved search to use.
+- Each tenant user can be a child or a parent tenant. The parent tenant can see all child tenants, but child tenants can only see their own data.
+- Each child tenant must be able to provide an API key and tenant name. The parent tenant does not need to provide this.
+
+Do not use hyperlinks in lists used with the universal worklist. Hyperlinks allow the user you to single-click to view record details. However, the command always goes to the parent tenant, which then fails.
+
+## Creating a Universal Worklist
+
+The universal worklist is created as a dashboard part and can be added to a new or existing dashboard.
+
+To enable this feature, you must do the following:
+
+1. Obtain the tenant name and API key of each child tenant to access.
+2. :Link[Defining the Physical Structure by Creating a Materialized View Business Object]{label="Defining the Physical Structure by Creating a Materialized View Business Object" overridedLabel="Defining the Physical Structure by Creating a Materialized View Business Object" spaceId docId="0tq31X5AmkDD7Qrtrm7lm" version="v2" docAnchorId="#Define_the_physical_structure" loadingMethod="dynamic" newTab="false" href="UniversalWorklist.mdx"}: Create a materialized view of a business object.
+3. :Link[Defining the Source Data]{label="Defining the Source Data" overridedLabel="Defining the Source Data" spaceId docId="0tq31X5AmkDD7Qrtrm7lm" version="v2" docAnchorId="#Define_the_source_data" loadingMethod="dynamic" newTab="false" href="UniversalWorklist.mdx"}: Obtained from the child tenants.
+4. :Link[Defining a List]{label="Defining a List" overridedLabel="Defining a List" spaceId docId="0tq31X5AmkDD7Qrtrm7lm" version="v2" docAnchorId="#Define_a_grid" loadingMethod="dynamic" newTab="false" href="UniversalWorklist.mdx"}: Prepare to show the data.
+5. :Link[Creating a Saved Search]{label="Creating a Saved Search" overridedLabel="Creating a Saved Search" spaceId docId="0tq31X5AmkDD7Qrtrm7lm" version="v2" docAnchorId="#Create_a_Saved_Search" loadingMethod="dynamic" newTab="false" href="UniversalWorklist.mdx"}: Needed to create a dashboard part.
+6. :Link[Defining the Dashboard Part]{label="Defining the Dashboard Part" overridedLabel="Defining the Dashboard Part" spaceId docId="0tq31X5AmkDD7Qrtrm7lm" version="v2" docAnchorId="#Define_the_dashboard_part" loadingMethod="dynamic" newTab="false" href="UniversalWorklist.mdx"}: View the final data.
+
+## Defining the Physical Structure by Creating a Materialized View Business Object
+
+Within the Configuration Console, create a **Materialized View** business object. Refer to :Link[Creating a Materialized View Business Object]{label="Creating a Materialized View Business Object" overridedLabel="Creating a Materialized View Business Object" spaceId docId="z5Hl_JIl1C8b9P5aZK1aD" version="v2" docAnchorId="#Materialized_View_Business_Object" loadingMethod="dynamic" newTab="false" githubPath="../BusinessObjects/Using Business Objects.htm#Materialized_View_Business_Object" href="../BusinessObjects/Using Business Objects.mdx"} for more information.
+
+## Defining the Source Data
+
+The actual data are created and updated only in the tenants, not in the **Materialized View** business object. The materialized view shows the synchronized data from the tenants.
+
+Define the source data from the **View Parts** tab of the **Materialized View** business object. Refer to :Link[Viewing Parts for a Materialized View Business Object]{label="Viewing Parts for a Materialized View Business Object" overridedLabel="Viewing Parts for a Materialized View Business Object" spaceId docId="z5Hl_JIl1C8b9P5aZK1aD" version="v2" docAnchorId="#View_Parts" loadingMethod="dynamic" newTab="false" githubPath="../BusinessObjects/Using Business Objects.htm#View_Parts" href="../BusinessObjects/Using Business Objects.mdx"} for more information.
+
+## Defining a List
+
+To use the universal worklist in a dashboard, you must be able to use it in a saved search. To view saved search results, you must create a list.
+
+You can create a list from scratch (refer to [Working with Lists](../Lists/Lists.mdx)) or from the **View Details** tab, select **Auto Generate UI**. Edit the list to include the columns you need.
+
+## Creating a Saved Search
+
+1. From the Configuration Console, select **Build** > **Search Tools** > **Saved Searches** to open the **Saved Searches** workspace.
+2. Select **Show all objects**.
+3. For the materialized object that you created, select **Add**. The **Saved Search** window appears.
+4. Create a saved search as described in [Using a Saved Search](<../../ServiceDesk/Search/Saved Searches.mdx>).
+
+<hint type="info" indent="2">
+  To show all records in your search results, add a date parameter that is earlier than your known data. For example, in the second field, select **CreatedDateTime**; in the third field, select **Greater Than**; and in the fourth field enter **January 1, 1970**.
+</hint>
+
+## Defining the Dashboard Part
+
+The dashboard part is where you view the final data.
+
+1. Create a new dashboard part. Refer to [Working with Dashboards](../Dashboards/Working-with-Dashboards.mdx) for more information.
+2. Expand the **Special Parts** accordion, then select **Add List**. The system displays the **Dashboard List editor** window.
+3. Select the **Main** tab.
+4. Enter information into the fields.
+
+| Field       | Description                                                             |
+| ----------- | ----------------------------------------------------------------------- |
+| Title       | A unique name for your dashboard part, such as "Change Universal List". |
+| Description | Optional. A description of the dashboard part.                          |
+| Title icon  | An icon to appear with the title.                                       |
+
+5. Select the **Data** tab.
+6. Enter information into the fields.
+
+| Field           | Description                                                                                                                                                                               |
+| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Business Object | The business object. Select from the list.                                                                                                                                                |
+| Saved Search    | The saved search. Select from the list. This field is populated by the saved searches in the change business object. Ensure that this saved search is common among all tenants to access. |
+| List            | The list to use. Select from the list. For example, the **Change** list is a generic list.<br />Do not use hyperlinks in lists used with the universal worklist.                          |
+
+7. Select **Save** to save the dashboard part.
+8. Drag the dashboard part onto the dashboard.
+9. Select **Save**. The system displays a list of records from all tenants. Double-click a record from the list to view it in the corresponding tenant.
+
+## Providing a Restricted View
+
+Data are restricted by role. To provide a restricted view, create a segregation rule.
+
+1. From the Configuration Console, select **Configure** > **User and Permissions** > **Roles and Permissions** to open the **Roles and Permissions** workspace. The list of roles appears. Refer to [Working with Roles](../../ServiceDesk/Roles/roles.mdx) for more information.
+2. Select a role to which to grant access. The system displays the **Role Details** page.
+3. Select the **Object Permissions** tab. The system displays the **Object Permissions** page.
+4. Find the business object that you created, then select options.
+5. Add a segregation rule to the master role. Refer to :Link[Applying Advanced Security Features]{label="Applying Advanced Security Features" overridedLabel="Applying Advanced Security Features" spaceId docId="cIk0-OKlmZt1KMP4Qe-9d" version="v2" docAnchorId="#Applying_Advanced_Security_Features" loadingMethod="dynamic" newTab="false" githubPath="../Security/Authorization.htm#Applying_Advanced_Security_Features" href="../Security/Authorization.mdx"} for more information.
+
+<hint type="info" indent="2">
+  A specialized segregation rule is available for universal worklists. It ensures that Service Desk Analysts can only see records for the child tenants with which they are associated.
+
+  To create the rule, in the materialized view that you created, for each role that can access the universal worklist, you can add a rule as follows: View records where the tenant URL of the materialized object is current user assigned tenants.
+</hint>
+
+## Using the Universal Worklist
+
+1. From the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Console}} console, open the dashboard that you created. (It is under the **All Dashboards** list.)
+2. Select **Refresh** to synchronize the data and allow it to appear. The first time you do this might take a minute.
+   The current user can view all tenants, but can only see data from the current or assigned tenants.
+
+<hint type="info" indent="2">
+  The color of the title bar indicates how recent the data are. A red title bar means the data are more than 10 minutes old. A blue title bar means the data has been synchronized within the last 10 minutes.
+</hint>
+
+## Creating a Child Tenant
+
+The **Child Tenants** workspace defines child tenants to use with the universal worklist.
+
+You can view child tenant information, unless you create a segregation business rule. See [Using Business Rules](../BusinessRules/Business_Rules.mdx) for information on how to do this.
+
+1. Do one of the following:
+
+- Log in to the application and open the **Child Tenants** workspace.
+- From the Configuration console, select **Configure** > **Organization Profile** > **Child Tenants**.
+  The list of child tenants appears, if any.
+
+2. Select **New Child Tenants**. The system displays a blank **Child Tenants** workspace.
+3. Enter information into the fields.
+
+| Field      | Description                                                                                                                                                                                                                                                                                                                                                                          |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| API Key    | The child tenant client authentication key. An API key defined in a child tenant should be linked to a user and a role.                                                                                                                                                                                                                                                              |
+| Tenant Url | The child tenant name. An example is mycompany.saasit.com. Do not preface the tenant URL with http\:// or https\://.<br /><br />The URL must be a fully-qualified domain name; that is, it must contain a period, such as customer.a. If you do not include a period, but the system can still resolve the URL, the system uses the parent tenant for the query and causes an error. |
+
+4. Select **Save**.

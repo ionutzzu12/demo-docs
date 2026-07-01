@@ -1,0 +1,335 @@
+---
+title: Working with Data Archival and Data Retrieval
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:57 GMT+0300 (Eastern European Summer Time)
+---
+
+This section covers the following topics:
+
+<ExpandableHeading>
+  ## About Data Archival
+
+  Data Archival is the process of transferring data from primary storage to secondary storage for long-term retention. Data retrieval involves accessing and retrieving the archived data as needed based on specific requirements.
+
+  The Data Archival feature enhances system performance and ensures compliance with record retention policies by removing outdated records from your production database. This data is then securely relocated to secondary storage hosted within the same cloud landscape.
+
+
+
+  <hint type="info">
+    - Data Archival is only available for cloud deployments.
+    - Ivanti recommends storing no more than 24 months of inactive data in production.
+    - Audit tables are not supported for Data Archival.
+    - Only records that can be deleted from the application are eligible for data archival.
+  </hint>
+
+
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Considerations before Archiving Data
+
+  Before initiating the data archiving process, Ivanti recommends taking the following factors into account:
+
+  <Paragraph listStyleType="disc" indent="2">
+    **Irreversible Archiving**: Once the data is archived, it cannot be restored to its original form. Retrieval can only be done through the designated retrieval page.
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    **Related Records**: When you archive a parent record, all related records are archived as well, irrespective of their current state. For instance, archiving a service request record will also archive associated child data, including journals, tasks, events, and more.
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    **Data Privacy**: Before archiving data, ensure that sensitive or personally identifiable information (PII) is either securely deleted or anonymized to align with your organization's privacy regulations.
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    **Retention Policy**: Archived data is stored in secondary storage from the moment of archiving onwards and will adhere to Ivanti's Data Retention Policy.
+  </Paragraph>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Enabling Data Archival
+
+  **To enable Data Archival:**
+
+  1. From the Configuration console, click **Build > Extend > Data Archive and Retrieve** to view the **Data Archive and Retrieve** workspace.
+  2. Clic&#x6B;**&#x20;Enable Data Archiving toggle** button to enable data archival.
+
+  **Excluding Records from Archival**
+
+  If a record qualifies for archival, you can exclude it by following these steps:
+
+  1. Select one or more incidents.
+  2. Choose **More** > **Data Archive**.
+  3. Select **Exclude from Archival**.
+  4. When prompted, click **Yes** to confirm.
+
+  The selected records are excluded from archival.
+
+  To revert this action:
+
+  - Select **Reset Exclude from Archival** to include the record(s) in the archival process again.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/rkhY2JqX_KBjeXrHnRcUG_image11.png" position="flex-start" size="40" initialPath="../../Resources/Images/image11.png" githubPath="Content/Resources/Images/image11.png" showCaption="false"></Image>
+
+  **Viewing Records based on Archival Status**
+
+  You can use the **Saved Search** feature to view records based on their archival eligibility or exclusion status.
+
+  To filter records, follow these steps:
+
+  1. Click **All Active Incidents**.
+  2. Select **All Saved Search**.
+  3. In the search panel, enter **Exclude**.
+  4. Choose one of the following options:
+     - **Record excluded from archival –&#x20;**&#x44;isplays records manually excluded from the archival process.
+     - **Record not excluded from archival** – Displays records still eligible for archival.
+
+  <hint type="info">
+    Unlike other packages, which are imported by default during the out-of-the-box (OOTB) setup or upgrade process, the **CI Metadata Package** requires a manual import. You can access the **CI Metadata Package** [here](https://marketplace.ivanti.com/xchange/64b5b48e2ee9d6e08c3e6724).
+  </hint>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Viewing General information about Data Archival
+
+  **To view general information:**
+
+  1. From the Configuration console, click **Build > Extend > Data Archive and Retrieve** to view the **Data Archive and Retrieve** workspace.
+  2. Click **General Information**. The **General Information About Data Archival** page displays the number of archived records, total parent records archived, and total child records archived.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/A74-ZiSsnekiOH3zdI-XT_enable-data-archival.PNG" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/Common/Enable data archival.PNG" githubPath="Content/Resources/Images/Common/Enable data archival.PNG" showCaption="false"></Image>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Configuring Archive Policy
+
+  Use the Configure Archive Policy page to perform the following actions:
+
+  <Paragraph listStyleType="disc" indent="2">
+    Set the archival period individually for a specific business object (BO).
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    Define the status for a business object. Choose from predefined status options available Out of the Box (OOTB), or create custom statuses tailored to your business needs.
+  </Paragraph>
+
+  Additionally, you can:
+
+  <Paragraph listStyleType="disc" indent="2">
+    Enable or disable individual archival policies. For instance, if you only want to archive incidents, you can turn off other BOs and activate specific archival policies.
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    Default high-level policies are provided, but you can customize archival policies based on your specific requirements.
+  </Paragraph>
+
+  <hint type="info">
+    Use :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/ZHU7vdIImup8jl3N-Vs3A_toggle-icon.png" alt caption size="10" width="33" height="17"}to enable or disable policies, and click :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/-Z9Sia_83vZkJSrLs-YyJ_save-icon24x20.png" alt caption size="10" width="24" height="20"} to save your archival settings.
+  </hint>
+
+  Currently, the following Business Objects support Data Archival.
+
+  - Change
+  - CI
+  - Incident
+  - Service Request
+  - Problem
+  - Purchase Order
+  - Knowledge
+  - HR Case
+
+  **To configure an archive policy:**
+
+  1. From the Configuration console, click **Build** > **Extend** > **Data Archive and Retrieve** to open the **Data Archive and Retrieve** workspace.
+  2. Click **Configure Archive Policy**. The **Configure Archive Policy** page appears.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Xu4sTZ2f2rcW_lnf6ZNFW_confgure-archive-policies.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/Common/confgure archive policies.png" githubPath="Content/Resources/Images/Common/confgure archive policies.png" showCaption="false"></Image>
+
+  3. Set the archival period, status , or enable or disable the archival policy for business objects based on your requirement.
+  4. Click :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/j4o3I2yo9MiVE15_-FSAk_save-icon17x14.png" alt caption size="10" width="17" height="14"} to save the archival settings.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Retrieving Archived Data
+
+  The **Data Retrieval&#x20;**&#x74;ab allows you to easily access and retrieve your archived data. It provides a convenient way to search for specific files or information within the archive and retrieve them as needed.
+
+  **To retrieve archived data:**
+
+  1. From the Configuration console, click **Build > Extend** > **Data Archive and Retrieve**. Th&#x65;**&#x20;Data Archive and Retrieve** page appears.
+  2. Click **Retrieve Archived Data**.
+  3. Select the business object from the **Select BO to Retrieve** drop-down list.
+  4. Under **Search Context**, select the search criteria. The following search options are supported:
+     - **Keyword**: executes a search based on the search keyword in business object. You can either search field that have Full Text search Enabled or Fields which are Key columns. (e.g. Incident number, SR number).
+     - **Object Creation Data Range**: executes a search based on the date range.
+  5. Click **Search**. The archived data is displayed based on the search criteria.
+
+  <hint type="info">
+    After the system loads the results, you can view the attachment details for each record. The system displays attachments for both parent records and their corresponding child records.
+  </hint>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Viewing Data Archival History
+
+  The **Data Archival History&#x20;**&#x74;ab displays the summary of all the actions taken on your data during the archival process.
+
+  **To view the data archival history:**
+
+  1. From the Configuration console, click **Build > Extend** > **Data Archive and Retrieve** Th&#x65;**&#x20;Data Archive and Retrieve** page appears.
+  2. Click **Data Archival History**. The Data Archival History page displays the summarized status of the archival job . This page displays the following information:
+
+  | Column             | Description                                                                |
+  | ------------------ | -------------------------------------------------------------------------- |
+  | Archive Message ID | Specifies the archive message unique ID.                                   |
+  | Archive BO         | Specifies the Business Object for which the archive was run.               |
+  | Archive Status     | Specifies the archive status.                                              |
+  | Remark             | Specifies the comments added while archiving the business object.          |
+  | Created By         | Specifies the user role who initiated the archival.                        |
+  | Archive From Date  | Specifies the starting date time period from which data is to be archived. |
+  | Archive To Date    | Specifies the ending date time period up to which data is to be archived.  |
+  | Created Date Time  | Specifies the date and time when the archival job is created.              |
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Viewing Data Purge History
+
+  Th&#x65;**&#x20;Data Purge History&#x20;**&#x74;ab displays a log of the deleted activities performed on your data, and provides a summary of when and what data was purged.
+
+  **To view data purge history:**
+
+  1. From the Configuration console, click **Build > Extend** > **Data Archive and Retrieve**. Th&#x65;**&#x20;Data Archive and Retrieve** page appears.
+  2. Click **Data Purge History**. The Purge History page displays the purged archived business objects. This page displays the following information:
+
+  | Column                | Description                                                                                                                      |
+  | --------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+  | Archive Message ID    | Specifies the archive message unique ID.                                                                                         |
+  | Business Object Name  | Specifies the business object name.                                                                                              |
+  | Purge Status          | Specifies the purge status.                                                                                                      |
+  | Remark                | Specifies the comments added while purging the archived business object.                                                         |
+  | Purge Data Query Path | Specifies the Azure Blob storage path of a Purge Query for an already-archived data set. The archival record batch count is 100. |
+  | Completed Date Time   | Specifies the date and time when the archived business object was purged.                                                        |
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Exporting Archived Data
+
+  The **Retrieve Archived Data** page supports exporting archived data in standard readable formats. The data columns shown in the report are customizable and can support with advanced filtering and search capabilities.
+
+  - **Main Table Population**: Data is populated based on the search criteria selected in the Business Object (BO) drop-down. Each row contains both a parent and child table, presenting information in a hierarchical structure where dependent records are nested beneath each parent record.
+  - **Customized Column Display**: For both the parent and child tables, select the required fields using the **Choose Column Display** button.
+  - **Export Functionality**: Table data can be exported using the **Export to XLS/ JSON/ CSV** options. User can export a maximum of 10 records.
+
+  <hint type="info">
+    Exporting the data Grid filters is only applicable for data within the grid.
+  </hint>
+
+  Supported export options include:
+
+  <ExpandableHeading>
+    ## Exporting selected rows to JSON format
+
+    **To export selected rows in JSON format:**
+
+    1. Go to Configuration console and click **Build > Extend** > **Data Archive and Retrieve**.
+    2. On th&#x65;**&#x20;Data Archive and Retrieve** page, select **Retrieve Archived Data**. Select a business object from the **Select BO to Retrieve** drop-down list.
+    3. Specify your search criteria under **Search Context**. The following search options are supported:
+       - **Keyword**: executes a search based on the search keyword in business object. You can search fields that have Full Text search enabled.
+       - **Object Creation Data Range**: executes a search based on the date range.
+    4. Click **Search** to display archived data based on the selected criteria.
+
+    <hint type="info">
+      The Column Chooser feature is not applicable for Export to JSON.
+    </hint>
+
+    5. Select the rows to export and click **Apply Selection.**
+    6. \[Optional] Use the simple search and advanced search filter options to refine your search criteria.
+
+    <Paragraph indent="1">
+      a. To perform a simple search: Click <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/1HajgZ5nKm9bLtNqeHUDF_simple-search17x19.png" size="10" isUploading="false" initialPath="../../Resources/Images/Common/simple search_17x19.png" githubPath="Content/Resources/Images/Common/simple search_17x19.png" width="17" height="19" showCaption="false"></Image>. Select the records from the list that is displayed or enter the keywords to search the record. A list of records are displayed based on the search criteria.
+    </Paragraph>
+
+    <Paragraph indent="1">
+      b. To perform advanced search: Click <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/7Y1HjfDZGc8SXJmMg_AmV_advanced-search22x23.png" size="10" isUploading="false" initialPath="../../Resources/Images/Common/Advanced search_22x23.png" githubPath="Content/Resources/Images/Common/Advanced search_22x23.png" width="22" height="23" showCaption="false"></Image>. A list of operators such as Contains, Does not Contain, Starts with, Ends with, Equals, and Does not equal are displayed.
+    </Paragraph>
+
+    <Paragraph indent="1">
+      c. Select the operator and enter a value. The search records based on the operator selected are displayed. Search results matching the selected operator are displayed. For instance, selecting the **Ends with** operator for the **Incident ID** column with a value of 22 will retrieve incidents ending with 22.
+    </Paragraph>
+
+    <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Ybt6eOw6c_fiXxVHlUz3K_operators-snapshot.PNG" position="flex-start" size="40" indent="2" initialPath="../../Resources/Images/Common/Operators snapshot.PNG" githubPath="Content/Resources/Images/Common/Operators snapshot.PNG" showCaption="false"></Image>
+
+    7. Click :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/x175df0M2Xe_HcD9uYtCv_export-icon24x24.png" alt caption size="10" width="24" height="24"}and select the **Export selected rows to JSON** option. The JSON file is downloaded in your system.
+  </ExpandableHeading>
+
+  <ExpandableHeading>
+    ## Exporting selected rows to XLS format
+
+    **To export selected rows in XLS format:**
+
+    1. Go to Configuration console and click **Build > Extend** > **Data Archive and Retrieve**.
+    2. On th&#x65;**&#x20;Data Archive and Retrieve** page, select **Retrieve Archived Data**. Select a business object from the **Select BO to Retrieve** drop-down list.
+    3. Specify your search criteria under **Search Context**. The following search options are supported:
+       - **Keyword**: executes a search based on the search keyword in business object. You can either search field that have Full Text search Enabled OR Fields which are Key Columns. (example. Incident number, SR number).
+       - **Object Creation Data Range**: executes a search based on the date range.
+    4. Click **Search** to display archived data based on the selected criteria.
+    5. \[Optional] Click **Choose Display Columns**. The **Column Chooser** shows all the related BOs which are in relationship with the parent BO selected in tabbed format.
+    6. To customize the columns to be chosen, navigate to each tab and add/remove the columns you wish to display/hide in the export. By default, the first 10 columns for each BO are exported to the XLS provided that the data is present. A maximum of 10 columns can be chosen for each BO.
+    7. Clear the related BO names from the respective tabs which should be excluded from export.(except parent BO which will be exported by default.)
+    8. Select the rows to export and click **Apply Selection.**
+    9. \[Optional] Use the simple search and advanced search filter options to refine your search criteria.
+
+    <Paragraph indent="1">
+      a. To perform a simple search: Click <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/1HajgZ5nKm9bLtNqeHUDF_simple-search17x19.png" size="10" isUploading="false" initialPath="../../Resources/Images/Common/simple search_17x19.png" githubPath="Content/Resources/Images/Common/simple search_17x19.png" width="17" height="19" showCaption="false"></Image>. Select the records from the list that is displayed or enter the keywords to search the record. A list of records are displayed based on the search criteria.
+    </Paragraph>
+
+    <Paragraph indent="1">
+      b. To perform advanced search: Click <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/7Y1HjfDZGc8SXJmMg_AmV_advanced-search22x23.png" size="10" isUploading="false" initialPath="../../Resources/Images/Common/Advanced search_22x23.png" githubPath="Content/Resources/Images/Common/Advanced search_22x23.png" width="22" height="23" showCaption="false"></Image>. A list of operators such as Contains, Does not Contain, Starts with, Ends with, Equals, and Does not equal are displayed.
+    </Paragraph>
+
+    <Paragraph indent="1">
+      c. Select the operator and enter a value. The search records based on the operator selected are displayed. Search results matching the selected operator are displayed. For instance, selecting the **contains** operator for the **Category** column with a value of Account will retrieve incidents that contain Account .
+    </Paragraph>
+
+    <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/IfbViW42Bp61X1ZdD0UCN_catergory-operator.png" position="flex-start" size="40" indent="2" initialPath="../../Resources/Images/Common/Catergory Operator.png" githubPath="Content/Resources/Images/Common/Catergory Operator.png" showCaption="false"></Image>
+
+    10. Click :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/x175df0M2Xe_HcD9uYtCv_export-icon24x24.png" alt caption size="10" width="24" height="24"}and select the **Export selected rows to XLS** option. The XLS file is downloaded in your system.
+  </ExpandableHeading>
+
+  <ExpandableHeading>
+    ## Exporting selected rows to CSV (raw) format
+
+    **To export selected rows in CSV (raw) format:**
+
+    1. Go to Configuration console and click **Build > Extend** > **Data Archive and Retrieve**.
+    2. On th&#x65;**&#x20;Data Archive and Retrieve** page, select **Retrieve Archived Data**. Select a business object from the **Select BO to Retrieve** drop-down list.
+    3. Specify your search criteria under **Search Context**. The following search options are supported:
+       - **Keyword**: executes a search based on the search keyword in business object. You can either search field that have Full Text search Enabled OR Fields which are Key Columns. (example. Incident number, SR number).
+       - **Object Creation Data Range**: executes a search based on the date range.
+    4. Click **Search** to display archived data based on the selected criteria.
+
+    <hint type="info">
+      The Column Chooser feature is not applicable for Export to CSV.
+    </hint>
+
+    5. Select the rows to export and click **Apply Selection.**
+    6. \[Optional] Use the simple search and advanced search filter options to refine your search criteria.
+
+    <Paragraph indent="1">
+      a. To perform a simple search: Click <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/akH3pMswt3QKAxBrUSrYd_simple-search14x15.png" size="10" isUploading="false" initialPath="../../Resources/Images/Common/simple search_14x15.png" githubPath="Content/Resources/Images/Common/simple search_14x15.png" width="14" height="15" showCaption="false"></Image>. Select the records from the list that is displayed or enter the keywords to search the record. A list of records are displayed based on the search criteria.
+    </Paragraph>
+
+    <Paragraph indent="1">
+      b. To perform advanced search: Click <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Bv2HZhAZiIl9SZlCJ24EI_advanced-search16x16.png" size="10" isUploading="false" initialPath="../../Resources/Images/Common/Advanced search_16x16.png" githubPath="Content/Resources/Images/Common/Advanced search_16x16.png" width="16" height="16" showCaption="false"></Image>. A list of operators such as Contains, Does not Contain, Starts with, Ends with, Equals, and Does not equal are displayed.
+    </Paragraph>
+
+    <Paragraph indent="1">
+      c. Select the operator and enter a value. The search records based on the operator selected are displayed. Search results matching the selected operator are displayed. For instance, selecting the **Closed By** operator for the **Closed By** column with a value of "JSmith" will retrieve incidents that were closed by "JSmith".
+    </Paragraph>
+
+    <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/cx9NPXh7B0H3cYBXkVESk_example-operator-contains.png" position="flex-start" size="40" indent="2" initialPath="../../Resources/Images/Common/Example Operator contains.png" githubPath="Content/Resources/Images/Common/Example Operator contains.png" showCaption="false"></Image>
+
+    7. Click :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/lcbWqYUp__tlO6niMYdIO_export-icon20x20.png" alt caption size="10" width="20" height="20"} and select the **Export selected rows to CSV (raw)** option. The CSV file is downloaded in your system.
+  </ExpandableHeading>
+</ExpandableHeading>

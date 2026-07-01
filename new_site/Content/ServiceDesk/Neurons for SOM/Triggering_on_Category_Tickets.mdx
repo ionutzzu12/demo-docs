@@ -1,0 +1,22 @@
+---
+title: Triggering on Category Tickets to ADO or Jira
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:46 GMT+0300 (Eastern European Summer Time)
+---
+
+If you want to trigger Security Tickets based on the category, set up Business Rule Triggered Actions.
+
+1. In the \{\{FRS\_VARS.Configuration\_console}}, select **Build > Business Objects**.
+2. Under the **ivnt\_SecurityIncident** object, create a new Business Rule Triggered Action.
+3. Name the Triggered Action and provide a description.
+4. Select **On Update** then select **Category&#x20;**&#x66;rom the **Field&#x20;**&#x64;rop-down menu. Select **is changed**.
+5. In the **Conditional Expression** field, add the categories you want included in the Triggered Action. For example: $(Category in ("Malware", "Phishing", "Data Breach"))
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/GDxH7FvifbNi7DGNlqZdT_semtriggeraction.png" alt="Criteria for triggering a security ticket using a triggered action" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/Neurons-SOM-Images/SEM_trigger_action.png" githubPath="Content/Resources/Images/Neurons-SOM-Images/SEM_trigger_action.png" showCaption="false"></Image>
+
+6. Select **Next**.
+7. Select **New Action Type** then select **Execute Workflow** from the drop-down menu.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/MJJTtITsvV0jZrPq6EjI3_semtriggeraction2.png" alt="Selecting action type for triggered action to create security tickets" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/Neurons-SOM-Images/SEM_trigger_action2.png" githubPath="Content/Resources/Images/Neurons-SOM-Images/SEM_trigger_action2.png" showCaption="false"></Image>
+
+8. Save.

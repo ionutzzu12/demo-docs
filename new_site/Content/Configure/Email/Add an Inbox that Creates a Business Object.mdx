@@ -1,0 +1,91 @@
+---
+title: Creating an Inbox that Creates a Generic Business Object
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:50 GMT+0300 (Eastern European Summer Time)
+---
+
+- :Link[About Creating Generic Business Objects from Email]{label="About Creating Generic Business Objects from Email" overridedLabel="About Creating Generic Business Objects from Email" spaceId docId="-Y7SIldqSFKFcxz5hLZhI" version="v2" docAnchorId="#About-Creating-Generic-Business-Objects-from-Email" loadingMethod="dynamic" newTab="false" href="Add an Inbox that Creates a Business Object.mdx"}
+- :Link[Creating an Inbox for Creating Generic Business Objects from Email]{label="Creating an Inbox for Creating Generic Business Objects from Email" overridedLabel="Creating an Inbox for Creating Generic Business Objects from Email" spaceId docId="-Y7SIldqSFKFcxz5hLZhI" version="v2" docAnchorId="#Creating" loadingMethod="dynamic" newTab="false" href="Add an Inbox that Creates a Business Object.mdx"}
+- :Link[Examples]{label="Examples" overridedLabel="Examples" spaceId docId="-Y7SIldqSFKFcxz5hLZhI" version="v2" docAnchorId="#Example" loadingMethod="dynamic" newTab="false" href="Add an Inbox that Creates a Business Object.mdx"}
+
+## About Creating Generic Business Objects from Email
+
+This feature allows you to configure the \{\{FRS\_VARS.ProductName}} email service to handle any generic business object except for service requests. You create an inbox for each business object type. So for example, all emails that are to create a task go to the task inbox, all emails that are to create a change go to the change inbox, etc.
+
+To create a new business object from an email, you must include all of the mandatory fields in the email body.
+
+<hint type="info">
+  \{\{FRS\_VARS.ProductName}} does not support HTML content in emails that are sent to create a generic business object.
+</hint>
+
+To create a generic business object from an email, first create an inbox to which users can send emails in order to create or update the business object. When creating the inbox, define the business object type (specified by the **Email Processor** parameter in :Link[Creating an Inbox]{label="Creating an Inbox" overridedLabel="Creating an Inbox" spaceId docId="oxavypV7mXubKfaNhVDO1" version="v2" docAnchorId="#Creating-an-Inbox" loadingMethod="dynamic" newTab="false" githubPath="Inbox_Configuration.htm#Creating-an-Inbox" href="Inbox_Configuration.mdx"}) as **Other**.
+
+You define field and value pairs for data in the body of the email that tell the email listener what to do. Use a configurable field value separator to separate the **key** from the **value**. Use a configurable record marker to separate the information for multiple records within a single email.
+
+## Creating an Inbox for Creating Generic Business Objects from Email
+
+You must create an inbox for each business object type that you want to be able to create from an email.  Follow these steps:
+
+1. Log in to \{\{FRS\_VARS.ProductName}}.
+2. Open the **Email Config** workspace. The mailbox configuration appears.
+3. From the **Inbox** tab, click **New**. A blank **Inbox Configuration** window appears.
+4. Enter information into the fields. For information about the fields not listed here, refer to :Link[About Creating Incidents from Emails]{label="About Creating Incidents from Emails" overridedLabel="About Creating Incidents from Emails" spaceId docId="oxavypV7mXubKfaNhVDO1" version="v2" docAnchorId="#email_config_3911985154_1229107" loadingMethod="dynamic" newTab="false" githubPath="Inbox_Configuration.htm#email_config_3911985154_1229107" href="Inbox_Configuration.mdx"}.
+
+| Field                    | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Email Processor          | The name of the business object to create. Choose **Other**.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| Name                     | The name of the business object.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Unique Key               | The field to identify the unique record, such as **ChangeNumber**.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| Create Incident On Error | Specifies if the application should create an incident if there is a problem creating the generic business object.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| Record Marker            | A symbol that separates multiple record information within an email. For example, if you enter **#** as the record marker, information in the email body preceding a # symbol creates one record and information after a # symbol creates another record. When inserted in a message body, this record marker (for example, the # symbol) allows you to create multiple records from the body of a single message.<br /><br />**NOTE**: If one or more records in the email do not contain all of the required fields, the application logs an error, even if some of the records contain all of the fields.                                                                                  |
+| Field Value Separator    | A symbol that separates record fields in an email. For example, if you enter **?** as the field value separator, information in the email body preceding a ? symbol creates one field of a record and information after a ? symbol creates another field.<br /><br />**NOTE**: If the value contains the symbol used as the field value separator, preface the field value separator with the \ symbol. For example, if the field value separator is $ and the value for the record is "The cost is $400", add the \ symbol so that the value is "The cost is \\$400". This tells \{\{FRS\_VARS.ProductName}} to ignore the $ symbol in the value. Otherwise, the application gives an error. |
+
+*Inbox that Creates an Incident*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/ODrATVXcCUFqv0g_nA3bn_inboxother.png" alt="Creating an inbox that creates an incident." position="flex-start" size="40" initialPath="../../Resources/Images/help-images/inbox_other.png" githubPath="Content/Resources/Images/help-images/inbox_other.png" showCaption="false"></Image>
+
+5. Click **Save**.
+
+## Examples
+
+See the following examples:
+
+- :Link[Sending an Email to Create a Generic Business Object]{label="Sending an Email to Create a Generic Business Object" overridedLabel="Sending an Email to Create a Generic Business Object" spaceId docId="-Y7SIldqSFKFcxz5hLZhI" version="v2" docAnchorId="#Email" loadingMethod="dynamic" newTab="false" href="Add an Inbox that Creates a Business Object.mdx"}
+- :Link[Sending an Email to Create Multiple Generic Business Objects]{label="Sending an Email to Create Multiple Generic Business Objects" overridedLabel="Sending an Email to Create Multiple Generic Business Objects" spaceId docId="-Y7SIldqSFKFcxz5hLZhI" version="v2" docAnchorId="#Sending" loadingMethod="dynamic" newTab="false" href="Add an Inbox that Creates a Business Object.mdx"}
+- :Link[Sending an Email to Update a Generic Business Object]{label="Sending an Email to Update a Generic Business Object" overridedLabel="Sending an Email to Update a Generic Business Object" spaceId docId="-Y7SIldqSFKFcxz5hLZhI" version="v2" docAnchorId="#Sending2" loadingMethod="dynamic" newTab="false" href="Add an Inbox that Creates a Business Object.mdx"}
+
+### Sending an Email to Create a Generic Business Object
+
+*Sending an Email to Create a Generic Business Object*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/DFlhfpDkCh8zbrAxEqf8g_emailexample.png" alt="Sending an email to create a generic business object." position="flex-start" size="40" initialPath="../../Resources/Images/help-images/email_example.png" githubPath="Content/Resources/Images/help-images/email_example.png" showCaption="false"></Image>
+
+Based on the mailbox created above, "Summary$Test incident creation"' means that the text "Test incident creation" is stored in the **Summary** field. The $ symbol is the field delimiter.
+
+### Sending an Email to Create Multiple Generic Business Objects
+
+To create multiple generic business objects from one email, use the symbol specified in the **Record Marker** field to separate the information for each business object instance.
+
+The following email results in the creation of two change objects and assumes that the value specified in the **Record Marker** field is "^". (Note the use of the record marker "^" in the email body.)
+
+*Sending an Email to Create Multiple Business Object Records*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/TF8zi6DTUH2c-Fp9uFGDU_emailexamplemultiple.png" alt="Sending an email to create multiple business object records." position="flex-start" size="40" initialPath="../../Resources/Images/help-images/email_example_multiple.png" githubPath="Content/Resources/Images/help-images/email_example_multiple.png" showCaption="false"></Image>
+
+For more information about the syntax used in the **ProfileLink** field in the example, refer to :Link[Using Relationship Specifiers]{label="Using Relationship Specifiers" overridedLabel="Using Relationship Specifiers" spaceId docId="LE0re3RODaLD2TMvD4oNG" version="v2" docAnchorId="#Using-Relationship-Specifiers" loadingMethod="dynamic" newTab="false" githubPath="../../Reference/Expressions/Field References.htm#Using-Relationship-Specifiers" href="../../Reference/Expressions/Field References.mdx"}.
+
+### Sending an Email to Update a Generic Business Object
+
+You can update an existing business object by sending an email with the business object type and business object ID as the subject and the updated information in the email body, using key/value pairs.
+
+*Sending an Email to Update a Generic Business Object*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/3la73K-T3Uew3GLhdGGFP_emailupdate.png" alt="Sending an email to update a generic business object." position="flex-start" size="40" initialPath="../../Resources/Images/help-images/email_update.png" githubPath="Content/Resources/Images/help-images/email_update.png" showCaption="false"></Image>
+
+As an alternative, you can update business objects using the business object type "other" with detailed field values. The email configuration is the same as shown above.
+
+The following email updates two change records. Note that in the mailbox configuration, the value for the **Unique Key** field is **ChangeNumber**.
+
+*Sending an Email to Update Multiple Generic Business Object Records*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/gHkhTshOSTsfIkTGVU83q_emailupdateother.png" alt="Sending an email to update multiple generic business object records." position="flex-start" size="40" initialPath="../../Resources/Images/help-images/email_update_other.png" githubPath="Content/Resources/Images/help-images/email_update_other.png" showCaption="false"></Image>

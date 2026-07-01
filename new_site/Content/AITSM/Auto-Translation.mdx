@@ -1,0 +1,88 @@
+---
+title: Auto-Translation
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:00 GMT+0300 (Eastern European Summer Time)
+---
+
+**Role**: Administrator
+
+**Minimum Version**: \{\{Primary.Company}} \{\{Primary.Product}} 2025.4.
+
+The Auto-translation capability is a feature that enables access to AI-powered localization and auto- translation of content based on user's selected locale. It functions in the following areas:
+
+- Localization Workbench
+- Field-Level Translation
+
+<hint type="info">
+  You must enable the **Translation Service** toggle button to use the Auto-Translation feature. Refer :Link[Enable Translation Service]{label="Enable Translation Service" overridedLabel="Enable Translation Service" spaceId docId="350XMpw4GbKM1zn3gXbCL" version="v2" docAnchorId="#Enable" loadingMethod="dynamic" newTab="false" githubPath="Translation-Service.htm#Enable" href="Translation-Service.mdx"} for more information.
+</hint>
+
+## Enable Auto-Translation
+
+1. Log in to \{\{Primary.Product}} as an \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+2. Go to the Configuration console, scroll and select **AI Configuration Hub**.
+3. Set **Auto-Translation** to **Active** using the toggle button.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/xBCMtwdZfZiCLvG8Ujle0_ai-config-auto-translation.png" position="flex-start" size="40" indent="1" initialPath="../Resources/Images/help-images/ai-config-auto-translation.png" githubPath="Content/Resources/Images/help-images/ai-config-auto-translation.png" showCaption="false"></Image>
+
+4. Select the **Configure** option beside the toggle button.
+5. Enable AI Translate for the feature:
+
+| Field                       | Description                                                                                                                                                                                                                                                                                                                                             |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Localization Workbench**  | Localization Workbench is an independent feature and you can now use the Auto-Translation feature to automatically translate content for the Localization Workbench. Refer [Localizing Live Data](<../Configure/Localization/Localizing Live Data.mdx>) to know more about Localization Workbench.<br />To enable the feature, click the toggle button. |
+| **Field level Translation** | Field Level Translation refers to the automatic translation of specific strings within an application based on the user's selected language or locale.<br />To enable the feature, click the toggle button.                                                                                                                                             |
+
+6. Click **Save**.
+
+## Using AI for Auto-Translation in Localization Workbench
+
+To enable AI to automatically translate content for the Localization Workbench, do the following:
+
+**Prerequisites:**
+
+Before using Auto-Translation in the Localization Workbench, ensure that the Localization Workbench feature is enabled. Refer to [Enable Localization Workbench](<../Configure/Localization/In-Line Localization.mdx>) for setup instructions.
+
+1. Log in to \{\{Primary.Product}} as an \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+2. Open the Configuration console, select **Organization Profile** > **Languages**.
+
+<Paragraph indent="1">
+  The **Languages** workspace displays a table of language files.
+</Paragraph>
+
+3. For the desired language, click **Edit** in the **Edit Live Data** column.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/9zEaGmiNjRgVO3G-ordlH_l10n-edit-live-data.jpg" position="flex-start" size="40" indent="1" initialPath="../Resources/Images/Localization/l10n-edit-live-data.jpg" githubPath="Content/Resources/Images/Localization/l10n-edit-live-data.jpg" showCaption="false"></Image>
+
+4. In the **Localization Workbench and Settings** workspace, choose between **Content Strings** and **Picklist Strings**.
+   - For **Content Strings**, choose **Business Objects** or **Business Object Properties** from the **Select criteria by which you would like to load the data** menu.
+
+| Field                          | Description                                                                                                                                                               |
+| ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Business Objects**           | It loads and presents data according to the name of the business object you want to change. For example, you can translate data for all **Address** business objects.     |
+| **Business Object Properties** | It loads and presents data according to the business object property you want to change. For example, you can translate data for all business objects that are **Forms**. |
+
+5. Select the item you want to translate from the populated live data, and click **Next**.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/l4ChP8IEpjzMWz7CJGBZq_ai-config-loc-workbench.png" position="flex-start" size="40" indent="1" initialPath="../Resources/Images/help-images/ai-config-loc-workbench.png" githubPath="Content/Resources/Images/help-images/ai-config-loc-workbench.png" showCaption="false"></Image>
+
+6. Click **Next**.
+
+<Paragraph indent="1">
+  A grid will display the list of translation records.
+</Paragraph>
+
+7. Select the records you want to translate using the grid selector checkbox.
+8. Click the **AI Translate** button.
+
+<Paragraph indent="1">
+  Wait for a few seconds for the translation to process.
+</Paragraph>
+
+<Paragraph indent="1">
+  Once completed, the translated strings will appear in the **Target** column.
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/GSkuCm9Mrb6wIOeS3XVUH_ai-config-auto-translation-output.png" position="flex-start" size="40" indent="1" initialPath="../Resources/Images/help-images/ai-config-auto-translation-output.png" githubPath="Content/Resources/Images/help-images/ai-config-auto-translation-output.png" showCaption="false"></Image>
+
+9. Review the translations, and click **Publish** to save them.

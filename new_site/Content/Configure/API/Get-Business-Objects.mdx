@@ -1,0 +1,43 @@
+---
+title: Get Business Objects
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:00 GMT+0300 (Eastern European Summer Time)
+---
+
+You can execute APIs to get business object records using different queries, such as 'Get all business objects', 'Get a business object by its RecID', 'Get business objects in a particular order', and so on.
+
+To query group business objects, provide the group business object name with the member object name. For example, CI.Server, Address.Email, Address.Mail, Address.Phone.
+
+<hint type="info">
+  By default the Get Business Object query returns top 25 records. However, you can query to retrieve top 100 records and not more. If you query to fetch more than 100, an unsuccessful response is returned. To retrieve more than 25 records refer to [Get Business Objects by Number of Records](Get-Business-Object-by-Number-of-Records.mdx).
+</hint>
+
+If you change API settings from [Object Permissions](../Roles/Enhanced-object-permission.mdx), ensure the following steps:
+
+1. Clear the cache:
+
+<Paragraph indent="1">
+  a. Log in to \{\{Primary.Product}} as \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. In the Configuration console, click > **Cache Management** > **Remove all cache items**.
+</Paragraph>
+
+2. Enable the **AddODataRoleInCache** global constant. By Default :Link[AddODataRoleInCache]{label="AddODataRoleInCache" overridedLabel="AddODataRoleInCache" spaceId docId="6CPp-wWweHGMGP37lRlsY" version="v2" docAnchorId="#AddODataRoleInCache" loadingMethod="dynamic" newTab="false" githubPath="../Constants/Default_Global_Constants.htm#AddODataRoleInCache" href="../Constants/Default_Global_Constants.mdx"} global constant value is set to False. To change the default values of a global constant refer to :Link[Working with Global Constants guide]{label="Working with Global Constants guide" overridedLabel="Working with Global Constants guide" spaceId docId="hdqjMZ0xNIIUp-39YljO9" version="v2" docAnchorId="#Modifyin" loadingMethod="dynamic" newTab="false" githubPath="../Constants/Defining_Global_Constant.htm#Modifyin" href="../Constants/Defining_Global_Constant.mdx"} .
+
+<hint type="info" indent="1">
+  The **AddODataRoleInCache** global constant ensures the Object Permissions pertaining to the role are added to the cache.
+</hint>
+
+## APIs to get business objects
+
+- [Get all Business Objects](Get-All-Business-Objects.mdx)
+- [Get a Business Object by ReclD or Unique Key](Get-a-Business-Object-by-ReclD-or-Unique-Key.mdx)
+- [Get Business Objects by Number of Records](Get-Business-Object-by-Number-of-Records.mdx)
+- [Get Business Object by Top and Skip](Get-Business-Objects-By-Top-Skip.mdx)
+- [Get Business Object by Filter](Get-Business-Object-by-Filter.mdx)
+- [Get Business Object by Order](Get-Business-Object-by-Order.mdx)
+- [Get Business Object by Select](Get-Business-Object-by-Select.mdx)
+- [Get Business Objects by Search](Get-Business-Object-by-Search.mdx)
+- [GetBusinessObjectMetaData](GetBusinessObjectMetaData.mdx)

@@ -1,0 +1,42 @@
+---
+title: Canceling a Release
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:48 GMT+0300 (Eastern European Summer Time)
+---
+
+The state of a new release record is draft. You can leave it in this state while you are gathering information. When you are ready to submit the release, update its status to requested. If you decide to cancel the release, you can do so before you update the release status to requested, unless you are a \{\{FRS\_VARS.Neurons\_ITSM\_-\_Release\_Manager}}.
+
+If you decide to cancel the release when it is in the active state, you must also cancel its associated milestones; otherwise, the workflow associated with each milestone goes into effect.
+
+You can only cancel a release when it is in the draft state, unless you are the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Release\_Manager}}.
+
+## Draft State
+
+1. Log in to \{\{FRS\_VARS.ProductName}} as a \{\{FRS\_VARS.Neurons\_ITSM\_-\_Change\_Manager}} or \{\{FRS\_VARS.Neurons\_ITSM\_-\_Release\_Manager}}.
+2. Open the **Release** workspace.
+3. Open the record to cancel.
+4. Select **Action Menu** **>** **Cancel Release**.
+5. In the **Enter Notes for Cancellation** field, enter a reason for cancellation and select **OK**.
+   The status of the release is set to Canceled.
+6. Select **Save**.
+
+<hint type="info">
+  A notification is sent to the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Release\_Manager}} and the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Release\_Owner}} of the cancellation.
+</hint>
+
+## Active State
+
+1. Log in to \{\{FRS\_VARS.ProductName}} as a \{\{FRS\_VARS.Neurons\_ITSM\_-\_Release\_Manager}}.
+2. Open the **Release** workspace.
+3. Open the record to cancel.
+4. Select the **Milestones** tab.
+5. Select the first milestone record in the sequence, and then select **Go to**.
+6. Select the **Workflow Instance** tab and select the workflow instance record.
+7. Select **Action Menu** **>** **Abort**.
+   The workflow instance status updates to aborted.
+8. On the **Milestone** form, set the status to Canceled.
+9. Select **Save**.
+
+<hint type="info">
+  A notification is sent to the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Release\_Manager}} and the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Release\_Owner}} of the cancellation.
+</hint>

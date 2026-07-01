@@ -1,0 +1,74 @@
+---
+title: Tips for Running a Search
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:45 GMT+0300 (Eastern European Summer Time)
+---
+
+Use the following suggestions to find the most accurate results:
+
+- :Link[Search for Words]{label="Search for Words" overridedLabel="Search for Words" spaceId docId="-ZZMe8rt3NGu9I7NKOkkL" version="v2" docAnchorId="#1Search" loadingMethod="dynamic" newTab="false" href="Tips for Search.mdx"}
+- :Link[Search for Numbers]{label="Search for Numbers" overridedLabel="Search for Numbers" spaceId docId="-ZZMe8rt3NGu9I7NKOkkL" version="v2" docAnchorId="#2Search" loadingMethod="dynamic" newTab="false" href="Tips for Search.mdx"}
+- :Link[Search for Phrases]{label="Search for Phrases" overridedLabel="Search for Phrases" spaceId docId="-ZZMe8rt3NGu9I7NKOkkL" version="v2" docAnchorId="#3Search" loadingMethod="dynamic" newTab="false" href="Tips for Search.mdx"}
+- :Link[Consider your Search Words]{label="Consider your Search Words" overridedLabel="Consider your Search Words" spaceId docId="-ZZMe8rt3NGu9I7NKOkkL" version="v2" docAnchorId="#4Consider" loadingMethod="dynamic" newTab="false" href="Tips for Search.mdx"}
+- :Link[Case Sensitivity]{label="Case Sensitivity" overridedLabel="Case Sensitivity" spaceId docId="-ZZMe8rt3NGu9I7NKOkkL" version="v2" docAnchorId="#5Case" loadingMethod="dynamic" newTab="false" href="Tips for Search.mdx"}
+- :Link[Noise Words]{label="Noise Words" overridedLabel="Noise Words" spaceId docId="-ZZMe8rt3NGu9I7NKOkkL" version="v2" docAnchorId="#searches_3795725928_1204904" loadingMethod="dynamic" newTab="false" href="Tips for Search.mdx"}
+- :Link[Multiple Word Search]{label="Multiple Word Search" overridedLabel="Multiple Word Search" spaceId docId="-ZZMe8rt3NGu9I7NKOkkL" version="v2" docAnchorId="#7Multiple" loadingMethod="dynamic" newTab="false" href="Tips for Search.mdx"}
+- :Link[Hyphenated Words]{label="Hyphenated Words" overridedLabel="Hyphenated Words" spaceId docId="-ZZMe8rt3NGu9I7NKOkkL" version="v2" docAnchorId="#8Search" loadingMethod="dynamic" newTab="false" href="Tips for Search.mdx"}
+
+## Search for Words
+
+Search for exact words using quotation marks. For example, if you enter **"fail"**, all records containing the exact word **fail** appear. If you do not include the quotation marks, the results include exact words as well as similar words, such as **fail**, **failing**, or **failed**.
+
+A word followed by a&#x6E;**&#x20;\*** (asterisk) must match a prefix of some word in the results. For example, **B\*** results in all records containing a word starting with the letter **B**. Inflectional generation is not supported. For example, **giv\*** does not match **gave**.
+
+Some similar word searches might not work if the stem of the word matches a word in the noise word list (refer to :Link[Noise Words]{label="Noise Words" overridedLabel="Noise Words" spaceId docId="-ZZMe8rt3NGu9I7NKOkkL" version="v2" docAnchorId="#searches_3795725928_1204904" loadingMethod="dynamic" newTab="false" href="Tips for Search.mdx"}) of your server database, such as out when searching for **Outlook**, or in when searching for **inbox records**. If you have this type of issue, try adding another letter to the search word, such as **outl** or **inb** when entering a search term.
+
+## Search for Numbers
+
+You can search for numbers in records by placing quotation marks around the numbers, such as **"100"**. This returns all records containing the number **100**. A purely numeric term (digits only, not alphanumeric) must match as a number. You cannot search for partial numbers.
+
+## Search for Phrases
+
+You can search for records matching a phrase, such as **"hard drive failure"** or **"system crash"**. Enter the phrase in the text box between quotation marks.
+
+This type of search allows you to narrow your results by placing strict limitation on the words or phrase used in the search. By entering "print" with quotation marks, you will not get printer, printing, prints, and so on as the results exactly match your search phrase.
+
+To find records containing words not in any specific order, do not use quotation marks.
+
+## Consider your Search Words
+
+The more words you enter, the fewer results you get in return, but the results are a closer match to what you need. Not using quotation marks increases the number of records returned.
+
+## Case Sensitivity
+
+A Microsoft SQL database search is not case sensitive, which means that upper and lower case letters are treated the same with regard to a text search. For example, **bill** or **Bill** could return an item (bill) and the name of a person (**Bill**). The database administrator is responsible for establishing how searches run on the database.
+
+## Noise Words
+
+Noise words, also called *stop words*, are so common that they cause your search to return so many records that you cannot find what you were looking for. Noise words include *a*, *and*, *by*, *can*, *for*, *is*, *no*, *not*, *the*, *to*, and *with*. ITSM ignores noise words. For example, if you enter **"need to"**, the application only searches for **need** because **to** is a noise word. However, **to** is highlighted in the records returned.
+
+## Multiple Word Search
+
+A multiple word search is one that uses more than one word in the search text box. These are often referred to as Boolean queries, which use Boolean operators (such as **AND** and **OR**) in a single phrase. You can include both words with quotes and without quotes in a multiple word search.
+
+By default, full-text search uses **OR** when multiple words are entered without a Boolean operator. The search results contain both words in no particular order.
+
+The following are examples of multiple word searches:
+
+| Search String              | Results                                                                       |
+| -------------------------- | ----------------------------------------------------------------------------- |
+| **Outlook OR email**       | All records that contain either word.                                         |
+| **login Outlook OR email** | All records for **Outlook login** and **email login** in no particular order. |
+| **outlook working**        | All records that contains both words in no particular order.                  |
+
+## Hyphenated Words
+
+Common punctuation and separator characters are used as delimiters in tokenization.
+
+- The search matches only records where all search tokens match.
+- Search tokens are wrapped in forms of (inflectional, \<search token>), which does not match with substrings. Therefore, **hef** does not match **heft**.
+- Single letter search tokens are ignored. For example, if the search is **heft-y**, it will ignore the **y**.
+- Common words, such as **he** are removed. Therefore **carl-he** results in a single search token **carl**.
+- The token **hef** does not return results for **heft**, **heftier**, and **heftiest**. Instead, search using **carl-hef\*** to get the matching records.
+
+Words separated by hyphens match, except that the matches must be in the same field of the results. For example, **quickly-running** matches any field that contains **quick**, **quickly**, **quicker**, and so on, as a word in the field and **run**, **running**, **runner**, and so on in the same field. However, the words in the results do not need to be separated by a hyphen or in the same order.

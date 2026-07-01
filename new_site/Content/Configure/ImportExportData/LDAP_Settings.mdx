@@ -1,0 +1,323 @@
+---
+title: Configuring LDAP Settings
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:52 GMT+0300 (Eastern European Summer Time)
+---
+
+### About LDAP Settings
+
+Active Directory is the only directory service tested for LDAP operation with \{\{FRS\_VARS.ProductName}}.
+
+You can configure and synchronize employee profiles from your LDAP Active Directory server to the \{\{FRS\_VARS.ProductName}} **Employee** business object. The Data Import Wizard imports users from selected nodes in the directory server and supports attribute mapping. It also maps profiles to linked business objects such as managers and organizational units. You can run the wizard manually or schedule synchronizations.
+
+The LDAP server stores user passwords and retrieves them directly, and not from \{\{FRS\_VARS.ProductName}}.
+
+### Before Setting Up LDAP
+
+If you see the error message Internal IP is not accessible during LDAP import for Test Connection, the server IP address may fall within a restricted range for security reasons. This check prevents unauthorized access to Ivanti servers from untrusted networks. Set the global constant **EnableInternalIPForLDAP** to True then try the import again.
+
+We recommend using HTTPS or IMAPS to connect. If you connect through a VPN, contact your Ivanti Software service representative. Before setting up any LDAP synchronization actions, first set up an LDAP/LDAPS authentication provider. See [Working with ADFS/SAML](<../Security/ADFS SAML.mdx>).
+
+**Requirements**
+
+- Ensure that the \{\{FRS\_VARS.ProductName}} data center can connect to your LDAP server.
+- Use a standard LDAP browser tool outside your network to confirm that LDAP/LDAPS works with the standard ports (389 for LDAP, 636 for LDAPS).
+- Open the appropriate ports (389 for LDAP or port 636 for LDAPS).
+- Configure certificates in your LDAP server.
+- Request an IP address from Ivanti if you need to open LDAP only for firewall configuration.
+- Have LDAP login credentials ready to test import and authentication.
+- Contact \{\{FRS\_VARS.Company-short}} Support if you encounter connection issues.
+
+<ExpandableHeading>
+  ## Synchronizing LDAP Settings
+
+  Synchronization occurs only from the LDAP server to \{\{FRS\_VARS.ProductName}}, not from \{\{FRS\_VARS.ProductName}} to LDAP. The process runs only when changes are made to the LDAP source, such as Active Directory.
+
+  ### LDAP Port
+
+  For LDAP Active Directory, use port 389 for LDAP or port 636 for LDAPS. The protocol is TCP.
+
+  ### About the LDAP Content Synchronization Protocol
+
+  \{\{FRS\_VARS.ProductName}} uses the LDAP Content Synchronization Protocol (CSP), as described in RFC 4533 [(https://tools.ietf.org/html/rfc4533)](https://tools.ietf.org/html/rfc4533) to implement incremental synchronization of LDAP server entries.
+
+  - Configure the LDAP server to support CSP. If CSP requires an optional component or plugin, install it.
+  - Ensure the identity used to access the LDAP server has the required permissions for the directory sub-tree being synchronized.
+  - The required components and permissions depend on the LDAP server type.
+
+  The LDAP CSP supports replication of any directory sub-tree for which the synchronization user has permission. Active Directory supports replication of root-level directory trees only. Because of this limitation, Ivanti ITSM also supports the older synchronization method based on version stamps in each record.
+
+  - Select Enable Incremental Updates to use this method.
+  - Use CSP for synchronizing entire directory roots.
+  - Use the older method if you need to synchronize a sub-tree or if your server does not support CSP.
+
+  OpenLDAP supports replication of both root-level directories and sub-trees. Other LDAP implementations may or may not support CSP and may restrict which directory levels can be synchronized. The older synchronization method is specific to Active Directory and cannot be used with other LDAP servers..
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Connecting to Directory
+
+  You can test your server connection with selected credentials.
+
+  1. From the Configuration Console, click **Extend > Integration Tools > LDAP Settings** to open the **LDAP Settings** workspace.
+  2. Click **Add New**.
+
+  <Paragraph indent="1">
+    The **LDAP Wizard** appears.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    *LDAP Settings - Connect to Directory Page*
+  </Paragraph>
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/ptauwozloyeURv4tKOj0x_ldap-settings-connect-to-directory.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/LDAP settings - connect to directory.png" githubPath="Content/Resources/Images/help-images/LDAP settings - connect to directory.png" showCaption="false"></Image>
+
+  3. Enter information into the fields.
+
+  | Field                                         | Description                                                                                                                                                                    |
+  | --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+  | Setting Name                                  | A unique name for this LDAP server connection.                                                                                                                                 |
+  | Server                                        | A valid LDAP server name or IP address (for example, 10.34.25.21). To connect to a specific port, append the port number with a semicolon servername\:portnumber.              |
+  | Base DN                                       | The distinguished name for the LDAP object in the LDAP server. Value is not case sensitive.                                                                                    |
+  | User                                          | Enter a user name if the server requires authentication.                                                                                                                       |
+  | Password                                      | Enter a password if the server supports anonymous authentication.                                                                                                              |
+  | Connection timeout                            | Specify the timeout period (in seconds). The application attempts to connect until the timeout expires. If unsuccessful, an exception message appears.                         |
+  | Create records of type                        | Select the type of records to create (employee or external contact).                                                                                                           |
+  | Connect to eDirectory  <br />Open LDAP Server | Connects to eDirectory and the Open LDAP server.                                                                                                                               |
+  | Use NTLM authentication                       | If you selected **Connect to eDirectory/Open LDAP server**, you must also select this option. Open LDAP requires NTLM authentication.                                          |
+  | Enable Incremental Updates                    | \[Optional] Enables incremental updates through Active Directory if not using **Connect to eDirectory/Open LDAP server**.                                                      |
+  | Enable synchronous replication                | \[Optional] Enables synchronous replication. For more information, see [ http://www.openldap.org/doc/admin22/syncrepl.html](http://www.openldap.org/doc/admin22/syncrepl.html) |
+  | SSL Connection                                | Provides a secure socket layer connection, if you are using LDAPS.                                                                                                             |
+
+  4. Click **Test Connection** to verify your connection.
+
+  <Paragraph indent="1">
+    The connection test results (successful or unsuccessful) message appears.
+  </Paragraph>
+
+  5. Click **Next**.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Selecting the Directory Information to Synchronize
+
+  Enter user locations or organizational units to synchronize. If you change a user’s email address after the initial synchronization, subsequent synchronization attempts will fail.
+
+  <Paragraph indent="1">
+    *LDAP Settings - Select Directory Info to Sync*
+  </Paragraph>
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/VZsn6ro6jv8CFup_rgm78_ldap-settings-select-directoyr-info-to-sync.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/LDAP settings - select directoyr info to sync.png" githubPath="Content/Resources/Images/help-images/LDAP settings - select directoyr info to sync.png" showCaption="false"></Image>
+
+  1. Enter information.
+
+  | Field                                    | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+  | ---------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | Preset                                   | Defines the LDAP object filter. Select a default search filter from the dropdown. The default is Users.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+  | Filter                                   | \[Optional] Enter a valid filter string and click **Save New Preset**.  <br />The application adds the value to the Preset list. Click **Remove Preset** to delete the current value.                                                                                                                                                                                                                                                                                                                                                                                                                     |
+  | Root LDAP node(s)                        | Perform one of the following:  <br />To restrict LDAP searches, enter one or more valid root nodes.  <br />Use the LDAP directory browser to locate a directory, then click **Add selected node as root**.                                                                                                                                                                                                                                                                                                                                                                                                |
+  | Sample LDAP Entry to extract fields from | Do one of the following:  <br />Each LDAP entry belongs to an LDAP class and contains a set of fields. Use this option to add a sample LDAP entry containing fields to be retrieved in a fetch operation.  <br />Use the LDAP directory browser to locate a sample entry, then click **Select sample entry**.  <br />The entry shows the LDAP entry syntax, such as:  <br />CN=Class Name, OU=Organizational Unit, DC=domaincomponent1 (derived from company DNS domain components), DC=domaincomponent segment2  <br />For example:  <br />CN=Barnard Jeffries,OU=Users,OU=Pleasanton,DC=companyX,DC=com |
+
+  2. Click **Refresh** to update the window.
+  3. Click **Next**.
+
+  <Paragraph indent="1">
+    The application tests the selected options.
+  </Paragraph>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## About Field Mapping
+
+  The **Record Settings** workspace enables field mapping, relationship mapping, role access, and advanced settings. The application displays fields based on the selections made in the previous step.
+
+  <Paragraph indent="1">
+    *LDAP Field Mapping Page*
+  </Paragraph>
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/JDdIALzBSG7c6bPRXpvuL_ldap-field-mapping.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/ldap field mapping.png" githubPath="Content/Resources/Images/help-images/ldap field mapping.png" showCaption="false"></Image>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## About Expression Functionality
+
+  You can use expressions to transform values or apply complex logic during field mapping.
+
+  ### Examples of Field Mapping Using Expressions
+
+  1. Directory emails end in @domain.com. It must be transformed in \{\{FRS\_VARS.ProductName}} to end with @tenant.com.
+
+  <Paragraph indent="1">
+    The mapping expression is **PrimaryEmail = $(if(Find('@domain.com', mail) > -1 then samaccountname + '@tenant.com' else mail))**.
+  </Paragraph>
+
+  2. Map the **Department** field based on the distinguished name component.
+
+  <Paragraph indent="1">
+    If you call the **DN**() built-in function without parameters, the whole distinguished name is returned.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    For **CN=John Doe, OU=Developers, OU=Personnel, DC=Company** LDAP entry, the mapping expression is **Department = $(if(DN(1) == 'Developers' then 'Research & Development' else 'IT')**.
+  </Paragraph>
+
+  ### Expressions for Field Mapping
+
+  To enable expressions for field mapping, select **\[Use expression]** in the LDAP field name control:
+
+  <Paragraph indent="1">
+    *LDAP Field Name Control*
+  </Paragraph>
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/SXKXIs8GeVPkuJj9cTf_v_ldap-contact-field-mapping.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/ldap contact field mapping.png" githubPath="Content/Resources/Images/help-images/ldap contact field mapping.png" showCaption="false"></Image>
+
+  This invokes the Expression Editor. See [About Expressions](../../Reference/Expressions/Expressions.mdx).
+
+  Edit your expression using LDAP entry fields and other functions from the properties and functions tree.
+
+  If an LDAP field name already contains an expression, the Expression Editor automatically appears. Selecting **\[Use Text Value]** from the properties tree removes expression from the mapping. The expression is also disabled if $( symbols are not used in the beginning of the expression text.
+
+  ### Expressions for Relationship Mapping
+
+  This expression functionality is also enabled for relationship mapping.
+
+  LDAP synchronization can create an organizational unit if the required organizational unit does not exist. All new organizational units are created with a parent organizational unit selected in the parent organizational unit name control.
+
+  <Paragraph indent="1">
+    *LDAP Parent Organizational Unit Name - Organizational Unit*
+  </Paragraph>
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/2wy0d-nJPa4lxq2WH6Ce2_ldap-parent-org-unit.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/ldap parent org unit.png" githubPath="Content/Resources/Images/help-images/ldap parent org unit.png" showCaption="false"></Image>
+
+  The parent organizational unit name control is a tree list selector where you can select organizational units in a user friendly form.
+
+  <Paragraph indent="1">
+    *Parent Organizational Unit Name Control*
+  </Paragraph>
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/jaVPt9MH4mnKP989-IB8r_parent-org-unit-name-control.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/Parent Org Unit Name control.png" githubPath="Content/Resources/Images/help-images/Parent Org Unit Name control.png" showCaption="false"></Image>
+
+  ### Examples of Mapping Expressions
+
+  The mapping expression $(if(DN(1) == 'Developers' then 'Research & Development' else 'IT')) says that two organizational units are required for the import: Research & Development, and IT.
+
+  These organizational units are created (if they did not exist before the import) and placed under the organizational unit in the tree which is selected as parent.
+
+  If the organizational unit already exists, it is used for import.
+
+  The application uses the default organizational unit by default.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Mapping Fields
+
+  1. Click the \{\{FRS\_VARS.ProductName}}**Contact Field Name** field and choose the field to use as the primary contact field. The default is PrimaryEmail.
+  2. Under \{\{FRS\_VARS.ProductName}}**Contact Field Mapping**, from the **Preset** dropdown, choose a mapping file. The default list is Active Directory. When selected, the tables on this page are populated with default values. You can retain the defaults or add custom values.
+
+  <hint type="info">
+    Ivanti has tested only Active Directory as its LDAP directory service.
+  </hint>
+
+  <hint type="info">
+    You must map the **LoginID** field to the LDAP user ID, or LDAP external authorization will not perform correctly.
+  </hint>
+
+  3. Enter information into the field mapping table. You can use an expression for the LDAP field name.
+     - Fields represent field names in \{\{FRS\_VARS.ProductName}}. Directory fields are the field names in Active Directory.
+     - You can enter the attribute directly in the **Directory** field. If you enter a new attribute in the **Directory** field, you must select **Use Default** for the corresponding **Value** field.
+     - Creating new records using the LDAP import process works only for simple validation lists; for example, pick lists that are not constrained (such as department).
+
+  <Paragraph indent="1">
+    Field mapping expressions using comparison with if are case sensitive. For example, use the following expression for organizational unit: **$(if((DN(2) == 'California') then 'California' else 'Colorado'))**.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    If you used "california" (lower case "C"), then the return data is Colorado. To receive the correct data, in this case, use "California."
+  </Paragraph>
+
+  <Paragraph indent="1">
+    To map the **Manager** field, you can use the **ParseDn**() built-in function (See [ParseDn](../../Reference/Functions/ParseDn.mdx)).
+  </Paragraph>
+
+  <Paragraph indent="1">
+    *Example Using the ParseDn() Built-In Function*
+  </Paragraph>
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/zlTs4FA2AbWUqUi_fMDfv_parsednexample.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/ParseDnExample.png" githubPath="Content/Resources/Images/help-images/ParseDnExample.png" showCaption="false"></Image>
+
+  4. Click the **add** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/JtIxGMfjslfCSitXWBu4o_addgreen.png" alt caption size="10" width="17" height="15"} to add a new entry (a table row).
+     - If you select **\[Use Text Value],** the **Value** field becomes active. The text entered in this field is saved in the profile.
+     - If you select an LDAP field, the **Use Default** field becomes available. By default, this value is unchecked. During import, if the LDAP field is not found, the **Value** field is used.
+     - If you select an LDAP field, which is not in the menu, then you can enter that field name and click **Check Default**.
+  5. Under \{\{FRS\_VARS.ProductName}}**Contact Relationships**, choose the parent organizational unit name, or choose **Default**. Select fields from the LDAP-compliant directory which will be used to create relationships in your \{\{FRS\_VARS.ProductName}} solution for each contact record. This relationship must match exactly.
+
+  <Paragraph indent="1">
+    For example, if you attempt to use the **Manager** field in Active Directory, the import will fail because this field includes an LDAP distinguished name instead of a simple user name or email address.
+  </Paragraph>
+
+  6. Click the **add** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/JtIxGMfjslfCSitXWBu4o_addgreen.png" alt caption size="10" width="17" height="15"} to add a new entry (a table row).
+  7. Under \{\{FRS\_VARS.ProductName}}**Contact Roles**, add roles that can be imported using this connection. The default role is Self Service. Click **Self Service** to show the role list, then check the roles to include.
+
+  <Paragraph indent="1">
+    *LDAP - Ivanti Contact Roles*
+  </Paragraph>
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/-dMJ4JFgGF5AWe9kWoKRn_ldap-contact-roles.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/ldap contact roles.png" githubPath="Content/Resources/Images/help-images/ldap contact roles.png" showCaption="false"></Image>
+
+  <Paragraph indent="1">
+    To retain the existing roles, check **Keep existing roles**. If checked, the import process keeps all assigned roles for existing contacts and then creates roles defined in the current record settings. If unchecked, the existing roles are deleted and the selected roles are added.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    By default, \{\{FRS\_VARS.ProductName}} contacts that already exist before the import process runs keep their current roles and add the roles you have defined as part of the current record settings.
+  </Paragraph>
+
+  8. Under **Advanced Settings**, select any of the following:
+
+  | Option                                                                                                     | Description                                                                                                                                                                         |
+  | ---------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | Allow Ivanti to access LDAP directory when certificate is non-trusted.                                     | Connects through SSL to the LDAP-compliant server even if the certificate is not trusted.                                                                                           |
+  | Override Employee Login                                                                                    | Overrides the employee login settings.                                                                                                                                              |
+  | Add LDAP Login and Server to imported accounts.                                                            | Adds LDAP settings into the user profile record.                                                                                                                                    |
+  | Disable Ivanti users who have been disabled in the LDAP-compliant directory using the value of the fields: | Disables existing \{\{FRS\_VARS.ProductName}} contacts during the import process if they are disabled in LDAP. Enter the field values to check for disabled users.                  |
+  | Disable Ivanti users who have been expired in the LDAP-compliant directory                                 | Disables existing \{\{FRS\_VARS.ProductName}} contacts during the import process if they are expired in LDAP.                                                                       |
+  | Import Groups                                                                                              | By default, the system imports only users. Select this checkbox to also import groups. When selected, the synchronization includes all groups available in the chosen sample entry. |
+
+  9. Click **Preview** to see your data.
+     - From the **Profile** dropdown, choose defined LDAP entries to be used during synchronization according to the root LDAP nodes and filter parameters.
+     - Select a defined LDAP entry from the displayed list. LDAP entry field values are shown according to fields mapping settings.
+     - Close the window when finished.
+  10. Click **Next**.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Excluding Items
+
+  1. Input any specific users that you do not want to synchronize.
+     - Put each DN regular expression on a separate line.
+     - Enter a list of regular expression patterns used to exclude LDAP entries from being imported during the synchronization.
+
+  <Paragraph indent="1">
+    For example, the pattern **\*OU=Development\*** excludes all entries with a DN containing the OU=Development substring.
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    Add the patterns to the **Exclude Items** field, with each value listed on a separate line.
+  </Paragraph>
+
+  2. Click **Next**.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Completing the Synchronization
+
+  1. Click **Synchronize now** to start synchronization. The application imports the data and records the information in the LDAP import log.
+  2. Click **Save**.  The data is stored in table format on the main **LDAP Synchronization** page.
+  3. Click **Sync Now** to run the synchronization again.
+
+  <Paragraph indent="1">
+    You can create a scheduled LDAP synchronization workflow in the workflow editor using the **LDAP sync** workflow block. See [LDAP Sync Workflow Block](../Workflows/WorkflowObjects/LDAP_Sync.mdx) for more information.
+  </Paragraph>
+
+  4. Check **Save plain LDAP password to database** to save the LDAP password to the \{\{FRS\_VARS.ProductName}} database for internal authorization use within \{\{FRS\_VARS.ProductName}}. This action takes place during the synchronization process.
+</ExpandableHeading>

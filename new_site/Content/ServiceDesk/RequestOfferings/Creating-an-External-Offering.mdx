@@ -1,0 +1,64 @@
+---
+title: Creating an External Offering
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:48 GMT+0300 (Eastern European Summer Time)
+---
+
+You can create a URL-based request offering that can be posted on an external website (such as an outside vendor site). Users click a link that enables them to access the request offering.
+
+1. Log in to \{\{FRS\_VARS.ProductName}} as a \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Owner}}.
+2. Open the **Request Offering** workspace.
+3. Click **New > External Offering**. The **Define External Offering** page opens.
+4. Enter information into the fields.
+
+| Field            | Description                                                                                                  |
+| ---------------- | ------------------------------------------------------------------------------------------------------------ |
+| Service          | The service for which the external offering applies. This list is populated from the **Services** workspace. |
+| Name             | A unique name for the service.                                                                               |
+| Description      | Describes how the external offering is used.                                                                 |
+| Anonymous Submit | Allows anonymous users to submit a service request based on this external offering.                          |
+
+5. Define the **Categories**.
+   - Click **Add Category** to choose a category for this external offering. Repeat to select multiple categories.
+   - Click **Edit Categories** to make changes to a category.
+6. Click **Next**. The **Set External Offering** page opens.
+
+<Paragraph indent="1">
+  *Set External Offering Page*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/cyzm-gOjO_F7nRhZfT_xX_set-external-offering-tab.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/ReqOff-Images/set-external-offering-tab.png" githubPath="Content/Resources/Images/ReqOff-Images/set-external-offering-tab.png" showCaption="false"></Image>
+
+7. Click **Change Image** to edit the default image. See [Default Icons for Request Offerings](Default-Icons-for-Request-Offerings.mdx).
+   - The image size cannot be larger than 50 KB.
+   - We recommend square images.
+   - The image dimensions can be as large as you like, but is scaled down to 48 by 48 pixels.
+8. Enter information into the fields.
+
+| Field                                      | Description                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| ------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| External Service Uri                       | Either HTTP or HTTPS (for a secure connection). Select from the drop-down list, then enter the web address of the service.                                                                                                                                                                                                                                                                                                           |
+| Put logged in User Id in URL as HeatUserId | Shows the user ID with **HeatUserId** in the URL.<br /><Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/wh8euvbmCb0XqdfTIWimp_request-offering-request-url.png" position="flex-start" size="40" initialPath="../../Resources/Images/help-images/request offering request URL.png" githubPath="Content/Resources/Images/help-images/request offering request URL.png" showCaption="false"></Image> |
+| Put Offering Id in URL as                  | Shows the offering ID and the user ID appear in the URL box.                                                                                                                                                                                                                                                                                                                                                                         |
+| Open In                                    | Specifies how the service request appears. Select from the drop-down list:<br />**New Window**: Opens the service request in a new browser window.<br />**Workspace**: Opens a new workspace inside \{\{FRS\_VARS.ProductName}}.<br />**Inside Service Catalog**: Opens the service request inside the **Service Catalog** workspace within \{\{FRS\_VARS.ProductName}}.                                                             |
+
+9. Click **Next**. The **Publish Action** **Access** page opens. Access to external offerings is based on the organizational unit, region, and location of the user.
+10. Select an option from the **Status** drop-down list.
+
+| Field     | Description                                                                                                                                                                                                                                                                                                                              |
+| --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| In Design | Saves the external offering without publishing it to users. You can modify this external offering later.                                                                                                                                                                                                                                 |
+| Published | Saves the external offering and makes it available under request offerings, but not under the Service Catalog. When setting this status, by default the organizational unit of the owner is added with all permissions checked. This external offering is available in the Service Catalog for this organizational unit unless modified. |
+
+11. Click **Add**.
+
+| Field    | Description                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Org Unit | Selects an organizational unit from the list. You can only publish external offerings to organizational units to which you have access. For example, if you do not have access to the entire organization, your published external offering is only available to users in the organizational unit that you have selected and below. You can only publish to an organizational unit to which you belong, and its parent and child units. |
+| Location | Only publishes to specific locations. You can designate multiple locations.                                                                                                                                                                                                                                                                                                                                                             |
+| Submit   | Allows this external offering to be submitted from the Service Catalog by the designated organizational unit.                                                                                                                                                                                                                                                                                                                           |
+| Edit     | Select to modify the external offering (not the resulting service request). The request offering owner has edit permissions by default.                                                                                                                                                                                                                                                                                                 |
+| Delete   | Select to delete the external offering (not the resulting service request).                                                                                                                                                                                                                                                                                                                                                             |
+| Copy     | Select to duplicate the external offering (not the resulting service request).                                                                                                                                                                                                                                                                                                                                                          |
+
+12. Click **Save**, **Save & Exit**, or **Cancel**.

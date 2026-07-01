@@ -1,0 +1,89 @@
+---
+title: Business Object Summarization
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:00 GMT+0300 (Eastern European Summer Time)
+---
+
+**Role**: \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+
+**Platform**: SaaS only.
+
+**Minimum Version**: \{\{Primary.Company}} \{\{Primary.Product}} 2024.2.
+
+**Feature Eligibility**: Ivanti's \{\{FRS\_VARS.AITSM}} capabilities are available to customers who have subscribed to Premium or Enterprise Premium license. To know your eligibility, reach out to your Ivanti Account Manager.
+
+**Package Installation:** Existing customers - import the [latest package](https://marketplace.ivanti.com/xchange/64b5b48e2ee9d6e08c3e6724/solution/66573f6ffa3fa054d3cbb75a).
+
+The Business Object Summarization capability delivers AI-powered efficiency through advanced summarize AI technology, enabling summarize functionality for faster decision-making. With a single click, the system generates an AI summary by analyzing key fields such as Summary, Description, Urgency, Category, and Journal, creating a clear and concise summary.
+
+This feature helps Service Desk Analysts save time by eliminating the need to manually review multiple fields. Instead, they can quickly understand the context and focus on resolving the issue faster. By reducing effort and improving accuracy, this capability streamlines workflows and enhances overall service desk productivity.
+
+## Configuring the AI Summary button
+
+The **AI Summary** button is not available by default for existing customers; the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}} must specifically add it to the Business Object layout. However, for new users, the **AI Summary** button is available out-of-the-box by default.
+
+**Adding the&#x20;****AI Summary****&#x20;button to the Business Object Layout**
+
+1. Log in to \{\{Primary.Product}} as an Administrator.
+2. To open a business object, go to Configuration Console > **Build** > **Business Objects**, and then open your preferred business object.
+3. Click the **Layouts** tab.
+4. Select the Business Object layout used for the role you want the **AI Summary** button implemented.
+5. Click **formView** to edit the form.
+6. Click **Edit** under the **Toolbar** field. The **Toolbar Editor** page is displayed.
+7. Drag the **AI Summary** into the toolbar.
+
+<Paragraph indent="1">
+  The **Toolbar Button Editor** window is displayed.
+</Paragraph>
+
+8. Optionally, under **General** tab, you can customize the AI Summary button according to your preference.
+9. Click **Advanced** and enter the following expression:
+
+<CodeblockTabs indent="1">
+  ```bash
+  $(!IsRegexMatch(GetGlobal("IsAIITSMEnabled"),/"IncidentSummarization":\s*[tT]rue/))
+  ```
+</CodeblockTabs>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/lHqKfccul4oG0XnbS24dU_ai-summary-button-expression.png" position="flex-start" size="40" indent="1" initialPath="../Resources/Images/Agentic-AI-Images/AI-Summary-button-Expression.png" githubPath="Content/Resources/Images/Agentic-AI-Images/AI-Summary-button-Expression.png" showCaption="false"></Image>
+
+10. Click **Save** to apply the changes.
+11. Open a workspace record of the business object for which you have implemented the **AI Summary** button.
+
+<Paragraph indent="1">
+  You can see the **AI Summary** button.
+</Paragraph>
+
+<Paragraph indent="1">
+  For example, see the following image of the Problem business object.
+</Paragraph>
+
+<Paragraph indent="1">
+  *AI Summary button*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/bUKAwteySXgnKpaT4LjVv_ai-summary-button.png" position="flex-start" size="40" indent="1" initialPath="../Resources/Images/Agentic-AI-Images/AI-Summary-Button.png" githubPath="Content/Resources/Images/Agentic-AI-Images/AI-Summary-Button.png" showCaption="false"></Image>
+
+## Using **Business Object Summarization**
+
+1. Log in to \{\{Primary.Product}} as an \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+2. Open an Active business object.
+3. Click the **AI Summary** button.
+
+<Paragraph indent="1">
+  The AI-generated summary is displayed on the side panel. The **Summary** section explains the issue and the **History** section details all the interactions to date.
+</Paragraph>
+
+<hint type="info">
+  - The application takes up to ten seconds to generate the summary.
+  - Ensure you provide sufficient details in the **Description** and **Summary** fields to be able to generate the summary.
+</hint>
+
+4. Click the **Copy** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/LrGwGTIdGdnzgrcUHDQVd_copy-icon.png" alt caption size="10" width="17" height="16"} to copy the content to the clipboard in case you wish to use copy and paste the content into another application or document.
+5. Click thumbs up or thumbs down at the end of the page and enter your comments in the feedback box. Sharing your feedback helps us improve the capability.
+
+<Paragraph indent="1">
+  *AI Generated Summary*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/AdhXvm0nVPachCh5ZeO5T_ai-generated-summary.png" position="flex-start" size="40" indent="1" initialPath="../Resources/Images/Agentic-AI-Images/AI-Generated-Summary.png" githubPath="Content/Resources/Images/Agentic-AI-Images/AI-Generated-Summary.png" showCaption="false"></Image>

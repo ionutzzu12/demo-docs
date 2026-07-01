@@ -1,0 +1,71 @@
+---
+title: Vanity URL
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:53 GMT+0300 (Eastern European Summer Time)
+---
+
+You can create custom vanity URLs for tenants and also customize the user interface. Apart from configuring the application's look and feel, you can also customize the authentication method for tenants.
+
+For information on customizing a tenant, see :Link[Customizing a Tenant]{label="Customizing a Tenant" overridedLabel="Customizing a Tenant" spaceId docId="mvkLGFzNoDDwNUFzQo-3r" version="v2" docAnchorId="#Customiz" loadingMethod="dynamic" newTab="false" githubPath="../Styles/Styling-the-Service-Manager-Console.htm#Customiz" href="../Styles/Styling-the-Service-Manager-Console.mdx"}.
+
+## Configuring Vanity URL and Authentication Method
+
+### Prerequisites
+
+- From the **Configuration** console > **Development Package** > **Packages**, import the following packages from Ivanti Marketplace to your tenant.
+  - Separate packages:
+    - [Vanity URL](https://marketplace.ivanticloud.com/packages/IvantiServiceManagerVanityURLConfiguration/)
+    - [Authentication method](https://marketplace.ivanticloud.com/packages/IvantiServiceManagerAuthenticationMethodConfiguration/)
+
+<Paragraph indent="1">
+  or
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  [Combined package](https://marketplace.ivanticloud.com/packages/IvantiServiceManagerVanityURLandAuthenticationMethodConfiguration/) (vanity URL and configuring authentication method functionality -
+</Paragraph>
+
+<hint type="info">
+  Functionality to configure the authentication method is optional, you can skip importing the package if you do not want to customize the authentication method of tenants.
+</hint>
+
+### Configuring the Vanity URL
+
+To configure a vanity URL:
+
+1. From the ConfigDB open the tenant where the vanity URL package is imported.
+2. Select the **Alternative Login URL** tab and click **New TenantURLAlias**.
+3. Enter the vanity URL of the tenant, for example, https\://vanity1.ivanticloud.com.
+
+<hint type="info">
+  - The ConfigDB access is available only for on-premise customers, cloud customers need to reach out to Ivanti Operations team to get the vanity URLs configured.
+  - The newly created vanity URL must have a DNS entry else this functionality will not work. Reach out to Ivanti Operations team to get it created.
+  - It is recommended that you reset the tenant cache before you login to \{\{FRS\_VARS.ProductName}}. To reset, select the tenant in the ConfigDB and click the **Reset Tenant Cache** button.
+</hint>
+
+4. Log in to a \{\{FRS\_VARS.ProductName}} tenant where the vanity URL package has been imported.
+5. Open the **Org Unit** workspace.
+6. Create a new organizational unit or select an existing one from the list.
+7. Enter the **Vanity URL** that is applicable for the new organization unit.
+
+<Paragraph indent="1">
+  The Vanity URL should match the **Alternative Login URL** in the ConfigDB.
+</Paragraph>
+
+8. Select the check boxes **MSP Tenant** and **Primary MSP Tenant**.
+
+<Paragraph indent="1">
+  These check boxes need to be selected if you want to customize the user interface for the tenant from the **Style Editor**.
+</Paragraph>
+
+9. Click **Save**.
+
+### Configuring the Authentication Method for a Tenant
+
+You can set a custom authentication method for tenant log in. Different tenants can have different authentication methods that suit their needs, such as, Company A can log in using the Open ID Connect Yahoo while Company B can log in using the Open ID Connect Google.
+
+1. Log in to \{\{FRS\_VARS.ProductName}} and open the **Authentication Provider** workspace.
+2. Click **New Record Menu** and select an authorization method.
+3. From the **Org Unit** field, select the tenant the authorization method is applicable.
+4. This field is available only if you have imported the latest package from Ivanti Marketplace as described in the :Link[prerequisites]{label="prerequisites" overridedLabel="prerequisites" spaceId docId="CpEf4oK8g52_ItgfFmxxw" version="v2" docAnchorId="#Prerequisites" loadingMethod="dynamic" newTab="false" href="Configuring-Vanity-URL.mdx"}.
+5. Enter all the other required details and click **Save**.

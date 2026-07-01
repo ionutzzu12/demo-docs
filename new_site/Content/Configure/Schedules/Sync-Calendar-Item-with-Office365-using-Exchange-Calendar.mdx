@@ -1,0 +1,63 @@
+---
+title: Synchronize Calendar Item in ITSM with Office 365 using Exchange Calendar
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:57 GMT+0300 (Eastern European Summer Time)
+---
+
+<font color="#000000"></font>**Role**: Administrators
+
+The Exchange Calendar feature enables seamless synchronization of calendar items in \{\{FRS\_VARS.ProductName}} with your Office 365 calendar using either Exchange Web Services (EWS) or Microsoft Graph API. Once configured, it helps you receive notifications in your Office 365 account when a calendar item is created, deleted, or updated in \{\{FRS\_VARS.ProductName}}.
+
+The feature offers the following integration options:
+
+- **Exchange Web Services (EWS)**: A legacy protocol used for connecting to Exchange servers, offering robust calendar sync capabilities. EWS supports two authentication types: **AuthLogin** authentication and **Plain** authentication.
+
+<Paragraph indent="1">
+  To learn more about these authentication types, see [About Authentication Types](../Email/About_Authentication_Types.mdx).
+</Paragraph>
+
+- **Microsoft Graph API**: A modern, secure, and scalable API that connects to Microsoft 365 services, including calendars, with enhanced performance and flexibility.
+
+For more information about configuring the Exchange Calendar feature, see [Exchange Calendar Configuration](../Calendar/Exchange-Calendar-Configuration.mdx).
+
+## Sync a calendar item
+
+To sync a calendar item in \{\{FRS\_VARS.ProductName}} with Office 365, do the following:
+
+**Create/Delete/Update a Calendar Item:**
+
+1. Log in to \{\{FRS\_VARS.ProductName}} as an Administrator.
+2. From the workspace menu, select **More** > **Calendar Item**.
+3. From the list of records, double-click the calendar item to open it.
+4. Go to **Action Menu** and you can see one of the following option based on your Exchange Calendar configuration:
+   - **Exchange**: Shows if Exchange Calendar is configured using EWS with **Plain** authentication.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/yyZjbMhavBQ2ScW2L2oBH_exchange-calendar-plain-auth.png" alt="Entering the configuration details for a package." position="flex-start" size="40" indent="2" initialPath="../../Resources/Images/Common-images/exchange-calendar-plain-auth.png" githubPath="Content/Resources/Images/Common-images/exchange-calendar-plain-auth.png" showCaption="false"></Image>
+
+<Paragraph listStyleType="disc" indent="2">
+  **Exchange OAuth**: Shows if Exchange Calendar is configured using EWS with **AuthLogin** authentication.
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/c-nOBeqNXV8QG_z8kVwmr_exchange-calendar-oauth-auth.png" alt="Entering the configuration details for a package." position="flex-start" size="40" indent="2" initialPath="../../Resources/Images/Common-images/exchange-calendar-oauth-auth.png" githubPath="Content/Resources/Images/Common-images/exchange-calendar-oauth-auth.png" showCaption="false"></Image>
+
+<Paragraph listStyleType="disc" indent="2">
+  **Graph API**: Shows if Exchange Calendar is configured using **Microsoft Graph API**.
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/JEAzWBuRpE14q_wiwE9Il_exchange-calendar-msgraph.png" alt="Entering the configuration details for a package." position="flex-start" size="40" indent="2" initialPath="../../Resources/Images/Common-images/exchange-calendar-msgraph.png" githubPath="Content/Resources/Images/Common-images/exchange-calendar-msgraph.png" showCaption="false"></Image>
+
+5. Select the following action buttons based on your requirements:
+   - **Create Calendar Item**/**Create Calendar Item using OAuth**/**Create Calendar Item using Graph API** - To create a calendar item.
+   - **Delete Calendar Item**/**Delete Calendar Item using OAuth**/**Delete Calendar Item using Graph API** - To delete a calendar item.
+   - **Update Calendar Item**/**Update Calendar Item using OAuth**/**Update Calendar Item using Graph API** - To update a calendar item.
+
+**Verify the Calendar Item in Office 365:**
+
+You can now verify whether the Calendar Item is Created, Deleted, or Updated in Office 365 according to the selection you made in **Action Menu**.
+
+6. Log in to Office 365 Outlook using the same username that was used to configure the Exchange Calendar. Refer :Link[Configuring the Exchange Calendar]{label="Configuring the Exchange Calendar" overridedLabel="Configuring the Exchange Calendar" spaceId docId="y6u-toXHUccPLwK-rx2XN" version="v2" docAnchorId="#Configur" loadingMethod="dynamic" newTab="false" githubPath="../Calendar/Exchange-Calendar-Configuration.htm#Configur" href="../Calendar/Exchange-Calendar-Configuration.mdx"}.
+7. Go to Outlook Calendar.
+
+The calendar item in ITSM has been successfully synchronized with Office 365 Outlook.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/hnNGSb0osOleoFkln-aY4_exchange-calendar-outlook.png" alt="Entering the configuration details for a package." position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/Common-images/exchange-calendar-outlook.png" githubPath="Content/Resources/Images/Common-images/exchange-calendar-outlook.png" showCaption="false"></Image>

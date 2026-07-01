@@ -1,0 +1,87 @@
+---
+title: Round
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:59 GMT+0300 (Eastern European Summer Time)
+---
+
+Rounds a value to the number of decimal places specified. Returns the integer nearest the **value** parameter. If the fractional component of the **value** parameter is halfway between two integers, one is even and the other odd, then this function returns the even number. This is called banker's rounding and it minimizes rounding errors that result from consistently rounding a midpoint value in a single direction.
+
+## Syntax
+
+Round(numberOrCurrency)
+
+## Enabled for
+
+For a description of the business object categories, refer to :Link[Notes on "Enabled For"]{label="Notes on &#x22;Enabled For&#x22;" overridedLabel="Notes on &#x22;Enabled For&#x22;" spaceId docId="xObv2pIDrk60jkEIWs8mD" version="v2" docAnchorId="#Notes" loadingMethod="dynamic" newTab="false" githubPath="_Built_in_Functions.htm#Notes" href="_Built_in_Functions.mdx"}.
+
+| Business Object Category                                                                                                                                                                                           | Yes/No |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------ |
+| Business Rules: Before-Save Rules                                                                                                                                                                                  | Yes    |
+| Business Rules: Calculation Rules (After Save, with or without Also Recalculate on Load)                                                                                                                           | Yes1   |
+| Business Rules: Calculation Rules (Before Save or Always, without Also Recalculate On Load)                                                                                                                        | Yes    |
+| Business Rules: Calculation Rules (Before Save or Always, with Recalculate On Load)                                                                                                                                | Yes1   |
+| Business Rules: Editing Rules                                                                                                                                                                                      | Yes    |
+| Business Rules: Initialization Rules                                                                                                                                                                               | Yes    |
+| Business Rules: Read Only Rules                                                                                                                                                                                    | Yes    |
+| Business Rules: Required Rules                                                                                                                                                                                     | Yes    |
+| Business Rules: Validation Rules                                                                                                                                                                                   | Yes    |
+| Client Expressions                                                                                                                                                                                                 | Yes    |
+| Object Permissions                                                                                                                                                                                                 | No     |
+| Services                                                                                                                                                                                                           | No     |
+| LDAP                                                                                                                                                                                                               | No     |
+| Mobile                                                                                                                                                                                                             | No     |
+| Quick Actions (except UI Quick Actions)                                                                                                                                                                            | Yes    |
+| UI Quick Actions                                                                                                                                                                                                   | Yes    |
+| Reports                                                                                                                                                                                                            | Yes    |
+| Search/Dashboard without field references                                                                                                                                                                          | No     |
+| Search/Dashboard with field references                                                                                                                                                                             | No     |
+| 1. Not fully supported in calculation rules that have a condition of **After Save** or the **Also Recalculate on Load** option selected. It may fail if the rule's field is used in a grid, form, or saved search. |        |
+
+## Parameters
+
+| Parameter        | Description                                             |
+| ---------------- | ------------------------------------------------------- |
+| numberOrCurrency | Input value to perform Round (Number value or currency) |
+| placesToRound    | (Optional) Number of decimal places to round.           |
+
+## Return value
+
+Returns a whole number value.
+
+## Examples
+
+```bash
+$(Round(12.4))
+```
+
+Returns this value: 12.0
+
+```bash
+$(Round(2.12345,2))
+```
+
+The above example returns a value of 2.12. Rounds down and to 2 places.
+
+```bash
+$(Round(2.12789,2))
+```
+
+The above example returns a value of 2.13. Rounds up and to 2 places.
+
+```bash
+$(Round(2.125))
+```
+
+The above example returns a value of 2.12. The number to round, 2.125, is halfway between two integers (2.12 and 2.13) so this function rounds to the even number (2.12).
+
+```bash
+$(Round(2.135))
+```
+
+The above example returns a value of 2.14. Rounds up.
+
+```bash
+$(Round(2.125USD,2))
+```
+
+The above example returns a value of 2.12USD. The number to round, 2.125, is halfway between two integers (2.12 and 2.13) so this function rounds to the even number (2.12). It also includes the currency value (USD).

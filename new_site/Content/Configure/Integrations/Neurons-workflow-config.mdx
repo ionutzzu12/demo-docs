@@ -1,0 +1,148 @@
+---
+title: Ivanti Neurons Workflow Integration
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:52 GMT+0300 (Eastern European Summer Time)
+---
+
+You can automatically invoke and execute the **Neurons** workflow to a target device or user from a support ticket in \{\{Primary.Product}}. Upon successful completion of the workflow, the **Neurons for Healing** panel in \{\{Primary.Product}} displays a success message. You can trigger the **Neurons&#x20;**&#x77;orkflow from \{\{Primary.Product}} using the following ways:
+
+- Execute the Neurons workflow using a template linked to a Quick Action
+- From the Neurons for Healing tab in the Related Items panel – Human in Loop Approach
+
+<hint type="info">
+  This feature is available in \{\{FRS\_VARS.Company}} \{\{FRS\_VARS.ProductName}} from version 2021.1 onwards.
+</hint>
+
+<hint type="danger">
+  **Please Note:** The Neurons for Healing Quick Action is deprecated. Use the [Neurons Bot](<../QuickActions/Graphical Action Designer/Integration Actions/Neurons Bot.mdx>) Quick Action to invoke Neurons workflow.
+</hint>
+
+## Creating the Neurons Workflow Configuration
+
+<hint type="info">
+  You can configure the **Neurons&#x20;**&#x77;orkflow on your tenant by raising a Service Request to the Ivanti Operations team. The **Neurons&#x20;**&#x77;orkflow is currently available only for Cloud customers.
+</hint>
+
+1. Log in to \{\{Primary.Product}} with the Administrator user role.
+2. Click **Configure Application** to go to the Configuration Console.
+3. From the Configuration Console, click **Build > Business Objects > Incident** to open the **Incident&#x20;**&#x62;usiness object.
+4. Under the **Details** field > **Special Purpose** fields sections, set the Boolean field for **IsNeuronsWorkflowExecutedFieldRef**.
+
+<hint type="info">
+  If you do not select the Boolean field, the record will not trigger the **Neurons** workflow. You can either use an existing Boolean field or create a new field to link with **IsNeuronsWorkflowExecutedFieldRef**. Refer to [Using Form Field Types](../BusinessObjects/Form-Field-Types.mdx) to create a new Boolean field.
+</hint>
+
+5. Click **Build > Global Constants** and set th&#x65;**&#x20;EnableNeuronsForHealing** value to True.
+
+## Execute Neurons Workflow using the Template linked to a Quick Action
+
+Follow these steps to trigger a **Neurons** workflow from \{\{Primary.Product}}:
+
+1. Log in to th&#x65;**&#x20;Ivanti Neurons** tenant.
+2. Create a new workflow in th&#x65;**&#x20;Ivanti Neurons** tenant. For example, create the **Test Neurons** workflow. Refer to [Neuron Workflow Builder](https://help.ivanti.com/ht/help/en_US/CLOUD/vNow/neuron-workflow-builder.htm) for more information.
+3. Log in to \{\{Primary.Product}} as an Administrator.
+4. Click **Configure Application&#x20;**&#x74;o go to the Configuration Console.
+5. From the Configuration Console, click **Build > Business Objects > Incident > Quick Actions** to open the **Quick Actions** workspace.
+6. Open the **Template** from the **Create New Actions** tab.
+7. Enter data into the following fields:
+   - **Enter Action Name**: A unique name for the Quick Action template. For example, type **Detect UAC in windows**.
+   - **Enter Action Description**: A description of what the Quick Action does.
+   - **Enter Category**: Select the template category from the list.
+8. Enter data into the following fields:
+   - **Field Name**: Type the name of the field.
+   - **Field Value**: Set a value for the field.
+9. Click the **Add&#x20;**&#x69;con at the end of a field line. A new blank field is inserted below.
+10. Repeat to add more fields if required.
+11. Under the **Additional Actions&#x20;**&#x73;ection, select **Neurons for Healing** from the list for the **Add New Action** field.
+12. Click the **Add&#x20;**&#x69;con at the end of a field line.
+    The list of new actions for the **Neurons&#x20;**&#x77;orkflow and the **Execute below Action after Save&#x20;**&#x63;heck box appears.
+13. Select **Execute below Action after Save**.
+
+<hint type="info">
+  The **Execute below Action after Save** field will allow all template actions after saving the service ticket.
+</hint>
+
+14. Under th&#x65;**&#x20;New Actions – Neurons Workflow** section, enter data into the following fields:
+    - **Workflow**: Select **Test Neurons** from the list that you created in the **Neurons&#x20;**&#x74;enant (:Link[Creating the Neurons Workflow Configuration]{label="Creating the Neurons Workflow Configuration" overridedLabel="Creating the Neurons Workflow Configuration" spaceId docId="n-P9o8zI_fz7pKkuq2Iax" version="v2" docAnchorId="#Creating" loadingMethod="dynamic" newTab="false" href="Neurons-workflow-config.mdx"}, step 4)
+    - **On Success**: Select the Quick Action to run when the workflow executes successfully. You can either use an existing Quick Action or create a new Quick Action for the **On Success** field.
+    - **On Failure**: Select the Quick Action to run when the workflow is a failure. You can either use an existing quick action or create a Quick Action for the **On Failure** field.
+    - **Enter Keywords**: Keywords for searching the **Neurons&#x20;**&#x77;orkflow.
+
+<hint type="info">
+  These keywords are matched with the words typed the Summary field to fetch these Quick Actions.
+</hint>
+
+15. Click **Save**.
+16. Log in to the Service Desk console.
+17. Open the **Incident&#x20;**&#x77;orkspace.
+18. Click **New&#x20;**&#x61;nd select the new template **Detect UAC in windows** (created in the step 7) from the list.
+19. Under the **Asset&#x20;**&#x73;ection, clic&#x6B;**&#x20;Link** to add the device to the **Neurons&#x20;**&#x77;orkflow.
+
+<hint type="info">
+  To trigger a **Neurons&#x20;**&#x77;orkflow, you can only link a device which has a&#x6E;**&#x20;Agent ID**. Other devices cannot be linked to trigger the **Neurons&#x20;**&#x77;orkflow. You can also link multiple devices that have Agent IDs. The Agent ID can be easily fetched from the Neurons Tenant. For more information, refer to the [Neurons help](https://help.ivanti.com/ht/help/en_US/CLOUD/vNow/scheduled-neurons.htm).
+</hint>
+
+20. Enter data in the remaining fields. Refer to [Managing Incidents](../../ServiceDesk/Incidents/Managing-Incidents.mdx).
+21. Click **Save**. You can also clic&#x6B;**&#x20;Save and Execute** in the **Neurons for Healing** panel.
+22. Click the **Refresh&#x20;**&#x62;utton.
+    The **Get Current Status** button appears in the **Neurons for Healing** panel.
+
+<Paragraph indent="1">
+  *Neurons Workflow Status*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/BpIUUdAtthbIWdrBOkvAm_get-current-status.png" alt="The Neurons workflow status." position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/Configure/Neurons Workflow/Get-Current-Status.png" githubPath="Content/Resources/Images/Configure/Neurons Workflow/Get-Current-Status.png" showCaption="false"></Image>
+
+The wait time depends on the complexity of the workflow. For more information, refer to [Neurons for Workflow Builder](https://help.ivanti.com/ht/help/en_US/CLOUD/vNow/neuron-workflow-builder.htm).
+
+23. Click **Get Current Status**.
+    When the workflow execution completes, a message “Action is successful” displays in the **Neurons for Healing** panel.
+24. Make sure the **On Success** Quick Action has run when the workflow executes successfully or else make sure the **On Failure** Quick Action has run when the workflow is a failure.
+
+## Neurons for Healing – Human in Loop Approach
+
+Follow the below steps to trigger a **Neurons&#x20;**&#x77;orkflow from \{\{Primary.Product}} using the Human in Loop approach:
+
+1. Log in to th&#x65;**&#x20;Ivanti Neurons** tenant.
+2. Create a new workflow in th&#x65;**&#x20;Ivanti Neurons** tenant. For example, create the **Test Neurons** workflow. Refer to [Neuron Workflow Builder](https://help.ivanti.com/ht/help/en_US/CLOUD/vNow/neuron-workflow-builder.htm) for more information.
+3. Log in to \{\{Primary.Product}} with the Administrator user role.
+4. Click **Configure Application** to go to the Configuration Console.
+5. From the Configuration Console, click **Build > Business Objects > Incident > Quick Actions** to open the **Quick Actions** workspace.
+6. Open the **Neuron for Healing** Quick Action from th&#x65;**&#x20;Create New Actions** tab.
+7. Enter data into the following fields:
+   - **Enter Action Name**: A unique name for the Quick Action template. For example, type **Detect UAC in windows**.
+   - **Enter Action Description**: A description of what the Quick Action does.
+   - **Enter Category**: Select the category from the list.
+   - **Workflow**: Select the **Test Neurons** workflow that you created in th&#x65;**&#x20;Ivanti Neurons** tenant. (:Link[Creating the Neurons Workflow Configuration]{label="Creating the Neurons Workflow Configuration" overridedLabel="Creating the Neurons Workflow Configuration" spaceId docId="n-P9o8zI_fz7pKkuq2Iax" version="v2" docAnchorId="#Creating" loadingMethod="dynamic" newTab="false" href="Neurons-workflow-config.mdx"}, step 4)
+   - **On Success**: Select the Quick Action to run when the workflow executes successfully. You can either use an existing Quick Action or create a new Quick Action for the **On Success** field.
+   - **On Failure**: Select the Quick Action to run when the workflow is a failure. You can either use an existing Quick Action or create a Quick Action for **On Failure** field.
+   - **Enter Keywords**: Keywords for searching the **Neurons&#x20;**&#x77;orkflow.
+
+<hint type="info" indent="1">
+  These keywords are matched with the words typed the Summary field to fetch these Quick Actions.
+</hint>
+
+8. Click **Save**.
+9. Log in to the Service Desk console.
+10. Open the **Incident&#x20;**&#x77;orkspace.
+11. Click **New**.
+    A blank form opens.
+12. Start typing in the **Summary&#x20;**&#x66;ield. The **Neurons for Healing&#x20;**&#x70;anel displays all the Quick Actions which are configured with the matching keyword.
+
+*List of Matching Quick Actions*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/3H8bkwzcOJK5jfns_-1up_neurons-message.png" alt="List of matching Quick Actions." position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/Configure/Neurons Workflow/Neurons-message.png" githubPath="Content/Resources/Images/Configure/Neurons Workflow/Neurons-message.png" showCaption="false"></Image>
+
+13. Under the **Asset&#x20;**&#x73;ection, click **Link&#x20;**&#x74;o add the device.
+
+<hint type="info">
+  You can only link the device which has an **Agent ID**, to trigger a **Neurons&#x20;**&#x77;orkflow. Other devices cannot be linked to trigger the **Neurons&#x20;**&#x77;orkflow. You can also link multiple devices that have Agent IDs.
+</hint>
+
+14. Enter data in the remaining fields. Refer to [Managing Incidents](../../ServiceDesk/Incidents/Managing-Incidents.mdx).
+15. Clic&#x6B;**&#x20;Save and Execute** in th&#x65;**&#x20;Neurons for Healing&#x20;**&#x70;anel for the **Test Neurons** workflow.
+16. Click the **Refresh&#x20;**&#x62;utton.
+    Th&#x65;**&#x20;Get Current Status** button appears in the **Neurons for Healing** panel.
+17. Click **Get Current Status**.
+    When the workflow execution completes, a message “Action is successful” displays in th&#x65;**&#x20;Neurons for Healing** panel.
+18. Make sure the **On Success** Quick Action has run when the workflow executes successfully or else make sure the **On Failure** Quick Action has run when the workflow is a failure.

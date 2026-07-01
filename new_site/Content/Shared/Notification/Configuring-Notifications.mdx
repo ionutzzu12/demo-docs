@@ -1,0 +1,129 @@
+---
+title: Configuring Mobile Notifications
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:51 GMT+0300 (Eastern European Summer Time)
+---
+
+\{\{FRS\_VARS.Self\_Service\_Mobile\_portal}} and \{\{FRS\_VARS.Mobile\_Analyst}} users receive notifications on their mobile app based on the Business Rules/Quick Actions configured.
+
+On-premise customers should first configure Firebase to use this feature. For information on Firebase Configuration, refer to the Firebase Configuration for Mobile Push Notification section in the [Configuration Database guide](https://www.ivanti.com/support/product-documentation).
+
+## Default Business Rules for Mobile Notification
+
+The following Business Rules are configured for mobile notifications using the **Mobile Push Notification** Quick Action in the out-of-the-box application. These Business Rules are disabled by default, enable those you want to use. The **Mobile Push Notification** Quick Action can be used in either Business Rules or in Workflows.
+
+**Incident Business Object:**
+
+- Push Notification for Incident Priority 1
+- Push Notification for Updated P1 Incidents
+- Push Notification for VIP Incidents
+
+**FRS\_ApprovalVoteTracking Business Object:**
+
+- Push Notification for Approval
+
+**Task#Assignment Business Object:**
+
+- Push Notification for Task Assigned
+
+**Announcement Business Object:**
+
+- Push Notification for Announcement
+
+The data you configure in the Quick Action - **Mobile Push Notification** will be routed through third-party servers (Firebase Cloud Messaging). Therefore, you may need to refrain from using sensitive data or any personal identifiable information. 1
+
+## Editing the default and creating new Business Rules for Mobile Notification
+
+To edit a default Business Rule for mobile notification:
+
+1. Log in to \{\{FRS\_VARS.ProductName}} with the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}} user role.
+2. Open the Configuration console.
+3. Click **Business Objects** from the **Build** section.
+4. Select a Business Object which has a :Link[default Business Rule for mobile notification]{label="default Business Rule for mobile notification" overridedLabel="default Business Rule for mobile notification" spaceId docId="3zOW9vc4YGE7wDRzI9_Xu" version="v2" docAnchorId="#DefaultBusinessRules" loadingMethod="dynamic" newTab="false" href="Configuring-Notifications.mdx"} configured that you want to edit.
+5. Select **Business Rules** and click **Triggered Actions**. A list of available Business Rules is displayed.
+6. Select the mobile notification Business Rule you wish to edit.
+7. Click the **Edit** :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/pUcDCwFqa9aQFPQhBx47U_edit.png" alt caption size="10" width="15" height="16"} icon to edit. The **Edit Triggered Action** window is displayed.
+8. Edit the details as required and click **Save**.
+
+To create a new Business Rule:
+
+9. Click **Add Trigger**. The **Add Triggered Action** window is displayed.
+10. Enter a description, select the **Field** that should trigger the action. For example, **Priority** or **Urgency**.
+11. Enter a **Conditional Expression** if required and click **Next**.
+12. Select **Mobile Push Notification** as the **New Action Type** and click **Next**.
+13. Enter the recipients who should receive the notifications in the **To** field. Only the first 100 recipients will receive the notification.
+
+<hint type="info">
+  You can enter the following in the **To** field:
+
+  - Individual email address
+  - Contact groups
+  - Expression which is configured in the Expression Editor
+</hint>
+
+<Paragraph indent="2">
+  Or
+</Paragraph>
+
+14. Select the **Send Notification to All** check box to send notifications to all the registered employees.
+
+<hint type="info">
+  When the **Send Notifications to All** check box is selected, all employees who have installed the mobile app and logged in at least once will receive the notifications in the **General** tab of the app.
+</hint>
+
+15. Enter the **Title** and a **Message** and click **Save**.
+
+## Disable Default Business Rules for Mobile Notification
+
+There are :Link[six default mobile notification Business Rules]{label="six default mobile notification Business Rules" overridedLabel="six default mobile notification Business Rules" spaceId docId="3zOW9vc4YGE7wDRzI9_Xu" version="v2" docAnchorId="#DefaultBusinessRules" loadingMethod="dynamic" newTab="false" href="Configuring-Notifications.mdx"}, disable them in case you do not want to use them.
+
+1. Log in to \{\{FRS\_VARS.ProductName}} with \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}} user role.
+2. Open the Configuration console.
+3. Click **Business Objects** from the **Build** section.
+4. Select a Business Object which has a :Link[default mobile notification Business Rule]{label="default mobile notification Business Rule" overridedLabel="default mobile notification Business Rule" spaceId docId="3zOW9vc4YGE7wDRzI9_Xu" version="v2" docAnchorId="#DefaultBusinessRules" loadingMethod="dynamic" newTab="false" href="Configuring-Notifications.mdx"} configured that you want to edit.
+5. Select **Business Rules** and click **Triggered Actions**. A list of available Business Rules is displayed.
+6. Select the Mobile Notification Business Rule you wish to disable and click the **On** button.
+
+<Paragraph indent="1">
+  The Business Rule is disabled.
+</Paragraph>
+
+## Important Information
+
+The **Mobile Push Notification** Quick Action fails and the application might not work as expected in the following scenario:
+
+1. :Link[Create or edit any Business Rule or mobile notification]{label="Create or edit any Business Rule or mobile notification" overridedLabel="Create or edit any Business Rule or mobile notification" spaceId docId="3zOW9vc4YGE7wDRzI9_Xu" version="v2" docAnchorId="#EditingAndCreate" loadingMethod="dynamic" newTab="false" href="Configuring-Notifications.mdx"}. In this scenario - **Push Notification for Incident Priority 1** is edited.
+2. In the **To** field, set the function to **Owner Email**.
+3. Save the Business Rule.
+4. Now, :Link[create an Incident]{label="create an Incident" overridedLabel="create an Incident" spaceId docId="crTb5NPQ-I8esrvjKIssw" version="v2" docAnchorId="#Creating_an_Incident" loadingMethod="dynamic" newTab="false" githubPath="../../ServiceDesk/Incidents/Managing-Incidents.htm#Creating_an_Incident" href="../../ServiceDesk/Incidents/Managing-Incidents.mdx"} and set the **Priority** as **1**.
+5. Leave the **Owner** field blank and save the Incident.
+
+<Paragraph indent="1">
+  As per the **Push Notification for Incident Priority 1** Business Rule, the **Mobile Push Notification** Quick Action will get triggered.
+</Paragraph>
+
+<Paragraph indent="1">
+  But, since the **Owner** field is blank in the Incident, the Quick Action will fail and \{\{FRS\_VARS.ProductName}} application might not work as expected.
+</Paragraph>
+
+<Paragraph indent="1">
+  **Workaround:** However, a workaround can be applied to the Quick Action triggered from Business Rule by using a **Conditional Expression**. The **Conditional Expression** can be used in the :Link[default Business Rules]{label="default Business Rules" overridedLabel="default Business Rules" spaceId docId="3zOW9vc4YGE7wDRzI9_Xu" version="v2" docAnchorId="#DefaultBusinessRules" loadingMethod="dynamic" newTab="false" href="Configuring-Notifications.mdx"} (if using) and any new Business Rule you create for the **Mobile Push Notification** Quick Action.
+</Paragraph>
+
+<Paragraph indent="1">
+  Conditional Expression - $\{null not in \{\<field name>, \<field name>}
+</Paragraph>
+
+<Paragraph indent="1">
+  *Conditional Expression Defined*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/GQhGMX0pOW0CayEXo-bDn_conditionalexpression.jpg" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/Configure/ConditionalExpression.jpg" githubPath="Content/Resources/Images/Configure/ConditionalExpression.jpg" showCaption="false"></Image>
+
+Related topics:
+
+[Business Rules](../../Configure/BusinessRules/Business_Rules.mdx)
+
+[Workflows](../../Configure/Workflows/Workflows.mdx)
+
+[Using Workflows](../../Configure/Workflows/Using_Workflows.mdx)

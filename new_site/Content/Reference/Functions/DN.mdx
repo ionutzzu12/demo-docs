@@ -1,0 +1,59 @@
+---
+title: DN
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:59 GMT+0300 (Eastern European Summer Time)
+---
+
+Returns the entire distinguished name of the current instance. This expression is used when mapping fields for an LDAP connection. Only use this function in the LDAP expression field mappings.
+
+## Syntax
+
+DN(index)
+
+## Enabled For
+
+For a description of the business object categories, see :Link[Notes on "Enabled For"]{label="Notes on &#x22;Enabled For&#x22;" overridedLabel="Notes on &#x22;Enabled For&#x22;" spaceId docId="xObv2pIDrk60jkEIWs8mD" version="v2" docAnchorId="#Notes" loadingMethod="dynamic" newTab="false" githubPath="_Built_in_Functions.htm#Notes" href="_Built_in_Functions.mdx"}.
+
+| Business Object Category                                                                     | Yes/No |
+| -------------------------------------------------------------------------------------------- | ------ |
+| Business Rules: Before-Save Rules                                                            | No     |
+| Business Rules: Calculation Rules (After Save, with or without Also Recalculate on Load)     | No     |
+| Business Rules: Calculation Rules (Before Save or Always, without Also Recalculate On Load)  | No     |
+| Business Rules: Calculation Rules (Before Save or Always, with Recalculate On Load)          | No     |
+| Business Rules: Editing Rules                                                                | No     |
+| Business Rules: Initialization Rules                                                         | No     |
+| Business Rules: Read Only Rules                                                              | No     |
+| Business Rules: Required Rules                                                               | Yes2   |
+| Business Rules: Validation Rules                                                             | Yes2   |
+| Client Expressions                                                                           | No     |
+| Object Permissions                                                                           | No     |
+| Services                                                                                     | Yes    |
+| LDAP                                                                                         | Yes    |
+| Mobile                                                                                       | Yes    |
+| Quick Actions (except UI Quick Actions)                                                      | No     |
+| UI Quick Actions                                                                             | No     |
+| Reports                                                                                      | Yes1   |
+| Search/Dashboard without field references                                                    | No     |
+| Search/Dashboard with field references                                                       | No     |
+| 1. Except in services.                                                                       |        |
+| 2. Except in services and when this field appears on a form or is triggered by such a field. |        |
+
+## Parameters
+
+| Parameter | Description                                                                                                                                                                                                                                                                          |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| index     | (Optional) The zero-based segment of the distinguished name to return.<br />**NOTE**: If you omit this parameter, if the parameter is less than zero, or if the parameter is greater than or equal to the number of segments, the application returns the entire distinguished name. |
+
+## Return Value
+
+<Paragraph indent="1">
+  Unicode text value.
+</Paragraph>
+
+## Example
+
+<Paragraph indent="1">
+  For the LDAP entry **CN =John Doe, OU=Developers, OU=Personnel, DC=Company**, an example of using the **DN** function is:
+</Paragraph>
+
+Department = $(if(DN(1) == 'Developers' then 'Research & Development' else 'IT')

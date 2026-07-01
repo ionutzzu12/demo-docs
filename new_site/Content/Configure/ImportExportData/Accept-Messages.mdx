@@ -1,0 +1,146 @@
+---
+title: Using Web Services with External Messages
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:53 GMT+0300 (Eastern European Summer Time)
+---
+
+- :Link[About Using External Messages]{label="About Using External Messages" overridedLabel="About Using External Messages" spaceId docId="KwnvB4RB_9eQ0euWXsSNc" version="v2" docAnchorId="#About-Using-External-Messages" loadingMethod="dynamic" newTab="false" href="Accept-Messages.mdx"}
+- :Link[Security Features When Using External Messages]{label="Security Features When Using External Messages" overridedLabel="Security Features When Using External Messages" spaceId docId="KwnvB4RB_9eQ0euWXsSNc" version="v2" docAnchorId="#Security-Features-When-Using-External-Messages" loadingMethod="dynamic" newTab="false" href="Accept-Messages.mdx"}
+- :Link[Third Party Configuration Example]{label="Third Party Configuration Example" overridedLabel="Third Party Configuration Example" spaceId docId="KwnvB4RB_9eQ0euWXsSNc" version="v2" docAnchorId="#Third-Party-Configuration-Example" loadingMethod="dynamic" newTab="false" href="Accept-Messages.mdx"}
+- :Link[Creating a Script for Ivanti to Process External Messages]{label="Creating a Script for Ivanti to Process External Messages" overridedLabel="Creating a Script for Ivanti to Process External Messages" spaceId docId="KwnvB4RB_9eQ0euWXsSNc" version="v2" docAnchorId="#Creating-a-Script-for-Ivanti-to-Process-External-Messages" loadingMethod="dynamic" newTab="false" href="Accept-Messages.mdx"}
+- :Link[Configuring the API Key]{label="Configuring the API Key" overridedLabel="Configuring the API Key" spaceId docId="KwnvB4RB_9eQ0euWXsSNc" version="v2" docAnchorId="#Configuring-the-API-Key" loadingMethod="dynamic" newTab="false" href="Accept-Messages.mdx"}
+- :Link[Configuring the Message Handler]{label="Configuring the Message Handler" overridedLabel="Configuring the Message Handler" spaceId docId="KwnvB4RB_9eQ0euWXsSNc" version="v2" docAnchorId="#Configuring-the-Message-Handler" loadingMethod="dynamic" newTab="false" href="Accept-Messages.mdx"}
+- :Link[Setting the Trusted IP Addresses]{label="Setting the Trusted IP Addresses" overridedLabel="Setting the Trusted IP Addresses" spaceId docId="KwnvB4RB_9eQ0euWXsSNc" version="v2" docAnchorId="#Setting-the-Trusted-IP-Addresses" loadingMethod="dynamic" newTab="false" href="Accept-Messages.mdx"}
+
+## About Using External Messages
+
+This feature allows \{\{FRS\_VARS.ProductName}} to accept external messages, such as web service calls, that are generated externally. This allows different applications with different infrastructures to communicate with each other without either application having to change their internal structures and logic. For example, an external vendor such as SalesForce.com may trigger an event in \{\{FRS\_VARS.ProductName}} based on an action in their application. When a user in SalesForce.com updates an account status, their application sends a message to \{\{FRS\_VARS.ProductName}} to inform us of the account change.
+
+\{\{FRS\_VARS.ProductName}} does not have control over the format of the external message and so must be able to accept messages in any format, in order to process the data in the message. \{\{FRS\_VARS.ProductName}} uses the message queue and scripts to transform the data in the external message and to send a response to the external application.
+
+## Security Features When Using External Messages
+
+This features uses the following security measures:
+
+- You can set the IP addresses, or a range of IP addresses, from which to accept external messages. You can also block IP addresses. \{\{FRS\_VARS.ProductName}} checks the IP address at both the application level and at the tenant level. See :Link[Setting the Trusted IP Addresses]{label="Setting the Trusted IP Addresses" overridedLabel="Setting the Trusted IP Addresses" spaceId docId="KwnvB4RB_9eQ0euWXsSNc" version="v2" docAnchorId="#Setting-the-Trusted-IP-Addresses" loadingMethod="dynamic" newTab="false" href="Accept-Messages.mdx"}.
+- Every external message must contain a valid API key in the URL. This API key must match the customer-defined API key in the \{\{FRS\_VARS.ProductName}} database. If there is no valid API key, \{\{FRS\_VARS.ProductName}} ignores the external message. See :Link[Configuring the API Key]{label="Configuring the API Key" overridedLabel="Configuring the API Key" spaceId docId="KwnvB4RB_9eQ0euWXsSNc" version="v2" docAnchorId="#Configuring-the-API-Key" loadingMethod="dynamic" newTab="false" href="Accept-Messages.mdx"}.
+- You can optionally enable the script to limit the amount of data that it accepts in the external message.
+
+## Third Party Configuration Example
+
+The following configuration information is an example only. It is described here for informational purposes only. This configuration is not part of \{\{FRS\_VARS.ProductName}} and is subject to change. Your third party integration may be completely different from the one described here. It is only included to help you understand the external message format and process.
+
+The following example is for SalesForce.com. It shows how whenever an account number that starts with 3 is added or modified, SalesForce.com sends an external message to \{\{FRS\_VARS.ProductName}} that updates the corresponding record in the \{\{FRS\_VARS.ProductName}} application.
+
+The user does the following:
+
+1. Logs into a third party application; in this case, SalesForce.com
+2. Creates a new workflow rule using the account object. The workflow rule is triggered whenever an account is created or edited, with the criteria of the account number starts with a 3.
+3. Creates an action to send a message to \{\{FRS\_VARS.ProductName}} every time that the workflow rule runs. The message contains the account number change. This message must contain the \{\{FRS\_VARS.ProductName}} URL and the URL must contain the \{\{FRS\_VARS.ProductName}} API key. See :Link[Configuring the API Key]{label="Configuring the API Key" overridedLabel="Configuring the API Key" spaceId docId="KwnvB4RB_9eQ0euWXsSNc" version="v2" docAnchorId="#Configuring-the-API-Key" loadingMethod="dynamic" newTab="false" href="Accept-Messages.mdx"}.
+4. Activates the workflow.
+
+<Paragraph indent="1">
+  When an account that starts with 3 is created or updated, SalesForce.com sends an external message to \{\{FRS\_VARS.ProductName}}.
+</Paragraph>
+
+## Creating a Script for Ivanti to Process External Messages
+
+Follow these steps to configure \{\{FRS\_VARS.ProductName}} to process the external message.
+
+1. From the Configuration Console, click **Extend** > **Integration Tools** > **Web Service Connections (BETA)** to open the **Web Service Connection Manager (BETA)** workspace.
+2. Under **Calls from external web services to System (Incoming)**, click **New Service**.
+3. Enter information into the fields:
+
+| Field                   | Description                                                                                                                                               |
+| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Integration Name        | A unique name for this integration.                                                                                                                       |
+| Description             | Optional. A description of the integration.                                                                                                               |
+| Response XML (optional) | Optional. Contains the XML-formatted response that \{\{FRS\_VARS.ProductName}} sends to the third party integration upon receipt of the external message. |
+
+4. Click **Next**. The application displays the **Script** page.
+5. In the **Service Reference** field, click **Add new\...**. The application displays the **Create Service Reference** dialog box.
+6. Enter information into the fields:
+
+| Field                 | Description                                                                                                                                                                                                                       |
+| --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Integration Name      | Read only. The name of the integration.                                                                                                                                                                                           |
+| Service Reference     | A unique name for this service reference.                                                                                                                                                                                         |
+| Service Address (URL) | The URL where the third party integration sends the external message. This URL must be the same as the URL used by the third party integration. An example is https\://integration.saasit.com/*company\_name*/AccountUpdate.asmx. |
+
+7. Click **Save**.
+
+<Paragraph indent="1">
+  The **Script** page does not show any request data until you receive a request from the third party integration.
+</Paragraph>
+
+8. Go to third party integration and send an external message to \{\{FRS\_VARS.ProductName}}. This populates the **Script** page with request data.
+
+<Paragraph indent="1">
+  Now you need to create the script that \{\{FRS\_VARS.ProductName}} uses whenever it receives the external message from the third party integration. This script tells the \{\{FRS\_VARS.ProductName}} application how to process the external message.
+</Paragraph>
+
+9. Browse the request data for the information to add to the **Script Snippet** section. For example, if you configured the the third party integration to send an external message whenever the account information changed, you might add the variable information for the account variable (shown in the **Request Data** section) to the **Script Snippet** section. Click the variable name in the **Request Data** section to generate the variable information and add it to the **Script Snippet** section.
+10. Click **Append** to move the script snippets to the **Scripts** section.
+
+*Relationship Between Data*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/SMft7JMYlDG9YO2nMGqmP_ext-message-code-snippet.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/ext-message-code-snippet.png" githubPath="Content/Resources/Images/help-images/ext-message-code-snippet.png" showCaption="false"></Image>
+
+11. Update the code in the **Scripts** section until you have created your script.
+12. Click **Save**.
+
+Whenever \{\{FRS\_VARS.ProductName}} receives an external message, it executes the script on the external message to process it.
+
+## Configuring the API Key
+
+1. From the Configuration Console, click **Configure** > **Security Controls** > **API Keys** to open the **API Keys** workspace.
+2. Click **Add Key Group** to create a new API key group.
+3. Enter a name and optionally a description for the new API key group.
+4. Click **Save Key Group** and then click **Back** to return to the **API Keys** workspace.
+5. Under **Key groups**, highlight the new API key group that you created.
+6. Click **Add API Key** to generate an API key. The application displays the **New API Key** page with a reference ID already populated.
+7. Click **Save Key** and then click **Back** to return to the **API Keys** workspace. The application displays the new API key.
+
+All external messages must contain this API key; otherwise \{\{FRS\_VARS.ProductName}} will not process the message.
+
+## Configuring the Message Handler
+
+You need to configure a message handler to handle the external message.
+
+1. Log into the \{\{FRS\_VARS.ProductName}} Configuration Database (ConfigDB).
+2. Open the **Message Queue Handler** workspace.
+3. Click **New Message Queue Handler**.
+4. Enter information into the fields, noting the following:
+   - The value in the **Endpoint** field must be the URL of the integration service. For example, enter **http\://*****your\_IP\_address*****/IntegrationService.svc**.
+
+<hint type="success" indent="2">
+  \{\{FRS\_VARS.Company}} strongly recommends using the secure protocol HTTPS instead of HTTP within the \{\{FRS\_VARS.ProductName}} platform to ensure data security and integrity.
+</hint>
+
+<Paragraph listStyleType="disc" indent="2">
+  The value in the **Dispatch Method** field must be set to **HandleWebServiceMessage**. The name must match exactly.
+</Paragraph>
+
+5. Click **Save**.
+
+<Paragraph indent="1">
+  See the *Configuration Database Guide for&#x20;*\{\{Primary.Product}} for more information about using the \{\{FRS\_VARS.ProductName}} Configuration Database.
+</Paragraph>
+
+## Setting the Trusted IP Addresses
+
+The application only processes external messages from IP addresses that are on the trusted IP address list. Before you proceed, ensure that you have the list of IP addresses for your third party integrations.
+
+1. Log into the \{\{FRS\_VARS.ProductName}} application.
+2. Open the **Integration Trusted Host** workspace.
+3. Click **New Integration Trusted Host**.
+4. Enter information into the fields.
+
+| Field       | Description                                                |
+| ----------- | ---------------------------------------------------------- |
+| Name        | A unique name for this trusted host.                       |
+| Description | (Optional). A description of this trusted host.            |
+| Start IP    | The first IP address in a series of IP addresses to allow. |
+| End IP      | The last IP address in a series of IP addresses to allow.  |
+
+5. Click **Save**.

@@ -1,0 +1,21 @@
+---
+title: Change Risk Reference
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:48 GMT+0300 (Eastern European Summer Time)
+---
+
+## Associated Fields Related to Risk Analysis Functionality
+
+| Field                  | Definition                                                                                                                                                                                                                                      |
+| ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| CatalogName            | Stores the name of the catalog that is used in the relationship constraint. The default setting is BaseCatalog.                                                                                                                                 |
+| CalculateRiskQuestions | Serves as a trigger for the Java script to create new answer records (based on the catalog selected) that the user must complete. The application triggers the out-of-the-box field whenever you change the **Change** field.                   |
+| RiskLevel              | Contains the values high, medium, or low, depending on the value of the **RiskSum** field. The risk level is a conditional list expression that calculates the value. It can be easily modified to set different thresholds for the risk level. |
+| RiskSum                | Contains a numeric value calculated by a before save rule. \{\{FRS\_VARS.ProductName}} adds all of the weights associated with the user's answers to the risk analysis questions to produce the result.                                         |
+
+## Associated Objects Related to Change Risk Catalog
+
+| Business Object  | Definition                                                                                                                                                                                                                                                                                   |
+| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| FRS\_RiskCatalog | Contains the relationship of the catalog to be used for this change record, based on the value contained in the **CatalogName** field.                                                                                                                                                       |
+| FRS\_RiskAnswer  | Contains the relationship of the answers for the user to the risk questions. \{\{FRS\_VARS.ProductName}} dynamically populates this by the Java script associated with the **CalculateRiskQuestions** field. You can edit the records in the **Risk Level** tab in the **Change** workspace. |

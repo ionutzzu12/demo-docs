@@ -1,0 +1,118 @@
+---
+title: About the Configuration Baseline
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:48 GMT+0300 (Eastern European Summer Time)
+---
+
+- :Link[About Baselines]{label="About Baselines" overridedLabel="About Baselines" spaceId docId="_QsPhRb6oXoRUxIwlFUGa" version="v2" docAnchorId="#About" loadingMethod="dynamic" newTab="false" href="About_the_Configuration_Baseline.mdx"}
+- :Link[Selecting Properties to Baseline]{label="Selecting Properties to Baseline" overridedLabel="Selecting Properties to Baseline" spaceId docId="_QsPhRb6oXoRUxIwlFUGa" version="v2" docAnchorId="#Selecting" loadingMethod="dynamic" newTab="false" href="About_the_Configuration_Baseline.mdx"}
+- :Link[Viewing the Configuration Baseline]{label="Viewing the Configuration Baseline" overridedLabel="Viewing the Configuration Baseline" spaceId docId="_QsPhRb6oXoRUxIwlFUGa" version="v2" docAnchorId="#Baseline" loadingMethod="dynamic" newTab="false" href="About_the_Configuration_Baseline.mdx"}
+- :Link[Viewing a Configuration Baseline and Comparing Baselines]{label="Viewing a Configuration Baseline and Comparing Baselines" overridedLabel="Viewing a Configuration Baseline and Comparing Baselines" spaceId docId="_QsPhRb6oXoRUxIwlFUGa" version="v2" docAnchorId="#Viewing" loadingMethod="dynamic" newTab="false" href="About_the_Configuration_Baseline.mdx"}
+
+## About Baselines
+
+A configuration baseline shows the configuration of a configuration item that has been reviewed and agreed upon and is marked to be under change control.
+
+Only the configuration item and configuration item component business objects can be baselined.
+
+Using the configuration baseline, Configuration Managers can view and compare all historical changes made to the configuration item and the related configuration items. Configuration Managers can view the current baseline against the historical baseline.
+
+Establishing a baseline is useful in case it is necessary to back out after a change and restore the original configuration, or if it is necessary to rebuild a specific version of the configuration item at a later date. If the configuration item is linked to a change, the baseline automatically runs when the change is in implemented status.
+
+To baseline a configuration item, the configuration item type must be under change control by the administrator. In addition, you must
+
+- Select properties of the configuration item type to baseline.
+- Select the change control option on the **Details** tab of the configuration item record.
+
+## Selecting Properties to Baseline
+
+Before recording a baseline action, ensure that the fields of the configuration item type to record for baseline are selected.
+
+1. Log in to the application as the Configuration Manager.
+2. Open the **Baseline Mapping** workspace. A list of configuration item types and components appears.
+
+<Paragraph indent="1">
+  *Baseline Mapping Workspace*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/7gcjeyQHOefmWRb3ogJiW_baselinemapping.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/baseline_mapping.png" githubPath="Content/Resources/Images/help-images/baseline_mapping.png" showCaption="false"></Image>
+
+<Paragraph indent="1">
+  To view and compare baselines of a configuration item, the **Under Change Control** option for that configuration item type must be selected by the administrator for the configuration item business object. If the **Under Change Control** option for a configuration item type has not been selected by the administrator, you will not see that configuration item type listed.
+</Paragraph>
+
+3. From the **CI types** (or **CI Components**) list, select a configuration item type (or configuration item component). The suggested fields to baseline for the selected configuration item type (or component) appear.
+
+<Paragraph indent="1">
+  *Configuration Item Type*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/89Nqs_3Lrn5BgdV3beoCO_baselineselection.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/baseline_selection.png" githubPath="Content/Resources/Images/help-images/baseline_selection.png" showCaption="false"></Image>
+
+4. To view all the fields of the selected configuration item, click **Show All Properties**. Select the properties to baseline.
+5. To baseline all configuration items related to the selected configuration item, click **Show Related CI and CI Components**, then check the ones to baseline.
+6. Click **Save**.
+
+## Viewing the Configuration Baseline
+
+To view and compare baselines of a configuration item, the **Under Change Control** option for that configuration item type must be selected by the administrator.
+
+1. Log in to the application as the Configuration Manager.
+2. Open the **Configuration Item** workspace. A list of configuration item types and components appears.
+3. From a configuration item record, select the **Details** tab.
+4. Click **Is Under Change Control**. If you do not see the **Under Change Control** option, then it has not been selected in the Configuration Console by an administrator.
+
+<Paragraph indent="1">
+  *Configuration Item Record Details Tab*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/rNVF06PdlR0-dopWKvp52_baselinechangecontrol.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/baseline_change_control.png" githubPath="Content/Resources/Images/help-images/baseline_change_control.png" showCaption="false"></Image>
+
+Running the **Run Baseline** quick action for a configuration item type while the **Under Change Control** option is not selected generates an error log within the **Baseline Comparison** tab of the record.
+
+## Viewing a Configuration Baseline and Comparing Baselines
+
+1. Log in to the application as the Configuration Manager.
+2. Open the **Configuration Item** workspace. A list of configuration item types and components appears.
+3. From a configuration item record, select the **Is Under Change Control** option on the **Details** tab.
+4. Click **Save**.
+
+<Paragraph indent="1">
+  You can only view the baseline of a configuration item type for which the **Under Change Control** option has been selected by the administrator. Also, ensure that the **Change Control** option is selected on the **Details** tab of the configuration item record. If the configuration item type business object does not have the **Under Change Control** option selected in the Configuration Console, you will not see the **Change Control** option on a record of that configuration item type.
+</Paragraph>
+
+<Paragraph indent="1">
+  *Configuration Item Record Is Under Change Control*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/vD5ONyIJqnFJZQ4xBBd9R_baselinerun.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/baseline_run.png" githubPath="Content/Resources/Images/help-images/baseline_run.png" showCaption="false"></Image>
+
+5. From the toolbar, select **Run Baseline**. You can also run the baseline from under the **Baseline Comparison** tab or from the **Run Baseline** Action Menu.  The **Baseline Creation** window appears.
+6. Enter a baseline name and description in the **Name** and **Description** fields, then click **OK**. The baseline might take a few minutes to run. The current baseline is recorded.
+7. Click **OK** at any time.
+8. View the baseline history from the **Baseline Comparison** tab. The baseline history table shows the list of all the baselines for the configuration item at various times. The last successful baseline is the baseline, while the rest are historical data. Double-click any row to see details.
+
+<Paragraph indent="1">
+  *Baseline History*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/5VYmcC49T12-mO-4I9eFH_baselinecomparison.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/baseline_comparison.png" githubPath="Content/Resources/Images/help-images/baseline_comparison.png" showCaption="false"></Image>
+
+9. Click **Display Baseline** to show the values of the fields that have been selected to show baseline information.
+10. Click **Create Baseline** again to run another baseline if a change has been made to this configuration item.
+11. Click **Show Variance from Baseline** if you made any changes to the current baseline.
+12. Select the baselines from the history list, then click **Compare Baseline/History** to compare baselines. The properties that have changed appears.
+
+<Paragraph indent="1">
+  If an error occurs, the baseline does not run and the error appears in the **Error Information** section below the baseline history table.
+</Paragraph>
+
+<Paragraph indent="1">
+  If the configuration item is related to a change, the baseline automatically runs when the change status is set to implemented. If necessary, the baseline can be run at any time by clicking the **Run Baseline** quick action from the **Change** workspace.
+</Paragraph>
+
+<Paragraph indent="1">
+  *Run Baseline Quick Action*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/9baH2VEsTScyrdlyMmV_2_baselinechange.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/baseline_change.png" githubPath="Content/Resources/Images/help-images/baseline_change.png" showCaption="false"></Image>

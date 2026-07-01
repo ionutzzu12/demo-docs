@@ -1,0 +1,80 @@
+---
+title: Example: Using the Insert Child Object Action
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:57 GMT+0300 (Eastern European Summer Time)
+---
+
+You can use the **Insert Child Object** action to create a child business object for a business object. For example, you can define an action to create a new task business object each time a change is set to logged.
+
+See [Insert Child Object Action](<Classical Action Designer/templates/Insert Child Object.mdx>).
+
+<hint type="info">
+  Some of the field names given in this topic may differ in the Graphical Action Designer.
+</hint>
+
+1. From the Configuration console, click **Build > Automation Tools > Quick Actions** to open the **Actions Manager** workspace. The list of business objects that have actions appears.
+2. Click **Add/Edit** for the business object. The application displays the Action Designer selection popup.
+3. Select one of the following designers:
+   - **Graphical Action Designer**.
+   - **Classic Action Designer**.
+4. Click the **Create New Actions** tab (Classic Action Designer), or **New Actions** tab (Graphical Action Designer).
+5. Select the action type:
+   - In the Graphical Action Designer, drag the **Create a Child Record** action type onto the Design Board.
+   - In the Classic Action Designer, click the **Insert Child Object** action type to open the **Insert Child Object** configuration page.
+
+<hint type="info">
+  For information on using the Graphical Action Designer, see [Using the Graphical Action Designer (GAD)](<Graphical Action Designer/Using_the_Graphical_Action_Designer.mdx>).
+  For information on using the Classic Action Designer, see [Using the Classic Action Designer (CAD)](<Classical Action Designer/Using_the_Classic_Action_Designer.mdx>).
+</hint>
+
+6. Enter information into the fields.
+
+| Field                    | Description                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Enter action name        | A unique name for this action.                                                                                                                                                                                                                                                                                                                                                                                                         |
+| Enter action description | An optional description.                                                                                                                                                                                                                                                                                                                                                                                                               |
+| Enter category           | The category. Select from the drop-down list.                                                                                                                                                                                                                                                                                                                                                                                          |
+| Publish to               | The roles that need access to this action.                                                                                                                                                                                                                                                                                                                                                                                             |
+| Child Object             | The child business object. Select from the list. Fields from the task form appear as selections under the field name rows.                                                                                                                                                                                                                                                                                                             |
+| Web UI parameters        | Generally for internal use only.<br />Only used to post the child business object to the Social Board. This field takes only one expression: \{socialshare\:true, elementId: $(elementId)}.<br />For example, in the **Incident** business object, this field is used in the **Post Social Message Associated with Incident** action (see [Incident Actions (Uncategorized)](<Classical Action Designer/Incident_Quick_Actions.mdx>)). |
+
+7. Enter information into the fields to set the default values to appear in the default task.
+
+<Paragraph indent="1">
+  For example:
+</Paragraph>
+
+| Field       | Value                |
+| ----------- | -------------------- |
+| Field Name  | Choose **Status**.   |
+| Field Value | Choose **Archived**. |
+
+8. Click **Add**. In the new line, enter:
+
+| Field       | Value                                   |
+| ----------- | --------------------------------------- |
+| Field Name  | Choose **Summary**.                     |
+| Field Value | Enter **New Task for $(ChangeNumber)**. |
+
+9. Click **Add**. In the new line, enter:
+
+| Field       | Value                                                   |
+| ----------- | ------------------------------------------------------- |
+| Field Name  | Choose **Owner Team** to assign the new task to a team. |
+| Field Value | Choose a team from the drop-down list.                  |
+
+10. Click **Add**. In the new line, enter:
+
+| Field       | Value                                                          |
+| ----------- | -------------------------------------------------------------- |
+| Field Name  | Choose **LastModBy** to update the **Last Modified By** field. |
+| Field Value | Enter **$(CurrentLoginId())**.                                 |
+
+11. Click **Add**. In the new line, enter:
+
+| Field       | Value                                                     |
+| ----------- | --------------------------------------------------------- |
+| Field Name  | Choose **LastModBy** to update the **Modified On** field. |
+| Field Value | Enter **$(CurrentDateTime())**.                           |
+
+12. Click **Save**.

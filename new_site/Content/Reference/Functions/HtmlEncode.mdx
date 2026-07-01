@@ -1,0 +1,59 @@
+---
+title: HtmlEncode
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:59 GMT+0300 (Eastern European Summer Time)
+---
+
+Returns the HTML encoded form of the text that was passed in.
+
+Some characters in HTML have special meaning and the browser does not render them literally.  For example, the browser interprets any text enclosed by angle brackets (\< and >) as an HTML tag that describes the formatting of the text. To display HTML code literally, including all of the syntax, it must be HTML encoded when sent to the browser.  The application replaces certain characters that have special meaning in HTML with other characters.  For example, the application replaces a greater than sign (>) with **\&gt;**, replaces the less than sign (\<) with **\&lt;**, and replaces the ampersand sign (&) with **\&amp;**.
+
+## Syntax
+
+HtmlEncode(text)
+
+## Enabled For
+
+For a description of the business object categories, see :Link[Notes on "Enabled For"]{label="Notes on &#x22;Enabled For&#x22;" overridedLabel="Notes on &#x22;Enabled For&#x22;" spaceId docId="xObv2pIDrk60jkEIWs8mD" version="v2" docAnchorId="#Notes" loadingMethod="dynamic" newTab="false" githubPath="_Built_in_Functions.htm#Notes" href="_Built_in_Functions.mdx"}.
+
+| Business Object Category                                                                    | Yes/No |
+| ------------------------------------------------------------------------------------------- | ------ |
+| Business Rules: Before-Save Rules                                                           | Yes    |
+| Business Rules: Calculation Rules (After Save, with or without Also Recalculate on Load)    | Yes    |
+| Business Rules: Calculation Rules (Before Save or Always, without Also Recalculate On Load) | Yes    |
+| Business Rules: Calculation Rules (Before Save or Always, with Recalculate On Load)         | Yes    |
+| Business Rules: Editing Rules                                                               | Yes    |
+| Business Rules: Initialization Rules                                                        | Yes    |
+| Business Rules: Read Only Rules                                                             | Yes    |
+| Business Rules: Required Rules                                                              | Yes    |
+| Business Rules: Validation Rules                                                            | Yes    |
+| Client Expressions                                                                          | Yes    |
+| Object Permissions                                                                          | No     |
+| Services                                                                                    | Yes    |
+| LDAP                                                                                        | Yes    |
+| Mobile                                                                                      | Yes    |
+| Quick Actions (except UI Quick Actions)                                                     | Yes    |
+| UI Quick Actions                                                                            | Yes    |
+| Reports                                                                                     | Yes    |
+| Search/Dashboard without field references                                                   | Yes    |
+| Search/Dashboard with field references                                                      | No     |
+
+## Parameters
+
+| Parameter | Description         |
+| --------- | ------------------- |
+| text      | The text to encode. |
+
+## Return Value
+
+<Paragraph indent="1">
+  Unicode text value.
+</Paragraph>
+
+## Example
+
+$(HtmlEncode("Put \<bold> before the text & \</bold> after the text to make it bold."))
+
+<Paragraph indent="1">
+  The example above returns this:  "Put \&lt;bold\&gt; before the text \&amp; \&lt;/bold\&gt; after the text to make it bold."
+</Paragraph>

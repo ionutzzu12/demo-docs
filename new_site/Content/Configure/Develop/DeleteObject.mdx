@@ -1,0 +1,63 @@
+---
+title: Using the DeleteObject Web Method
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:01 GMT+0300 (Eastern European Summer Time)
+---
+
+Deletes the specified business object record.
+
+## Request Syntax
+
+FRSHEATIntegrationDeleteBOResponse DeleteObject(string sessionKey, string tenantId, ObjectCommandData commandData)
+
+## Parameters
+
+- **sessionKey**: The session key from the **Connect** web method.
+- **tenantId**: The tenant for which the session key is authenticated.
+- **commandData**: A structure containing information about the creation request.
+
+## Return Value
+
+**FRSHEATIntegrationDeleteBOResponse** object, defined as follows:
+
+public class
+
+    \{
+
+public string status \{ get; set; }
+
+public string exceptionReason \{ get; set; }
+
+    }
+
+The **FRSHEATIntegrationDeleteBOResponse** class has the following fields:
+
+- **status**: Provides a status about the state of the connection. The table below contains a full description of the available status values.
+- **exceptionReason**: Contains exception information, if the application throws an exception when running this web method.
+
+The following table lists the available status values and describes how to interpret them.
+
+| Status      | Explanation                                                                                                                                                                                                                                                                                                                 |
+| ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Success** | Successfully deleted the business object record. This web method also returns a status of success if it cannot find the specified record in the tenant.                                                                                                                                                                     |
+| **Error**   | Cannot delete the business object record.  <br /><br />Typically the error occurs if the specified business object does not exist in the application. The message is:<br /><br />definition for business object \<BusinessObject># was not found<br /><br />Ensure that the specified business object exists in the tenant. |
+
+## Example
+
+The following example deletes the incident record with the specified RecID.
+
+ObjectCommandData data = new ObjectCommandData();
+
+data.ObjectType = "Incident#";
+
+data.ObjectId = "96F889A8CE6E4F9C8B3A99852F788670";
+
+FRSHEATIntegrationDeleteBOResponse response = frSvc.DeleteObject(authSessionKey, tenantId, data);
+
+if (response.status != "Success")
+
+\{
+
+Console.WriteLine("Ran into the following error when deleting the record: " + response.exceptionReason);
+
+}

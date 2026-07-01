@@ -1,0 +1,57 @@
+---
+title: Using the IntegrationScheduleNow Web Method
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:01 GMT+0300 (Eastern European Summer Time)
+---
+
+Runs a predefined integration job. This web method adds the integration job to the integration queue, where it will be executed by the next available integration processor.
+
+The response object returned from this web method contains the RecID of the integration job that was successfully scheduled.
+
+## Request Syntax
+
+FRSHEATIntegrationScheduleNowResponse IntegrationScheduleNow(string sessionKey, string tenantId, string integrationName)
+
+## Parameters
+
+- **sessionKey**: The session key from the **Connect** web method.
+- **tenantId**: The tenant for which the session is created. The web method searches for the tenant ID in the **TenantURL** field in the business object for the tenant in the \{\{FRS\_VARS.ProductName}} Configuration Database (called ConfigDB). The tenant record must be in the *active* state for the authentication to succeed.
+- **integrationName**: The name of the integration job.
+
+## Return Value
+
+**FRSHEATIntegrationScheduleNowResponse** class, defined as follows:
+
+public class FRSHEATIntegrationScheduleNowResponse
+
+    \{
+
+public string status \{get; set};
+
+public string exceptionReason \{get; set};
+
+public string integrationQueueId \{get; set};
+
+    }
+
+The **FRSHEATIntegrationScheduleNowResponse** class has the following fields:
+
+- **status**: Contains a status indicating whether the web method successfully retrieved the list of roles for the current user. If the session key (returned from the **Connect** web method) is valid, this field returns a value of success.
+- **exceptionReason**: Contains exception information, if the application throws an exception when running this web method.
+- **integrationQueueId**: Contains the RecID of the integration queue job that was successfully scheduled.
+
+## Example
+
+FRSHEATIntegrationScheduleNowResponse integratonResponse = frSvc.IntegrationScheduleNow (sessionKey, tenantId, integrationName);
+
+string recId = String.Empty;
+
+if (integratonResponse.status == "Success")
+
+    \{
+
+recId = integratonResponse.integrationQueueId;
+
+Console.WriteLine(String.Format("The integration queue job with recid \{\{0}} has been successfully scheduled to run now", recId);
+
+    }

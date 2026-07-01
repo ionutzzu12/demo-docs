@@ -1,0 +1,105 @@
+---
+title: HierarchicalChildFold
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:59 GMT+0300 (Eastern European Summer Time)
+---
+
+For a parent business object (e.g. “OrganizationalUnit”) which has a hierarchical self-relationship selfRelationshipRef to itself, this system function will recursively traverse through the hierarchy from the current node to its leaf nodes, via the self-relationship.
+
+At a leaf node, it will iterate through the specified child business objects via the child relationship childRelationshipRef, evaluating the childExpression in the context of each of the child business objects. The results of the expression evaluations are aggregated using the aggregatorFunc parameter.
+
+The results from the child node is then passed up to the parent node and aggregated using the aggregatorFunc parameter. This process continues up the hierarchy, until the aggregation completes at the original node.
+
+In essence, the HierarchicalChildFold function supports a rollup aggregation for the child business objects which appear within a specific hierarchy.
+
+<hint type="info">
+  In this release, \{\{FRS\_VARS.ProductName}} only supports the plus (+) aggregator operator.
+</hint>
+
+## Syntax
+
+HierarchicalChildFold (parentObjectRef, parentRecId, selfRelationshipRef, displayFieldName, childRelationshipRef, childExpression, aggregatorFunc, childPredicateExpression)
+
+## Enabled For
+
+For a description of the business object categories, see :Link[Notes on "Enabled For"]{label="Notes on &#x22;Enabled For&#x22;" overridedLabel="Notes on &#x22;Enabled For&#x22;" spaceId docId="xObv2pIDrk60jkEIWs8mD" version="v2" docAnchorId="#Notes" loadingMethod="dynamic" newTab="false" githubPath="_Built_in_Functions.htm#Notes" href="_Built_in_Functions.mdx"}.
+
+| Business Object Category                                                                    | Yes/No |
+| ------------------------------------------------------------------------------------------- | ------ |
+| Business Rules: Before-Save Rules                                                           | Yes    |
+| Business Rules: Calculation Rules (After Save, with or without Also Recalculate on Load)    | Yes    |
+| Business Rules: Calculation Rules (Before Save or Always, without Also Recalculate On Load) | Yes    |
+| Business Rules: Calculation Rules (Before Save or Always, with Recalculate On Load)         | Yes    |
+| Business Rules: Editing Rules                                                               | Yes1   |
+| Business Rules: Initialization Rules                                                        | Yes    |
+| Business Rules: Read Only Rules                                                             | No     |
+| Business Rules: Required Rules                                                              | Yes1   |
+| Business Rules: Validation Rules                                                            | Yes    |
+| Client Expressions                                                                          | No     |
+| Object Permissions                                                                          | No     |
+| Services                                                                                    | Yes    |
+| LDAP                                                                                        | Yes    |
+| Mobile                                                                                      | Yes    |
+| Quick Actions (except UI Quick Actions)                                                     | Yes    |
+| UI Quick Actions                                                                            | No     |
+| Reports                                                                                     | Yes    |
+| Search/Dashboard without field references                                                   | Yes    |
+| Search/Dashboard with field references                                                      | No     |
+| 1. Except when this field appears on a form or is triggered by such a field.                |        |
+
+## Parameters
+
+| Parameter                | Description                                                                                                                                                                                                                                                                                                 |
+| ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| parentObjectRef          | The name of the parent business object. This business object needs to have a self-relationship to itself (e.g. “OrganizationalUnit”).                                                                                                                                                                       |
+| parentRecId              | The RecID of the instance of the parent business object. This is the source of the traversal through the hierarchy, before reaching the child business object.                                                                                                                                              |
+| selfRelationshipRef      | The name for the relationship relating the parent to itself. The expression editor will check at design time to ensure that the specified relationship is indeed a self-relationship, and will show an error and prevent saving of the expression if an invalid relationship is specified.                  |
+| displayFieldName         | A field in the parent business object which provides the display name for the given record. The primary intent of this property is to display an error message while evaluating the expression, with the names of the nodes in which a cyclic dependency has been detected, while traversing the hierarchy. |
+| childRelationshipRef     | A name for the relationship relating the parent (e.g. “OrganizationalUnit”) to its related object (child business object; e.g. “CI”).                                                                                                                                                                       |
+| childExpression          | The expression to evaluate for each child business object. This is typically a field reference or it can be a sub-expression.                                                                                                                                                                               |
+| aggregatorFunc           | An aggregation function specified as a string. In this release, \{\{FRS\_VARS.ProductName}} only supports the plus (+) aggregator.                                                                                                                                                                          |
+| childPredicateExpression | (Optional) A Boolean expression that is evaluated for each child. The child is only included if the result of this evaluation is true.                                                                                                                                                                      |
+
+## Return Value
+
+Unicode text value.
+
+## Example
+
+The HierarchicalChildFold system function is currently used in the out-of-the-box implementation of Ivanti Asset Manager, specifically the “Calculate Aggregate Values” QuickAction that is defined in the OrganizationalUnit business object.
+
+In the Asset Manager object model, there is a relationship defined between OrganizationalUnit and itself called “OrganizationalUnit#.parent\_ou\_rel” – this corresponds to the **selfRelationshipRef** parameter.
+
+There is also a relationship defined between OrganizationalUnit and the child CI called “CI#.CIAssociatedEmbeddedOrganizationalUnit” – this corresponds to the **childRelationshipRef** parameter.
+
+In the CI business object, there is a field called ivnt\_PurchasePrice, which defines the Purchase Price for the given CI (i.e. Asset).
+
+To calculate the *Total Purchase Price* across all of the CIs for a specific OrganizationalUnit, the existing ChildFold expression can be used:
+
+$(ChildFold("OrganizationalUnit#", RecId, "CI#.CIAssociatedEmbeddedOrganizationalUnit", "ivnt\_PurchasePrice", "+"))
+
+To calculate the total Purchase Price across all of the CIs for a specific Organizational Unit, as well as all child Organizational Units in the hierarchy, the new HierarchicalChildFold expression can be used:
+
+$(HierarchicalChildFold("OrganizationalUnit#", RecId, "OrganizationalUnit#.parent\_ou\_rel", "Name", "CI#.CIAssociatedEmbeddedOrganizationalUnit", "ivnt\_PurchasePrice", "+"))
+
+Compared to the earlier ChildFold expression, the HierarchicalChildFold expression has the addition of the **selfRelationshipRef** and **displayFieldName** properties, otherwise the body of the expression is identical for both expressions.
+
+## Advanced Example
+
+The above example makes use of the “ivnt\_PurchasePrice” field in CI as the child expression.
+
+The CI business object has a relationship to Frs\_ITFM\_Transaction, which represents the *Financial Transactions* for a given CI. For calculating the total cost, the following ChildFold expression can be used:
+
+$(ChildFold("CI#", RecId, "Frs\_ITFM\_Transaction#.CostItem", $(Cost), "+"))
+
+For calculating the total cost across all CIs, the following ChildFold expression can be used – notice how it embeds the above ChildFold expression in the main ChildFold expression:
+
+$(ChildFold("OrganizationalUnit#", RecId, "CI#.CIAssociatedEmbeddedOrganizationalUnit", $(ChildFold("CI#", RecId, "Frs\_ITFM\_Transaction#.CostItem", $(Cost), "+")), "+"))
+
+The above expression represents the *Total Cost of Ownership* for the given Organizational Unit.
+
+To calculate the Total Cost of Ownership across all of the CIs for a specific Organizational Unit, as well as all child Organizational Units in the hierarchy, the new HierarchicalChildFold expression can be used:
+
+$(HierarchicalChildFold("OrganizationalUnit#", RecId, "OrganizationalUnit#.parent\_ou\_rel", "Name", "CI#.CIAssociatedEmbeddedOrganizationalUnit", $(ChildFold("CI#", RecId, "Frs\_ITFM\_Transaction#.CostItem", $(Cost), "+")), "+"))
+
+As in the earlier example, compared to the earlier ChildFold expression, the HierarchicalChildFold expression has the addition of the **selfRelationshipRef** and **displayFieldName** properties, otherwise the body of the expression is identical for both expressions.

@@ -1,0 +1,178 @@
+---
+title: About Importing Data from SCCM into Neurons for ITSM
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:52 GMT+0300 (Eastern European Summer Time)
+---
+
+Use this section in conjunction with the information in [Configuring Data Import Connections](Data-Import-Connections.mdx).
+
+For on-premises deployments, you *must* install Discovery to use SCCM to import data. For Cloud customers, SCCM uses the Discovery asset processor when importing data.
+
+- :Link[About SCCM]{label="About SCCM" overridedLabel="About SCCM" spaceId docId="1RDzykU4hAWoaHCDKKEai" version="v2" docAnchorId="#About" loadingMethod="dynamic" newTab="false" href="SCCM-Configuration.mdx"}
+- :Link[How SCCM Integration Works]{label="How SCCM Integration Works" overridedLabel="How SCCM Integration Works" spaceId docId="1RDzykU4hAWoaHCDKKEai" version="v2" docAnchorId="#How" loadingMethod="dynamic" newTab="false" href="SCCM-Configuration.mdx"}
+- :Link[Data Imported by the Neurons for ITSM Database]{label="Data Imported by the Neurons for ITSM Database" overridedLabel="Data Imported by the Neurons for ITSM Database" spaceId docId="1RDzykU4hAWoaHCDKKEai" version="v2" docAnchorId="#Data" loadingMethod="dynamic" newTab="false" href="SCCM-Configuration.mdx"}
+- :Link[Setting Up the SCCM Integration]{label="Setting Up the SCCM Integration" overridedLabel="Setting Up the SCCM Integration" spaceId docId="1RDzykU4hAWoaHCDKKEai" version="v2" docAnchorId="#Setting" loadingMethod="dynamic" newTab="false" href="SCCM-Configuration.mdx"}
+- :Link[Importing Data from SCCM]{label="Importing Data from SCCM" overridedLabel="Importing Data from SCCM" spaceId docId="1RDzykU4hAWoaHCDKKEai" version="v2" docAnchorId="#Importing_Data_fromSCCM" loadingMethod="dynamic" newTab="false" href="SCCM-Configuration.mdx"}
+- [Mapping SCCM Fields](About-Field-Mapping.mdx)
+
+## About SCCM
+
+You can import data from your Microsoft System Center Configuration Manager (SCCM) database into a \{\{FRS\_VARS.ProductName}} configuration management database. This is a one-way import of data. Once you have mapped the fields, you can import data on a scheduled basis.
+
+The configuration management database is a database that stores configuration records of configuration items. In \{\{FRS\_VARS.ProductName}}, all configuration item records are stored in the \{\{FRS\_VARS.ProductName}} database. A configuration item can be anything such as an asset, service component, or other item that is controlled by configuration management. Inventory management manages the service assets and configuration items to support the other service management processes.
+
+Although \{\{FRS\_VARS.Company-short}} has not officially certified SCCM 2012, we consider it to be compliant with \{\{FRS\_VARS.ProductName}}, assuming that it is backward compatible from the vendor to the certified version.
+
+## How SCCM Integration Works
+
+When you create the connection between the SCCM and \{\{FRS\_VARS.ProductName}} databases and map the fields, the Data Integration Wizard automatically imports the data from the SCCM database into the \{\{FRS\_VARS.ProductName}} database. You can schedule this import operation to occur periodically.
+
+Each time the data is imported, it is automatically mapped directly into \{\{FRS\_VARS.ProductName}}. No other plug-ins or applications are required.
+
+## Data Imported by the Neurons for ITSM Database
+
+By default, the \{\{FRS\_VARS.ProductName}} database imports the following information from SCCM data objects. The application is flexible, however, and you can define other objects.
+
+| Source SCCM                                                                                                                                                                                      | Method          | Target                                                          |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------- | --------------------------------------------------------------- |
+| DateTimeNow                                                                                                                                                                                      | -->             | Audit TimeStamp                                                 |
+| SCCM                                                                                                                                                                                             | -->             | Identity Property.ScanMethod                                    |
+| Computer\_System\_DATA.AgentID                                                                                                                                                                   | -->             | Identity Property.AgentVersion                                  |
+| Computer\_System\_DATA.MachineID<br />Computer\_System\_DATA.InstanceKey                                                                                                                         | AssetIdentifier | Identity Property.ClientID                                      |
+| Computer\_System\_DATA.Description0                                                                                                                                                              | -->             | Identity Property.DeviceDescription                             |
+| Computer\_System\_DATA.Domain0<br />Computer\_System\_DATA.Name0                                                                                                                                 | Concat          | Identity Property.FullyQualifiedDomainName                      |
+| Computer\_System\_DATA.Domain0                                                                                                                                                                   | -->             | Identity Property.DomainName                                    |
+| Computer\_System\_DATA.Name0                                                                                                                                                                     | -->             | Identity Property.HostName                                      |
+| Network\_DATA.IPAddress0<br />Network\_DATA.IPEnabled00<br />1                                                                                                                                   | Select          | Identity Property.IPaddress                                     |
+| Network\_Data.IPSubnet0<br />Network\_Data.IPEnabled00<br />1                                                                                                                                    | Select          | Identity Property .SubnetMask                                   |
+| Network\_Data.IPSubnet0<br />Network\_Data.IPEnabled00<br />1                                                                                                                                    | Select          | Identity Property.MACaddress                                    |
+| PC\_BIOS\_DATA.SerialNumber00                                                                                                                                                                    | -->             | Identity Property.SerialNumber                                  |
+| Computer\_System\_DATA.UserName0                                                                                                                                                                 | -->             | Identity Property.UserName                                      |
+| System\_Enclosure\_DATA.ChassisTypes00                                                                                                                                                           | -->             | ComputerSystem Property.ChassisType                             |
+| Physical                                                                                                                                                                                         | -->             | ComputerSystem Property.ExecutionEnvironment                    |
+| Computer\_System\_DATA.Manufacturer00                                                                                                                                                            | -->             | ComputerSystem Property.Manufacturer                            |
+| Computer\_System\_DATA.Model0                                                                                                                                                                    | -->             | ComputerSystem Property.Model                                   |
+| Operating\_System\_DATA.Caption0                                                                                                                                                                 | -->             | ComputerSystem Property.OperatingSystem                         |
+| Operating\_System\_DATA.Caption0                                                                                                                                                                 | -->             | ComputerSystem Property.OSEdition                               |
+| Operating\_System\_DATA.Version0                                                                                                                                                                 | -->             | ComputerSystem Property.MajorVersion                            |
+| Operating\_System\_DATA.Version0                                                                                                                                                                 | -->             | ComputerSystem Property.MinorVersion                            |
+| Operating\_System\_DATA.BuildNumber0                                                                                                                                                             | -->             | ComputerSystem Property.BuildNumber                             |
+| Processor\_DATA.Name0<br />Processor\_DATA.Status0<br />OK                                                                                                                                       | Select          | ComputerSystem Property.CPUArchitecture                         |
+| Computer\_System\_DATA.Roles0<br />LM\_Server<br />Server<br />Server\_NT<br />Server<br />SQLServer<br />Server<br />LM\_Workstation<br />Workstation<br />Workstation                          | CIType          | ComputerSystem Property.CIType                                  |
+| Computer\_System\_DATA.Roles0<br />Computer\_System\_DATA.Model0<br />.\*Virtual.\*<br />LM\_Server > Server<br />Server\_NT > Server<br />SQLServer > Server<br />LM\_Workstation > Workstation | CIType2         | ComputerSystem Property.CIType                                  |
+| Logical\_Disk\_DATA.Size0                                                                                                                                                                        | Sum             | ComputerSystem Property.TotalDiskSpace                          |
+| Logical\_Disk\_DATA.FreeSpace0                                                                                                                                                                   | Sum             | ComputerSystem Property.FreeDiskSpace                           |
+| Computer\_System\_DATA.NumberOfProcessors                                                                                                                                                        | -->             | ComputerSystem Property.CPUCount                                |
+| Operating\_System\_DATA.CSDVersion0                                                                                                                                                              | -->             | ComputerSystem Property.ServicePack                             |
+| Network\_DATA.InstanceKey                                                                                                                                                                        | -->             | Category.Component.Property-Hardware.NetworkAdapter.ID          |
+| Network\_DATA.IPAddress0                                                                                                                                                                         | -->             | Category.Component.Property-Hardware.NetworkAdapter.IPAddress   |
+| Network\_DATA.IPEnabled00                                                                                                                                                                        | -->             | Category.Component.Property-Hardware.NetworkAdapter.IPEnabled   |
+| Network\_DATA.MACAddress0                                                                                                                                                                        | -->             | Category.Component.Property-Hardware.NetworkAdapter.MACaddress  |
+| Network\_DATA.IPSubnet0                                                                                                                                                                          | -->             | Category.Component.Property-Hardware.NetworkAdapter.SubnetMask  |
+| Logical\_Disk\_DATA.InstanceKey                                                                                                                                                                  | -->             | Category.Component.Property-Hardware.LogicalStorage.ID          |
+| Logical\_Disk\_DATA.DeviceID0                                                                                                                                                                    | -->             | Category.Component.Property-Hardware.LogicalStorage.DiskNumber  |
+| Logical\_Disk\_DATA.Description0                                                                                                                                                                 | -->             | Category.Component.Property-Hardware.LogicalStorage.Description |
+| Logical\_Disk\_DATA.FileSystem0                                                                                                                                                                  | -->             | Category.Component.Property-Hardware.LogicalStorage.Format      |
+| Logical\_Disk\_DATA.FreeSpace0                                                                                                                                                                   | -->             | Category.Component.Property-Hardware.LogicalStorage.FreeSpace   |
+| Logical\_Disk\_DATA.Size0                                                                                                                                                                        | -->             | Category.Component.Property-Hardware.LogicalStorage.Size        |
+| PC\_BIOS\_DATA.InstanceKey                                                                                                                                                                       | -->             | Category.Component.Property-Hardware.BIOS.ID                    |
+| PC\_BIOS\_DATA.ReleaseDate0                                                                                                                                                                      | -->             | Category.Component.Property-Hardware.BIOS.Date                  |
+| PC\_BIOS\_DATA.Manufacturer0                                                                                                                                                                     | -->             | Category.Component.Property-Hardware.BIOS.Manufacturer          |
+| PC\_BIOS\_DATA.Version0                                                                                                                                                                          | -->             | Category.Component.Property-Hardware.BIOS.Version               |
+| Processor\_DATA.InstanceKey                                                                                                                                                                      | -->             | Category.Component.Property-Hardware.Processor.ID               |
+| Processor\_DATA.Name0                                                                                                                                                                            | -->             | Category.Component.Property-Hardware.Processor.ProcessorName    |
+| Processor\_DATA.NormSpeed00                                                                                                                                                                      | -->             | Category.Component.Property-Hardware.Processor.Manufacturer     |
+
+## Setting Up the SCCM Integration
+
+\{\{FRS\_VARS.ProductName}} currently supports SCCM Release 2007. The data flow from SCCM to \{\{FRS\_VARS.ProductName}} is unidirectional.
+
+The connection from the integration server can be either through your VPN or through the internet with or without SSL encryption for the SCCM database server connection.
+
+Before attempting to make the connection, ensure the following:
+
+- SCCM is running.
+- Your firewall is open for the Microsoft SQL server connection, for either the Internet or a VPN.
+
+The default port for the Microsoft SQL server connection is TCP/IP port 1433. However, you can set up any TCP/IP port.
+
+To enable encrypted connections to the Microsoft SQL server, refer to [http://msdn.microsoft.com/en-us/library/ms189067%28v=sql.105%29.aspx](http://msdn.microsoft.com/en-us/library/ms189067%28v=sql.105%29.aspx).
+
+## Importing Data from SCCM
+
+- :Link[Getting Started]{label="Getting Started" overridedLabel="Getting Started" spaceId docId="1RDzykU4hAWoaHCDKKEai" version="v2" docAnchorId="#Getting" loadingMethod="dynamic" newTab="false" href="SCCM-Configuration.mdx"}
+- :Link[Object Mapping]{label="Object Mapping" overridedLabel="Object Mapping" spaceId docId="1RDzykU4hAWoaHCDKKEai" version="v2" docAnchorId="#Object" loadingMethod="dynamic" newTab="false" href="SCCM-Configuration.mdx"}
+- :Link[Filter Manager]{label="Filter Manager" overridedLabel="Filter Manager" spaceId docId="1RDzykU4hAWoaHCDKKEai" version="v2" docAnchorId="#Filter" loadingMethod="dynamic" newTab="false" href="SCCM-Configuration.mdx"}
+- :Link[Field Mapping]{label="Field Mapping" overridedLabel="Field Mapping" spaceId docId="1RDzykU4hAWoaHCDKKEai" version="v2" docAnchorId="#Field" loadingMethod="dynamic" newTab="false" href="SCCM-Configuration.mdx"}
+
+### Getting Started
+
+To import data from SCCM into \{\{FRS\_VARS.ProductName}}, follow these steps:
+
+1. Perform steps 1 to 5 in the section called :Link[Setting Up a Data Import Connection]{label="Setting Up a Data Import Connection" overridedLabel="Setting Up a Data Import Connection" spaceId docId="z2z90_aQskfSDzXRA7Lii" version="v2" docAnchorId="#SettingUpDataImportConnection" loadingMethod="dynamic" newTab="false" githubPath="Data-Import-Connections.htm#SettingUpDataImportConnection" href="Data-Import-Connections.mdx"}.
+2. In step 5, select **SCCM**.
+3. Enter information into the fields.
+
+| Field          | Description                                                |
+| -------------- | ---------------------------------------------------------- |
+| Server Name    | The name of the server where the SCCM database is located. |
+| SSL Encryption | Specifies if the server supports SSL encryption.           |
+| Database Name  | Name of the SCCM database.                                 |
+
+4. Proceed to :Link[Object Mapping]{label="Object Mapping" overridedLabel="Object Mapping" spaceId docId="1RDzykU4hAWoaHCDKKEai" version="v2" docAnchorId="#Object" loadingMethod="dynamic" newTab="false" href="SCCM-Configuration.mdx"}.
+
+### Object Mapping
+
+1. Enter information into the fields.
+
+| Field name             | Description                                                                                                                                                                                                                                                                            |
+| ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Mapping                | The default mapping. Select the default or select **Add New** from the drop-down list.                                                                                                                                                                                                 |
+| Name                   | The mapping name. Use the default name, modify the name, or enter a new name for the mapping. To modify the existing name or add a new name, click **Save as New**.                                                                                                                    |
+| Max file size          | Read only. Shows the maximum file size that you can import. The maximum file size is 50 MB.                                                                                                                                                                                            |
+| Source File Name       | Read only. Taken from the value in the **File Name** field.                                                                                                                                                                                                                            |
+| Source Mapping Objects | The source mapping objects. Select all objects that should be included. Ensure that Computer\_System\_Data is selected.                                                                                                                                                                |
+| Batch size             | Specifies the number of records that should be retrieved each time the database is queried. The default is 200. Do not make this number too small as it could cause excessive database activity.                                                                                       |
+| Max size               | Specifies the total number of records to process for any given job.                                                                                                                                                                                                                    |
+| Root Table             | The table that contains records that uniquely identify the computer systems in your organization. Keep the default as Computer\_System\_DATA. This is the top-level object, which is equivalent to the configuration item business object in the \{\{FRS\_VARS.ProductName}} database. |
+| Unique Key             | The field that contains the key that uniquely identifies a computer record. This is essentially the primary key, which can be used to retrieve additional information about a computer.                                                                                                |
+| Change-Time column     | The date and time when a record is updated. Select **TimeKey**.                                                                                                                                                                                                                        |
+
+2. Proceed to :Link[Filter Manager]{label="Filter Manager" overridedLabel="Filter Manager" spaceId docId="1RDzykU4hAWoaHCDKKEai" version="v2" docAnchorId="#Filter" loadingMethod="dynamic" newTab="false" href="SCCM-Configuration.mdx"}.
+
+### Filter Manager
+
+1. To view the column values of a SCCM database schema, run a Microsoft SQL query.
+
+<Paragraph indent="1">
+  For example, to get the values for the **Roles0** column from the **Computer\_System\_Data.Roles0** root table, enter the query: **Select distinct Computer\_System\_DATA.Roles0, \*from Computer\_System\_DATA**.
+</Paragraph>
+
+<Paragraph indent="1">
+  The application displays the following results:
+</Paragraph>
+
+*Sample Mapping Results*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/iTdmnismU8gmV8tj08ZHe_sccmsqlresults.png" alt="Sample mapping results." position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/sccm_sqlresults.png" githubPath="Content/Resources/Images/help-images/sccm_sqlresults.png" showCaption="false"></Image>
+
+*SCCM Filter Manager*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/6ykNZiQn3H3CIkQRaG6l7_filtermanager.png" alt="Image of the SCCM Filter Manager." position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/filter_manager.png" githubPath="Content/Resources/Images/help-images/filter_manager.png" showCaption="false"></Image>
+
+2. Proceed to :Link[Field Mapping]{label="Field Mapping" overridedLabel="Field Mapping" spaceId docId="1RDzykU4hAWoaHCDKKEai" version="v2" docAnchorId="#Field" loadingMethod="dynamic" newTab="false" href="SCCM-Configuration.mdx"}.
+
+### Field Mapping
+
+For additional information about field mapping, refer to [Mapping SCCM Fields](About-Field-Mapping.mdx)
+
+After setting up the filters for the table rows, map the fields and transformation. The first five mapped fields are required. Do not delete these.
+
+1. If appropriate, select a transformation function from the middle column or leave it as is.
+2. Select the field names to map between SCCM and \{\{FRS\_VARS.ProductName}}.
+
+<Paragraph indent="1">
+  The left column shows the fields from the root table column Computer\_System\_DATA.Roles0, which was selected on the previous page. The right column shows the asset identity of the matching fields in \{\{FRS\_VARS.ProductName}}.
+</Paragraph>
+
+3. Proceed to :Link[Setting the Data Import or Web Service Connection Schedule]{label="Setting the Data Import or Web Service Connection Schedule" overridedLabel="Setting the Data Import or Web Service Connection Schedule" spaceId docId="z2z90_aQskfSDzXRA7Lii" version="v2" docAnchorId="#Setting2" loadingMethod="dynamic" newTab="false" githubPath="Data-Import-Connections.htm#Setting2" href="Data-Import-Connections.mdx"}.

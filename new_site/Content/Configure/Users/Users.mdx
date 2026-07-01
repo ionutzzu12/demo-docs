@@ -1,0 +1,33 @@
+---
+title: Working with Users
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:50 GMT+0300 (Eastern European Summer Time)
+---
+
+- [Working with Employees](Working_with_employees.mdx)
+- [Working with External Contacts](external_contact.mdx)
+- [Using the Contact Store](contact_store.mdx)
+- [Working with Teams](Teams.mdx)
+- [Working with Departments](Department.mdx)
+- [Using Contact Groups](Using_Contact_Groups.mdx)
+- [Example: Giving Service Desk Analysts Access to Assigned Incidents](<Give SDA Access to Assigned Incidents.mdx>)
+- [Example: Giving a Service Desk Manager Access to Incidents for an Organizational Unit](<Give SDM Access to Incidents for OU.mdx>)
+- [Example: Giving a Service Desk Analyst Access to Incidents Assigned to an Organizational Unit](<Give SDA Access to Incidents Assigned to OU.mdx>)
+- [Example: Giving Users in the Self-Service Portal Access to Submitted Incidents](<Give a Self Service Access to Submitted Incidents.mdx>)
+
+## User Types
+
+\{\{FRS\_VARS.ProductName}} has two user types, enabling a flexible user management interface. You cannot create, modify, or delete these types. These types are:
+
+- **Employee**: A user that is independent of any specific business objects. Their unique field is **LoginID**. The application stores and authenticates employees by their user name and password. Employees can log into the application and can be linked to and from other business objects. Employees can be internal or external users, depending on your configuration.
+- **External Contact**: An external contact is typically an employee of an external company that is provided with access to your \{\{FRS\_VARS.ProductName}} system for business purposes. They are independent of any specific business object. Their unique field is **email address**. External contacts can log into the application, typically with an end user role, and can be referenced by other business objects. For example, an external contact who reports an incident can be referenced within the incident (in the **CreatedBy** field).
+
+This structure enables more complex security and access control scenarios:
+
+- Self-Service Portal access for external users.
+- Service Desk Analysts can create an incident or service request on behalf of an external user or entity.
+- Greater flexibility to model new types of identities and contacts.
+- Separation of identity, contact, and organization concepts.
+- Visibility and access to business objects in security scopes that encompass hierarchical and horizontal relationships between entities linked to the service delivery.
+
+For information about adding users to the application and assigning users to roles, refer to [Adding Users to the System and Assigning Roles to Users](<../SetUpWizard/Adding Users to Roles.mdx>).

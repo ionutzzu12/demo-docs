@@ -1,0 +1,63 @@
+---
+title: Setting up Internal Email
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:51 GMT+0300 (Eastern European Summer Time)
+---
+
+Internal email enables you to test \{\{Primary.Product}} email functionality without affecting external dependencies, allowing email testing at all levels and the ability to verify and test complex email monitors. In simple terms, this feature enables you to test email functionality without requiring external email provider connections.
+
+Email is processed exactly as any other email, which enables you to verify if email is working correctly.
+
+This feature is fully supported for testing MSGraph, Google and Exchange protocols. IMAP4 and POP3 protocols are supported, but to a lesser extent as they can not simulate the incoming server setting actions. For example, the **Action To Perform On Processing Success** setting option you select is not simulated by the internal mailbox feature.
+
+Journal entry records have (internal.mailbox) suffixed in the **CreatedBy** field for traceability.
+
+<hint type="info">
+  The **Test Connection** function is invalid when configuring an internal mailbox.
+</hint>
+
+## Enable the Internal Email Global Constant
+
+Internal email requires the EnableInternalTestMailbox global constant to be enabled.
+
+1. Log in to \{\{Primary.Product}} as Administrator.
+2. In the Configuration Console, open **Build > Global Constants**.
+3. Select **EnableInternalTestMailbox** and set its **Value** to True.
+4. Click **Save**.
+
+## Set up an Internal Email Inbox
+
+If an existing email connection is not working properly, you can reconfigure it to an internal email inbox by changing the email address field, no other configuration changes are required. Alternatively, you can setup a new inbox to test email functionality.
+
+**To configure an existing inbox to an internal email inbox:**
+
+1. Log in to \{\{Primary.Product}} as Administrator.
+2. Open the **Email Config** workspace.
+3. Select the inbox you want to test (change to an internal email inbox), and double-click to open the inbox configuration.
+4. Enter the address (\<name>@internal.mailbox) for the internal email inbox in the **Address** field.
+
+<hint type="info">
+  The address must be in the form of "\<name>@internal.mailbox", where "\<name>" can be anything, but must be followed by "@internal.mailbox".
+</hint>
+
+5. Click **Save**.
+
+**To configure a new internal email inbox:**
+
+1. Log in to \{\{Primary.Product}} as Administrator.
+2. Open the **Email Config** workspace.
+3. Click **New**.
+
+From this point, follow the procedure from step 4 in :Link[Creating an Inbox]{label="Creating an Inbox" overridedLabel="Creating an Inbox" spaceId docId="oxavypV7mXubKfaNhVDO1" version="v2" docAnchorId="#Creating-an-Inbox" loadingMethod="dynamic" newTab="false" githubPath="Inbox_Configuration.htm#Creating-an-Inbox" href="Inbox_Configuration.mdx"}.
+
+When entering the inbox address in the **Address** field, ensure that you define it as \<name>@internal.mailbox.
+
+## Send an Internal Email
+
+1. Log in to \{\{Primary.Product}} as Administrator.
+2. Open the **Internal Mailbox** workspace.
+3. Click **New Internal Mail**.
+4. Add any text you require in the **Body** section.
+5. Click **Save**.
+
+The email appears in the **Email** workspace list, and any actions configured for the email are performed, provided you have the **Listener** setting enabled in the inbox configuration. For example, an incident is created if you have this configured for the inbox.
