@@ -1,0 +1,266 @@
+---
+title: Request Form Examples
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:56 GMT+0300 (Eastern European Summer Time)
+---
+
+- :Link[AutoFill Employee Address Information]{label="AutoFill Employee Address Information" overridedLabel="AutoFill Employee Address Information" spaceId docId="taYCV7ZqszwIwnObuboZR" version="v2" docAnchorId="#Auto-fill_Employee_address_information" loadingMethod="dynamic" newTab="false" href="Request Form Examples.mdx"}
+- :Link[Specifying Control Visibility]{label="Specifying Control Visibility" overridedLabel="Specifying Control Visibility" spaceId docId="taYCV7ZqszwIwnObuboZR" version="v2" docAnchorId="#request_config_765315195_1156726" loadingMethod="dynamic" newTab="false" href="Request Form Examples.mdx"}
+- :Link[Specifying a Unique ID for a Control]{label="Specifying a Unique ID for a Control" overridedLabel="Specifying a Unique ID for a Control" spaceId docId="taYCV7ZqszwIwnObuboZR" version="v2" docAnchorId="#Specify_a_Unique_ID_for_a_Control" loadingMethod="dynamic" newTab="false" href="Request Form Examples.mdx"}
+- :Link[Making a Control Read-Only]{label="Making a Control Read-Only" overridedLabel="Making a Control Read-Only" spaceId docId="taYCV7ZqszwIwnObuboZR" version="v2" docAnchorId="#Make_a_Control_Read-Only" loadingMethod="dynamic" newTab="false" href="Request Form Examples.mdx"}
+- :Link[Specify a Required Field]{label="Specify a Required Field" overridedLabel="Specify a Required Field" spaceId docId="taYCV7ZqszwIwnObuboZR" version="v2" docAnchorId="#Specify_a_Required_Field" loadingMethod="dynamic" newTab="false" href="Request Form Examples.mdx"}
+- :Link[Specifying a Field Type (Text or Number) and Numeric Constraints]{label="Specifying a Field Type (Text or Number) and Numeric Constraints" overridedLabel="Specifying a Field Type (Text or Number) and Numeric Constraints" spaceId docId="taYCV7ZqszwIwnObuboZR" version="v2" docAnchorId="#Specify_a_Field_Type_(Text_or_Number)_and_Numeric_Constraints" loadingMethod="dynamic" newTab="false" href="Request Form Examples.mdx"}
+- :Link[Specifying Field Dimensions]{label="Specifying Field Dimensions" overridedLabel="Specifying Field Dimensions" spaceId docId="taYCV7ZqszwIwnObuboZR" version="v2" docAnchorId="#Specify_Field_Dimensions" loadingMethod="dynamic" newTab="false" href="Request Form Examples.mdx"}
+- :Link[Specifying Response Value Boundaries]{label="Specifying Response Value Boundaries" overridedLabel="Specifying Response Value Boundaries" spaceId docId="taYCV7ZqszwIwnObuboZR" version="v2" docAnchorId="#Specify_Response_Value_Boundaries" loadingMethod="dynamic" newTab="false" href="Request Form Examples.mdx"}
+- :Link[Adding a Dividing Line Between Sections]{label="Adding a Dividing Line Between Sections" overridedLabel="Adding a Dividing Line Between Sections" spaceId docId="taYCV7ZqszwIwnObuboZR" version="v2" docAnchorId="#Adding_a_Dividing_Line_Between_Sections" loadingMethod="dynamic" newTab="false" href="Request Form Examples.mdx"}
+- :Link[Displaying Categories on Separate Form Pages]{label="Displaying Categories on Separate Form Pages" overridedLabel="Displaying Categories on Separate Form Pages" spaceId docId="taYCV7ZqszwIwnObuboZR" version="v2" docAnchorId="#Display_Categories_on_Separate_Form_Pages" loadingMethod="dynamic" newTab="false" href="Request Form Examples.mdx"}
+- :Link[Indenting a Field]{label="Indenting a Field" overridedLabel="Indenting a Field" spaceId docId="taYCV7ZqszwIwnObuboZR" version="v2" docAnchorId="#Indent_a_Field" loadingMethod="dynamic" newTab="false" href="Request Form Examples.mdx"}
+- :Link[Allowing Users to Attach Files]{label="Allowing Users to Attach Files" overridedLabel="Allowing Users to Attach Files" spaceId docId="taYCV7ZqszwIwnObuboZR" version="v2" docAnchorId="#Allow_Users_to_Attach_Files" loadingMethod="dynamic" newTab="false" href="Request Form Examples.mdx"}
+
+## AutoFill Employee Address Information
+
+This example illustrates the use of default values to auto-fill address information for an employee using values that reference the employee business object from a validation list.
+
+1. Create a request form with employee address information that includes the following fields:
+   - A drop-down list control to select an employee name from a pick list.
+   - A text field that shows the email address of the selected employee.
+   - A text field that shows the street address of the selected employee.
+   - A text field that shows the city of the selected employee.
+   - A text field that shows the state of the selected employee.
+
+*Address Change Request Form*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/QN-giwhDYXsqWRVBouUEr_request-form-employee.png" position="flex-start" size="40" initialPath="../../Resources/Images/help-images/request form employee.png" githubPath="Content/Resources/Images/help-images/request form employee.png" showCaption="false"></Image>
+
+2. Click the **edit** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/WTLKbMa5PI7qeazzbj0FD_edit-old.png" alt caption size="10" width="16" height="16"} next to the **Employee Name** control. The Item Configuration Editor appears.
+3. Expand **Pick List**, then enter your parameters.
+
+*Sample Employee Validation List*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/-gM10-itCARvTf26akXPi_employee-pick-list.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/employee pick list.png" githubPath="Content/Resources/Images/help-images/employee pick list.png" showCaption="false"></Image>
+
+| Field                                 | Description                                                               |
+| ------------------------------------- | ------------------------------------------------------------------------- |
+| Validation List                       | Check this option.                                                        |
+| Validation List to Use                | Choose **Employees** or **EmployeeByDepartment** from the drop-down list. |
+| Title Field                           | Choose **Display Name** from the drop-down list.                          |
+| Under Cascading Validation Definition |                                                                           |
+| Department                            | Choose **Department** from the drop-down list.                            |
+| Field                                 | Choose **Department Name** from the drop-down list.                       |
+
+<Paragraph indent="1">
+  Leave the other fields as is.
+</Paragraph>
+
+4. Click **OK**. The window closes.
+5. Click the **edit** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/WTLKbMa5PI7qeazzbj0FD_edit-old.png" alt caption size="10" width="16" height="16"} next to the **Employee Email** control. The **Item Configuration Editor** appears.
+6. Expand **Default Value**, then enter your parameters.
+
+*Sample Email Employee Edit*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/je5bonvYh92EzSfo7bIaF_employee-email-config.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/employee email config.png" githubPath="Content/Resources/Images/help-images/employee email config.png" showCaption="false"></Image>
+
+| Field            | Description                                                                                                                |
+| ---------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| Expression       | Check this option.                                                                                                         |
+| Triggered by     | Choose **Employee Name** from the drop-down list.                                                                          |
+| Expression field | Enter the following into this field:<br />**\[Frs\_CompositeContract\_Contact#.ServiceReqAssociatedCustomer]PrimaryEmail** |
+
+7. Click **OK**. The window closes.
+8. Repeat the last procedure to configure the remaining text controls:
+   - Address
+   - City
+   - State
+
+<hint type="info">
+  You may want to set the text controls as read-only so that the default values cannot be overwritten.
+</hint>
+
+<Paragraph indent="1">
+  When you create a record from the Service Catalog and specify the employee name, the address information is automatically filled in.
+</Paragraph>
+
+## Specifying Control Visibility
+
+You can specify whether a control is visible all of the time, none of the time, or part of the time based on an expression.
+
+<hint type="info">
+  You can specify that a field is not visible when you do not require user input, but you need to use the field for workflow fulfillment.
+</hint>
+
+1. Within the Item Configuration Editor, expand the **Visible** area.
+2. Choose an option.
+
+| Option     | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Yes        | The field is always visible.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| No         | The field is never visible (that is, it is not used on the form). This setting is typically used for test or temporary fields that should not be shown to end users.                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| Expression | Enter an expression or choose an object from the field list to use as the basis for dynamically setting visibility. For example, to use the **Computer Type** field of the current form to control whether the current control is visible, navigate to **This Form > Computer Type** in the navigation area and double-click **Computer Type**. Edit the resulting expression so that it evaluates to true or false as necessary for your requirements. The control is visible when the expression evaluates to true.<br />See [About Expressions](../../Reference/Expressions/Expressions.mdx) for more information. |
+
+3. Click **OK**. The window closes.
+
+## Specifying a Unique ID for a Control
+
+To specify a unique ID for a control so that the control can be referenced programmatically, within the Item Configuration Editor, expand the **Properties** area and enter a unique ID in the **Unique ID** field. Click **OK**.
+
+*Sample Unique ID*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/s15A0DcfUP4A5elSc9zdL_specify-unique-id.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/specify unique id.png" githubPath="Content/Resources/Images/help-images/specify unique id.png" showCaption="false"></Image>
+
+<hint type="info">
+  The application automatically generates a unique ID for all form controls. The configuration described here changes the generated value to a value of your choice. Any values that you specify must be unique within the request form.
+</hint>
+
+## Making a Control Read-Only
+
+To make a control read-only, within the Item Configuration Editor, expand the **Read-Only** area and select **Yes**. Click **OK**.
+
+*Read-Only Option*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/KFQ7ZV9uBWHqAsD104Oc3_control-read-only.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/control read only.png" githubPath="Content/Resources/Images/help-images/control read only.png" showCaption="false"></Image>
+
+This control is often used with a default value based on an expression. For example, you can configure a control as follows so that it is read-only and contains the cost center information for a user by default:
+
+- **Control type**: Text field
+- **Read-Only**: Yes
+- **Default Value**: Expression
+- **Triggered by**: a drop-down list field called recipient
+- **Expression**: $(\[Profile#Employee.]CostCentre)
+
+## Specify a Required Field
+
+You can specify whether a field enforces required input always, never, or sometimes based on an expression.
+
+1. Within the Item Configuration Editor, expand the **Required** area.
+2. Choose an option.
+
+| Option     | Description                                                                                                                                                                                                      |
+| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Yes        | The field is always required.                                                                                                                                                                                    |
+| No         | The field is never required.                                                                                                                                                                                     |
+| Expression | Enter an expression or choose an object from the field list to use as the basis for dynamically setting requirements. See [About Expressions](../../Reference/Expressions/Expressions.mdx) for more information. |
+
+3. Click **OK**. The window closes.
+
+## Specifying a Field Type (Text or Number) and Numeric Constraints
+
+When you use the text, number, or money field control, you must specify whether the field data type is alpha-numeric, numeric only, or money. For numeric fields, you can optionally set upper and lower boundaries for responses. You can also create a custom "mask". (For example, to create a post code for another country such as W11 2BQ, enter A00 0AA).
+
+1. Within the Item Configuration Editor for a text, number, or mask control, expand the **Field Options** area.
+
+*Field Type Control*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/d7Sg4xgJ7rDnqXnCDoT7B_control-field-type.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/control field type.png" githubPath="Content/Resources/Images/help-images/control field type.png" showCaption="false"></Image>
+
+2. Choose an option from the **Type** drop-down list.
+
+| Option                 | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Alpha-numeric          | Select for text fields.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| Number                 | Select for generic number fields.<br />For **Enter minimum and maximum value constraints for this field**, enter numbers to constrain the **Minimum** and **Maximum** field response values with the following results:<br />The value entered in the **Minimum** field is displayed as the default value.<br />A value is now required and must be entered by a user (or the default value is used).<br />The value entered must conform to and fall within the settings defined by the **Minimum** and **Maximum** fields. |
+| Money                  | Select for fields containing currency values. The **Min** and **Max** fields appear. Enter numbers to constrain response values (optional).                                                                                                                                                                                                                                                                                                                                                                                  |
+| Phone Number           | Select to automatically format numbers to phone numbers, such as +1-408-555-1212.                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| Social Security Number | Select to automatically format numbers to social security numbers, such as 123-45-6789                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| Email                  | Select to allow users to enter an email address, such as contact\@heatsoftware.com                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| MAC Address            | Select to allow users to enter a MAC address, such as 00:1C\:B3:09:85:15.                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| URL                    | Select to allow users to enter a URL address, such as [https://www.ivanti.com](http://www.ivanti.com/).                                                                                                                                                                                                                                                                                                                                                                                                                      |
+
+3. Click **OK**. The window closes.
+
+## Specifying Field Dimensions
+
+To specify the field width, and maximum number of characters allowed in character-based fields:
+
+1. Within the Item Configuration Editor, expand the **Field Options** area.
+2. In the **Field Width** field, specify a maximum width for the field in pixels.
+3. In the **Max Length** field, set a character value up to 3000. In some cases the maximum number of characters will depend on the field for which this limit is specified, and the field width that was set.
+4. Some controls (such as text area) also let you specify a maximum field height (measured in characters). If a **Field Height** field displays, specify a maximum character value between 50 and 3000. The application warns the user when the number of characters entered in the text field exceeds the specified settings.
+5. Some controls allow you to specify the type of characters that can be entered. Select from the choices available in the list.
+
+*Field Options - Text Area Control*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/px1hw2UncQU08f1JjBl9o_control-text-area.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/control text area.png" githubPath="Content/Resources/Images/help-images/control text area.png" showCaption="false"></Image>
+
+6. Click **OK**. The window closes.
+
+## Specifying Response Value Boundaries
+
+To set upper and lower boundaries for date, time, DateTime, and text, money, and mask fields:
+
+1. Within the item Configuration Editor of a date, time, DateTime, text, money, or mask field, expand the **Field Options** area.
+
+*Sample Date Control Boundaries*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/4byRPcQTnI8zacMDVgDVP_control-boundaries.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/control boundaries.png" githubPath="Content/Resources/Images/help-images/control boundaries.png" showCaption="false"></Image>
+
+2. Expand the **Lower bound** area.
+3. In the first field, select **None** to specify no boundary or **>=** to set a lower boundary.
+
+<Paragraph indent="1">
+  If you specified **>=** in the first field, go to the second field and select a value. Items in parentheses are date and time functions. Items not in parentheses are other fields on the form. Other fields are displayed only if they match the current field type. For example, if a date field is being configured, only other date fields are included in the list.
+</Paragraph>
+
+<Paragraph indent="1">
+  For DateTime fields only, you can specify the time component for a range. For date fields and time fields, you can set only date and time, respectively.
+</Paragraph>
+
+4. Repeat for the **Upper bound** area.
+5. Click **OK**. The window closes.
+
+## Adding a Dividing Line Between Sections
+
+To insert a dividing line beneath a category heading:
+
+1. Within the item Configuration Editor for a category heading control, expand the **Field Options** area.
+
+*Sample Category Heading Control*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/oP-vNnSzEokPgwuA8T19e_control-dividing-line.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/control dividing line.png" githubPath="Content/Resources/Images/help-images/control dividing line.png" showCaption="false"></Image>
+
+2. Check **Show a dividing line with this category section**.
+3. Click **OK**. The window closes.
+
+## Displaying Categories on Separate Form Pages
+
+To view a category within its own page in a form, check **Create a new page with the category**, then click **OK**.
+
+A request form with navigation controls is created.
+
+## Indenting a Field
+
+To indent a field, within the item Configuration Editor, expand the **Field Options** area, and check **Indent this field on the form**. Click **OK**.
+
+## Allowing Users to Attach Files
+
+To provide a form control that allows users to attach files when filling out a Service Catalog form:
+
+1. Within the item Configuration Editor of an **Upload attachments** control, expand the **Field Options** area.
+
+*Upload Attachments Control*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/FOiMwBlDiXYwLv8s02U0__control-attach-files.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/control attach files.png" githubPath="Content/Resources/Images/help-images/control attach files.png" showCaption="false"></Image>
+
+2. Specify the maximum attachment file size, number of files, and allowed file types.
+3. Optional. Enter a description to show in the form.
+4. To allow pasting attachments from the clipboard, check **Can copy data from clipboard**.
+
+<Paragraph indent="1">
+  Depending on how you configure the control, it will be similar when shown in a Service Catalog form.
+</Paragraph>
+
+| Control                      | Configurable Items                                                                                                                                                                                                                                                                                                                        |
+| ---------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Category Heading             | Adds a dividing line.<br />Displays the category on a separate form page (that is, create a multi-page form).                                                                                                                                                                                                                             |
+| Check Box                    | Adds a default value.<br />Adds a price.<br />Sets the visibility of the control (that is, make the control visible or invisible based on certain conditions).<br />Requires a response.<br />Makes the control read-only.                                                                                                                |
+| Text or Number or Mask Field | Adds a default value.<br />Specifies numeric or alphanumeric response data type.<br />Sets the visibility of the control.<br />Requires a response.<br />Makes the control read-only.                                                                                                                                                     |
+| Text Area                    | Adds a default value.<br />Sets the visibility of the control.<br />Requires a response.<br />Makes the control read-only.                                                                                                                                                                                                                |
+| drop-down List               | Adds a default value.<br />Adds a pick list.<br />Sets the visibility of the control.<br />Requires a response.<br />Makes the control read-only.                                                                                                                                                                                         |
+| Date Field                   | Adds a default value.<br />Adds upper and lower value boundaries.<br />Sets the visibility of the control.<br />Requires a response.<br />Makes the control read-only.                                                                                                                                                                    |
+| DateTime Field               | Adds a default value.<br />Adds upper and lower value boundaries.<br />Sets the visibility of the control.<br />Requires a response.<br />Makes the control read-only.                                                                                                                                                                    |
+| Time Field                   | Adds a default value.<br />Adds upper and lower value boundaries.<br />Sets the visibility of the control.<br />Requires a response.<br />Makes the control read-only.                                                                                                                                                                    |
+| Image                        | Selects the image file. To make an image file available for selection, you must first upload it as an attachment through the **Attachments** tab in the **Form Designer Tools** pane.<br />Specifies image size.<br />Adds a border.<br />Sets the visibility of the control.<br />Requires a response.<br />Makes the control read-only. |
+
+5. Optional. To change to a two- or three-column layout, click **Choose a style** and select a new layout. By default, forms use a single-column layout.
+6. After completing a draft of the form, click **Preview** to see how it will look when a user in the Self-Service Portal opens it in the Service Catalog.
+7. To make further changes, repeat any of the steps in this section.
+8. Click **Next** or click the **Plan Request Fulfillment** tab to go to configuring the request offering.

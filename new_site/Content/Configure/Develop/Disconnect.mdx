@@ -1,0 +1,50 @@
+---
+title: Using the Disconnect Web Method
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:01 GMT+0300 (Eastern European Summer Time)
+---
+
+Disconnects the user from the tenant and removes the session.
+
+## Request Syntax
+
+FRSHEATIntegrationConnectionResponse Disconnect(string sessionKey, string tenantId)
+
+## Parameters
+
+- **sessionKey**: Session key string obtained from Connect web method.
+- **tenantId**: The tenant for which the session is created.
+
+## Return Value
+
+**FRSHEATIntegrationConnectionResponse** class, defined as follows:
+
+public class FRSHEATIntegrationConnectionResponse
+
+    \{
+
+public string connectionStatus;
+
+public string sessionKey;
+
+public string exceptionReason;
+
+    }
+
+The **FRSHEATIntegrationConnectionResponse** class has the following fields:
+
+- **connectionStatus**: Provides a status about the state of the connection. The **connectionStatus** value is null when **Disconnect** web method completes successfully.
+- **sessionKey**: The session key to use in all subsequent web service operations. The field value is null when the **Disconnect** web method completes successfully.
+- **exceptionReason**: Contains exception information, if the application throws an exception when running this web method.
+
+If the **Disconnect** web method completes successfully, the application removes the session key.
+
+## Exceptions
+
+If there is an error during the **Disconnect&#x20;**&#x77;eb method operation (either during the authentication or authorization phases), the server throws a SOAP exception and the web services client must handle the exception.
+
+The following table lists the exceptions that can be encountered when executing the **Disconnect** web method
+
+| SOAP Exception  | Explanation                                             | Action                                                         |
+| --------------- | ------------------------------------------------------- | -------------------------------------------------------------- |
+| SessionNotFound | If the passed session key is not present or is invalid. | Ensure that the session key is valid and present at the server |

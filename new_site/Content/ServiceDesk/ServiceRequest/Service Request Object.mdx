@@ -1,0 +1,48 @@
+---
+title: Service Request Business Object Reference
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:47 GMT+0300 (Eastern European Summer Time)
+---
+
+This section lists the default definitions of the **Service Request** business object.
+
+- :Link[Canceling a Service Request]{label="Canceling a Service Request" overridedLabel="Canceling a Service Request" spaceId docId="Iv6_ZhoYccCGv50PvmR0Y" version="v2" docAnchorId="#Canceling_a_Service_Request" loadingMethod="dynamic" newTab="false" href="Service Request Object.mdx"}
+- :Link[Task Cancellation Process]{label="Task Cancellation Process" overridedLabel="Task Cancellation Process" spaceId docId="Iv6_ZhoYccCGv50PvmR0Y" version="v2" docAnchorId="#Task_Cancellation_Process" loadingMethod="dynamic" newTab="false" href="Service Request Object.mdx"}
+- :Link[Calculation Rule]{label="Calculation Rule" overridedLabel="Calculation Rule" spaceId docId="Iv6_ZhoYccCGv50PvmR0Y" version="v2" docAnchorId="#Calculation_Rule" loadingMethod="dynamic" newTab="false" href="Service Request Object.mdx"}
+
+## Canceling a Service Request
+
+The following table describes the fields that comprise a service request to make it cancelable. For information on configuring a service request, refer to [Managing Service Request Actions and Permissions](Configuring_Cancelable_Service_Requests.mdx).
+
+| Object        | Description                                                                                                                                                                                                    |
+| ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Field         | ServiceReqTemplate#TemplateCancelable (Boolean)<br />Initialization rule: True                                                                                                                                 |
+| Field         | ServiceRequest#TemplateCancelable (Boolean)<br />Initialization rule: True                                                                                                                                     |
+| Field         | ServiceRequest#Cancelable (Boolean)<br />Calculation rule: $(if(((TemplateCancelable == false) \|\| (((Status == "Canceled") \|\| (Status == "Closed")) \|\| (Status == "Fulfilled"))) then false else true))  |
+| Quick action  | "Cancel Service Request" on ServiceReq<br />Composite action: Mark ServiceReq as "Canceled" and add Journal.Notes                                                                                              |
+| Button        | Cancel button on layout for ServiceReq<br />Layout: ServiceReqLayout.New<br />Action: Cancel Service Request<br />Icon: icon\_task\_cancel.png<br />Disable expression: $(if(Cancelable then false else true)) |
+| Business rule | Cancel Service Request<br />Trigger: Field "Status" change to "Canceled"<br />Action: Composite action                                                                                                         |
+
+## Task Cancellation Process
+
+| Business Rule | Cancel workflow on cancellation. |
+| ------------- | -------------------------------- |
+
+In \{\{FRS\_VARS.ProductName}}, the **Service Request** business object field called **Cancelable** is defined as Boolean. Only the **Stored Field** attribute is selected.
+
+The calculation rule appears as follows:
+
+<Paragraph indent="1">
+  **Field Status** is set to canceled.
+</Paragraph>
+
+This rule is a composite action and includes:
+
+- Cancel tasks
+- Cancel approvals
+- Cancel workflows
+- Service request cancellation
+
+## Calculation Rule
+
+The new quick action is available to Service Desk Analysts. This is configured as a composite action: mark ServiceReq as canceled and add journal notes.

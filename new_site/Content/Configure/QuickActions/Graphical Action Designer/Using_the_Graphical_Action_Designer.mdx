@@ -1,0 +1,535 @@
+---
+title: Using the Graphical Action Designer (GAD)
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:56 GMT+0300 (Eastern European Summer Time)
+---
+
+- :Link[Notes on roles and permissions]{label="Notes on roles and permissions" overridedLabel="Notes on roles and permissions" spaceId docId="T_2hq2qRJzWxiHLCfgn-7" version="v2" docAnchorId="#Notes_on_roles_and_permissions" loadingMethod="dynamic" newTab="false" href="Using_the_Graphical_Action_Designer.mdx"}
+- :Link[Open the Graphical Action Designer]{label="Open the Graphical Action Designer" overridedLabel="Open the Graphical Action Designer" spaceId docId="T_2hq2qRJzWxiHLCfgn-7" version="v2" docAnchorId="#To_open_the_Graphical_Action_Designer" loadingMethod="dynamic" newTab="false" href="Using_the_Graphical_Action_Designer.mdx"}
+- :Link[Parts of the Graphical Action Designer]{label="Parts of the Graphical Action Designer" overridedLabel="Parts of the Graphical Action Designer" spaceId docId="T_2hq2qRJzWxiHLCfgn-7" version="v2" docAnchorId="#Parts_of_the_Graphical_Action_Desi" loadingMethod="dynamic" newTab="false" href="Using_the_Graphical_Action_Designer.mdx"}
+- :Link[Creating a New Quick Action]{label="Creating a New Quick Action" overridedLabel="Creating a New Quick Action" spaceId docId="T_2hq2qRJzWxiHLCfgn-7" version="v2" docAnchorId="#Creating_a_New_" loadingMethod="dynamic" newTab="false" href="Using_the_Graphical_Action_Designer.mdx"}
+- :Link[Modifying a Quick Action]{label="Modifying a Quick Action" overridedLabel="Modifying a Quick Action" spaceId docId="T_2hq2qRJzWxiHLCfgn-7" version="v2" docAnchorId="#Modifying_a_" loadingMethod="dynamic" newTab="false" href="Using_the_Graphical_Action_Designer.mdx"}
+- :Link[Disable or Enable a Quick Action]{label="Disable or Enable a Quick Action" overridedLabel="Disable or Enable a Quick Action" spaceId docId="T_2hq2qRJzWxiHLCfgn-7" version="v2" docAnchorId="#Disabling_a_" loadingMethod="dynamic" newTab="false" href="Using_the_Graphical_Action_Designer.mdx"}
+- :Link[Deleting a Quick Action]{label="Deleting a Quick Action" overridedLabel="Deleting a Quick Action" spaceId docId="T_2hq2qRJzWxiHLCfgn-7" version="v2" docAnchorId="#Deleting_a_" loadingMethod="dynamic" newTab="false" href="Using_the_Graphical_Action_Designer.mdx"}
+
+The \{\{FRS\_VARS.Graphical\_Action\_Designer}} (GAD) enables you to create \{\{FRS\_VARS.a\_Quick\_Action}} using graphical tools.
+
+A **Start Block** is displayed in the Design Board when you open the GAD, this is the starting point for your action, refer to :Link[Start Block]{label="Start Block" overridedLabel="Start Block" spaceId docId="T_2hq2qRJzWxiHLCfgn-7" version="v2" docAnchorId="#Start_Block" loadingMethod="dynamic" newTab="false" href="Using_the_Graphical_Action_Designer.mdx"}.
+
+You can drag and drop new actions from the **Action Designer List** to the Design Board of the editor. When added to the Design Board, an **Action Block** is displayed. The **Action Block** can be configured in the **Settings** pane. One or more action blocks can be added to the Design Board. Add links between multiple action blocks to connect them in sequence order, see :Link[Action Block]{label="Action Block" overridedLabel="Action Block" spaceId docId="T_2hq2qRJzWxiHLCfgn-7" version="v2" docAnchorId="#Action_Block" loadingMethod="dynamic" newTab="false" href="Using_the_Graphical_Action_Designer.mdx"}.
+
+An existing \{\{FRS\_VARS.Quick\_Action}} can be selected to display in the Design Board, where it can be edited. New actions can be added and linked to create more complex \{\{FRS\_VARS.Quick\_Actions}}.
+
+You can enable access to the **Simplified Expression Editor** for the GAD. The **Simplified Expression Editor** provides features that make it simpler to configure expressions for **Action Block** parameters.
+
+<hint type="info">
+  The EnableSimplifiedExpressionEditor global constant must be added and enabled by your \{\{FRS\_VARS.ITSM}} Administrator to use the **Simplified Expression Editor** and its features. If this global constant is not added and enabled, the default **Expression Editor** is displayed. For further information on this feature, refer to [Using the Simplified Expression Editor](<../../../Reference/Expressions/Simplified Expression Editor.mdx>)
+</hint>
+
+Refer to [Using the Classic Action Designer (CAD)](<../Classical Action Designer/Using_the_Classic_Action_Designer.mdx>) for detailed help on using the legacy \{\{FRS\_VARS.Quick\_Action}} interface.
+
+## Notes on roles and permissions
+
+- If you cannot access the GAD, contact your \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}} and request permission for your role. Depending on your role, the level of action permissions may be restricted.
+- Administrators can assign action permission levels for a role in the **Roles and Permissions** section of the \{\{FRS\_VARS.Configuration\_console}}. Refer to :Link[Assigning System Permissions]{label="Assigning System Permissions" overridedLabel="Assigning System Permissions" spaceId docId="iUGD9ji_VgJkk9DVIGvHo" version="v2" docAnchorId="#roles_1236189643_1266963" loadingMethod="dynamic" newTab="false" githubPath="../../Roles/Setting-up-Roles.htm#roles_1236189643_1266963" href="../../Roles/Setting-up-Roles.mdx"}
+- Action permission levels an \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}} can assign for a role are:
+  - **Create (for self)** - create, edit, and delete actions created by the user. You cannot edit or delete actions created by other users.
+  - **Edit (for all)** - create personal actions and edit actions created by other users.
+  - **Delete (for all)** - delete actions created by other users. You also need to have the **Edit (for all)** permission assigned to your role to enable deletion of actions created by other users.
+
+## Open the Graphical Action Designer
+
+The methods available for you to open the GAD depend on your assigned role.
+
+### Opening the GAD from a Workspace or Record
+
+This method is available to all roles with a minimum of the **Create (for self)** and/or **Edit (for all)** permission applied.
+
+1. From the workspace or from a record, select **More > Edit Actions**. This displays the Action Designer selection popup.
+2. Select **Graphical Action Designer**.
+
+### Opening the GAD from the Actions Manager in the Configuration Console
+
+This method is only available to the Administrator role, or roles enabled to access the administration tools (Configuration console).
+
+1. From the Configuration Console, click **Build > Automation Tools > Quick Actions** to open the **Actions Manager** workspace. The list of business objects that have actions appears.
+2. Click **Add/Edit** to see the actions for the business object. This displays the Action Designer selection popup.
+3. Select **Graphical Action Designer**.
+
+### Opening the GAD from a Business Object in the Configuration Console
+
+This method is only available to the Administrator role, or roles enabled to access the administration tools (Configuration console).
+
+1. From the Configuration Console, click **Build > Business Objects** to open the **Business Objects** workspace.
+2. Open a business object. The application displays the workspace for that business object.
+3. Along the top, click **Quick Actions**. This displays the Action Designer selection popup.
+4. Select **Graphical Action Designer**.
+
+### Opening the GAD from the Classic Action Designer
+
+1. Save any work you are doing in the \{\{FRS\_VARS.Classic\_Action\_Designer}}.
+2. Click **Switch to Graphical Designer**.
+
+## Parts of the Graphical Action Designer
+
+The \{\{FRS\_VARS.Graphical\_Action\_Designer}} consists of three sections.
+
+\{\{FRS\_VARS.Graphical\_Action\_Designer}}
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/JC0cw42I8ZfjoZRsXx0Bz_gaduiannotated.png" alt="screenshot of graphical action designer user interface" position="flex-start" size="40" initialPath="../quick-actions-images/gad_ui_annotated.png" githubPath="Content/Configure/QuickActions/quick-actions-images/gad_ui_annotated.png" showCaption="false"></Image>
+
+### Heading Row Button Functions
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/HkLYG7UuTYkQrHE0J9YcQ_gadmainbuttonfunctions.png" alt="screenshot of graphical action designer top row function buttons" position="flex-start" size="40" initialPath="../quick-actions-images/gad_main_button_functions.png" githubPath="Content/Configure/QuickActions/quick-actions-images/gad_main_button_functions.png" showCaption="false"></Image>
+
+Use the button functions on the heading row of the GAD to:
+
+**Save**: Save the action you are working on.
+
+**Create New**: Create a new action. Clears the Design Board of any actions you are currently working on. A warning is displayed to save any unsaved work on an action you currently have in the Design Board, if you do not save the work it is lost.
+
+**Close**: Close the GAD. If you have any unsaved work a warning is displayed to save it, if you do not save the work it is lost.
+
+**Switch to Classic Editor**: Closes the GAD and opens the \{\{FRS\_VARS.Classic\_Action\_Designer}}. If you have any unsaved work a warning is displayed to save it, if you do not save the work it is lost, unsaved work is not carried over to the \{\{FRS\_VARS.Classic\_Action\_Designer}}.
+
+### 1 - Action Designer Lists
+
+The action designer lists contain new actions, and existing \{\{FRS\_VARS.Quick\_Actions}} that you can add to the Design Board to create an entirely new action, edit an existing action, or create a new action based on the existing one.
+
+Use the **Search Actions** function to find the **Action Block**, or existing \{\{FRS\_VARS.Quick\_Action}} you require.
+
+### New Actions
+
+Contains a limited set of the most commonly used actions. Drag an **Action Block** onto the Design Board to add it to your \{\{FRS\_VARS.Quick\_Action}}.
+
+For descriptions of all new action blocks available in the GAD, see the relevant section where they are described:
+
+- [About Common Quick Actions](<Common Actions/Common Actions.mdx>).
+- [About Record Quick Actions](<Record Actions/About Record Actions.mdx>).
+- [About Advanced Quick Actions](<Advanced Actions/About Advanced Actions.mdx>).
+- [About Integration Quick Actions](<Integration Actions/About Integration Actions.mdx>).
+
+### Saved Actions
+
+Contains a list of \{\{FRS\_VARS.Quick\_Actions}} that already exist for the business object.
+
+To open a saved action for editing, click on the action. The action displays in the Design Board.
+
+Actions listed are dependant on the permissions assigned to the users role:
+
+- If the role permission is limited to **Create (for self)**, then only the actions the user created for the business object are listed. The user can create new actions, and edit or delete the actions they created.
+- If the role permission includes **Edit (for all)**, then all actions for the business object are listed and can be edited by the user.
+- If the role permission includes **Edit (for all)**, and **Delete (for all)**, then the user can delete actions not created by them.
+
+Actions you create and save are added to this list under the category selected from the **Enter Category** drop down list in the **Settings** pane when the action is created. If a category is not selected, the action is listed under **No Category**.
+
+### 2 - Design Board
+
+This is where you build your \{\{FRS\_VARS.Quick\_Action}}. Once added to the Design Board, select the action to enable configuration in the **Settings** pane. You can add two or more actions to the Design Board to create a composite action, and create composite links between actions.
+
+<hint type="info">
+  When you open an existing \{\{FRS\_VARS.Quick\_Action}} from the **Saved Actions** list that was created in the Classic Action Designer, the diagram that is displayed can be manipulated to a design that you prefer.
+</hint>
+
+General functions (located along the top of the Design Board):
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/AT9V94uJlmTstWKB2c992_gaddesignareafunctionbuttons.png" alt="screenshot of the design area function buttons" position="flex-start" size="40" initialPath="../quick-actions-images/gad_design_area_function_buttons.png" githubPath="Content/Configure/QuickActions/quick-actions-images/gad_design_area_function_buttons.png" showCaption="false"></Image>
+
+- Undo and redo an edit. You can also use the **Undo** button to restore an **Action Block** you removed from the **Design Board**, including any configuration changes you made to the **Action Block**. The configuration changes are preserved.
+- Fit diagram to the visible Design Board.
+- Zoom slider.
+- Export a diagram of the action to a PNG file. Displays the diagram and you can download it.
+
+### Start Block
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/8OECgNXGLT6j6um2D916c_gadstartblock.png" alt="screenshot of the start block" position="flex-start" size="40" initialPath="../quick-actions-images/gad_start_block.png" githubPath="Content/Configure/QuickActions/quick-actions-images/gad_start_block.png" showCaption="false"></Image>
+
+The **Start Block** is displayed on the Design Board when you open the GAD. It is always the first block in your \{\{FRS\_VARS.Quick\_Action}} design, and the starting point for the \{\{FRS\_VARS.Quick\_Action}} to execute. The **Start Block** displays the **Action Name**, **Category**, **Action Type**. These parameters are configured in the **Settings** pane,and apply to the entire \{\{FRS\_VARS.Quick\_Action}}, refer to :Link[Start Block Settings]{label="Start Block Settings" overridedLabel="Start Block Settings" spaceId docId="T_2hq2qRJzWxiHLCfgn-7" version="v2" docAnchorId="#CommonTab" loadingMethod="dynamic" newTab="false" href="Using_the_Graphical_Action_Designer.mdx"}.
+
+- The **Start Block** can be moved from its position on the Design Board. Select it, hold down the mouse button, and drag it to the new position.
+- The **Start Block** can not be resized.
+- You can only add an outgoing connection from the **Start Block** to an **Action Block**, you cannot add an incoming connection to the **Start Block**.
+- When the **Start Block** is selected in the Design Board, its settings are displayed in the **Settings** pane. These settings are applied to the entire \{\{FRS\_VARS.Quick\_Action}} you are creating, refer to :Link[Start Block Settings]{label="Start Block Settings" overridedLabel="Start Block Settings" spaceId docId="T_2hq2qRJzWxiHLCfgn-7" version="v2" docAnchorId="#CommonTab" loadingMethod="dynamic" newTab="false" href="Using_the_Graphical_Action_Designer.mdx"}
+- **Action Name**: The name you specified for the \{\{FRS\_VARS.Quick\_Action}} in the **Settings** pane.
+- **Category**: The category you selected for the \{\{FRS\_VARS.Quick\_Action}} in the **Settings** pane. When you save the \{\{FRS\_VARS.Quick\_Action}}, it is displayed in the **Saved Actions** list under the **Category** you selected.
+- **Action Type**: **Regular Action** or **Triggered Action** depending on your selection in the **Settings** pane. These selections are only displayed in the **Settings** pane when the **EnableTriggerUI** feature flag is enabled in the Configuration DB, and only for user roles with Administrator privileges, refer to :Link[Action Type ]{label="Action Type " overridedLabel="Action Type " spaceId docId="T_2hq2qRJzWxiHLCfgn-7" version="v2" docAnchorId="#Action_Type_" loadingMethod="dynamic" newTab="false" href="Using_the_Graphical_Action_Designer.mdx"}. To enable this feature, contact \{\{FRS\_VARS.Company}} Cloud Operations. For contact details, refer to [More Information](../../../More-Information.mdx).
+
+### Action Block
+
+Select an **Action Block** to display its functions:
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Q16lZX4u2_Dfjrf5h84As_graphicaldesigneractionblock.png" alt="Send an email action block" position="flex-start" size="40" initialPath="../quick-actions-images/graphical_designer_action_block.png" githubPath="Content/Configure/QuickActions/quick-actions-images/graphical_designer_action_block.png" showCaption="false"></Image>
+
+- :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/6cIM3pV2qzSgBSddt1myz_qaguideleteactionblock.png" alt caption size="10" width="24" height="24"} Delete the **Action Block**.
+- :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/H-yF0Co-qraZ69IC52VUe_qaguicloneactionblock.png" alt caption size="10" width="18" height="16"} Clone the action.
+- :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/-VPjBh3QwBIWCn6zIsTUy_qaguilinkactionblock.png" alt caption size="10" width="24" height="24"} Create a link to another **Action Block**.
+- :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/BlxYxeBQzS51XVa1B4gee_qaguideletelink1actionblock.png" alt caption size="10" width="24" height="24"} Delete a link to another **Action Block**.
+- :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/yA_sGje9s52B--r8hA8wG_qaguiviewinfoactionblock.png" alt caption size="10" width="24" height="24"} View information about the action.
+- :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/gqlvjeu8zPkB1PKxVy92y_qaguiresizeactionblock.png" alt caption size="10" width="24" height="24"} Resize an **Action Block**. Hover the mouse pointer over the icon, select and drag to the size you want.
+
+### 3 - Settings Pane
+
+Configure the settings for a \{\{FRS\_VARS.Quick\_Action}} in the **Settings** pane.
+
+The **Start Block** displays the common settings for the \{\{FRS\_VARS.Quick\_Action}} when it is selected.
+
+Each **Action Block** displays its unique settings when selected.
+
+### Start Block Settings
+
+Use these settings to configure parameters that are common to the \{\{FRS\_VARS.Quick\_Action}}. Select the **Start Block** to display the settings.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/F1qDe9w2BUafZAMHhBdWt_gadsettingscommonnew1.png" alt="screenshot of start block settings" position="flex-start" size="40" initialPath="../quick-actions-images/gad_settings_common_new1.png" githubPath="Content/Configure/QuickActions/quick-actions-images/gad_settings_common_new1.png" showCaption="false"></Image>
+
+<font color="#ff0000"></font><font color="#000000"></font>Enter information into the following fields.
+
+<table isTableHeaderOn="true">
+  <tr>
+    <td>
+      Field
+    </td>
+    <td>
+      Description
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Action Type
+    </td>
+    <td>
+      By default these options are disabled, contact Ivanti Support if you want to enable these options.
+      Specifies the action type to configure the business objects. Select one of the following options:
+      - **Regular Action**: Contains the \{\{FRS\_VARS.Quick\_Actions}} that are executed during business object transactions, typically when you save a business object. They are also executed during business object transactions. The business actions need to be triggered manually.
+      - **Triggered Action**: Contains generic rules. They are executed during business object transactions, typically when you save a business object. The trigger is based on one of the events or a combination of events, such as business object events (insert, delete, or update), field events (initialize or update), or relationship events (link or unlink). You can also add an additional filter expression that if provided, is a predicate\* expression.
+        \* A predicate expression returns TRUE of FALSE when evaluated.
+      Refer to :Link[Selecting Action Type]{label="Selecting Action Type" overridedLabel="Selecting Action Type" spaceId docId="T_2hq2qRJzWxiHLCfgn-7" version="v2" docAnchorId="#Selecting__Action_Type" loadingMethod="dynamic" newTab="false" href="Using_the_Graphical_Action_Designer.mdx"}
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Name
+    </td>
+    <td>
+      <font color="#000000"></font>Mandatory. A unique name for the entire set of actions contained in the \{\{FRS\_VARS.Quick\_Action}}. This is the name that appears in the **Saved Actions** list and it can be searched upon.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Description
+    </td>
+    <td>
+      Contains a description for the \{\{FRS\_VARS.Quick\_Action}}.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Enter category
+    </td>
+    <td>
+      Activates the drop-down menu that contains the action categories. Saves the \{\{FRS\_VARS.Quick\_Action}} in the **Saved Actions** list under the category you selected.
+      You can also enter a new category by typing its name in this field. Saves the \{\{FRS\_VARS.Quick\_Action}} in the **Saved Actions** list under the new category name you entered.
+      This field is disabled when you select the **Triggered Actions** option.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Publish to
+    </td>
+    <td>
+      Activates the drop-down menu that contains the roles to which to publish this action. The application saves the \{\{FRS\_VARS.Quick\_Action}} to the roles you select, as well as to the administrator and action owner roles.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      UI Options
+    </td>
+    <td>
+      Determines which of the following options users have:
+      - **Show as toolbar button**: Creates a button on the toolbar that performs this \{\{FRS\_VARS.Quick\_Action}}.
+      - **Hide in UI**: Removes this action from the **Action Menu**.
+      - **Disable in UI**: Disables the action without deleting it or removing it permanently from the **Saved Actions** list. For example, if you have created an action that you don't want to make available immediately, you can disable it. To re-enable the action, clear the checkbox. For more information, refer to :Link[Disable or Enable a Quick Action]{label="Disable or Enable a Quick Action" overridedLabel="Disable or Enable a Quick Action" spaceId docId="T_2hq2qRJzWxiHLCfgn-7" version="v2" docAnchorId="#Disabling_a_" loadingMethod="dynamic" newTab="false" href="Using_the_Graphical_Action_Designer.mdx"}.
+      - **Auto-save**: Automatically saves changes when the action is run in form context.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Hide in UI when
+    </td>
+    <td>
+      Hide this action under certain circumstances.  Click the
+      <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/4W5r0UaoDoTCCRpkzrpS3_qa-expression-editor-icon.png" alt="Image of a function, or f(x) symbol used to open the Expression Editor" position="flex-start" size="40" initialPath="../../../Resources/Images/help-images/qa expression editor icon.png" githubPath="Content/Resources/Images/help-images/qa expression editor icon.png" showCaption="false"></Image>
+      icon to open the **Expression Editor** and create an expression-based subject. For information about the expression editor, refer to [Using the Expression Editor](<../../../Reference/Expressions/Using Expression Editor.mdx>), or [Using the Simplified Expression Editor](<../../../Reference/Expressions/Simplified Expression Editor.mdx>).
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Auto-save
+    </td>
+    <td>
+      When selected, all actions carried out on records, individually, or as part of a composite action, are saved automatically. When this option is not selected, changes are not automatically saved, and you are asked to click **Save**.
+      If the following action(s) are added to a Composite Action, auto-save is automatically switched on and cannot be switched off: Go to Record, Run for Collection, Decision Action, Show a PopUp, and Go to Action.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Disable in UI when
+    </td>
+    <td>
+      Disables this \{\{FRS\_VARS.Quick\_Action}} under certain circumstances.  click the
+      <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/4W5r0UaoDoTCCRpkzrpS3_qa-expression-editor-icon.png" alt="Image of a function, or f(x) symbol used to open the Expression Editor" position="flex-start" size="40" initialPath="../../../Resources/Images/help-images/qa expression editor icon.png" githubPath="Content/Resources/Images/help-images/qa expression editor icon.png" showCaption="false"></Image>
+      icon to open the **Expression Editor** and create an appropriate expression. For information about the expression editor, refer to [Using the Expression Editor](<../../../Reference/Expressions/Using Expression Editor.mdx>), or [Using the Simplified Expression Editor](<../../../Reference/Expressions/Simplified Expression Editor.mdx>).
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Confirm before run
+    </td>
+    <td>
+      Prompts you to confirm before running the \{\{FRS\_VARS.Quick\_Action}}.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Confirmation prompt
+    </td>
+    <td>
+      Contains the confirmation message.
+    </td>
+  </tr>
+</table>
+
+### Action Block Settings
+
+These setting are displayed when you select an **Action Block**. Use these settings to configure the parameters unique to an individual **Action Block**. The fields and parameter functions displayed may differ depending on the action selected. For information on specific fields and parameter functions, see the action description topics in this section of the help documentation:
+
+- [About Advanced Quick Actions](<Advanced Actions/About Advanced Actions.mdx>)
+- [About Common Quick Actions](<Common Actions/Common Actions.mdx>)
+- [About Integration Quick Actions](<Integration Actions/About Integration Actions.mdx>)
+- [About Record Quick Actions](<Record Actions/About Record Actions.mdx>)
+
+The **Block Label** field is the only parameter field common to all action blocks. Use this field to give each block a unique name that helps you remember what the action does in this instance. This is also useful to identify each action when you have more than one of the same **Action Block** added or cloned in the Design Board. All other parameters are unique to each type of **Action Block**.
+
+Buttons present in the **Action Block** settings for some actions open additional configuration editors and dialogs, for example: Clone Editor (for Clone Record action), Insert Child Record editor (for Insert Multiple Child Records action), and Expression Editor (for various actions). There are several other editors and dialogs that can be opened from the action settings, depending on the action selected.
+
+## Creating a New Quick Action
+
+This procedure describes how to create a simple \{\{FRS\_VARS.Quick\_Action}} using a single **Action Block**. To create a more complex \{\{FRS\_VARS.Quick\_Action}} using multiple action blocks, refer to :Link[Adding Multiple Actions in the Graphical Action Designer]{label="Adding Multiple Actions in the Graphical Action Designer" overridedLabel="Adding Multiple Actions in the Graphical Action Designer" spaceId docId="9ivhKNj5qsG9HpFX2QtL5" version="v2" docAnchorId="#Adding_Multiple_Actions_in_the_Graphical_Action_Designer" loadingMethod="dynamic" newTab="false" githubPath="../Adding_Actions_to_Quick_Act.htm#Adding_Multiple_Actions_in_the_Graphical_Action_Designer" href="../Adding_Actions_to_Quick_Act.mdx"}.
+
+1. :Link[Open the Graphical Action Designer]{label="Open the Graphical Action Designer" overridedLabel="Open the Graphical Action Designer" spaceId docId="T_2hq2qRJzWxiHLCfgn-7" version="v2" docAnchorId="#To_open_the_Graphical_Action_Designer" loadingMethod="dynamic" newTab="false" href="Using_the_Graphical_Action_Designer.mdx"}
+2. Select the **New Actions** tab to view a list of actions.
+3. Drag an action onto the Design Board from the **New Actions** tab.
+   The action is displayed as an **Action Block** in the Design Board. The **Settings** pane displays the parameters for the **Action Block**.
+4. Enter data into the parameter fields, and make selections as required.
+   Refer to :Link[New Actions]{label="New Actions" overridedLabel="New Actions" spaceId docId="T_2hq2qRJzWxiHLCfgn-7" version="v2" docAnchorId="#New_Actions" loadingMethod="dynamic" newTab="false" href="Using_the_Graphical_Action_Designer.mdx"} above for reference to topics that describe the parameters that are specific to the action.
+5. Select the **Start Block**, and then select the **Action Type** (if displayed) in the **Settings** pane.
+   These options are only displayed if your role has Administrator privileges, refer to :Link[Selecting Action Type]{label="Selecting Action Type" overridedLabel="Selecting Action Type" spaceId docId="T_2hq2qRJzWxiHLCfgn-7" version="v2" docAnchorId="#Selecting__Action_Type" loadingMethod="dynamic" newTab="false" href="Using_the_Graphical_Action_Designer.mdx"} below.
+6. Link the **Start Block** to the **Action Block**.
+7. With the **Start Block** selected, enter a name for the \{\{FRS\_VARS.Quick\_Action}} in the **Name** field in the settings pane.
+8. Enter the additional **Start Block** settings for the \{\{FRS\_VARS.Quick\_Action}} in the relevant parameter fields, refer to :Link[Start Block Settings]{label="Start Block Settings" overridedLabel="Start Block Settings" spaceId docId="T_2hq2qRJzWxiHLCfgn-7" version="v2" docAnchorId="#CommonTab" loadingMethod="dynamic" newTab="false" href="Using_the_Graphical_Action_Designer.mdx"} above.
+9. Click **Save**.
+
+The \{\{FRS\_VARS.Quick\_Action}} appears in the **Saved Actions** tab depending on the category you applied to the action in the **Start Block** settings. For example, if you selected **Form Actions** from the **Enter Category** drop-down list in **Start Block** settings, the action appears under the **Form Actions** section in the **Saved Actions** tab.
+
+If you did not select a category in **Start Block** settings, the action appears under the **No Category** section of the **Saved Actions** tab.
+
+### Selecting Action Type
+
+<hint type="info">
+  These selections are only displayed when the **EnableTriggerUI** feature flag is enabled in the Configuration DB, and only for user roles with Administrator privileges. Contact \{\{FRS\_VARS.Company}} Cloud Operations if you want to enable this feature. For contact details, refer to [More Information](../../../More-Information.mdx).
+</hint>
+
+1. Select the **Start Block**.
+2. In the **Settings** pane, select one of the following action types:
+   - **Regular Action**
+   - **Triggered Action**
+
+<hint type="info">
+  When you select th&#x65;**&#x20;Triggered Action** option, the **Add Rules** button appears.
+</hint>
+
+3. Enter information into the fields. Refer to :Link[Start Block Settings]{label="Start Block Settings" overridedLabel="Start Block Settings" spaceId docId="T_2hq2qRJzWxiHLCfgn-7" version="v2" docAnchorId="#CommonTab" loadingMethod="dynamic" newTab="false" href="Using_the_Graphical_Action_Designer.mdx"} to view the list of fields and descriptions.
+   Parameters in the **Start Block** settings are similar for both **Regular** and **Triggered&#x20;**&#x61;ction types. If you select the **Triggered Action** type, you must add rules.
+4. If you selected **Triggered Action**, click **Add Rules**. The **Triggered Action Rules** pane appears.
+5. Enter information under each tab.
+
+From the **Events** tab:
+
+| Trigger                       | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| ----------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Object Event: On Insert       | Runs when the business object is inserted.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| Object Event: On Delete       | Runs when the business object is deleted.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| Object Event: On Update       | Runs when the business object is modified and saved.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| Field Event: On Initialize    | Runs when a specific field is initialized. Select the field from the drop-down list.<br />The following additional parameters appear when this option is selected, depending on the specified field:<br />**is changed** (runs when the field is modified).<br />**is set to** condition (runs when the field is modified to a specific string).                                                                                                                                                                                                                                                                                                      |
+| Field Event: On Update        | Runs when a specific field is modified. Select the field from the drop-down list.<br />The following additional parameters appear when this option is selected, depending on the specified field:<br />**is changed** (runs when the field is modified).<br />**is changed to** condition (runs when the field is modified).<br />**is changed from** condition (runs when the field is modified from a specific string).<br />**is changed from** condition**to**other condition (runs when the field is modified from a specific string to a specific string).<br />**is set to** condition (runs when the field is modified to a specific string). |
+| Relationship Event: On Link   | Runs when a specified relationship is linked. Select the relationship from the drop-down list.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| Relationship Event: On Unlink | Runs when a specified relationship is unlinked. Select the relationship from the drop-down list.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+
+From the **Conditional Expression&#x20;**&#x74;ab:
+
+| Trigger                                                                                          | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| ------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| In addition to the above criteria, the action only triggers if the following expression is true: | Specifies a Boolean expression that allows the trigger to occur if this expression is true.<br />The action only triggers if both the selected event as specified above occurs and the expression specified in this field occur.<br />The action does not trigger if the expression specified in this field occurs but the selected event as specified above does not occur.<br />The action also does not trigger if the expression specified in this field does not occur but the selected event as specified above does occur.<br />Both must occur for the action to trigger.<br />For information about expressions, refer to [Using the Expression Editor](<../../../Reference/Expressions/Using Expression Editor.mdx>), or [Using the Simplified Expression Editor](<../../../Reference/Expressions/Simplified Expression Editor.mdx>). |
+| Disable Rule                                                                                     | Disables this triggered action. Select this option to create a read-only business rule.<br />You cannot disable triggered actions that contain calculations.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+
+6. Click **Ok**.
+
+## Modifying a Quick Action
+
+Change specific actions within a \{\{FRS\_VARS.Quick\_Action}}, or add additional actions.
+
+<hint type="info">
+  You can only edit a \{\{FRS\_VARS.Quick\_Action}} you have created, unless you have a role with **Edit (for all)** permission.
+</hint>
+
+1. :Link[Open the Graphical Action Designer]{label="Open the Graphical Action Designer" overridedLabel="Open the Graphical Action Designer" spaceId docId="T_2hq2qRJzWxiHLCfgn-7" version="v2" docAnchorId="#To_open_the_Graphical_Action_Designer" loadingMethod="dynamic" newTab="false" href="Using_the_Graphical_Action_Designer.mdx"}.
+2. Select the \{\{FRS\_VARS.Quick\_Action}} from the **Saved Actions** list, and click it to open in the Design Board.
+3. To add a new **Action Block** (skip to the next step if you only want to edit an existing **Action Block**):
+
+<Paragraph indent="1">
+  a. Drag the action from the **New Actions** list onto the Design Board.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Position the **Action Block** where you want to place it within the existing \{\{FRS\_VARS.Quick\_Action}} on the Design Board.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. Link the **Action Block** as required.
+</Paragraph>
+
+<Paragraph indent="1">
+  d. Enter the parameters for the **Action Block** in the **Settings** pane.
+  Refer to [Common Action Fields](<../Classical Action Designer/Quick_Action_Parameters.mdx>) for descriptions of the commonly used **Action Block** parameters, or refer to :Link[New Actions]{label="New Actions" overridedLabel="New Actions" spaceId docId="T_2hq2qRJzWxiHLCfgn-7" version="v2" docAnchorId="#New_Actions" loadingMethod="dynamic" newTab="false" href="Using_the_Graphical_Action_Designer.mdx"} above. reference to topics that describe the parameters that are specific to the action..
+</Paragraph>
+
+<hint type="info">
+  You may need to modify existing action blocks to integrate the new action you introduced, see next step.
+</hint>
+
+4. To modify an **Action Block**:
+
+<Paragraph indent="1">
+  a. Select the **Action Block** you want to edit to view its settings, or select the **Start Block** to view the **Start Block** settings.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Modify the configuration fields in the **Settings** pane as required.
+  Refer to [Common Action Fields](<../Classical Action Designer/Quick_Action_Parameters.mdx>) for descriptions of the commonly used **Action Block** parameters, or refer to :Link[New Actions]{label="New Actions" overridedLabel="New Actions" spaceId docId="T_2hq2qRJzWxiHLCfgn-7" version="v2" docAnchorId="#New_Actions" loadingMethod="dynamic" newTab="false" href="Using_the_Graphical_Action_Designer.mdx"} above. for reference to topics that describe the parameters that are specific to the action.
+</Paragraph>
+
+5. Click **Save**.
+
+For complex \{\{FRS\_VARS.Quick\_Actions}}, additional useful information is available in :Link[Adding Multiple Actions in the Graphical Action Designer]{label="Adding Multiple Actions in the Graphical Action Designer" overridedLabel="Adding Multiple Actions in the Graphical Action Designer" spaceId docId="9ivhKNj5qsG9HpFX2QtL5" version="v2" docAnchorId="#Adding_Multiple_Actions_in_the_Graphical_Action_Designer" loadingMethod="dynamic" newTab="false" githubPath="../Adding_Actions_to_Quick_Act.htm#Adding_Multiple_Actions_in_the_Graphical_Action_Designer" href="../Adding_Actions_to_Quick_Act.mdx"}.
+
+### View Quick Action References
+
+Use the References option to view where a Quick Action is used before you modify or delete it. This helps you identify dependent components and avoid breaking existing configurations.
+
+The Quick Action References dialog displays the components that reference the selected Quick Action. Each reference type displays relevant attributes that help you identify where the Quick Action is used.
+
+### To view references for a Quick Action
+
+1. Open the **Graphical Action Designer**.
+2. Select the Quick Action from the **Saved Actions** list.
+3. Click **References**.
+
+The Quick Action References dialog opens.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/uVCmja4w3vfZdAUpluWxL_referenece-tab.png" position="flex-start" size="40" initialPath="../quick-actions-images/Referenece tab.png" githubPath="Content/Configure/QuickActions/quick-actions-images/Referenece tab.png" showCaption="false"></Image>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/ij18wQiPP0QRpW8hRNIcN_reference-link-dialog.png" position="flex-start" size="40" initialPath="../quick-actions-images/Reference link dialog.png" githubPath="Content/Configure/QuickActions/quick-actions-images/Reference link dialog.png" showCaption="false"></Image>
+
+The dialog displays the components that reference the selected Quick Action.
+
+Each reference type displays relevant attributes that help you identify where the Quick Action is used within that component.
+
+## Disable or Enable a Quick Action
+
+You can disable an action without deleting it or removing it permanently from the **Saved Actions** list. For example, if you have created an action that you don't want to make available immediately, you can disable it.
+
+1. Open the GAD, refer to :Link[Open the Graphical Action Designer]{label="Open the Graphical Action Designer" overridedLabel="Open the Graphical Action Designer" spaceId docId="T_2hq2qRJzWxiHLCfgn-7" version="v2" docAnchorId="#To_open_the_Graphical_Action_Designer" loadingMethod="dynamic" newTab="false" href="Using_the_Graphical_Action_Designer.mdx"} for information on opening the GAD.
+2. Click the **Saved Actions** tab, select the action, and then double-click to open it on the **Design Board**.
+3. Disable or enable the action:
+   - To disable the action, select the **Start Block**, and in the **Settings** pane select the **Disable in UI** checkbox.
+   - To enable the action, select the **Start Block**, and in the **Settings** pane clear the **Disable in UI** checkbox.
+
+<hint type="info">
+  Disabled actions continue to send notifications when defined to operate within a workflow. To prevent disabled actions from sending notifications, you must remove the action from each workflow block.
+</hint>
+
+## Deleting a Quick Action
+
+<hint type="info">
+  - The **Delete** option is disabled for quick actions that have a linked references. You can delete a quick action only when it does not have a reference.
+  - If a quick action has a reference, first delete the reference, and then delete the quick action. Alternatively, raise a service request to enable override of the restriction on deleting Quick Actions with references. After you enable this setting, the **Delete anyway** option becomes available, allowing you to delete Quick Actions even if they have existing references.
+  - In Ivanti Cloud environments, you can enable this option only in staging, UAT, or other development environments. You cannot enable this option in production.
+</hint>
+
+### From the Configuration Console
+
+1. Click **Build > Automation Tools > Quick Actions** to open the **Actions Manager** workspace. The list of business objects that have actions appears.
+2. Click **Add/Edit** to see the actions for the business object. The application displays the Action Designer selection popup.
+3. Select **Graphical Action Designer**.
+4. Click the **Saved Actions** tab and hover the mouse pointer over the action you want to delete. A **Delete** button appears to the right of the action.
+5. If the Quick action has a linked reference, the **Delete** option is unavailable.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/0jYO1wU5CXl0ZMfbV8evZ_delete-option-disabled-in-gad.png" position="flex-start" size="40" indent="2" initialPath="../quick-actions-images/Delete option disabled in GAD.png" githubPath="Content/Configure/QuickActions/quick-actions-images/Delete option disabled in GAD.png" showCaption="false"></Image>
+
+<Paragraph indent="1">
+  To override this restriction, raise a service request to enable the **Delete anyway** option.
+</Paragraph>
+
+6. If the **Delete anyway** option is enabled, the **Delete** button becomes available. When you click **Delete**, the application displays the list of references.
+   The **Quick Action** dialog opens and displays the following message:
+   **“This action is referenced by other components and should not be deleted.”**
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/ZIYACGPa5otAKM2fbqQ9V_reference-warning-message-in-gad.png" position="flex-start" size="40" indent="2" initialPath="../quick-actions-images/Reference warning message in GAD.png" githubPath="Content/Configure/QuickActions/quick-actions-images/Reference warning message in GAD.png" showCaption="false"></Image>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Y-firYpoiL8MjREepmDeZ_delete-anyway-in-gad.png" position="flex-start" size="40" indent="2" initialPath="../quick-actions-images/Delete anyway in GAD.png" githubPath="Content/Configure/QuickActions/quick-actions-images/Delete anyway in GAD.png" showCaption="false"></Image>
+
+7. If you still want to delete the Quick Action even though references exist, click **Delete anyway**. The **Delete Confirmation** dialog appears.
+8. Click **Yes** to delete the Quick Action.
+
+## Configure Delete Behavior for Referenced Quick Actions
+
+You can control whether users can delete Quick Actions that are referenced by other components. This behavior is managed through a feature configuration in **Feature Management**.
+
+**To configure delete behavior for referenced Quick Actions**
+
+1. Open **Feature Management**.
+2. In the list view, locate the feature:
+   **PreventReferencedQuickActionDeletion**
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/_MKrHf8M41MQMxRqvtTGP_feature-flag.png" position="flex-start" size="40" indent="2" initialPath="../quick-actions-images/Feature Flag.png" githubPath="Content/Configure/QuickActions/quick-actions-images/Feature Flag.png" showCaption="false"></Image>
+
+3. Select the feature to open its details.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/164mo7iOk8CjWZaf5Cq0B_feature-flag-settings.png" position="flex-start" size="40" indent="2" initialPath="../quick-actions-images/Feature Flag Settings.png" githubPath="Content/Configure/QuickActions/quick-actions-images/Feature Flag Settings.png" showCaption="false"></Image>
+
+4. In the **State** field, select the required option:
+   - **Unconditionally ON**
+   - **TrialPeriod**
+   - **TrialCompleted**
+   - **Disable**
+5. Click **Save**.
+
+**Behavior based on the feature state**
+
+When set to **Unconditionally ON**
+
+- If a Quick Action is referenced by other components:
+  - The system blocks the delete operation.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/0jYO1wU5CXl0ZMfbV8evZ_delete-option-disabled-in-gad.png" position="flex-start" size="40" indent="3" initialPath="../quick-actions-images/Delete option disabled in GAD.png" githubPath="Content/Configure/QuickActions/quick-actions-images/Delete option disabled in GAD.png" showCaption="false"></Image>
+
+When set to **Disable**
+
+- If a Quick Action is referenced by other components:
+  - The system displays a warning in the **Quick Action References** dialog.
+    **“This action is referenced by other components and should not be deleted.”**
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/ZIYACGPa5otAKM2fbqQ9V_reference-warning-message-in-gad.png" position="flex-start" size="40" indent="3" initialPath="../quick-actions-images/Reference warning message in GAD.png" githubPath="Content/Configure/QuickActions/quick-actions-images/Reference warning message in GAD.png" showCaption="false"></Image>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Y-firYpoiL8MjREepmDeZ_delete-anyway-in-gad.png" position="flex-start" size="40" indent="3" initialPath="../quick-actions-images/Delete anyway in GAD.png" githubPath="Content/Configure/QuickActions/quick-actions-images/Delete anyway in GAD.png" showCaption="false"></Image>
+
+- The **Delete anyway** option is available.

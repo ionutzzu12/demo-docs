@@ -1,0 +1,314 @@
+---
+title: Patch Log Errors
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:53 GMT+0300 (Eastern European Summer Time)
+---
+
+This topics details the error messages and the fixes to it during package import.
+
+<table isTableHeaderOn="true">
+  <tr>
+    <td>
+      Error Code
+    </td>
+    <td>
+      Segment
+    </td>
+    <td>
+      Error Message
+    </td>
+    <td>
+      Reason
+    </td>
+  </tr>
+  <tr>
+    <td>
+      ERROR\_101
+    </td>
+    <td>
+      Duplication
+    </td>
+    <td>
+      Error during metadata commit operation for seq = 1: Attempting to insert Duplicate QuickAction. QuickAction "Test QA" in Business Object "TestObject" already exists.
+    </td>
+    <td>
+      This error occurs when the content is already present. It can be Business object, Fields,Relationship, Forms, Lists, Saved Search, Quick Action, Pick list/Validation List etc.
+      To fix the error, remove the duplicate content from the package and re-run the package.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      ERROR\_102
+    </td>
+    <td>
+      Import
+    </td>
+    <td>
+      Error during metadata commit operation for seq = 1: Updating Form (Incident.CustomerOwnershipForm) - Form "Incident.CustomerOwnershipForm" definition is invalid: Field(s) "TestControl" not found in business object "Incident".
+    </td>
+    <td>
+      This error occurs when some content such as Field/Business object/Relationship/Pick List used in the package is missing in the tenant.
+      To fix the error, identify and add the missing content and then re-run the package.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      ERROR\_102
+    </td>
+    <td>
+      Import
+    </td>
+    <td>
+      Error during metadata commit operation for seq = 1: Updating Form (Incident.CustomerOwnershipForm) - Form "Incident.CustomerOwnershipForm" definition is invalid: Business Object "Incident" is not found.
+    </td>
+    <td>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      ERROR\_102
+    </td>
+    <td>
+      Import
+    </td>
+    <td>
+      Error during metadata commit operation for seq = 1: Control "TestControl" definition in form "Incident.CustomerOwnershipForm" of business object "Incident" is invalid: list "Incident.Default" is not found."
+    </td>
+    <td>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      ERROR\_102
+    </td>
+    <td>
+      Import
+    </td>
+    <td>
+      Error during metadata commit operation for seq = 1: Control "TestControl" definition in form "Incident.CustomerOwnershipForm" of business object "Incident" is invalid: business object "Incident" is not found.
+    </td>
+    <td>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      ERROR\_102
+    </td>
+    <td>
+      Import
+    </td>
+    <td>
+      Error during metadata commit operation for seq = 1: Control "TestControl" definition in form "Incident.CustomerOwnershipForm" of business object "Incident" is invalid: relationship "IncidentAssociatesCI" is not found.
+    </td>
+    <td>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      ERROR\_102
+    </td>
+    <td>
+      Import
+    </td>
+    <td>
+      Error during metadata commit operation for seq = 1: List "Incident.Default" definition is invalid: Business Object "Incident" is not found.
+    </td>
+    <td>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      ERROR\_102
+    </td>
+    <td>
+      Import
+    </td>
+    <td>
+      Error during metadata commit operation for seq = 1: List "Incident.Default" definition is invalid: relationship "IncidentAssociatesCI" is not found in the business object "Incident".
+    </td>
+    <td>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      ERROR\_102
+    </td>
+    <td>
+      Import
+    </td>
+    <td>
+      Error during metadata commit operation for seq = 1: List "Incident.Default" definition is invalid: Field "TestControl" not found in "Incident" business object which is required for column "TestControl" in list "Incident.Default".
+    </td>
+    <td>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      ERROR\_102
+    </td>
+    <td>
+      Import
+    </td>
+    <td>
+      Error during metadata commit operation for seq = 1: Index "UniqueCategory" uses non-existing field "Category" in "Incident" business object.
+    </td>
+    <td>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      ERROR\_102
+    </td>
+    <td>
+      Import
+    </td>
+    <td>
+      Error during metadata commit operation for seq = 1: Business Object "Incident" Full Text Index uses non-existing field "Category".
+    </td>
+    <td>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      ERROR\_102
+    </td>
+    <td>
+      Import
+    </td>
+    <td>
+      Error during metadata commit operation for seq = 1: Non-existing field or relationship "Category" in business object "Incident" cannot be audited.
+    </td>
+    <td>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      ERROR\_102
+    </td>
+    <td>
+      Import
+    </td>
+    <td>
+      Error during metadata commit operation for seq = 1: Field "Category" in business object "Incident" is flagged as validated but a pick list is not defined for it.
+    </td>
+    <td>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      ERROR\_102
+    </td>
+    <td>
+      Import
+    </td>
+    <td>
+      Error during metadata commit operation for seq = 1: Validator(Pick List) "Category by Service" for validated field "Category" in business object "Incident" does not exist.
+    </td>
+    <td>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      ERROR\_103
+    </td>
+    <td>
+      Delete
+    </td>
+    <td>
+      Error during metadata commit operation for seq = 1: Field "Category" in business object "Incident" cannot be deleted as it is application critical field.
+    </td>
+    <td>
+      This error occurs when the package is trying to delete any locked content.
+      To fix the error, do not delete any locked content.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      ERROR\_103
+    </td>
+    <td>
+      Delete
+    </td>
+    <td>
+      Error during metadata commit operation for seq = 1: Business object Incident cannot be deleted due to metadata permissions.
+    </td>
+    <td>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      ERROR\_103
+    </td>
+    <td>
+      Delete
+    </td>
+    <td>
+      Error during metadata commit operation for seq = 1: Business object Incident cannot be updated due to metadata permissions.
+    </td>
+    <td>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      ERROR\_104
+    </td>
+    <td>
+      Sync
+    </td>
+    <td>
+      Error during metadata commit operation for seq = 1: The given key was not present in the dictionary. : Member business object "CI#Facilities" is not in sync with Group business object "CI#". Please run "Field Differs From Base Table" from Metadata Auto fix
+    </td>
+    <td>
+      This error occurs when there is a sync issue between the Group and the member business objects.
+      To fix the error, perform the below steps and re-run the package:
+      1. Navigate to Metadata Validation Config in the Configuration console > click **Run Validation**.
+      2. Wait for the validation to complete (the Status can be seen in the **Metadata Validation Run** child tab).
+      3. Once validation run is complete, navigate to the **Metadata Auto Fix - Run Field Differs From Base Table**.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      ERROR\_105
+    </td>
+    <td>
+      SQL Exception
+    </td>
+    <td>
+      Error during metadata commit operation for seq = 1: Inserting into Frs\_def\_global\_constants failed due to SQL Error 207 : Data access error, Invalid Column Name "ivnt\_IsSystem".
+    </td>
+    <td>
+      All SQL Exceptions will have Error codes along with SQL Error codes. This can be due to missing fields or Business objects in the Database.
+      To fix the error, identify and add the missing content and then re-run the package.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      ERROR\_106
+    </td>
+    <td>
+      CRUD Operation
+    </td>
+    <td>
+      Error during metadata update operation for seq = 3186. Type : Form, ID: AM.FRS\_PriceItem.Administrator; Name: AM.FRS\_PriceItem.Administrator; Business Object: FRS\_PriceItem# Error Message : Can not add property SetValues to Newtonsoft.Json.Linq.JObject. Property with the same name already exists on object.
+    </td>
+    <td>
+      This error usually occurs during CRUD operations.
+      To fix the error, identify and fix the Metadata Type mentioned in the error.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      ERROR\_107
+    </td>
+    <td>
+      Prerequisite
+    </td>
+    <td>
+      Patch ESM\_FacilitiesManagement\_Content\_2022.1\_v5.0 is skipped because it does not match Predicate condition.
+    </td>
+    <td>
+      This error usually occurs when target tenant do not have prerequisite package applied or the package is already applied to the tenant.
+      To fix the error, import the prerequisite packages.
+    </td>
+  </tr>
+</table>

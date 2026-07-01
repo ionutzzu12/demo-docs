@@ -1,0 +1,204 @@
+---
+title: GetBusinessObjectMetaData
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:01 GMT+0300 (Eastern European Summer Time)
+---
+
+Fetches details such as the list of fields, relationships, fields of related business objects, saved search names, template names and quick action names for a business object.
+
+## Pass the Body Key
+
+Pass the body key as:
+
+\{
+
+"BusinessObject" : "frs\_knowledge#"
+
+}
+
+To get information about a particular child add its name after "#". For example:
+
+\{
+
+"BusinessObject" : "frs\_knowledge#Document"
+
+}
+
+## Response
+
+The response returned after executing the *GetBusinessObjectMetaData* API is JSON based.
+
+**Base URL:**
+
+https\://\{tenant url}/api/rest/GetBusinessObjectMetadata
+
+<ExpandableHeading>
+  ## GetBusinessObjectMetadata - Example
+
+  Here is an example to fetch the GetBusinessObjectMetadata for incidents.
+
+  | URL                                           | https\://\{tenant url}/api/rest/GetBusinessObjectMetadata                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+  | --------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | <font color="#ffffff">Method</font>           | GET                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+  | Header Name                                   | Authorization: Session Key                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+  | <font color="#ffffff">Status Code</font>      | 200                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+  | <font color="#ffffff">Response Payload</font> |   <ExpandableHeading>
+      ## Click to view response payload
+
+      \{
+
+      "BusinessObject": \{
+
+      "TableName": "FRS\_Knowledge",
+
+      "Fields": \[
+
+      \{
+
+      "FieldName": "FRS\_KnowledgeType",
+
+      "DisplayName": "FRS\_KnowledgeType",
+
+      "DataType": "UnicodeText",
+
+      "Length": 300,
+
+      "HideFromUI": false,
+
+      "System": false,
+
+      "IsValidated": false,
+
+      "IsLinked": false
+
+      },
+
+      \{
+
+      "FieldName": "RecId",
+
+      "DisplayName": "RecId",
+
+      "DataType": "FixedText",
+
+      "Length": 32,
+
+      "HideFromUI": true,
+
+      "System": false,
+
+      "IsValidated": false,
+
+      "IsLinked": false
+
+      },
+
+      \{
+
+      "FieldName": "LastModDateTime",
+
+      "DisplayName": "Modified On",
+
+      "DataType": "DateTime",
+
+      "Length": 0,
+
+      "HideFromUI": false,
+
+      "System": false,
+
+      "IsValidated": false,
+
+      "IsLinked": false
+
+      },
+
+      \{
+
+      "FieldName": "LastModBy",
+
+      "DisplayName": "Modified By",
+
+      "DataType": "UnicodeText",
+
+      "Length": 200,
+
+      "HideFromUI": false,
+
+      "System": false,
+
+      "IsValidated": false,
+
+      "IsLinked": false
+
+      },
+
+      \{
+
+      "FieldName": "CreatedDateTime",
+
+      "DisplayName": "Created On",
+
+      "DataType": "DateTime",
+
+      "Length": 0,
+
+      "HideFromUI": false,
+
+      "System": false,
+
+      "IsValidated": false,
+
+      "IsLinked": false
+
+      },
+
+      \{
+
+      "FieldName": "CreatedBy",
+
+      "DisplayName": "Created By",
+
+      "DataType": "UnicodeText",
+
+      "Length": 200,
+
+      "HideFromUI": false,
+
+      "System": false,
+
+      "IsValidated": false,
+
+      "IsLinked": false
+
+      },
+
+      \{
+
+      "FieldName": "OwnerType",
+
+      "DisplayName": "OwnerType",
+
+      "DataType": "Text",
+
+      "Length": 30,
+
+      "HideFromUI": false,
+
+      "System": false,
+
+      "IsValidated": false,
+
+      "IsLinked": false
+
+      },
+
+      ],
+
+      "LinkedObjects": \[]
+
+      }
+
+      }
+    </ExpandableHeading> |
+</ExpandableHeading>

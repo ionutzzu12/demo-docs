@@ -1,0 +1,86 @@
+---
+title: Customizing the Chat Feature
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:51 GMT+0300 (Eastern European Summer Time)
+---
+
+The chat configuration settings are pre-defined; however, you can customize the settings for your business requirements in the following tabs: Chat Configuration Header, Chat Configuration Message, and Chat Configuration Text.
+
+### Chat Configuration
+
+Use the Chat Configuration to configure the session details.
+
+### Session Configuration Settings
+
+- **First Inactivity Timeout Value**: Timeout limit when a first warning message is sent to the Self Service Mobile user when inactive on a chat session.
+- **Second Inactivity Timeout Value**: Timeout limit when a second warning message is sent to the Self Service Mobile user when inactive on a chat session.
+- **Session Expiration Timeout Value**: Timeout limit when the Self Service Mobile user is logged out when inactive on a chat session.
+- **User Timeout**: Timeout limit when a Self Service Mobile user is logged off from a chat session when unable to assign the chat session with the Service Desk Analyst.
+- **Concurrent Chat Sessions per Analyst**: Number of chat requests that can be assigned to the Service Desk Analyst at a time.
+- **View User Chat History for last Created Incident(s)**: Number of previous chat sessions' history that should be stored. History is stored only when an Incident is created in the chat session.
+- **Maximum Number of Files that can be shared at a time**: Limit of number of files that can be shared at a time in the chat.
+- **Maximum Number of File shares allowed per session**: Limit of number of files that can be shared in a single session.
+- **Maximum Size for an Uploaded File** (in MB): Limit of the file size that can be uploaded in the chat.
+
+### Chat Configuration Header
+
+Use Chat Configuration Header tab to set all header messages.
+
+- **Online Message Header**: Header displayed to the Self Service Mobile user when the Service Desk Analyst staff is online and ready to pick up chat sessions.
+- **Offline Header**: Header displayed to the Self Service Mobile when the Service Desk Analyst is offline and not available to pick up chat sessions.
+- **Hop Header**: Header displayed to the Self Service Mobile when the Service Desk Analyst staff is offline during non-hours-of-operation.
+- **Join Header**: Header displayed to the to the Self Service Mobile when a Service Desk Analyst joins the chat session.
+- **Fail Join Header:** Header text displayed to the to the Self Service Mobile when unable to assign a Service Desk Analyst to the chat session.
+- **Knowledge Message**: Link to knowledge base displayed to the Self Service Mobile user when unable to assign a Service Desk Analyst to the chat session.
+- **Warning Header**: First warning header displayed to the Self Service Mobile user when inactive on the chat for the set time.
+- **Second Warning Header**: Second warning header displayed to the Self Service Mobile user when inactive on the chat for the set time.
+- **Typing**: Typing indicator displayed in the chat window text box.
+- **Send Message Place Holder**: Message displayed in the chat window text box.
+- **Incident Created text**: Message displayed in the chat window when an incident is created from the chat session.
+- **User Disconnected**: Message displayed to the Service Desk Analyst and the Self Service Mobile user when the chat session gets disconnected.
+- **Analyst Disconnected**: Message displayed to the NeuronsSelf Service user when the Analyst id disconnected.
+- **Accessibility button Tooltip Text**: The text to be displayed for the Accessibility button tool tip.
+- **Copy button Tooltip Text**: The text to be displayed for the Copy button tool tip.
+- **Header Text for User Chat Interface**: Text to be displayed for the Chat UI.
+- **Close button Tooltip Text**: Text displayed for the close button UI.
+
+### Chat Configuration Message
+
+Use Chat Configuration Message tab to set all body messages.
+
+- **Online Message**: Message displayed to the Self Service Mobile user when the Service Desk Analyst staff is online.
+- **Offline Message**: Message displayed to the Self Service Mobile user when the Service Desk Analyst staff is offline during hours-of-operation.
+- **Hop Message**: Message displayed to the Self Service Mobile user when the Service Desk Analyst staff is offline during non-hours-of-operation.
+- **Joining Message**: Message to the Self Service Mobile user when trying to assign a Service Desk Analyst to the chat session.
+- **Join Message**: Message displayed to the Self Service Mobile user when a Service Desk Analyst joins the chat session.
+- **Fail Join Message**: Message to the Self Service Mobile user when unable to assign a Service Desk Analyst to the chat session.
+- **Knowledge Button**: Second line of the knowledge base link message when unable to patch a Service Desk Analyst to the chat session.
+- **Personal**: Message entered by the Self Service Mobile user.
+- **IT LOB Name** Message displayed to the Self Service Mobile user to contact an IT representative.
+- **Facilities LOB Name** Message displayed to the Self Service Mobile user to contact a facilities representative.
+- **Security LOB Name** Message displayed to the Self Service Mobile user to contact a security representative.
+- **HR LOB Name** Message displayed to the Self Service Mobile user to contact an HR representative.
+- **Workorder Created Text** Message displayed to the Self Service Mobile user when a security incident is created with an incident number.
+- **HR Request Created Text** Message displayed to the Self Service Mobile user when an HR request is created with a case number.
+- **Security Incident Created Text** Message displayed to the Self Service Mobile user when a security incident is created with an incident number.
+- **Welcome Chat Text** Message displayed to the Self Service Mobile user.
+
+### Chat Configuration Text
+
+Use Chat Configuration Text tab to set all text messages.
+
+- **First Warning text**: First warning message displayed to the Self Service Mobile user when inactive on the chat for the set time.
+- **Second Warning Text**: Second warning message displayed to the Self Service Mobile user when inactive on the chat for the set time.
+- **Expired Warning Text**: Message displayed to the Self Service Mobile user just before logging off the chat session when the user is inactive on the chat for the set time.
+- **Session Expired Text**: Message displayed to the Self Service Mobile user after logging off the chat session when the user was inactive on the chat for the set time.
+- **File Too large Message** Message displayed to the Self Service Mobile user if the file size is large.
+- **User Wait Expired Text**: Message displayed to the Self Service Mobile user when unable to assign a Service Desk Analyst to the chat session.
+  To avoid data exposure, use either $\{\{lastname}}, \{$middlename}, or $\{\{firstname}} placeholder in the fields - Join Message, Joining Message, and Analyst Disconnected. However, you can use $\{\{fullname}} if you do not mind exposing the users' full name.
+  It is essential when you make changes to the Chat Configuration that you clear the cache for the changes to be effective. If you do not clear the cache, the changes will not take effect. To clear the cache, open the Configuration Console and select Configure > Cache Management > Reset Chat Objects. If the Reset Chat Objects option is not displayed, then it is likely that you do not have ChatEnabled in the Global Constants list set to True.
+- **Concurrent Session Expired Text**: Message displayed when the concurrent session expires.
+- **Full Size button Tooltip Text**: The text for the full size button tool tip.
+- **Chat Connection Failure Timeout Text**: Message displayed to the Self Service Mobile user when the connection fails due to Analyst unavailability.
+- **Chat Connection Failure Text**: Message displayed to the Self Service Mobile user when the connection fails.
+- **Minimize button Tooltip Text**: The text for the minimize button tool tip.
+- **Restore button Tooltip Text**: The text for the restore button tool tip.
+- **Too Many files Message**: The text when the file share exceeds the predefined limit.

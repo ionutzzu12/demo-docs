@@ -1,0 +1,48 @@
+---
+title: Example – Using Quick Action Variables in Expressions (GAD)
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:56 GMT+0300 (Eastern European Summer Time)
+---
+
+**Role**: Administrator.
+
+**Minimum Version**: \{\{FRS\_VARS.Company}} \{\{FRS\_VARS.ProductName}} 2024.4.
+
+**Feature Eligibility**: To use these \{\{FRS\_VARS.Quick\_Action}}s, set the global constant **EnableActionService&#x20;**&#x74;o **True**.
+
+This example shows how to store a user’s response from a prompt into a **Quick Action variable** and then display that response in a pop-up message. When using a variable inside an expression (for example, concatenating text), you may need to convert the variable value to text using ToString().
+
+**Procedure**
+
+1. Log into the Service Desk console as an Administrator.
+2. Select any incident from the **Incident** workspace.
+3. Go to **More** menu > **Edit Actions** > \{\{FRS\_VARS.Graphical\_Action\_Designer}}.
+4. Drag the **Update Variables and Stored Values** block from the **Advanced Actions**.
+5. Click **Editor** in the side-panel.
+6. Add a variable with the following values:
+
+<Paragraph indent="1">
+  a. **Variable Type**: Variable
+</Paragraph>
+
+<Paragraph indent="1">
+  b. **Name**: YesOrNo
+</Paragraph>
+
+<Paragraph indent="1">
+  a. **Type**: Text
+</Paragraph>
+
+<Paragraph indent="1">
+  b. **Value**: $(Prompt("prompt","YesNo"))
+</Paragraph>
+
+7. Add a **Show a Popup** block after the **Update Stored Values and Variables** block.
+
+<Paragraph indent="1">
+  a. In the **Show a Popup**'s configuration, set **Contents** to: $("YesNo response is " + ToString(Variable("YesOrNo"))).
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/R9GDTzeBdvpX0IENEBjFD_gadpromptactionnew.png" position="flex-start" size="40" indent="2" initialPath="../../quick-actions-images/gad_prompt_action_new.png" githubPath="Content/Configure/QuickActions/quick-actions-images/gad_prompt_action_new.png" showCaption="false"></Image>
+
+8. Save the action and execute it from **More** menu > **No Category** > select the action name in the incident form page.

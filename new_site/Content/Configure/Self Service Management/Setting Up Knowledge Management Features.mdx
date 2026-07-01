@@ -1,0 +1,92 @@
+---
+title: To Set Up Knowledge Management Features
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:50 GMT+0300 (Eastern European Summer Time)
+---
+
+**Role**: Administrator
+
+This section describes how to configure custom filters and enable ratings and feedback features in the Knowledge workspace within the Self Service Portal V3.
+
+<ExpandableHeading>
+  ## Creating Custom Filters
+
+  You can create filters to refine the display of knowledge articles based on user-defined conditions.
+
+  **To create a custom filter:**
+
+  1. Log in to \{\{Primary.Product}} as \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+  2. From the Configuration Console, clic&#x6B;**&#x20;Search Tools** > **Filter Searches**.
+  3. Under FRS Knowledge, click **Add Filter**. The **Condition Filter** dialog box appears.
+  4. Specify the following:
+     - Condition Name
+     - Condition Help
+  5. Click **Save**. The filter is added under Business Object: FRS\_Knowledge.
+  6. Clic&#x6B;**&#x20;Add Filter Criteria**. The **Filter Criteria** dialog box appears.
+  7. Specify the following:
+     - Label
+     - Control
+  8. Click **Save**.
+
+  The newly created filter will appear under the **Filter and Sort** options when a user with the Self Service role logs in.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Example: Creating a User Rating Filter for Knowledge
+
+  This example demonstrates how to create a filter based on user ratings for knowledge articles.
+
+  1. Log in to \{\{Primary.Product}} as \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+  2. From the Configuration Console, clic&#x6B;**&#x20;Search Tools** > **Filter Searches**.
+  3. Under FRS Knowledge, click **Add Filter**. Th&#x65;**&#x20;Condition Filter&#x20;**&#x64;ialog box appears.
+  4. Specify the **Condition Name**. In this example, enter User Ratings.
+
+  *The Condition Filter Dialog Box*
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/aLKbxWCGtZiIxhVVtFC1q_condition-filter.png" alt="The Condition Filter dialog box." position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/SelfServiceMgmt-images/condition filter.png" githubPath="Content/Resources/Images/SelfServiceMgmt-images/condition filter.png" showCaption="false"></Image>
+
+  *A Newly Created Filter*
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/LtOfAUfSR3USwbKYmA1Tf_user-rating-added.png" alt="Example of a newly created filter." position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/SelfServiceMgmt-images/user Rating added.png" githubPath="Content/Resources/Images/SelfServiceMgmt-images/user Rating added.png" showCaption="false"></Image>
+
+  5. Click **Add Filter Criteria**. The Filter Criteria dialog box appears. Specify the following:
+     - Label: In this example, enter user rating.
+     - Control: In this example, select checkbox.
+     - Expression: In this example, select **Knowledge**,**&#x20;User Rating**, and **Equal to** from the drop-down list, and enter 3 in the **Fx** field.
+  6. Click **Save**.
+
+  The **User Rating** filter will be available in the **Filter and Sort** drop-down list for users with the Self Service role.
+
+  *A User Ratings Filter*
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/4RKljW8V7N8BmAvjqIGWP_user-rating-filter.png" alt="Example of a User Ratings filter." position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/SelfServiceMgmt-images/user Rating filter.png" githubPath="Content/Resources/Images/SelfServiceMgmt-images/user Rating filter.png" showCaption="false"></Image>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Enabling Knowledge Management Feedback Settings
+
+  You can enable user feedback options, including rating and comments, in the Knowledge workspace. Additionally, average ratings can be displayed for each article.
+
+  **To enable user ratings and feedback:**
+
+  1. Log in to \{\{Primary.Product}} as \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+  2. Click **Edit Page** on the top-right corner of the page. The **Page Designer** page appears.
+  3. In the center of the **Page Designer** page, select Knowledge Base from the drop-down list.
+  4. Navigate to **Page Settings** > **Feedback Porperties**
+  5. Click the toggle buttons for the following options:
+     - **Was this article helpful?**
+     - **Rate this article**
+     - **Comments**
+  6. Click **Publish** to apply and publish the configuration.
+
+  **To enable the average ratings:**
+
+  1. Log in to \{\{Primary.Product}} as \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+  2. From the Configuration Console, navigate to **Build** > **Business Objects** .
+  3. Click **Knowledge** workspace. The **Business Object FRS\_Knowledge** page appears.
+  4. Under **Layouts**, locate and click **Knowledge.SelfService.NextGen**. The **Edit Layout: Knowledge.SelfService.NextGen** page appears.
+  5. Click **Edit**. Under **ToolBox** section, click **FRS\_Knowledge(Knowledge)** >**&#x20;Fields**. Drag and drop **User Rating&#x20;**&#x66;ield into the **List** pane.
+  6. Click **Save**.
+
+  The average user rating will now be visible for each article in the Self Service Management Portal.
+</ExpandableHeading>

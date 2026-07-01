@@ -1,0 +1,259 @@
+---
+title: Incident Business Object Reference
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:47 GMT+0300 (Eastern European Summer Time)
+---
+
+The following table lists the default definitions of the **Incident** business object.
+
+<ExpandableHeading>
+  ## Incident Business Object Field Definitions
+
+  | Field Name                   | Type     | Size                  | Description                                                                                                           |
+  | ---------------------------- | -------- | --------------------- | --------------------------------------------------------------------------------------------------------------------- |
+  | ActualCategory               | Text     | 60                    | Default category                                                                                                      |
+  | ActualService                | Text     | 100                   | Default service                                                                                                       |
+  | AlternateContactEmail        | Text     | 100                   | Email address for an alternate contact                                                                                |
+  | AlternateContactLink         | Link     | n/a                   | Link for an alternate contact                                                                                         |
+  | BusinessUnitId               | Text     | 32                    | Organization unit ID                                                                                                  |
+  | Category                     | Text     | 60                    | Category of the organization                                                                                          |
+  | CauseCode                    | Text     | 60                    | Reason code of the incident                                                                                           |
+  | ClosedBy                     | Text     | 30                    | $CurrentUserName().                                                                                                   |
+  | ClosedDateTime               | DateTime | n/a                   | $CurrentDateTime().                                                                                                   |
+  | ClosedDuration               | Number   | 10 digit              | Hours of operation calculation expression.                                                                            |
+  | ClosingEscLink               | Link     | n/a                   | When "auto-closed".                                                                                                   |
+  | Cost                         | Number   | 6 digit, 2 decimal    | Stores the cost to resolve the incident.                                                                              |
+  | CostPerMinute                | Number   | 6 digit               | Stores the calculated cost/minute to resolve the incident.                                                            |
+  | CreatedBy                    | Text     | 30                    | $CurrentUserName()                                                                                                    |
+  | CreatedByRecID               | Text     | 32                    | n/a                                                                                                                   |
+  | CreatedByType                | Text     | 25                    | n/a                                                                                                                   |
+  | CreatedDateTime              | DateTime | n/a                   | $CurrentDateTime()                                                                                                    |
+  | CustomerDepartment           | Text     | 100                   | Department of the reporter.                                                                                           |
+  | CustomerLocation             | Text     | 100                   | Location of the reporter.                                                                                             |
+  | Email                        | Text     | 100                   | Email address of the reporter.                                                                                        |
+  | FirstCallResolution          | Boolean  | n/a                   | If solved at the first call.                                                                                          |
+  | GridRowColor                 | Text     | 50                    | Sets the color of the row for the dashboard differentiating priorities etc.                                           |
+  | HoursOfOperation             | Text     | 100                   | Working hours of the organization.                                                                                    |
+  | Impact                       | Text     | 30                    | Impact type.                                                                                                          |
+  | IncidentNumber               | Number   | 10 digits             | Number assigned to this incident. Auto-generated from a counter.                                                      |
+  | InventoryItemLink            | Link     | n/a                   | Impacted inventory item.                                                                                              |
+  | IsInFinalState               | Boolean  | n/a                   | Keep track of the My Items state.                                                                                     |
+  | IsNewRecord                  | Boolean  | n/a                   | Rule implementation field.                                                                                            |
+  | IsNotification               | Boolean  | n/a                   | Enable/disable all notifications.                                                                                     |
+  | IsReclassifiedforResolution  | Boolean  | n/a                   | Reclassified for resolution.                                                                                          |
+  | IsReportedByAlternateContact | Boolean  | n/a                   | Defaults to false.                                                                                                    |
+  | IsResolutionBreached         | Boolean  | n/a                   | Is resolution breached?                                                                                               |
+  | IsResponseBreached           | Boolean  | n/a                   | Is response breached?                                                                                                 |
+  | IsVIP                        | Boolean  | n/a                   | Is customer a VIP?                                                                                                    |
+  | IsWorkAround                 | Boolean  | n/a                   | Indicates if the resolution is a workaround.                                                                          |
+  | Knowledgelink                | Link     | n/a                   | Link to knowledge article.                                                                                            |
+  | LastModBy                    | Text     | 30                    | $CurrentUserName()                                                                                                    |
+  | LastModDateTime              | DateTime | n/a                   | $CurrentDateTime()                                                                                                    |
+  | LoginId                      | Text     | 200                   | $CurrentLoginId().  <br />  <br />**NOTE**: The value entered in the **LoginId** field cannot contain angle brackets. |
+  | Owner                        | Text     | 30                    | Assigned owner.                                                                                                       |
+  | OwnerEmail                   | Text     | 100                   | Email address of the assigned owner.                                                                                  |
+  | OwnershipAssignmentEmail     | Text     | 100                   | See rules below.                                                                                                      |
+  | OwnerTeam                    | Text     | 50                    | Assigned owner team.                                                                                                  |
+  | OwnerTeamEmail               | Text     | 100                   | Email address of the team manager.                                                                                    |
+  | OwnerType                    | Text     | 30                    | $DefaultUserType()                                                                                                    |
+  | Phone                        | Text     | 25                    | Phone number of the reporter.                                                                                         |
+  | PreviousState                | Text     | 50                    | Saves the previous state of the incident used in unlinking problem.                                                   |
+  | Priority                     | Text     | 10                    | The priority, from a combination of impact and urgency.                                                               |
+  | ProfileFullName              | Text     | 60                    | Full name of the reporter.                                                                                            |
+  | ProfileLink                  | Link     | n/a                   | Link used to access the profile data                                                                                  |
+  | ProgressBarPosition          | Text     | 25                    | Position on the page for the progress bar                                                                             |
+  | RecID                        | Text     | 32                    | Record ID                                                                                                             |
+  | Resolution                   | Text     | 32                    | When the incident is resolved.                                                                                        |
+  | ResolutionEscLink            | Link     | n/a                   | When auto-resolved.                                                                                                   |
+  | ResolvedBy                   | Text     | 100                   | Resolved by employee.                                                                                                 |
+  | ResolvedbyIncidentNumber     | Number   | 10 digits             | Resolved by related incident number.                                                                                  |
+  | ResolvedByType               | Text     | 200                   | Resolved by incident type.                                                                                            |
+  | ResolvedDateTime             | DateTime | n/a                   | $CurrentDateTime()                                                                                                    |
+  | RespondedBy                  | Text     | 200                   | User who responded to the incident.                                                                                   |
+  | RespondedDateTime            | DateTime | n/a                   | $CurrentDateTime()                                                                                                    |
+  | ResponseEscLink              | Link     | n/a                   | Response time service level agreement monitor.                                                                        |
+  | Service                      | Text     | 100                   | Pick list for the service.                                                                                            |
+  | SLA                          | Text     | 50                    | Service level agreement title.                                                                                        |
+  | SLALink                      | Link     | n/a                   | Link to matching service level agreement object.                                                                      |
+  | Source                       | Text     | 40                    | Pick list for the source.                                                                                             |
+  | Status                       | Text     | 40                    | Pick list. See lifecycle.                                                                                             |
+  | SubCategory                  | Text     | 40                    | Sub category of the incident                                                                                          |
+  | Subject                      | Text     | 100                   | Incident title.                                                                                                       |
+  | Symptom                      | Text     | 100                   | Incident description.                                                                                                 |
+  | TeamManagerEmail             | Text     | n/a                   | Email address of the team manager.                                                                                    |
+  | TotalTimeSpent               | Number   | 10 digits, 2 decimals | Total time spent resolving issue.                                                                                     |
+  | TypeOf Incident              | Text     | 40                    | Type of incident.                                                                                                     |
+  | Urgency                      | Text     | 30                    | Pick list for the urgency.                                                                                            |
+  | WaitingEscLink               | Link     | n/a                   | Waiting service level agreement monitor.                                                                              |
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Incident Business Object Relationship Definitions
+
+  | Relationship                              | Type       | Cardinality  |
+  | ----------------------------------------- | ---------- | ------------ |
+  | IncidentContainsAttachment                | contains   | many         |
+  | AuditHistoryRelationship                  | contains   | zero or many |
+  | BusinessServiceAssociatesIncident         | associated | zero or one  |
+  | IncidentAssociatesChange                  | associated | zero or many |
+  | IncidentAssociatesCI                      | associated | zero or many |
+  | ComputerProvisionActionAssociatedIncident | associated | zero or one  |
+  | IncidentAssociatedComputerProvisionAction | associated | zero or many |
+  | IncidentAssociatedEscalationWatch         | associated | zero or many |
+  | IncidentAssociatedByWorkflowInstance      | associated | zero or many |
+  | IncidentAssocFRS\_Knowledge               | associated | zero or one  |
+  | IncidentAssociatedMyItem                  | associated | zero or one  |
+  | IncidentContainsIncidentDetail            | contains   | exactly one  |
+  | InstalledApplicationAssociatedIncident    | associated | zero or many |
+  | IncidentAssociatesInventoryItem           | associated | zero or many |
+  | IncidentContainsJournal                   | contains   | zero or many |
+  | IncidentAssociatedKnowledge               | associated | zero or many |
+  | IncidentAssocOrganizationalUnit           | associated | zero or one  |
+  | ProblemAssociatesIncident                 | associated | zero or one  |
+  | EmployeeAssociatesIncident                | associated | zero or one  |
+  | IncidentOwnerEmployee                     | associated | zero or one  |
+  | IncidentAssociatedByAlternateContact      | associated | zero or one  |
+  | VendorAssociatesIncident                  | associated | zero or one  |
+  | ServiceCatalogAssociatesIncident          | associated | zero or many |
+  | IncidentAssociatedServiceReq              | associated | zero or one  |
+  | ServiceReqAssociatedByIncident            | associated | zero or many |
+  | IncidentAssociatedSoftwareAction          | associated | zero or many |
+  | SoftwareActionAssociatedIncident          | associated | zero or one  |
+  | IncidentContainsTask                      | associated | zero or many |
+  | IncidentAssociatedCancelledTask           | associated | zero or many |
+  | IncidentAssocTaskAssignment               | associated | zero or many |
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Incident Business Object "Other" Controls
+
+  | Control Name          | Usage                    |
+  | --------------------- | ------------------------ |
+  | Address Book          | Place over a text field. |
+  | Attachments           |                          |
+  | Cancel Button         |                          |
+  | CI Tree Viewer        |                          |
+  | Command Button        |                          |
+  | Expression Text       |                          |
+  | ExternalLoginViewer   |                          |
+  | Grid                  |                          |
+  | Label                 |                          |
+  | Picture               |                          |
+  | Progress Bar          |                          |
+  | Related Objects List  |                          |
+  | Response Target       |                          |
+  | Schedule              |                          |
+  | Social Share Button   |                          |
+  | Software Installation |                          |
+  | Tree Grid             |                          |
+  | URL Button            |                          |
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Incident Business Object Layouts
+
+  | Layout                  | Description                        | Default Roles                                                                | Associated Layouts                                                                                                                     |
+  | ----------------------- | ---------------------------------- | ---------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+  | Entry forms             | Create, change, or view incidents. | Service Desk Analyst  <br />Service Desk Manager  <br />Internal specialists | Incident  <br />Incident.SDA  <br />Incident.SDM                                                                                       |
+  | Self service entry form | Create, change, or view incidents. | Customer  <br />Reporter                                                     | Incident.WebSelfService.New  <br />Incident.WebSelfService.Edit  <br />Incident.WebSelfService.View  <br />Incident.WebSelfServiceMain |
+  | Search Incident form    | View and update incidents.         | Service Desk Manager  <br />Service Desk Analyst                             | SearchIncidentLayout  <br />SearchIncidentLayout.Admin                                                                                 |
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Incident Business Object Forms
+
+  | Name                              | Purpose                                                                    |
+  | --------------------------------- | -------------------------------------------------------------------------- |
+  | Incident                          | Shows the main incident edit form.                                         |
+  | Incident.Brief                    | Shows a brief preview below the list (browse).                             |
+  | Incident.Brief.WebSelfServiceMain | Shows a brief preview below the list (browse) for the Self-Service Portal. |
+  | Incident DataEntry                | Shows the data entry form for the incident.                                |
+  | Incident.Details                  | Shows the incident details.                                                |
+  | Incident.PopUp                    | Shows the incident in a pop-up view.                                       |
+  | Incident.Summary                  | Shows the incident summary.                                                |
+  | Incident.WebSelfService.Edit      | Edits the incident in the Self-Service Portal.                             |
+  | Incident.WebSelfServiceMain       | Shows the incident form in the Self-Service Portal.                        |
+  | Incident.WebSelfService.New       | Shows a new incident in the Self-Service Portal.                           |
+  | Incident.WebSelfService.Preview   | Previews the incident in the Self-Service Portal.                          |
+  | ResolutionDetails                 | Shows the resolution details.                                              |
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Incident Business Object Quick Action Definitions
+
+  | Name                              | Description                                                                              |
+  | --------------------------------- | ---------------------------------------------------------------------------------------- |
+  | Called customer                   | Logs a called customer journal entry.                                                    |
+  | Close incident                    | Changes the state of an incident to closed.                                              |
+  | Export                            | Exports incidents to Microsoft Excel.                                                    |
+  | Move Resolution to Active History | Prompts user with move resolution to activity history.                                   |
+  | Resolve incident                  | Changes the state of an incident to resolved.                                            |
+  | Stop clock                        | Stops the clock, accepts the reason, creates a journal entry, and notifies the customer. |
+  | Update Status to Active           | Changes the status to active.                                                            |
+  | Reassign ownership                | Changes the incident status to logged and creates journal notes.                         |
+  | Software Failure                  | Updates the incident to log software failure.                                            |
+  | Software Request                  | Updates the incident to log software request.                                            |
+  | Create memo                       | Logs a notes journal entry.                                                              |
+  | Emailed Customer                  | Logs an emailed customer journal entry.                                                  |
+  | Left VM Customer                  | Logs a left voicemail journal entry.                                                     |
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Incident Business Object Integrated Quick Action Definitions
+
+  | Name                                | Category           | Description                                                                                                                                                                 |
+  | ----------------------------------- | ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | New Error Message Article           | Knowledge Articles | Creates a new knowledge article with the same category, description, and resolution as the incident with knowledge type as error message and prompt for the Knowledge Base. |
+  | New FAQ Article                     | Knowledge Articles | Creates a new article with the same category, description, and resolution as the incident with knowledge type as FAQ and prompt for the Knowledge Base.                     |
+  | New How Do I Article                | Knowledge Article  | Creates a new article with the same category, description, and resolution as the incident with knowledge type as How Do I and prompt for the Knowledge Base.                |
+  | New Issue Resolution Article        | Knowledge Article  | Creates a new article with the same category, description, and resolution as the incident with knowledge type as issue resolution and prompt for the Knowledge Base.        |
+  | Add problem                         | Application        | Opens the problem form to create a problem record from the current incident.                                                                                                |
+  | Add change                          | Application        | Opens the change form to create a change record and link to the current incident.                                                                                           |
+  | Add inventory item - computer       | Application        | Opens the form to add a computer.                                                                                                                                           |
+  | Add inventory item - mobile         | Application        | Opens the form to add a mobile device.                                                                                                                                      |
+  | Add inventory item - network device | Application        | Opens the form to add a network device.                                                                                                                                     |
+  | Add inventory item - printer        | Application        | Opens the form to add a printer.                                                                                                                                            |
+  | Add inventory item - undefined      | Application        | Opens the form to add an undefined inventory item.                                                                                                                          |
+  | Add Notes                           | Application        | Shortcut to add a journal entry.                                                                                                                                            |
+  | Add Task                            | Application        | Shortcut to add an internal task.                                                                                                                                           |
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Incident Business Object Business Rules
+
+  | Name                                | Description                                                                            |
+  | ----------------------------------- | -------------------------------------------------------------------------------------- |
+  | Active notification                 | Sends a notification when the status changes from logged to active.                    |
+  | Add My Item                         | Automatically assigns incidents to a team or owner based on configurable rules.        |
+  | Add Notes for Self Service Incident | Sends notification when new notes are added to an incident in the Self-Service Portal. |
+  | BackoutResolution                   | Sends notification when a resolution is backed out.                                    |
+  | ForNewIncidentNotification          | Sends notification when the incident is created.                                       |
+  | IncidentOwnerChange                 | Sends notification when the incident owner is changed.                                 |
+  | IncidentPriority1Notification       | Sends notification when an incident is created with priority 1.                        |
+  | IncidentResolutionNotification      | Sends notification when the incident is resolved.                                      |
+  | Owner Assigned                      | Sends notification when the owner of the incident is assigned.                         |
+  | Owner Team Assignment               | Sends notification when the owner team of the incident changes.                        |
+  | Priority Changed                    | Sends notification when the priority of the incident is changed.                       |
+  | ResponseTimeLapsed                  | Sends notification on response and resolution breach.                                  |
+  | ResponseTimeStamp                   | Adds a time stamp to the response notification.                                        |
+  | StopEscalationClock                 | Stops the escalation clock upon changing the status to waiting for customer.           |
+  | Update My Item                      | Sends notification when the incident is updated.                                       |
+  | VIP notification                    | Sends notification if the incident is logged by a VIP.                                 |
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Incident Business Object Searches
+
+  | Name                                                  | Criteria                                                                        |
+  | ----------------------------------------------------- | ------------------------------------------------------------------------------- |
+  | Active incidents                                      | Status!= ('Closed', 'Resolved')                                                 |
+  | Active incidents                                      | Status!= 'Closed'                                                               |
+  | Active priority1 incidents                            | Status!= ('Closed', 'Resolved') and Priority = 1                                |
+  | Active VIP incidents                                  | Status!= ('Closed', 'Resolved') and isVIP = true                                |
+  | All incidents waiting for analyst                     | All open incident with status=logged                                            |
+  | All incidents waiting for analyst for more than 1 day | All open incident with status=logged and createddatetime >= CurrentDateTime - 1 |
+  | Incident breaching today                              | ResolvedDateTime is empty and BreachedDateTime = Date($currentdatetime)         |
+  | Incidents with changes                                | ChangeLink is not empty                                                         |
+  | Incidents linked to problem                           | ProblemLink is not empty                                                        |
+  | Resolved on first call                                | Status = ('Closed', 'Resolved') and FirstCallResolution = true                  |
+</ExpandableHeading>

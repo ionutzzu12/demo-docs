@@ -1,0 +1,35 @@
+---
+title: Example: Processing an Email Based on Incident Status
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:50 GMT+0300 (Eastern European Summer Time)
+---
+
+This example shows you how to create a quick action that changes the status of an incident from resolved to active whenever an email is received. There are two phases to this procedure: first create a quick action (to update the incident to active), then map the resolved status (for an incident) to the quick action.
+
+1. From the Configuration Console, click **Build > Automation Tools > Quick Actions** to open the **Quick Actions Manager** workspace.
+2. Open the **Quick Action Configuration** window.
+3. From the **Create New Actions** tab, click **Send Email**. The **Quick Action Configuration (Send Email)** page appears.
+
+<Paragraph indent="1">
+  In either the **From** or **To** field, click **Address Book**. The **Select Email Addresses** window appears.
+</Paragraph>
+
+4. To add users, select the **Users** tab. To add teams, select the **Teams** tab. A list of users or teams appears.
+5. At the bottom of the window, click **Add**. A blank field appears.
+6. Enter the user or team email address, then click **Add**.
+7. Click **OK**. The new item is added.
+8. Add other information as needed, then click **Save**.
+9. From the left panel, select the **Create New Actions** tab, then click **Update Object** from the list of options. The **Update Object** quick action fields appear.
+   - Click **Set Action Name**, then enter a name for this quick action. Use a unique name or the application will not pick up the correct quick action.
+   - Click **Assign a Category**, then select a category from the drop-down menu, such as form actions.
+   - Choose the appropriate values from the **Field name** and **Field value** drop-down lists. In this example, choose **Status** for **Field name** and **Active** for **Field value**. You are mapping status updates to the incident record in the **Tenant Email Status Mapping** record.
+   - In the right panel, from **Publish to**, choose the roles that need access to this action (such as administrator or Service Desk Analyst). You can select multiple roles.
+   - Click **Save** to save the quick action. The quick action now appears under the **Your Actions** tab.
+10. Within the **Email Configuration** workspace, select a host under **Mail Host**. Under the **Inbox** tab, select the inbox to map.
+11. Under the **Status Mapping** tab, click **New Tenant Email Status Mapping**. The **New Tenant Email Status Mapping** window appears.
+    - For **Current Status**, enter **resolved**.
+    - For **Quick Action**, enter the name of the quick action that you created (in this case MyQuickAction).
+    - Choose **Enabled&#x20;**&#x74;o activate the mapping.
+    - Click **Save**.
+
+Now when an email is sent referencing an incident in the resolved status, the incident changes to active status and the other default fields will be filled in as defined in the quick action.

@@ -1,0 +1,250 @@
+---
+title: Example: Monitoring Server Health Using Run for Collection (GAD)
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:56 GMT+0300 (Eastern European Summer Time)
+---
+
+## Scenario
+
+A company has a number of production servers which they use to host their internal applications. They want to use \{\{Primary.Company}} \{\{Primary.Product}} to monitor the health of these servers. The company has an external application which monitors the servers and can send a web request containing the latest information.
+
+By leveraging the Run for Collection \{\{FRS\_VARS.Quick\_Action}}, Go to Record \{\{FRS\_VARS.Quick\_Action}}, and webhooks, the company can easily set up a way to take this data and record it in \{\{Primary.Product}}.
+
+<hint type="info">
+  Values are shown in this example for both JSON and XML.
+</hint>
+
+### Prerequisites
+
+<hint type="info">
+  To use these \{\{FRS\_VARS.Quick\_Action}}s, set the global constant **EnableActionService&#x20;**&#x74;o **True**.
+</hint>
+
+This example assumes you have administrator-level access to \{\{FRS\_VARS.ITSM}} and are familiar with creating both business objects and \{\{FRS\_VARS.Quick\_Action}}s. If you do not have administrator-level access, see :Link[Notes on roles and permissions]{label="Notes on roles and permissions" overridedLabel="Notes on roles and permissions" spaceId docId="T_2hq2qRJzWxiHLCfgn-7" version="v2" docAnchorId="#Notes_on_roles_and_permissions" loadingMethod="dynamic" newTab="false" githubPath="../Using_the_Graphical_Action_Designer.htm#Notes_on_roles_and_permissions" href="../Using_the_Graphical_Action_Designer.mdx"} and :Link[Open the Graphical Action Designer]{label="Open the Graphical Action Designer" overridedLabel="Open the Graphical Action Designer" spaceId docId="T_2hq2qRJzWxiHLCfgn-7" version="v2" docAnchorId="#To_open_the_Graphical_Action_Designer" loadingMethod="dynamic" newTab="false" githubPath="../Using_the_Graphical_Action_Designer.htm#To_open_the_Graphical_Action_Designer" href="../Using_the_Graphical_Action_Designer.mdx"}. You also need a business object called **Production Server** in \{\{FRS\_VARS.ITSM}}.
+
+<ExpandableHeading>
+  ## Setting up Quick Actions in ITSM
+
+  Two \{\{FRS\_VARS.Quick\_Action}}s need to be created: **Incoming Server Status Update** and **Go To and Update Server Status**.
+
+  1. To create the **Incoming Server Status Update** \{\{FRS\_VARS.Quick\_Action}}, open the \{\{FRS\_VARS.Graphical\_Action\_Designer}}.
+
+  <Paragraph indent="1">
+    See: :Link[Open the Graphical Action Designer]{label="Open the Graphical Action Designer" overridedLabel="Open the Graphical Action Designer" spaceId docId="T_2hq2qRJzWxiHLCfgn-7" version="v2" docAnchorId="#To_open_the_Graphical_Action_Designer" loadingMethod="dynamic" newTab="false" githubPath="../Using_the_Graphical_Action_Designer.htm#To_open_the_Graphical_Action_Designer" href="../Using_the_Graphical_Action_Designer.mdx"}.
+  </Paragraph>
+
+  <hint type="info">
+    **Tip:&#x20;**&#x59;ou can use the \{\{FRS\_VARS.Classic\_Action\_Designer}} if you prefer.
+  </hint>
+
+  2. Drag action blocks on to the Designer Board for the **Update Stored Values and Variables** \{\{FRS\_VARS.Quick\_Action}} and the **Run for Collection&#x20;**\{\{FRS\_VARS.Quick\_Action}}. Link the two blocks as shown.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/WZgcNgSa4hxO_1ynkND3M_examplegadrunforcollection2blocks.png" alt="Example for monitoring server health using Run for Collection; creation of 2 action blocks for Update Variables and Stored Values linked to Run for Collection" position="flex-start" size="40" indent="1" initialPath="../../quick-actions-images/example_GAD_RunforCollection_2_blocks.png" githubPath="Content/Configure/QuickActions/quick-actions-images/example_GAD_RunforCollection_2_blocks.png" showCaption="false"></Image>
+
+  3. Name the Composite Action as **Incoming Server Status Update**.
+  4. Select the **Update Stored Values and Variables** \{\{FRS\_VARS.Quick\_Action}} block. This block updates the stored values and variables used in your action.
+
+  <Paragraph indent="1">
+    For more help see: [Update Stored Values and Variables Quick Action](<../Advanced Actions/Update Stored Values and Variables.mdx>)
+  </Paragraph>
+
+  5. Configure the action to store the JSON or XML in the required variable **WebhookBody**. Enter the values as follows:
+
+  | Field         | Value         |
+  | ------------- | ------------- |
+  | Variable Type | Variable      |
+  | Name          | WebhookBody   |
+  | Data Type     | JSON or XML   |
+  | Value (JSON)  | \{}           |
+  | Value (XML)   | \<xml>\</xml> |
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/B7xfE6ugyFjaszkDzcBA0_examplegotorecordwithwebhook1.png" position="flex-start" size="40" indent="1" initialPath="../../quick-actions-images/example_go_to_record_with_webhook_1.png" githubPath="Content/Configure/QuickActions/quick-actions-images/example_go_to_record_with_webhook_1.png" showCaption="false"></Image>
+
+  6. Select the **Run for Collection** block and then create an expression using the Simplified Expression Editor. For help, see: [Using the Simplified Expression Editor](<../../../../Reference/Expressions/Simplified Expression Editor.mdx>)
+
+  <Paragraph indent="1">
+    The collection to step through is taken directly from the incoming data sent to the webhook. Once per item in the collection, the **Go To and Update Server Status&#x20;**\{\{FRS\_VARS.Quick\_Action}} is run.
+  </Paragraph>
+
+  | Field                       | Parameter                      |
+  | --------------------------- | ------------------------------ |
+  | Collection to step through  | $(Variable("WebhookBody"))     |
+  | Action to Run for each item | Go To and Update Server Status |
+  | Stop on Error               | Not selected                   |
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/61K-qdginzsvRT1-SIkyV_examplegadrunforcollectionblocksettings2.png" alt="Block settings for Run for Collection in server monitoring example" position="flex-start" size="40" indent="1" initialPath="../../quick-actions-images/example_GAD_RunforCollection_block_settings2.png" githubPath="Content/Configure/QuickActions/quick-actions-images/example_GAD_RunforCollection_block_settings2.png" showCaption="false"></Image>
+
+  7. To create the **Go To and Update Server Status&#x20;**\{\{FRS\_VARS.Quick\_Action}}, drag blocks on to the Designer Board for the **Go to Record&#x20;**\{\{FRS\_VARS.Quick\_Action}} and **Update a Record** \{\{FRS\_VARS.Quick\_Action}} and link together as shown.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/cbWvyVA3umdXFZ6UujeWV_examplegadrunforcollectiongotoandupdateserverstatus.png" alt="2 blocks for Go To and Update Server Status composite action" position="flex-start" size="40" indent="1" initialPath="../../quick-actions-images/example_GAD_RunforCollection_GoToAndUpdateServerStatus.png" githubPath="Content/Configure/QuickActions/quick-actions-images/example_GAD_RunforCollection_GoToAndUpdateServerStatus.png" showCaption="false"></Image>
+
+  8. Once per item in the collection, the **Go to Record** \{\{FRS\_VARS.Quick\_Action}}, is used to go to a record where the **ServerName&#x20;**&#x66;ield is equal to the value taken from the current collection item. Select th&#x65;**&#x20;Go to Record** block and enter the values:
+
+  | Field              | Value                                                     |
+  | ------------------ | --------------------------------------------------------- |
+  | Field Name         | ServerName (Name)                                         |
+  | Field Value (JSON) | $(JSONPathValue(CurrentCollectionItem(), "$.ServerName")) |
+  | Field Value (XML)  | $(XPathValue(CurrentCollectionItem(), "ServerName"))      |
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/5SUuONtxP2aAlWhPXPOIV_examplegadrunforcollectiongotorecordtopofblocksettings.png" alt="Top of Block settings for Go to Record as part of Go To and Update server Status Composite Action" position="flex-start" size="40" indent="1" initialPath="../../quick-actions-images/example_GAD_RunforCollection_GoToRecord_Top_of_BlockSettings.png" githubPath="Content/Configure/QuickActions/quick-actions-images/example_GAD_RunforCollection_GoToRecord_Top_of_BlockSettings.png" showCaption="false"></Image>
+
+  9. If the action doesn't find a record with that name, select the **Create a new Record** if not found option to create a new record, again taking the name from the current collection item.
+
+  | Field                            | Value                                                     |
+  | -------------------------------- | --------------------------------------------------------- |
+  | Create a new Record if not found | Selected                                                  |
+  | Field Name                       | ServerName (Name)                                         |
+  | Field Value (XML)                | $(JSONPathValue(CurrentCollectionItem(), "$.ServerName")) |
+  | Field Value (XML)                | $(XPathValue(CurrentCollectionItem(), "ServerName"))      |
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/QchI-T9TgS_czNlGrv9Oo_examplegadrunforcollectiongotorecordbottomofblocksettings.png" alt="New fields that go in new record if one is not present" position="flex-start" size="40" indent="1" initialPath="../../quick-actions-images/example_GAD_RunforCollection_GoToRecord_Bottom_of_BlockSettings.png" githubPath="Content/Configure/QuickActions/quick-actions-images/example_GAD_RunforCollection_GoToRecord_Bottom_of_BlockSettings.png" showCaption="false"></Image>
+
+  10. Finally, the **LastStatus&#x20;**&#x64;ata is taken out of the current collection item, and used to update the corresponding field on the current record. Select th&#x65;**&#x20;Update a Record** \{\{FRS\_VARS.Quick\_Action}} block and select or enter the values:
+
+  | Field              | Value                                                     |
+  | ------------------ | --------------------------------------------------------- |
+  | Field Name         | LastStatus (Last Known Status)                            |
+  | Field Value (JSON) | $(JSONPathValue(CurrentCollectionItem(), "$.LastStatus")) |
+  | Field Value (XML)  | $(XPathValue(CurrentCollectionItem(), "LastStatus"))      |
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Create the Webhook
+
+  1. Create a webhook to trigger the **Incoming Server Status Update** \{\{FRS\_VARS.Quick\_Action}} when data is sent to the appropriate endpoint. In the **Settings&#x20;**&#x6D;enu, click on **Webhooks Manager** in the **Build&#x20;**&#x73;ection.
+
+  <Paragraph indent="1">
+    The **Webhooks Manager** opens.
+  </Paragraph>
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/HuxjsOA-IYsC8Mf6Qn3qw_creatingwebhook.png" position="flex-start" size="40" indent="1" initialPath="../../../Webhooks/images/creating_webhook.png" githubPath="Content/Configure/Webhooks/images/creating_webhook.png" showCaption="false"></Image>
+
+  2. Click **Add a Webhook**.
+  3. Enter information into the fields:
+
+  | Field                  | Value                                                                         |
+  | ---------------------- | ----------------------------------------------------------------------------- |
+  | Name                   | Update Server Status                                                          |
+  | Description            | Webhook for sending external server status info to \{\{FRS\_VARS.ITSM}}       |
+  | Endpoint Extension     | UpdateServerStatus  <br />**Note:** The endpoint extension is case-sensitive. |
+  | Full Endpoint          | https\://\{tenant url}/api/rest/Webhooks/Execute?extension=UpdateServerStatus |
+  | Select Business Object | ProductionServer                                                              |
+  | Select Action          | Incoming Server Status Update (Composite Action)                              |
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/uUvWmSRl149REi2BSTP4H_examplegadrunforcollectioncreatewebhook.png" alt="Webhook created for the update server status example" position="flex-start" size="40" indent="1" initialPath="../../quick-actions-images/example_GAD_RunforCollection_Create_Webhook.png" githubPath="Content/Configure/QuickActions/quick-actions-images/example_GAD_RunforCollection_Create_Webhook.png" showCaption="false"></Image>
+
+  4. Click **Save**.
+
+  <Paragraph indent="1">
+    A confirmation message appears saying **Webhook successfully created**. Your webhook appears in the list and is enabled by default.
+  </Paragraph>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Run the Scenario
+
+  1. Ensure you have three existing records in the system for the Production Server business object:
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/GOv4qU-Af7FnhUUvjMzH8_examplegadrunforcollectiondemolistofrecords.png" alt="List of 3 server records prior to new composite action being run" position="flex-start" size="40" indent="1" initialPath="../../quick-actions-images/example_GAD_RunforCollection_demo_listofrecords.png" githubPath="Content/Configure/QuickActions/quick-actions-images/example_GAD_RunforCollection_demo_listofrecords.png" showCaption="false"></Image>
+
+  2. In Postman, simulate the latest data coming from the external application to send to the **Update Server Status&#x20;**&#x77;ebhook in \{\{FRS\_VARS.ITSM}}:
+
+  <Paragraph indent="1">
+    **JSON:**
+  </Paragraph>
+
+  \[
+
+  \{
+
+  "ServerName": "Authentication Server",
+
+  "LastStatus": "Crashed"
+
+  },
+
+  \{
+
+  "ServerName": "Email Server",
+
+  "LastStatus": "Unresponsive"
+
+  }
+
+  \{
+
+  "ServerName": "Payments Server",
+
+  "LastStatus": "Slow"
+
+  }
+
+  \{
+
+  "ServerName": "Payments Server Replica",
+
+  "LastStatus": "Starting"
+
+  }
+
+  ]
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/pWRKJ591vNV46_B8CCzoI_examplegadrunforcollectiondemopostman.png" alt="Postman showing simulation of new data for server statuses" position="flex-start" size="40" indent="1" initialPath="../../quick-actions-images/example_GAD_RunforCollection_demo_postman.png" githubPath="Content/Configure/QuickActions/quick-actions-images/example_GAD_RunforCollection_demo_postman.png" showCaption="false"></Image>
+
+  <Paragraph indent="1">
+    **XML:**
+  </Paragraph>
+
+  \<xml>
+
+  \<Server>
+
+  \<ServerName>Authentication Server\</ServerName>
+
+  \<LastStatus>Crashed\</LastStatus>
+
+  \</Server>
+
+  \<Server>
+
+  \<ServerName>Email Server\</ServerName>
+
+  \<LastStatus>Unresponsive\</LastStatus>
+
+  \</Server>
+
+  \<Server>
+
+  \<ServerName>Payments Server\</ServerName>
+
+  \<LastStatus>Slow\</LastStatus>
+
+  \</Server>
+
+  \<Server>
+
+  \<ServerName>Payments Server Replica\</ServerName>
+
+  \<LastStatus>Starting\</LastStatus>
+
+  \</Server>
+
+  \</xml>
+
+  <Paragraph indent="1">
+    For each item, the **Go to Record**\{\{FRS\_VARS.Quick\_Action}} and **Incoming Server Status Update** composite action are run. The current server status data is accessed using the **CurrentCollectionItem()** expression function.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    For the last case, there is no record existing as yet but the **Go to Record**\{\{FRS\_VARS.Quick\_Action}} was configured to create one.
+  </Paragraph>
+
+  3. In Postman, click **Send&#x20;**&#x61;nd check fo&#x72;**&#x20;status 200 OK**.
+  4. Go back to \{\{FRS\_VARS.ITSM}} and do a **Refresh**.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/GLSW_7fjT7xruMsTT72Tp_examplegadrunforcollectiondemolistofrecordsafter.png" alt="List of updated server records post action being executed and showing newly created record" position="flex-start" size="40" indent="1" initialPath="../../quick-actions-images/example_GAD_RunforCollection_demo_listofrecords_after.png" githubPath="Content/Configure/QuickActions/quick-actions-images/example_GAD_RunforCollection_demo_listofrecords_after.png" showCaption="false"></Image>
+
+  <Paragraph indent="1">
+    Every existing record is updated with the corresponding latest status, by server name. The "missing" fourth record is also created using the data as supplied.
+  </Paragraph>
+</ExpandableHeading>

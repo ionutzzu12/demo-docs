@@ -1,0 +1,217 @@
+---
+title: Working with the CI map
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:48 GMT+0300 (Eastern European Summer Time)
+---
+
+The Configuration Item (CI) map displays a CI or a service in a visual workflow. You can view related services or connected CIs (upstream and downstream). You can also view the relationships between CI's such as **Dependent on**, **Hosted on,** or **Managed by** in your organization.
+
+The CI map provides a holistic view of the CI, its related services, and the relationships between connected CIs. Each block in the CI map represents a related CI.
+
+This map of relationships provides insight into the impact of service interruptions at upstream and downstream points. It enables you to better manage your service network and quickly isolate potential points of service failure.
+
+Sign in to the application as a \{\{FRS\_VARS.Neurons\_ITSM\_-\_Configuration\_Manager}}, \{\{FRS\_VARS.Neurons\_ITSM\_-\_Discovery\_Manager}}, or \{\{FRS\_VARS.Neurons\_ITSM\_-\_Discovery\_Analyst}} to work with CI maps.
+
+<hint type="info">
+  These instructions refer to several different workspaces with similar names. The **CI Service** workspace reflects services available for CIs. The **Configuration Item** and **CI** workspaces search for assets rather than for services. Some of these procedures can be performed from any of these workspaces while others (for example, the CI map tree) can only be accessed from the **CI Service** workspace.
+</hint>
+
+<ExpandableHeading>
+  ## Understanding the CI map icons
+
+  Icons on the CIs in the map indicate links to other records and their potential impact on related items. Hover over an icon to see how many Changes, Incidents, or Problems are linked to the CI. These icons do not reflect the status of the CIs. They indicate the types of items linked to the CI.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/sZTHqZwVm-KG4goeTVJiz_cimapicons.png" alt="Yellow means the CI links only to changes. Orange means it links to problems or changes. Red means it links to an incident. A blue outline surround the subject CI of the map." position="flex-start" size="40" initialPath="../../Resources/Images/ServiceDesk/CIMapIcons.png" githubPath="Content/Resources/Images/ServiceDesk/CIMapIcons.png" showCaption="false"></Image>
+
+  - Yellow triangle: The CI links to Changes, but there are no linked Incidents or Problems.
+  - Red triangle: The CI links to Incidents; do not delete this CI. The CI might also link to Changes or Problems.
+  - Orange diamond: The CI links to Problems or Changes.
+  - Blue outline: The CI is the subject CI of this map.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## View the CI types and sub-types
+
+  - Computer
+    - Desktop
+    - Laptop
+    - Server
+    - Virtual client
+    - Virtual server
+  - General asset
+    - BatchJob
+    - Cluster
+    - Document
+    - Middleware
+    - ProductivityApp
+    - System
+    - VOIP
+  - Infrastructure
+    - Access Point
+    - Database
+    - Firewall
+    - Generator
+    - Hub
+    - Phone
+    - Rack
+    - Router
+    - SAN
+    - Switch
+    - UPS
+    - Video conference
+  - Mobile device
+    - Wearable
+    - Tablet
+    - Smart phone
+  - Peripheral device
+    - USB
+    - Scanner
+    - Projector
+    - Printer
+    - Hard drive
+    - Fax
+    - Display
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Viewing a CI map
+
+  1. Open a **CI** workspace.
+
+  <Paragraph indent="1">
+    You can view the CI map from the **CI**, **Configuration Item**, or **CI Service** workspaces. The application displays a list of CIs.
+  </Paragraph>
+
+  2. Select an appropriate asset and double-click an item to view the record details.
+  3. Select **Service Map**.
+  4. Hover over the CI to view its type and sub-type.
+
+  *Sample CI map*
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/LTyGKpoZzQUTFQTv8AUCp_ci-map-options.png" position="flex-start" size="40" initialPath="../../Resources/Images/ServiceDesk/CI-map-options.png" githubPath="Content/Resources/Images/ServiceDesk/CI-map-options.png" showCaption="false"></Image>
+
+  <hint type="info">
+    CI maps should have no more than 350 links; additional links degrade performance.
+  </hint>
+
+  1. Select **View Options** to change the layout or show relationships:<Paragraph indent="1">
+       a. **Always show relation**: Select to show relationships among items on the map.
+     </Paragraph><Paragraph indent="1">
+       b. **Always show active indicator icons**: Select to display only the incidents with only active status in the CI.
+     </Paragraph><Paragraph indent="1">
+       c. Select a layout - select horizontal or vertical layout.
+     </Paragraph>
+
+  <hint type="info" indent="2">
+    This option is available only if the global constant **CIServiceMapIncidentStatus** is set to true. For more information, see [Default\_Global\_Constants.](../../Configure/Constants/Default_Global_Constants.mdx)
+  </hint>
+
+  2. Select the number of levels to view. In large CI maps, you might want to view only one or two levels.
+  3. Select an item on the CI map to view its details.
+
+  <hint type="info">
+    To center the CI map on a specific item without leaving the current map, right-click the item, then select **Centralize and Redraw**. The application redraws the map with a blue line around the CI you selected to indicate that it is now the central focus of the map.
+  </hint>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Viewing a CI outage impact
+
+  **To view the impact of a CI outage from the CI map:**
+
+  1. Right-click a CI, and select **Show outage impact**.
+
+  <Paragraph indent="1">
+    The application shows the impact of an outage.
+  </Paragraph>
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/AdDb8_PTigZOsAUut9u9j_showouttageimpact.png" alt="Right-clicking a CI on the map displays a menu with options to show or hide the outage impact." position="flex-start" size="40" initialPath="../../Resources/Images/ServiceDesk/ShowOuttageImpact.png" githubPath="Content/Resources/Images/ServiceDesk/ShowOuttageImpact.png" showCaption="false"></Image>
+
+  | <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/kBEkjztAjVzkVdOvbzY5H_ci-map-outage.png" size="17" alt="A disabled CI displays a red strike-through icon covering it on the map." isUploading="false" initialPath="../../Resources/Images/help-images/ci map outage.png" githubPath="Content/Resources/Images/help-images/ci map outage.png" width="173" height="58" showCaption="false"></Image>                                    | This service is disabled. |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------- |
+  | <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/aKbr7-kLnIoW91RI1VjfC_ci-map-affected.png" size="17" alt="When a service on the map is impacted by a disabled service or CI, it displays a lightning bolt icon." isUploading="false" initialPath="../../Resources/Images/help-images/ci map affected.png" githubPath="Content/Resources/Images/help-images/ci map affected.png" width="170" height="54" showCaption="false"></Image> | This service is impacted. |
+
+  2. To revert to the original view, right-click the CI and choose **Hide outage impact**.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Viewing a CI map tree
+
+  **To view the upstream and downstream relations for a given CI:**
+
+  1. Open the **CI Service** workspace.
+
+  <Paragraph indent="1">
+    The application displays a list of CIs.
+  </Paragraph>
+
+  <hint type="info">
+    Only the **CI Service** workspace allows you to access the CI map tree.
+  </hint>
+
+  2. Double-click an item to view the record details.
+  3. Within a CI record, select the **CI Service Map Tree** tab.
+
+  <Paragraph indent="1">
+    CIs that are downstream of the current CI are listed on the left side, while upstream CIs are on the right.
+  </Paragraph>
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/k5-jlBb8qdCMjmsyErymI_cimaptree.png" alt="The CI Service Map Tree tab displays two columns of services with downstream services on the left and upstream services on the right." position="flex-start" size="40" initialPath="../../Resources/Images/help-images/ci_map_tree.png" githubPath="Content/Resources/Images/help-images/ci_map_tree.png" showCaption="false"></Image>
+
+  Refer to Working with Dependency Mapping.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Mapping a CI
+
+  Link or unlink upstream and downstream relations to a given CI under the **CI Service Map Tree** tab.
+
+  <hint type="info">
+    On a CI map, outages propagate upstream. It's important that you take this into account when deciding if you should create a downstream or upstream link.
+  </hint>
+
+  1. Open the **CI Service** workspace. The list of objects appears.
+
+  <hint type="info">
+    Only the **CI Service** workspace allows you to access the CI map tree.
+  </hint>
+
+  2. Within a CI record, select the **CI Service Map Tree** tab.
+  3. Click the link icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/3aNmOvuWqAurGzGYP6YMW_link.png" alt caption size="10" width="18" height="11"} under **Downstream** or **Upstream**. The relationship window appears.
+  4. Select the relationship to create a link and click **Link**.
+  5. The CI record that you selected appears in the tree view. Any related CIs appear as parents or children (as defined when the CIs were linked) to the CI in the tree.
+
+  <hint type="info">
+    When you search for a CI to link while mapping, only CIs defined in the **CI Named Rel Constraints** and which can be logically linked are displayed. Refer to :Link[Defining constraints for CI relationships]{label="Defining constraints for CI relationships" overridedLabel="Defining constraints for CI relationships" spaceId docId="BVbRfa1nz6OVrJJFsqBU6" version="v2" docAnchorId="#Defining2" loadingMethod="dynamic" newTab="false" href="Working_with_the_CI_Map.mdx"}.
+  </hint>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Defining a CI relationship
+
+  Using the **CI Named Rel Data** workspace, you can add a short description to define logical relation between CIs. This description appears on the CI map viewer showing how one CI is related to another (for example, hosted on, connects to, or runs on).
+
+  For example, a child record connected to a parent record (upstream) contains the description **Hosted on,** while the parent record connecting to a child record (downstream) contains the description **Hosts**.
+
+  1. Open the **CI Named Rel Data** workspace to display a list of relationships.
+     - The **Child to Parent Link Name** column displays the description for a child record related to a parent record (an upstream relationship).
+     - The **Parent to Child Link Name** column displays the description for a parent record (a downstream relation) related to a child record.
+     - At the bottom of the window, the **Label for arrow from the Child to Parent Object** field shows the upstream relationship. For example, it might say **Hosted on.**
+     - The **Label for arrow from Parent to Child Object** field shows the downstream relationship. For example, it might say **Hosts**.
+  2. Double-click a record. The **CI Named Rel Data** edit page opens.
+  3. Change the labels as needed. For example, you could change **Hosted on** to **Hosted by**.
+  4. Select **Save**. The relationship name appears when you define a CI map.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Defining constraints for CI relationships
+
+  1. Using the **CI Named Rel Constraints** workspace, you can define logical relationships between parent and child CIs.
+  2. Open the **CI Named Rel Constraints** workspace. The list of constraints appears.
+  3. Select **New**. The **CI Named Rel Contraints** form appears. Enter information into the fields.
+     - Child: The child CI type such as database.
+     - LinkName: The relation between the child and parent CI types such as runs on. This list is populated by the **CI Named Rel Data** workspace.
+     - Parent: The corresponding parent CI type such as server.
+     - Description: Optional. A description of the constraint.
+  4. Select **Save**.
+</ExpandableHeading>

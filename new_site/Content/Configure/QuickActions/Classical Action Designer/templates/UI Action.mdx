@@ -1,0 +1,344 @@
+---
+title: UI Action Quick Action
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:57 GMT+0300 (Eastern European Summer Time)
+---
+
+**Role**: Administrator
+
+**Minimum Version**: \{\{FRS\_VARS.Company}} \{\{FRS\_VARS.ProductName}} 2019
+
+## About the UI Action Quick Action
+
+The **UI Action** \{\{FRS\_VARS.Quick\_Action}} executes an action within a form.
+
+You can switch to a designated child tab and open a blank form for a user to fill out. There is no way to pass parameters with this action; instead, use the **Insert Child Object** action. See [Insert Child Object Action](<Insert Child Object.mdx>).
+
+There are several actions used with incidents. To see these, open the **Incident** workspace, go to the **Action Menu&#x20;**&#x61;nd look under **System**.
+
+Remember:
+
+- All commands are case sensitive; mixed case does not work. Use the values defined below.
+- You must enter **null** in the parameter if a command is not used. Leaving it empty is not the equivalent and produces different results.
+- Not all parameters are mandatory for each action.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/WoNwcCy4P2_e4KUlsHpH0_quick-action-ui-action.png" position="flex-start" size="40" indent="1" initialPath="../../../../Resources/Images/help-images/quick action ui action.png" githubPath="Content/Resources/Images/help-images/quick action ui action.png" showCaption="false"></Image>
+
+See [Example: Using the UI Action Quick Action to Open Another Workspace (CAD)](<../Examples of Using Actions (CAD)/Using the UI Action QA to Open Another Workspace.mdx>) and [Example: Using the UI Action Quick Action to Open a Workflow (CAD)](<../Examples of Using Actions (CAD)/Using the UI Action QA to Open a Workflow.mdx>) for examples on how to use this action.
+
+<hint type="info">
+  The UI Action \{\{FRS\_VARS.Quick\_Action}} is not designed for use with the [Web Service Methods](../../../ImportExportData/Web-Service-Methods.mdx) Execute Quick Action function. Use it for UI navigation within \{\{FRS\_VARS.ITSM}} only.
+</hint>
+
+### Parameters
+
+| Parameter                | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Enter action name        | A unique name for the action.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| Enter action description | Optional. A description of what the action does.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| Enter category           | Optional. The category. Select from the drop-down list.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Scope                    | The access point of the action. For a list of what to enter here, see :Link[List of UI Actions]{label="List of UI Actions" overridedLabel="List of UI Actions" spaceId docId="OjtUVguZHnP9wv7O9dnGj" version="v2" docAnchorId="#List_of_UIActions" loadingMethod="dynamic" newTab="false" href="UI Action.mdx"}.                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| Command ID               | The command ID to run, such as **NewChildObject**.<br />StripHTML is not supported in UI Action<br />For a list of what to enter here, see :Link[List of UI Actions]{label="List of UI Actions" overridedLabel="List of UI Actions" spaceId docId="OjtUVguZHnP9wv7O9dnGj" version="v2" docAnchorId="#List_of_UIActions" loadingMethod="dynamic" newTab="false" href="UI Action.mdx"}.                                                                                                                                                                                                                                                                                                                                                                |
+| Confirmation             | Optional. The confirmation message to show. When the application displays the confirmation message, you can continue the action or cancel. See :Link[About the Confirmation Message]{label="About the Confirmation Message" overridedLabel="About the Confirmation Message" spaceId docId="OjtUVguZHnP9wv7O9dnGj" version="v2" docAnchorId="#The_Confirmation_Dialog_Box" loadingMethod="dynamic" newTab="false" href="UI Action.mdx"} for more details.<br /><br />For a list of what to enter here, see :Link[List of UI Actions]{label="List of UI Actions" overridedLabel="List of UI Actions" spaceId docId="OjtUVguZHnP9wv7O9dnGj" version="v2" docAnchorId="#List_of_UIActions" loadingMethod="dynamic" newTab="false" href="UI Action.mdx"}. |
+| Command Data             | The data that the command is run against.<br /><br />For a list of what to enter here, see :Link[List of UI Actions]{label="List of UI Actions" overridedLabel="List of UI Actions" spaceId docId="OjtUVguZHnP9wv7O9dnGj" version="v2" docAnchorId="#List_of_UIActions" loadingMethod="dynamic" newTab="false" href="UI Action.mdx"}.                                                                                                                                                                                                                                                                                                                                                                                                                |
+
+### Actions
+
+| Button | Action                 |
+| ------ | ---------------------- |
+| Save   | Commits your settings. |
+| Cancel | Exits without saving.  |
+
+### About the Confirmation Message
+
+The following is a template for the confirmation message:
+
+\{
+
+"Title": "\<text>",
+
+"Message": "\<message>",
+
+"Timeout": "\<timeout>",
+
+"TimeoutAction": "\<action>",
+
+"Ok": "\<action>",
+
+"Cancel": "\<action>"
+
+}
+
+| Parameter     | Type   | Required | Description                                                                                                                                                                                                                            |
+| ------------- | ------ | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Title         | String | Required | Dialog box title string.                                                                                                                                                                                                               |
+| Message       | String | Required | Message displayed in the dialog box.                                                                                                                                                                                                   |
+| Timeout       | Int    | Optional | Dialog countdown in seconds. Countdown does not occur if not provided.                                                                                                                                                                 |
+| TimeoutAction | String | Optional | Action to be executed when the timeout has expired.<br />**'continue'**: Equivalent to user clicking **OK**. Use all lower case.<br />**'cancel'**: Cancels the operation; equivalent to user clicking **Cancel**. Use all lower case. |
+| Ok            | String | Optional | Action for the **OK** button.<br />Can be **'continue'** or **'cancel'**.<br />The **OK** button is not shown if the parameter is empty.<br />The default value is assumed if no value is given.                                       |
+| Cancel        | String | Optional | Action for the **Cancel** button.<br />Can be **'continue'** or **'cancel'**.<br />The **Cancel** button is not shown if the parameter is empty.<br />The default value is assumed if no value is given.                               |
+
+For example:
+
+\{
+
+"Title": "Request to Logout",
+
+"Message": "Do you want to log out now?",
+
+"Timeout": 30,
+
+"TimeoutAction": "continue",
+
+"Ok": "continue",
+
+"Cancel": "cancel"
+
+}
+
+## About Using the UI Action Quick Action as a Composite Action
+
+We strongly discourage you from using the **UI Action** \{\{FRS\_VARS.Quick\_Action}} with the **Composite Action** action. \{\{FRS\_VARS.ProductName}} does not support this configuration as it produces inconsistent results.
+
+When using the **UI Action** \{\{FRS\_VARS.Quick\_Action}} within the **Composite Action** action, note the following:
+
+- The **UI Action** \{\{FRS\_VARS.Quick\_Action}} relies on the UI commands in the browser, not the server side.
+- Non-UI actions rely on server side actions.
+- The **UI Action** \{\{FRS\_VARS.Quick\_Action}} is built as asynchronous. Send the request and return immediately (without waiting) to the composite framework to continue other actions.
+- Use the **UI Action** \{\{FRS\_VARS.Quick\_Action}} within a **Composite Action** action at your own risk. This procedure is not recommended as it could cause unexpected results.
+
+### Limitations About Using the UI Action Quick Action
+
+- Canceling the **UI Action** \{\{FRS\_VARS.Quick\_Action}} does not cancel the remaining actions defined in the **Composite Action** action.
+- Create the **UI Action** \{\{FRS\_VARS.Quick\_Action}} as the last action (*highly recommended*).
+- Use only one **UI Action** \{\{FRS\_VARS.Quick\_Action}} in a **Composite Action** action. Multiple actions can produce unintended results.
+
+### List of UI Actions
+
+All values are case sensitive. Be sure to use the values exactly as documented.
+
+- :Link[Logging Out of the Application]{label="Logging Out of the Application" overridedLabel="Logging Out of the Application" spaceId docId="OjtUVguZHnP9wv7O9dnGj" version="v2" docAnchorId="#Logging_Out_of_the_Application" loadingMethod="dynamic" newTab="false" href="UI Action.mdx"}
+- :Link[Refreshing the Application]{label="Refreshing the Application" overridedLabel="Refreshing the Application" spaceId docId="OjtUVguZHnP9wv7O9dnGj" version="v2" docAnchorId="#Refreshing_the_Application" loadingMethod="dynamic" newTab="false" href="UI Action.mdx"}
+- :Link[Refreshing the Current Tab]{label="Refreshing the Current Tab" overridedLabel="Refreshing the Current Tab" spaceId docId="OjtUVguZHnP9wv7O9dnGj" version="v2" docAnchorId="#refresh-tab" loadingMethod="dynamic" newTab="false" href="UI Action.mdx"}
+- :Link[Opening a URL in a Pop-Up Browser]{label="Opening a URL in a Pop-Up Browser" overridedLabel="Opening a URL in a Pop-Up Browser" spaceId docId="OjtUVguZHnP9wv7O9dnGj" version="v2" docAnchorId="#Opening_a_URL_in_a_Pop-Up_Browser" loadingMethod="dynamic" newTab="false" href="UI Action.mdx"}
+- :Link[Opening a Link Stored in a Business Object]{label="Opening a Link Stored in a Business Object" overridedLabel="Opening a Link Stored in a Business Object" spaceId docId="OjtUVguZHnP9wv7O9dnGj" version="v2" docAnchorId="#Opening_a_Link_Stored_in_a_Business_Object" loadingMethod="dynamic" newTab="false" href="UI Action.mdx"}
+- :Link[Opening a New Layout Tab by Business Object Type]{label="Opening a New Layout Tab by Business Object Type" overridedLabel="Opening a New Layout Tab by Business Object Type" spaceId docId="OjtUVguZHnP9wv7O9dnGj" version="v2" docAnchorId="#Opening_a_New_Layout_Tab_by_Object_Type" loadingMethod="dynamic" newTab="false" href="UI Action.mdx"}
+- :Link[Opening a Web Page in a Sub-Tab of the Application]{label="Opening a Web Page in a Sub-Tab of the Application" overridedLabel="Opening a Web Page in a Sub-Tab of the Application" spaceId docId="OjtUVguZHnP9wv7O9dnGj" version="v2" docAnchorId="#Opening_a_Web_Page_in_a_Sub-Tab_of_the_Application" loadingMethod="dynamic" newTab="false" href="UI Action.mdx"}
+- :Link[Searching for Results by Condition from the Current Context]{label="Searching for Results by Condition from the Current Context" overridedLabel="Searching for Results by Condition from the Current Context" spaceId docId="OjtUVguZHnP9wv7O9dnGj" version="v2" docAnchorId="#Searching_for_Results_by_Condition_from_the_Current_Context" loadingMethod="dynamic" newTab="false" href="UI Action.mdx"}
+- :Link[Opening the Object Referenced in a Different Field]{label="Opening the Object Referenced in a Different Field" overridedLabel="Opening the Object Referenced in a Different Field" spaceId docId="OjtUVguZHnP9wv7O9dnGj" version="v2" docAnchorId="#Opening_the_Object_Referenced_in_a_Different_Field" loadingMethod="dynamic" newTab="false" href="UI Action.mdx"}
+- :Link[Prompting for the Incident Number, Then Open It]{label="Prompting for the Incident Number, Then Open It" overridedLabel="Prompting for the Incident Number, Then Open It" spaceId docId="OjtUVguZHnP9wv7O9dnGj" version="v2" docAnchorId="#Prompting_for_the_Incident_Number,_Then_Open_It" loadingMethod="dynamic" newTab="false" href="UI Action.mdx"}
+- :Link[Creating a New Task Business Object in a Workspace]{label="Creating a New Task Business Object in a Workspace" overridedLabel="Creating a New Task Business Object in a Workspace" spaceId docId="OjtUVguZHnP9wv7O9dnGj" version="v2" docAnchorId="#Creating_a_New_Task_Business_Object_in_a_Workspace" loadingMethod="dynamic" newTab="false" href="UI Action.mdx"}
+- :Link[Creating a New Incident in a Tab]{label="Creating a New Incident in a Tab" overridedLabel="Creating a New Incident in a Tab" spaceId docId="OjtUVguZHnP9wv7O9dnGj" version="v2" docAnchorId="#Creating_a_New_Incident_in_a_Tab" loadingMethod="dynamic" newTab="false" href="UI Action.mdx"}
+- :Link[Closing the Current Tab]{label="Closing the Current Tab" overridedLabel="Closing the Current Tab" spaceId docId="OjtUVguZHnP9wv7O9dnGj" version="v2" docAnchorId="#Closing_the_Current_Tab" loadingMethod="dynamic" newTab="false" href="UI Action.mdx"}
+- :Link[Creating a New Child Business Object]{label="Creating a New Child Business Object" overridedLabel="Creating a New Child Business Object" spaceId docId="OjtUVguZHnP9wv7O9dnGj" version="v2" docAnchorId="#Creating_a_New_Child_Business_Object" loadingMethod="dynamic" newTab="false" href="UI Action.mdx"}
+
+### Logging Out of the Application
+
+This action brings up a confirmation box asking the user if they want to log out. If the user does not respond, they are automatically logged out.
+
+*Log Out Dialog Box*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/2GVbd8WQA9vRV4kIYtVxM_logout-box.png" position="flex-start" size="40" initialPath="../../../../Resources/Images/help-images/logout box.png" githubPath="Content/Resources/Images/help-images/logout box.png" showCaption="false"></Image>
+
+| Field        | Value to Enter                                                                                                                                                                       |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Scope        | Application                                                                                                                                                                          |
+| Command ID   | Logout                                                                                                                                                                               |
+| Confirmation | \{<br />"Title": "Logout in",<br />"Message": "Do you want to log out?",<br />"Timeout": 10,<br />"TimeoutAction": "continue",<br />"Ok": "continue",<br />"Cancel": "cancel"<br />} |
+| Command Data | null                                                                                                                                                                                 |
+
+### Refreshing the Application
+
+This action refreshes the window and updates the application data. Equivalent to **F5** or **Refresh** in the browser.
+
+| Field        | Value to Enter                                                                                            |
+| ------------ | --------------------------------------------------------------------------------------------------------- |
+| Scope        | Application                                                                                               |
+| Command ID   | Reload                                                                                                    |
+| Confirmation | Optional. If empty, the application used the default brackets and generates the default confirmation box. |
+| Command Data | null                                                                                                      |
+
+### Refreshing the Current Tab
+
+This action refreshes the current record displayed in the active tab after a specified delay. Use this when you want users to see updates made by quick actions or workflows without manually clicking the **Refresh** :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/5ANuoYkz7x6WK0Lif13hB_refresh-icon12x12.png" alt caption size="10" width="12" height="12"} button in the workspace toolbar.
+
+<table isTableHeaderOn="true">
+  <tr>
+    <td>
+      Field
+    </td>
+    <td>
+      Value to Enter
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Scope
+    </td>
+    <td>
+      CurrentTab
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Command ID
+    </td>
+    <td>
+      Refresh
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Confirmation
+    </td>
+    <td>
+      Optional
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Command Data
+    </td>
+    <td>
+      \{
+      "delayMs": 3000,
+      "message": "Refreshing to show changes."
+      }
+      - delayMs: Time in milliseconds before refresh (e.g., 3000 = 3 seconds).
+      - message: Optional text shown to the user before refreshing.
+    </td>
+  </tr>
+</table>
+
+<hint type="info">
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/VggbKf5_-gmBeE5zcix3q_refreshing-action.png" position="flex-start" size="40" initialPath="../../quick-actions-images/refreshing-action.png" githubPath="Content/Configure/QuickActions/quick-actions-images/refreshing-action.png" showCaption="false"></Image>
+
+  When the refresh occurs, the system displays an update processing icon in the upper-right corner to indicate that updates are being applied.
+</hint>
+
+### Opening a URL in a Pop-Up Browser
+
+This action automatically opens a new window to the specified URL. Invalid URLs result in a 404 error (Page Not Found).
+
+| Field        | Value to Enter                                                                                                                              |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| Scope        | Application                                                                                                                                 |
+| Command ID   | OpenWindow                                                                                                                                  |
+| Confirmation | Optional. If empty, the application used the default brackets and generates the default confirmation box.                                   |
+| Command Data | \{<br />"Url": "https\://www\.ivanti.com",<br />"Target": "\_blank",<br />"Options": "width=400,height=500",<br />"Replace": "false"<br />} |
+
+### Opening a Link Stored in a Business Object
+
+This action opens a pop-up window to the URL specified in the **Subject** field of a business object.
+
+| Field        | Value to Enter                                                                                            |
+| ------------ | --------------------------------------------------------------------------------------------------------- |
+| Scope        | Application                                                                                               |
+| Command ID   | OpenWindow                                                                                                |
+| Confirmation | Optional. If empty, the application used the default brackets and generates the default confirmation box. |
+| Command Data | \{<br />"Url": "$(Subject)",<br />"Target": "\_blank",<br />"Options": "width=400,height=500"<br />}      |
+
+### Opening a New Layout Tab by Business Object Type
+
+This action opens a new tab.
+
+| Field        | Value to Enter                                                                                                                                                                                              |
+| ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Scope        | WorkspaceSelector                                                                                                                                                                                           |
+| Command ID   | OpenObjectTab                                                                                                                                                                                               |
+| Confirmation | Optional. If empty, the application used the default brackets and generates the default confirmation box.                                                                                                   |
+| Command Data | Use one of the following:<br /><br />\{<br />"ObjectType": "Change#"<br />}<br /><br />----or----<br /><br />\{<br />"ObjectType": "Incident#",<br />"ForceReload": false,<br />"NewNaviState": true<br />} |
+
+### Opening a Web Page in a Sub-Tab of the Application
+
+This action opens the web page defined in the **URL** parameter of the **Command Data** field. The web page opes in a new tab within the application. The value of the **URL** parameter can be external, such as [https://www.ivanti.com](https://www.ivanti.com/) or can reference an internal \{\{FRS\_VARS.ProductName}} web page. See [Logging in or Accessing Records Using URLs](../../../LogIn/Log_In_Using_URLs.mdx) for information about internal URLs.
+
+| Field        | Value to Enter                                                                                                                                                                                                                                                                                                                                                                                                              |
+| ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Scope        | WorkspaceSelector                                                                                                                                                                                                                                                                                                                                                                                                           |
+| Command ID   | OpenLinkTab                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| Confirmation | Optional. If empty, the application used the default brackets and generates the default confirmation box.                                                                                                                                                                                                                                                                                                                   |
+| Command Data | \{<br />"Name": "ivanti.com",<br />"Id": "ivanticom",<br />"Closable": true,<br />"Url": "https\://www\.ivanti.com"<br />}<br /><br /><br />----or----<br /><br />\{<br />"Name": "AppStore Partner",<br />"Id": "heatsoftwarecom",<br />"Closable": true,<br />"Url": "/?frameless=true\&Scope=SelfService\&CommandId=NewServiceRequestByOfferingId\&Tab=ServiceCatalog\&Template=7EFF29BC6FB446D395509DF1A0A99EEE"<br />} |
+
+### Searching for Results by Condition from the Current Context
+
+This action passes the priority from the current business object.
+
+| Field        | Value to Enter                                                                                                                                                                                                                               |
+| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Scope        | ObjectWorkspace                                                                                                                                                                                                                              |
+| Command ID   | Search                                                                                                                                                                                                                                       |
+| Confirmation | Optional. If empty, the application used the default brackets and generates the default confirmation box.                                                                                                                                    |
+| Command Data | \{<br />"ObjectType": "Incident#",<br />"SearchCriteria": \[<br />\{<br />"ObjectId": "Incident#",<br />"FieldName": "Priority",<br />"Condition": "=",<br />"FieldValue": "$(Priority)"<br />}<br />],<br />"FillSearchPanel": false<br />} |
+
+### Opening the Object Referenced in a Different Field
+
+This action opens the incident that is referenced in the **Subject** field of the current business object.
+
+| Field        | Value to Enter                                                                                                                                                                                                                                    |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Scope        | *(uses previous value)*                                                                                                                                                                                                                           |
+| Command ID   | *(uses previous value)*                                                                                                                                                                                                                           |
+| Confirmation | Optional. If empty, the application used the default brackets and generates the default confirmation box.                                                                                                                                         |
+| Command Data | \{<br />"ObjectType": "Incident#",<br />"SearchCriteria": \[<br />\{<br />"ObjectId": "Incident#",<br />"FieldName": "IncidentNumber",<br />"Condition": "=",<br />"FieldValue": "$(Subject)"<br />}<br />],<br />"FillSearchPanel": false<br />} |
+
+### Prompting for the Incident Number, Then Open It
+
+This action asks the user for an incident number, then opens the incident.
+
+| Field        | Value to Enter                                                                                                                                                                                                                                                                              |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Scope        | *(uses previous value)*                                                                                                                                                                                                                                                                     |
+| Command ID   | *(uses previous value)*                                                                                                                                                                                                                                                                     |
+| Confirmation | Optional. If empty, the application used the default brackets and generates the default confirmation box.                                                                                                                                                                                   |
+| Command Data | \{<br />"ObjectType": "Incident#",<br />"SearchCriteria": \[<br />\{<br />"ObjectId": "Incident#",<br />"FieldName": "IncidentNumber",<br />"Condition": "=",<br />"FieldValue": "$(Prompt(\\"Please enter Incident Number\\",\\"\\"))"<br />}<br />],<br />"FillSearchPanel": false<br />} |
+
+### Creating a New Task Business Object in a Workspace
+
+This action creates a new task in a layout and links the current business object. The value from the current business object can be passed in this way including linking the parent incident to the task. This is equivalent to the **Insert Child Object** action. This option allows the application to move the data from the current context to the child record. You must supply the relationship details as part of creating the new business object if they need to be linked.
+
+| Field        | Value to Enter                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Scope        | ObjectWorkspace                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| Command ID   | NewObject                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| Confirmation | Optional. If empty, the application used the default brackets and generates the default confirmation box.                                                                                                                                                                                                                                                                                                                                 |
+| Command Data | \{<br />"ObjectType": "Task#Assignment",<br />"Fields": \[<br />\{<br />"Name": "ParentLink\_Category",<br />"Value": "Incident"<br />},<br />\{<br />"Name": "ParentLink\_RecID",<br />"Value": "$(RecId)"<br />},<br />\{<br />"Name": "OwnerTeam",<br />"Value": "$(OwnerTeam)"<br />},<br />\{<br />"Name": "Owner",<br />"Value": "$(Owner)"<br />},<br />\{<br />"Name": "Subject",<br />"Value": "$(Subject)"<br />}<br />]<br />} |
+
+### Creating a New Incident in a Tab
+
+This action opens a new layout with a new object as referenced in the command data ObjectType.
+
+| Field        | Value to Enter                                                                                            |
+| ------------ | --------------------------------------------------------------------------------------------------------- |
+| Scope        | ObjectWorkspace                                                                                           |
+| Command ID   | NewObject                                                                                                 |
+| Confirmation | Optional. If empty, the application used the default brackets and generates the default confirmation box. |
+| Command Data | \{<br />"ObjectType": "Incident#"<br />}                                                                  |
+
+### Closing the Current Tab
+
+This action closes the current tab.
+
+| Field        | Value to Enter                                                                                            |
+| ------------ | --------------------------------------------------------------------------------------------------------- |
+| Scope        | CurrentTab                                                                                                |
+| Command ID   | CloseTab                                                                                                  |
+| Confirmation | Optional. If empty, the application used the default brackets and generates the default confirmation box. |
+| Command Data | null                                                                                                      |
+
+### Creating a New Child Business Object
+
+This action creates a new child record with the default assigned to the new business object. Typically, a relationship push constraint is used to move the data from the main business object to the child business object.
+
+| Field        | Value to Enter                                                                                               |
+| ------------ | ------------------------------------------------------------------------------------------------------------ |
+| Scope        | CurrentTab\:ObjectWorkspace\:ObjectView                                                                      |
+| Command ID   | NewChildObject                                                                                               |
+| Confirmation | Optional. If empty, the application used the default brackets and generates the default confirmation box.    |
+| Command Data | \{<br />"ObjectType": "Incident#",<br />"ChildObjectType": "Change#",<br />"NewObjectType": "Change#"<br />} |
+
+<hint type="info">
+  This action does not respect the **Auto-save** checkbox option in the **Action Settings** tab. It does save changes directly to the database, but please ensure that the behaviour you expect still occurs.
+</hint>
+
+Reference::inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Y4WfYOm5SkWQaKIj8jTPB_transparent.gif" alt="Closed" caption size="10" width="16" height="16"}[Graphical Action Designer: UI Action Quick Action](<../../Graphical Action Designer/Common Actions/UI Action.mdx>)

@@ -1,0 +1,274 @@
+---
+title: Using the Run Program for the Remote Host
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:52 GMT+0300 (Eastern European Summer Time)
+---
+
+- :Link[About the Run Program]{label="About the Run Program" overridedLabel="About the Run Program" spaceId docId="i_vsbbVlGOS7gu9_O1uzR" version="v2" docAnchorId="#About" loadingMethod="dynamic" newTab="false" href="Run-Program.mdx"}
+- :Link[How the Run Program Works]{label="How the Run Program Works" overridedLabel="How the Run Program Works" spaceId docId="i_vsbbVlGOS7gu9_O1uzR" version="v2" docAnchorId="#How" loadingMethod="dynamic" newTab="false" href="Run-Program.mdx"}
+- :Link[Using Windows Remote Management (WinRM) Setup]{label="Using Windows Remote Management (WinRM) Setup" overridedLabel="Using Windows Remote Management (WinRM) Setup" spaceId docId="i_vsbbVlGOS7gu9_O1uzR" version="v2" docAnchorId="#Using2" loadingMethod="dynamic" newTab="false" href="Run-Program.mdx"}
+- :Link[Using the Run Program]{label="Using the Run Program" overridedLabel="Using the Run Program" spaceId docId="i_vsbbVlGOS7gu9_O1uzR" version="v2" docAnchorId="#Using" loadingMethod="dynamic" newTab="false" href="Run-Program.mdx"}
+- :Link[Configuring the Run Program]{label="Configuring the Run Program" overridedLabel="Configuring the Run Program" spaceId docId="i_vsbbVlGOS7gu9_O1uzR" version="v2" docAnchorId="#To_configure_Run_Program" loadingMethod="dynamic" newTab="false" href="Run-Program.mdx"}
+- :Link[Using the Run Program / Export History Workspace]{label="Using the Run Program / Export History Workspace" overridedLabel="Using the Run Program / Export History Workspace" spaceId docId="i_vsbbVlGOS7gu9_O1uzR" version="v2" docAnchorId="#Using3" loadingMethod="dynamic" newTab="false" href="Run-Program.mdx"}
+- :Link[Example: Starting or Stopping a Service Using the Run Program]{label="Example: Starting or Stopping a Service Using the Run Program" overridedLabel="Example: Starting or Stopping a Service Using the Run Program" spaceId docId="i_vsbbVlGOS7gu9_O1uzR" version="v2" docAnchorId="#Example:" loadingMethod="dynamic" newTab="false" href="Run-Program.mdx"}
+
+## About the Run Program
+
+Remote connections are set up to connect to remote computers using the Run Program. The Run Program is a way to execute a Microsoft Windows application from \{\{FRS\_VARS.ProductName}}. This is useful when you need to execute a program to accomplish a task that cannot be automated within \{\{FRS\_VARS.ProductName}} itself. Some examples might include running PowerShell scripts to manage Active Directory user passwords, importing information from \{\{FRS\_VARS.ProductName}} into a third party application, or running an XSL transformation using Microsoft Excel.
+
+Server performance can be severely affected if the Run Program job uses a lot of resources. We recommend that you have a separate remote host server and not run it on the application or database servers.
+
+## How the Run Program Works
+
+The Run Program uses the Microsoft Windows Remote Management (WinRM) protocol. This native service of Windows allows remote requests to run local applications. When enabled on a server, \{\{FRS\_VARS.ProductName}} can make a request to run the specified program on that server, using the credentials supplied in the remote connection. When the program is run, it can pass along details from \{\{FRS\_VARS.ProductName}} as command line parameters, and any output can be returned to the quick action to update \{\{FRS\_VARS.ProductName}}.
+
+WinRM is not enabled by default. To enable this service in a secure manner, review [http://msdn.microsoft.com/en-us/library/aa384372(v=vs.85).aspx](http://msdn.microsoft.com/en-us/library/aa384372\(v=vs.85\).aspx). Secure connections use SSL certificates, either self-signed or from a trusted authority.
+
+## Using Windows Remote Management (WinRM) Setup
+
+Before configuring WinRM, we strongly recommend that you review the security implications of each mode. You must have an account with sufficient permissions to use WinRM before starting the configuration.
+
+- :Link[Running the Program on the Application Server]{label="Running the Program on the Application Server" overridedLabel="Running the Program on the Application Server" spaceId docId="i_vsbbVlGOS7gu9_O1uzR" version="v2" docAnchorId="#Running" loadingMethod="dynamic" newTab="false" href="Run-Program.mdx"}
+- :Link[Running the Program on Another Server]{label="Running the Program on Another Server" overridedLabel="Running the Program on Another Server" spaceId docId="i_vsbbVlGOS7gu9_O1uzR" version="v2" docAnchorId="#Running3" loadingMethod="dynamic" newTab="false" href="Run-Program.mdx"}
+
+### Running the Program on the Application Server
+
+1. Check your application requirements. WinRM 2.0 and PowerShell 2.0 or newer are required on the \{\{FRS\_VARS.ProductName}} application server or on the server where the Run Program is executed.
+2. Check if PowerShell is installed on the \{\{FRS\_VARS.ProductName}} application server on which the \{\{FRS\_VARS.ProductName}} Software Integration Service is hosted. In Windows, go to **Start > All Programs > Accessories** and check to see if the Windows PowerShell folder exists. If not, install it per instructions from Microsoft.
+
+*Windows PowerShell Folder*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/hH79r-2Mfza_78swxEtiD_windows-powershell-folder.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/windows powershell folder.png" githubPath="Content/Resources/Images/help-images/windows powershell folder.png" showCaption="false"></Image>
+
+3. Check to see if WinRM is running by doing the following:
+
+<Paragraph indent="1">
+  a. Run the PowerShell command module as an administrator.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Enter **get-service winrm**.
+</Paragraph>
+
+*Windows PowerShell Command Module*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/CWGqreIXegfeepD9KkSPa_powershell.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/powershell.png" githubPath="Content/Resources/Images/help-images/powershell.png" showCaption="false"></Image>
+
+<Paragraph indent="1">
+  c. The status should show running. If not, go to **Services**, change the **Startup** to automatic, then start the service.
+</Paragraph>
+
+4. There are two modes: trusted and secure (using an SSL certificate).
+   - **Trusted mode**: Register the remote server as "Trusted Host". (**NOTE**: Do not copy and paste. Enter it manually.)
+     - Run the PowerShell command module as an administrator.
+     - Enter **winrm set winrm/config/client '@\{TrustedHosts="CA-D02539.NA.FRS"}'**.
+
+*PowerShell Trusted Mode Setup*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/ZvZ6RwhTJkYeWwEIP2D-3_powershell-trusted-host.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/powershell trusted host.png" githubPath="Content/Resources/Images/help-images/powershell trusted host.png" showCaption="false"></Image>
+
+<Paragraph listStyleType="disc" indent="2">
+  **Secure mode**: (Using an SSL certificate) Register the remote server certificate using MMC (if necessary).
+</Paragraph>
+
+*PowerShell Secure Mode Setup*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/XaNTPeE0aUqHmOB7GMYNX_powershell-secured-mode.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/powershell secured mode.png" githubPath="Content/Resources/Images/help-images/powershell secured mode.png" showCaption="false"></Image>
+
+### Running the Program on Another Server
+
+Use the following steps when using another program to execute the Run Program.
+
+1. Check your application requirements. WinRM 2.0 and PowerShell 2.0 or newer are required on the Application Server or on the server where the Run Program is executed.
+2. Check if PowerShell is installed on the Application Server on which the \{\{FRS\_VARS.ProductName}} Software Integration Service is hosted. In Windows, go to **Start > All Programs > Accessories** and check to see if the Windows PowerShell folder exists. If not, install it per instructions from Microsoft.
+3. In the PowerShell command module, enable the PowerShell remoting capability by doing the following:
+
+<Paragraph indent="1">
+  a. Enter **Enable-PSRemoting -force**. This initiates Windows to configure the machine for listener ports and firewall rules.
+</Paragraph>
+
+*Enabling the PowerShell Remoting Capability -- Example 1*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/qca-2TtvAeB8lVBE_HQbB_powershell-enable-psremoting-force.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/powershell Enable-PSRemoting -force.png" githubPath="Content/Resources/Images/help-images/powershell Enable-PSRemoting -force.png" showCaption="false"></Image>
+
+Port 5986 is the default HTTPS port used by WinRM to receive the remote commands.
+
+<Paragraph indent="1">
+  b. Enter **Winrm get winrm/config** to check the configuration.
+</Paragraph>
+
+*Enabling the PowerShell Remoting Capability -- Example 2*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/cthfBWqH6g8R-RU5uqppI_powershell-winrm-get-winrm.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/powershell winrm get winrm.png" githubPath="Content/Resources/Images/help-images/powershell winrm get winrm.png" showCaption="false"></Image>
+
+4. Create a firewall inbound rule for the port.
+
+*Firewall Inbound Rule*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/0FtPrqxHTKE_72PG759A1_firewall-inbound-rule.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/firewall inbound rule.png" githubPath="Content/Resources/Images/help-images/firewall inbound rule.png" showCaption="false"></Image>
+
+5. Get a server certificate for authentication purposes.
+
+*Trusted Root Server Certificate*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/m0LD6eV9sGbAHgFOv2pIW_server-certificate-run-program.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/server certificate run program.png" githubPath="Content/Resources/Images/help-images/server certificate run program.png" showCaption="false"></Image>
+
+6. Get the certificate thumbprint to configure the WinRM listener (in the next step).
+7. Export the public key to register it in the Integration Server.
+
+*Certificate Thumbprint*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/OK3IOsR1DxBrdmfAiq0yo_run-program-public-key.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/run program public key.png" githubPath="Content/Resources/Images/help-images/run program public key.png" showCaption="false"></Image>
+
+8. Configure the WinRM listener. Run the Windows command prompt as an administrator by doing the following:
+
+<Paragraph indent="1">
+  a. Enter **Winrm create winrm/config/listener?Address=\*+Transport=HTTPS**
+  **@\{Hostname="CA-D02539.NA.FRS";**
+  **CertificateThumbprint="3d448fe37734a891d5876b5c51083c8a79ec0dcb"}**
+</Paragraph>
+
+If successful, the listener shows the port and certificate thumbprint.
+
+<Paragraph indent="1">
+  b. Enter **Winrm enumerate winrm/config/listener** to check the listener.
+</Paragraph>
+
+*Checking the WinRM Listener*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/e_WoDoYqcU30cG_d9T3Ei_winrm-listener.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/winrm listener.png" githubPath="Content/Resources/Images/help-images/winrm listener.png" showCaption="false"></Image>
+
+## Using the Run Program
+
+1. Configure WinRM on a server.
+2. Create a remote connection in the Configuration Console. (See :Link[Configuring the Run Program]{label="Configuring the Run Program" overridedLabel="Configuring the Run Program" spaceId docId="i_vsbbVlGOS7gu9_O1uzR" version="v2" docAnchorId="#To_configure_Run_Program" loadingMethod="dynamic" newTab="false" href="Run-Program.mdx"} below.) The remote connection contains all the details necessary to connect to the remote server, including a valid user name and password to access resources on that server.
+3. Create a quick action that specifies the details of the program to execute and the parameters to pass to it. (See [Run Program Action](<../QuickActions/Classical Action Designer/templates/Run Program.mdx>) under default quick actions.)
+
+*Run Program Quick Action*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/I8ouef5MfaYNX02bhgt-h_run-remote.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/run remote.png" githubPath="Content/Resources/Images/help-images/run remote.png" showCaption="false"></Image>
+
+<hint type="info">
+  As noted in the diagram, a TCP connection is required between the \{\{FRS\_VARS.ProductName}} server and the remote management server. If these two servers are separated across a wide area network or the internet (such as is the case for \{\{FRS\_VARS.ProductName}} Cloud), additional firewall configuration or a point to point VPN tunnel may be required.
+</hint>
+
+## Configuring the Run Program
+
+1. Access the Data Integration Wizard by going to the Configuration Console and clicking **Extend** > **Integration Tools**.
+2. Click **Start** next to **Run Program - Remote Host**. The **Remote Host Connection Manager** workspace appears. Any configured connections are listed.
+3. Click **Add New\...**. The **Remote Host Connection Setting** page appears.
+
+*Remote Host Connection Setting Page*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/79apuCcKbB4TuJMu9Id9h_runprogramsettings.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/run_program_settings.png" githubPath="Content/Resources/Images/help-images/run_program_settings.png" showCaption="false"></Image>
+
+3. Enter information into the fields.
+
+| Field                      | Description                                                                                                                                                                                                                                                                                                                            |
+| -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Connection Name            | A unique, descriptive name for this connection.                                                                                                                                                                                                                                                                                        |
+| Remote Host                | The fully qualified domain name or IP address. For example, pl\_computer/NA or 101.12.204.155                                                                                                                                                                                                                                          |
+| Secure Mode                | Obtains a secure connection. When this option is selected, the certificate options appear.                                                                                                                                                                                                                                             |
+| Port Number                | The default port number appears, based on whether secure mode is checked or not. To override, enter another port number.                                                                                                                                                                                                               |
+| Certificate                |                                                                                                                                                                                                                                                                                                                                        |
+| Allow Self-Signed          | Bypasses the untrusted certificate notification and prevent an error message.                                                                                                                                                                                                                                                          |
+| Allow Mismatched Name      | Specifies a different remote host name than the HTTPS certificate is for (such as when connecting using an IP address instead of the host name on the certificate). You should not need to check this option if you are using a certificate from a trusted public authority, such as Verisign and use the fully qualified domain name. |
+| Timeout (in Seconds)       |                                                                                                                                                                                                                                                                                                                                        |
+| Wait for Program to finish | The number of seconds to wait for the program to respond. By default, this is controlled by the integration service client and is 60 seconds. To wait for an unlimited time, enter zero. If the wait time is exceeded, a timeout error occurs.                                                                                         |
+| Authentication             |                                                                                                                                                                                                                                                                                                                                        |
+| Login                      | The login user name to the remote host.                                                                                                                                                                                                                                                                                                |
+| Password                   | The password to the remote host.                                                                                                                                                                                                                                                                                                       |
+
+4. Click **Test Connection** to see if you have a good connection.
+5. Click **Save**. Your connection is added to the list.
+6. In \{\{FRS\_VARS.ProductName}}, open the **Run Program / Export History** workspace to view the **Run Program** log.
+
+*Sample Run Program Log*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/pewHk_lK8kmmzORb2L-cP_runprogramlog.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/run_program_log.png" githubPath="Content/Resources/Images/help-images/run_program_log.png" showCaption="false"></Image>
+
+## Using the Run Program / Export History Workspace
+
+The **Run Program / Export History** workspace in the \{\{FRS\_VARS.ProductName}} application lists each time the **Run Program** quick action has been run and the result. It is a convenient way for you to determine if your exports are working.
+
+1. From the Configuration Console, click **Monitor** > **Application Logs** > **Run Program History** to open the **Run Program / Export History** workspace.
+
+<Paragraph indent="1">
+  The **Log Level** column shows the success or failure of the **Run Program** quick action.
+</Paragraph>
+
+2. Double-click an item from the list to view the audit history.
+
+## Example: Starting or Stopping a Service Using the Run Program
+
+This example shows how to create a quick action that starts or stops a service.
+
+1. Create a Run Program connection within the Data Integration Wizard. See :Link[Using the Run Program for the Remote Host]{label="Using the Run Program for the Remote Host" overridedLabel="Using the Run Program for the Remote Host" spaceId docId="i_vsbbVlGOS7gu9_O1uzR" version="v2" docAnchorId="#UsingRunProgramForRemoteHost" loadingMethod="dynamic" newTab="false" href="Run-Program.mdx"}.
+2. Create a quick action that is triggered by a user to start or stop a service through the Run Program connection. See [Run Program Action](<../QuickActions/Classical Action Designer/templates/Run Program.mdx>).
+
+<Paragraph indent="1">
+  The following are examples of the Power Shell scripts used to start and stop the services.
+</Paragraph>
+
+### Start Script
+
+\#####################################################################
+
+\# StartService.ps1
+
+\#
+
+\# Starts service remote script
+
+\#####################################################################
+
+if ($args.Length -eq 0)
+
+\{
+
+return "Syntax Error: Please provide 'Service Name' that you want to start!"
+
+}
+
+else
+
+\{
+
+Start-Service $args\[0] -WarningAction\:SilentlyContinue
+
+return \[string]::Format("\[\{\{0}}] started.", $args\[0])
+
+}
+
+### Stop Script
+
+\#####################################################################
+
+\# Stop-Service.ps1
+
+\#
+
+\# Stops service
+
+\#####################################################################
+
+if ($args.Length -eq 0)
+
+\{
+
+return "Syntax Error: Please provide 'Service Name' that you want to stop!"
+
+}
+
+else
+
+\{
+
+Stop-Service $args\[0] -WarningAction\:SilentlyContinue
+
+return \[string]::Format("\[\{\{0}}] stopped.", $args\[0])
+
+}
+
+1. Copy each script into a text editor and save them.
+2. Enter the file name of the script in the **Program with Path** field of the quick action.

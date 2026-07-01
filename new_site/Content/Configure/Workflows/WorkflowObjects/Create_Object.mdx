@@ -1,0 +1,39 @@
+---
+title: Create Object Workflow Block
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:58 GMT+0300 (Eastern European Summer Time)
+---
+
+The **Create Object** workflow block creates a business object in the workflow. With the **Create Object** workflow block, you can create a business object that is unrelated to the business object in context.
+
+You can also use the **Create Object** workflow block to create a business object on a recurring basis by linking it to a schedule entry. For example, to create an incident every month to handle some recurring activity, such as monitoring the disk spaces of your test servers, create a schedule entry record that runs each month, then create a workflow using the **Create Object** workflow block that creates an incident, and associate it to the schedule entry record.
+
+Exit ports for the **Create Object** workflow block allow workflow paths for successful and failed update actions.
+
+*Create Object Workflow Block Properties*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/epq6l8pD-ylrh1wrvbHFk_createobjectblock.png" position="flex-start" size="40" indent="1" initialPath="../../../Resources/Images/help-images/create_object_block.png" githubPath="Content/Resources/Images/help-images/create_object_block.png" showCaption="false"></Image>
+
+## Exit Ports
+
+| Exit Port | Description                                                                                          |
+| --------- | ---------------------------------------------------------------------------------------------------- |
+| OK        | Continue to the next block.                                                                          |
+| Failed    | General exit port for a failed integration action. A logical next step is to trigger a notification. |
+
+## Properties
+
+| Property           | Description                                                                                                                                                                                                                                                                                                       |
+| ------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Title              | A unique name for the workflow block.                                                                                                                                                                                                                                                                             |
+| Select Object Type | The target business object. Enter a literal value or choose a business object from the drop-down list. The available fields and target business object fields appear based on the chosen business object.<br /><br />You can select fields from either the context business object or the target business object. |
+| Value              | The value of the business object field.                                                                                                                                                                                                                                                                           |
+| Overwrite          | Overwrites the default values with this value.                                                                                                                                                                                                                                                                    |
+
+## Actions
+
+| Button             | Action                                                                                                                                                                                                                           |
+| ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Move Up, Move Down | Rearranges the items in the table. This changes the order in which they are processed. The order of processing can affect the creation or update of the business object, as specific values are determined to be correct or not. |
+| Save               | Commits your settings.                                                                                                                                                                                                           |
+| Cancel             | Exits without saving.                                                                                                                                                                                                            |

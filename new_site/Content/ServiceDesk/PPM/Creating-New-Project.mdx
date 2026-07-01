@@ -1,0 +1,379 @@
+---
+title: Creating a New Project
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:46 GMT+0300 (Eastern European Summer Time)
+---
+
+**Role**: Project Manager or Portfolio Manager
+
+Creating a new project in \{\{Primary.Product}} allows you to effectively plan, execute, and monitor project activities. It includes defining objectives, assigning resources, setting timelines, and tracking progress within the \{\{Primary.Company}} platform.
+
+Follow these steps to create a new project:
+
+1. Log in to the application as either a Project Manager or Portfolio Manager.
+2. Open the **Project** workspace. The system displays a list of all projects.
+3. Click **New**.
+
+<hint type="info">
+  Alternatively, you can use a predefined template when creating a new project. Refer to [About Project Templates](About-Project-Templates.mdx).
+</hint>
+
+4. Enter the information into the **Overview** section and tabs listed below.
+5. Once completed, click **Save**.
+
+<ExpandableHeading>
+  ## Adding Information in the Overview Section
+
+  This is the main section where you enter basic details for the project.
+
+  Mandatory fields are marked with an asterisk.
+
+  | Field                    | Description                                                                                                                                                                                                                                                                                                                                |
+  | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+  | **Project Name\***       | Enter a unique name for the project.                                                                                                                                                                                                                                                                                                       |
+  | **Summary\***            | Enter a summary description for the project.                                                                                                                                                                                                                                                                                               |
+  | **Project Owner\***      | Select the employee who acts as the project owner.                                                                                                                                                                                                                                                                                         |
+  | **Sponsor**              | If there is a sponsor for the project, select the sponsor in this field.                                                                                                                                                                                                                                                                   |
+  | **Status**               | The status of the project. Select a status from the list. The choices are **Initial**, **Active**, **Cancelled** or **On Hold**.&#xA;The default status is **Initial** when the project is created. Once changed, you cannot revert to **Initial**.&#xA;If **Cancelled** is selected, the project record is locked and you cannot edit it. |
+  | **Priority**             | Select the project priority: **Low**, **Medium** or **High**.                                                                                                                                                                                                                                                                              |
+  | **Alignment To**         | Select **Major Project**, **Portfolios** or **Program**.                                                                                                                                                                                                                                                                                   |
+  | **Estimated Start Date** | The start date of the project. You can edit this date at a later time if required.                                                                                                                                                                                                                                                         |
+  | **Estimated End Date**   | The end date of the project. You can edit this date at a later time if required.                                                                                                                                                                                                                                                           |
+
+  The **Estimated Effort**, **Planned Effort**, **Actual Effort** and **Budget Remaining** fields are populated automatically from other sources.
+
+  The Estimated Effort is the sum of Estimated Hours given in the **Resource Plans** tab.
+
+  <hint type="info">
+    When the **Project** workspace status or **Project Phase** workspace status is set to **Cancelled** or **Closed**, all linked Resource Plans change to **Closed** status.
+  </hint>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Adding Information in the Details Tab
+
+  Enter specific details for your project in this tab.
+
+  | Field                     | Description                                                                                                                                                                                                                                                                                                                                                                                           |
+  | ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | **Area**                  | Select an area of your business that the project applies to.                                                                                                                                                                                                                                                                                                                                          |
+  | **Start Date / End Date** | Click the calendar icon and select the estimated dates for the start and end of the project.                                                                                                                                                                                                                                                                                                          |
+  | **Schedule Health**       | Select the current schedule health for the project: **On Track**, **At Risk** or **Off Track**.                                                                                                                                                                                                                                                                                                       |
+  | **Budget Health**         | Select the current budget health for the project: **On Track**, **At Risk** or **Off Track**.                                                                                                                                                                                                                                                                                                         |
+  | **Project Health**        | Select the current project health: **On Track**, **At Risk** or **Off Track**.                                                                                                                                                                                                                                                                                                                        |
+  | **Type**                  | Select the type of project: **Change**, **Defect**, **Enhancement**, **Project**, or **Strategic Objective**.                                                                                                                                                                                                                                                                                         |
+  | **Completion%**           | This is an automatically updated field that displays the completion percentage of the whole project. The completion percentage of the project is calculated from the sum of completion percentages of the phases you added to the project.&#xA;For more information on completion percentage, refer to [Using Automated Project Tracking](<../Neurons for PPM/Using-Automated-Project-Tracking.mdx>). |
+
+  <hint type="info">
+    The **Budget Allocated**, **Budget Remaining** and **Budget Consumed** fields are populated automatically from other sources.
+  </hint>
+
+  **Project notification workflows**:
+
+  When the status of **Schedule Health**, **Budget Health**, or **Project Health** changes to **At Risk** or **Off Track**, it triggers an automated workflow that sends an email notification about the project's health. The email notification includes event type, summary of change, date/time, and link to the affected Project. The recipients of the notification depend on the type of health metric:
+
+  - For **Budget Health** and **Project Health** changes, the email notification is sent to the Project Owner and Project Sponsor.
+  - For **Schedule Health** changes, the notification is sent to all stakeholders linked under the the **Stakeholders** tab.
+
+  You can manage the notification workflows and customize the email template using the Triggered Actions and Rules. For more information, refer to :Link[Modifying Business Rules]{label="Modifying Business Rules" overridedLabel="Modifying Business Rules" spaceId docId="4XSn5lf-Ocn14fHU5D_yY" version="v2" docAnchorId="#6Modifying" loadingMethod="dynamic" newTab="false" githubPath="../../Configure/BusinessRules/Business_Rules.htm#6Modifying" href="../../Configure/BusinessRules/Business_Rules.mdx"} that use the Classic Action Designer (CAD) or [Editing a Triggered Action ](../../Configure/QuickActions/Working-with-Triggered-Actions/Editing_a_Triggered_Action.mdx)that use the Graphical Action Designer (GAD).
+
+  Refer [Using Business Rules](../../Configure/BusinessRules/Business_Rules.mdx) to learn more.
+
+  <hint type="info">
+    To ensure all stakeholders receive the email notification, always save the Project record when you add or link employees under the **Stakeholders** tab.
+  </hint>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Adding Information in the Resource Plans Tab
+
+  The following options are available under the **Resource Plans** tab in the Project workspace:
+
+  | Item                     | Description                                                                                                                                            |
+  | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+  | **New Resource Plan**    | Create a new resource plan.                                                                                                                            |
+  | **Link**                 | Add an existing resource plan.                                                                                                                         |
+  | **Unlink**               | Remove a resource plan from the given list.                                                                                                            |
+  | **Go to**                | Open a resource plan to search for resources from the selected Project Role and make Named Resource selections for the Resource Plan.                  |
+  | **Commit Resource Plan** | Commit a resource plan to a Project.  <br />For more information, refer to [Commit a Resource Plan to a Project](Commit-Resource-Plan-to-Project.mdx). |
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Adding Information in the Resources Tab
+
+  You can use the Resources tab to manage Resource commitments for the Project and Project Phases.
+
+  The following options are available under the **Resources** tab in the Project workspace:
+
+  | Item                   | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+  | ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | **Link**               | Add an employee resource.                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+  | **Unlink**             | Remove a resource from the given list.                                                                                                                                                                                                                                                                                                                                                                                                                               |
+  | **Go to**              | Go to Employee record.                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+  | **Create Task**        | Create a task and assign to selected resource.                                                                                                                                                                                                                                                                                                                                                                                                                       |
+  | **Calculate Capacity** | Calculate the remaining resource capacity for a custom date range. For more information, refer to :Link[Calculate Resource Capacity]{label="Calculate Resource Capacity" overridedLabel="Calculate Resource Capacity" spaceId docId="GFDw3UWZa6cQmfDyGu1Kj" version="v2" docAnchorId="#Calculat" loadingMethod="dynamic" newTab="false" githubPath="../Neurons for PPM/Using_Resource_Capacity.htm#Calculat" href="../Neurons for PPM/Using_Resource_Capacity.mdx"}. |
+
+  **To create a task in Resources Tab:**
+
+  1. Click the **Resources** tab in the Project workspace.
+  2. Select an employee from the given list who has the capacity to complete a task.
+  3. Click **Create Task** and fill in the following fields:
+
+  <Paragraph indent="1">
+    a. **Subject\***: Enter a name for the task.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    b. **Details**: Enter any details associated with the task.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    c. **Project\***: From the dropdown, select the project you want to create the task for.
+  </Paragraph>
+
+  <hint type="info" indent="2">
+    The dropdown lists only the Projects that are in the **Active** or **Initial** state.
+  </hint>
+
+  <Paragraph indent="1">
+    d. **Priority**: From the dropdown, assign the task priority. The value ranges from 1 to 5 (in the order of highest to lowest).
+  </Paragraph>
+
+  <Paragraph indent="1">
+    e. **Planned Effort (Hrs.)**: Enter the expected effort in hours for completing the task.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    f. **Planned Start Date**: Click the calendar icon and select a planned start date to begin the task.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    g. **Planned End Date**: Click the calendar icon and select a planned end date to complete the task.
+  </Paragraph>
+
+  4. Click **OK**.
+
+  The task is now created and it appears under the **Tasks** tab in the Project workspace.
+
+  <hint type="info">
+    Mandatory fields are marked with an asterisk.
+  </hint>
+
+  **Roll-up functionality**:
+
+  In the Project workspace, the **Resources** tab also displays the child resources that are added under the **Project Phase** and **Resource Plan** business objects.
+
+  <hint type="info">
+    The resources from the **Resource Plan** roll up to the parent project’s **Resources** tab only when the **Resource Plan** status is set to **Committed**.
+  </hint>
+
+  In **Project** workspace > **Resources** tab, the child resources that are rolled-up from the Project Phase and Resource Plan are marked with a hierarchy icon.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/5PEfo-tr-bMFzGa89MDxO_ppm-roll-up-resources.png" alt="Scheduling Tasks tab of Employee BO" position="flex-start" size="40" initialPath="../../Resources/Images/ServiceDesk/ppm-roll-up-resources.png" githubPath="Content/Resources/Images/ServiceDesk/ppm-roll-up-resources.png" showCaption="false"></Image>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Adding Information in the Phases Tab
+
+  This tab lists the phases that you created for the project.
+
+  In \{\{FRS\_VARS.ProductName}}, you must have at least one phase for every project, even if it is a small project with a short time frame.
+
+  Click **Go to** to open a phase and view its details or to edit it.
+
+  Click **New Project Phase** to add a new phase. Refer to [Adding or Editing a Phase](Adding-Editing-Phase.mdx).
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Adding Information in the Schedule Tab
+
+  This tab displays all active phases (and associated tasks) in a Gantt chart. The system continues to display phases with a status of active even if the status changes later.
+
+  **To add a phase in the Schedule tab:**
+
+  1. Click **Add Phase**.
+  2. Enter the details in the **New Project Phase** form.
+  3. Refer to [Adding or Editing a Phase](Adding-Editing-Phase.mdx) for more information.
+  4. Click **Save**.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Viewing and Editing Tasks in the Tasks Tab
+
+  This tab lists the tasks that are associated to each phase of the project. If you want to create a new task, do this from the relevant project phase. Refer to [Adding or Editing a Task](Adding-Editing-Task.mdx).
+
+  To open a task, select it and then double-click.
+
+  You can also edit tasks opened from this tab.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Adding Information in the Deliverables Tab
+
+  For more detailed information, refer to [Working with PPM Deliverables](<../Neurons for PPM/PPM_Deliverables.mdx>).
+
+  **To add a new deliverable:**
+
+  1. Click **New Deliverables** to add any deliverable that required for the project.
+     Mandatory fields are marked with an asterisk.
+
+  | Field        | Description                                                        |
+  | ------------ | ------------------------------------------------------------------ |
+  | **Title\***  | Enter the name of your Deliverable.                                |
+  | **Type**     | Select the Deliverable type: **Process** o&#x72;**&#x20;Product**. |
+  | **Due Date** | Click the calendar icon to choose a due date for the Deliverable.  |
+  | **Status**   | Choose **Open** or **Closed** from the dropdown menu.              |
+  | **Details**  | Enter any details you want to record about the Deliverable.        |
+
+  2. Click **Save**.
+
+  **To edit an existing deliverable:**
+
+  1. Select the entry, and then double-click.
+  2. Edit the details as required.
+  3. Click **Save**.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Adding Information in the Budgets Tab
+
+  This tab lists all project budgets associated with the project.
+
+  To add a new budget, click **New ITFM Sub-Budget Plan**.
+
+  <hint type="info">
+    You can also add a new project budget from the **Project Budget Plan** workspace.
+  </hint>
+
+  To link an existing budget, click **Link**.
+
+  To edit an existing budget, select it from the list and click **Go to**. The selected project budget plan opens in the **Project Budget Plan** page where you can make the required edits.
+
+  <hint type="info">
+    If the current status of project budget plan you selected for editing is **Pending Approval**, you cannot edit it in this state.
+  </hint>
+
+  For more detailed information, refer to [Creating a Project Budget Plan](<../Neurons for PPM/PPM_Creating-a-Project-Budget-Plan.mdx>).
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Adding Information in the Risks Tab
+
+  You can use this tab to add a risk for the project.
+
+  **To add a new risk:**
+
+  1. Click **New Project Risk**.
+  2. Enter the risk details on the **New Project Risk** form.
+     Mandatory fields are marked with an asterisk.
+
+  | Field             | Description                                                                                                                                                         |
+  | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | **Subject\***     | Enter a name for the risk.                                                                                                                                          |
+  | **Description\*** | Enter a description of the risk. Include any important information regarding the risk.                                                                              |
+  | **Type\***        | Select the type of risk that might impact the project: **Resource**,**&#x20;Budget**, **Schedule**, **Scope** or **Other**.                                         |
+  | **Severity\***    | Select the severity of impact that the risk has on the project: **High**, **Medium** or **Low**.                                                                    |
+  | **Status\***      | Choose **Open**, **Resolved**, **Closed** or **Cancelled** from the dropdown menu. When the status is set to **Closed** or **Cancelled**, you cannot edit the risk. |
+  | **Owner**         | Select an owner for the risk if required.                                                                                                                           |
+  | **Probability**   | Select the probability that the risk might have an impact on the project: **High**, **Medium** or **Low**.                                                          |
+
+  3. Click **Save**.
+
+  <hint type="info">
+    You can also add risks from the **Risks** workspace and associate them to the project, and add further details for the risk that cannot be added here. For example, you can add escalation recipients, or link an issue to the risk.
+  </hint>
+
+  **Further actions you can perform from this tab:**
+
+  - To view or edit a high-level overview of the risk, select it and double-click to open it.
+  - To view or edit the **Risk** page, click **Go to**. You can edit additional details for the risk in this view.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Adding Information in the Issues Tab
+
+  You can use this tab to add an issue for the project.
+
+  **To add a new issue:**
+
+  1. Click **New Issue**.
+  2. Enter the risk details on the **New Issue** form.
+  3. Mandatory fields are marked with an asterisk.
+
+  | Field                           | Description                                                                                                                                                                 |
+  | ------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | **Subject\***                   | Enter a name for the issue.                                                                                                                                                 |
+  | **Description Owner Status\***  | Choose **Open**, **Resolved**, **Closed** or **Cancelled** from the dropdown menu.  <br />When the status is set to **Closed** or **Cancelled**, you cannot edit the issue. |
+  | **Risk Severity Description\*** | Enter a description of the issue. Include any important information regarding the issue.                                                                                    |
+  | **Owner\***                     | Select an owner for the issue.                                                                                                                                              |
+  | **Risk**                        | Link an existing project risk to the issue. You can also create a new project risk by clicking the **>** button, and then click **+ Add New**.                              |
+  | **Target Resolution Date**      | Click the calendar icon and select the target resolution date for the issue.                                                                                                |
+  | **Severity\***                  | Select the severity of impact that the issue has on the project: **High**, **Medium** or **Low**.                                                                           |
+  | **Actual Resolution Date**      | Click the calendar icon and select the resolved date of the issue.                                                                                                          |
+
+  4. Click **Save**.
+
+  <hint type="info">
+    You can also add issues from the **Issues** workspace and associate them to the project, and add further details for the risk that cannot be added here. For example, you can add escalation recipients, or add journals and attachments. To open current issues from this tab on the **Risk** page to view or edit, click **Go to**.
+  </hint>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Adding Information in the Status Updates Tab
+
+  This tab lists any status update notes added for the project.
+
+  Click **New Notes** to add a new status update note, and enter a summary and description of the latest status. Then, click **y**.
+
+  To edit an existing status update note, select the note, click **Go to**, and edit the details.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Adding Project Changes from the Project Changes Tab
+
+  This tab allow you to manage change control within a project.
+
+  Enter change requests to the project from this tab. Setting the urgency and impact sets the priority of the change to a value between 1 and 5. The system automatically assigns changes to the Change Enablement team.  You can set dates for approval and review.
+
+  **To add a project change:**
+
+  1. Click **New Change**.
+  2. Enter the change details in the **New Change** form.
+  3. Click **Save**.
+
+  To edit an existing project change. select the project change entry, click **Go to**, and edit the details.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Adding Information in the Stakeholders Tab
+
+  Stakeholders are employees that you can add or link to the project.
+
+  - To link a stakeholder to this portfolio, click **Link**. The system displays a list of employees. Select an employee and click **Select**.
+  - To remove a stakeholder from the portfolio, select the entry and click **Unlink**.
+  - To open the stakeholder **Employee** page, click **Go to**. You can view additional details for the employee in this view.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Viewing Demands in the Demands Tab
+
+  This tab lists any demands that are associated to the project.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Hidden Tabs
+
+  The following tabs may be hidden, click the **Restore Hidden Tabs** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/apls6KyZafWc1qdcOWL-7_hiddentabsicon18x18.png" alt caption size="10" width="18" height="18"} and select it from the list.
+
+  | Tab                  | Description                                                                                                                                                                                                            |
+  | -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | **Sub-Projects**     | Use this tab to link other projects to this project. This effectively makes this project the parent project for any linked sub-projects. To view or edit any sub-projects in the list, select it, and click **Go to**. |
+  | **Attachments**      | Use this tab to attach a file or insert an URL. The URL must be fully qualified. Refer to [Working With Attachments and URLs](../../Configure/Attachments/Attachments.mdx)..                                           |
+  | **Activity History** | Displays a record of all notes or emails created and sent by the Project Manager. Select an item from the list and click **Go to**.                                                                                    |
+  | **Incident**         | Links to an incident. You can also remove a link to an incident or view its details by clicking **Go to**.                                                                                                             |
+  | **Problem**          | Links to a problem. You can also remove a link to a problem or view its details by clicking **Go to**.                                                                                                                 |
+  | **Change**           | Links to a change. You can also remove a link to a change or view its details by clicking **Go to**.                                                                                                                   |
+  | **Service Request**  | Links to a service request. You can also remove a link to a service request or view its details by clicking **Go to**.                                                                                                 |
+  | **Knowledge**        | Attaches a Knowledge Base article to the project.                                                                                                                                                                      |
+  | **Audit History**    | Displays a record of entries and changes made to the project. When multiple records are deleted at once, a single record is added in Audit History.                                                                    |
+</ExpandableHeading>

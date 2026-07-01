@@ -1,0 +1,32 @@
+---
+title: Importing Medical Devices from Manual File Upload
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:52 GMT+0300 (Eastern European Summer Time)
+---
+
+1. Log in to \{\{FRS\_VARS.ProductName}} as an \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+2. Open the \{\{FRS\_VARS.Configuration\_console}}.
+3. Select **Data Import Connections** > **AM Excel Assets** and upload the excel file with the Medical Devices data.
+4. In the **Object Matching** page, select **Medical Devices** from the drop-down list and click **Next**.
+5. Make sure the column names in the excel sheet you upload matches the fields in the LHS of the field mapping page.
+6. Click **Next** > **Preview** >**Publish** and **Run Now**.
+
+### Adding the Form View for Medical Devices in CI workspace
+
+1. After the records are processed, to open the Medical Device Type of Asset in the CI workspace, to need to add a Form View to the Layout that is used by the Administrator.
+2. From the \{\{FRS\_VARS.Configuration\_console}}, select **Business Objects** > **CI Layouts**.
+3. Open the Layout that is used for Administrator role.
+4. Under **Views**, select **Add new Form View**.
+5. Set the **Form view definition for** option to **CI.ivnt\_MedicalDevices**.
+6. Set the **Display Name** to **Medical Devices**.
+7. Set the **Main Form** to **AM.MedicalDevices.Header**.
+8. Under **Child Panels**, any number of child tabs can be added by specifying the relationship and which Form or List to be used. The **Edit** option next to the Toolbar allows adding special buttons, Actions, and Commands to the Form View.
+
+<hint type="info">
+  This form view is available in **AM.Asset.Default Layout** for Asset Manager role. The same can be replicated for the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}role as well.
+</hint>
+
+9. Once the Form View is defined based on the requirement, go back to **Edit Layout** and open the grid view.
+10. Under **Preview Form** set the **CI.ivnt\_MedicalDevices** to use **AM.MedicalDevices.Brief**.
+11. Under **On request** to create new object show set the **CI.ivnt\_MedicalDevices** to use the Form View created in :Link[step 4]{label="step 4" overridedLabel="step 4" spaceId docId="ox8yZYlXcyxsO55dikX4z" version="v2" docAnchorId="#Step4" loadingMethod="dynamic" newTab="false" href="Importing-Medical-Devices.mdx"}.
+12. Under **On request to view or edit existing object** set the **CI.ivnt\_MedicalDevices** to use the Form View created in :Link[step 4]{label="step 4" overridedLabel="step 4" spaceId docId="ox8yZYlXcyxsO55dikX4z" version="v2" docAnchorId="#Step4" loadingMethod="dynamic" newTab="false" href="Importing-Medical-Devices.mdx"}.

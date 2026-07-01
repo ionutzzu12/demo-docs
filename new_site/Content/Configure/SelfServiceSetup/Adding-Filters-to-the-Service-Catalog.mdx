@@ -1,0 +1,233 @@
+---
+title: Adding Filters to the Service Catalog
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:50 GMT+0300 (Eastern European Summer Time)
+---
+
+**Role**: Administrator
+
+***Minimum Version****:&#x20;*\{\{Primary.Company}} \{\{Primary.Product}} 2024.2.
+
+You can enhance the searches available from the Service Catalog by adding filters. Filters allow users to refine their searches and to narrow the list of items that they see on the page. The Service Catalog in the Self Service Mobile portal lists service requests, such as requests for software, computers, or email, similar to what a user would see in \{\{FRS\_VARS.ProductName}}. A default filter category is available to filter searches when using the Self Service Mobile portal. Users can combine filters to create their own searches. This section describes how to use the different types of searches and how to create filters.
+
+## Searching in the Service Catalog
+
+**Search field**
+
+Use the search field to locate a request offering:
+
+- You can perform a free-text search by entering part of the request name, such as **Audio**, **Conferencing**, or **Services**.
+- If enabled, you can also perform an exact match search by enclosing the full request offering name in quotes, for example: **"Audio Conferencing Services"**.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/LA3lfzwF6JvS9YPF_DjTt_text-search-in-service-cataloge.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/SelfServiceMgmt-images/Text search in service cataloge.png" githubPath="Content/Resources/Images/SelfServiceMgmt-images/Text search in service cataloge.png" showCaption="false"></Image>
+
+<hint type="info" indent="1">
+  Set the *EnableQuotedFullTextSearch* :Link[global constant]{label="global constant" overridedLabel="global constant" spaceId docId="6CPp-wWweHGMGP37lRlsY" version="v2" docAnchorId="#QuoteSearchGC" loadingMethod="dynamic" newTab="false" githubPath="../Constants/Default_Global_Constants.htm#QuoteSearchGC" href="../Constants/Default_Global_Constants.mdx"} to **True** to perform the exact match search with quotes. Setting the global constant to **False** will perform an exact match search without quotes. This will also disable the ability to search for multiple terms in one search query.
+</hint>
+
+**Saved searches:**
+
+Select a predefined filter from the Saved searches dropdown. Each saved search applies filters to display matching request offerings.
+
+**Category filter:**
+
+Use the **Browse by Category** panel to filter request offerings by one or more categories.
+
+## Creating a New Filter Search
+
+The Service Catalog provides a selection of default filter searches, but you can also create your own filters.
+
+For a filter search to appear in the Service Catalog, it must be based on the **ServiceReq** template. There are two parts to creating a new filter search for the Self Service Mobile portal Service Catalog:
+
+- :Link[Creating Filters and Setting Filter Criteria ]{label="Creating Filters and Setting Filter Criteria " overridedLabel="Creating Filters and Setting Filter Criteria " spaceId docId="nm4p2j8idpqcz2gOse0lC" version="v2" docAnchorId="#Part_1:_HEAT_Configuration_Console" loadingMethod="dynamic" newTab="false" href="Adding-Filters-to-the-Service-Catalog.mdx"}describes how to create the filters and set the filter criteria.
+- :Link[Enabling the Filter Search in the Self Service Mobile portal]{label="Enabling the Filter Search in the Self Service Mobile portal" overridedLabel="Enabling the Filter Search in the Self Service Mobile portal" spaceId docId="nm4p2j8idpqcz2gOse0lC" version="v2" docAnchorId="#Part_2:_Self_Service_Mobile_Interface" loadingMethod="dynamic" newTab="false" href="Adding-Filters-to-the-Service-Catalog.mdx"} describes how to enable the filter search criteria in the Self Service Mobile portal.
+
+### Creating Filters and Setting Filter Criteria
+
+Administrators must set up the filters from the Configuration Console in \{\{FRS\_VARS.ProductName}}. You should have a clear idea of the types of filters you want to create. It is helpful to name both the **Condition** (or category) and the **Filters** so that they are easily identifiable by your users. Setting up a **Cost** filter is used as an example in the following steps:
+
+- :Link[Selecting or Adding the ServiceReqTemplate Business Object]{label="Selecting or Adding the ServiceReqTemplate Business Object" overridedLabel="Selecting or Adding the ServiceReqTemplate Business Object" spaceId docId="nm4p2j8idpqcz2gOse0lC" version="v2" docAnchorId="#Selecting_or_Adding_the_ServiceReqTemplate_Business_Object" loadingMethod="dynamic" newTab="false" href="Adding-Filters-to-the-Service-Catalog.mdx"}
+- :Link[Adding a Filter Condition to the ServiceReqTemplate Business Object]{label="Adding a Filter Condition to the ServiceReqTemplate Business Object" overridedLabel="Adding a Filter Condition to the ServiceReqTemplate Business Object" spaceId docId="nm4p2j8idpqcz2gOse0lC" version="v2" docAnchorId="#Add_Filter_Condition" loadingMethod="dynamic" newTab="false" href="Adding-Filters-to-the-Service-Catalog.mdx"}
+- :Link[Adding a Filter Criteria to the Filter Condition]{label="Adding a Filter Criteria to the Filter Condition" overridedLabel="Adding a Filter Criteria to the Filter Condition" spaceId docId="nm4p2j8idpqcz2gOse0lC" version="v2" docAnchorId="#Adding_a_Filter_Criteria_to_the_Filter_Condition" loadingMethod="dynamic" newTab="false" href="Adding-Filters-to-the-Service-Catalog.mdx"}
+
+### Selecting or Adding the ServiceReqTemplate Business Object
+
+1. Log in to \{\{Primary.Product}} as an \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+2. Open the Configuration console > **Build&#x20;**>**&#xA0;Search Tools&#x20;**>**&#xA0;Filter Searches** to display the **Filter Searches** workspace.
+3. Do one of the following:
+   - If the **ServiceReqTemplate** business object is already available, click it to open the **Edit Business Object Filter: ServiceReqTemplate#** workspace.
+   - Add the **ServiceReqTemplate** business object by doing the following:
+
+<Paragraph indent="2">
+  a. Click **Add**.
+</Paragraph>
+
+<Paragraph indent="2">
+  b. From the **Business Object** drop-down list, select **ServiceReqTemplate**.
+</Paragraph>
+
+<Paragraph indent="2">
+  c. Click **Save**.
+</Paragraph>
+
+4. Click **Back** to return to the the **Filter Searches** workspace.
+5. Click **ServiceReqTemplate** to add or edit its filters.
+
+### Adding a Filter Condition to the ServiceReqTemplate Business Object
+
+From the **Edit Business Object Filter: ServiceReqTemplate#** workspace, do the following:
+
+1. Click **Add Filter**. The application displays the **Condition Filter** dialog box.
+
+*Condition Filter dialog box*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/q5wMpZ5hhU82XFMVAeAeX_conditionfilter.png" alt="Use the Condition Filter dialog box to add a filter condition to the ServiceReqTemplate business object. " position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/ServiceCatalogIcons/condition_filter.png" githubPath="Content/Resources/Images/ServiceCatalogIcons/condition_filter.png" showCaption="false"></Image>
+
+2. Enter a condition name. The name should describe what the condition does. The application displays this condition name as a category in the Self Service Mobile portal.
+3. Enter text in the **Condition Help** field. This text becomes a tool tip.
+4. Click **Save**.The application displays the new filter condition in the **ServiceReqTemplate** list.
+
+*ServiceReqTemplate List*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/wN4A89_PnlbB8p-lX7QIJ_editbusinessobject.png" alt="Image of the ServiceReqTemplate list." position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/ServiceCatalogIcons/edit_business_object.png" githubPath="Content/Resources/Images/ServiceCatalogIcons/edit_business_object.png" showCaption="false"></Image>
+
+<Paragraph indent="1">
+  a. **Add Filter**. To add a filter condition.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. **Toggle**. To turn the filter condition **ON** or **OFF**.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. **Delete**. To delete the filter condition.
+</Paragraph>
+
+<Paragraph indent="1">
+  d. Criteria labels.
+</Paragraph>
+
+<Paragraph indent="1">
+  e. Criteria controls.
+</Paragraph>
+
+<Paragraph indent="1">
+  f. **Add another filter criteria**. To add a filter criteria to the condition.
+</Paragraph>
+
+5. Click **Save**.
+
+### Adding a Filter Criteria to the Filter Condition
+
+Do the following from the **Filter Condition** list:
+
+1. Click **Add filter criteria**. The application displays the **Filter Criteria** dialog box.
+2. Enter a label. The label is a name that describes what the criteria does. Be as specific as possible so that users understand the intent of this search filter.
+3. From the **Control** drop-down menu, choose **Checkbox**.
+
+<Paragraph indent="1">
+  This control selection specifies how the filter is displayed in the Self Service Mobile portal. Using a checkbox control allows users to check or clear the filter, especially when enabling the Self Service Mobile portal for mobile devices. The type of control that you choose also affects the available expression choices. Other choices available are **None**, **Calendar**, **Pick List**, and **Textbox** but they are not appropriate for the Self Service Mobile portal.
+</Paragraph>
+
+4. Complete the expression by choosing items from drop-down lists. Also refer to :Link[About Expressions]{label="About Expressions" overridedLabel="About Expressions" spaceId docId="4_t7-8mnatsAE0wnALxRp" version="v2" docAnchorId="#AboutExp" loadingMethod="dynamic" newTab="false" githubPath="../../Reference/Expressions/Expression Grammar.htm#AboutExp" href="../../Reference/Expressions/Expression Grammar.mdx"}. The cost filter example seen below is constrained to find service requests that cost less than $200. You can add additional AND or OR expressions as required.
+
+*Cost Filter Example*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/-As-7Grw4DbfRE3ru6OHg_filtercriteriaexpressionarrow.png" alt="Example of a cost filter." position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/ServiceCatalogIcons/filter_criteria_expression_arrow.png" githubPath="Content/Resources/Images/ServiceCatalogIcons/filter_criteria_expression_arrow.png" showCaption="false"></Image>
+
+<Paragraph indent="1">
+  a. **AND OR**. To add additional AND OR expressions to a filter criteria.
+</Paragraph>
+
+5. Click **Save**. The new filter criteria appears under the filter condition.
+6. When you are done adding filter criteria, click **Save**. The new filter search appears under **Everything Else** in the **Filter Search** list.
+
+*New Filter Search*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/hPJ7yVVy4RI6L0SpjjELK_everythingelsesection.png" alt="Image of a new filter search." position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/ServiceCatalogIcons/everything_else_section.png" githubPath="Content/Resources/Images/ServiceCatalogIcons/everything_else_section.png" showCaption="false"></Image>
+
+<Paragraph indent="1">
+  a. User-defined searches appear here.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Search condition.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. Business object.
+</Paragraph>
+
+<hint type="info">
+  To create another filter condition, do so under the **ServiceReqTemplate** business object. Do NOT click the **add** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/9SKkTHEVfabOeACXWkky6_addblue.png" alt caption size="10" width="16" height="12"} above the **Filter Searches** list. The resulting searches would use a different business object that does not work in the Self Service Mobile portal or **Self Service** roles.
+</hint>
+
+### Enabling the Filter Search in the Self Service Mobile portal
+
+- :Link[Viewing and Implementing the Filter Switch]{label="Viewing and Implementing the Filter Switch" overridedLabel="Viewing and Implementing the Filter Switch" spaceId docId="nm4p2j8idpqcz2gOse0lC" version="v2" docAnchorId="#Viewing" loadingMethod="dynamic" newTab="false" href="Adding-Filters-to-the-Service-Catalog.mdx"}
+- :Link[Setting up the New Filter Search]{label="Setting up the New Filter Search" overridedLabel="Setting up the New Filter Search" spaceId docId="nm4p2j8idpqcz2gOse0lC" version="v2" docAnchorId="#Setting" loadingMethod="dynamic" newTab="false" href="Adding-Filters-to-the-Service-Catalog.mdx"}
+
+### Viewing and Implementing the Filter Switch
+
+1. Log in to \{\{Primary.Product}} Self Service Mobile portal.
+2. Change your role to \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+3. Click the **customize application** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/YAAB5DDDMlOQUFmZec-q2_configureicon2.png" alt caption size="10" width="16" height="15"}.
+4. Click **Service Catalog** to open the Service Catalog.
+
+### Setting up the New Filter Search
+
+1. Click the **Enable Filters** drop-down list.
+
+*Enable Filters Drop-Down List*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/bq0aQx533bWR6FjfjXqjW_enablefiltersmenunewitem.png" alt="The Enable Filters drop-down list" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/enable_filters_menu_new_item.png" githubPath="Content/Resources/Images/help-images/enable_filters_menu_new_item.png" showCaption="false"></Image>
+
+2. Look for the items whose names match the filter condition that you created in :Link[Adding a Filter Condition to the ServiceReqTemplate Business Object]{label="Adding a Filter Condition to the ServiceReqTemplate Business Object" overridedLabel="Adding a Filter Condition to the ServiceReqTemplate Business Object" spaceId docId="nm4p2j8idpqcz2gOse0lC" version="v2" docAnchorId="#Add_Filter_Condition" loadingMethod="dynamic" newTab="false" href="Adding-Filters-to-the-Service-Catalog.mdx"}.
+3. Check item to enable it. In the example above, **Cost** is the new item. If you created multiple items, you can check them all or check only the ones to enable. The new filter search appears below the **Category** part.
+4. Click **Save** to save your changes.
+
+<Paragraph indent="1">
+  You can also enable or disable all parts in the Service Catalog or drag them to a new location. Refer to [Working with Template Blocks in the Self Service Mobile Portal](Working-with-Template-Blocks-in-SS-Mobile-Portal.mdx).
+</Paragraph>
+
+### Creating a Search with Default and Customized Filters
+
+There are two ways to create a search:
+
+- **Combining Criteria from Different Conditions**: When you create a search by combining criteria from different conditions, the application assigns an AND operator. For a service request to appear in the workspace, it must meet the criteria from *both* conditions.
+- **Combining Criteria from the Same Condition**: When you create a search by combining multiple criteria from the same condition, the application assigns an OR operator. For a service request to appear in the workspace, it must meet just one of the criteria.
+
+Follow these steps to create a new search:
+
+1. Log in to \{\{Primary.Product}} Self Service Mobile portal.
+2. Change your role to \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+3. Click the **customize application** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/YAAB5DDDMlOQUFmZec-q2_configureicon2.png" alt caption size="10" width="16" height="15"}.
+4. Click **Service Catalog**.
+5. Click the **add** icon:inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/4ttpBFlTepMuzrkXoCTSV_addblack.png" alt caption size="10" width="19" height="16"} to add a new default search to the **Searches** field.
+6. In the **Search Name** field, enter a name for the new search. The name should relate to what the search looks for.
+7. Check any boxes under **Category** or any other condition parts that you created.
+8. Click **Save**. The application adds the new saved search to the **Search** list. Services that do not meet the search criteria disappear from the workspace.
+
+*Service Catalog*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/T_m70OwpViLwLw0mIhEy5_servicecatalogdefaultcustomizedfilters2685x333.png" position="flex-start" size="40" initialPath="../../Resources/Images/ServiceCatalogIcons/service_catalog_default_customized_filters_2_685x333.png" githubPath="Content/Resources/Images/ServiceCatalogIcons/service_catalog_default_customized_filters_2_685x333.png" showCaption="false"></Image>
+
+<Paragraph indent="1">
+  a. Saved Searches drop-down list
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Text Search field
+</Paragraph>
+
+<Paragraph indent="1">
+  c. Default filter search criteria
+</Paragraph>
+
+<Paragraph indent="1">
+  d. User-created search condition
+</Paragraph>
+
+<Paragraph indent="1">
+  e. User-created search criteria
+</Paragraph>

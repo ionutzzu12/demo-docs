@@ -1,0 +1,148 @@
+---
+title: Get Business Object by Top and Skip
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:00 GMT+0300 (Eastern European Summer Time)
+---
+
+Fetches business object records and displays the defined number of records after skipping the defined number of records. For example, you can define to skip the first 10 records and fetch the next top 10 records.
+
+<hint type="info">
+  The latest created/modified business objects will be on top of the list.
+</hint>
+
+**Base URL:**
+
+https\://\{tenant url}/api/odata/businessobject/\{business object name}?$top=\{number of records to display}&$skip=\{number of records to skip}
+
+<hint type="info">
+  Ensure the business object name is suffixed with an "s".
+</hint>
+
+<ExpandableHeading>
+  ## Get Business Object by Top and Skip - Example
+
+  Here is an example to fetch incidents by skipping top 2 records and then returning the next top 2 records.
+
+  | URL                                           | https\://\{tenant url}/api/odata/businessobject/Incidents?$top=2&$skip=2                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+  | --------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | <font color="#ffffff">Method</font>           | GET                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+  | Header Name                                   | Authorization: JTW Token/Session Key/REST API Key                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+  | <font color="#ffffff">Status Code</font>      | 200                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+  | <font color="#ffffff">Response Payload</font> |   <ExpandableHeading>
+      ## Click to view the response payload
+
+      \{
+
+      "@odata.context": "\{tenant url}/odata/$metadata#incidents",
+
+      "@odata.count": 44,
+
+      "value": \[
+
+      \{
+
+      "ActualCategory\_Valid": "14348C1FFA044D8AB1E93005B4A0A287",
+
+      "ActualCategory": "Missing Item",
+
+      "Category\_Valid": "14348C1FFA044D8AB1E93005B4A0A287",
+
+      "Category": "Missing Item",
+
+      "CauseCode\_Valid": "E2489F3F7DA34B898CCD9569CA5541F2",
+
+      "CauseCode": "Other",
+
+      "ClosedBy": "JClerk",
+
+      "CreatedBy": "JClerk",
+
+      "RecId": "003B58C0B4554E4BAA30DFD88876582A",
+
+      "Subject": "Remote control for projector in Boardroom is are missing ",
+
+      "Symptom": "This is an issue as it is roof mounted and cannot be switched on/off without the remote",
+
+      "Urgency\_Valid": "44021B6CC6E44E598868C4B3306053AE",
+
+      "Urgency": "Medium",
+
+      "LoginId": "KDavidson",
+
+      },
+
+      \{
+
+      "ActualCategory\_Valid": "B30A0BC3F3174B22B328D742C24B59C4",
+
+      "ActualCategory": "Account Lockout",
+
+      "Category\_Valid": "B30A0BC3F3174B22B328D742C24B59C4",
+
+      "Category": "Account Lockout",
+
+      "CauseCode\_Valid": "E2489F3F7DA34B898CCD9569CA5541F2",
+
+      "CauseCode": "Other",
+
+      "ClosedBy": "JClerk",
+
+      "CreatedBy": "\{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Analyst-Service-Desk-Analyst}}",
+
+      "RecId": "019A1ED9C77C4210B7054F47D214C004",
+
+      "Subject": "Cannot get into email - says invalid credentials have been supplied",
+
+      "Symptom": "Will not logon via windows authentication",
+
+      "Urgency\_Valid": "44021B6CC6E44E598868C4B3306053AE",
+
+      "Urgency": "Medium",
+
+      "LoginId": "MHendric",
+
+      }
+
+      ]
+
+      }
+    </ExpandableHeading> |
+</ExpandableHeading>
+
+## Unsuccessful Responses
+
+<ExpandableHeading>
+  ## Empty Top or Skip Value
+
+  Scenario: Trying to fetch records without providing the Top/Skip values.
+
+  https\://\{tenant url}/api/odata/businessobject/Incidents?$top= & $skip =
+
+  Header Name:
+
+  **Authorization: Sessionkey**
+
+  | Code                                          | ISM\_5000                                                                                                 |
+  | --------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+  | Description                                   | Invalid Request                                                                                           |
+  | Message                                       | \[  <br />"The Top and Skip values cannot be empty.  <br />Provide a valid value and try again."  <br />] |
+  | <font color="#ffffff">HTTP STATUS CODE</font> | **500**                                                                                                   |
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Querying more 100 Records
+
+  Scenario: Trying to fetch more than 100 records.
+
+  https\://\{tenant url}/api/odata/businessobject/Incidents?$top=120 & $skip =10
+
+  Header Name:
+
+  **Authorization: Sessionkey**
+
+  | Code                                          | ISM\_5000                                                    |
+  | --------------------------------------------- | ------------------------------------------------------------ |
+  | Description                                   | Invalid Request                                              |
+  | Message                                       | \[  <br />"You cannot query more than 100 records."  <br />] |
+  | <font color="#ffffff">HTTP STATUS CODE</font> | **500**                                                      |
+</ExpandableHeading>

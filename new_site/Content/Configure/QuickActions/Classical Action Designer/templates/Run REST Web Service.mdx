@@ -1,0 +1,69 @@
+---
+title: Run REST Web Service Quick Action
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:57 GMT+0300 (Eastern European Summer Time)
+---
+
+The application provides several options for using web services with \{\{FRS\_VARS.Quick\_Action}}s.
+
+- Use the [Run Web Service Quick Action](<Run Web Service.mdx>) for SOAP web services.
+- Use the Run REST Web Service Quick Action for REST API web services when you need to use simple authentication.
+- Use the [Web Request Quick Action](<Web Request Quick Action.mdx>) for REST API web services with Authorization Headers.
+
+## About the Run REST Web Service Quick Action
+
+The Run REST Web Service \{\{FRS\_VARS.Quick\_Action}} allows you to use basic authentication and to store error messages in your chosen field. This \{\{FRS\_VARS.Quick\_Action}} doesn't allow you to ignore certificate errors from within the action. For more information about using REST web services in actions, refer to articles on the \{\{Primary.Company}} Community forums:
+
+- [How to use Ivanti Service Manager REST APIs with Postman](https://forums.ivanti.com/s/article/How-to-use-Ivanti-Service-Manager-REST-API-with-Postman?language=en_US)
+- [How to execute an action using API and Postman](https://forums.ivanti.com/s/article/How-to-execute-quick-action-using-API-and-Postman?language=en_US)
+
+<hint type="info">
+  The **Run REST Web Service&#x20;**\{\{FRS\_VARS.Quick\_Action}} is available only in the Classic Action Designer.
+</hint>
+
+### Using the Run REST Web Service Quick Action
+
+Use the Run REST Web Service \{\{FRS\_VARS.Quick\_Action}} alone or in a composite \{\{FRS\_VARS.Quick\_Action}}.
+
+1. From the **Classic Action Designer**, select the **Create New Actions** tab.
+2. Use the Run REST Web Service \{\{FRS\_VARS.Quick\_Action}} as a stand alone action or as a Composite Action:
+   - Select the Run REST Web Service \{\{FRS\_VARS.Quick\_Action}} for a stand alone action.
+   - To use the Run REST Web Service \{\{FRS\_VARS.Quick\_Action}} in a Composite Action:
+     1. Select **Run Rest Web Service** from the **Add New Action** dropdown menu.
+     2. Select the add icon (**+**) to add it to the Composite Action.
+3. Complete the parameters:
+   - **Enter action name**: Enter a unique name for the action.
+   - **Enter action description**: (Optional) Describe what the action does.
+   - **Enter Category**: (Optional) Enter the category in which you wish to store the action.
+   - **URL**: Enter the REST API URL for the target web service.
+   - **Basic Authentication**: Select to use basic authentication and require a user ID and password. The Web Request \{\{FRS\_VARS.Quick\_Action}} uses Authorization Headers.
+   - **Domain Name**: Enter the domain name of the API.
+   - **User ID**: Enter a valid username or ID.
+   - **Password**: Enter a valid password for the user ID.
+   - **Request Type**: Select the web service method for this action: GET, POST, PUT, PATCH, or DELETE.
+   - **Endpoint**: Enter the endpoint of the API request by enclosing the parameter in braces \{ }.
+     For Example:
+     example/api/\{\{id}}
+     In this case id is the endpoint parameter.
+   - **Result Type**: Select the expected data type of the variable when the **Store result as** field is used in **Advanced Settings**: Text, Number, Boolean, Raw, JSON, or XML.
+   - **Store Result In**: Specify the field where you want the application to store the result.
+   - **Store Error Message**: Enter the field where you want the application to store web service errors.
+   - **Header Parameter**: Enter the parameters you wish to send in the request header.
+   - **Standard Parameter**: Enter the parameters you want to send in the request body. Provide the entire request body within one standard parameter.
+   - **Endpoint Parameter**: Enter the parameters present in the endpoint field. The name of the parameter must match the name in the endpoint field.
+4. Complete the **Advanced Settings** to store responses from the server as variables that you can use in other \{\{FRS\_VARS.Quick\_Action}}s.
+   - **Store result as**: Create a variable to store the result of the API call.
+
+<hint type="info" indent="3">
+  The **Result Type** parameter sets the data type for this variable. If you do not choose a **Result Type**, the variable stores the result as text.
+</hint>
+
+<Paragraph listStyleType="disc" indent="2">
+  **Store return code as**: Create a text variable to store the HTTP status code.
+</Paragraph>
+
+<Paragraph listStyleType="disc" listStart="2" indent="2">
+  **Store headers as**: Create a text variable to store the response header.
+</Paragraph>
+
+5. Select **Save** to commit your settings or **Cancel** to exit without saving.

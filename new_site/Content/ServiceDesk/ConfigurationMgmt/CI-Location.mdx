@@ -1,0 +1,55 @@
+---
+title: CI Location
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:48 GMT+0300 (Eastern European Summer Time)
+---
+
+You can create user-defined locations and assign these locations to networked devices by specifying IP address ranges that are applicable to the location. After assigning an IP address range to a location, you can autofill this location to associated devices and computers. The \{\{FRS\_VARS.ProductName}} server uses these ranges to identify which configuration items should be automatically mapped to the given location. You can provide multiple ranges for a location.
+
+If you provide multiple ranges, the asset processor tries to find the smallest IP range that matches. If there is more than one match, then it takes the one with the lowest start address. If there is still more than one match, for example, if two locations have the same range specified, then the location is picked randomly.
+
+You can also specify a range to exclude within a given IP range.
+
+You also have the ability to override default locations for specific devices and disable automatic location updates for them.
+
+The process for automatically updating the location of a configuration item is as follows:
+
+- Create locations and assign IP addresses to them. See :Link[Creating Locations and Assigning IP Address Ranges]{label="Creating Locations and Assigning IP Address Ranges" overridedLabel="Creating Locations and Assigning IP Address Ranges" spaceId docId="rqtAa3aswij2aoz4mDYaq" version="v2" docAnchorId="#Creating-Locations-and-Assigning-IP-Address-Ranges" loadingMethod="dynamic" newTab="false" href="CI-Location.mdx"}.
+- During an audit, the network or IP addresses are populated, which allows the devices to be automatically linked to locations. Or you can run a quick action to apply new IP ranges to the configuration items in the location, as described in :Link[Applying IP Ranges to Configuration Items]{label="Applying IP Ranges to Configuration Items" overridedLabel="Applying IP Ranges to Configuration Items" spaceId docId="rqtAa3aswij2aoz4mDYaq" version="v2" docAnchorId="#Applying" loadingMethod="dynamic" newTab="false" href="CI-Location.mdx"}.
+- If appropriate, override the defined subnet location for a configuration item and choose another location to assign to it, as described in :Link[Overriding a Specified IP Range Location]{label="Overriding a Specified IP Range Location" overridedLabel="Overriding a Specified IP Range Location" spaceId docId="rqtAa3aswij2aoz4mDYaq" version="v2" docAnchorId="#overriding" loadingMethod="dynamic" newTab="false" href="CI-Location.mdx"}.
+
+## Creating Locations and Assigning IP Address Ranges
+
+1. Log in to \{\{FRS\_VARS.ProductName}} as a \{\{FRS\_VARS.Neurons\_ITSM\_-\_Configuration\_Manager}} or \{\{FRS\_VARS.Neurons\_ITSM\_-\_Discovery\_Manager}}.
+2. Open the **CI Location** workspace. The existing location records is displayed in a list view.
+3. Click **New CI Location**.
+4. In the **Location** field, enter a location name.
+5. Click **IP Range Mapping**.
+6. Click **New Device Subnet**.
+7. In the window that opens, do the following:
+   - Specify the IP address range in the **Address Range Start** and **Address Range End** fields.
+   - Click **Save**.
+   - To exclude a range within the range you specified, click **New Device Subnet** again.
+   - In the **Address Range Start** and **Address Range End** fields, specify the range that should be excluded from within the IP range you specified earlier.
+   - Check **Exclude** to exclude the range.
+
+<Paragraph indent="1">
+  For example, if you specify a range from **192.172.0** to **192.172.255**, but you want to exclude a range within the specified range, you can create another location mapping from **192.172.200** to **192.172.250** and check **Exclude**.
+</Paragraph>
+
+8. Click **Save**.
+
+## Applying IP Ranges to Configuration Items
+
+1. Create locations and map IP ranges to them, as described in :Link[Creating Locations and Assigning IP Address Ranges]{label="Creating Locations and Assigning IP Address Ranges" overridedLabel="Creating Locations and Assigning IP Address Ranges" spaceId docId="rqtAa3aswij2aoz4mDYaq" version="v2" docAnchorId="#Creating-Locations-and-Assigning-IP-Address-Ranges" loadingMethod="dynamic" newTab="false" href="CI-Location.mdx"}.
+2. From the Action Menu, select **Location Mapping** and then select **Apply Now**.
+3. If you open a configuration item record to which this subnet is associated, the application populates the **CI Location** field with the location that you assigned. Check **Override IP Range Location** to override the assigned location, then select another configuration item location, as described in Working with Audits.
+
+## Overriding a Specified IP Range Location
+
+1. Log in to \{\{FRS\_VARS.ProductName}} as a \{\{FRS\_VARS.Neurons\_ITSM\_-\_Discovery\_Manager}}.
+2. Open the **CI** workspace.
+3. Search for the configuration item with the configuration item location to override.
+4. Select the record and open it.
+5. Check **Override IP Range Location**.
+6. Click **Save**.

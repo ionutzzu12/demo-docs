@@ -1,0 +1,501 @@
+---
+title: Working with Email Inboxes
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:51 GMT+0300 (Eastern European Summer Time)
+---
+
+Use this feature to create a business object record, such as an incident, from an email. After an incident or other business object record is created or updated, the application attaches the email to the record in the **Activity History** tab, and completes its post processing action.
+
+If a user exists or is created, the application adds the associated email to the employee record for the user.
+
+- :Link[About Creating Incidents from Emails]{label="About Creating Incidents from Emails" overridedLabel="About Creating Incidents from Emails" spaceId docId="oxavypV7mXubKfaNhVDO1" version="v2" docAnchorId="#email_config_3911985154_1229107" loadingMethod="dynamic" newTab="false" href="Inbox_Configuration.mdx"}
+- :Link[About Creating Other Business Object Types from Emails]{label="About Creating Other Business Object Types from Emails" overridedLabel="About Creating Other Business Object Types from Emails" spaceId docId="oxavypV7mXubKfaNhVDO1" version="v2" docAnchorId="#About" loadingMethod="dynamic" newTab="false" href="Inbox_Configuration.mdx"}
+- :Link[About Updating a Service Request via Email]{label="About Updating a Service Request via Email" overridedLabel="About Updating a Service Request via Email" spaceId docId="oxavypV7mXubKfaNhVDO1" version="v2" docAnchorId="#About3" loadingMethod="dynamic" newTab="false" href="Inbox_Configuration.mdx"}
+- :Link[Accessing the Default Email Inbox]{label="Accessing the Default Email Inbox" overridedLabel="Accessing the Default Email Inbox" spaceId docId="oxavypV7mXubKfaNhVDO1" version="v2" docAnchorId="#Accessin" loadingMethod="dynamic" newTab="false" href="Inbox_Configuration.mdx"}
+- :Link[Creating an Inbox]{label="Creating an Inbox" overridedLabel="Creating an Inbox" spaceId docId="oxavypV7mXubKfaNhVDO1" version="v2" docAnchorId="#Creating-an-Inbox" loadingMethod="dynamic" newTab="false" href="Inbox_Configuration.mdx"}
+- :Link[Modifying an Inbox]{label="Modifying an Inbox" overridedLabel="Modifying an Inbox" spaceId docId="oxavypV7mXubKfaNhVDO1" version="v2" docAnchorId="#Modifyin" loadingMethod="dynamic" newTab="false" href="Inbox_Configuration.mdx"}
+- :Link[Deleting an Inbox]{label="Deleting an Inbox" overridedLabel="Deleting an Inbox" spaceId docId="oxavypV7mXubKfaNhVDO1" version="v2" docAnchorId="#Deleting" loadingMethod="dynamic" newTab="false" href="Inbox_Configuration.mdx"}
+
+## About Creating Incidents from Emails
+
+The Out Of The Box (OOTB) \{\{FRS\_VARS.ProductName}} application comes with one inbox, which is based on the **Incident** business object. When you send an email to this inbox, the email listener processes the incoming message and creates an incident.
+
+## About Creating Other Business Object Types from Emails
+
+To process emails from other business objects, you must create an inbox for each business object. Define a template for each business object so that users can submit emails in the correct format.
+
+<hint type="success">
+  We recommend that you create new inboxes for other business objects after you modify the default inbox.
+</hint>
+
+## About Updating a Service Request via Email
+
+You cannot create service request records from incoming emails; however, you can update service request records from incoming emails.
+
+- The corresponding field names and field values in the record are updated from the email and the email is attached to the record under the **Activity History** tab.
+- If the email body does not contain valid field names and field values, the system attempts to search for the service request from the service request ID is in the subject line; then the email is attached to the record in the **Activity History** tab.
+
+If \{\{FRS\_VARS.ProductName}} cannot locate the service request record, the application creates a new incident and attaches the email to the record.
+
+## Accessing the Default Email Inbox
+
+\{\{FRS\_VARS.ProductName}} always has a default inbox configured to create incidents. Therefore, you do not need to configure an inbox for creating incidents, but can instead just update the default inbox if you need to make changes.
+
+The default email inbox is used to create incidents in \{\{FRS\_VARS.ProductName}} from email. Follow the steps here to access it.
+
+1. Log in to \{\{FRS\_VARS.ProductName}} as \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+2. Open the **Email Config** workspace. If there is only one email server, the application automatically opens it. If there is more than one email server, select the default record link under the **Mail Host** column.
+3. From the **Inbox** tab at the bottom of the page, select the default record link under the **Address** column. The application opens the **Inbox Configuration** workspace.
+
+## Creating an Inbox
+
+1. Log in to \{\{FRS\_VARS.ProductName}} as \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+2. Open the **Email Config** workspace.
+3. From the **Inbox** tab at the bottom of the page, select **New**. The application displays the **New Inbox** workspace.
+4. Configure the parameter settings for each section on the **Inbox Configuration** form. Click the drop-down text sections below for information on the parameter configuration settings in each section.
+
+<hint type="info">
+  Fields marked with an asterisk on the **Inbox Configuration** form are mandatory.
+</hint>
+
+5. When all required configuration setting are completed, select **Save**.
+6. Do one of the following:
+   - If you selected **Problem**, **Other**, or **Export Email as XML** from the **Email Processor** field, configure the fields on the **Field Mapping** tab. Refer to [Using the Field Mapping Tab](Field_Mapping_Tab.mdx).
+   - If you selected **Incident** from the **Email Processor** field, configure the fields on the **Status Mapping** tab. Refer to [Using the Status Mapping Tab](Status_Mapping_Tab.mdx).
+   - If you selected **Advanced Monitoring** from the **Email Processor** field, configure the fields on the **Monitor Items** tab, refer to [Using the Monitor Items Tab](Monitor_Items_Tab.mdx).
+
+<ExpandableHeading>
+  ## Email Listener Settings
+
+  | Parameter             | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+  | --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | Name                  | Enter a unique name up to a maximum of 50 characters. This name must be unique for every email monitor, even if using the same address or account across multiple monitors.  <br />If you leave this field blank it is auto-filled with the email address in the **Address** field for the incoming server connection. This may result in the name not being unique and may result in an error message, therefore it is recommended that you do not leave this field blank.  <br />For identification purposes you can add the name of the email monitor to all emails picked up. This feature is enabled by adding and enabling the EnableInboundEmailSuffix global constant. When this global constant is added and enabled, the email monitor name is added to the **Created By** field in the email. Refer to [Adding the Email Monitor Name to Emails](Add_Name_OF_Monitor_to_Emails.mdx). |
+  | Description           | Enter a description for the email listener (optional).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+  | Enable Email Listener | Select this checkbox to enable the email listener to identify emails and create a business object.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Incoming Server Connection
+
+  <table isTableHeaderOn="true">
+    <tr>
+      <td>
+        Parameter
+      </td>
+      <td>
+        Description
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Address
+      </td>
+      <td>
+        The email address that users send emails to. For example, it-support\@company.com.
+        When configuring an internal email inbox for test purposes, the address must include "@internal.mailbox". For example "testuser\@internal.mailbox".
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Host
+      </td>
+      <td>
+        The host name or group that handles emails from the email address. For example, pop.emailsvr.com.
+        This field is not applicable for the **Microsoft Graph** option because this protocol does not require any host addresses.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Port
+      </td>
+      <td>
+        Only shown if you select **POP3** or **IMAP4** for the **Protocol** field.
+        The corresponding port number for the selected protocol. The default email port for POP3 is port 110 and the default port for IMAP4 is port 143.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Protocol
+      </td>
+      <td>
+        The protocol used to retrieve emails. The options are as follows:
+        - **Exchange Web Services**
+        - **Google Services Account**
+        - **IMAP4**
+        - **Microsoft Graph**
+        - **POP3**
+        When you select the protocol, additional fields are displayed for their required parameters. The fields differ depending on the protocol selected.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Authentication
+      </td>
+      <td>
+        The authentication method for incoming messages. Refer to [About Authentication Types](About_Authentication_Types.mdx).
+      </td>
+    </tr>
+    <tr>
+      <td>
+        User Name
+      </td>
+      <td>
+        The user name required to access the inbox on the email server. Usually the same as the address.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Client Login URL
+      </td>
+      <td>
+        Only shown if you select **Exchange Web Services** or **Microsoft Graph** for the **Protocol**, and **Authentication** as **AuthLogin**.
+        The endpoint URL. For example, https\://login.microsoftonline.com/. Obtain the URL from the Azure Active Directory where you have registered an application.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Client Resource URL
+      </td>
+      <td>
+        Only shown if you select **Exchange Web Services** or **Microsoft Graph** for the **Protocol**, and **Authentication** as **AuthLogin**.
+        The default public URL for **Exchange Web Services** is - https\://outlook.office365.com.
+        The default public URL for **Microsoft Graph** is - https\://graph.microsoft.com.
+        If you are using a private cloud service, enter the specific URL for that service.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Client Tenant ID
+      </td>
+      <td>
+        Only shown if you select **Exchange Web Services** or **Microsoft Graph** for the **Protocol**, and **Authentication** as **AuthLogin**.
+        The directory (tenant) ID. Obtain the ID from the Azure Active Directory where you have registered an application.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Client ID
+      </td>
+      <td>
+        Only shown if you select **Exchange Web Services** or **Microsoft Graph** for the **Protocol**, and **Authentication** as **AuthLogin**.
+        The application ID. Obtain the ID from the Azure Active Directory where you have registered an application.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Client Secret Key
+      </td>
+      <td>
+        Only shown if you select **Exchange Web Services** or **Microsoft Graph** for the **Protocol**, and **Authentication** as **AuthLogin**.
+        The secret login key. Obtain the secret key from the Azure Active Directory where you have registered an application.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Password
+      </td>
+      <td>
+        Only shown if you select **POP3** or **IMAP4** for the **Protocol**, o&#x72;**&#x20;Exchange Web Services** for the **Protocol** with **Authentication** as **Plain**.
+        The password required to access the inbox in the email server.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Use SSL/TLS
+      </td>
+      <td>
+        Only shown if you select **IMAP4** or **POP3** for the **Protocol**.
+        Enables SSL and TLS security for incoming messages.
+      </td>
+    </tr>
+  </table>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Incoming Server Settings
+
+  <table isTableHeaderOn="true">
+    <tr>
+      <td>
+        Parameter
+      </td>
+      <td>
+        Description
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Inbox Name
+      </td>
+      <td>
+        Only shown if you select **Exchange Web Services**, **Google Service Account**, **IMAP4**, or **Microsoft Graph** for the protocol .
+        The folder for incoming emails. When the application processes an email, it creates or updates the business object record. If the email is incorrectly configured, the application moves it from the inbox folder to the archive folder.
+        **For Rackspace users** - any email folders other than top level folders have a parent folder, and are created as child folders. If you are monitoring an inbox other than the top level (default) inbox, the format used in this field must take this into account. For example, if you created an email folder in Rackspace named "NewInbox", which is a child folder of "Inbox", the format to use for the name in this field is "Inbox.NewInbox".
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Archive Mailbox Name
+      </td>
+      <td>
+        Only shown if you select the **Move to Folder** option for **Action To Perform On Processing Success** (see below), Not applicable and not shown for the **POP3** protocol.
+        The folder for storing archived or successfully processed emails.
+        For clarification, **Archive Mailbox Name** is not actually a mailbox, it is a folder.
+        **For Rackspace users** - see the note above for **Inbox Name**. In this case, for example, if you created an email folder in Rackspace named "Archive", which is a child folder of "Inbox", the format to use for the name in this field is "Inbox.Archive".
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Ignore CC and BCC Emails
+      </td>
+      <td>
+        Ignores emails addressed to this inbox when the email address is only in the CC or BCC fields. The application does not process these emails.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Default Domain
+      </td>
+      <td>
+        A default domain. The application may not correctly process incoming emails without a domain. Use the default domain to construct a valid address, enabling emails to process as normal, including creating incident records.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Include Source Mailbox Name
+      </td>
+      <td>
+        Only shown if you select **Incident** for the **Email Processor** field.
+        Includes the name of the source mailbox in the **From** field of the email.
+        When checked, the **CreatedBy** field in an incident stores the processing mailbox name (such as Email Service32\@saasitdemo.com; If unchecked, the **CreatedBy** field has the value **email listener**. This enables you to determine which mailbox generated the incident.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Action To Perform On Processing Success
+      </td>
+      <td>
+        Only shown if you select **Exchange Web Services**, **Google Services Account**, **IMAP4** or **Microsoft Graph** for **Protocol**.
+        The action to perform on an incoming email if it is processed successfully.
+        Select one of the options from the drop-down list:
+        - **Mark as read**: Marks the email as read in your inbox.
+        - **Move to folder**: Moves the email from your inbox to the folder defined in the **Archive Mailbox Name** field.
+        If **Move to Folder** is selected with **Google Service Account** as the configured protocol, the email is not moved to the archive folder. Instead the "Inbox" label is removed from the email. The email is no longer visible in your inbox, but can be viewed in "All Mail". For more information on label use with Gmail, refer to [Organize your inbox](https://support.google.com/a/users/answer/9260550?hl=en#:~\:text=In%20Gmail%2C%20you%20use%20labels,can%20also%20search%20by%20label.) in the Google Help Center.
+        - **Delete**: Deletes the email from your inbox.
+        When the **Move to folder** or **Delete** options are selected, be aware that all emails currently in the Inbox are read and processed, regardless of their read/unread status. When the **Mark as read** option is selected, only emails with unread status are processed, after which they are marked as read.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Action To Perform On Processing Error
+      </td>
+      <td>
+        Only shown if you select **Exchange Web Services**, **Google Services Account**, **IMAP4** or **Microsoft Graph** for **Protocol**,
+        The action to perform on an incoming email if an error occurs during processing.
+        The occurrence of an error is rare, however an error may be caused by:
+        - The tenant's Journal table in the database may have had an essential field removed.
+        - The received email is malformed or incomplete.
+        If an error occurs, select one of the options from the drop-down list:
+        - **Mark as read**: Marks the email as read in your inbox.
+        - **Move to folder**: Moves the email from your inbox to the folder defined in the **Error Mailbox Folder** field.
+        If **Move to Folder** is selected with **Google Service Account** as the configured protocol, the email is not moved to the archive folder. Instead the "Inbox" label is removed from the email. The email is no longer visible in your inbox, but can be viewed in "All Mail". For more information on label use with Gmail, refer to [Organize your inbox](https://support.google.com/a/users/answer/9260550?hl=en#:~\:text=In%20Gmail%2C%20you%20use%20labels,can%20also%20search%20by%20label.) in the Google Help Center.
+        - **Reprocess**: No additional action takes place. The email remains in the Inbox and subsequent attempts are made to reprocess the email.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Error Mailbox Folder
+      </td>
+      <td>
+        Only shown if you select **Exchange Web Services,**, **Google Service Account**, **IMAP4** or **Microsoft Graph** for **Protocol**, and also select **Move to folder** in the **Action to Perform On Processing Error** field.
+        The folder for storing emails that have failed to process.
+        **For Rackspace users** - see the note above for **Inbox Name**. In this case, for example, if you created an email folder in Rackspace named "ErrorMailbox", which is a child folder of "Inbox", the format to use for the name in this field is "Inbox.ErrorMailbox".
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Test Connection
+      </td>
+      <td>
+        Tests the connection between \{\{FRS\_VARS.ProductName}} and the protocol service you have selected.
+        **Last Test Result**: Displays the result of the previous connection test, including a time stamp, with date/time the test was run. It will include any failed message received.
+        To clear the last test result, select **Action Menu > No Category > Clear Test Result**.
+        Refer to 'Test Connection' in :Link[Configuring the Outgoing and Incoming Email Servers]{label="Configuring the Outgoing and Incoming Email Servers" overridedLabel="Configuring the Outgoing and Incoming Email Servers" spaceId docId="dW3Drmf7GmwI89xE53MDl" version="v2" docAnchorId="#ConfiguringOutgoingAndIncomingMails" loadingMethod="dynamic" newTab="false" githubPath="Email_Configuration.htm#ConfiguringOutgoingAndIncomingMails" href="Email_Configuration.mdx"} for more information.
+        The **Test Connection** function is invalid for internal email inbox configurations.
+      </td>
+    </tr>
+  </table>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Record Creation Settings
+
+  | Parameter                                                                                                                                                      | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+  | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | Email Processor                                                                                                                                                | The business object created from the incoming email.  <br />**Incident**: When the email is received, an incident record is created. This option is the default setting.  <br />**Problem**: When the email is received, a problem record is created.  <br />**Other**: You can select another business object. Refer to [Creating an Inbox that Creates a Generic Business Object](<Add an Inbox that Creates a Business Object.mdx>).  <br />**Advanced Monitoring**: When the email is received, a business object can be created, or (if found) an existing business object is updated in accordance with the action defined for the monitor item. Refer to [About Advanced Email Monitoring](About_Advanced_Email_Monitoring.mdx) and [Using the Monitor Items Tab](Monitor_Items_Tab.mdx).  <br />**Export Email as XML**: When the email is received, it is exported as an XML file. Refer to [Using XSLT to Process Incoming Emails in XML Format](<Export Email as XML.mdx>). |
+  | Name                                                                                                                                                           | Only shown if you select **Other** for the **Email Processor** field.  <br />The type of business object that the application creates when it receives the email.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+  | Unique Key                                                                                                                                                     | Only shown if you select **Other** for the **Email Processor** field.  <br />The value that identifies this business object.  <br />Match the value you enter in this field with the **Display** field value for the business object on the **Object Details** tab (found in the Configuration Console in the **Business Objects** workspace for the particular business object).&#xA;Example: The default unique key for change is ChangeNumber and the default unique key for knowledge is KnowledgeNumber.                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+  | Record Marker                                                                                                                                                  | Only shown if you select **Problem** or **Other** for the **Email Processor** field.  <br />A valid marker value that separates multiple record information within an email.  <br />Example: If you enter **#** as a record marker, information in the email body preceding the **#** sign creates one record, and information after the **#** sign creates another record. When inserted in a message body, this record marker (for example, a **#** sign) allows multiple records to be created from the body of a single message.                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+  | Field Value Separator                                                                                                                                          | Only shown if you select **Problem** or **Other** for the **Email Processor** field.  <br />A character that separates the field name from the field value.  <br />Example: If you enter **$** as a field separator value, **Summary$*****summary\_field\_information*** populates the **Summary** field with the field information.  <br />Do not add white spaces before the field value separator.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+  | Create Email When No Target BO                                                                                                                                 | Only shown if you select **Other** for the **Email Processor** field.  <br />Check this option to send an email if the application cannot find the target business object.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+  | Create Incident On Error                                                                                                                                       | Creates an incident when an error occurs in generating the record from an email (regardless of the business object specified). The application displays the fields in the **Incident and Task Creation** section if you select this option.  <br />**Note**: The application only creates an incident upon error for cases other than create incident. That is, it creates an incident when there is an error updating an incident, or when there is an error creating or updating any other business object.                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+  | Data Import Connection                                                                                                                                         | Only shown if you select **Export Email as XML** for the **Email Processor** field.  <br />Specifies the data import connection to use.  <br />Select a data import connection from the drop-down list. The list is populated based on the list of data import connections that are created using the Data Integration Wizard. Refer to :Link[Setting Up a Data Import Connection]{label="Setting Up a Data Import Connection" overridedLabel="Setting Up a Data Import Connection" spaceId docId="z2z90_aQskfSDzXRA7Lii" version="v2" docAnchorId="#SettingUpDataImportConnection" loadingMethod="dynamic" newTab="false" githubPath="../ImportExportData/Data-Import-Connections.htm#SettingUpDataImportConnection" href="../ImportExportData/Data-Import-Connections.mdx"} for information about data import connections.                                                                                                                                                           |
+  | Compress Message                                                                                                                                               | Only shown if you select **Export Email as XML** for the **Email Processor** field.  <br />If checked, supports Unicode characters in the email message body.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+  | Incident and Task Creation. This section only appears if you select **Create Incident On Error** or if you select Incident from the **Email Processor** field. |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+  | Incident or Task Owner Team                                                                                                                                    | The team to which incidents generated from email errors are assigned.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+  | Create New Task for Every Email                                                                                                                                | Creates a task record for the incident record. This task record appears in the **Tasks** tab of the incident record.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+  | New Task Subject                                                                                                                                               | The default subject line for every task email.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Sender / BO Identification and Matching
+
+  <table isTableHeaderOn="true">
+    <tr>
+      <td>
+        Parameter
+      </td>
+      <td>
+        Description
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Method 1 (for Employee / External Contact / None)
+      </td>
+      <td>
+        Creates a record and links it to an existing user (either employee or external contact), or creates a record and a new user and links the record to the new user.
+        You can check either this option or the **Method 2 (for Custom BO)** option, but not both. Use Method 1 if you are linking to either an employee or external contact. Use Method 2 if you are linking to any other business object.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Create record by creating or linking the Employee or External Contact
+      </td>
+      <td>
+        Only shown if you check **Method 1**. Does one of the following:
+        - If the user (either employee or external contact) is already in the application, creates a record and links it to the user.
+        - If the user (either employee or external contact) is not in the application, creates a record and a new user and links the record to the new user.
+        **Note**: If you create a task for an external contact, there must be a value for the **LoginID** field in the **External Contact** workspace, refer to [Working with External Contacts](../Users/external_contact.mdx). When you configure the email listener to create a new external contact, the application uses the default value of the **LoginID** field as the primary email address. We recommend that you create a business rule that ensures that this field is populated.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Create record only when the Employee or External Contact exists
+      </td>
+      <td>
+        Only shown if you check **Method 1**. Does one of the following:
+        - If the user (either employee or external contact) is already in the application, creates a record and links it to the user.
+        - If the user (either employee or external contact) is not in the application, does not create a record or a new user.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Create record without creating Employee or External Contact
+      </td>
+      <td>
+        Only shown if you check **Method 1**. Does one of the following:
+        - If the user (either employee or external contact) is already in the application, creates a record and links it to the user.
+        - If the user (either employee or external contact) is not in the application, creates a record and links it to the default user called Internal Services.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Contact Type
+      </td>
+      <td>
+        Only shown if you check **Method 1** and then select **Create record by creating or linking the Employee or External Contact**.
+        The contact type. Can be either **Employee** or **External Contact**.  
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Contact Field Name
+      </td>
+      <td>
+        Only shown if you check **Method 1** and then select **Create record by creating or linking the Employee or External Contact**. The field used to link the selected contact business object.
+        This field defaults to the primary email of the contact if left blank.
+        **Note**: This is the internal field name, not the display name.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Method 2 (for Custom Business Object)
+      </td>
+      <td>
+        Only shown if you select **Incident**, **Problem**, or **Other** for the **Email Processor** field.
+        Creates a record and links it to an existing business object, or if the business object does not exist, creates a new business object and links the record to it.
+        You can check either this option or the **Method 1 (for Employee / External Contact / None)** option, but not both. Use **Method 1** if you are linking to either an employee or external contact. Use **Method 2** if you are linking to any other business object.
+        **Method 2** is hidden if you select **Advanced Monitoring** or **ExportEmailAsXml** in the **Email Processor** drop-down list.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Create record by creating or linking the Custom Business Object
+      </td>
+      <td>
+        Only shown if you check **Method 2**. Does one of the following:
+        - If the business object already exists, creates a record and links it to the business object.
+        - If the business object does not exist, creates a record and creates a new business object, and links the record to the new business object.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Create record when the Custom Business Object exists
+      </td>
+      <td>
+        Only shown if you check **Method 2**. Does one of the following:
+        - If the business object already exists, creates a record and links it to the business object.
+        - If the business object does not exist, does not create a record or a new business object.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Relationship to Custom Business Object
+      </td>
+      <td>
+        Only shown if you check **Method 2**.
+        The name of the relationship between the target business object (the value in the **Email Processor** field) and the new business object.  
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Match the email address "from" value to the related object field value
+      </td>
+      <td>
+        Only shown if you check **Method 2**.
+        You can either enter a value in this field or in the **related object field value** field, but not in both. Refer to [Example: Creating or Linking Business Objects via Email](Create_or_Link_Objects_by_Email.mdx) for more information.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Related object field value
+      </td>
+      <td>
+        Only shown if you check **Method 2**.
+        You can either enter a value in this field or in the **Match the email address "from" value to the related object field value** field, but not in both. Refer to [Example: Creating or Linking Business Objects via Email](Create_or_Link_Objects_by_Email.mdx) for more information.
+      </td>
+    </tr>
+  </table>
+</ExpandableHeading>
+
+## Modifying an Inbox
+
+You can modify the settings for all inboxes, including the default inbox.
+
+1. Log in to \{\{FRS\_VARS.ProductName}}.
+2. Open the **Inbox** workspace. The application displays the list of inboxes.
+3. Select the inbox to modify. The application displays the **Inbox Configuration** workspace.
+4. Edit the fields as needed. For more information on each field, refer to :Link[Creating an Inbox]{label="Creating an Inbox" overridedLabel="Creating an Inbox" spaceId docId="oxavypV7mXubKfaNhVDO1" version="v2" docAnchorId="#Creating-an-Inbox" loadingMethod="dynamic" newTab="false" href="Inbox_Configuration.mdx"}.
+5. Select **Save**.
+
+## Deleting an Inbox
+
+Be cautious when deleting the default inbox, as it might lead to permanent loss of all the emails in the application.
+
+1. Log in to \{\{FRS\_VARS.ProductName}}.
+2. Open the **Email Config** workspace,
+3. Select the record link under the **Mail Host** column.
+4. From the **Inbox** tab, select the address to delete.
+5. Select **Delete**.
+6. Select **Yes** at the confirmation prompt.

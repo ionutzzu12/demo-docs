@@ -1,0 +1,881 @@
+---
+title: Working with Email Servers
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:50 GMT+0300 (Eastern European Summer Time)
+---
+
+**Role**: Administrator
+
+The configuration for the email service provider is stored as a business object in the \{\{FRS\_VARS.ProductName}} database, which is tenant-specific.
+
+The email service uses the individual configuration of the tenant to send emails. \{\{FRS\_VARS.ProductName}} currently supports the SMTP, Microsoft Graph, and Microsoft Exchange web service protocols.
+
+Various options are available within the main **Email Configuration** workspace to customize your email settings. Select the tabs at the bottom of the workspace to see the options.
+
+## Accessing the Email Configuration Workspace
+
+Do one of the following to access the **Email Config** workspace:
+
+- Log in to the application and open the **Email Config** workspace.
+- From the Configuration console, select **Configure&#x20;**>**&#xA0;Email Configuration&#x20;**>**&#xA0;Servers** to open the **Email Configuration** workspace.
+
+The default configuration includes a single inbox record. Use this inbox to create incidents from emails.
+
+## Configuring the Outgoing and Incoming Email Servers
+
+The email servers are mostly configured during installation; if you haven't done this, then follow these steps to configure them after the installation. Any email configuration change takes effect in the next email poll interval.
+
+1. Log in to \{\{FRS\_VARS.ProductName}} as \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+2. Open the **Email Config** workspace.
+3. Select your required protocol in the **Mail Protocol** field, configure the displayed fields, and then **Save** the configuration. The options are as follows:
+   - **Exchange Web Services**
+   - **Google Service Account**
+   - **Microsoft Graph**
+   - **SMTP**
+
+<Paragraph indent="1">
+  If you select **Exchange Web Services**, ensure that your mail server supports the Microsoft Exchange web service.
+</Paragraph>
+
+<ExpandableHeading>
+  ## Exchange Web Services Configuration
+
+  <table isTableHeaderOn="true">
+    <tr>
+      <td>
+        Field
+      </td>
+      <td>
+        Description
+      </td>
+    </tr>
+    <tr>
+      <td>
+        **Outgoing Server**
+      </td>
+      <td>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Host
+      </td>
+      <td>
+        The host address of the mail protocol. Use the following format for the mail protocol host address, as shown in the examples below:
+        *https\://owa.mycompany.com/EWS/Exchange.asmx*
+        or
+        *https\://outlook.office365.com/EWS/Exchange.asmx*
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Authentication
+      </td>
+      <td>
+        The authentication method.
+        The only available options are - **AuthLogin** and **Plain**.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        User Name
+      </td>
+      <td>
+        A valid email address.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Password
+      </td>
+      <td>
+        Only shown if you select **Authentication** as **Plain**.
+        The password for the email address.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Client Login URL
+      </td>
+      <td>
+        Only shown if you select **Authentication** as **AuthLogin**.
+        The endpoint URL. For example, *https\://login.microsoftonline.com/*. This can be obtained from the Azure Active Directory where you have registered an application.
+        The entry in the **Client Tenant ID** field is automatically appended to the **Client Login URL** when the request is sent.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Client Resource URL
+      </td>
+      <td>
+        Only shown if you select **Authentication** as **AuthLogin**.
+        The value is https\://outlook.office365.com
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Client Tenant ID
+      </td>
+      <td>
+        Only shown if you select **Authentication** as **AuthLogin**.
+        The directory (tenant) ID. Obtain the ID from the Azure Active Directory where you have registered an application.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Client ID
+      </td>
+      <td>
+        Only shown if you select **Authentication** as **AuthLogin**.
+        The application ID. Obtain the ID from the Azure Active Directory where you have registered an application.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Client Secret Key
+      </td>
+      <td>
+        Only shown if you select **Authentication** as **AuthLogin**.
+        Enter the client secret value. Obtain the value from the Azure Active Directory where you have registered an application (shown in the **Value** field).
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Send Mail Timeout
+      </td>
+      <td>
+        The number of seconds to wait for a timeout error to be indicated when a server delay occurs while sending an email.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Block Outgoing Email
+      </td>
+      <td>
+        Blocks outgoing emails (only receives emails).
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Email Address Override
+      </td>
+      <td>
+        Overrides the email address to which the email is sent.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Embedded Image Type
+      </td>
+      <td>
+        The type of embedded images to use. Can be either **Attached Images (CID)** or **Inline Images (Base64)**.
+        We recommend selecting **Attached Images (CID)** if you are using Microsoft Exchange or Microsoft Outlook and selecting **Inline Images (Base64)** if you are using IBM Domino (formerly called IBM Lotus Domino).
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Attach Conversation ID to Outgoing Email
+      </td>
+      <td>
+        Attaches a **Conversation ID** to outgoing emails. Select this option if you want to correlate conversations with business object records.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Conversation ID Location
+      </td>
+      <td>
+        Only shown if you select **Attach Conversation ID to Outgoing Email**).
+        Location of the **Conversation ID** in the email from the drop-down list (**Body (plain text)** or **Subject**.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Conversation ID Prefix
+      </td>
+      <td>
+        Only shown if you select **Attach Conversation ID to Outgoing Email**.
+        The optional value entered in this field replaces the default prefix added to **Conversation IDs**.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Test Connection
+      </td>
+      <td>
+        Tests the connection between \{\{FRS\_VARS.ProductName}} and the protocol service you have selected. After you select **Test Connection**, the application displays a confirmation message stating that the application will check the connection and then send an email to the specified user account.  The specified user account is the email address that is specified in the **User Name** field in the **Outgoing Server** section of the **Email Config** workspace.
+        If the connection test fails there may be a number of reasons for this, here are some examples:
+        - Generally it may be that your email configuration is not correct, for example the email address is incorrect and does not exist. Check the email configuration.
+        - There is an external error, for example if you are also using Microsoft Office 365, the account and environment may not be configured correctly. If it is not, work with your Microsoft Office 365 administrator to configure the account properly.
+        **Last Test Result**: Displays the result of the previous connection test, including a time stamp, with date/time the test was run. It includes any failed message received.
+        To clear the last test result, select **Action Menu > No Category > Clear Test Result**.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        **Incoming Message Handling Rules for All Inboxes**
+      </td>
+      <td>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Keep Full Incoming Message as an Attachment
+      </td>
+      <td>
+        Puts incoming messages into attachments.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Email Component Type
+      </td>
+      <td>
+        The email mechanism to use. Can be either **Advanced** or **Basic (default)**.
+        After you select the email component type, the application disables the existing inboxes because the authentication type may not be supported by the email component type. Update the authentication values for the inbox records to match the value of the updated email component type. Refer to :Link[Creating an Inbox]{label="Creating an Inbox" overridedLabel="Creating an Inbox" spaceId docId="oxavypV7mXubKfaNhVDO1" version="v2" docAnchorId="#Creating-an-Inbox" loadingMethod="dynamic" newTab="false" githubPath="Inbox_Configuration.htm#Creating-an-Inbox" href="Inbox_Configuration.mdx"}.
+        - If Advanced is selected, MailBee library is used to connect to the email server and it supports TLS version TLSv1.1, TLSv1.2, and higher.
+      </td>
+    </tr>
+  </table>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Google Service Account Configuration
+
+  <table isTableHeaderOn="true">
+    <tr>
+      <td>
+        Field
+      </td>
+      <td>
+        Description
+      </td>
+    </tr>
+    <tr>
+      <td>
+        **Outgoing Server**
+      </td>
+      <td>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Authentication
+      </td>
+      <td>
+        The authentication method.
+        The only available option is **AuthLogin**.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Service Account Address
+      </td>
+      <td>
+        Enter your Google service account email address.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Private Key
+      </td>
+      <td>
+        Enter your Google service account private key. This is required to enable your Google service account to be used from outside of the Google Cloud and authenticate with Google API's.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        User Name
+      </td>
+      <td>
+        A valid email address.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Send Mail Timeout
+      </td>
+      <td>
+        The number of seconds to wait for a timeout error to be indicated when a server delay occurs while sending an email.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Block Outgoing Email
+      </td>
+      <td>
+        Blocks outgoing emails (only receives emails).
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Email Address Override
+      </td>
+      <td>
+        Overrides the email address to which the email is sent.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Embedded Image Type
+      </td>
+      <td>
+        The type of embedded images to use. Can be either **Attached Images (CID)** or **Inline Images (Base64)**.
+        We recommend selecting **Attached Images (CID)** if you are using Microsoft Exchange or Microsoft Outlook and selecting **Inline Images (Base64)** if you are using IBM Domino (formerly called IBM Lotus Domino).
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Attach Conversation ID to Outgoing Email
+      </td>
+      <td>
+        Attaches a **Conversation ID** to outgoing emails. Select this option if you want to correlate conversations with business object records.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Conversation ID Location
+      </td>
+      <td>
+        Only shown if you select **Attach Conversation ID to Outgoing Email**).
+        Location of the **Conversation ID** in the email from the drop-down list (**Body (plain text)** or **Subject**.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Conversation ID Prefix
+      </td>
+      <td>
+        Only shown if you select **Attach Conversation ID to Outgoing Email**.
+        The optional value entered in this field replaces the default prefix added to **Conversation IDs**.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Test Connection
+      </td>
+      <td>
+        Tests the connection between \{\{FRS\_VARS.ProductName}} and the protocol service you have selected. After you select **Test Connection**, the application displays a confirmation message stating that the application will check the connection and then send an email to the specified user account.  The specified user account is the email address that is specified in the **User Name** field in the **Outgoing Server** section of the **Email Config** workspace.
+        If the connection test fails there may be a number of reasons for this, here are some examples:
+        - Generally it may be that your email configuration is not correct, for example the email address is incorrect and does not exist. Check the email configuration.
+        - There is an external error, for example if you are also using Microsoft Office 365, the account and environment may not be configured correctly. If it is not, work with your Microsoft Office 365 administrator to configure the account properly.
+        **Last Test Result**: Displays the result of the previous connection test, including a time stamp, with date/time the test was run. It includes any failed message received.
+        To clear the last test result, select **Action Menu > No Category > Clear Test Result**.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        **Incoming Message Handling Rules for All Inboxes**
+      </td>
+      <td>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Keep Full Incoming Message as an Attachment
+      </td>
+      <td>
+        Puts incoming messages into attachments.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Email Component Type
+      </td>
+      <td>
+        The email mechanism to use. Can be either **Advanced** or **Basic (default)**.
+        After you select the email component type, the application disables the existing inboxes because the authentication type may not be supported by the email component type. Update the authentication values for the inbox records to match the value of the updated email component type. Refer to :Link[Creating an Inbox]{label="Creating an Inbox" overridedLabel="Creating an Inbox" spaceId docId="oxavypV7mXubKfaNhVDO1" version="v2" docAnchorId="#Creating-an-Inbox" loadingMethod="dynamic" newTab="false" githubPath="Inbox_Configuration.htm#Creating-an-Inbox" href="Inbox_Configuration.mdx"}.
+        - If Advanced is selected, MailBee library is used to connect to the email server and it supports TLS version TLSv1.1, TLSv1.2, and higher.
+      </td>
+    </tr>
+  </table>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Microsoft Graph Configuration
+
+  <table isTableHeaderOn="true">
+    <tr>
+      <td>
+        Field
+      </td>
+      <td>
+        Description
+      </td>
+    </tr>
+    <tr>
+      <td>
+        **Outgoing Server**
+      </td>
+      <td>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Authentication
+      </td>
+      <td>
+        The authentication method.
+        The only available option is **AuthLogin**.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Client ID
+      </td>
+      <td>
+        The application ID. Obtain the ID from the Azure Active Directory where you have registered an application.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Client Tenant ID
+      </td>
+      <td>
+        The directory (tenant) ID. Obtain the ID from the Azure Active Directory where you have registered an application.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Client Secret Key
+      </td>
+      <td>
+        Enter the client secret value. Obtain the secret key value from the Azure Active Directory where you have registered an application (shown in the **Value** field).
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Client Login URL
+      </td>
+      <td>
+        The endpoint URL. For example, https\://login.microsoftonline.com/. Obtain the URL from the Azure Active Directory where you have registered an application.
+        The entry in the **Client Tenant ID** field is automatically appended to the **Client Login URL** when the request is sent.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Client Resource URL
+      </td>
+      <td>
+        The value is https\://graph.microsoft.com/
+      </td>
+    </tr>
+    <tr>
+      <td>
+        User Name
+      </td>
+      <td>
+        A valid email address.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Send Mail Timeout
+      </td>
+      <td>
+        The number of seconds to wait for a timeout error to be indicated when a server delay occurs while sending an email.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Block Outgoing Email
+      </td>
+      <td>
+        Blocks outgoing emails (only receives emails).
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Email Address Override
+      </td>
+      <td>
+        Overrides the email address to which the email is sent.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Embedded Image Type
+      </td>
+      <td>
+        The type of embedded images to use. Can be either **Attached Images (CID)** or **Inline Images (Base64)**.
+        We recommend selecting **Attached Images (CID)** if you are using Microsoft Exchange or Microsoft Outlook and selecting **Inline Images (Base64)** if you are using IBM Domino (formerly called IBM Lotus Domino).
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Attach Conversation ID to Outgoing Email
+      </td>
+      <td>
+        Attaches a **Conversation ID** to outgoing emails. Select this option if you want to correlate conversations with business object records.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Conversation ID Location
+      </td>
+      <td>
+        Only shown if you select **Attach Conversation ID to Outgoing Email**).
+        Location of the **Conversation ID** in the email from the drop-down list (**Body (plain text)** or **Subject**.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Conversation ID Prefix
+      </td>
+      <td>
+        Only shown if you select **Attach Conversation ID to Outgoing Email**.
+        The optional value entered in this field replaces the default prefix added to **Conversation IDs**.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Test Connection
+      </td>
+      <td>
+        Tests the connection between \{\{FRS\_VARS.ProductName}} and the protocol service you have selected. After you select **Test Connection**, the application displays a confirmation message stating that the application will check the connection and then send an email to the specified user account.  The specified user account is the email address that is specified in the **User Name** field in the **Outgoing Server** section of the **Email Config** workspace.
+        If the connection test fails there may be a number of reasons for this, here are some examples:
+        - Generally it may be that your email configuration is not correct, for example the email address is incorrect and does not exist. Check the email configuration.
+        - There is an external error, for example if you are also using Microsoft Office 365, the account and environment may not be configured correctly. If it is not, work with your Microsoft Office 365 administrator to configure the account properly.
+        **Last Test Result**: Displays the result of the previous connection test, including a time stamp, with date/time the test was run. It includes any failed message received.
+        To clear the last test result, select **Action Menu > No Category > Clear Test Result**.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        **Incoming Message Handling Rules for All Inboxes**
+      </td>
+      <td>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Keep Full Incoming Message as an Attachment
+      </td>
+      <td>
+        Puts incoming messages into attachments.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Email Component Type
+      </td>
+      <td>
+        The email mechanism to use. Can be either **Advanced** or **Basic (default)**.
+        After you select the email component type, the application disables the existing inboxes because the authentication type may not be supported by the email component type. Update the authentication values for the inbox records to match the value of the updated email component type. Refer to :Link[Creating an Inbox]{label="Creating an Inbox" overridedLabel="Creating an Inbox" spaceId docId="oxavypV7mXubKfaNhVDO1" version="v2" docAnchorId="#Creating-an-Inbox" loadingMethod="dynamic" newTab="false" githubPath="Inbox_Configuration.htm#Creating-an-Inbox" href="Inbox_Configuration.mdx"}.
+        - If Advanced is selected, MailBee library is used to connect to the email server and it supports TLS version TLSv1.1, TLSv1.2, and higher.
+      </td>
+    </tr>
+  </table>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## SMTP Configuration
+
+  <table isTableHeaderOn="true">
+    <tr>
+      <td>
+        Field
+      </td>
+      <td>
+        Description
+      </td>
+    </tr>
+    <tr>
+      <td>
+        **Outgoing Server**
+      </td>
+      <td>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Host
+      </td>
+      <td>
+        The host address of the mail protocol. The format should be as in the examples given below:
+        https\://owa.mycompany.com/EWS/Exchange.asmx
+        or
+        *https\://outlook.office365.com/EWS/Exchange.asmx*
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Port
+      </td>
+      <td>
+        The SMTP port number. The default is 25.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Authentication
+      </td>
+      <td>
+        The authentication method.
+        The only available option is **AuthLogin**.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Use SSL/TLS
+      </td>
+      <td>
+        Can be either **SSL** (secure sockets layer) or **TLS** (transport layer security).
+      </td>
+    </tr>
+    <tr>
+      <td>
+        User Name
+      </td>
+      <td>
+        A valid email address.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Password
+      </td>
+      <td>
+        The password for the email address.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Send Mail Timeout
+      </td>
+      <td>
+        The number of seconds to wait for a timeout error to be indicated when a server delay occurs while sending an email.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Block Outgoing Email
+      </td>
+      <td>
+        Blocks outgoing emails (only receives emails).
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Email Address Override
+      </td>
+      <td>
+        Overrides the email address to which the email is sent.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Embedded Image Type
+      </td>
+      <td>
+        The type of embedded images to use. Can be either **Attached Images (CID)** or **Inline Images (Base64)**.
+        We recommend selecting **Attached Images (CID)** if you are using Microsoft Exchange or Microsoft Outlook and selecting **Inline Images (Base64)** if you are using IBM Domino (formerly called IBM Lotus Domino).
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Attach Conversation ID to Outgoing Email
+      </td>
+      <td>
+        Attaches a **Conversation ID** to outgoing emails. Select this option if you want to correlate conversations with business object records.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Conversation ID Location
+      </td>
+      <td>
+        Only shown if you select **Attach Conversation ID to Outgoing Email**.
+        Location of the **Conversation ID** in the email from the drop-down list (**Body (plain text)** or **Subject**.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Conversation ID Prefix
+      </td>
+      <td>
+        Only shown if you select **Attach Conversation ID to Outgoing Email**.
+        The optional value entered in this field replaces the default prefix added to **Conversation IDs**.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Test Connection
+      </td>
+      <td>
+        Tests the connection between \{\{FRS\_VARS.ProductName}} and the protocol service you have selected. After you select **Test Connection**, the application displays a confirmation message stating that the application will check the connection and then send an email to the specified user account.  The specified user account is the email address that is specified in the **User Name** field in the **Outgoing Server** section of the **Email Config** workspace.
+        If the connection test fails there may be a number of reasons for this, here are some examples:
+        - Generally it may be that your email configuration is not correct, for example the email address is incorrect and does not exist. Check the email configuration.
+        - There is an external error, for example if you are also using Microsoft Office 365, the account and environment may not be configured correctly. If it is not, work with your Microsoft Office 365 administrator to configure the account properly.
+        **Last Test Result**: Displays the result of the previous connection test, including a time stamp, with date/time the test was run. It includes any failed message received.
+        To clear the last test result, select **Action Menu > No Category > Clear Test Result**.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        **Incoming Message Handling Rules for All Inboxes**
+      </td>
+      <td>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Keep Full Incoming Message as an Attachment
+      </td>
+      <td>
+        Puts incoming messages into attachments.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Email Component Type
+      </td>
+      <td>
+        The email mechanism to use. Can be either **Advanced** or **Basic (default)**.
+        After you select the email component type, the application disables the existing inboxes because the authentication type may not be supported by the email component type. Update the authentication values for the inbox records to match the value of the updated email component type. Refer to :Link[Creating an Inbox]{label="Creating an Inbox" overridedLabel="Creating an Inbox" spaceId docId="oxavypV7mXubKfaNhVDO1" version="v2" docAnchorId="#Creating-an-Inbox" loadingMethod="dynamic" newTab="false" githubPath="Inbox_Configuration.htm#Creating-an-Inbox" href="Inbox_Configuration.mdx"}.
+        - If Advanced is selected, MailBee library is used to connect to the email server and it supports TLS version TLSv1.1, TLSv1.2, and higher.
+      </td>
+    </tr>
+  </table>
+</ExpandableHeading>
+
+## Using the Email Configuration Tabs
+
+<ExpandableHeading>
+  ## Using the Trusted Sender Domain Tab
+
+  Use the **Trusted Sender Domain** tab to manage the list of trusted domains. A trusted domain is one from which your organization expects secure information. You should only receive emails from domains that you place on the trusted domain list.
+
+  <hint type="info">
+    If no trusted domains are specified, all domains are blocked.
+  </hint>
+
+  1. Open the **Email Configuration** workspace.
+  2. Select the **Trusted Sender Domain** tab.
+  3. Select **New**.
+
+  <Paragraph indent="1">
+    The application displays the **New Trusted Sender Domain** workspace.
+  </Paragraph>
+
+  4. In the **Domain Name** field, enter a valid domain name or enter **\*** to accept emails from all domains.
+  5. Select **Save**.
+
+  <Paragraph indent="1">
+    The application adds the domain to the list.
+  </Paragraph>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Using the Truncate Body Tab
+
+  You can truncate (trim) a message body to remove reply content. This feature removes all text in the email after the word or words that you specify.  For example, if you specify "Regards", then \{\{FRS\_VARS.ProductName}} looks through the email for the word  "Regards". If it finds it, it removes, from both the email and the associated incident, all text that comes after that word.
+
+  1. Open the **Email Configuration** workspace.
+  2. Select the **Truncate Body** tab.
+  3. From the tab toolbar, select **New**. The application displays the **New Truncate Body Rule** workspace.
+  4. In the **Body Line** field, enter the text to search for.
+  5. Select **Save**.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Using the Task Assignment Status Keyword Tab
+
+  You can manage lists of status keywords for task assignments. Upon receiving a task assignment notification, the assignee can respond to the assignment by entering any default keywords.
+
+  1. Open the **Email Configuration** workspace.
+  2. Select the **Task Assignment Status Keyword** tab.
+  3. Select **New**. The application displays the **New Task Assignment Status Keyword** workspace.
+  4. Enter information into the fields.
+     - **Task Assignment Status** - A task status. Select from the drop-down list.
+     - **Status Keyword** - A keyword assigned to this status. For example, if you set the status **accepted** as a keyword, the status of tasks assigned to you are automatically set to **accepted** if it has **accepted** in the email subject line.
+  5. Select **Save**. The application adds the task assignment status to the list.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Using the FRS Approval Status Keyword Tab
+
+  You can manage lists of status keywords for approval status changes. Upon receiving an approval notification, the approver can respond by entering any of the default keywords - **approved** or **denied** in the email subject line to set the approval request to **approved** or **denied**.
+
+  1. Open the **Email Configuration** workspace.
+  2. Select the **FRS Approval Status Keyword** tab.
+  3. Select **New**. The application displays the **New FRS Approval Status Keyword** workspace.
+  4. Enter information into the fields.
+     - FRS Approval Status - Approval status. Select from the drop-down list.
+     - Status Keyword - A keyword assigned to this status. For example, if you select **approved&#x20;**&#x69;n the **FRS Approval Status** field and enter the matching keyword **approved&#x20;**&#x69;n this field, the approval record sets to approved when the approver enters **approved** in the email subject line.
+  5. Select **Save**. The application adds the approval status to the list.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Using the Ignore a Message with Subject Tab
+
+  You can manage lists of subject lines to be ignored in an incoming message. This improves management of incoming messages by filtering out automated messages, such as auto-replies.
+
+  1. Open the **Email Configuration** workspace.
+  2. Select the **Ignore message with subject** tab.
+  3. Select **New**. The application displays the **New Tenant Email Subject Line** workspace.
+  4. In the **Subject Line** field, enter a subject line.
+  5. Select **Save**. The application adds the subject line to the list.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Using the Delivery Failure Notification Tab
+
+  You can manage lists of delivery failure messages to be ignored in an incoming message. This improves management of incoming messages by filtering out certain automated messages. It is best practice to always use this feature.
+
+  Failure to define a keyword may lead to the application sending excessive emails. For example, if your inbox receives a "Delivery Failure" email, a new incident is created, and a new notification is sent. This notification causes another "Delivery Failure" email, causing an infinite loop.
+
+  1. Open the **Email Configuration** workspace.
+  2. Select the **Delivery failure notification** tab.
+  3. Select **New**. The application displays the **New Tenant Email Subject Line** workspace.
+  4. In the **Subject Line** field, enter a subject line.
+  5. Select **Save**. The application adds the subject line to the list.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Using the Object Name Mapping Tab
+
+  You can update an existing record, based on additional data in the subject line. This process maps a custom pattern in the subject line of an email, then attaches the email to a specific business object. For example, the default pattern (such as *Incident#incident\_subject*) tells the application to update an existing incident from this email and attach the email to this record. However, you can create a custom pattern that does the same thing (such as *CodeIncident*). The custom mapped part of the subject string (in this example, *Code*) triggers this behavior.
+
+  The feature only processes emails based on the subject line, and does not affect other behaviors; that is, you can only create or update the record of the business object configured for the inbox. For example, if the email listener is set to manage incident records, you cannot update change records.
+
+  1. Open the **Email Configuration** workspace.
+  2. Select the **Object Name Mapping** tab.
+  3. From the tab toolbar, select **New**. The application displays the **New Email Object Name Mapping** workspace.
+  4. Enter information into the fields.
+     - **Subject Pattern** - The pattern that triggers the mapping behavior. For example, if you designate *Service Request* as a pattern, then every email containing a subject starting with *Service Request* is mapped to the business object defined for the inbox.
+     - **Business Object** - The designated object to be appended to the subject line, such as *ServiceReq*.
+  5. Select **Save**. The application adds the pattern to the list.
+
+  <Paragraph indent="1">
+    When the email listener receives an email, it evaluates the subject. If the subject contains the mapped value, the application updates the business object. If the subject value does not match, the application processes the business object as normal.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    For example, say you have the following inboxes to process various business objects. Also, you have set up email object name mapping as follows:
+  </Paragraph>
+
+  | Subject Pattern | Business Object           |
+  | --------------- | ------------------------- |
+  | Incident        | Incident                  |
+  | Service Request | ServiceReq                |
+  | Approval        | FRS\_ApprovalVoteTracking |
+
+  <hint type="info">
+    Ensure you enter the Name of the Business Object and not the Display Name in th&#x65;**&#x20;Business Object** field. The case should also be an exact match of the Business Object Name.
+  </hint>
+
+  An email arrives with the subject line **Incident# 1234**.
+
+  - The email listener sees the hashtag (#), and the keyword **Incident** is identified.
+  - Incident tells the application that this is an incident record (as defined in the mapping).
+  - 1234 identifies the business object ID.
+  - The email is sent to the incident inbox and processed. If it matches an existing record, the record is updated. If it does not match and if **Create Incident On Error** is checked in the **Inbox Configuration** workspace, the application creates a new record. If it does not match an existing record and you did not check **Create Incident On Error** in the **Inbox Configuration** workspace, the application gives an error.
+
+  Another email arrives with the subject line **Service Request# 9876**.
+
+  - The email listener sees the hashtag (#), and the keyword **Service Request** is identified.
+  - Service Request tells the application that this is a service request record (as defined in the mapping).
+  - 9876 identifies the business object ID.
+  - The email is sent to the other business object inbox and processed. Refer to [Creating an Inbox that Creates a Generic Business Object](<Add an Inbox that Creates a Business Object.mdx>).
+</ExpandableHeading>

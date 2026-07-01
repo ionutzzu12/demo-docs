@@ -1,0 +1,136 @@
+---
+title: Integrating Patch Management
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:52 GMT+0300 (Eastern European Summer Time)
+---
+
+**Role:** \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+
+**Minimum Version:** \{\{Primary.Company}} \{\{Primary.Product}}*&#x20;2023.4.*
+
+With \{\{Primary.Company}} \{\{FRS\_VARS.ProductName}} Patch Management, Service Desk Analysts can view all the deployed patches of an Asset in the CI workspace. This helps to easily track and analyze issues in case of incidents and fix them in optimal response time.
+
+<hint type="info">
+  By default, the latest 100 records are displayed; however, you can change the number. To do so, reach out to the \{\{FRS\_VARS.Company}} Operations team to define this in the Config DB.
+</hint>
+
+## Setting up the Patch Management Integration
+
+Follow these steps to set up the integration:
+
+<ExpandableHeading>
+  ## Obtain and Import the Latest ITAM Package Update
+
+  Ensure you have the latest \{\{FRS\_VARS.ITAM}} update pack installed by checking your AssetManagerDelta package version. If your current version is below "202304", you cannot use this feature and need to update it. The latest package update is available at [Ivanti Marketplace](https://marketplace.ivanticloud.com/packages/IvantiAssetManagerContentPackage/).
+
+  <hint type="info">
+    If you need to update from more than four releases back, contact [Ivanti Professional Services](https://www.ivanti.com/en-gb/services/professional-services) prior to downloading and attempting to import the package.
+  </hint>
+
+  **To check the installed version and obtain the latest AssetManagerDelta package:**
+
+  1. Log in to \{\{FRS\_VARS.Company}} \{\{FRS\_VARS.Neurons}} for \{\{FRS\_VARS.ITAM}} as Asset Administrator.
+  2. Check your AssetManagerDelta package version:
+
+  <Paragraph indent="1">
+    a. Open the **Aspect** workspace.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    b. Select **Package > Filters**, and then enter Asset in the **FIlter** field.
+    Your current AssetManagerDelta package is normally displayed at, or near, the top of the list; however, you may need to sort the list into ascending order.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    c. Check your current version in the **Version** column.
+    As a minimum, you need to have version 202304. If your version is older, you need to update it.
+    If you already have the "202304" version or newer as shown below, you can exit this procedure; otherwise, continue to the next step.
+
+
+  </Paragraph>
+
+  *Ensuring the Correct Asset Manager Package is Installed*
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/nmHBxsDLgOXxwoa1Ng4Rf_aspectworkspacefilteredforassetmanagerdelta.png" alt="Verifying the Asset Manager delta package version number." position="flex-start" size="40" indent="2" initialPath="../../Resources/Images/help-images/aspect_workspace_filtered_for_AssetManagerDelta.png" githubPath="Content/Resources/Images/help-images/aspect_workspace_filtered_for_AssetManagerDelta.png" showCaption="false"></Image>
+
+  3. Download the update pack from [Ivanti Marketplace](https://marketplace.ivanticloud.com/packages/IvantiAssetManagerContentPackage/) to a local folder.
+
+  **To import the package:**
+
+  <hint type="info">
+    Cloud customers should submit a service request via the Customer Portal for Ivanti Cloud Operations to apply the package.
+  </hint>
+
+  1. Log in to \{\{Primary.Product}} as Administrator.
+  2. Open the Configuration Console and navigate to **Build > Development Packages > Packages**.
+  3. Follow the steps in section *Importing a Package* in [Managing Packages](<../Development Project/Managing-Packages.mdx>) to complete the import.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Enable the Global Constant
+
+  1. Log in to \{\{Primary.Product}} as Administrator.
+  2. Open the Configuration Console and navigate to **Build** > **Global Constant**.
+  3. Set the **EnablePatchIntegration** Global Constant as **True**.
+  4. Save and exit.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Set up the App Registration in Neurons
+
+  1. Log in to \{\{FRS\_VARS.Neurons}} as Admintrator.
+  2. Navigate to **Admin** > **App Registrations** > **New Registration**.
+  3. Select **Custom App**, then click **Continue and Register it**.
+
+  <Paragraph indent="1">
+    Once you register, the following details are displayed:
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    **Neurons Auth Url**
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    **Client ID**
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    **Client Secret**
+  </Paragraph>
+
+  *Setting up the App Registration*
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Inulur2co6gN-U7t8hEDm_app-registration-in-neurons.png" alt="Setting up the app registration in Neurons." position="flex-start" size="40" indent="2" initialPath="../../Resources/Images/Configure/Patch-Integration/App-Registration-In-Neurons.png" githubPath="Content/Resources/Images/Configure/Patch-Integration/App-Registration-In-Neurons.png" showCaption="false"></Image>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Set up Client Registration
+
+  1. From \{\{FRS\_VARS.ITSM}}, open the **Client Registration** workspace.
+  2. Enter the following details:
+     - **Name&#x20;**- enter a contextual name.
+     - **Is On premise** - clear the check box since this is not supported for on-premises.
+     - **Client Registration URL** - enter the Neurons Auth URL registered in the previous segment.
+     - **Client ID** and **Client Secret** - get from the respective fields in the previous segment.
+
+  *Setting up the Client Registration*
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/RJWRjehIu8kuTYIp42uEC_client-registration.png" alt="Entering details for client registration." position="flex-start" size="40" indent="2" initialPath="../../Resources/Images/Configure/Patch-Integration/Client-Registration.png" githubPath="Content/Resources/Images/Configure/Patch-Integration/Client-Registration.png" showCaption="false"></Image>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## View the Patch Updates
+
+  1. From \{\{FRS\_VARS.ITSM}}, open the **CI** workspace.
+  2. Search for a device for which you wish to get Patch updates.
+  3. Select the device, and then select the **Patch Info** tab.
+  4. Click the **Get Latest Patch Info** button. A pop-up will display a success message upon fetching the updates.
+
+  *Patch Updates Displayed in ITSM*
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/qAgEWtwWFKi9S_IunTMg2_patch-updates-list.png" alt="Viewing patch update details for a device." position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/Configure/Patch-Integration/Patch-Updates-list.png" githubPath="Content/Resources/Images/Configure/Patch-Integration/Patch-Updates-list.png" showCaption="false"></Image>
+</ExpandableHeading>
+
+<hint type="info">
+  Existing customers have to configure the CI Business Object layout to add the **Patch Info** child tab. For more information, refer to [Configuring the Layout for the CI Business Object](Configuring-Layout-For-CI-BO-For-Existing-Customers.mdx).
+</hint>

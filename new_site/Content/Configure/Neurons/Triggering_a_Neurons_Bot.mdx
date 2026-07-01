@@ -1,0 +1,259 @@
+---
+title: Invoking a Neurons Bot
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:51 GMT+0300 (Eastern European Summer Time)
+---
+
+\{\{FRS\_VARS.Company}} \{\{FRS\_VARS.Neurons\_Bots}} provide powerful hyper-automation capabilities. \{\{FRS\_VARS.Neurons\_Bots}} capability within \{\{FRS\_VARS.Company}} \{\{FRS\_VARS.ITSM}} provides an integration between ITSM and \{\{FRS\_VARS.Company}} \{\{FRS\_VARS.Neurons}}, and enables you to invoke a \{\{FRS\_VARS.Neurons\_Bot}} from ITSM.
+
+<hint type="info">
+  \{\{FRS\_VARS.Neurons\_Bots}} can be invoked from a business object that has a relationship (link) to, or can be invoked from, a **CI** business object record. Also note that, if the business object from which a \{\{FRS\_VARS.Neurons\_Bot}} is invoked has a relationship with more than one **CI** record, an error is displayed.
+</hint>
+
+Supported OOTB (Out Of The Box) business objects you can invoke a \{\{FRS\_VARS.Neurons\_Bot}} from if linked to a **CI** record are:
+
+- **Incident**.
+- **Change**.
+- **Problem**.
+- **Knowledge**.
+
+In this topic:
+
+- :Link[Invoke a Neurons Bot]{label="Invoke a Neurons Bot" overridedLabel="Invoke a Neurons Bot" spaceId docId="NYG9-bentIpImPRsE0hpp" version="v2" docAnchorId="#Trigger_a_Neurons_Bot" loadingMethod="dynamic" newTab="false" href="Triggering_a_Neurons_Bot.mdx"}
+- :Link[Invoke a Neurons Bot from a Workflow]{label="Invoke a Neurons Bot from a Workflow" overridedLabel="Invoke a Neurons Bot from a Workflow" spaceId docId="NYG9-bentIpImPRsE0hpp" version="v2" docAnchorId="#Trigger_Neurons_Bot_from_a_Workflow" loadingMethod="dynamic" newTab="false" href="Triggering_a_Neurons_Bot.mdx"}.
+- :Link[Check a Neurons Bot Invocation and Invocation Results]{label="Check a Neurons Bot Invocation and Invocation Results" overridedLabel="Check a Neurons Bot Invocation and Invocation Results" spaceId docId="NYG9-bentIpImPRsE0hpp" version="v2" docAnchorId="#Check_a_Neurons_Bot_Invocation_and_Invocation_Result" loadingMethod="dynamic" newTab="false" href="Triggering_a_Neurons_Bot.mdx"}.
+- :Link[Troubleshooting a Neurons Bot Invocation]{label="Troubleshooting a Neurons Bot Invocation" overridedLabel="Troubleshooting a Neurons Bot Invocation" spaceId docId="NYG9-bentIpImPRsE0hpp" version="v2" docAnchorId="#Troubleshooting_an_Invocation" loadingMethod="dynamic" newTab="false" href="Triggering_a_Neurons_Bot.mdx"}.
+
+For more information, refer to [Neurons Bots](https://help.ivanti.com/ht/help/en_US/CLOUD/vNow/neurons-bots.htm).
+
+For information on enabling a \{\{FRS\_VARS.Neurons\_Bot}} you can invoke from within \{\{FRS\_VARS.ITSM}}, refer to [Neurons Bots Integration for ITSM](Neurons-Bots-ITSM-Integration.mdx).
+
+## Invoke a Neurons Bot
+
+1. Open the business object record that is linked to the **CI** record you want to invoke a \{\{FRS\_VARS.Neurons\_Bot}} upon.
+
+<hint type="info" indent="2">
+  The business object selected to invoke the \{\{FRS\_VARS.Neurons\_Bot}} must only be linked to a single **CI** record; if it is linked to more than one **CI** record, an error is displayed.
+</hint>
+
+<Paragraph indent="1">
+  Click **More**, and select the required \{\{FRS\_VARS.Neurons\_Bot}} \{\{FRS\_VARS.Quick\_Action}}.
+  If the \{\{FRS\_VARS.Neurons\_Bot}} \{\{FRS\_VARS.Quick\_Action}} requires user input, a dialog box opens.
+</Paragraph>
+
+3. Enter the required input into the dialog box, and click **OK**. Skip this step if no input is required.
+   The \{\{FRS\_VARS.Neurons\_Bot}} is invoked and performs the action.
+
+When the \{\{FRS\_VARS.Neurons\_Bot}} invokes successfully, a \{\{FRS\_VARS.Neurons\_Bots}}**&#x20;Invocation** confirmation is displayed.
+
+## Invoke a Neurons Bot from a Workflow
+
+You can invoke a \{\{FRS\_VARS.Neurons\_Bot}} from a workflow by configuring it to trigger a \{\{FRS\_VARS.Neurons\_Bot}} \{\{FRS\_VARS.Quick\_Action}}. For example, you may want to trigger a \{\{FRS\_VARS.Neurons\_Bot}} when a record field is updated, or certain field conditions are met.
+
+**To configure a workflow with a&#x20;**\{\{FRS\_VARS.Neurons\_Bot}}**:**
+
+1. Create a new workflow, or edit an existing workflow:
+   - To create a new workflow, refer to :Link[Creating a Workflow]{label="Creating a Workflow" overridedLabel="Creating a Workflow" spaceId docId="f-ny8lxGIWX7YiVQvb6dB" version="v2" docAnchorId="#Creating-a-Workflow" loadingMethod="dynamic" newTab="false" githubPath="../Workflows/Using_Workflows.htm#Creating-a-Workflow" href="../Workflows/Using_Workflows.mdx"}.
+   - To edit an existing workflow, refer to :Link[Modifying a Workflow]{label="Modifying a Workflow" overridedLabel="Modifying a Workflow" spaceId docId="f-ny8lxGIWX7YiVQvb6dB" version="v2" docAnchorId="#Modifyin" loadingMethod="dynamic" newTab="false" githubPath="../Workflows/Using_Workflows.htm#Modifyin" href="../Workflows/Using_Workflows.mdx"}.
+2. Configure the workflow to trigger the \{\{FRS\_VARS.Neurons\_Bot}} (refer to :Link[Configuring a Trigger]{label="Configuring a Trigger" overridedLabel="Configuring a Trigger" spaceId docId="f-ny8lxGIWX7YiVQvb6dB" version="v2" docAnchorId="#Configur" loadingMethod="dynamic" newTab="false" githubPath="../Workflows/Using_Workflows.htm#Configur" href="../Workflows/Using_Workflows.mdx"}).
+
+**Example:**
+
+In this example, a workflow (**Run WorkflowAction**) is created to trigger a \{\{FRS\_VARS.Neurons\_Bot}} \{\{FRS\_VARS.Quick\_Action}} named **WorkflowAction**. The workflow is configured to trigger the \{\{FRS\_VARS.Quick\_Action}} when the **Source** field in an **Incident** record linked to a **CI** is updated.
+
+*Workflow Properties Block configured to run the WorkflowAction&#x20;*\{\{FRS\_VARS.Neurons\_Bot}} \{\{FRS\_VARS.Quick\_Action}}
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/MSt1R0YBVkpB47So8ChD2_workflowpropertiesblockconfig.png" alt="Screenshot of the workflow designer showing the workflow properties block" position="flex-start" size="40" initialPath="images/workflow_properties_block_config.png" githubPath="Content/Configure/Neurons/images/workflow_properties_block_config.png" showCaption="false"></Image>
+
+*Workflow configured to trigger the&#x20;*\{\{FRS\_VARS.Neurons\_Bot}}*&#x20;when the Source field of a linked Incident record is updated.*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/WUm-_37Dq43M6o96MI8kZ_workflowtriggerconfig.png" position="flex-start" size="40" initialPath="images/workflow_trigger_config.png" githubPath="Content/Configure/Neurons/images/workflow_trigger_config.png" showCaption="false"></Image>
+
+## Check a Neurons Bot Invocation and Invocation Results
+
+Once a \{\{FRS\_VARS.Neurons\_Bot}} is invoked, you can check the invocation status and results from the related **CI** business object record.
+
+<ExpandableHeading>
+  ## To check invocation status
+
+  The **Neurons Bot Invocations** tab displays a list of bot invocations. Each entry contains status information for a single bot invocation. A single bot invocation may provide multiple results, which are displayed in the **Neurons Bot Results** tab.
+
+  1. Open the related **CI** business object record.
+  2. Select the \{\{FRS\_VARS.Neurons\_Bot}}**&#x20;Invocations** tab.
+     If this tab is not visible, click the **Restore hidden tabs** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/8qgkd6bNoUEOedgWUlCcL_hiddentabsicon.png" alt caption size="10" width="19" height="20"}, and then select it from the list.
+  3. Double-click the invocation record in the list.
+     The **Edit&#x20;**\{\{FRS\_VARS.Neurons\_Bot}}**&#x20;Invocation** dialog opens.
+
+  *The Edit Neurons Bot Invocation Dialog*
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/vAFTOTp4NjNSXmUdPC0ki_editneuronsbotinvocationdialog.png" alt="Screenshot of the edit neurons bot invocation dialog" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/Edit_Neurons_Bot_Invocation_Dialog.png" githubPath="Content/Resources/Images/help-images/Edit_Neurons_Bot_Invocation_Dialog.png" showCaption="false"></Image>
+
+  <hint type="info">
+    In this version of \{\{FRS\_VARS.ITSM}}, edits are not enabled for this dialog.
+  </hint>
+
+  - **Bot Name**: Name of the bot that was invoked.
+  - **Completion State**: Current state of invocation, which can be:
+    - Pending
+    - In Progress
+    - Success
+    - Failed
+    - Timed Out
+    - Skipped
+    - Unknown
+  - **Invoked On**: Date/time the bot was invoked.
+  - **Started On**: Date/time the bot started running and processing inputs.
+  - **Finished On**: Date/time the bot finished running.
+  - **CI Results**: Contains invocation results. There may be multiple results. Double-click results to access the result records directly.
+  - **Inputs**: Contains a log of input parameter ID's (in JSON) against the values sent when invoking the bot. This field is empty if no parameter IDs are sent.
+  - **Failure Code**: Contains a failure code if the bot fails to run or complete.
+  - **Failure Reason**: Contains information on the reason the bot failed to run or complete.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## To check invocation results
+
+  The \{\{FRS\_VARS.Neurons\_Bot}}**Results** tab displays a list of results for each invocation. There may be one or more results for a single bot invocation.
+
+  The results are viewed in the **Ivanti Neurons Bot Result** dialog, or in the **Ivanti Neurons Bot Results** workspace.
+
+  1. Open the related **CI** business object record.
+  2. Select the \{\{FRS\_VARS.Neurons\_Bot}}**&#x20;Results** tab.
+     If this tab is not visible, click the **Restore hidden tabs** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/8qgkd6bNoUEOedgWUlCcL_hiddentabsicon.png" alt caption size="10" width="19" height="20"}, and then select it from the list.
+  3. Double-click the invocation record in the list to open the result dialog, or click **Go to** to open the **Ivanti Neurons Bot Results** workspace.
+
+  *The View Neurons Bot Invocation CI Result Dialog*
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/rb8DCP8rUdIIlzhczXywQ_viewneuronsbotinvocationciresultdialog1.png" alt="Screenshot of the view neurons bot invocation CI result dialog" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/View_Neurons_Bot_Invocation_CI_Result_Dialog1.png" githubPath="Content/Resources/Images/help-images/View_Neurons_Bot_Invocation_CI_Result_Dialog1.png" showCaption="false"></Image>
+
+  *The Ivanti Neurons Bot Results Workspace*
+
+
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/YedCdfIPbXSFIMnWJcQOU_neuronsbotresultsworkspace.png" alt="screenshot of the ivanti neurons bot results workspace" position="flex-start" size="40" initialPath="images/neurons_bot_results_workspace.png" githubPath="Content/Configure/Neurons/images/neurons_bot_results_workspace.png" showCaption="false"></Image>
+
+  <hint type="info">
+    Administrators can also open the **Ivanti Neurons Bot Results** workspace from the **Workspaces** list. Administrators can enable other roles to open this workspace, if you require access contact your Administrator.
+  </hint>
+
+
+
+  - **Device Name**: The name of the asset to which the messages apply (only displayed in the **Ivanti Neurons Bot Results** workspace).
+  - **Agent Identifier**: ID of the \{\{FRS\_VARS.Company}}\{\{FRS\_VARS.Neurons}} agent running on the **CI** device
+  - **Result State**: State of invocation, which can be:
+    - In Progress
+    - Complete
+    - Failed
+    - Timed Out
+    - Skipped
+    - Unknown
+  - **Log Messages**: Displays messages generated for the \{\{FRS\_VARS.Neurons\_Bot}} run. Messages are displayed as they are generated.
+    - **Sent**: Date and time the message was sent.
+    - **Message**: Contents of the message. Use the vertical scroll bar to view larger message contents. Use the **Next** and **Previous** buttons to move between pages.
+  - **Bot Name**: Name of the bot that produced the result.
+  - **Completion State**: Current state of invocation, which can be:
+    - Pending
+    - In Progress
+    - Success
+    - Failed
+    - Timed Out
+    - Skipped
+    - Unknown
+  - **Invoked On**: Date/time the bot was invoked.
+  - **Started On**: Date/time the bot started running and processing inputs.
+  - **Finished On**: Date/time the bot finished running.
+  - **Inputs**: Contains a log of input parameter IDs (in JSON) against the values sent when invoking the bot.
+</ExpandableHeading>
+
+## Troubleshooting a Neurons Bot Invocation
+
+If you experience an error and a \{\{FRS\_VARS.Neurons\_Bot}} fails to run when invoked, check the table below for possible reasons for the error, and possible solutions.
+
+<table isTableHeaderOn="true">
+  <tr>
+    <td>
+      Issue
+    </td>
+    <td>
+      Possible Reason(s)
+    </td>
+    <td>
+      Solution
+    </td>
+  </tr>
+  <tr>
+    <td>
+      **When run, the following Quick Action error is displayed:** **CI** record with \{\{FRS\_VARS.Neurons}} device information must be linked prior to running this \{\{FRS\_VARS.Quick\_Action}}.
+    </td>
+    <td>
+      No **CI** record is linked to the current record, or is not being run directly against a **CI** record.
+    </td>
+    <td>
+      Link a **CI** record that was imported from \{\{FRS\_VARS.Neurons}} to the current record.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      **When run, the following Quick Action error is displayed:** **CI** record requires \{\{FRS\_VARS.Neurons}} device information prior to running this \{\{FRS\_VARS.Quick\_Action}}
+    </td>
+    <td>
+      The \{\{FRS\_VARS.Quick\_Action}} is being run directly against a **CI** record, but does not have the **Agent ID** field populated.
+    </td>
+    <td>
+      Ensure the \{\{FRS\_VARS.Neurons\_Bots}} device synchronization has been configured to import the **Agent ID**, and it has been run successfully.
+      Run directly against a **CI** record with an **Agent ID**.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      **When run, the following Quick Action error is displayed:** Unable to resolve relationship from \<Business Object A> to \<Business Object B> via reference name.
+    </td>
+    <td>
+      The \{\{FRS\_VARS.Quick\_Action}} is run against an unsupported business object. Business objects that are supported OOTB are:
+      - **Incident**.
+      - **Change**.
+      - **Problem**.
+      - **Knowledge**.
+    </td>
+    <td>
+      Only run a \{\{FRS\_VARS.Neurons\_Bot}} against a supported business object.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      **When run, the following Quick Action error is displayed:** Multiple Agent IDs linked. Cannot determine desired agent to target.
+    </td>
+    <td>
+      More than one **CI** record is linked to the current record.
+    </td>
+    <td>
+      Ensure that there is only a single **CI** record with a \{\{FRS\_VARS.Neurons}} **Agent ID** linked to the current record.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      **When run, the following Quick Action error is displayed:** The method or operation is not implemented.
+    </td>
+    <td>
+      The Action Service feature flag has not been enabled.
+    </td>
+    <td>
+      Request \{\{FRS\_VARS.Company}} Cloud Operations to enable the Action Service feature flag. Refer to [More Information](../../More-Information.mdx).
+    </td>
+  </tr>
+  <tr>
+    <td>
+      You created a \{\{FRS\_VARS.Neurons\_Bot}} \{\{FRS\_VARS.Quick\_Action}} in the \{\{FRS\_VARS.Graphical\_Action\_Designer}}, but it is not shown when attempting to run it.
+    </td>
+    <td>
+      The **EnableActionService** global constant has not been enabled.
+    </td>
+    <td>
+      Set the **EnabledActionService** global constant to **True**. Refer to [Working with Global Constants](../Constants/Defining_Global_Constant.mdx).
+    </td>
+  </tr>
+</table>
+
+The Ivanti Neurons Bot Results workspace provides a centralized interface for viewing and managing Neurons bot execution data in ITSM.
+
+**Access the Bot Results Workspace**

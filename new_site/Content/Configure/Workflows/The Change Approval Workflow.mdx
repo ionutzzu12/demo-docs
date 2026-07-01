@@ -1,0 +1,192 @@
+---
+title: About the Change Approval Workflow
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:58 GMT+0300 (Eastern European Summer Time)
+---
+
+This section describes the default change approval workflow. See [Using Workflows](Using_Workflows.mdx) for information on modifying workflows.
+
+*The Default Change Approval Workflow*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/pIma8DQU6lSUyv5tJGgRZ_the-default-change-approval-workflow.png" position="flex-start" size="40" initialPath="../../Resources/Images/help-images/The Default Change Approval Workflow.png" githubPath="Content/Resources/Images/help-images/The Default Change Approval Workflow.png" showCaption="false"></Image>
+
+## Trigger Definition Configuration
+
+Under **Field Level Conditions**, do the following:
+
+- Select **Specific fields updated - at least one of the following fields should be updated.**
+- For the **Field** field, select **Status**.
+- For the **Operator** field, select **Equal to**.
+- For the **Value** field, select **Pending Approval**.
+
+*Change Workflow Trigger Definition*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/hdHlJdAT-XGiz1Ew2KSGd_workflow-configuration-window1.png" position="flex-start" size="40" initialPath="../../Resources/Images/help-images/Workflow Configuration Window1.png" githubPath="Content/Resources/Images/help-images/Workflow Configuration Window1.png" showCaption="false"></Image>
+
+- Set the exception notification to an email template.
+
+### Workflow
+
+1. **If** Need additional approval
+
+<Paragraph indent="1">
+  Change type not equal to standard
+</Paragraph>
+
+<Paragraph indent="1">
+  *AND*
+</Paragraph>
+
+<Paragraph indent="1">
+  Change type not equal to minor.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  If true: Go to :Link[If emergency change]{label="If emergency change" overridedLabel="If emergency change" spaceId docId="BWqA1sNAVueI-k3UxEJJ7" version="v2" docAnchorId="#If" loadingMethod="dynamic" newTab="false" href="The Change Approval Workflow.mdx"}
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  If false: Go to stop.
+</Paragraph>
+
+2. **If** emergency change
+
+<Paragraph indent="1">
+  Change type equal to emergency.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  If true: Go to :Link[Get Approval ECAB approval]{label="Get Approval ECAB approval" overridedLabel="Get Approval ECAB approval" spaceId docId="BWqA1sNAVueI-k3UxEJJ7" version="v2" docAnchorId="#Get_Approval_ECAB_Approval" loadingMethod="dynamic" newTab="false" href="The Change Approval Workflow.mdx"}
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  If false: Go to :Link[Get Approval CAB approval]{label="Get Approval CAB approval" overridedLabel="Get Approval CAB approval" spaceId docId="BWqA1sNAVueI-k3UxEJJ7" version="v2" docAnchorId="#Get_Approval_CAB_Approval" loadingMethod="dynamic" newTab="false" href="The Change Approval Workflow.mdx"}
+</Paragraph>
+
+3. **If** major change
+
+<Paragraph indent="1">
+  Change type equal to major.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  If true: Go to :Link[Get Approval MC approval]{label="Get Approval MC approval" overridedLabel="Get Approval MC approval" spaceId docId="BWqA1sNAVueI-k3UxEJJ7" version="v2" docAnchorId="#Get_Approval_MC_Approval" loadingMethod="dynamic" newTab="false" href="The Change Approval Workflow.mdx"}
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  If false: Go to :Link[Notification Approved change notification]{label="Notification Approved change notification" overridedLabel="Notification Approved change notification" spaceId docId="BWqA1sNAVueI-k3UxEJJ7" version="v2" docAnchorId="#Notification_Approved_Change_Notification" loadingMethod="dynamic" newTab="false" href="The Change Approval Workflow.mdx"}
+</Paragraph>
+
+4. **Get Approval** ECAB approval
+
+*Get ECAB Approval*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/C6NxVAxCH57jzT2RPzLyU_change-workflow-get-approval-ecab-approval.png" position="flex-start" size="40" initialPath="../../Resources/Images/help-images/change workflow get approval ECAB approval.png" githubPath="Content/Resources/Images/help-images/change workflow get approval ECAB approval.png" showCaption="false"></Image>
+
+<Paragraph listStyleType="disc" indent="2">
+  If approved: Go to :Link[Notification Approved change notification]{label="Notification Approved change notification" overridedLabel="Notification Approved change notification" spaceId docId="BWqA1sNAVueI-k3UxEJJ7" version="v2" docAnchorId="#Notification_Approved_Change_Notification" loadingMethod="dynamic" newTab="false" href="The Change Approval Workflow.mdx"}
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  If denied: Go to :Link[Notification Denied change notification]{label="Notification Denied change notification" overridedLabel="Notification Denied change notification" spaceId docId="BWqA1sNAVueI-k3UxEJJ7" version="v2" docAnchorId="#Notification_Denied_Change_Notification" loadingMethod="dynamic" newTab="false" href="The Change Approval Workflow.mdx"}
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  If timed out: Go to :Link[Notification Timed out approval notification.]{label="Notification Timed out approval notification." overridedLabel="Notification Timed out approval notification." spaceId docId="BWqA1sNAVueI-k3UxEJJ7" version="v2" docAnchorId="#Notification_Time_Out_Approval_Notification" loadingMethod="dynamic" newTab="false" href="The Change Approval Workflow.mdx"}
+</Paragraph>
+
+5. **Get Approval** CAB approval
+
+*Get CAB Approval*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/tmCRBUyi9downRnuJywtx_change-workflow-get-approval-cab-approval.png" position="flex-start" size="40" initialPath="../../Resources/Images/help-images/change workflow get approval CAB approval.png" githubPath="Content/Resources/Images/help-images/change workflow get approval CAB approval.png" showCaption="false"></Image>
+
+<Paragraph listStyleType="disc" indent="2">
+  If approved: Go to :Link[If major change]{label="If major change" overridedLabel="If major change" spaceId docId="BWqA1sNAVueI-k3UxEJJ7" version="v2" docAnchorId="#If_Major_Change" loadingMethod="dynamic" newTab="false" href="The Change Approval Workflow.mdx"}
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  If denied: Go to :Link[Notification Denied change notification]{label="Notification Denied change notification" overridedLabel="Notification Denied change notification" spaceId docId="BWqA1sNAVueI-k3UxEJJ7" version="v2" docAnchorId="#Notification_Denied_Change_Notification" loadingMethod="dynamic" newTab="false" href="The Change Approval Workflow.mdx"}
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  If timed out: Go to :Link[Notification Timed out approval notification.]{label="Notification Timed out approval notification." overridedLabel="Notification Timed out approval notification." spaceId docId="BWqA1sNAVueI-k3UxEJJ7" version="v2" docAnchorId="#Notification_Time_Out_Approval_Notification" loadingMethod="dynamic" newTab="false" href="The Change Approval Workflow.mdx"}
+</Paragraph>
+
+6. **Get Approval** MC approval
+
+*Get MC Approval*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Uwf5poHlmi2grmU2rXjqk_change-workflow-get-approval-mc-approval.png" position="flex-start" size="40" initialPath="../../Resources/Images/help-images/change workflow get approval MC approval.png" githubPath="Content/Resources/Images/help-images/change workflow get approval MC approval.png" showCaption="false"></Image>
+
+<Paragraph listStyleType="disc" indent="2">
+  If approved: Go to :Link[Notification Approved change notification]{label="Notification Approved change notification" overridedLabel="Notification Approved change notification" spaceId docId="BWqA1sNAVueI-k3UxEJJ7" version="v2" docAnchorId="#Notification_Approved_Change_Notification" loadingMethod="dynamic" newTab="false" href="The Change Approval Workflow.mdx"}
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  If denied: Go to :Link[Notification Denied change notification]{label="Notification Denied change notification" overridedLabel="Notification Denied change notification" spaceId docId="BWqA1sNAVueI-k3UxEJJ7" version="v2" docAnchorId="#Notification_Denied_Change_Notification" loadingMethod="dynamic" newTab="false" href="The Change Approval Workflow.mdx"}
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  If timed out: Go to :Link[Notification Timed out approval notification.]{label="Notification Timed out approval notification." overridedLabel="Notification Timed out approval notification." spaceId docId="BWqA1sNAVueI-k3UxEJJ7" version="v2" docAnchorId="#Notification_Time_Out_Approval_Notification" loadingMethod="dynamic" newTab="false" href="The Change Approval Workflow.mdx"}
+</Paragraph>
+
+7. **Notification** Denied change notification
+
+*Denied Change Notification*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Xc_B2jxkHvOJ9s-2HuR0r_change-workflow-notifcation-denied.png" position="flex-start" size="40" initialPath="../../Resources/Images/help-images/change workflow notifcation denied.png" githubPath="Content/Resources/Images/help-images/change workflow notifcation denied.png" showCaption="false"></Image>
+
+8. **Notification** Approved change notification
+
+*Approved Change Notification*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/3YCZli3lPpKUfxy4v5GH6_change-workflow-notification-approved.png" position="flex-start" size="40" initialPath="../../Resources/Images/help-images/change workflow notification approved.png" githubPath="Content/Resources/Images/help-images/change workflow notification approved.png" showCaption="false"></Image>
+
+9. **Notification** Timed out approval notification.
+
+*Timed Out Approval Notification*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/RRPZQ_HMiPv4_4VyzKRFW_change-workflow-notification-time-out.png" position="flex-start" size="40" initialPath="../../Resources/Images/help-images/change workflow notification time out.png" githubPath="Content/Resources/Images/help-images/change workflow notification time out.png" showCaption="false"></Image>
+
+10. **Update** Set status to scheduled.
+
+<Paragraph indent="1">
+  Status: Scheduled
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  Ok: Go to stop.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  Failed: Go to stop.
+</Paragraph>
+
+11. **Update** Set cancellation reason.
+
+<Paragraph indent="1">
+  Cancellation reason: Change approval denied by CAB member or approval board.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  Ok: Go to :Link[Update Set status to denied.]{label="Update Set status to denied." overridedLabel="Update Set status to denied." spaceId docId="BWqA1sNAVueI-k3UxEJJ7" version="v2" docAnchorId="#Update_Set_Status_to_Denied" loadingMethod="dynamic" newTab="false" href="The Change Approval Workflow.mdx"}
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  Failed: Go to stop.
+</Paragraph>
+
+12. **Update** Set status to denied.
+
+<Paragraph indent="1">
+  Status: Denied
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  Ok: Go to stop.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  Failed: Go to stop.
+</Paragraph>

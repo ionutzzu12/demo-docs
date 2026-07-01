@@ -1,0 +1,502 @@
+---
+title: Using the CreateObject Web Method
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:01 GMT+0300 (Eastern European Summer Time)
+---
+
+This web method creates a new instance of a single business object and may also establish relationships with other objects. It runs initialization rules first, then applies the supplied values to the fields and invokes autofill, calculated, save and business rules in the same way, if the object was being created interactively via user interface. Validation rules are also executed and they might prevent the saving operation, if the resulting object field values do not pass the validation.
+
+This web method initializes fields in the order provided.
+
+## Request Syntax
+
+FRSHEATIntegrationCreateBOResponse CreateObject(string sessionKey, string tenantId, ObjectCommandData commandData)
+
+## Parameters
+
+- **sessionKey**: The session key from the **Connect** web method.
+- **tenantId**: The tenant for which the session key is authenticated.
+- **commandData**: A structure containing information about the creation request.
+
+public class ObjectCommandData
+
+\{
+
+public string ObjectId;
+
+public string ObjectType;
+
+public List\<ObjectCommandDataFieldValue> Fields;
+
+public List\<LinkEntry> LinkToExistent;
+
+}
+
+- **ObjectId**: The RecID of the object to be created.
+- **ObjectType**: The type of the object to be created.
+- **FieldValues**: A list of name-value pairs that contain the field names and new values for the fields of the business object that should be populated.
+- **LinkToExistent**: References the **LinkEntry** class, which controls whether relationships between this object and other objects should be established.
+
+public class LinkEntry
+
+\{
+
+public string Action;
+
+public string Relation;
+
+public string RelatedObjectType;
+
+public string RelationshipName;
+
+public string RelatedObjectId;
+
+public List\<SearchCondition> SearchCriteria;
+
+}
+
+The **LinkEntry** class has the following fields:
+
+- **Action**: Determines whether this object should be linked with the other objects. The value can be either link or unlink, but only "link" is meaningful in **CreateObject** operation.
+- **Relation**: The relationship tag (shown as the internal reference name in the Configuration Console) for the relationship type to be established.
+- **RelationshipName**: The relationship name (shown as the display name in Configuration Console) for the relationship type to be established.
+- **RelatedObjectType**: The type of the business object in an object reference notation to be linked with.
+- **RelatedObjectId**: (Optional. The class must have either the **RelatedObjectId** or **SearchCriteria** field.) The RecID of the business object to be linked or unlinked.
+- **SearchCriteria**: (Optional. The class must have either the **RelatedObjectId** or **SearchCriteria** field.) A list of structures defining search criteria for matching objects that have to be linked with this object.
+
+public class SearchCondition
+
+\{
+
+public string ObjectId;
+
+public string ObjectDisplay;
+
+public string JoinRule;
+
+public string Condition;
+
+public SearchConditionType ConditionType;
+
+public string FieldName;
+
+public string FieldDisplay;
+
+public string FieldAlias;
+
+public string FieldType;
+
+public string FieldValue;
+
+public string FieldValueDisplay;
+
+public string FieldValueBehavior;
+
+public string FieldStartValue;
+
+public string FieldEndValue;
+
+public List\<SearchCondition> SubQuery;
+
+}
+
+- **ObjectId**:  The RecID of the object to match.
+- **ObjectDisplay**: No definition present.
+- **JoinRule**: Determines how individual search criteria combine together. Possible values are "and" and "or".
+- **Condition**: Describes how the field value should be matched. Possible values are listed below.
+
+| Operator | Meaning                  |
+| -------- | ------------------------ |
+| =        | Equal to                 |
+| !=       | Not equal to             |
+| >        | Greater than             |
+| \<       | Less than                |
+| >=       | Greater than or equal to |
+| \<=      | Less than or equal to    |
+| ->       | Begin with               |
+| \{}      | Contains                 |
+| !\{}     | Does not contain         |
+| 0        | Is empty                 |
+| !0       | Is not empty             |
+| ()       | In list                  |
+| !()      | Not in list              |
+| >\<      | In range                 |
+
+- **ConditionType**: Controls how text fields are searched. Can be 0 (uses regular Microsoft SQL field search \[SQL like, contains clauses]) or 1 (uses full-text Microsoft SQL field search).
+- **FieldName**: Field name.
+- **FieldValue**: Field value.
+- **FieldValueBehavior**: Either single or list.
+- **FieldStartValue**: Start value for "in range" condition only.
+- **FieldEndValue**: End value for "in range" condition only.
+
+## Return Value
+
+**FRSHEATIntegrationCreateBOResponse** object, defined as follows:
+
+public class FRSHEATIntegrationCreateBOResponse
+
+\{
+
+public string status \{ get; set; }
+
+public string exceptionReason \{ get; set; }
+
+public string recId \{ get; set; }
+
+public WebServiceBusinessObject obj \{ get; set; }
+
+}
+
+The **FRSHEATIntegrationCreateBOResponse** class has the following fields:
+
+- **status**: Contains a status indicating whether the web method was successful. The table below contains a full description of the available status values.
+- **exceptionReason**: Contains exception information, if the application throws an exception when running this web method.
+- **recId**: The Rec ID of the newly created record.
+- **obj**: Returns the updated record as an **WebServiceBusinessObject** object, if the business object record is updated successfully.
+
+The following table lists the available status values and describes how to interpret them.
+
+| Status      | Explanation                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Success** | Created the business object successfully.<br /><br />The **recId** field of the response object contains the RecID of the newly created record. The **obj** field references the newly created **WebServiceBusinessObject**.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| **Error**   | Cannot create the business object.  The **recId** and **obj** fields are null.  Inspect the corresponding **exceptionReason** field to determine why the web method has failed.<br />One typical error is **Table not found**, which occurs when the specified business object does not exist in the tenant. Ensure that the name of the business object is spelled properly.<br />Another common error is that the specified field does not exist for the business object. The error message is:<br />ObjectTableMap: field \<FieldName> is not found in table \<Business Object>#<br />Ensure that the field name is spelled correctly, and that it is defined for the specified business object.<br />Another common error is to specify a value for a field that does not exist in the associated validation list. The error message is:<br />\<BusinessObject>.\<Field>:\`\<FieldValue>\` is not in the validation list |
+
+To specify DateTime values, specify the string value using ISO 8601 format. The value must be relative to UTC. The DateTime value can be specified in one of the following two ways:
+
+- yyyy-mm-dd  hh\:mm
+- yyyy-mm-ddThh\:mm
+
+Use either a space character or "T" character to separate the date and time values.
+
+The following are two examples of specifying a DateTime value of March 26th, 2013, 18:38 UTC, relative to the above two formats:
+
+- 2013-03-26 18:38
+- 2013-03-26**T**18:38
+
+## Example
+
+The following example first creates a brand new change record with specific field values, then locates an existing CI.Computer record, using the **Search** web method, and links the two records together using the **CreateObject** web method.
+
+ObjectCommandData data = new ObjectCommandData();
+
+data.ObjectType = "Change#";
+
+List\<ObjectCommandDataFieldValue> dataFields = new List\<ObjectCommandDataFieldValue>();
+
+Dictionary\<string, object> fields = new Dictionary\<string, object>();
+
+fields\["RequestorLink"] = "FB884D18F7B746A0992880F2DFFE749C";
+
+fields\["Subject"] = "Need to swap out the hard disk";
+
+fields\["Description"] = "The hard drive just crashed - need to replace with a new drive from the vendor";
+
+fields\["Status"] = "Logged";
+
+fields\["TypeOfChange"] = "Major";
+
+fields\["OwnerTeam"] = "Operations";
+
+fields\["Owner"] = "Admin";
+
+fields\["Impact"] = "Medium";
+
+fields\["Urgency"] = "Medium";
+
+fields\["CABVoteExpirationDateTime"] = "2013-03-26 18:38:30";
+
+foreach (string key in fields.Keys)
+
+\{
+
+dataFields.Add(new ObjectCommandDataFieldValue()
+
+\{
+
+Name = key,
+
+Value = fields\[key].ToString()
+
+});
+
+}
+
+data.Fields = dataFields.ToArray();
+
+// Here we will identify a CI.Computer record, to link to the
+
+// new Change record
+
+// For this example, we will attempt to locate the CI.Computer record
+
+// with the name of "APAC-DEPOT-SERV01", and retrieve its RecId
+
+ObjectQueryDefinition ciQuery = new ObjectQueryDefinition();
+
+// Just retrieve only the RecId field for the CI.Computer record
+
+FieldClass\[] ciFieldObjects = new FieldClass\[] \{
+
+new FieldClass()
+
+\{
+
+Name = "RecId",
+
+Type = "Text"
+
+}
+
+};
+
+ciQuery.Select = new SelectClass();
+
+ciQuery.Select.Fields = ciFieldObjects;
+
+ciQuery.From = new FromClass();
+
+// Search for the record against the CI.Computer member object
+
+ciQuery.From.Object = "CI.Computer";
+
+ciQuery.Where = new RuleClass\[]
+
+\{
+
+// Provide the criteria to search for the CI.Computer
+
+// Here, we will search for the CI.Computer by its Name
+
+new RuleClass()
+
+\{
+
+Condition = "=",
+
+Field = "Name",
+
+Value = "APAC-DEPOT-SERV01"
+
+}
+
+};
+
+// Pass in the ObjectQueryDefinition for the query
+
+FRSHEATIntegrationSearchResponse searchResponse = frSvc.Search(authSessionKey, tenantId, ciQuery);
+
+WebServiceBusinessObject\[]\[] cilist = searchResponse.objList;
+
+// Assuming that the CI record is uniquely identified by its Name, and
+
+// because the above query does not join with other tables, we should be
+
+// able to locate the CI record, by accessing cilist\[0]\[0], in the
+
+// list of list of WebServiceBusinessObjects
+
+WebServiceBusinessObject ci = cilist\[0]\[0];
+
+string ciRecId = ci.RecID;
+
+// Define the LinkEntry record, to link the new Change record to the CI
+
+// record, by means of the RecId of the Change (i.e. ciRecId), as
+
+// determined above
+
+data.LinkToExistent = new LinkEntry\[]
+
+\{
+
+new LinkEntry()
+
+\{
+
+Action = "Link",
+
+Relation = "",
+
+RelatedObjectType = "CI#",
+
+RelatedObjectId = ciRecId
+
+}
+
+};
+
+// If the record creation succeeds, the result variable will store the
+
+// RecId of the new Change record, otherwise it will be null
+
+FRSHEATIntegrationCreateBOResponse result = frSvc.CreateObject(authSessionKey, tenantId, data);
+
+if (result.status == "Success")
+
+\{
+
+Console.WriteLine("A new Change record is created with RecId of \{\{0}}", result.recId);
+
+}
+
+The next example creates a new Profile.Employee record and links the user to the respective roles and teams. Notice that the password value is specified in plain text; it is automatically converted to the internal hashed value when you save the record.
+
+ObjectCommandData data = new ObjectCommandData();
+
+data.ObjectType = "Profile#Employee";
+
+List\<ObjectCommandDataFieldValue> dataFields = new List\<ObjectCommandDataFieldValue>();
+
+Dictionary\<string, object> fields = new Dictionary\<string, object>();
+
+fields\["Status"] = "Active";
+
+fields\["FirstName"] = "Brian";
+
+fields\["LastName"] = "Wilson";
+
+fields\["LoginID"] = "BWilson";
+
+fields\["IsInternalAuth"] = true;
+
+// Notice when setting the password for the Employee, that the plain text
+
+// password is specified here - it will be converted to the hashed value
+
+// upon save of the record
+
+fields\["InternalAuthPasswd"] = "Manage1t";
+
+fields\["PrimaryEmail"] = "BWilson\@example.com";
+
+fields\["Phone1"] = "14158665309";
+
+// RecId for the "Admin" user, to serve as the Manager for the new Employee
+
+fields\["ManagerLink"] = "FB884D18F7B746A0992880F2DFFE749C";
+
+// RecId for the "GMI" Org Unit, for the OrgUnit of the new Employee
+
+fields\["OrgUnitLink"] = "4A05123D660F408997A4FEE714DAD111";
+
+fields\["Team"] = "IT";
+
+fields\["Department"] = "Operations";
+
+fields\["Title"] = "Administrator";
+
+foreach (string key in fields.Keys)
+
+\{
+
+dataFields.Add(new ObjectCommandDataFieldValue()
+
+\{
+
+Name = key,
+
+              Value = fields\[key].ToString()
+
+});
+
+}
+
+data.Fields = dataFields.ToArray();
+
+data.LinkToExistent = new LinkEntry\[]
+
+\{
+
+// First we link the new Employee to the "SelfService" and
+
+// "ServiceDeskAnalyst" roles by RecID
+
+// The internal reference name for the relationship between
+
+// Profile.Employee and Frs\_def\_role is empty, so we leave
+
+// the Relation attribute in the LinkEntry empty in this case
+
+// Link to "SelfService" role
+
+new LinkEntry()
+
+       \{
+
+Action = "Link",
+
+              Relation = "",
+
+              RelatedObjectType = "Frs\_def\_role#",                   
+
+              RelatedObjectId = "0a4724d8478b451abea3fb44d33db1b6"
+
+},
+
+// Link to "ServiceDeskAnalyst" role
+
+new LinkEntry()
+
+       \{
+
+Action = "Link",
+
+              Relation = "",
+
+              RelatedObjectType = "Frs\_def\_role#",
+
+              RelatedObjectId = "06d780f5d7d34119be0d1bc8fc997947"
+
+},
+
+// We then link the new Employee to the "IT" and "HR" teams
+
+// The internal reference name for the relationship between
+
+// Profile.Employee and StandardUserTeam is "Rev2", so we
+
+// specify this in the Relation attribute in the LinkEntry
+
+// Link to the "IT" team
+
+new LinkEntry()
+
+       \{
+
+Action = "Link",
+
+              Relation = "Rev2",
+
+              RelatedObjectType = "StandardUserTeam#",
+
+              RelatedObjectId = "10F60157A4F34A4F9DDB140E2328C7A6"
+
+},
+
+// Link to the "HR" team
+
+new LinkEntry()
+
+       \{
+
+Action = "Link",
+
+              Relation = "Rev2",
+
+              RelatedObjectType = "StandardUserTeam#",
+
+              RelatedObjectId = "1FF47B9EDA3049CC92458CE3249BA349"
+
+}
+
+};
+
+FRSHEATIntegrationCreateBOResponse result = frSvc.CreateObject(authSessionKey, tenantId, data);
+
+if (result.status == "Success")
+
+\{
+
+Console.WriteLine("A new Employee record is created with recId of \{\{0}}", result.recId);
+
+}

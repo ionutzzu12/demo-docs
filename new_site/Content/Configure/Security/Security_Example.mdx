@@ -1,0 +1,81 @@
+---
+title: Security Examples
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:57 GMT+0300 (Eastern European Summer Time)
+---
+
+- :Link[Allowing Users to View Incidents]{label="Allowing Users to View Incidents" overridedLabel="Allowing Users to View Incidents" spaceId docId="OKx1la3TKs2V5u6yNur_X" version="v2" docAnchorId="#Allowing1" loadingMethod="dynamic" newTab="false" href="Security_Example.mdx"}
+- :Link[Allowing Service Desk Analysts to View Incidents]{label="Allowing Service Desk Analysts to View Incidents" overridedLabel="Allowing Service Desk Analysts to View Incidents" spaceId docId="OKx1la3TKs2V5u6yNur_X" version="v2" docAnchorId="#Allowing2" loadingMethod="dynamic" newTab="false" href="Security_Example.mdx"}
+- :Link[Allowing Service Desk Managers to View Incidents]{label="Allowing Service Desk Managers to View Incidents" overridedLabel="Allowing Service Desk Managers to View Incidents" spaceId docId="OKx1la3TKs2V5u6yNur_X" version="v2" docAnchorId="#Allowing3" loadingMethod="dynamic" newTab="false" href="Security_Example.mdx"}
+
+## Allowing Users to View Incidents
+
+To allow a user to view an incident that he has created and that has been assigned to a Service Desk Analyst, do the following:
+
+1. From the Configuration Console, click **Configure > Users and Permissions > Roles and Permissions** to display the **Roles and Permissions** workspace.
+2. Click **Service Desk Analyst**.
+3. Click the **Object Permissions** tab.
+4. Find the incident object name and click **Edit** under the **Access** column. The **ServiceDeskAnalyst accessing Incident** page opens.
+5. Click the **add** icon to add a table row for adding a case.
+6. Select **View** from the drop-down list.
+7. Select **CreatedBy** as the first operator to constrain from the drop-down list.
+8. From the next drop-down list, select **is** as the first negation.
+9. From the next drop-down list, select **equal to** as a matching value.
+10. Enter **$(CurrentLoginId())** in the last field.
+
+*Security Example: Allowing Users to View Incidents*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/lJ-rGgvAp6YQTScj46gf1_securityex1.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/security_ex1.png" githubPath="Content/Resources/Images/help-images/security_ex1.png" showCaption="false"></Image>
+
+11. Click **Update** to save your changes. The display changes to read:
+
+**View records where**
+
+**Incident's CreatedBy is equal to $(CurrentLoginId())**
+
+Upon logging in to the Self-Service Portal, the incident list displays any incident he has created as a view-only entry.
+
+## Allowing Service Desk Analysts to View Incidents
+
+To allow Service Desk Analysts to view and update their created incidents through their lifecycles, do the following:
+
+1. From the Configuration Console, click **Configure > Users and Permissions > Roles and Permissions** to display the **Roles and Permissions** workspace.
+2. Click **Service Desk Analyst**.
+3. Click the **Object Permissions** tab.
+4. Find the incident object name and click **Edit** under the **Access** column. The **ServiceDeskAnalyst accessing Incident** page opens.
+5. Click the **add** icon to add a table row for adding a case.
+6. Select **Update and View** from the drop-down list.
+7. Select **Employee (via IncidentOwnerEmployee)** as the first operator to constrain from the drop-down list.
+8. Leave the next drop-down list blank.
+9. From the next drop-down list, select **is** as the first negation.
+10. From the next drop-down list, select **the logged-in user** as a matching value.
+11. Click **Update** to save your changes. The display changes to read:
+
+**Update and view records where**
+
+**Incident's \[Employee#.Owner] is the logged-in user**
+
+Upon logging in as a Service Desk Analyst, the incident list displays only the incidents assigned to that Service Desk Analyst.
+
+## Allowing Service Desk Managers to View Incidents
+
+To allow a Service Desk Manager to update and view incidents created by himself and any subordinates, do the following:
+
+1. From the Configuration Console, click **Configure > Users and Permissions > Roles and Permissions** to display the **Roles and Permissions** workspace.
+2. Click **Service Desk Manager**.
+3. Click the **Object Permissions** tab.
+4. Find the incident object name and click **Edit** under the **Access** column. The **ServiceDeskManager accessing Incident** page opens.
+5. Click the **add** icon to add a table row for adding a case.
+6. Select **Update and View** from the drop-down list.
+7. Select **Employee (via IncidentOwnerEmployee)** as the first operator to constrain from the drop-down list.
+8. Leave the next drop-down list blank.
+9. From the next drop-down list, select **is** as the first negation.
+10. From the next drop-down list, select **the logged-in user** as a matching value.
+11. Check **or the logged-in user's subordinates**.
+12. Click **Update** to save your changes. The display changes to read:
+
+**Update and view records where**
+
+**Incident's \[Employee#.Owner] is the logged-in user (or the logged-in user's subordinate)**
+
+Upon logging in as a Service Desk Manager, the incident list displays the incidents created by the Service Desk Manager and any employees listed in the reporting hierarchy.

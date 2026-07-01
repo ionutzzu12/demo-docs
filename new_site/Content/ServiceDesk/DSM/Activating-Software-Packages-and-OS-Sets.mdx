@@ -1,0 +1,65 @@
+---
+title: Activating Software Packages and OS Sets
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:48 GMT+0300 (Eastern European Summer Time)
+---
+
+After synchronization between DSM and \{\{FRS\_VARS.ProductName}}, the software or operating application has a status of not available in \{\{FRS\_VARS.ProductName}} until it is activated. You must activate any software that has a status of not available before it can be installed or provisioned in \{\{FRS\_VARS.ProductName}}.
+
+You must publish the software package and software set in the \{\{FRS\_VARS.Self\_Service\_Portal-Self-Service}} portal so that it is available for requesters from the \{\{FRS\_VARS.Self\_Service\_Portal-Self-Service}} portal.
+
+1. Log into the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Console}} console.
+2. Open one or more of the following workspaces:
+   - To make the software packages available, open the **DSM Software Package - Legacy** workspace.
+   - To make the software sets available, open the **DSM Software Set - Legacy** workspace.
+   - To make the software operating systems available, open the **DSM Operating System Set - Legacy** workspace.
+3. Click the arrow at the top of the **Status** column, then select **Group by this Field**. The application lists all the records set to not available together.
+4. Depending on the workspace you are in, select one of the following actions:
+   - **Activate Software Package** in the **DSM Software Package - Legacy** workspace.
+   - **Activate Software Set** in the **DSM Software Set - Legacy** workspace.
+   - **Activate OS Set** in the **DSM Operating System Set - Legacy** workspace.
+
+<Paragraph indent="1">
+  The application sets the status to requested and creates a task to activate. After the DSM server processes the task, the application sets the status to available.
+</Paragraph>
+
+5. Select the records to make available to end users in the \{\{FRS\_VARS.Self\_Service\_Portal-Self-Service}} portal:
+   - **Publish to Self Service&#x20;**&#x69;n the **DSM Software Package - Legacy** workspace.
+   - **Publish to Self Service** in the **DSM Software Set - Legacy** workspace.
+
+<Paragraph indent="1">
+  You can also open a record and select **Publish to Self Service**.
+</Paragraph>
+
+<Paragraph indent="1">
+  The **Publish to SelfService** column shows a value of yes and the application makes the item available in the \{\{FRS\_VARS.Self\_Service\_Portal-Self-Service}} portal.
+</Paragraph>
+
+## Specifying the Approval for Software Packages
+
+If you specify the approval for a software package, an approval task is created when the software is requested from the \{\{FRS\_VARS.Self\_Service\_Portal-Self-Service}} portal.
+
+<hint type="info">
+  To require approval for hardware or operating system sets, see [Defining Hardware and Software Profiles](Creating-Hardware-and-Software-Profiles.mdx).
+</hint>
+
+1. Log into the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Console}} console.
+2. Open the **DSM Software Package** workspace.
+3. Open the record for which to specify approval.
+4. On the **Details** tab, check **Approval required**. The **Approval Required** column in the list view shows a value of yes.
+5. Save the record.
+
+## Viewing and Editing Default Installation Parameters
+
+Installation parameters (such as parameter name, display name, additional text, and so on) that are displayed in a software package are inherited from the DSM application when software packages are synchronized. However, you can edit the inherited parameters and make the edited parameters default to \{\{FRS\_VARS.ProductName}}.
+
+1. Log into the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Console}} console.
+2. Open the **DSM Software Package - Legacy** workspace.
+3. Select a record for which to view installation parameters, and open it.
+4. Click the **Installation Params** tab.
+5. Select a parameter in the list and open it or click **Go to**.
+6. In the **Edit Installation Parameters** window, do any of the following:
+   - In the **Display Name** field, enter a new display name.
+   - Select an option from the **Parameter Type** menu.
+   - Check **Required** if the parameter is mandatory.
+7. Click **Save**.

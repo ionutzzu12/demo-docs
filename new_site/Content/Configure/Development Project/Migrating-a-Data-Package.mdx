@@ -1,0 +1,130 @@
+---
+title: Migrating a Data Package
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:54 GMT+0300 (Eastern European Summer Time)
+---
+
+How you migrate a data package depends on your deployment type.
+
+- For on-premise users: See the *Operations Console Guide for&#x20;*\{\{Primary.Company}}\{\{FRS\_VARS.ProductName}}for information about migrating data.
+- For \{\{FRS\_VARS.ProductName}} Cloud users: To request a package be moved from the staging instance of the tenant to the UAT instance of the tenant or from the UAT instance of the tenant to the production instance of the tenant, contact \{\{FRS\_VARS.Company-short}}. Refer to the process described in the Customer Data Migration Guide for Ivanti Service Management.
+
+## Example: Migrating Request Offering Changes
+
+This example describes how to make a change to a request offering in the staging instance of a tenant and then migrate the change to the production instance of the tenant.
+
+<ExpandableHeading>
+  ## About this Migration
+
+  \{\{FRS\_VARS.ProductName}} does not have a application for tracking request offerings, so to migrate a request offering from one environment to another, you must create and apply a package and also do a master data push using the \{\{FRS\_VARS.ProductName}} Operations Console. Creating and applying a package alone does not migrate the request offering change.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Before you Begin
+
+  Before you begin, use the \{\{FRS\_VARS.ProductName}} Operations Console to refresh the staging instance of the tenant from the production instance of the tenant. This ensures that you have the same baseline in both environments before you make the change.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Packaging the Changes Using Ivanti
+
+  When you make changes to request offerings, \{\{FRS\_VARS.ProductName}} tracks the changes made to the request offering and associated workflows and quick actions, but does not track the changes made to some related content. \{\{FRS\_VARS.ProductName}} does not record changes for the organizational unit, configuration item service, location, or request offering links to organizational units, configuration item services, or locations. This can cause confusion when you move changes from one application to another.
+
+  The changes that the application records may differ depending on if you are logged in as an administrator or as another role when you make the changes.
+
+  - If you make the changes as a service owner, you cannot select the project to apply the changes to. Therefore, all changes are added to the default project.
+  - If you make the changes as an administrator, you can select the project to apply the changes to.  Before you make the changes to the request offering, we recommend that you create a new project and apply the changes to that project. Refer to section *Creating a Project* in [Managing Projects](Managing-Projects.mdx).
+
+  1. (Optional. For administrators only.) Go to the Configuration Console, create a project, and then select it.
+  2. Make the changes to the request offering. The application tracks the changes to the workflows and quick actions associated with the request offering.
+  3. Create a package with the transaction sets associated with the changes that you made to the request offering. Ensure that the package contains all of the changes made to the application since you made the baseline, as described in :Link[Before you Begin]{label="Before you Begin" overridedLabel="Before you Begin" spaceId docId="UaOlV_ZwcUlEMu-KO2KwD" version="v2" docAnchorId="#Before" loadingMethod="dynamic" newTab="false" href="Migrating-a-Data-Package.mdx"}, regardless of if they are related to your project.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Migrating the Data from the Staging Instance to the UAT Instance
+
+  1. Log into the \{\{FRS\_VARS.ProductName}} Operations Console.
+  2. Refresh the UAT instance of the tenant from the production instance of the tenant.
+  3. From the **Tenants** tab, find the instance to migrate and click **Manage Migration**.
+  4. At the top of the page, click **Enable** to enable the package migration feature. At the confirmation message, click **OK**.
+  5. In the arrow going from the staging instance of the tenant to the UAT instance of the tenant, click **Apply Package**.
+  6. Do the following:
+     - In the **Source Package** field, select the package to migrate.
+     - Check **Skip Target Tenant Backup**.
+     - Select **Apply without validation**. This allows you to apply the package even if there are errors. You may need to fix the errors after the change is applied, if you do not want to restore the database and fix the root cause.
+     - Click **Execute**.
+
+  The application migrates the package.
+
+  7. In the arrow going from the staging instance of the tenant to the UAT instance of the tenant, click **Push**.
+  8. Do the following:
+     - In the **Operation** field, select **Copy Master Data Only**.
+     - Check **Delete data items in uat that do not exist in staging**.
+     - Check **Service request**.
+     - Click **Execute**.
+
+  The application migrates all of the service requests.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Making Changes to the Request Offering in the Configuration console
+
+  If the target tenant instance does not have an equivalent request offering, (for example, if you are importing a package from the \{\{FRS\_VARS.Company-short}} App Store or a package from another application), you must manually link the configuration item service, organizational unit, and location.
+
+  1. Log in to the application on the UAT instance of the tenant.
+  2. Open the **Request Offering** workspace.
+  3. Find and open the existing request offering.
+  4. On the **1. Define request offering** page, for the **Service** field, select the configuration item service associated with this request offering. Note that in many cases, the configuration item service is represented by a GUID and not by its name in the drop-down list. Be sure to select the correct configuration item service.
+  5. Click **Next** twice until you reach the **4. Publish Action Access** page.
+  6. Click **Add** to add a new organizational unit and location. The application displays a new line.
+  7. Click **Any** under the **Team** header and select the organizational unit associated with this request offering. Click **OK**. Note that in many cases, the organizational unit is represented by a GUID and not by its name in the drop-down list. Be sure to select the correct organizational unit.
+  8. Click **Any** under the **Location** header and select the location associated with this request offering. Click **OK**. Note that in many cases, the location is represented by a GUID and not by its name in the drop-down list. Be sure to select the correct location.
+  9. Click **Save & Exit**.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Testing the Change
+
+  1. Log into the UAT instance of the tenant and test the changes.
+  2. If anything is wrong, perform the procedures in both :Link[Packaging the Changes Using Ivanti]{label="Packaging the Changes Using Ivanti" overridedLabel="Packaging the Changes Using Ivanti" spaceId docId="UaOlV_ZwcUlEMu-KO2KwD" version="v2" docAnchorId="#Packagin" loadingMethod="dynamic" newTab="false" href="Migrating-a-Data-Package.mdx"} and :Link[Migrating the Data from the Staging Instance to the UAT Instance]{label="Migrating the Data from the Staging Instance to the UAT Instance" overridedLabel="Migrating the Data from the Staging Instance to the UAT Instance" spaceId docId="UaOlV_ZwcUlEMu-KO2KwD" version="v2" docAnchorId="#Migratin" loadingMethod="dynamic" newTab="false" href="Migrating-a-Data-Package.mdx"}.
+  3. When you are finished testing the change and are satisfied with the results, go back to the staging instance of the tenant and close the package. This ensures that no further changes in the application are added to the package.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Migrating the Data from the Staging Instance to the Production Instance
+
+  1. Log into the \{\{FRS\_VARS.ProductName}} Operations Console.
+  2. From the **Tenants** tab, find the instance to migrate and click **Manage Migration**.
+  3. At the top of the page, click **Enable** to enable the package migration feature. At the confirmation message, click **OK**.
+  4. In the arrow going from the staging instance of the tenant to the production instance of the tenant, click **Apply Package**.
+  5. Do the following:
+     - In the **Source Package** field, select the package to migrate.
+     - Ensure that **Skip Target Tenant Backup** is not checked.
+     - Select **Apply without validation**. This allows you to apply the package even if there are errors. You may need to fix the errors after the change is applied, if you do not want to restore the database and fix the root cause.
+     - Click **Execute**.
+
+  The application migrates the package.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Migrating the Service Request Data from the UAT Instance to the Production Instance
+
+  You must publish the service request master data from the UAT instance of the tenant to the production instance of the tenant because the UAT instance has the tested service request data. (If you are sure that no changes were made to the staging instance of the tenant, you can push the service request data from there to the production instance of the tenant instead.)
+
+  1. Log into the \{\{FRS\_VARS.ProductName}} Operations Console.
+  2. From the **Tenants** tab, find the instance to migrate and click **Manage Migration**.
+  3. In the arrow going from the UAT instance of the tenant to the production instance of the tenant, click **Push**.
+
+  <hint type="info">
+    If there is no **Push** link in the arrow, you must push the data from the staging instance to the UAT instance. In the **Operation** field, select **No Op (Increase version only)** and click **Execute**.
+  </hint>
+
+  4. Do the following:
+     - In the **Operation** field, select **Copy Master Data Only**.
+     - In the **Additional Data** section, select any or all of **Service (CI.Service)**, **Organizational Unit (OrganizationalUnit)**, and **Location (Location)**.
+     - Check **Skip target tenant backup before operation**.
+     - Check **Delete data items in production that do not exist in uat**.
+     - Click **Execute**.
+
+  The application migrates all of the service requests.
+</ExpandableHeading>

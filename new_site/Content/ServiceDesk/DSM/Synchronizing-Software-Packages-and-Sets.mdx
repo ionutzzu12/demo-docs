@@ -1,0 +1,143 @@
+---
+title: Synchronizing Software Packages and Sets
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:49 GMT+0300 (Eastern European Summer Time)
+---
+
+On the Desktop and Server Management (DSM) application, software types and properties determine which software can be synchronized and managed through \{\{FRS\_VARS.ProductName}}.
+
+Software synchronization between DSM and \{\{FRS\_VARS.ProductName}} can be performed manually (on-demand) or on a defined schedule.
+
+## Software Types
+
+The following software types are synchronized between DSM and \{\{FRS\_VARS.ProductName}} whenever a synchronization occurs:
+
+<hint type="info">
+  Not all types of software packages and sets can be managed through \{\{FRS\_VARS.ProductName}}. See :Link[Software Properties in DSM]{label="Software Properties in DSM" overridedLabel="Software Properties in DSM" spaceId docId="3Ri12sDwLYjSOoP3SITWv" version="v2" docAnchorId="#Software_Properties" loadingMethod="dynamic" newTab="false" githubPath="About-DSM.htm#Software_Properties" href="About-DSM.mdx"} for details about which types can and cannot be managed through \{\{FRS\_VARS.ProductName}}.
+</hint>
+
+| Software Type as Displayed in DSM | Software Type as Displayed in \{\{Primary.Company}} \{\{FRS\_VARS.ProductName}} | Available in \{\{Primary.Company}} \{\{FRS\_VARS.ProductName}} as ...                                      |
+| --------------------------------- | ------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| Application Package               | Software Package                                                                | Software Installation<br />Software Reinstallation<br />Computer Provisioning<br />Computer Reprovisioning |
+| eScript Package                   | Software Package                                                                | Software Installation<br />Software Reinstallation<br />Computer Provisioning<br />Computer Reprovisioning |
+| Software Set                      | Software Set                                                                    | Computer Provisioning<br />Computer Reprovisioning                                                         |
+| OS Installation Set               | OS Set                                                                          | Computer Provisioning<br />Computer Reprovisioning                                                         |
+
+For example, a software package residing on the DSM application in the **Application Package** category has a software type of **Software Package** when it appears in \{\{FRS\_VARS.ProductName}}. The package is available for software installation, re-installation, provisioning, and re-provisioning within \{\{FRS\_VARS.ProductName}}.
+
+## Synchronizing the Software On-Demand Manually
+
+1. Log into the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Console}} console.
+2. Open the **DSM On-Demand Sync Request - Legacy** workspace.
+3. Click **New DSM Sync Request**.
+4. From the **Sync Request Type** menu, select **Sync Software** The application sets the DSM status to requested.
+5. Select the **Workflow Instance** tab to view workflow status and other details. To view information about each workflow block (and not just the workflow instance), highlight the workflow instance and click **Go to**.
+6. Click **Save**.
+
+<Paragraph indent="1">
+  When the application complete the synchronization, the application changes the status to completed. The application synchronizes all of the software types described in :Link[Synchronized Software Types]{label="Synchronized Software Types" overridedLabel="Synchronized Software Types" spaceId docId="UptjATS8q-bxPXaH7-2VR" version="v2" docAnchorId="#SoftwareTypes" loadingMethod="dynamic" newTab="false" href="Synchronizing-Software-Packages-and-Sets.mdx"} between DSM and \{\{FRS\_VARS.ProductName}}.
+</Paragraph>
+
+## Scheduled Synchronization
+
+A single default daily schedule is set up to synchronize software and computers. However, you can modify this record or create separate records to synchronize software and computers on different schedules.
+
+### Synchronizing Software on a Recurring Schedule
+
+1. Log into the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Console}} console.
+2. Open the **Schedule Entry** workspace. The application displays the **Schedule Entry List** view.
+3. Open a **DSM Software Sync and Computer Sync** record.
+4. In the default schedule, view or modify any of the fields.
+5. Click **Save**.
+
+### Updating the DSM Schedule Entry Workflow
+
+1. From the \{\{FRS\_VARS.Configuration\_console}}, click **Build > Business Objects** to open the **Business Objects** workspace.
+2. Open the **ScheduleEntry** business object.
+3. Click the **Workflows** tab.
+4. From the list of workflows, select the schedule that you created, either **DSM Computer Sync** or **DSM Software Sync**.
+5. If there are different versions of the same workflow, click the **edit** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/WTLKbMa5PI7qeazzbj0FD_edit-old.png" alt caption size="10" width="16" height="16"} next to the active version, which is highlighted in green. The application displays the Workflow Designer.
+6. Click **Configuration** from the toolbar. The application displays the **Workflow Configuration** dialog box.
+7. Click the **Trigger Definition** tab.
+8. From the **Use Schedule Definition** drop-down list, select the schedule that you created.
+9. Click **Save** to associate the workflow with the schedule entry business object.
+10. Save the workflow.
+
+<hint type="info">
+  The new workflow definition is not published until you click **Publish** and confirm that you want to publish the new definition.
+</hint>
+
+11. Go back to the **Workflow** workspace and click the **publish** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Z3ZlETXxQkCDiQ8yEwyeR_publish.png" alt caption size="10" width="12" height="12"} to publish the new workflow definition.
+
+## Post-Synchronization Tasks
+
+After the software is synchronized, you must do the following:
+
+- Make available (or activate) the software packages, software sets, and operating systems and publish in the Self-Service Portal the software packages and sets that were synchronized between DSM and \{\{FRS\_VARS.ProductName}}, as described in [Activating Software Packages and OS Sets](Activating-Software-Packages-and-OS-Sets.mdx).
+- If appropriate, specify whether approval is required before the software package is made available to the requester, as described in :Link[Specifying Approval for Software Packages]{label="Specifying Approval for Software Packages" overridedLabel="Specifying Approval for Software Packages" spaceId docId="HtAwRqkj9mxywTcSZ1KqI" version="v2" docAnchorId="#SpecifyingApprovalForSoftwarePackages" loadingMethod="dynamic" newTab="false" githubPath="Activating-Software-Packages-and-OS-Sets.htm#SpecifyingApprovalForSoftwarePackages" href="Activating-Software-Packages-and-OS-Sets.mdx"}.
+- Associate one or more DSM-defined software packages into a \{\{FRS\_VARS.ProductName}} software record, as described in [Linking Software Packages to Records](Linking-Software-Packages-to-Records.mdx). Only software packages that are linked to the \{\{FRS\_VARS.ProductName}} software record are available in the Self-Service Portal and to \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Analyst-Service-Desk-Analyst}}s.
+- View the installation parameters for a software package, as described in :Link[Viewing and Editing Default Installation Parameters]{label="Viewing and Editing Default Installation Parameters" overridedLabel="Viewing and Editing Default Installation Parameters" spaceId docId="HtAwRqkj9mxywTcSZ1KqI" version="v2" docAnchorId="#ViewingAndEditingDefaultInstallation" loadingMethod="dynamic" newTab="false" githubPath="Activating-Software-Packages-and-OS-Sets.htm#ViewingAndEditingDefaultInstallation" href="Activating-Software-Packages-and-OS-Sets.mdx"}.
+- View operating systems linked to the software packages, as described in :Link[Viewing Operating Systems Linked to Software Packages]{label="Viewing Operating Systems Linked to Software Packages" overridedLabel="Viewing Operating Systems Linked to Software Packages" spaceId docId="QuF_C5wcbQv22Kfr3FBVl" version="v2" docAnchorId="#ViewingOSLinkedToSoftwarePackages" loadingMethod="dynamic" newTab="false" githubPath="Linking-Software-Packages-to-Records.htm#ViewingOSLinkedToSoftwarePackages" href="Linking-Software-Packages-to-Records.mdx"}.
+- Map your configuration items to the DSM-managed computers, as described in [Mapping Configuration Items to DSM-Managed Computers](Mapping-Configuration-Items-to-DSM-Managed-Computers.mdx).
+
+## Activating Software Packages and OS Sets
+
+After synchronization between DSM and \{\{FRS\_VARS.ProductName}}, the software or operating application has a status of not available in \{\{FRS\_VARS.ProductName}} until it is activated. You must activate any software that has a status of not available before it can be installed or provisioned in \{\{FRS\_VARS.ProductName}}.
+
+You must publish the software package and software set in the Self-Service Portal so that it is available for requesters from the Self-Service Portal.
+
+1. Log into the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Console}} console.
+2. Open one or more of the following workspaces:
+   - To make available software packages, open the **DSM Software Package - Legacy** workspace.
+   - To make available software sets, open the **DSM Software Set - Legacy** workspace.
+   - To make available software operating systems, open the **DSM Operating System Set - Legacy** workspace.
+3. Click the arrow at the top of the **Status** column, then choose **Group by this Field**. The application lists all the records set to not available together.
+4. Depending on the workspace you are in, choose one of the following actions:
+   - **Activate Software Package**: If you are in the **DSM Software Package - Legacy** workspace.
+   - **Activate Software Set**: If you are in the **DSM Software Set - Legacy** workspace.
+   - **Activate OS Set**: If you are in the **DSM Operating System Set - Legacy** workspace.
+
+<Paragraph indent="1">
+  The application sets the status to requested and creates a task to activate. After the DSM server processes the task, the application sets the status to available.
+</Paragraph>
+
+5. Select the records to make available to end users in the Self-Service Portal:
+   - **Publish to Self Service**: If you are in the **DSM Software Package - Legacy** workspace.
+   - **Publish to Self Service**: If you are in the **DSM Software Set - Legacy** workspace.
+
+<Paragraph indent="1">
+  You can also open a record and select **Publish to Self Service**.
+</Paragraph>
+
+<Paragraph indent="1">
+  The **Publish to SelfService** column shows a value of yes and the application makes the item available in the Self-Service Portal.
+</Paragraph>
+
+## Specifying Approval for Software Packages
+
+If you specify approval for a software package, an approval task is created when the software is requested from the Self-Service Portal.
+
+<hint type="info">
+  To require approval for hardware or operating system sets, see [Defining Hardware and Software Profiles](Creating-Hardware-and-Software-Profiles.mdx).
+</hint>
+
+1. Log into the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Console}} console.
+2. Open the **DSM Software Package** workspace.
+3. Open the record for which to specify approval.
+4. On the **Details** tab, check **Approval required**. The **Approval Required** column in the list view shows a value of yes.
+5. Save the record.
+
+## Viewing and Editing Default Installation Parameters
+
+Installation parameters (such as parameter name, display name, additional text, and so on) that are displayed in a software package are inherited from the DSM application when software packages are synchronized. You can, however, edit the inherited parameters and make the edited parameters default to \{\{FRS\_VARS.ProductName}}.
+
+1. Log into the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Console}} console.
+2. Open the **DSM Software Package - Legacy** workspace.
+3. Select a record for which to view installation parameters, and open it.
+4. Click the **Installation Params** tab.
+5. Select a parameter in the list and open it or click **Go to**.
+6. In the **Edit Installation Parameters** window, do any of the following:
+   - In the **Display Name** field, enter a new display name.
+   - From the **Parameter Type** menu, select an option: integer, text, or password.
+   - Check **Required** if the parameter is mandatory.
+7. Click **Save**.

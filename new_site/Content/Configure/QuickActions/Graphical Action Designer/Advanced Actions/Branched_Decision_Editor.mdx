@@ -1,0 +1,74 @@
+---
+title: Decision Quick Action and Branched Decision Editor
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:56 GMT+0300 (Eastern European Summer Time)
+---
+
+- :Link[About the Decision Quick Action and Branched Decision Editor]{label="About the Decision Quick Action and Branched Decision Editor" overridedLabel="About the Decision Quick Action and Branched Decision Editor" spaceId docId="yWVwXn5ZM5aUD5MwMn5ES" version="v2" docAnchorId="#About_the_Branched_Decision_Editor" loadingMethod="dynamic" newTab="false" href="Branched_Decision_Editor.mdx"}
+- :Link[Parameters]{label="Parameters" overridedLabel="Parameters" spaceId docId="yWVwXn5ZM5aUD5MwMn5ES" version="v2" docAnchorId="#Parameters" loadingMethod="dynamic" newTab="false" href="Branched_Decision_Editor.mdx"}
+- [Example: Creating an Escalation Workflow using the Decision Quick Action (GAD)](../Examples/Example_Decision_Action_Escalation_Workflow_\(GAD\).mdx)
+- **Classic Action Designer:** No equivalent.
+
+## About the Decision Quick Action and Branched Decision Editor
+
+<hint type="info">
+  To use this \{\{FRS\_VARS.Quick\_Action}}, set the global constant **EnableActionService&#x20;**&#x74;o **True**. If **EnableActionService&#x20;**&#x69;s not available in the global constants list (this may be the case for upgraded instances), Administrators can manually add the constant.
+</hint>
+
+Use the Decision \{\{FRS\_VARS.Quick\_Action}} and the Branched Decision Editor to define multiple cases, or branches, where actions executed sequentially based on defined conditions.
+
+With this \{\{FRS\_VARS.Quick\_Action}}, you can build branching logic into Composite Actions to create advanced workflows for managing and automating processes.
+
+The Decision \{\{FRS\_VARS.Quick\_Action}} allows you to:
+
+1. Add multiple branches.
+2. Add an unlimited number of actions to each branch, including other Decision \{\{FRS\_VARS.Quick\_Action}}s.
+3. Use Go to Action \{\{FRS\_VARS.Quick\_Action}}s within or before branches to jump in to or out of other branches, or anywhere else within the action. For example, use Go to Action to conditionally run actions in another branch after the current branch completes execution.
+
+### Order of Execution
+
+When a Decision \{\{FRS\_VARS.Quick\_Action}} executes, the cases are evaluated in the order defined in the Decision Editor. The default case is always considered last.
+
+The first condition that evaluates to true activates execution of all of the actions within its branch. The Decision \{\{FRS\_VARS.Quick\_Action}} is completed after all the actions on the branch with a true condition have been executed. Overall execution is finished unless Go to Action is used to jump to other actions.
+
+If none of the conditions for any of the other cases are met, the default case is executed. There must always be at least one default and one conditional case for a **Decision&#x20;**\{\{FRS\_VARS.Quick\_Action}} to be valid.
+
+The default branch is always automatically the last to be processed regardless of its list position in the Decision Editor.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/X0NCxmwdlDi2-7kx721lO_brancheddecisioneditor.png" alt="Decision block shown with Go To Record block and Create a New record block both attached" position="flex-start" size="40" initialPath="../../quick-actions-images/Branched_Decision_Editor.png" githubPath="Content/Configure/QuickActions/quick-actions-images/Branched_Decision_Editor.png" showCaption="false"></Image>
+
+## Parameters
+
+You can access parameters for the **Decision** \{\{FRS\_VARS.Quick\_Action}} block using the **Block** and **Common** tabs of the **Settings** pane. For more information on the **Common** tab settings, see [About Advanced Quick Actions](<About Advanced Actions.mdx>).
+
+### Block Tab
+
+<hint type="info">
+  After dragging the **Decision&#x20;**\{\{FRS\_VARS.Quick\_Action}} block on to the Designer Board, you need to link the **Decision&#x20;**\{\{FRS\_VARS.Quick\_Action}} to at least two other \{\{FRS\_VARS.Quick\_Action}} blocks before th&#x65;**&#x20;Decision Editor** button is enabled.
+</hint>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Pks1-xuN02A8guUG3Ev_s_brancheddecisioneditorbutton.png" alt="Button for Branched Decision Editor - you need to add at least 2 actions to the Decision block before this button is enabled." position="flex-start" size="40" initialPath="../../quick-actions-images/Branched_Decision_Editor_button.png" githubPath="Content/Configure/QuickActions/quick-actions-images/Branched_Decision_Editor_button.png" showCaption="false"></Image>
+
+For \{\{FRS\_VARS.Quick\_Action}} blocks linked to the Decision \{\{FRS\_VARS.Quick\_Action}}, select each one and then configure block-specific parameters on the **Block** tab of the **Settings** pane.
+
+<hint type="info">
+  Add or remove actions via the Designer Board; you can not add or remove actions when using the Decision Editor.
+</hint>
+
+Select the **Decision&#x20;**&#x62;lock to access the expression-based criteria for each action/branch:
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/QdRB6_jev14BlkCuWdiDR_brancheddecisioneditorcriteria.png" alt="Criteria for each branch can be set using an expression" position="flex-start" size="40" indent="1" initialPath="../../quick-actions-images/Branched_Decision_Editor_criteria.png" githubPath="Content/Configure/QuickActions/quick-actions-images/Branched_Decision_Editor_criteria.png" showCaption="false"></Image>
+
+- **1**: Click this symbol :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/5hDAG8HsT6O0i9Uz-PXsr_brancheddecisioneditorfullscreenbutton.png" alt="Button for expanding criteria selection to full screen" caption size="10" width="29" height="27"} to expand the window to full-screen.
+- **2**: Select this option to choose which action is to be the default. The default case is executed if none of the conditions for any of the other cases are true.
+- **3**: Click and hold this symbol :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/cRgVqnJnFN6AG51uxXKwD_brancheddecisioneditorreorderbutton.png" alt="Button for reordering decisions" caption size="10" width="29" height="28"} to drag cases and rearrange their order.
+- **4**: Click ***f(x)*** to open the Simplified Expression Editor. Enter the expressions for the default branch and the alternative branches. For more information: [Using the Simplified Expression Editor](<../../../../Reference/Expressions/Simplified Expression Editor.mdx>).
+- Click **Save&#x20;**.
+
+## Common Tab
+
+Click the **Common&#x20;**&#x74;ab in the **Settings&#x20;**&#x70;ane to view the parameters specific to the **Common** part of the block.
+
+For **Common&#x20;**&#x74;ab field details, see :Link[Start Block Settings]{label="Start Block Settings" overridedLabel="Start Block Settings" spaceId docId="T_2hq2qRJzWxiHLCfgn-7" version="v2" docAnchorId="#CommonTab" loadingMethod="dynamic" newTab="false" githubPath="../Using_the_Graphical_Action_Designer.htm#CommonTab" href="../Using_the_Graphical_Action_Designer.mdx"}
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/PqHsLdttKSxt47GBRKg1L_qaexportdatacommonparameters.png" position="flex-start" size="40" indent="1" initialPath="../../../../Resources/Images/help-images/qa_export_data_common_parameters.png" githubPath="Content/Resources/Images/help-images/qa_export_data_common_parameters.png" showCaption="false"></Image>

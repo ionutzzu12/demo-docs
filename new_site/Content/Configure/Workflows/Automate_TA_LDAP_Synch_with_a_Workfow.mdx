@@ -1,0 +1,59 @@
+---
+title: Example: Using a Workflow to Schedule LDAP Synchronization
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:58 GMT+0300 (Eastern European Summer Time)
+---
+
+You can create a scheduled workflow to run LDAP connection synchronization at regular intervals.
+
+For example, configure a workflow to synchronize a Trusted Agent LDAP connection at 24 hour intervals, and notify selected users if the synchronization is started or has failed.
+
+## Creating a Schedule Entry Workflow
+
+1. Create a schedule for the synchronization, see :Link[Creating a Schedule]{label="Creating a Schedule" overridedLabel="Creating a Schedule" spaceId docId="ff1as7Nd0to83i6uUC1aZ" version="v2" docAnchorId="#CreatingASchedule" loadingMethod="dynamic" newTab="false" githubPath="../Schedules/Schedule_Entry.htm#CreatingASchedule" href="../Schedules/Schedule_Entry.mdx"}.
+2. From the Configuration console, click **Build&#x20;**>**&#xA0;Workflow&#x20;**>**&#x20;Workflows** to open the **Workflows** workspace.
+3. Click **Add new\...**. The **Add New Workflow** page appears.
+4. Enter the parameters.
+
+| Parameter       | Description                                                                                         |
+| --------------- | --------------------------------------------------------------------------------------------------- |
+| Business Object | The business object. Choose one from the drop-down list. In this example, choose **ScheduleEntry**. |
+| List Name       | A unique name for the workflow object, for example **TaLdapSynch**.                                 |
+| Display Name    | A name that appears on workspaces, for example **TA LDAP Synch**.                                   |
+| Description     | A brief description of what the workflow does.                                                      |
+
+5. Click **Save**. The workflow is created.
+6. Click **Add Version**. First version of the workflow is created and the Workflow Designer appears.
+7. Click **Configuration** to open the **Workflow Configuration** dialog.
+8. Select **Trigger Definition**, and then select the schedule you created from the **Use Schedule Definition** drop-down field.
+9. Drag the following blocks onto the Workflow Designer:
+   - **Start**
+   - **LDAP Sync**
+   - **Notification** x 2
+   - **Stop**
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/7HEJNQLCKf8Lek6ydZZOy_ldapsynchworkflow.png" alt="workflow diagram for trusted agent LDAP automated synchronization" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/trustedAgents-images/ldap_synch_workflow.png" githubPath="Content/Resources/Images/trustedAgents-images/ldap_synch_workflow.png" showCaption="false"></Image>
+
+10. Link the blocks as shown.
+11. Define the properties for each block and save them. Double-click the block to open the properties dialog.
+
+| LDAP Sync Block Parameters | Value                                                                    |
+| -------------------------- | ------------------------------------------------------------------------ |
+| Title                      | Enter a title to appear on the block.                                    |
+| LDAP Configuration Name    | Select the LDAP configuration to apply the scheduled synchronization to. |
+
+| Notification Block Parameters | Value                                                                                                                                                       |
+| ----------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Title                         | Enter a title to appear on the block.                                                                                                                       |
+| From                          | Add the email address for the sender, for example "noreply\@example.com".                                                                                   |
+| To                            | Add the email recipients email address. You can add a hard address, or you can use an expression. for example "$(GetGlobal("ServiceDeskMgrEmailAddress"))". |
+| CC and BCC                    | Add email addresses to these fields if required.                                                                                                            |
+| Subject                       | Add a subject line.                                                                                                                                         |
+| Body                          | Add the body message.                                                                                                                                       |
+
+12. Select the **Validate before saving** checkbox to validate the workflow before it is saved.
+13. Click **Save**. The workflow is saved and now appears on the workflow list.
+
+<hint type="info">
+  If validation fails. see [Validating Workflows](Validating_Workflows.mdx) for further information.
+</hint>

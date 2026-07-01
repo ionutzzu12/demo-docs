@@ -1,0 +1,70 @@
+---
+title: Working with Dates, Times, and Time Zones
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:49 GMT+0300 (Eastern European Summer Time)
+---
+
+You can configure a field to display the date and time of a specific time zone, which the users can select within a form. For example, if your server is in Germany but your users are in Australia, the server date might be difficult to understand and use. You can create a DateTime business object field that corresponds to the time zone of the user and place it on a form. The users have the option to choose the server date and time or the local date and time.
+
+- :Link[About Time Zones]{label="About Time Zones" overridedLabel="About Time Zones" spaceId docId="R8Ip-DLqgsHSprYDG3Fzg" version="v2" docAnchorId="#About" loadingMethod="dynamic" newTab="false" href="Working with Dates Times and Time Zones.mdx"}
+- :Link[Viewing Time Zones]{label="Viewing Time Zones" overridedLabel="Viewing Time Zones" spaceId docId="R8Ip-DLqgsHSprYDG3Fzg" version="v2" docAnchorId="#Viewing" loadingMethod="dynamic" newTab="false" href="Working with Dates Times and Time Zones.mdx"}
+- :Link[Setting the Time Zone on Your Windows Machine]{label="Setting the Time Zone on Your Windows Machine" overridedLabel="Setting the Time Zone on Your Windows Machine" spaceId docId="R8Ip-DLqgsHSprYDG3Fzg" version="v2" docAnchorId="#SettingTheTimeZone" loadingMethod="dynamic" newTab="false" href="Working with Dates Times and Time Zones.mdx"}
+- :Link[Enabling a Time Zone]{label="Enabling a Time Zone" overridedLabel="Enabling a Time Zone" spaceId docId="R8Ip-DLqgsHSprYDG3Fzg" version="v2" docAnchorId="#EnablingTimezone" loadingMethod="dynamic" newTab="false" href="Working with Dates Times and Time Zones.mdx"}
+
+For information about the time zone control and enabling it, see :Link[Configuring the Time Zone Control]{label="Configuring the Time Zone Control" overridedLabel="Configuring the Time Zone Control" spaceId docId="ff1as7Nd0to83i6uUC1aZ" version="v2" docAnchorId="#Configur" loadingMethod="dynamic" newTab="false" githubPath="../../Configure/Schedules/Schedule_Entry.htm#Configur" href="../../Configure/Schedules/Schedule_Entry.mdx"}.
+
+## About Time Zones
+
+The system identifies time zones as they appear in the IANA time zone database, which includes every time zone in the world. Most IANA time zones cite the continent and major city, such as **Europe/Berlin** o&#x72;**&#x20;America/Los\_Angeles**.
+
+Time zones make life easier for humans, where the clock corresponds to the cycle of day and night. In \{\{FRS\_VARS.ProductName}}, client-centered functions, such as scheduled jobs and business rules, use the local time zone.
+
+Databases are better managed using UTC time because it is always the same everywhere in the world. Functions that run outside of a client session, such as workflows, the escalation engine, and the logging service, use the UTC time zone.
+
+When you combine functions to act on a business object, depending on your local time zone, the resulting action may report or occur earlier or later than you expect. Fortunately, many features allow you to change the time zone. Where possible, use the expression editor to specify that all of your functions use the same time zone. See [Using the Expression Editor](<../../Reference/Expressions/Using Expression Editor.mdx>).
+
+## Viewing Time Zones
+
+To view a list of time zones, do either of the following:
+
+- Log in to the application and open the **Timezones** workspace.
+- From the Configuration console, click **Configure > Organizational Profile > Time Zones**.
+
+The system displays the following information for each time zone:
+
+- **Timezone Id**: The time zone ID in IANA standard format.
+- **Windows Timezone Id**: The time zone ID in Microsoft Windows format.
+- **Is Enabled**: Specifies if the time zone is enabled for use in \{\{FRS\_VARS.ProductName}}.
+- **Offset**: The number of minutes that this time zone is offset from UTC. Positive numbers refer to points east of UTC. Negative numbers refer to points west of UTC.
+- **DST Offset**: The number of minutes that this time zone is offset from UTC during daylight savings time. If this value equals the Offset value, the time zone does not observe DST.
+- **Abbr**: The abbreviation of the Windows name of this time zone.
+- **DST Abbr**: The abbreviation for this time zone during daylight savings time.
+  Double-click a time zone to see the specifics for a time zone, which includes the fields above plus these:
+  - **Sort Order**: The sort order. Specifies how this time zone is displayed in relation to the other time zones.
+  - **Uses DST**: Specifies if this time zone observes daylight savings time, **Uses DST: true**.
+
+## Setting the Time Zone on Your Windows Machine
+
+Microsoft Windows uses the customary names for time zones rather than IANA names. When you select a time zone in Windows, \{\{FRS\_VARS.ProductName}} automatically picks the associated IANA time zone.
+
+1. On your Microsoft Windows application, click the date and time on the bottom right of your screen. The application displays the date and time settings.
+2. Click **Change date and time settings...**. The **Date and Time** dialog box appears.
+3. Click **Change time zone**.
+4. Select a time zone from the drop-down list.
+5. If you are in an area that observes daylight savings time, ensure that **Automatically adjust clock for Daylight Saving Time** is checked.
+6. Click the **Internet Time** tab, and then click **Change settings**. Check the **Synchronize with an Internet time server** box, choose a time server, and then click **OK**.
+7. Click **OK**, and click **OK** again.
+
+## Enabling a Time Zone
+
+You can enable and disable a time zone from the **Time Zones** workspace. For example, you might choose to display only the time zones relevant to your operation. You can also choose the order in which the time zones appear.
+
+1. From the Configuration console, click **Configure > Organization Profile > Time Zones**.
+2. Double-click a time zone to open it.
+3. Select the **Is Enabled** checkbox to enable the time zone. Clear the checkbox to disable the time zone.
+
+<Paragraph indent="1">
+  When you disable a time zone, you lose the sort order.
+</Paragraph>
+
+4. Update the sort order (optional).

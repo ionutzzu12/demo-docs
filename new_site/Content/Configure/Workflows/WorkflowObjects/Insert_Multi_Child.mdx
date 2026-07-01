@@ -1,0 +1,43 @@
+---
+title: Insert Multi Child Workflow Block
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:58 GMT+0300 (Eastern European Summer Time)
+---
+
+Use the **Insert Multi Child** workflow block to define multiple child business objects. This is similar to the [Insert Child Object Workflow Block](Insert_Child_Object.mdx), which inserts one child business object, except that the **Insert Multi Child** workflow block defines multiple child business objects.
+
+*Insert Multi Child Workflow Block Properties*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/XUE9636fiwrNjodequ5J6_insertmultichildblock.png" position="flex-start" size="40" indent="1" initialPath="../../../Resources/Images/help-images/insert_multi_child_block.png" githubPath="Content/Resources/Images/help-images/insert_multi_child_block.png" showCaption="false"></Image>
+
+With the **Insert Child Object** workflow block, as an example, if you want to create a task for a change, you create the task (child business object) and link it to the change. With the **Insert Multi Child** workflow block, you select a child business object, such as CI, and create tasks for each configuration item (child business object).
+
+For example, insert the **Insert Multi Child** workflow block into a workflow associated with the **Change** business object, select **Object Relationships**, and select **ChangeAssociatedCI** from the drop-down list. The **Insert Multi Child** workflow block refreshes and displays information associated with both the **Change** and the **CI** business objects. In the **Target object fields** section, for the **Select Child Object Type** field, select **ChangeContainsTask.Task#Assignment** from the drop-down list. This workflow block then creates one task per configuration item.
+
+## Exit Ports
+
+| Exit Port | Description                                                                                          |
+| --------- | ---------------------------------------------------------------------------------------------------- |
+| OK        | Continue to the next block.                                                                          |
+| Failed    | General exit port for a failed integration action. A logical next step is to trigger a notification. |
+
+## Properties
+
+| Property                 | Description                                                                                                                                                                       |
+| ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Title                    | A unique name for the workflow block.                                                                                                                                             |
+| Select                   |                                                                                                                                                                                   |
+| Template Parameters      | Either template parameters or object relationships. Choose a template from the drop-down list.                                                                                    |
+| Object Relationships     | The object relationship. Choose from the drop-down list.                                                                                                                          |
+| Target object fields     |                                                                                                                                                                                   |
+| Select Child Object Type | The select child object type. Enter a literal value or choose an object from the drop-down list. The available fields and target object fields appear based on the chosen object. |
+| Value                    | The value of the business object field.                                                                                                                                           |
+| Overwrite                | Overwrites the default values with this value.                                                                                                                                    |
+
+## Actions
+
+| Button             | Action                                                                                                                                                                                                                           |
+| ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Move Up, Move Down | Rearranges the items in the table. This changes the order in which they are processed. The order of processing can affect the creation or update of the business object, as specific values are determined to be correct or not. |
+| Save               | Commits your settings.                                                                                                                                                                                                           |
+| Cancel             | Exits without saving.                                                                                                                                                                                                            |

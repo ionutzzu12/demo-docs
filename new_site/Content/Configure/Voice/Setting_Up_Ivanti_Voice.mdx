@@ -1,0 +1,211 @@
+---
+title: Customizing Your Voice-to-Ivanti-Neurons for ITSM Integration
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:54 GMT+0300 (Eastern European Summer Time)
+---
+
+The set up and configuration of users in \{\{FRS\_VARS.Company-short}} Voice utilizes standard \{\{FRS\_VARS.ProductName}} business objects and forms.
+
+Business object and field names must be maintained so synchronization can occur.
+
+With the exception of business object and field names, you can customize the integration to fit your needs. Some examples of potential customizations include the following:
+
+- Role-based forms that limit the specific data that supervisors can manage.
+- Adding additional auditing of fields as required to track changes.
+- Adding dashboards to show user dial plan and extension listings.
+
+To effectively use the information in this section, you should have experience using \{\{FRS\_VARS.ProductName}} and be familiar with user administration in \{\{FRS\_VARS.Company-short}} Voice.
+
+When \{\{FRS\_VARS.Company-short}} Voice and \{\{FRS\_VARS.ProductName}} have been properly integrated, much of the day to day administrative tasks for \{\{FRS\_VARS.Company-short}} Voice can be accomplished using \{\{FRS\_VARS.ProductName}}.
+
+Before you begin, you need to load any user profiles that require \{\{FRS\_VARS.Company-short}} Voice access as employee records in \{\{FRS\_VARS.ProductName}}.
+
+<hint type="info">
+  This section does not cover \{\{FRS\_VARS.Company-short}} Voice-specific settings. Refer to the \{\{FRS\_VARS.Company-short}} Voice online help for \{\{FRS\_VARS.Company-short}} Voice configuration settings. This section focuses on the settings unique to a synchronized environment.
+</hint>
+
+## About Administering the Two Systems
+
+Typically, different sets of people administer \{\{FRS\_VARS.ProductName}} and \{\{FRS\_VARS.Company-short}} Voice systems, so they use separate administrative interfaces. However, they do have some user management features in common.
+
+With \{\{FRS\_VARS.ProductName}}, you can use synchronization so that users can be administered exclusively in \{\{FRS\_VARS.ProductName}}. \{\{FRS\_VARS.Company-short}} Voice automatically synchronizes the settings, eliminating duplicated efforts. All synchronization between the two systems is from \{\{FRS\_VARS.ProductName}} to \{\{FRS\_VARS.Company-short}} Voice. No data is transferred from \{\{FRS\_VARS.Company-short}} Voice to \{\{FRS\_VARS.ProductName}}.
+
+## Installing and Configuring Ivanti Voice
+
+For information about installing and configuring \{\{FRS\_VARS.Company-short}} Voice, see the *IP Communications Management Administrator Guide* in the \{\{FRS\_VARS.ProductName}} Knowledge Base as article 25218.
+
+## Integrating Ivanti Voice with Ivanti Neurons for ITSM
+
+After you have configured \{\{FRS\_VARS.Company-short}} Voice to integrate with \{\{FRS\_VARS.ProductName}}, you need to configure \{\{FRS\_VARS.ProductName}} to integrate with \{\{FRS\_VARS.Company-short}} Voice. This is done through the \{\{FRS\_VARS.ProductName}} Configuration Database.
+
+1. Log in to the \{\{FRS\_VARS.ProductName}} Configuration Database. For information about using the \{\{FRS\_VARS.ProductName}} Configuration Database, see the *Configuration Database Guide for&#x20;*\{\{Primary.Company}} \{\{FRS\_VARS.ProductName}}.
+2. Navigate to the **Tenants** workspace, select the tenant that you want to integrate with \{\{FRS\_VARS.Company-short}} Voice, and open that record.
+3. Select the **IPCM** tab at the bottom of the **Tenants** workspace.
+4. Enter the following values:
+   - **IPCM Host**: Enter the fully-qualified domain name of the \{\{FRS\_VARS.Company-short}} Voice server.
+   - **IPCM Port**: 5743
+   - **IPCM URL**: Enter the URL in the form - https\://Ivanti\_Voice\_server/Virtual Directory name/C2TWebService.asmx where Ivanti\_Voice\_server is the fully qualified domain name of the Ivanti Voice server and the Virtual directory name for Voice application as in IIS.
+   - **IPCM Login ID**: Enter a valid user name for \{\{FRS\_VARS.Company-short}} Voice. This is used by \{\{FRS\_VARS.ProductName}} to call web services in \{\{FRS\_VARS.Company-short}} Voice. No specific role is required, it just needs to be a valid \{\{FRS\_VARS.Company-short}} Voice user.
+   - **IPCM Password**: Enter the password associated with the \{\{FRS\_VARS.Company-short}} Voice login ID.
+
+<hint type="info" indent="1">
+  It is recommended that you change the default password in \{\{FRS\_VARS.ProductName}} and update the same in Voice as well.
+</hint>
+
+<Paragraph listStyleType="disc" indent="2">
+  **IPCM Url Port**: Enter the \{\{FRS\_VARS.Company-short}} Voice URL port.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  **Is Hybrid Voice**: Check this if you want the system to ignore all the settings above (that start with \{\{FRS\_VARS.Company-short}} Voice) and to use the settings that were previously set in the Configuration Console.
+</Paragraph>
+
+<Paragraph indent="2">
+  *IPCM Tab in the&#x20;*\{\{FRS\_VARS.Company-short}}*&#x20;Configuration Database*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/eK2p_GGjQk-mTgPnsrgd5_ipcm-new.png" position="flex-start" size="40" indent="2" initialPath="../../Resources/Images/help-images/IPCM-New.png" githubPath="Content/Resources/Images/help-images/IPCM-New.png" showCaption="false"></Image>
+
+5. Save your changes.
+
+<Paragraph indent="1">
+  \{\{FRS\_VARS.ProductName}} is now configured to connect to \{\{FRS\_VARS.Company-short}} Voice.
+</Paragraph>
+
+## Managing a Ivanti Voice User Account Management
+
+\{\{FRS\_VARS.Company-short}} Voice user accounts are managed as employee records in \{\{FRS\_VARS.ProductName}}. They are administered through \{\{FRS\_VARS.ProductName}}. To administer \{\{FRS\_VARS.Company-short}} Voice users, follow these steps:
+
+1. Log in to \{\{FRS\_VARS.ProductName}}.
+2. Open the **Employee** workspace.
+3. Find the employee to manage, and open the employee record for that employee.
+4. On the **Details** tab, check **Enable Voice** to synchronize the user to \{\{FRS\_VARS.Company-short}} Voice and click **Save**.
+
+<Paragraph indent="1">
+  The system displays two new tabs, called **Voice - Agent Properties** and **Voice - Agent Skills**, from which you can configure the \{\{FRS\_VARS.Company-short}} Voice properties.
+</Paragraph>
+
+<hint type="info">
+  To disable a user account in \{\{FRS\_VARS.Company-short}} Voice, change the employee status to terminated. The system disables the user on the next synch.
+
+  To stop a user from being synchronized to \{\{FRS\_VARS.Company-short}} Voice, uncheck **Enable Voice**.
+</hint>
+
+5. To configure the voice properties of a user, select the **Voice - Agent Properties** tab. Enter values in the relevant voice properties. This page consolidates all user and agent settings from the \{\{FRS\_VARS.Company-short}} Voice Management Portal to one form.
+6. Select **Is Voice Agent** to assign the employee to the Contact Center Agent role.
+7. Select **Is Voice Supervisor** to assign them to the Contact Center Supervisor role.
+8. Select both fields if the user will act as an agent and as a supervisor. You can modify the permissions associated with these roles in the \{\{FRS\_VARS.Company-short}} Voice Management Portal. You can assign additional roles for the user in the \{\{FRS\_VARS.Company-short}} Voice Management Portal.
+9. In \{\{FRS\_VARS.ProductName}}, users can control their phone via an integrated voice toolbar. To allow a user to access this interface, check **Enable Voice Integrated Toolbar**. If they will use the **Voice Agent** dashboard instead, do not select this option.
+
+## Configuring User Extensions
+
+In \{\{FRS\_VARS.Company-short}} Voice, users are assigned an extension, which is configured in the SIP Soft Switch phones section of the \{\{FRS\_VARS.Company-short}} Voice Management Portal. In \{\{FRS\_VARS.ProductName}}, this is configured as a configuration item (inventory item). Follow these steps to configure user extensions:
+
+1. Log in to the Service Desk Console.
+2. Open the **Employee** workspace, find the employee to manage, and open the employee record for that employee.
+3. On the **Details** tab, check **Enable Voice** to synchronize the user to \{\{FRS\_VARS.Company-short}} Voice and click **Save**.
+4. Click the **Voice - Agent Properties** tab.
+5. In the **VOIP Device** field, select a VOIP device to associate with this user. (You can also create a new configuration item, if the user has a soft phone, or a desktop IP phone that is not already generated as a configuration item. Click **Add VOIP** to create a new configuration item of type VOIP. Enter a unique name for this device. In the **Owner** field, enter the name of the employee to which this extension is assigned.)
+6. Enter the details that you would normally configure in the **SIP Soft Switch Phones** page of the \{\{FRS\_VARS.Company-short}} Voice Management Portal. Configure the type of device to be phone. Configure the number, which is the extension number associated with this extension. You can also configure the authentication and forwarding sections as needed. Once you have associated a VOIP configuration item with the user, their extension is displayed in the **Voice - Agent Properties** tab.
+7. Click **Save**.
+
+## Assigning Skills to a User
+
+If a user is assigned the role of Contact Center Agent, you need to assign their skills on the **Voice - Agent Skills** tab. This tab displays a list view of all of the agent's skills grouped by skill group.
+
+1. Log in to \{\{FRS\_VARS.ProductName}}.
+2. Open the **Employee** workspace, find the employee to manage, and open the employee record for that employee.
+3. On the **Details** tab, check **Enable Voice** to synchronize the user to \{\{FRS\_VARS.Company-short}} Voice and click **Save**.
+4. Click the **Voice - Agent Skills** tab.
+5. Click **New Agent Skill** from the toolbar. The system displays the **New Agent Skill** dialog box.
+6. Select the skill group, skill name, and threshold for the user.
+7. To add a new skill group to \{\{FRS\_VARS.ProductName}}, do the following:
+
+<Paragraph indent="1">
+  a. Go to the Configuration Console and click **Extend > Voice Integration > Skill Groups** to open the **Skill Groups** workspace.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Click **New Skill Group** and enter a skill group name. 
+</Paragraph>
+
+<Paragraph indent="1">
+  c. Click **Save**.
+</Paragraph>
+
+8. To add a new skill, do the following;
+
+<Paragraph indent="1">
+  a. Go to the Configuration Console and click **Extend > Voice Integration > Skills** to open the **Skills** workspace.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Click **New Skill** and enter a skill name and optionally a skill group.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. Click **Save**.
+</Paragraph>
+
+## Modifying the Not Ready Reasons
+
+1. Log in to \{\{FRS\_VARS.ProductName}}.
+2. Open the **Employee** workspace, find the employee to manage, and open the employee record for that employee.
+3. On the **Details** tab, check **Enable Voice** to synchronize the user to \{\{FRS\_VARS.Company-short}} Voice and click **Save**.
+4. Click the **Voice - Agent Properties** tab.
+5. Enter values in the **Not Ready Reason Required** and **Initial Not Ready Reason** fields.
+6. Click **Save**.
+7. To add a new not ready reason, do the following:
+
+<Paragraph indent="1">
+  a. Go to the Service Desk Console and open the **Voice - Not Ready Reason** workspace.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Click **New Voice - Defined Reason** and enter a new reason.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. Click **Save**.
+</Paragraph>
+
+## Modifying the UI Language
+
+1. Log in to the Service Desk console.
+2. Open the **Employee** workspace.
+3. Find the employee to manage, and open the employee record for that employee.
+4. On the **Details** tab, check **Enable Voice** to synchronize the user to \{\{FRS\_VARS.Company-short}} Voice and click **Save**.
+5. Click the **Voice - Agent Properties** tab.
+6. Enter values in the **UI Language** field.
+7. Click **Save**.
+8. To add a new user interface language, do the following:
+
+<Paragraph indent="1">
+  a. Go to the Service Desk Console and open the **Voice - UI Supported Language** workspace.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Click **New Voice - UI Supported Language** and enter a new language.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. Click **Save**.
+</Paragraph>
+
+## Synchronizing Users
+
+User synchronization occurs via a Windows service running on the \{\{FRS\_VARS.Company-short}} Voice server. The Windows service polls \{\{FRS\_VARS.ProductName}} on a predefined basis. If the **Sync Status** record is set to start, it copies values from \{\{FRS\_VARS.ProductName}} to \{\{FRS\_VARS.Company-short}} Voice.
+
+1. Go to the Configuration Console and click **Extend > Voice Integration > Synchronization Status** to open the **Synchronization Status** workspace.
+2. Check **Enable Sync**.
+3. Click **Start Sync**. This sets the value of the **Sync Status** field to start, which causes the synchronization to run.
+
+<Paragraph indent="1">
+  The **Synch Status** record shows the last synch date and result. You can find further details by clicking the **Audit** tab. The system automatically attaches a backup of the host configuration and SIP server configuration files.
+</Paragraph>
+
+<hint type="info">
+  There must only be one **Synch Status** record.
+
+  For security reasons, the \{\{FRS\_VARS.ProductName}} user password is not accessible to the \{\{FRS\_VARS.Company-short}} Voice synchronization service.
+</hint>

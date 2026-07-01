@@ -1,0 +1,66 @@
+---
+title: Using the Simplified Expression Editor
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:58 GMT+0300 (Eastern European Summer Time)
+---
+
+**Role**: Administrators
+
+**Minimum Version**: \{\{Primary.Company}} \{\{Primary.Product}} 2025.3
+
+The **Simplified Expression Editor** has all the same basic features as the traditional **Expression Editor**. Refer to [About Expressions](Expressions.mdx) and [Using the Expression Editor](<Using Expression Editor.mdx>) to understand the use and importance of expressions, stored expressions, and the **Expression Editor**.
+
+The **Simplified Expression Editor** has a codeless interface with auto-population of parameters and other features, allowing you to simplify expressions and troubleshoot without leaving the editor.
+
+## Enable the Simplified Expression Editor
+
+**To enable the&#x20;****Simplified Expression Editor****:**
+
+1. Contact the \{\{Primary.Product}} [support team](https://www.ivanti.com/support) to turn on the **NewExpressionEditor** feature flag to enable the **Simplified Expression Editor** for your account.
+2. Set the Value as True of the *EnableSimplifiedExpressionEditor* global constant to enable it.
+
+## Simplified Expression Editor Features
+
+- :Link[Contextual Help]{label="Contextual Help" overridedLabel="Contextual Help" spaceId docId="cO3eD6aO_pvtHytgkqt7B" version="v2" docAnchorId="#contexthelp" loadingMethod="dynamic" newTab="false" href="Simplified Expression Editor.mdx"}
+- :Link[Autopopulation of Mandatory Parameters]{label="Autopopulation of Mandatory Parameters" overridedLabel="Autopopulation of Mandatory Parameters" spaceId docId="cO3eD6aO_pvtHytgkqt7B" version="v2" docAnchorId="#Autopopulation" loadingMethod="dynamic" newTab="false" href="Simplified Expression Editor.mdx"}
+- :Link[Dropdown menu of Parameter Functions]{label="Dropdown menu of Parameter Functions" overridedLabel="Dropdown menu of Parameter Functions" spaceId docId="cO3eD6aO_pvtHytgkqt7B" version="v2" docAnchorId="#Dropdown" loadingMethod="dynamic" newTab="false" href="Simplified Expression Editor.mdx"}
+- :Link[Using Code Snippets]{label="Using Code Snippets" overridedLabel="Using Code Snippets" spaceId docId="cO3eD6aO_pvtHytgkqt7B" version="v2" docAnchorId="#UsingSnip" loadingMethod="dynamic" newTab="false" href="Simplified Expression Editor.mdx"}
+
+### Contextual Help
+
+The **Simplified Expression Editor** uses the **Lower Messaging Area** to display helpful information. In addition to messages about syntax, it provides function descriptions and parameter details for functions added from the Tools pane.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/zjC8QmHar6y2DOzn2APLD_simplified-ee-context-help.png" position="flex-start" size="40" initialPath="../../Resources/Images/help-images/simplified-ee-context-help.png" githubPath="Content/Resources/Images/help-images/simplified-ee-context-help.png" showCaption="false"></Image>
+
+### Autopopulation of Mandatory Parameters
+
+When you add a function to an expression, the mandatory parameter names are added to your expression automatically. For example, if you select the **ChildFold&#x20;**&#x66;unction, the parameter&#x73;**&#x20;parentObjectRef, recId, childRelationshipRef, childExpression,** and **aggregatorFunction&#x20;**&#x61;re all added for you as per the image below.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/r0F6QnXZHMjOp2SEiHs54_simplified-ee-mandatory-params.png" position="flex-start" size="40" initialPath="../../Resources/Images/help-images/simplified-ee-mandatory-params.png" githubPath="Content/Resources/Images/help-images/simplified-ee-mandatory-params.png" showCaption="false"></Image>
+
+The **Lower Messaging Area** is populated with the mandatory parameter names, a function description, parameters and their types. Mandatory parameters display a red asterisk (\*) to the right of the parameter name.
+
+### Dropdown menu of Parameter Functions
+
+Some functions have a dropdown menu where you can choose from available function parameters.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/vft-p2JV_IXu9bT5V3sNF_simplified-ee-parameter-dropdown.png" alt="Dropdown menu from the parameter inside the expression editor." position="flex-start" size="40" initialPath="../../Resources/Images/help-images/simplified-ee-parameter-dropdown.png" githubPath="Content/Resources/Images/help-images/simplified-ee-parameter-dropdown.png" showCaption="false"></Image>
+
+The functions with dropdown menus for parameters are as follows:
+
+| **Function**          | **Parameter**   |
+| --------------------- | --------------- |
+| ChildFold             | parentObjectRef |
+| HierarchicalChildFold | parentObjectRef |
+| ExecuteSavedSearch    | BORef\|BOName   |
+| ForEachChild          | parentObjectRef |
+| EvalField             | objectRef       |
+| IsTrueForAllChildren  | parentObjectRef |
+
+The dropdown menus contain all the business object names in your system. Once selected, the parameter is replaced as ObjectName#, for example, Incident#.
+
+### Using Code Snippets
+
+The **Simplified Expression Editor** contains **Code Snippets** in the **Tools&#x20;**&#x70;ane. To add these to an expression, you can either double-click the **Code Snippet** or drag it in to the **Expression Editor** workspace.
+
+See [About Expressions](Expressions.mdx) for more general information about writing and using expressions, including [Expression Grammar](<Expression Grammar.mdx>), [Expression Examples](Expression_Examples.mdx), and [Using Expressions in Quick Actions](Using_Expressions_in_Quick_Actions.mdx).

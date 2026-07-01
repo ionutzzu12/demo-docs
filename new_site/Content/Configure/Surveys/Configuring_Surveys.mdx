@@ -1,0 +1,215 @@
+---
+title: Configuring the Survey Frequency and Sending the Survey
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:54 GMT+0300 (Eastern European Summer Time)
+---
+
+By default, the application generates a survey notification for every fifth record. You do not need to offer a survey to every customer to get a valid sampling. Sampling is controlled by a workflow and is available for incidents and service requests.
+
+- :Link[Step 1: Configuring (or Creating) the Global Constant for the Survey]{label="Step 1: Configuring (or Creating) the Global Constant for the Survey" overridedLabel="Step 1: Configuring (or Creating) the Global Constant for the Survey" spaceId docId="k9CqsIHrOlrRSrf6SuErL" version="v2" docAnchorId="#Step_1:_Specifying_the_Global_Constant" loadingMethod="dynamic" newTab="false" href="Configuring_Surveys.mdx"}
+- :Link[Step 2: Configuring (or Creating) the Business Object Field for the Survey]{label="Step 2: Configuring (or Creating) the Business Object Field for the Survey" overridedLabel="Step 2: Configuring (or Creating) the Business Object Field for the Survey" spaceId docId="k9CqsIHrOlrRSrf6SuErL" version="v2" docAnchorId="#Step_2:_Setting_the_Field" loadingMethod="dynamic" newTab="false" href="Configuring_Surveys.mdx"}
+- :Link[Step 3: Configuring (or Creating) the Business Rule for the Survey]{label="Step 3: Configuring (or Creating) the Business Rule for the Survey" overridedLabel="Step 3: Configuring (or Creating) the Business Rule for the Survey" spaceId docId="k9CqsIHrOlrRSrf6SuErL" version="v2" docAnchorId="#Step_3:_Setting_the_Business_Rule" loadingMethod="dynamic" newTab="false" href="Configuring_Surveys.mdx"}
+- :Link[Step 4: Configuring (or Creating) the Workflow for the Survey]{label="Step 4: Configuring (or Creating) the Workflow for the Survey" overridedLabel="Step 4: Configuring (or Creating) the Workflow for the Survey" spaceId docId="k9CqsIHrOlrRSrf6SuErL" version="v2" docAnchorId="#Step_4:_Setting_the_Workflow" loadingMethod="dynamic" newTab="false" href="Configuring_Surveys.mdx"}
+
+## Step 1: Configuring (or Creating) the Global Constant for the Survey
+
+Set the global constant to specify the frequency of the surveys.
+
+1. From the Configuration Console, click **Build > Global Constants** to open the **Global Constants** workspace. The list of global constants appears.
+2. Double-click the value for the following, then enter a frequency number:
+
+| Parameter            | Description                                                         |
+| -------------------- | ------------------------------------------------------------------- |
+| IncidentSurveyFreq   | Sets the survey frequency trigger when an incident is closed.       |
+| ServiceReqSurveyFreq | Sets the survey frequency trigger when a service request is closed. |
+
+<Paragraph indent="1">
+  You can also add or create constants based on the requirements or team specific. For example, create IncidentITSurveyFreq constant to trigger surveys whenever an IT incident is closed.
+</Paragraph>
+
+3. Click **Save**.
+
+<Paragraph indent="1">
+  When an incident or service request is closed, the notification workflow compares the value with the total number of incidents that have closed since the last survey was triggered. If the number matches, the application triggers the survey email workflow (called **Incident Survey** for incidents or **Send Survey Notification** for service requests).
+</Paragraph>
+
+## Step 2: Configuring (or Creating) the Business Object Field for the Survey
+
+Set the business object field for the flag to show whether a survey goes out for this incident or survey request.
+
+1. From the Configuration Console, click **Build > Business Objects** to open the **Business Objects** workspace.
+2. Open the business object for which to send a survey.
+3. Click the **Fields** tab. The application displays a list of fields.
+4. The field called **SendSurveyNotification** should have the following settings:
+
+| Setting  | Description |
+| -------- | ----------- |
+| Type     | Boolean     |
+| Nullable | Checked     |
+| Stored   | Checked     |
+| Hidden   | Checked     |
+
+<hint type="info" indent="1">
+  If this field does not appear for the business object that you are configuring, you must create it. Refer to [Working with Fields](../BusinessObjects/Using-Fields.mdx).
+</hint>
+
+5. Click **Save**.
+
+## Step 3: Configuring (or Creating) the Business Rule for the Survey
+
+The business rule should set the **flag** field.
+
+1. From the Configuration Console, click **Build > Business Objects** to open the **Business Objects** workspace.
+2. Open the business object for which to send a survey.
+3. Click the **Business Rules** tab.
+4. Expand the **Editing and Calculation Rules** section.
+
+<Paragraph indent="1">
+  The **SendSurveyNotification** rule has the following settings:
+</Paragraph>
+
+| Parameter   | Definition                                                                                |
+| ----------- | ----------------------------------------------------------------------------------------- |
+| Condition   | BeforeSave                                                                                |
+| Field Value | **$(if(((IncidentNumber % GetGlobal("IncidentSurveyFreq")) == 0) then true else false))** |
+
+<Paragraph indent="1">
+  If this business rule does not appear for the business object that you are configuring, you must create it. Refer to [Using Business Rules](../BusinessRules/Business_Rules.mdx).
+</Paragraph>
+
+*Configuring the Survey Business Rule*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/nYJYKYvVtS6700gyqOK6t_calculatedfield.png" alt="Configuring the survey business rule." position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/calculated_field.png" githubPath="Content/Resources/Images/help-images/calculated_field.png" showCaption="false"></Image>
+
+5. Click **Save**.
+
+## Step 4: Configuring (or Creating) the Workflow for the Survey
+
+The workflow sends the notification based on the value of the **flag** field.
+
+1. From the Configuration Console, click **Build > Workflow> Workflows** to open the **Workflows** workspace.
+2. Open the survey workflow. For example, under the **Incident** section, click **Incident Survey**. The **Incident Survey** workflow version list appears.
+3. Click the **edit** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/WTLKbMa5PI7qeazzbj0FD_edit-old.png" alt caption size="10" width="16" height="16"} next to the last version on the list. The **Workflow Editor** appears.
+4. Ensure that the **Start**, **Notification**, and **Stop** workflow blocks are on the Workflow Designer. If not, you must drag the blocks onto the Workflow Editor and connect them.
+
+*Workflow Editor*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/z2jB4rEa9_uBK5EyIA8Ii_survey-flow.png" alt="Image of the Workflow Editor." position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/modern-surveys/Survey-Flow.png" githubPath="Content/Resources/Images/help-images/modern-surveys/Survey-Flow.png" showCaption="false"></Image>
+
+5. Double-click the **Notification** workflow block to open the properties. Refer to [Notification Workflow Block](../Workflows/WorkflowObjects/Notification.mdx).
+6. In the **Body** area, click the **source edit** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Nwt7lCmEFpFObm9aZTdYz_sourceedit.png" alt caption size="10" width="19" height="14"} to view the message in HTML format.
+
+<Paragraph indent="1">
+  The following is the HTML version of the body:
+</Paragraph>
+
+<CodeblockTabs indent="1">
+  ```bash
+  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+  10
+  11
+  12
+  13
+  14
+  15
+  16
+  17
+  18
+  19
+  <font size="3">
+      Hi $(ProfileFullName),
+  </font>
+  <br>
+  <br>
+  <font size="3">
+      Please spend a few minutes to fill out the following survey. The feedback you provide&nbsp;will be used to improve our level of service:<br>
+  </font>
+  <font size="2">
+      <br>
+  </font>
+  <font size="3">
+      <a href="$(GetSurveyLink(GetSurveyName('DefaultSurveyName'), 'Incident', RecId))">
+          Click here to fill out survey
+      </a>
+  </font>
+  <br>
+  <br>
+  <font size="3">Thank you.<br><br>--Service Desk</font>
+  ```
+</CodeblockTabs>
+
+<hint type="info">
+  Survey URL structure: **$(GetSurveyLink(SurveyName, Business object Name, RecId))**
+</hint>
+
+<hint type="info">
+  Starting with the release 2026.3, the following Survey URL structure will be deprecated:
+  **$(GetSurveyURL())\&amp;survey\_name=$(GetSurveyName('DefaultSurveyName'))\&amp;customer\_id=$(GetApplicationId())\&amp;ot=Incident\&amp;oid=$(RecId)\&amp;page\_index=0"**
+</hint>
+
+7. Update the workflow configuration by doing the following:
+
+<Paragraph indent="1">
+  a. In the workflow, click **Configuration**. The application displays the **Workflow Configuration** dialog box.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Click the **Trigger Definition** tab.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. Under the **Object Level Conditions** header, ensure that **Created** and **Updated** are both checked.
+</Paragraph>
+
+<Paragraph indent="1">
+  d. Ensure that **Specific fields updated - at least one of the following fields should be updated.** and **AND** are both selected.
+</Paragraph>
+
+<Paragraph indent="1">
+  e. Ensure that there are two fields and they have this information: **Field** = **Status**, **Operator** = **Equal to**, **Value** = **Closed** and **Field** = **SendSurveyNotification**, **Operator** = **Equal to**, **Value** = **True**.
+</Paragraph>
+
+<Paragraph indent="1">
+  f. Click **Save**.
+
+
+</Paragraph>
+
+*Survey Workflow Trigger Definition*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Vm7tAcj8iR1XeMFJbpFST_surveyworkflow2.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/survey_workflow_2.png" githubPath="Content/Resources/Images/help-images/survey_workflow_2.png" showCaption="false"></Image>
+
+8. Click **Save**.
+
+<Paragraph indent="1">
+  For each incident, the business rule runs and this sets the **SendSurveyNotification** flag when incident number modulus the global constant is equal to 0 (that is, when dividing the incident number by the global constant results in a division with no remainder; for a frequency of 5, all incidents ending with 0 or 5 receive a survey).
+</Paragraph>
+
+<Paragraph indent="1">
+  When an incident is closed, if the **SendSurveyNotification** flag is set, the application runs the workflow and sends the survey.
+</Paragraph>
+
+9. To set the URL in the survey email, do the following:
+
+<Paragraph indent="1">
+  a. In the properties for the **Notification** block, insert the survey URL into the HTML of the email. For example, change **$(GetSurveyURL())** to **$(GetSurveyURL("https\://www\.survey.company.com"))**.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Click **Save**.
+</Paragraph>
+
+<hint type="info">
+  You might encounter an “Invalid Session” error if any of the following conditions apply:
+
+  - The survey name configured in the Global Constant (GC) is incorrect. For more information, refer to [Default\_Global\_Constants.](../Constants/Default_Global_Constants.mdx)
+  - Cached data is outdated; rebuilding the cache resolves the issue.
+</hint>

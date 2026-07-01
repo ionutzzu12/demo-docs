@@ -1,0 +1,79 @@
+---
+title: About the Transaction Audit Log
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:53 GMT+0300 (Eastern European Summer Time)
+---
+
+- :Link[About the Transaction Audit Log]{label="About the Transaction Audit Log" overridedLabel="About the Transaction Audit Log" spaceId docId="669-F4xy-6mzuw5XsxOmq" version="v2" docAnchorId="#About-the-Transaction-Audit-Log" loadingMethod="dynamic" newTab="false" href="Transaction Audit Log.mdx"}
+- :Link[Viewing Transaction Audit Logs]{label="Viewing Transaction Audit Logs" overridedLabel="Viewing Transaction Audit Logs" spaceId docId="669-F4xy-6mzuw5XsxOmq" version="v2" docAnchorId="#Viewing-Transaction-Audit-Logs" loadingMethod="dynamic" newTab="false" href="Transaction Audit Log.mdx"}
+- :Link[Configuring Transaction Audit Logs]{label="Configuring Transaction Audit Logs" overridedLabel="Configuring Transaction Audit Logs" spaceId docId="669-F4xy-6mzuw5XsxOmq" version="v2" docAnchorId="#Configuring-Transaction-Audit-Logs" loadingMethod="dynamic" newTab="false" href="Transaction Audit Log.mdx"}
+- :Link[About Advanced Search Options]{label="About Advanced Search Options" overridedLabel="About Advanced Search Options" spaceId docId="669-F4xy-6mzuw5XsxOmq" version="v2" docAnchorId="#About-Advanced-Search-Options" loadingMethod="dynamic" newTab="false" href="Transaction Audit Log.mdx"}
+
+## About the Transaction Audit Log
+
+The **Transaction Audit** log lists create, update, and delete events that are enabled per business object class. It also allows views of business object details to be logged. View logging is enabled per form or form-view.
+
+*Transaction Audit Log*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/kmX3xpo4RoQg552pwVd0D_transactionlog.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/transaction_log.png" githubPath="Content/Resources/Images/help-images/transaction_log.png" showCaption="false"></Image>
+
+Each **Transaction Audit** log includes the following fields:
+
+- Event type (create/view/update/delete)
+- Event date/time
+- User login ID
+- User role (administrator only)
+- Object type
+- Object name/ID
+- Client address
+- View type (form or form view: administrator only)
+- View name (administrator only)
+
+## Viewing Transaction Audit Logs
+
+1. Log in to \{\{FRS\_VARS.ProductName}}.
+2. Open the **Transaction Audit Log** workspace. The application displays a list of transaction events, if any.
+3. Open an item from the list to view details.
+
+*Transaction Audit Log*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/2wdYuTu_6NSEAuYr5CV8L_transactionloggoto.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/transaction_log_goto.png" githubPath="Content/Resources/Images/help-images/transaction_log_goto.png" showCaption="false"></Image>
+
+4. Click **Go to** to view the business object record.
+5. To remove a log from the list, do the following:
+
+<Paragraph indent="1">
+  a. Select the log.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Click **Delete**.
+</Paragraph>
+
+## Configuring Transaction Audit Logs
+
+To enable transaction logging, from the Configuration Console, ensure that the following items are set:
+
+| Workspace                       | Set This                                  |
+| ------------------------------- | ----------------------------------------- |
+| The Business Object Detail page | Select **Audit Creates/Updates/Deletes**. |
+| The Form Editor                 | Select **Audit Views**.                   |
+| Layout FormView Editor          | Select **Enable Object View Auditing**.   |
+
+The **Transaction Audit** log uses three global constants (see [List of Global Constants](../Constants/Default_Global_Constants.mdx)):
+
+- MaxTransactionAuditLogAge
+- DisableDataViewLogs
+- DisableDataChangeLogs
+
+## About Advanced Search Options
+
+For a description of the saved searches, see [Default Saved Searches](../Configuring-Search/Default_Saved_Searches.mdx).
+
+You can perform an advanced search if you create a relationship using the **FRS\_GlobalAuditLog.ParentLink** field. The following is an example using a relationship to incident.
+
+*Transaction Audit Log Advanced Search*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/GCXRGmE4qnSHFgk9skM9R_transactonadvanced.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/transacton_advanced.png" githubPath="Content/Resources/Images/help-images/transacton_advanced.png" showCaption="false"></Image>
+
+By default, you can only select audit logs by information collected in the log itself. If you need to select a list of transaction audit logs based on the data of the audited business object beyond the primary identifier of the object (for example, to pull all views of incidents for a specific incident owner or all closed incidents), you can do so by adding a relationship between **FRS\_GlobalAuditLog** and the business object, using the **FRS\_GlobalAuditLog.ParentLink** field.

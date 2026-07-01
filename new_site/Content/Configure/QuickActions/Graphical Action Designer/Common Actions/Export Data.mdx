@@ -1,0 +1,71 @@
+---
+title: Export Data Quick Action
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:56 GMT+0300 (Eastern European Summer Time)
+---
+
+- :Link[About the Export Data Quick Action]{label="About the Export Data Quick Action" overridedLabel="About the Export Data Quick Action" spaceId docId="qD1W-qVu28pztB44e630C" version="v2" docAnchorId="#About_the_Export_Data_Quick_Action" loadingMethod="dynamic" newTab="false" href="Export Data.mdx"}
+- :Link[Parameters]{label="Parameters" overridedLabel="Parameters" spaceId docId="qD1W-qVu28pztB44e630C" version="v2" docAnchorId="#Export_data_parameters" loadingMethod="dynamic" newTab="false" href="Export Data.mdx"}
+- \{\{FRS\_VARS.Classic\_Action\_Designer}}: [Export Data Action](<../../Classical Action Designer/templates/Export Data.mdx>)
+
+## About the Export Data Quick Action
+
+Automate data extraction in various formats for reporting by using the **Export Data** action with the data export integration connection. See [Exporting Data](../../../ImportExportData/Data-Export.mdx).
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/AJ9mdqWr0AvuwVXiaibFH_qa-export-data.png" alt="Image of the Export Data action block." position="flex-start" size="40" initialPath="../../../../Resources/Images/help-images/qa export data.png" githubPath="Content/Resources/Images/help-images/qa export data.png" showCaption="false"></Image>
+
+<hint type="info">
+  Multi-select parameters are not supported for this action. Use simple text parameters.
+
+  Only a simple table-valued report template can be exported. Grouped records are not supported.
+</hint>
+
+## Parameters
+
+To access the parameters, select the **Action Block** to display them in the **Settings** pane.
+
+### Action Block Settings
+
+### Report Parameters
+
+**Block Label**: A unique name for the block. This is useful to identify each action when you have more than one of the same action block added or cloned in the design area.
+
+Click **Report Parameters** to open the **Report Parameters** interface in the \{\{FRS\_VARS.Graphical\_Action\_Designer}} workspace.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/hrI9IppfmZ7E-9_f6aPge_qaexportdatareportparametersworkspace.png" position="flex-start" size="40" initialPath="../../../../Resources/Images/help-images/qa_export_data_report_parameters_workspace.png" githubPath="Content/Resources/Images/help-images/qa_export_data_report_parameters_workspace.png" showCaption="false"></Image>
+
+From the **Report Parameters** interface, you can configure the following:
+
+- **Report Name**: The report name. Choose from the drop-down list. See [Working with Reports and Report Management](../../../../ServiceDesk/Reports/Reports.mdx). Check **Can Run from Export Data Action** within the report configuration page.
+- **Can run for multiple records**: Includes data from multiple records.
+
+<hint type="info" indent="2">
+  We recommend, as a best practice, including a unique field, such as **RecID**, in the dataset.
+</hint>
+
+- **Connection**: The defined connection. Choose from the drop-down list. Administrators create the connections. See [About Configuring Data Integration](../../../ImportExportData/About-Configuring-Data-Integration.mdx).
+- **Schedule**: The schedule. Choose from the drop-down list. See [About the Schedule Entry and Scheduled Jobs Workspaces](../../../Schedules/Schedule_Entry.mdx).
+- **Report Parameters**: The report parameters are automatically generated based on the chosen report. Not all reports contain parameters. In the **Source Value** field, you can use a field, enter an expression, or enter a specific value. Only non-scheduled reports (run now) can use expressions.
+
+### Export Format
+
+Select the desired format of the exported report from the drop-down menu. Choose from:
+
+- **CSV** (Comma Separated Values): Field values are separated by commas. When you select CSV, three more options appear:
+  - **Field Delimiter**: Enter a value or choose an option from the drop-down list to use as your field delimiter:
+    - Comma (,)
+    - TAB
+  - **Record Delimiter**: The record delimiter (for example, % or ###).
+  - **Qualifier**: The character to use as an escape character (for example, %%%).
+- **Excel**: File can be opened by Microsoft Excel (.xls or .xlsx).
+- **XML**: Generic data can be read by other systems.
+
+Click **Save** to commit your settings.
+
+### Start Block Settings
+
+These settings are accessed by selecting the **Start Block**, refer to :Link[Start Block Settings]{label="Start Block Settings" overridedLabel="Start Block Settings" spaceId docId="T_2hq2qRJzWxiHLCfgn-7" version="v2" docAnchorId="#CommonTab" loadingMethod="dynamic" newTab="false" githubPath="../Using_the_Graphical_Action_Designer.htm#CommonTab" href="../Using_the_Graphical_Action_Designer.mdx"}.
+
+<hint type="info">
+  This action does not respect the **Auto-save** checkbox option in the **Start Block** settings. It does save changes directly to the database, but please ensure that the behaviour you expect still occurs.
+</hint>

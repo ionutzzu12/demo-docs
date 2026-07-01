@@ -1,0 +1,119 @@
+---
+title: Archiving and Deleting Log Data from the Neurons for ITSM Databases
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:58 GMT+0300 (Eastern European Summer Time)
+---
+
+- :Link[About Archiving and Deleting Log Data from the Neurons for ITSM Databases]{label="About Archiving and Deleting Log Data from the Neurons for ITSM Databases" overridedLabel="About Archiving and Deleting Log Data from the Neurons for ITSM Databases" spaceId docId="QEVBD93XBKnSTdtY2sxId" version="v2" docAnchorId="#About-Archiving-and-Deleting-Log-Data-from-the-Service-Manager-Databases" loadingMethod="dynamic" newTab="false" href="Archiving Business Objects.mdx"}
+- :Link[About the Types of Log Data to Archive and Delete]{label="About the Types of Log Data to Archive and Delete" overridedLabel="About the Types of Log Data to Archive and Delete" spaceId docId="QEVBD93XBKnSTdtY2sxId" version="v2" docAnchorId="#About3" loadingMethod="dynamic" newTab="false" href="Archiving Business Objects.mdx"}
+- :Link[Archiving and Deleting Log Data from the Neurons for ITSM Databases]{label="Archiving and Deleting Log Data from the Neurons for ITSM Databases" overridedLabel="Archiving and Deleting Log Data from the Neurons for ITSM Databases" spaceId docId="QEVBD93XBKnSTdtY2sxId" version="v2" docAnchorId="#Archivin" loadingMethod="dynamic" newTab="false" href="Archiving Business Objects.mdx"}
+- :Link[Modifying the Database Archive and Delete Feature]{label="Modifying the Database Archive and Delete Feature" overridedLabel="Modifying the Database Archive and Delete Feature" spaceId docId="QEVBD93XBKnSTdtY2sxId" version="v2" docAnchorId="#Modifyin" loadingMethod="dynamic" newTab="false" href="Archiving Business Objects.mdx"}
+
+## About Archiving and Deleting Log Data from the Neurons for ITSM Databases
+
+In \{\{FRS\_VARS.ProductName}}, if you do not delete the data in your databases, the data continues to grow. This can cause problems with storage for the databases, reduced performance as the application grows, database schema changes taking longer to apply, and the quality of the search results can diminish when old, and irrelevant, data is included. Additionally, larger databases required more database servers which can increase costs.
+
+Logs contain valuable information about \{\{FRS\_VARS.ProductName}} and are invaluable aids to \{\{FRS\_VARS.Company-short}} Technical Support for diagnosing customer issues. \{\{FRS\_VARS.Company}} recommends that you keep all logs from the current release and the most recent past major release.
+
+Prior to \{\{FRS\_VARS.ProductName}} Release 2015.1, we only supported backing up the databases for disaster recovery purposes.
+
+You can configure the data to delete at the business object level. For each database delete, you can specify the following:
+
+- The business objects to include in the archive.
+- The schedule for the archive, per business object.
+- If the archive is enabled or disabled, per business object.
+- The part of the business object to archive.
+- If you can preview the archive.
+- When to back up or purge the archive.
+
+## About the Types of Log Data to Archive and Delete
+
+The database archive and delete feature works with two types of data:
+
+- Transactional data, which is a customer's data records, including incidents, changes, service requests, and so on.
+- Non-transactional data, which is made up of logs.  Currently, these are the database tables for logs:
+  - **FRS\_Application\_Update\_Notes**: FRS Application Update Notes
+  - **FRS\_BaselineLog**: Baseline Log
+  - **Frs\_data\_integration\_history**: Integration History
+  - **Frs\_data\_integration\_log**: Integration Log
+  - **Frs\_data\_run\_program\_log**: Run Program Log
+  - **Frs\_data\_workflow\_instance**: Workflow Instance
+  - **FRS\_GlobalAuditLog**: Global Audit Log
+  - **Frs\_ITFM\_RollupLog**: ITFM Rollup Log
+  - **frs\_ops\_change\_log**: \{\{FRS\_VARS.ProductName}} Development Package Change Log
+  - **Frs\_ops\_gbu\_pipeline\_history**: GBU Pipeline History
+  - **Frs\_ops\_integration\_queue**: Integration Queue
+  - **frs\_ops\_metadata\_history**: Metadata History
+  - **Frs\_ops\_validation\_results**: Validation Results
+  - **LDAPImportLog**: LDAP Import Log
+  - **Logs**: Logs
+  - **ScheduledJobHistory**: Scheduled Job History
+  - **Audit\_CI**: AuditCI
+
+## Archiving and Deleting Log Data from the Neurons for ITSM Databases
+
+You can either use this feature as is to clean out non-transactional data or you can modify the feature to tailor it to your organization's needs.  To modify the feature, see :Link[Modifying the Database Archive and Delete Feature]{label="Modifying the Database Archive and Delete Feature" overridedLabel="Modifying the Database Archive and Delete Feature" spaceId docId="QEVBD93XBKnSTdtY2sxId" version="v2" docAnchorId="#Modifyin" loadingMethod="dynamic" newTab="false" href="Archiving Business Objects.mdx"}.  To use the feature as is, follow this process:
+
+1. From the Configuration console, click **Build&#x20;**>**&#xA0;Workflow&#x20;**>**&#x20;Workflows** to open the **Workflows** workspace. The application displays the list of available workflows.
+2. Under the **Scheduled Entry** header, click **Archive Logs**. The application displays the **Workflows: Archive Logs** page.
+3. At the end of the line for the most recent workflow version, click the **publish** :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/r6aoc-et0ImoZdV55y1aa_publish.jpg" alt caption size="10" width="15" height="16"} icon to enable the workflow. The workflow line turns green.
+4. At the confirmation message, click **Yes**. The application publishes the **Archive Logs** workflow and data either archives or deletes the data based on its parameters.
+
+*Easily Deleting Your Data*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/T54DcrGzXxD4icMNbC1To_archivepagelogs.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/archive_page_logs.png" githubPath="Content/Resources/Images/help-images/archive_page_logs.png" showCaption="false"></Image>
+
+See [About Workflows](../Workflows/Workflows.mdx) and [Archive for Search Workflow Block](../Workflows/WorkflowObjects/Archive_for_Search.mdx) for information about workflows.
+
+## Modifying the Database Archive and Delete Feature
+
+You can modify the database archive and delete feature to suit the specific needs of your organization.
+
+- :Link[Modifying the Age of the Data to Archive and Delete]{label="Modifying the Age of the Data to Archive and Delete" overridedLabel="Modifying the Age of the Data to Archive and Delete" spaceId docId="QEVBD93XBKnSTdtY2sxId" version="v2" docAnchorId="#Modifying" loadingMethod="dynamic" newTab="false" href="Archiving Business Objects.mdx"}
+- :Link[Modifying the Time and Frequency of the Database Archive and Delete Feature]{label="Modifying the Time and Frequency of the Database Archive and Delete Feature" overridedLabel="Modifying the Time and Frequency of the Database Archive and Delete Feature" spaceId docId="QEVBD93XBKnSTdtY2sxId" version="v2" docAnchorId="#ModifyingFreq" loadingMethod="dynamic" newTab="false" href="Archiving Business Objects.mdx"}
+- :Link[Modifying the Data to Archive and Delete]{label="Modifying the Data to Archive and Delete" overridedLabel="Modifying the Data to Archive and Delete" spaceId docId="QEVBD93XBKnSTdtY2sxId" version="v2" docAnchorId="#ModifyingData" loadingMethod="dynamic" newTab="false" href="Archiving Business Objects.mdx"}
+
+### Modifying the Age of the Data to Archive and Delete
+
+The application archives and deletes data of a certain age, as defined by the **ArchiveAge** global constant. You can edit the value of the **ArchiveAge** global constant so that the data to archive and delete is older or newer than the default value of 180 days.
+
+Follow these steps to modify the age of the data to archive and delete.
+
+1. From the Configuration Console, click **Build > Global Constants** to open the **Global Constants** workspace. The application displays the list of global constants.
+2. Scroll to the global constant called **ArchiveAge**.
+3. Double-click the value to edit it.
+4. Change the value.
+5. Click **Save**.
+
+See :Link[Modifying a Global Constant]{label="Modifying a Global Constant" overridedLabel="Modifying a Global Constant" spaceId docId="hdqjMZ0xNIIUp-39YljO9" version="v2" docAnchorId="#Modifyin" loadingMethod="dynamic" newTab="false" githubPath="../Constants/Defining_Global_Constant.htm#Modifyin" href="../Constants/Defining_Global_Constant.mdx"} for more information about using global constants.
+
+### Modifying the Time and Frequency of the Database Archive and Delete Feature
+
+The database archive and delete feature runs on a schedule that is defined by a scheduled job called **Archive Schedule**. You can edit the **Archive Schedule** scheduled job so that the database archive and delete feature runs more or less frequently, or at a different time.
+
+Run the database archive and delete feature outside standard office hours for the landscape location to maintain optimal performance, as archiving and deleting data could impact the performance of the application, especially the very first time. The amount of time to archive and delete the data depends on the size of the data to archive and delete, which depends on how frequently you run the feature and how big your application is.
+
+For example, if you run the database archive and delete feature weekly, then you archive and delete a week's worth of data. But the first time that you archive and delete data, you will be archiving and deleting all of the application data so that will be significantly more data and take much longer.
+
+The default scheduled job for the data archive and delete feature is to run on Saturday and Sunday starting at 12:00AM and ending any time before 11:45PM. Both times are local times.
+
+Follow these steps to modify the frequency of the database archive and delete feature.
+
+1. From the Configuration Console, click **Monitor > Scheduled Jobs** to open the **Scheduled Jobs** workspace. The application displays the list of scheduled jobs.
+2. Double-click the **Archive Schedule** scheduled job to open the record.
+3. Change the values as needed.
+4. Click **Save**.
+
+See [About the Schedule Entry and Scheduled Jobs Workspaces](../Schedules/Schedule_Entry.mdx) for more information about using scheduled jobs.
+
+### Modifying the Data to Archive and Delete
+
+The data to archive and delete is based on a saved search called **Archive**. You can create your own saved search or you can use the **Archive** saved search.  For example, if you do not want to archive or delete all of the logs, but just a specific log, you can modify the saved search.
+
+Follow these steps to modify the data to archive and delete by modifying the **Archive** saved search:
+
+1. From the \{\{FRS\_VARS.ProductName}} application, open the **Logs** workspace. The application displays the list of logs.
+2. Click **ALL** to show the list of saved searches associated with logs.
+3. At the bottom of the list, click **All Saved Searches**. The application displays the list of saved searches with additional information.
+4. Highlight a saved search and click the **edit** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/WTLKbMa5PI7qeazzbj0FD_edit-old.png" alt caption size="10" width="16" height="16"}to view the search criteria.
+5. To run the saved search, click **Run Search**. The application displays the list of logs that are part of this saved search.

@@ -1,0 +1,407 @@
+---
+title: Report Examples
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:49 GMT+0300 (Eastern European Summer Time)
+---
+
+The following use cases are provided as examples to help you create a report template with parameters, upload it to \{\{FRS\_VARS.ProductName}}, publish it, and then run it.
+
+- :Link[Example: Creating a Report Where Users Select Incident Categories and View Owners by Category]{label="Example: Creating a Report Where Users Select Incident Categories and View Owners by Category" overridedLabel="Example: Creating a Report Where Users Select Incident Categories and View Owners by Category" spaceId docId="RBgkp-zlbxktUnAj4j89c" version="v2" docAnchorId="#Users_Select_Incident_Categories_and_View_Owners_by_Category" loadingMethod="dynamic" newTab="false" href="Report_Examples.mdx"}
+- :Link[Example: Creating a Report That Filters Incidents by Owner Teams and Owners Within the Teams]{label="Example: Creating a Report That Filters Incidents by Owner Teams and Owners Within the Teams" overridedLabel="Example: Creating a Report That Filters Incidents by Owner Teams and Owners Within the Teams" spaceId docId="RBgkp-zlbxktUnAj4j89c" version="v2" docAnchorId="#Incidents_Filtered_by_Owner_Teams_and_Owners_Within_the_Teams" loadingMethod="dynamic" newTab="false" href="Report_Examples.mdx"}
+- :Link[Example: Using a Field in a Report that Stores Both HTML and Text]{label="Example: Using a Field in a Report that Stores Both HTML and Text" overridedLabel="Example: Using a Field in a Report that Stores Both HTML and Text" spaceId docId="RBgkp-zlbxktUnAj4j89c" version="v2" docAnchorId="#Use_a_field_which_stores_both_HTML_and_Text" loadingMethod="dynamic" newTab="false" href="Report_Examples.mdx"}
+- :Link[Example: Restricting Report Data Based on Login ID]{label="Example: Restricting Report Data Based on Login ID" overridedLabel="Example: Restricting Report Data Based on Login ID" spaceId docId="RBgkp-zlbxktUnAj4j89c" version="v2" docAnchorId="#Restrict_Report_Data_Based_on_Login_ID" loadingMethod="dynamic" newTab="false" href="Report_Examples.mdx"}
+
+## Example: Creating a Report Where Users Select Incident Categories and View Owners by Category
+
+This example shows how to create an incident report with category as a parameter.
+
+- :Link[Step 1: Logging into the Report Builder]{label="Step 1: Logging into the Report Builder" overridedLabel="Step 1: Logging into the Report Builder" spaceId docId="RBgkp-zlbxktUnAj4j89c" version="v2" docAnchorId="#Step1A" loadingMethod="dynamic" newTab="false" href="Report_Examples.mdx"}
+- :Link[Step 2: Creating the Dataset for the Report]{label="Step 2: Creating the Dataset for the Report" overridedLabel="Step 2: Creating the Dataset for the Report" spaceId docId="RBgkp-zlbxktUnAj4j89c" version="v2" docAnchorId="#reports_1544019203_1106185" loadingMethod="dynamic" newTab="false" href="Report_Examples.mdx"}
+- :Link[Step 3: Creating the Dataset for the Parameter]{label="Step 3: Creating the Dataset for the Parameter" overridedLabel="Step 3: Creating the Dataset for the Parameter" spaceId docId="RBgkp-zlbxktUnAj4j89c" version="v2" docAnchorId="#Step3A" loadingMethod="dynamic" newTab="false" href="Report_Examples.mdx"}
+- :Link[Step 4: Creating the Parameters]{label="Step 4: Creating the Parameters" overridedLabel="Step 4: Creating the Parameters" spaceId docId="RBgkp-zlbxktUnAj4j89c" version="v2" docAnchorId="#Step4A" loadingMethod="dynamic" newTab="false" href="Report_Examples.mdx"}
+- :Link[Step 5: Designing the Report]{label="Step 5: Designing the Report" overridedLabel="Step 5: Designing the Report" spaceId docId="RBgkp-zlbxktUnAj4j89c" version="v2" docAnchorId="#Step5A" loadingMethod="dynamic" newTab="false" href="Report_Examples.mdx"}
+- :Link[Step 6: Uploading and Publishing the Report]{label="Step 6: Uploading and Publishing the Report" overridedLabel="Step 6: Uploading and Publishing the Report" spaceId docId="RBgkp-zlbxktUnAj4j89c" version="v2" docAnchorId="#Step6A" loadingMethod="dynamic" newTab="false" href="Report_Examples.mdx"}
+- :Link[Step 7: Running the Report]{label="Step 7: Running the Report" overridedLabel="Step 7: Running the Report" spaceId docId="RBgkp-zlbxktUnAj4j89c" version="v2" docAnchorId="#Step7A" loadingMethod="dynamic" newTab="false" href="Report_Examples.mdx"}
+
+### Step 1: Logging into the Report Builder
+
+1. Log in to the application as a Report Manager.
+2. Open the **Report Templates** workspace. The system displays a list of report templates.
+3. Click **New Report Template**. The system opens the report builder.
+4. In the **Connect to Report Server** login window, enter the following:
+
+| Field    | Description                     |
+| -------- | ------------------------------- |
+| Username | Enter *userID*#*tenant ID*.     |
+| Password | Enter the application password. |
+
+5. Click **OK**.
+
+### Step 2: Creating the Dataset for the Report
+
+1. From the left **Report Data** pane, click **Data Sources** > **SaaSAppmodel.**
+
+<Paragraph indent="1">
+  *Create Dataset for the Report*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/s0SW0u9K8LN-fI9Hpm0kJ_reportdatapane1.jpg" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/report_data_pane1.jpg" githubPath="Content/Resources/Images/help-images/report_data_pane1.jpg" showCaption="false"></Image>
+
+2. Right-click **SaaSAppmodel**, then select **Add Dataset**. The system displays the **Dataset Properties** dialog box.
+3. Click **Query Designer...**.
+4. In the **Enter Data Source Credentials** window, enter your Microsoft SSRS user name and password, then click **OK**. You only have to enter your Microsoft SSRS credentials once during a session.
+
+<Paragraph indent="1">
+  The system displays the **Query Designer** dialog box.
+</Paragraph>
+
+5. Click **Edit as Text**.
+6. Enter your query. For example, a simple query to get all incidents by categories, showing the incident number and owner is as follows: **Select incidentnumber,category,owner from incident where category in (@category)**. In this example, *@category* is taken by Microsoft SSRS as a parameter. When running the query, the system prompts you for the value. You can provide any value to test the query. The system automatically creates the **category** parameter and automatically maps it to the dataset.
+7. Click **!**.The system displays the **Define Query Parameters** dialog box.
+8. Enter a value in th&#x65;**&#x20;Parameter Value** field, (for example, enter **category**) and click **OK**.
+9. View the report columns, then click **OK**. The system displays the **Dataset Properties** dialog box.
+10. Click **OK** to close the window. The system creates the dataset, as shown under **Datasets**. The system creates the **category** parameter, as shown under **Parameters**.
+
+<Paragraph indent="1">
+  *Category Parameter*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Xlt70uorTA8y6rzLuB5lQ_excategoryparameter.jpg" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/ex_category_parameter.jpg" githubPath="Content/Resources/Images/help-images/ex_category_parameter.jpg" showCaption="false"></Image>
+
+### Step 3: Creating the Dataset for the Parameter
+
+1. From the left **Report Data** pane, click **Data Sources** > **SaaSAppmodel.**
+2. Right-click **SaaSAppmodel**, then select **Add Dataset**. The system displays the **Dataset Properties** dialog box.
+3. Click **Query Designer...**. The system displays the **Query Designer** dialog box.
+4. Click **Edit as Text**. Use the text-based query designer to specify a query using the query language supported by the data source, run the query, and view the results at design time.
+5. Enter your query. For example, a simple query to get all incident categories is as follows: **select distinct category from incident where category !=''**. The query should always have a value after **select** and not just **select \*** because doing so not only causes performance issues, but it might also create an error when upgrading if a field is deleted.
+6. Click **!**.
+7. View the incident categories that are created, as queried in this example, then click **OK**. The system displays the **Dataset Properties** dialog box.
+8. Click **OK** to close the window.
+9. Click **OK** to close the **Dataset Properties** dialog box. The system creates the second dataset, for the parameter.
+
+<Paragraph indent="1">
+  You have now created two datasets: one for the report and one for the parameter.
+</Paragraph>
+
+<Paragraph indent="1">
+  *Two Datasets*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/XBSU4TnGXFdIPQlr22c68_exdatasets.jpg" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/ex_datasets.jpg" githubPath="Content/Resources/Images/help-images/ex_datasets.jpg" showCaption="false"></Image>
+
+### Step 4: Creating the Parameters
+
+1. From the left **Report Data** pane, under **Parameters**, select the parameter that you created, then right-click and select **Parameter Properties**. The system displays the **Report Parameter Properties** dialog box.
+2. Enter a name in the **Name** field or accept the default that you entered in the **Parameter Value** field earlier. You cannot use any spaces in this field. Users do not see this name.
+3. In the **Prompt** field, enter a prompt for the user, (for example, **Select a Category**) or leave the default value. Users see this prompt.
+4. Select **Allow multiple values**. This allows users to select multiple value selections from the **Category** menu.
+
+<Paragraph indent="1">
+  *Allow Multiple Values*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/2KHJ3taJrHU6SGGJRR0rD_reportthree.jpg" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/report_three.jpg" githubPath="Content/Resources/Images/help-images/report_three.jpg" showCaption="false"></Image>
+
+5. From the left pane, click **Available Values**.
+6. Select **Get values from a query**.
+7. Select the dataset that you created from the **Dataset** field.
+8. Select the category value from the **Value field** field.
+9. Select the category label from the **Label field** field.
+
+<Paragraph indent="1">
+  *Available Values*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/-U6b3Wm5VVvKYFa_cMzyH_reportfour.jpg" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/report_four.jpg" githubPath="Content/Resources/Images/help-images/report_four.jpg" showCaption="false"></Image>
+
+10. Click **OK**.
+11. Right-click the dataset that you created for the report (as described in :Link[Step 2: Creating the Dataset for the Report]{label="Step 2: Creating the Dataset for the Report" overridedLabel="Step 2: Creating the Dataset for the Report" spaceId docId="RBgkp-zlbxktUnAj4j89c" version="v2" docAnchorId="#reports_1544019203_1106185" loadingMethod="dynamic" newTab="false" href="Report_Examples.mdx"}), and select **Dataset Properties**.
+12. Click **Parameters** and make sure that it is using the appropriate parameter.
+
+<Paragraph indent="1">
+  *Parameters*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/C8Ei1IKJ8umUCQjpqQZH7_reportfive.jpg" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/report_five.jpg" githubPath="Content/Resources/Images/help-images/report_five.jpg" showCaption="false"></Image>
+
+13. Click **OK**.
+
+### Step 5: Designing the Report
+
+1. In the report designer, right-click and select **Insert**. You can insert charts, graphs, tables, and so on when designing your report. In this example, the report data is displayed in a table.
+2. Select **Table**.
+3. Drag the values from the dataset that you created and drop them into the header fields.
+
+<Paragraph indent="1">
+  *Creating a Report*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/fg63DL4jD4iq6mO3MAPk5_reportseven.jpg" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/report_seven.jpg" githubPath="Content/Resources/Images/help-images/report_seven.jpg" showCaption="false"></Image>
+
+4. Click **Run** to view the report. View the incident categories in the menu and the prompt value that you defined.
+
+<Paragraph indent="1">
+  *Viewing a Report*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/_249ieRzVB8qdHkYz1yXK_categorymnu.jpg" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/category_mnu.jpg" githubPath="Content/Resources/Images/help-images/category_mnu.jpg" showCaption="false"></Image>
+
+5. Select the categories to run the report for or click **Select All**, then click **View Report**.
+
+<Paragraph indent="1">
+  *Categories for a Report*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/4ZDMXv2ed-O5UKBoqxDte_reporteight.jpg" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/report_eight.jpg" githubPath="Content/Resources/Images/help-images/report_eight.jpg" showCaption="false"></Image>
+
+6. Make sure that you are satisfied with the report before uploading it to \{\{FRS\_VARS.ProductName}}.
+7. Click **Save As** and save the report to your local machine.
+
+### Step 6: Uploading and Publishing the Report
+
+1. Log in to the application as a Report Manager.
+2. Open the **Report Templates** workspace. The system displays a list of report templates.
+3. Click **Upload Report**.
+4. In the **Report Template Name** field, enter a descriptive name for the report. For example, enter **Incident Categories by Owners**.
+5. Browse to select the template that you saved, then click **Save**.
+6. Click **OK**.
+
+### Step 7: Running the Report
+
+1. Log in to the application as a Report Manager.
+2. Open the **Reports** workspace. The system displays a list of reports.
+3. Click **New Report**.
+4. In the **Report template** field, select the report that you created. In this example, select **Incident Categories by Owners**.
+5. Enter a display name and a description.
+6. Select a category to group the report by. For example, select **Incident**.
+7. In the **Publish Report to** field, select the roles to publish this report to, such as Report Manager, Service Desk Analyst, or Service Desk Manager.
+8. In the **Parameter Information** section, select some of the incident categories or select **All**.
+
+<Paragraph indent="1">
+  Whichever value you select is the default value when users run the report. However, they can select other values from the menu and run the report again.
+</Paragraph>
+
+9. To allow users to select the categories, leave the **Hidden** field as **no**.
+10. Select **Allow run now**.
+
+<Paragraph indent="1">
+  *Running the Report*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/5zB_Ys7n41paIgMHO50Rw_reportinfo.jpg" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/report_info.jpg" githubPath="Content/Resources/Images/help-images/report_info.jpg" showCaption="false"></Image>
+
+11. Click **Save**.
+12. Select the new report to view it.
+
+<hint type="info">
+  Ensure that your web browser is enabled to allow pop-ups.
+</hint>
+
+Users can select multiple categories or view all categories.
+
+## Example: Creating a Report That Filters Incidents by Owner Teams and Owners Within the Teams
+
+In this example, you create an incident report showing all the incidents filtered by owner teams and then by owner. The list of owners that you see after you select the owner team is constrained by the team.
+
+Users can select one or more owner teams, select an owner from the team, and view the incidents where the selected employee is specified as the owner.
+
+- :Link[Step 1: Creating the Dataset for the Report]{label="Step 1: Creating the Dataset for the Report" overridedLabel="Step 1: Creating the Dataset for the Report" spaceId docId="RBgkp-zlbxktUnAj4j89c" version="v2" docAnchorId="#Step2" loadingMethod="dynamic" newTab="false" href="Report_Examples.mdx"}
+- :Link[Step 2: Creating the Datasets for the Parameter]{label="Step 2: Creating the Datasets for the Parameter" overridedLabel="Step 2: Creating the Datasets for the Parameter" spaceId docId="RBgkp-zlbxktUnAj4j89c" version="v2" docAnchorId="#Step3" loadingMethod="dynamic" newTab="false" href="Report_Examples.mdx"}
+- :Link[Step 3: Creating the Parameter for the Owner Teams]{label="Step 3: Creating the Parameter for the Owner Teams" overridedLabel="Step 3: Creating the Parameter for the Owner Teams" spaceId docId="RBgkp-zlbxktUnAj4j89c" version="v2" docAnchorId="#Step4" loadingMethod="dynamic" newTab="false" href="Report_Examples.mdx"}
+- :Link[Step 4: Creating the Parameter for the Owners Constrained by Owner Teams]{label="Step 4: Creating the Parameter for the Owners Constrained by Owner Teams" overridedLabel="Step 4: Creating the Parameter for the Owners Constrained by Owner Teams" spaceId docId="RBgkp-zlbxktUnAj4j89c" version="v2" docAnchorId="#Step5" loadingMethod="dynamic" newTab="false" href="Report_Examples.mdx"}
+- :Link[Step 5: Designing the Report]{label="Step 5: Designing the Report" overridedLabel="Step 5: Designing the Report" spaceId docId="RBgkp-zlbxktUnAj4j89c" version="v2" docAnchorId="#Step6" loadingMethod="dynamic" newTab="false" href="Report_Examples.mdx"}
+- :Link[Step 6: Uploading and Publishing the Report]{label="Step 6: Uploading and Publishing the Report" overridedLabel="Step 6: Uploading and Publishing the Report" spaceId docId="RBgkp-zlbxktUnAj4j89c" version="v2" docAnchorId="#Step7" loadingMethod="dynamic" newTab="false" href="Report_Examples.mdx"}
+- :Link[Step 7: Running the Report]{label="Step 7: Running the Report" overridedLabel="Step 7: Running the Report" spaceId docId="RBgkp-zlbxktUnAj4j89c" version="v2" docAnchorId="#Step8" loadingMethod="dynamic" newTab="false" href="Report_Examples.mdx"}
+
+### Step 1: Creating the Dataset for the Report
+
+1. Log into the report builder.  See :Link[Step 1: Logging into the Report Builder]{label="Step 1: Logging into the Report Builder" overridedLabel="Step 1: Logging into the Report Builder" spaceId docId="RBgkp-zlbxktUnAj4j89c" version="v2" docAnchorId="#Step1A" loadingMethod="dynamic" newTab="false" href="Report_Examples.mdx"}.
+2. From the left **Report Data** pane, click **Data Sources** > **SaaSAppmodel.**
+3. Right-click **SaaSAppmodel**, then select **Add Dataset**. The system displays the **Dataset Properties** dialog box.
+4. Click **Query Designer...**.
+5. In the **Enter Data Source Credentials** window, enter your Microsoft SSRS user name and password, then click **OK**. You only have to enter your Microsoft SSRS credentials once during a session.
+
+<Paragraph indent="1">
+  The system displays the **Query Designer** dialog box.
+</Paragraph>
+
+5. Click **Edit as Text**.
+6. Enter your query. For example, a simple query to get all the incidents by owner team, showing the incident number and owner is **select incidentnumber,ownerteam,owner from incident where owner= (@owner)**. In this example, *@owner* is taken by Microsoft SSRS as a parameter. When running the query, the system prompts you for the value. You can provide any value to test the query. The system automatically creates the **owner** parameter and automatically maps it to the dataset.
+7. Click **!**. The system displays the **Define Query Parameters** dialog box.
+8. Enter a value in th&#x65;**&#x20;Parameter Value** field (for example, enter **admin**) and click **OK**.
+9. View the report columns, then click **OK**. The system displays the **Dataset Properties** dialog box.
+10. Click **OK** to close the window. The system creates the dataset, as shown under **Datasets**. The system creates the **owner** parameter, as shown under **Parameters**.
+
+<Paragraph indent="1">
+  *Owner Parameter*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/p-4DjYJcdce2p3Qe6xrp4_exownerparameter.jpg" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/ex_owner_parameter.jpg" githubPath="Content/Resources/Images/help-images/ex_owner_parameter.jpg" showCaption="false"></Image>
+
+### Step 2: Creating the Datasets for the Parameter
+
+You need to create two datasets for the parameter: the first dataset is for showing the list of owner teams for incidents, and the second dataset is for showing the list of owners constrained by the selected owner team.
+
+1. From the left **Report Data** pane, click **Data Sources** > **SaaSAppmodel.**
+2. Right-click **SaaSAppmodel**, then select **Add Dataset**. The system displays the **Dataset Properties** dialog box.
+3. Click **Query Designer...**. The system displays the **Query Designer** dialog box.
+4. Click **Edit as Text**. Use the text-based query designer to specify a query using the query language supported by the data source, run the query, and view the results at design time.
+5. Enter your query. For example, a query to get all the incident owner teams is **select distinct ownerteam from incident**. Your query should always have a value after **select** and not just **select \*** because doing so not only causes performance issues, but it might also create an error when upgrading if a field is deleted.
+6. Click **!**.
+7. View the incident owner teams that are shown, as queried in this example, then click **OK**. The system displays the **Dataset Properties** dialog box.
+8. Click **OK**.
+9. Click **OK** to close the **Dataset Properties** dialog box. The first dataset for the parameter is now created.
+
+<Paragraph indent="1">
+  Now, create the second dataset for the parameter.
+</Paragraph>
+
+10. From the left **Report Data** pane, click **Data Sources** > **SaaSAppmodel.**
+11. Right-click **SaaSAppmodel**, then select **Add Dataset**. The system displays the **Dataset Properties** dialog box.
+12. Click **Query Designer...**. The system displays the **Query Designer** dialog box.
+13. Click **Edit as Text**.
+14. Enter your query. For example, a query to get all the incident owners from the selected owner teams is **select distinct owner from incident where ownerteam in (@ownerteam)**.
+15. Click **!**.
+16. In the **Define Query Parameters** dialog box, enter a parameter value. For example, enter **Admin**, then click **OK**.
+17. View the incident owner that is shown, as queried in this example, then click **OK**. The system displays the **Dataset Properties** dialog box.
+18. Click **OK**.
+
+<Paragraph indent="1">
+  You have now created three datasets: one for the report and two for the parameters, as shown below:
+</Paragraph>
+
+<Paragraph indent="1">
+  *Three Datasets*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/8jEovtxYd09AHfoZoZ_Ab_exownerteamownerparameter.jpg" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/ex_ownerteam_owner_parameter.jpg" githubPath="Content/Resources/Images/help-images/ex_ownerteam_owner_parameter.jpg" showCaption="false"></Image>
+
+### Step 3: Creating the Parameter for the Owner Teams
+
+1. From the left **Report Data** pane, under **Parameters**, select the **owner team** parameter you created, then right-click and select **Parameter Properties**. The system displays the **Report Parameter Properties** dialog box.
+2. Enter a name in the **Name** field or accept the default that you entered in the **Parameter Value** field earlier. You cannot use any spaces in this field. Users do not see this name.
+3. In the **Prompt** field, enter a prompt for the user, (for example, **Select an owner team**) or leave the default value. Users see this prompt.
+4. Select **Allow multiple values**. This allows the user to select multiple value selections from the **owner team** menu.
+5. From the left pane, click **Available Values**.
+6. Select **Get values from a query**.
+7. Select the dataset that you created from the **Dataset Field** menu. For this example, select **Dataset2**.
+8. Select the owner team value from the **Value field** field.
+9. Select the owner team label from the **Label field** field.
+10. Click **OK**.
+
+### Step 4: Creating the Parameter for the Owners Constrained by Owner Teams
+
+1. From the left **Report Data** pane, under **Parameters**, select the **owner** parameter that you created, then right-click and select **Parameter Properties**. The system displays the **Report Parameter Properties** dialog box.
+2. Enter a name in the **Name** field or accept the default that you entered in the **Parameter Value** field earlier. You cannot use any spaces in this field. Users do not see this name.
+3. In the **Prompt** field, enter a prompt for the user, (for example, enter **Select an owner from the selected owner team**) or leave the default value. Users see this prompt.
+4. From the left pane, click **Available Values**.
+5. Select **Get values from a query**.
+6. Select the dataset that you created from the **Dataset Field** menu. For this example, select **Dataset3**.
+7. Select the owner value from the **Value field** field.
+8. Select the owner label from the **Label field** field.
+9. Click **OK**.
+10. Right-click the dataset that you created for the report (as described in :Link[Step 2: Creating the Dataset for the Report]{label="Step 2: Creating the Dataset for the Report" overridedLabel="Step 2: Creating the Dataset for the Report" spaceId docId="RBgkp-zlbxktUnAj4j89c" version="v2" docAnchorId="#reports_1544019203_1106185" loadingMethod="dynamic" newTab="false" href="Report_Examples.mdx"}), and select **Dataset Properties**.
+11. Click **Parameters** and make sure that it is using the appropriate parameter.
+12. Click **OK**.
+
+### Step 5: Designing the Report
+
+1. In the designer, right-click and select **Insert**. You can insert charts, graphs, tables, and so on when designing your report. In this example, the report data will be displayed in a table.
+2. Select **Table**.
+3. Drag from the dataset that you created and drop the values into the header fields.
+
+<Paragraph indent="1">
+  *Designing the Report*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/e5DeklIvHUXx1HJ_8f5AH_reportdesignownerteamowner.jpg" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/report_design_ownerteam_owner.jpg" githubPath="Content/Resources/Images/help-images/report_design_ownerteam_owner.jpg" showCaption="false"></Image>
+
+4. Go to the **Parameters** folder and select **ownerteam**, then press **Ctrl + keyboard up arrow** to move **ownerteam** above **owner**.
+5. Click **Run** to view the report. View the incident owner team and owners in the menu and the prompt values that you defined.
+
+<Paragraph indent="1">
+  *View the Report*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/IYEgElOR-gSm-R8i9eDTu_runreportownerteamowner.jpg" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/run_report_ownerteam_owner.jpg" githubPath="Content/Resources/Images/help-images/run_report_ownerteam_owner.jpg" showCaption="false"></Image>
+
+6. Select the owner teams to view or click **Select All**. Select an owner from the selected owner teams, then click **View Report**.
+7. Make sure that you are satisfied with the report before uploading it to \{\{FRS\_VARS.ProductName}}.
+8. Click **Save As** and save the report to your local machine.
+
+### Step 6: Uploading and Publishing the Report
+
+1. Log in to the application as a Report Manager.
+2. Open the **Report Templates** workspace. The system displays a list of report templates.
+3. Click **Upload Report**.
+4. In the **Report Template Name** field, enter a descriptive name for the report. For example, enter **Incidents by Owner by Teams**.
+5. Browse to select the template that you saved, then click **Save**.
+6. Click **OK**.
+
+### Step 7: Running the Report
+
+1. Log in to the application as a Report Manager.
+2. Open the **Reports** workspace. The system displays a list of reports.
+3. Click **New Report**.
+4. From the **Report Template** field, select the report. In this example, select **Incident by Owner by Teams**.
+5. Enter a display name and a description.
+6. Select a category to group the report by. For example, select **Incident**.
+7. In the **Publish Report to** field, select the roles to publish this report to.
+8. In the **Parameter Information** section, select an incident owner team or select **All**. Select an owner.
+
+<Paragraph indent="1">
+  Whichever value you select is the default value when the user runs the report. However, they can select other values from the menu and run the report again.
+</Paragraph>
+
+9. To allow users to select categories, leave the **Hidden** field as **no**.
+10. Select **Allow run now**.
+11. Click **Save**.
+12. Select the new report to view it.
+
+<hint type="info">
+  Ensure that your web browser is enabled to allow pop-ups.
+</hint>
+
+*View the New Report*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/42EG2l-ttSiAJHhkNmaFq_viewrptownerteamowner.jpg" position="flex-start" size="40" initialPath="../../Resources/Images/help-images/viewrpt_ownerteam_owner.jpg" githubPath="Content/Resources/Images/help-images/viewrpt_ownerteam_owner.jpg" showCaption="false"></Image>
+
+Users can select multiple teams or view all the teams, and then select an owner from the teams.
+
+## Example: Using a Field in a Report that Stores Both HTML and Text
+
+This example describes how to create a report template that uses both HTML and text-based fields from the \{\{business object}} records. For example, your email body might use HTML and text elements, which might not render the line breaks correctly in the generated report. For your reports to render correctly, you need to add an expression to the field that uses HTML and text elements.
+
+1. Log in to the application as a Report Manager.
+2. Open the **Report Templates** workspace. The system displays a list of report templates.
+3. Click the **edit** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/WTLKbMa5PI7qeazzbj0FD_edit-old.png" alt caption size="10" width="16" height="16"} next to a report template. The system opens the report builder.
+4. From the **View** menu, ensure that **Properties** is checked. The system displays the **Properties** pane on the right.
+5. Select the form field to create the expression for. For example, select **Email Message**.
+
+<Paragraph indent="1">
+  *Create Expression*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/4c5p9SldRpZQZc2PtJeNF_rpthtmltextusecase.jpg" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/rpt_html_text_usecase.jpg" githubPath="Content/Resources/Images/help-images/rpt_html_text_usecase.jpg" showCaption="false"></Image>
+
+6. In the **Properties** pane, for the **Markup Type** field, select **Expression**. The system displays the **Expression**dialog box.
+7. Enter the following expression: **=if(Code.checkhtml(Fields!EmailBody.Value) = true then "HTML" else "None")**.
+8. Click **OK**.
+
+## Example: Restricting Report Data Based on Login ID
+
+1. Log in to the application as a Report Manager.
+2. Open the **Report Templates** workspace. The system displays a list of report templates.
+3. Click the **edit** :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/WTLKbMa5PI7qeazzbj0FD_edit-old.png" alt caption size="10" width="16" height="16"} icon next to a report template. The system opens the report builder.
+4. In the **Report Parameter Properties** dialog box, click **General** on the left.
+5. Enter information into the fields.
+
+| Field                       | Description                                                                                                                             |
+| --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| Name                        | A descriptive name for the parameter, for example, Login ID.                                                                            |
+| Prompt                      | The prompt that users see. Use a \{\{FRS\_VARS.ProductName}} expression. For example, enter **$(CurrentLoginId())**.                    |
+| Data type                   | The data type. Select **Text**.                                                                                                         |
+| Select parameter visibility | The visibility of the parameter. Select an option. If you select **Hidden**, users cannot change the parameter when running the report. |
+
+6. Click **OK**.

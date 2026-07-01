@@ -1,0 +1,53 @@
+---
+title: Find and Replace Quick Action
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:57 GMT+0300 (Eastern European Summer Time)
+---
+
+- :Link[About the Find and Replace Quick Action]{label="About the Find and Replace Quick Action" overridedLabel="About the Find and Replace Quick Action" spaceId docId="iIu64xUj0PtTeve2b5Yfz" version="v2" docAnchorId="#About_the_Find_and_Replace_Quick_Action" loadingMethod="dynamic" newTab="false" href="Find and Replace.mdx"}
+- :Link[Suggestions for Use]{label="Suggestions for Use" overridedLabel="Suggestions for Use" spaceId docId="iIu64xUj0PtTeve2b5Yfz" version="v2" docAnchorId="#Suggesti" loadingMethod="dynamic" newTab="false" href="Find and Replace.mdx"}
+- :Link[Parameters]{label="Parameters" overridedLabel="Parameters" spaceId docId="iIu64xUj0PtTeve2b5Yfz" version="v2" docAnchorId="#Parameters" loadingMethod="dynamic" newTab="false" href="Find and Replace.mdx"}
+- :Link[Actions]{label="Actions" overridedLabel="Actions" spaceId docId="iIu64xUj0PtTeve2b5Yfz" version="v2" docAnchorId="#Actions" loadingMethod="dynamic" newTab="false" href="Find and Replace.mdx"}
+- **Graphical Action Designer**: [Find and Replace Quick Action](<../../Graphical Action Designer/Common Actions/Find and Replace.mdx>)
+
+## About the Find and Replace Quick Action
+
+The **Find and Replace** \{\{FRS\_VARS.Quick\_Action}} looks through the selected records or all records for any instances of the specified field that contain the specified current value. When it finds that field and current value, it replaces the current value with the new value. You can replace values in an individual incident, multiple selected incidents, or all incidents simultaneously.
+
+<hint type="info">
+  The **Find and Replace** \{\{FRS\_VARS.Quick\_Action}} is not supported within composite actions, it can only be used as a stand-alone action. When creating a composite action, the **Find and Replace** \{\{FRS\_VARS.Quick\_Action}} is not displayed in the **Add new action** drop-down list on the Classic Action Designer.
+  The **Find and Replace** \{\{FRS\_VARS.Quick\_Action}} function is limited to a maximum of 100 records.
+</hint>
+
+<hint type="info">
+  Some fields do not support **Find and Replace**.
+</hint>
+
+## Suggestions for Use
+
+Here are a few ways you can use the **Find and Replace** \{\{FRS\_VARS.Quick\_Action}}:
+
+- **Replacing the&#x20;**\{\{FRS\_VARS.Incident}}**&#x20;owner's name**: For example: If a technician leaves the company, you can find all issues currently assigned to him or her as owner, and replace the value in owner field with a new technician's name.
+- **Change the impact of incidents**: For example, you can make a change to a group of Incident records when Impact was previously Medium and it is now Low or High.
+
+### Parameters
+
+| Parameter                | Description                                                                                                                                                        |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Enter action name        | A unique name for the action.                                                                                                                                      |
+| Enter action description | Optional. A description of what the action does.                                                                                                                   |
+| Enter category           | Optional. Select a category from the drop-down list. This category field groups the actions in to different categories. It is not related to the service category. |
+| Field Name               | Add two fields to prompt users for values. The first field is the value to search for, and the second is the value to replace while running.                       |
+
+### Actions
+
+| Button                                                                                                                                                                                                                                                                                                                                 | Action                 |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------- |
+| <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/JtIxGMfjslfCSitXWBu4o_addgreen.png" size="10" isUploading="false" initialPath="../../../../Resources/Images/buttons/add_green.png" githubPath="Content/Resources/Images/buttons/add_green.png" width="17" height="15" showCaption="false"></Image> | Adds a field.          |
+| <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/uN-MJlNAhdQXruh5k_EsW_delete.png" size="10" isUploading="false" initialPath="../../../../Resources/Images/buttons/delete.png" githubPath="Content/Resources/Images/buttons/delete.png" width="19" height="16" showCaption="false"></Image>         | Removes a field.       |
+| Save                                                                                                                                                                                                                                                                                                                                   | Commits your settings. |
+| Cancel                                                                                                                                                                                                                                                                                                                                 | Exits without saving.  |
+
+<hint type="info">
+  This action does not respect the **Auto-save** checkbox option in the **Action Settings** tab. It does save changes directly to the database, but please ensure that the behaviour you expect still occurs.
+</hint>

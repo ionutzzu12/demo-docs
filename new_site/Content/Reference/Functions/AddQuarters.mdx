@@ -1,0 +1,76 @@
+---
+title: AddQuarters
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:58 GMT+0300 (Eastern European Summer Time)
+---
+
+Returns the UTC date and time for the quarter that is the number of quarters specified earlier than or later than the specified date and time.
+
+## Syntax
+
+AddQuarters(numQuarters, baseDateTime, timeZone)
+
+## Enabled For
+
+For a description of the business object categories, see :Link[Notes on "Enabled For"]{label="Notes on &#x22;Enabled For&#x22;" overridedLabel="Notes on &#x22;Enabled For&#x22;" spaceId docId="xObv2pIDrk60jkEIWs8mD" version="v2" docAnchorId="#Notes" loadingMethod="dynamic" newTab="false" githubPath="_Built_in_Functions.htm#Notes" href="_Built_in_Functions.mdx"}.
+
+| Business Object Category                                                                    | Yes/No |
+| ------------------------------------------------------------------------------------------- | ------ |
+| Business Rules: Before-Save Rules                                                           | Yes    |
+| Business Rules: Calculation Rules (After Save, with or without Also Recalculate on Load)    | Yes    |
+| Business Rules: Calculation Rules (Before Save or Always, without Also Recalculate On Load) | Yes    |
+| Business Rules: Calculation Rules (Before Save or Always, with Recalculate On Load)         | Yes    |
+| Business Rules: Editing Rules                                                               | Yes    |
+| Business Rules: Initialization Rules                                                        | Yes    |
+| Business Rules: Read Only Rules                                                             | Yes    |
+| Business Rules: Required Rules                                                              | Yes    |
+| Business Rules: Validation Rules                                                            | Yes    |
+| Client Expressions                                                                          | Yes    |
+| Object Permissions                                                                          | Yes    |
+| Services                                                                                    | Yes    |
+| LDAP                                                                                        | Yes    |
+| Mobile                                                                                      | Yes    |
+| Quick Actions (except UI Quick Actions)                                                     | Yes    |
+| UI Quick Actions                                                                            | Yes    |
+| Reports                                                                                     | Yes    |
+| Search/Dashboard without field references                                                   | Yes    |
+| Search/Dashboard with field references                                                      | Yes    |
+
+## Parameters
+
+| Parameter    | Description                                                                                                                                                                                                                |
+| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| numQuarters  | (Optional) The number of intervals. If not specified, uses the default interval which is 0. Can be either a positive integer, to indicate quarters in the future, or a negative integer, to indicate quarters in the past. |
+| baseDateTime | (Optional) The base date for the function. If not specified, uses the default date which is the current date and time.                                                                                                     |
+| timeZone     | (Optional) The time zone, in IANA format.                                                                                                                                                                                  |
+
+## Returns
+
+<Paragraph indent="1">
+  DateTime value in UTC time.
+</Paragraph>
+
+<hint type="info">
+  - If the application has to display the return value, it implicitly converts it to text, thereby allowing the display format to change depending on your culture code. See :Link[Available Languages and Cultures]{label="Available Languages and Cultures" overridedLabel="Available Languages and Cultures" spaceId docId="ZOdB7cSrDXVspZWLePaWn" version="v2" docAnchorId="#culture" loadingMethod="dynamic" newTab="false" githubPath="../../Configure/Localization/Setting Up Languages.htm#culture" href="../../Configure/Localization/Setting Up Languages.mdx"} for a list of the culture codes used by \{\{FRS\_VARS.ProductName}}.
+  - If the return value would not be a valid date, the function returns the last day of the month. For example, in the following function: **$(AddMonths(4, mydate))**, if the value of the **mydate** parameter is October 31, 2014, this function would have returned February 31, 2015, but because that is not a valid date, the function returns February 28, 2015 because that is the last day of the month.
+</hint>
+
+## Example
+
+$(AddQuarters(-3))
+
+<Paragraph indent="1">
+  If today is April 10, 2014, this function returns the DateTime value for 9 months ago (three quarters and each quarter is three months) which is July 10, 2013.
+</Paragraph>
+
+$(AddQuarters(1))
+
+<Paragraph indent="1">
+  If today is April 10, 2014, this function returns the DateTime value for July 10, 2014 at the same time of day.
+</Paragraph>
+
+$(AddQuarters(2, mydate))
+
+<Paragraph indent="1">
+  If the value of the **mydate** parameter is April 10, 2014, this function returns the DateTime value for October 10, 2014 at the same time of day.
+</Paragraph>

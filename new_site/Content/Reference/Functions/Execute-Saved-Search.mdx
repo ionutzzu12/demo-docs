@@ -1,0 +1,67 @@
+---
+title: ExecuteSavedSearch
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:59 GMT+0300 (Eastern European Summer Time)
+---
+
+Returns result of a saved search for a particular field.
+
+## Syntax
+
+ExecuteSavedSearch(tableRef, SavedSearchName, fieldName)
+
+## Enabled For
+
+For a description of the business object categories, see :Link[Notes on "Enabled For"]{label="Notes on &#x22;Enabled For&#x22;" overridedLabel="Notes on &#x22;Enabled For&#x22;" spaceId docId="xObv2pIDrk60jkEIWs8mD" version="v2" docAnchorId="#Notes" loadingMethod="dynamic" newTab="false" githubPath="_Built_in_Functions.htm#Notes" href="_Built_in_Functions.mdx"}.
+
+| Business Object Category                                                                                                | Yes/No |
+| ----------------------------------------------------------------------------------------------------------------------- | ------ |
+| Business Rules: Before-Save Rules                                                                                       | Yes    |
+| Business Rules: Calculation Rules (After Save, with or without Also Recalculate on Load)                                | Yes    |
+| Business Rules: Calculation Rules (Before Save or Always, without Also Recalculate On Load)                             | Yes    |
+| Business Rules: Calculation Rules (Before Save or Always, with Recalculate On Load)                                     | Yes    |
+| Business Rules: Editing Rules                                                                                           | Yes¹   |
+| Business Rules: Initialization Rules                                                                                    | Yes    |
+| Business Rules: Read Only Rules                                                                                         | Yes    |
+| Business Rules: Required Rules                                                                                          | Yes¹   |
+| Business Rules: Validation Rules                                                                                        | Yes    |
+| Client Expressions                                                                                                      | No     |
+| Object Permissions                                                                                                      | No     |
+| Services                                                                                                                | Yes    |
+| LDAP                                                                                                                    | Yes    |
+| Mobile                                                                                                                  | Yes    |
+| Quick Actions (except UI Quick Actions)                                                                                 | Yes    |
+| UI Quick Actions                                                                                                        | No     |
+| Reports                                                                                                                 | Yes    |
+| Search/Dashboard without field references                                                                               | Yes    |
+| Search/Dashboard with field references<br />(Except when this field appears on a form or is triggered by such a field.) | No     |
+
+## Parameters
+
+| Parameter       | Description                                                                     |
+| --------------- | ------------------------------------------------------------------------------- |
+| tableRef        | The business object whose SavedSearch needs to be evaluated.                    |
+| SavedSearchName | The name of the SavedSearch.                                                    |
+| fieldName       | The name of the field, whose value has to be extracted from SavedSearch result. |
+
+## Return Value
+
+Array \[String].
+
+<hint type="info">
+  This function returns text (string) values only. It does not support numeric comparisons. If your saved search returns a number or integer, format it as a string or handle it using a separate logic path.
+</hint>
+
+## Example
+
+The following is an example of using this function in a saved search.
+
+To get a list of users who have not logged into the application this week, a **UserNotLoggedInThisWeek** saved search can be created on the **Employee** business object as shown below.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/DnaJeLyln44DIVqGDYnRc_executesavedsearch1.png" position="flex-start" size="40" initialPath="../../Resources/Images/help-images/executesavedsearch_1.png" githubPath="Content/Resources/Images/help-images/executesavedsearch_1.png" showCaption="false"></Image>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/TeOu9kxRixy8cpwx7hZUl_executesavedsearch2.png" position="flex-start" size="40" initialPath="../../Resources/Images/help-images/executesavedsearch_2.png" githubPath="Content/Resources/Images/help-images/executesavedsearch_2.png" showCaption="false"></Image>
+
+<hint type="info">
+  The **UserNotLoggedInThisWeek** saved search uses the `ExecuteSavedSearch` system function to invoke the **Logged In This Week** saved search in the **Security History** business object. The `$(ExecuteSavedSearch("Frs_ops_logon_history#", " Logged In this week", "UserId"))` system function will return a list of UserIDs by invoking the **Logged In** this Week saved search for the **Security History** business object.
+</hint>

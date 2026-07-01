@@ -1,0 +1,32 @@
+---
+title: Object Mapping - Printer
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:51 GMT+0300 (Eastern European Summer Time)
+---
+
+The object mappings for the Business Object Printer are given in the below table:
+
+| Source - EPM Database                | Method | Tasget \{\{FRS\_VARS.ProductName}} Database  |
+| ------------------------------------ | ------ | -------------------------------------------- |
+| DateTimeNow                          | -->    | Audit.TimeStamp                              |
+| 0                                    | -->    | Audit.RequestID                              |
+| 0                                    | -->    | Audit.FirstSequence                          |
+| 1                                    | -->    | Audit.LastSequence                           |
+| Full                                 | -->    | Audit.Type                                   |
+| EPM                                  | -->    | Identity.Property.ScanMethod                 |
+| MP\_AC\_Devices.MP\_AC\_Devices\_Idn | -->    | Identity.Property.ClientID                   |
+| PeripheralDevice                     | -->    | ComputerSystemProperty.CIType                |
+| Printer                              | -->    | ComputerSystem.Property.SubType              |
+| MP\_AC\_Devices.Barcode              | -->    | ComputerSystem.Property.AssetTag             |
+| MP\_AC\_Devices.Type                 | -->    | Identity.Property.DeviceType                 |
+| MP\_AC\_Devices.Description          | -->    | Identity.Property.DeviceDescription          |
+| MP\_AC\_Devices.DomainName           | -->    | Identity.Property.DomainName                 |
+| Production                           | -->    | ComputerSystem.Property.ExecutionEnvironment |
+| MP\_AC\_Devices.DomainName           | -->    | Identity.Property.DomainName                 |
+| MP\_AC\_IPADDR.Address               | -->    | Identity.Property.IPAddress                  |
+| MP\_AC\_Devices.NetwareAddr          | -->    | Identity.Property.MACaddress                 |
+| MP\_AC\_Devices.DeviceName           | -->    | Identity.Property.HostName                   |
+| MP\_AC\_Devices.DisplayName          | -->    | Identity.Property.MachineName                |
+| MP\_AC\_Devices.SerialNumber         | -->    | Identity.Property.SerialNumber               |
+| MP\_AC\_Devices.Model                | Concat | ComputerSystem.Property.Model<br />          |
+| MP\_AC\_Devices.ModelNumber          |        |                                              |

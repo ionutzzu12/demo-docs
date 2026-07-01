@@ -1,0 +1,52 @@
+---
+title: Templates
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:01 GMT+0300 (Eastern European Summer Time)
+---
+
+Applies a template to a business object. For example, when creating an incident, you can choose to apply a template which is a frequently occurring incident such as outlook not working, printer not working, or emails bouncing. When the template is applied, most of the fields are auto-filled as per the template.
+
+<hint type="info">
+  You can get the template name from the [Metadata API](Metadata.mdx).
+</hint>
+
+**Base URL:**
+
+https\://\{tenant url}/api/odata/businessobject/\{business object name}('\{business object unique key}')/\{template name}
+
+<hint type="info">
+  Ensure the business object name is suffixed with an "s".
+</hint>
+
+<ExpandableHeading>
+  ## Template - Example
+
+  Here is an example to apply Backup Failure template to an incident.
+
+  | URL                                          | https\://\{tenant url}/api/odata/businessobject/incidents  <br />('7133EDB8A33D42E9B3F6FC440BDDD19A')/Backup\_Failure                                                                                                                                                                                                                         |
+  | -------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | <font color="#ffffff">Method</font>          | POST                                                                                                                                                                                                                                                                                                                                          |
+  | Header Name                                  | Authorization: JTW Token/Session Key/REST API Key                                                                                                                                                                                                                                                                                             |
+  | <font color="#ffffff">Request Payload</font> | \{  <br />"ActionId":"e8522ea7-ca0b-4656-beb5-ea708f1b56eb",  <br />"shouldSave"\:true,"data"\:null,"actionParams":\{"GridParams"\:null,"FormParams":  <br />\{"actionId":"e8522ea7-ca0b-4656-beb5-ea708f1b56eb","objectId":  <br />"7133EDB8A33D42E9B3F6FC440BDDD19A","actualObjectType":  <br />"Incident#"}},"promptParams"\:null  <br />} |
+  | <font color="#ffffff">Status Code</font>     | 200                                                                                                                                                                                                                                                                                                                                           |
+</ExpandableHeading>
+
+## Unsuccessful Response
+
+<ExpandableHeading>
+  ## Blank Action ID
+
+  Scenario: Trying to apply a template to an incident with blank Action ID in the request body.
+
+  https\://\{tenant url}/api/odata/businessobject/incidents('7133EDB8A33D42E9B3F6FC440BDDD19A')/Backup\_Failure
+
+  Header Name:
+
+  **Authorization: Sessionkey**
+
+  | Code                                          | ISM\_4000                                                                                      |
+  | --------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+  | Description                                   | Invalid Request Payload                                                                        |
+  | Message                                       | \[  <br />"Action ID cannot be blank, please provide a valid Action ID and try again"  <br />] |
+  | <font color="#ffffff">HTTP STATUS CODE</font> | **400**                                                                                        |
+</ExpandableHeading>

@@ -1,0 +1,28 @@
+---
+title: Hiding a Tab on a Layout
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:56 GMT+0300 (Eastern European Summer Time)
+---
+
+You can hide tabs based on a condition. Based on the expression condition that you enter, the tab may or may not display initially. For example, you can make a tab visible if the status of a change is set to implemented.
+
+Follow these steps to hide a tab:
+
+1. From the Configuration Console, click **Build > Business Objects**. The application displays the **Business Objects** workspace.
+2. Click the name of a business object to display its **Business Object** page. This example uses the **Change** business object.
+3. Click the **Layouts** tab.
+4. Click one of the layouts defined for the business object that you selected. This example uses the **Change** layout. The application displays the **Edit Layout** page. This example displays the **Edit Layout: Change** page.
+5. Click **formView** under **Views in this layout**. The application displays the **Edit Layout** page. This example uses the **Edit Layout: Change > Form View Editor \[formView]** workspace.
+6. Click **Switch to old view** if you are in the new view.
+7. In the **Child Panels** table, select a tab name in the **Display Name** column.
+8. Scroll to the right of your selected tab name and click **\<Not Set>**&#x69;n the **Initially Visible** column.
+9. The application displays an **Expression Editor** pop-up window where you can enter an expression that displays in the **Initially Visible** column.
+
+*Expression Editor*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/_d845xDlNW4wPW85w6B-2_initiallyvisibleexpressioneditor.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/Initially_Visible_Expression_Editor.png" githubPath="Content/Resources/Images/help-images/Initially_Visible_Expression_Editor.png" showCaption="false"></Image>
+
+10. Enter an expression in the **Expression Editor**; that expression displays in the **Initially Visible Column**. For example, enter **$(if Status == "Logged" then true else false)**.
+11. Click **Save**.
+
+Based on the expression condition, the details information only shows if the value of the **Status** field is entered.

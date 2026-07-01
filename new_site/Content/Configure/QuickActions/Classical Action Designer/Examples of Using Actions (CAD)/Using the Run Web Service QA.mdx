@@ -1,0 +1,45 @@
+---
+title: Example: Resetting a Password Using the Run Web Service Action (CAD)
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:57 GMT+0300 (Eastern European Summer Time)
+---
+
+This example shows how to create an action that resets the \{\{FRS\_VARS.ProductName}} user password when a user submits a service request.
+
+See [Run Web Service Quick Action](<../templates/Run Web Service.mdx>).
+
+1. Create a Run Program connection within the Data Integration Wizard. See [Using the Run Program for the Remote Host](../../../ImportExportData/Run-Program.mdx).
+2. Create a request offering to reset a password, and publish it as a service request. See [About Request Offerings](../../../../ServiceDesk/RequestOfferings/About-Request-Offerings.mdx) and [Working with Service Requests](../../../../ServiceDesk/ServiceRequest/Service_Requests_.mdx).
+3. Create an action that is triggered by the service request to automatically reset the password. See [Run Program Action](<../templates/Run Program.mdx>).
+
+<Paragraph indent="1">
+  When the action is run against the selected employee record, \{\{FRS\_VARS.ProductName}} sends an email to the employee with the temporary password. The employee logs in using the temporary password, and then changes the password.
+</Paragraph>
+
+<Paragraph indent="1">
+  Define the **Run Web Service** action as follows:
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  **WSDL URL**: $(ServerURL() + '/AdminUI/Services/ConfigServiceAPIProxy.asmx?wsdl')
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  **Service Name**: ConfigServiceAPIProxy
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  **Operation Name**: OneTimePasswordRequest
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  **UserName**: $(LoginID)
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  **Email**: $(PrimaryEmail)
+</Paragraph>
+
+*Action Settings to Reset a Password*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/UQGIl2gQZuwxEb3GCTp0Z_reset-user-password-in-ootb-database.png" position="flex-start" size="40" indent="1" initialPath="../../../../Resources/Images/help-images/Reset User Password in OOTB Database.png" githubPath="Content/Resources/Images/help-images/Reset User Password in OOTB Database.png" showCaption="false"></Image>

@@ -1,0 +1,71 @@
+---
+title: Neurons Bot Quick Action
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:56 GMT+0300 (Eastern European Summer Time)
+---
+
+**Role**: \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+
+**Minimum Version**: \{\{Primary.Company}} \{\{Primary.Product}} 2025.2.
+
+**Prerequisites**:
+
+- A suitable \{\{FRS\_VARS.Neurons\_Bot}} is created, or a suitable existing \{\{FRS\_VARS.Neurons\_Bot}} is available in \{\{FRS\_VARS.Company}} \{\{FRS\_VARS.Neurons}}. Refer to [Neurons Bots creation](https://help.ivanti.com/ht/help/en_US/CLOUD/vNow/neurons-bots-creation.htm).
+- You have configured a client registration in \{\{FRS\_VARS.Company}} \{\{FRS\_VARS.ITSM}} to enable the \{\{FRS\_VARS.Neurons\_Bot}} to communicate with \{\{FRS\_VARS.Company}} \{\{FRS\_VARS.Neurons}}. This also requires that you have a suitable app registration setup in \{\{FRS\_VARS.Company}} \{\{FRS\_VARS.Neurons}} to enable the communication. Refer to [Neurons Bots Integration for ITSM](../../../Neurons/Neurons-Bots-ITSM-Integration.mdx).
+
+## About the Neurons Bot Quick Action
+
+<hint type="info">
+  To use this \{\{FRS\_VARS.Quick\_Action}}, set the global constant **EnableActionService&#x20;**&#x74;o **True**. If **EnableActionService&#x20;**&#x69;s not available in the global constants list (this may be the case for upgraded instances), Administrators can manually add the constant.
+</hint>
+
+For more information on \{\{FRS\_VARS.Neurons\_Bots}}, refer to [Getting Started with Neurons Bots](https://help.ivanti.com/ht/help/en_US/CLOUD/vNow/neurons-bots-getting-started.htm).
+
+Before you can create a \{\{FRS\_VARS.Neurons\_Bot}} \{\{FRS\_VARS.Quick\_Action}}, you need to have the following prerequisites in place:
+
+The \{\{FRS\_VARS.Neurons\_Bot}} \{\{FRS\_VARS.Quick\_Action}} defines how a \{\{FRS\_VARS.Neurons\_Bot}} is triggered within \{\{FRS\_VARS.ITSM}}.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Ci5LuAuuRLEFt1fPMx8Jd_qaneuronsbotaction.png" position="flex-start" size="40" initialPath="../../quick-actions-images/qa_neurons_bot_action.png" githubPath="Content/Configure/QuickActions/quick-actions-images/qa_neurons_bot_action.png" showCaption="false"></Image>
+
+## Enable Neurons Bot from Neurons Platform Integration
+
+You can enable the \{\{FRS\_VARS.Neurons\_Bot}} for \{\{FRS\_VARS.Quick\_Actions}} from the \{\{FRS\_VARS.Neurons\_platform}} Integration console.
+
+1. Log in to \{\{FRS\_VARS.ProductName}} as an \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+2. Open the Configuration console > **Extend** >**&#x20;Neurons Platform Integration**.
+3. Toggle the \{\{FRS\_VARS.Neurons\_Bot}} section to enable it for the \{\{FRS\_VARS.Quick\_Actions}}.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/ztLzTagm9VbOVBWCkiSD7_neurons-bot-integration-enabled.png" alt="Neurons Bot in the Neurons Platform Integration console" position="flex-start" size="40" indent="1" initialPath="../../quick-actions-images/neurons-bot-integration-enabled.png" githubPath="Content/Configure/QuickActions/quick-actions-images/neurons-bot-integration-enabled.png" showCaption="false"></Image>
+
+<hint type="info" indent="1">
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/AtKQT1vcTES5N48RDJUyW_neurons-bot-integration.png" alt="Neurons bot option is disabled due to Global Constant is false" position="flex-start" size="40" initialPath="../../quick-actions-images/neurons-bot-integration.png" githubPath="Content/Configure/QuickActions/quick-actions-images/neurons-bot-integration.png" showCaption="false"></Image>
+
+  If the toggle button is disabled, verify that the global constant **EnableActionService** is set to **True**.
+</hint>
+
+Refer to [Neurons Platform Integration](../../../Integrations/ITSM-Neurons-Integration.mdx) guide to learn how to integrate \{\{FRS\_VARS.Neurons\_platform}} with ITSM.
+
+## Parameters
+
+To access the parameters, select the **Action Block** to display them in the **Settings** pane.
+
+### Action Block Settings
+
+<hint type="info">
+  \{\{FRS\_VARS.Neurons\_Bot}} input definitions automatically synchronize once per hour. Any changes you have made within the last hour in \{\{FRS\_VARS.Company}} \{\{FRS\_VARS.Neurons}} to the Bot definition may not be immediately visible for selection. If you need to synchronize any changes you have made to the selected Bot, you can use the **Refresh** function to manually synchronize the \{\{FRS\_VARS.Neurons\_Bot}} \{\{FRS\_VARS.Quick\_Action}} without waiting.
+</hint>
+
+- **Block Label**: A unique name for the block. This is useful to identify each action when you have more than one of the same action block added or cloned in the design area.
+- **Bot**: Select the \{\{FRS\_VARS.Neurons\_Bot}} instance from the drop-down list that you want the \{\{FRS\_VARS.Neurons\_Bot}} \{\{FRS\_VARS.Quick\_Action}} to trigger.
+- **Refresh**: See the note above. Use this function to manually synchronize any changes you have made to the selected Bot definition in \{\{FRS\_VARS.Neurons}}. You may receive a **Warning** message if the refresh is unsuccessful, or has already been completed.
+- **Inputs**: Inputs determine the action that the \{\{FRS\_VARS.Neurons\_Bot}} performs when invoked. Inputs vary depending on the \{\{FRS\_VARS.Neurons\_Bot}} instance selected. Some \{\{FRS\_VARS.Neurons\_Bot}} instances have no inputs. Inputs shown are defined in the \{\{FRS\_VARS.Neurons\_Bot}} configuration in \{\{FRS\_VARS.Company}} \{\{FRS\_VARS.Neurons}}. Select or enter parameter values and settings for input fields where required. For further information on inputs, refer to [Neurons Bots editor](https://help.ivanti.com/ht/help/en_US/CLOUD/vNow/neurons-bots-editor.htm). Field types are:
+  - Text/String
+  - Number
+  - Boolean (True/False)
+  - Date
+  - Option - these are drop-down fields with multiple choice lists.
+- Click **Save** to commit your settings.
+
+### Start Block Settings
+
+These settings are accessed by selecting the **Start Block**, refer to :Link[Start Block Settings]{label="Start Block Settings" overridedLabel="Start Block Settings" spaceId docId="T_2hq2qRJzWxiHLCfgn-7" version="v2" docAnchorId="#CommonTab" loadingMethod="dynamic" newTab="false" githubPath="../Using_the_Graphical_Action_Designer.htm#CommonTab" href="../Using_the_Graphical_Action_Designer.mdx"}.

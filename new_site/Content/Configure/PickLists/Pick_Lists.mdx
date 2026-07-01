@@ -1,0 +1,201 @@
+---
+title: Using Pick Lists
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:57 GMT+0300 (Eastern European Summer Time)
+---
+
+- :Link[About Pick Lists]{label="About Pick Lists" overridedLabel="About Pick Lists" spaceId docId="zIb3lkDe40RTLdiCNY6iP" version="v2" docAnchorId="#About" loadingMethod="dynamic" newTab="false" href="Pick_Lists.mdx"}
+- :Link[Accessing a Pick List]{label="Accessing a Pick List" overridedLabel="Accessing a Pick List" spaceId docId="zIb3lkDe40RTLdiCNY6iP" version="v2" docAnchorId="#Accessing-a-Pick-List" loadingMethod="dynamic" newTab="false" href="Pick_Lists.mdx"}
+- :Link[Creating a Pick List]{label="Creating a Pick List" overridedLabel="Creating a Pick List" spaceId docId="zIb3lkDe40RTLdiCNY6iP" version="v2" docAnchorId="#Creating" loadingMethod="dynamic" newTab="false" href="Pick_Lists.mdx"}
+- :Link[Modifying a Pick List]{label="Modifying a Pick List" overridedLabel="Modifying a Pick List" spaceId docId="zIb3lkDe40RTLdiCNY6iP" version="v2" docAnchorId="#Modifyin" loadingMethod="dynamic" newTab="false" href="Pick_Lists.mdx"}
+- :Link[Modifying Values in a Pick List]{label="Modifying Values in a Pick List" overridedLabel="Modifying Values in a Pick List" spaceId docId="zIb3lkDe40RTLdiCNY6iP" version="v2" docAnchorId="#Modifyin2" loadingMethod="dynamic" newTab="false" href="Pick_Lists.mdx"}
+- :Link[Translating a Pick List]{label="Translating a Pick List" overridedLabel="Translating a Pick List" spaceId docId="zIb3lkDe40RTLdiCNY6iP" version="v2" docAnchorId="#Translat" loadingMethod="dynamic" newTab="false" href="Pick_Lists.mdx"}
+- :Link[Deleting a Pick List]{label="Deleting a Pick List" overridedLabel="Deleting a Pick List" spaceId docId="zIb3lkDe40RTLdiCNY6iP" version="v2" docAnchorId="#Deleting" loadingMethod="dynamic" newTab="false" href="Pick_Lists.mdx"}
+- [Using Validation Business Objects](Validation_Objects.mdx)
+- [Adding Values to a Pick List](<Adding Values to a Pick List.mdx>)
+
+## About Pick Lists
+
+A pick list is a list of values shown on a drop-down list or combo box. Pick lists supply other business objects with field values and are stored as child business objects in a relationship.
+
+Pick lists are used by validation business objects to filter data. See [Using Validation Business Objects](Validation_Objects.mdx).
+
+Pick lists can include business objects that are standalone records. For example, the **StandardUserTeam** and **Employee** business objects control the **Team** and **Owner** drop-down lists in many business objects.
+
+Each value in a pick list is obtained from a table row in a business object. For example, the **Active Employee List by Full Name** pick list derives its values from the **Full Name** table row in the **Employee** business object.
+
+<hint type="info">
+  When using a combo box in the Service Catalog that gets data from a pick list, ensure that the pick list is validated. Otherwise, you might see the red invalid value indicator in the field.
+</hint>
+
+## Accessing a Pick List
+
+1. From the Configuration Console, click **Build > Pick Lists** to open the **Pick Lists** workspace. The application displays a list of pick lists.
+
+*Pick Lists Workspace*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/-ZR2FkIXONiYw-LEZf1lc_picklist02.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/pick_list_02.png" githubPath="Content/Resources/Images/help-images/pick_list_02.png" showCaption="false"></Image>
+
+2. Click an item from the list to view specific details, including associated business objects and fields.
+
+You can also access all pick lists for a business object by doing the following:
+
+1. From the Configuration Console, click **Build > Business Objects** to open the **Business Objects** workspace.
+2. Open a business object. The application displays the workspace for that business object.
+3. Along the top, click **Pick Lists**. The application lists all of the pick lists associated with that business object.
+
+## Creating a Pick List
+
+1. From the Configuration Console, click **Build > Pick Lists** to open the **Pick Lists** workspace. The application displays a list of pick lists.
+2. Click **Add new\...**. The application displays the **Pick List: New record** page.
+
+*Pick List: New Record Page*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/en2Bm-KmxK8wWKIvo6_nb_pickaddvalidationlists.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/pick_add_validation_lists.png" githubPath="Content/Resources/Images/help-images/pick_add_validation_lists.png" showCaption="false"></Image>
+
+3. Enter information into the fields.
+
+| Field                                           | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| ----------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Ignore constraints if constrained list is empty | Applies to pick lists with constraints only.<br /><br />If you apply a constraint to a pick list and the resulting pick list is empty, then show all of the pick list values.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Auto-select if list has single value            | Applies to pick lists with constraints only.<br /><br />If you apply a constraint to a pick list and the resulting pick list has just one entry, then automatically select that value.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| List name                                       | The name of the pick list.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| Display name                                    | The display name of the pick list.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| Get list data from                              | Specifies where to get the pick list data from:<br />**Business Object**: Select a business object, then select a value from the drop-down list.&#xA;&#xA;Unicode text fields marked as validated only show named validation lists with stored fields which are also Unicode text fields. Similarly, regular text fields can only by validated by named validation lists, with stored fields which are regular text fields.&#xA;&#xA;For example, assume there is a named validation list defined against the **LoginID** field in the **Employee** business object that has been marked as Unicode (such as *DisplayName of Employee with LoginID value by Team*). To use it as the pick list for a validated text field, the field must also be marked as Unicode. This enables the named validation list to show up in the list.<br />**Validation Provider**: Supported in the Service Catalog only, and used only for the \{\{FRS\_VARS.Company}} DSM legacy integration . For the \{\{FRS\_VARS.Company}} DSM legacy integration, select an item from this list and the application generates a pick list based on the hard-coded logic in the code. |
+| Display field                                   | The visible field name to be displayed in the pick list.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| Value field                                     | A stored field name. Select from the drop-down list.<br /><br />This entry frequently differs from the **Display field** selection. For example, the **Owner** field in many business objects contain pick lists of **DisplayName** entries derived from the **Employee** business object, such as *Bernard Jeffries*. However, you can select a **Value** field entry that is based on the corresponding login ID of the **Employee** business object, such as *Bjeffries*.<br />This allows the value of the login ID to be stored in the database when the pick list item is selected. In this case, it is a practical choice because many \{\{FRS\_VARS.ProductName}} business rules and application functions use login ID values.                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| Sort by field                                   | Specifies the field to sort by.<br /><br />Choose how to sort the data:<br />Ascending<br />Descending                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+
+4. Add constraints to the pick list to restrict the data presented.
+
+<Paragraph indent="1">
+  a. Click the **Add new condition** icon <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/JtIxGMfjslfCSitXWBu4o_addgreen.png" size="10" isUploading="false" initialPath="../../Resources/Images/buttons/add_green.png" githubPath="Content/Resources/Images/buttons/add_green.png" width="17" height="15" showCaption="false"></Image> to activate a constraint formula. This formula is based on the business object that you selected in the **Get list data from** field.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Use constraints to restrict or filter the amount of values that the application shows, based on previously selected values. To use such a pick list (such as within a request offering), enter a field in the first area, enter **equals to** in the second area, and enter **\{\{0}}** in the third area.
+</Paragraph>
+
+*Pick List Constraints*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Z_lvDK-RytzTmi1Vc9xkb_picklistconstraint.png" position="flex-start" size="40" initialPath="../../Resources/Images/help-images/pick_list_constraint.png" githubPath="Content/Resources/Images/help-images/pick_list_constraint.png" showCaption="false"></Image>
+
+As another example, to add a constraint to the **Active Employee List by Full Name** pick list to include all active employees, enter **Status** in the first area, enter **not equal to** in the second area, and enter **Terminated** in the third area.
+
+You can select **Begin with**, **Contains**, and **Does Not Contain** in the second area.
+
+You can also enter an expression in the third area. Click the **function** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/nkqElOFXdxvDGVcRO7D1F_function.png" alt caption size="10" width="16" height="16"} to open the Expression Editor.
+
+<Paragraph indent="1">
+  c. Click the **Remove this condition** icon <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/USPl9Egu4Y2Blx7HKC3mA_deleteredx.png" size="10" isUploading="false" initialPath="../../Resources/Images/buttons/delete_red_x.png" githubPath="Content/Resources/Images/buttons/delete_red_x.png" width="14" height="13" showCaption="false"></Image> to delete a constraint.
+</Paragraph>
+
+5. (Optional) Click **Preview** to see what the pick list looks like, before saving it.
+6. Click **Save**.
+
+## Modifying a Pick List
+
+1. From the Configuration Console, click **Build > Pick Lists** to open the **Pick Lists** workspace. The application displays a list of pick lists.
+2. Click the pick list to modify.
+3. (Optional) Click **Usage stats** to view the business objects where the pick list is used and the name of its linked field.
+4. (Optional) Click **Preview** to view what the pick list looks like.
+5. Modify the information as needed.
+6. Click **Save**.
+
+## Modifying Values in a Pick List
+
+1. From the Configuration Console, click **Build > Pick Lists** to open the **Pick Lists** workspace. The application displays a list of pick lists.
+2. Click **values** next to the pick list to modify. The list of values appears.
+3. To add a value, do the following:
+
+<Paragraph indent="1">
+  a. Click **Add**.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Enter the new value.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. Click **Save**.
+</Paragraph>
+
+4. To modify a value, do the following:
+
+<Paragraph indent="1">
+  a. Select the value row.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Click **edit** at the far right end of the row.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. Edit the value.
+</Paragraph>
+
+<Paragraph indent="1">
+  d. Click **Save**.
+</Paragraph>
+
+5. Click **Close**.
+
+## Translating a Pick List
+
+You can create translated values for each item in the pick list. You can only translate pick lists that contain fields with localized values. (To determine if a pick list has localized fields, go to the **Validation Business Objects** workspace, select the validated business object, click the **Fields** tab, click the field name, and see if **Localized** is checked.)
+
+See :Link[About Localization]{label="About Localization" overridedLabel="About Localization" spaceId docId="p_C7l06gadMp69KkdvA1A" version="v2" docAnchorId="#AboutLocalization" loadingMethod="dynamic" newTab="false" githubPath="../Localization/Localization.htm#AboutLocalization" href="../Localization/Localization.mdx"} for more information.
+
+1. From the Configuration Console, click **Build > Pick Lists** to open the **Pick Lists** workspace. The application displays a list of pick lists.
+2. Click **values** next to the pick list to translate. The list of values appears.
+3. Select the value row, then click **edit** at the far right end of the row.
+
+*Pick List Values*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/aPEopM_Fya6kTeJ1u8Tok_picklistaddvalue.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/pick_list_add_value.png" githubPath="Content/Resources/Images/help-images/pick_list_add_value.png" showCaption="false"></Image>
+
+<Paragraph indent="1">
+  The application displays the **Edit Type** dialog box.
+</Paragraph>
+
+4. Click the **translate** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/N6iXWZkDCoUdLb_TsGq1z_translate.png" alt caption size="10" width="16" height="16"}.
+
+*Edit Type Dialog Box*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/ALnHz2vdlywQJo0cnkzl4_picklistaddvaluetranslate.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/pick_list_add_value_translate.png" githubPath="Content/Resources/Images/help-images/pick_list_add_value_translate.png" showCaption="false"></Image>
+
+<Paragraph indent="1">
+  The application displays the **Translate** dialog box.
+</Paragraph>
+
+*Translate Dialog Box*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/l4cJbVjqjg7L3J495Trui_picklistaddvaluetranslate2.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/pick_list_add_value_translate2.png" githubPath="Content/Resources/Images/help-images/pick_list_add_value_translate2.png" showCaption="false"></Image>
+
+5. Enter the translation.
+6. Click **Save**.
+
+The application displays the value based on the locale that they choose. See :Link[Setting Up Languages]{label="Setting Up Languages" overridedLabel="Setting Up Languages" spaceId docId="ZOdB7cSrDXVspZWLePaWn" version="v2" docAnchorId="#Localization%20Tool" loadingMethod="dynamic" newTab="false" githubPath="../Localization/Setting Up Languages.htm#Localization%20Tool" href="../Localization/Setting Up Languages.mdx"}.
+
+## Deleting a Pick List
+
+You cannot delete default pick lists, which the application displays with a **lock** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/9OM6CD1i4c3yqLFczlByV_lock.png" alt caption size="10" width="18" height="17"}.
+
+<hint type="info">
+  Use caution when deleting a pick list. Business objects using this pick list might no longer function as expected.
+</hint>
+
+1. From the Configuration Console, click **Build > Pick Lists** to open the **Pick Lists** workspace. The application displays a list of pick lists.
+2. Open the pick list to delete.
+3. Click **Delete**.
+
+*Deleting a Pick List*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/3FBxPB7DYTGs2vnNAHcDn_picklistdelete.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/pick_list_delete.png" githubPath="Content/Resources/Images/help-images/pick_list_delete.png" showCaption="false"></Image>
+
+<Paragraph indent="1">
+  The application displays the **Delete validation list** dialog box.
+</Paragraph>
+
+4. Click **Yes**.
+5. Return to the **List View** and refresh the window. The application no longer displays the pick list.

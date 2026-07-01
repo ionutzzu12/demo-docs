@@ -1,0 +1,73 @@
+---
+title: Working with Service Level Management
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:47 GMT+0300 (Eastern European Summer Time)
+---
+
+- :Link[About Service Level Management]{label="About Service Level Management" overridedLabel="About Service Level Management" spaceId docId="-8Nw6rGFKhvatRNzpdp2Z" version="v2" docAnchorId="#About" loadingMethod="dynamic" newTab="false" href="About_Service_Level_Management.mdx"}
+- :Link[About the Service Level Management Lifecycle]{label="About the Service Level Management Lifecycle" overridedLabel="About the Service Level Management Lifecycle" spaceId docId="-8Nw6rGFKhvatRNzpdp2Z" version="v2" docAnchorId="#About3" loadingMethod="dynamic" newTab="false" href="About_Service_Level_Management.mdx"}
+- [Working with Service Level Agreements](Working-with-Service-Level-Agreements.mdx)
+- [Working with Service Level Packages](Service_Level_Packages.mdx)
+- [Working with Operational Level Agreements](Operational_Level_Agreement.mdx)
+- [Working with Underpinning Contracts](<Underpinning Contracts.mdx>)
+- [Working with Service Level Targets](Creating_Service_Level_Target.mdx)
+- [About the Service Level Manager Dashboard](SLM_Dashboard.mdx)
+- [Working with Services](Creating_a_Service.mdx)
+- [About Subscribing to a Service](<Subscribing to a Service.mdx>)
+
+## About Service Level Management
+
+Service level management does the following:
+
+- Aims to negotiate service level agreements with end user customers.
+- Designs services in accordance with the agreed service level targets.
+- Ensures that all operational level agreements and underpinning contracts are appropriate.
+- Monitors and reports on service levels.
+
+\{\{FRS\_VARS.ProductName}} implements ITIL standards for service level management by doing the following:
+
+- Defining services and expected delivery times.
+- Monitoring service promises.
+- Measuring customer satisfaction.
+
+Successful ITIL adoption of service level standards depends upon interaction between teams and shared responsibilities among groups. For ITIL to succeed, the entire IT organization, including the staff and management of all teams, must work together as a service-delivery chain.
+
+*Parts of Service Level Management*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/_OxXVkaKUQTkR6ppncd3b_unknown.png" alt="Parts of Service Level Management" position="flex-start" size="40" initialPath="../../Resources/Diagrams/unknown.png" githubPath="Content/Resources/Diagrams/unknown.png" showCaption="false"></Image>
+
+Service level management uses the following concepts:
+
+- **Service level agreements**: A service level agreement is what an organization as a whole promises to an end user customer. The promise must be measurable, including the level of service, start and end times, and expected results. An example of a service level agreement is between an end user customer and you as an IT service provider. Refer to [Working with Service Level Agreements](Working-with-Service-Level-Agreements.mdx).
+- **Operational level agreements**: An operational level agreement is what an internal team within an organization promises to other internal teams within the same organization, to support a service level agreement. The operational level agreement describes the responsibilities of each internal group toward other internal groups, including the process and time frame for the delivery of their services. For example, the email services internal team and the web hosting services internal team may have an operational level agreement with each other. Refer to [Working with Operational Level Agreements](Operational_Level_Agreement.mdx).
+- **Underpinning contracts**: Underpinning contracts are between an organization and an outside third party vendor and support the service level agreement between the organization and the end user customer. For example, if you are the IT service provider, you may have an underpinning contract with AT\&T, who is a third party vendor that provides you with mobile communication services. Refer to [Working with Underpinning Contracts](<Underpinning Contracts.mdx>).
+- **Service level packages**: A service level package is a suite of services offered to a customer. A service level package is a defined level of utility and warranty for a particular service package, which means that you can offer your customers various levels of service. You create a list of service offerings and group them into service level packages that includes various levels of service provided. These packages are usually stipulated within the service level agreement. For example, an organization could offer Gold, Silver, or Bronze service packages. The Bronze level package could provide mobile network access and a low-end cell phone. The Silver package could provide network access and a medium-level phone, while the Gold package could provide faster network service, a high-end cell phone, and unlimited customer service. Refer to [Working with Service Level Packages](Service_Level_Packages.mdx).
+- **Service level targets**: A service level target measures your performance as a service provider and is designed to avoid disputes between you and the end user customer based on misunderstandings. Refer to [Working with Service Level Targets](Creating_Service_Level_Target.mdx).
+- **Request offerings**: Service owners and administrators create and configure the request offerings that you provide to your end user customers.
+
+## About the Service Level Management Lifecycle
+
+The following process is recommended for configuring the Self-Service portal and the Service Catalog for service owners and administrators.
+
+*Service Level Management Lifecycle*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/ZRQzpWKXCF_jR5-iIVBfg_service-level-management-lifecycle.png" alt="Service Level Management Lifecycle" position="flex-start" size="40" initialPath="../../Resources/Diagrams/Service Level Management Lifecycle.png" githubPath="Content/Resources/Diagrams/Service Level Management Lifecycle.png" showCaption="false"></Image>
+
+1. Create a service. Specify characteristics that define a service. These characteristics are inherited by all service level packages and offerings that are linked to the service. Refer to [Working with Services](Creating_a_Service.mdx).
+2. Create request offerings and form offerings and assign each to a category. After you define a service, end users do not see or request the service itself. Instead, they select from lists of request offerings that you make available to them through the Service Catalog. Refer to [Creating a Request Offering](../RequestOfferings/Creating-a-Request-Offering.mdx).
+   - A request offering configures a service request, including cost, delivery schedule, fulfillment method, and so on. Service Catalog end users request predefined services through the request offering forms that you design. When the end user submits the request, the application creates a service request recorded.
+   - A form offering configures a more general form used by Service Catalog end users to submit requests that do not have a predefined cost or delivery schedule (for example, to submit an incident). When you create a form offering, you specify which business object is used when a form offering record is created (unlike with request offerings, in which the application automatically uses the **Service Request** business object). Form appearance is based on the layout of the business object that you use.
+3. Define service level packages. Specify additional characteristics that define how a service is offered to subscribers. A service level package is based on one service, from which it inherits general characteristics such as owner, provider, and so on. Refer to [Working with Service Level Packages](Service_Level_Packages.mdx).
+
+<Paragraph indent="1">
+  A service can have multiple service level packages. For example, you could define service level packages named Gold, Silver, and Bronze for a service, each with a different price, response time, hours of operation, and so on.
+</Paragraph>
+
+<Paragraph indent="1">
+  The promises offered by a service level package depend on a number of factors: promises made by other groups within the organization (captured in a service level agreement) and promises made by outside vendors (captured in an underpinning contract). Refer to [Working with Service Level Agreements](Working-with-Service-Level-Agreements.mdx) and [Working with Underpinning Contracts](<Underpinning Contracts.mdx>).
+</Paragraph>
+
+4. Define service level targets. A service level target defines the degree of compliance an organization can provide (and therefore can be offered to a customer). This can also affect the service level package. Operational level agreements, underpinning contracts, and service level agreements all have defined service level targets. Refer to [Working with Service Level Targets](Creating_Service_Level_Target.mdx).
+5. Link request offerings to a service level package. After you define a service level package, you must link it to one or more request offerings. When you link a request offering to a service level package, the application includes the request offering in the service level package. Refer to :Link[Linking a Request Offering to a Service Level Package ]{label="Linking a Request Offering to a Service Level Package " overridedLabel="Linking a Request Offering to a Service Level Package " spaceId docId="a8CXyn1QZ2Xi1gEuSrnnY" version="v2" docAnchorId="#LinkingRequestOffernigToSLP" loadingMethod="dynamic" newTab="false" githubPath="Service_Level_Packages.htm#LinkingRequestOffernigToSLP" href="Service_Level_Packages.mdx"}.
+6. Publish service level packages. You must publish a service level package to make it available for subscription. Refer to [Working with Service Level Packages](Service_Level_Packages.mdx).
+7. Subscribe to service level packages and create service level agreements. After you create a service level agreement by subscribing to a service level package, the application makes request offerings available to end users. Refer to [About Subscribing to a Service](<Subscribing to a Service.mdx>).

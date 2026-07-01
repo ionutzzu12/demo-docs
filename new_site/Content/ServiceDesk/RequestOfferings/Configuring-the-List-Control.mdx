@@ -1,0 +1,110 @@
+---
+title: Configuring the List Control
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:48 GMT+0300 (Eastern European Summer Time)
+---
+
+## Placing the List onto the Form
+
+1. Log in to \{\{FRS\_VARS.ProductName}} as a \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Owner}}.
+2. Open a request offering.
+3. Click the **Design request form** tab.
+4. Drag the **List** control from the right pane onto the form. See [Creating a Request Offering](Creating-a-Request-Offering.mdx).
+5. Enter a label and description for the list.
+6. Click the **edit** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/nH4LDSjWwydlsFfpwW_T5_edit-button.png" alt caption size="10" width="23" height="24"} next to the label. The **Item Configuration Editor** opens.
+
+## Creating a Custom List
+
+You can create a pick list based on a custom list of items that you define. You can associate each custom list item with an image so that an item's image displays when a user selects the item.
+
+1. In the **Item Configuration Editor**, expand **Pick List**.
+
+<Paragraph indent="1">
+  *Pick List*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/fonYE40v2OoWHdzm7lEfO_item-configuration-editor-pick-list.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/ReqOff-Images/item-configuration-editor-pick-list.png" githubPath="Content/Resources/Images/ReqOff-Images/item-configuration-editor-pick-list.png" showCaption="false"></Image>
+
+2. Choose **Custom**, then click the **Add** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/JtIxGMfjslfCSitXWBu4o_addgreen.png" alt caption size="10" width="17" height="15"}. The system displays the option fields.
+3. Enter information into the fields.
+
+| Field       | Description                                                                                                                                          |
+| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Option name | Name of the item to appear on the pick list.                                                                                                         |
+| Price       | Price for the item.                                                                                                                                  |
+| Image file  | Image file. These are available only if you have already added them to the attachment repository through the Form Designer Tools **Attachment** tab. |
+
+4. Repeat to add more list items as needed.
+5. Click **Ok**.
+
+## Creating a Validation List
+
+You can create a pick list generated dynamically based on a validation list. You can use various fields associated with the validation object to enhance the list and not just the description field.
+
+1. In the **Item Configuration Editor**, expand **PICK LIST**.
+
+<Paragraph indent="1">
+  *Validation List*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/RTmNnfUUKH7MzB1lfRctK_item-configuration-editor-validation-list.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/ReqOff-Images/item-configuration-editor-validation-list.png" githubPath="Content/Resources/Images/ReqOff-Images/item-configuration-editor-validation-list.png" showCaption="false"></Image>
+
+2. Choose **Validation list**. The system displays the validation fields.
+3. Enter information into the fields.
+4. Repeat to add more items as needed.
+5. Click **OK**.
+
+## Specifying Image Details
+
+When you use the image control to display an image as a field, you can specify a file to use for a static image or a field on the current form to use as the basis for a dynamically generated image. You can also specify image height and width, and whether it has a border.
+
+1. Open the **Item Configuration Editor** for an image control and expand the **Field Options** area.
+
+<Paragraph indent="1">
+  *Field Options*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/d6_Wm5Qzt7PhYbXCxr_mM_item-configuration-editor-field-options.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/ReqOff-Images/item-configuration-editor-field-options.png" githubPath="Content/Resources/Images/ReqOff-Images/item-configuration-editor-field-options.png" showCaption="false"></Image>
+
+2. In the **Static/default image** field, select an image file. Images are available only if you have already added them to the attachment repository through the **Form Designer Tools** **Attachment** tab.
+3. In the **Trigger field from which to dynamically set image** field, select the field from the current form that determines which image file is used.
+
+<hint type="info" indent="1">
+  The drop-down list in this field is based on one or more pick lists that are defined in drop-down list controls on the current request form, and are configured to use images. At least one such pick list must exist on this form for the field described here to display a populated drop-down list.
+</hint>
+
+4. Specify image dimensions (in pixels) in the **Max Width** and **Max Height** fields. These fields can have a maximum value of 250.
+5. Select **Border** if the image has a border.
+6. Click **OK**.
+
+## Using the Show Select All option
+
+The list control in \{\{FRS\_VARS.Request\_Offering-Request-Offering}} can have an option to select/clear all options in a single-click provided you enable the **Show select all** option while configuring the pick list in the Request Offering.
+
+This feature is available in both in the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Self\_Service\_User}} classic and the \{\{FRS\_VARS.Self\_Service\_Mobile\_portal}} portal.
+
+1. Open the **Item Configuration Editor** for the list control and expand the **Field Options** section.
+2. Select the **Show select all** checkbox.
+
+<hint type="info">
+  If you select the **Allow only single option to be selected** option, the **Show select all** option in the **Item Configuration Editor** will be disabled.
+</hint>
+
+<Paragraph indent="1">
+  *Show select all checkbox*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/voasRDulEG6OfUpZlSmQD_show-select-all-option-in-picklist.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/ServiceDesk/Request-Offerings/Show-select-all-option-in-picklist.png" githubPath="Content/Resources/Images/ServiceDesk/Request-Offerings/Show-select-all-option-in-picklist.png" showCaption="false"></Image>
+
+3. Expand the **Default Value** section and select **Value** to define the default values for the \{\{FRS\_VARS.Request\_Offering-Request-Offering}}.
+4. Click **Select All** to select all the values or click individual items to custom select the values.
+
+<Paragraph indent="1">
+  *Defining Default Values*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/QDkrMM1ifpbtNW5nlebyZ_default-value-in-picklist.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/ServiceDesk/Request-Offerings/Default-Value-In-Picklist.png" githubPath="Content/Resources/Images/ServiceDesk/Request-Offerings/Default-Value-In-Picklist.png" showCaption="false"></Image>
+
+<hint type="info">
+  When the **Select All** option is selected, only values that are visible are selected. If the list of values extend beyond what is displayed, those are not selected. Click **Load more** and then select them individually as need be.
+</hint>

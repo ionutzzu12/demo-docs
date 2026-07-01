@@ -1,0 +1,138 @@
+---
+title: Expression Grammar
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:58 GMT+0300 (Eastern European Summer Time)
+---
+
+- :Link[About Expressions]{label="About Expressions" overridedLabel="About Expressions" spaceId docId="4_t7-8mnatsAE0wnALxRp" version="v2" docAnchorId="#AboutExp" loadingMethod="dynamic" newTab="false" href="Expression Grammar.mdx"}
+- :Link[About SubExpressions]{label="About SubExpressions" overridedLabel="About SubExpressions" spaceId docId="4_t7-8mnatsAE0wnALxRp" version="v2" docAnchorId="#AboutSE" loadingMethod="dynamic" newTab="false" href="Expression Grammar.mdx"}
+- :Link[Basic Expression Grammar]{label="Basic Expression Grammar" overridedLabel="Basic Expression Grammar" spaceId docId="4_t7-8mnatsAE0wnALxRp" version="v2" docAnchorId="#Basic" loadingMethod="dynamic" newTab="false" href="Expression Grammar.mdx"}
+- :Link[Stored Expression Grammar]{label="Stored Expression Grammar" overridedLabel="Stored Expression Grammar" spaceId docId="4_t7-8mnatsAE0wnALxRp" version="v2" docAnchorId="#UsingStoredExpressions" loadingMethod="dynamic" newTab="false" href="Expression Grammar.mdx"}
+- :Link[Calling Built-In Functions]{label="Calling Built-In Functions" overridedLabel="Calling Built-In Functions" spaceId docId="4_t7-8mnatsAE0wnALxRp" version="v2" docAnchorId="#ReferringFunc" loadingMethod="dynamic" newTab="false" href="Expression Grammar.mdx"}
+- :Link[Using Values in Expressions]{label="Using Values in Expressions" overridedLabel="Using Values in Expressions" spaceId docId="4_t7-8mnatsAE0wnALxRp" version="v2" docAnchorId="#Values_inExpressions" loadingMethod="dynamic" newTab="false" href="Expression Grammar.mdx"}
+- :Link[Using Stored Values in Expressions]{label="Using Stored Values in Expressions" overridedLabel="Using Stored Values in Expressions" spaceId docId="4_t7-8mnatsAE0wnALxRp" version="v2" docAnchorId="#Using_Stored_Values_in_Exp" loadingMethod="dynamic" newTab="false" href="Expression Grammar.mdx"}
+- :Link[ Using Multiple Lines and Tab Spaces in Expressions]{label=" Using Multiple Lines and Tab Spaces in Expressions" overridedLabel=" Using Multiple Lines and Tab Spaces in Expressions" spaceId docId="4_t7-8mnatsAE0wnALxRp" version="v2" docAnchorId="#Using_Multiple_Lines_in_Exp" loadingMethod="dynamic" newTab="false" href="Expression Grammar.mdx"}
+- :Link[Using Comments in Expressions]{label="Using Comments in Expressions" overridedLabel="Using Comments in Expressions" spaceId docId="8F3VPUolDVlKLT4lSxU9b" version="v2" docAnchorId="#UsingComments" loadingMethod="dynamic" newTab="false" githubPath="Using Expression Editor.htm#UsingComments" href="Using Expression Editor.mdx"}
+- :Link[Using Field References]{label="Using Field References" overridedLabel="Using Field References" spaceId docId="LE0re3RODaLD2TMvD4oNG" version="v2" docAnchorId="#UsingFieldRefs" loadingMethod="dynamic" newTab="false" githubPath="Field References.htm#UsingFieldRefs" href="Field References.mdx"}
+- :Link[Using Relationship Specifiers]{label="Using Relationship Specifiers" overridedLabel="Using Relationship Specifiers" spaceId docId="LE0re3RODaLD2TMvD4oNG" version="v2" docAnchorId="#Using-Relationship-Specifiers" loadingMethod="dynamic" newTab="false" githubPath="Field References.htm#Using-Relationship-Specifiers" href="Field References.mdx"}
+- :Link[Using Field Qualifiers]{label="Using Field Qualifiers" overridedLabel="Using Field Qualifiers" spaceId docId="LE0re3RODaLD2TMvD4oNG" version="v2" docAnchorId="#UsingFieldQualifiersNEWNEW" loadingMethod="dynamic" newTab="false" githubPath="Field References.htm#UsingFieldQualifiersNEWNEW" href="Field References.mdx"}
+- [About Operators](Operators.mdx)
+- [Using Literals](Literals.mdx)
+- [About Type Conversions](<Type Conversions.mdx>)
+- [About Null Values](<Null Value.mdx>)
+
+<ExpandableHeading>
+  ## About Expressions
+
+  An expression is a description of how to compute a value. It can call a function, be a reference to a field, or be a literal. Expressions can also be composed of one or more of these with operators in between them.
+
+  Expressions are used in many places throughout \{\{FRS\_VARS.ProductName}}, including in business rules, saved searches, quick action definitions, list filters, visibility rules on form controls, and more.
+
+  Most expressions simply compute a value. However, a few of the built-in functions do more than just compute a value. They affect the application in ways other than returning a value. For example, the **Prompt** function prompts the user for an input, and the **GetNext Counter** function returns the value of the counter but also increments the counter.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## About SubExpressions
+
+  A subexpression is an expression within an expression that computes a value, but has a different context and may also be evaluated more than once.  Currently, subexpressions can only be passed as arguments to certain built-in functions. The **ChildFold**, **FindAncestor**, **ForEachChild**, **IfAllSiblings**, **IsTrueForAllChildren**, **Prompt**, and **PromptAndExecuteAction** are the only built-in functions that use subexpressions.
+
+  An example of a subexpression is:
+
+  $(FindAncestor("Frs\_CompositeContract\_Entity", "ServiceAgreement", EntityLink\_RecID,
+
+  <Paragraph indent="1">
+    "$((ServiceLink == \[OtherObject]Service\_Valid) && (Status == \\"Published\\"))"
+  </Paragraph>
+
+  ))
+
+  The sub expression starts with "$((ServiceLink.
+
+  There are two ways to call a subexpression: the "old" way, which is to enter the entire subexpression as a string within double quotes, or the "new" way, which is to enter it without double quotes. (If you use the new way, you do not need to use the backslash to escape the quotes within the string.)
+
+  In this example, the function looks for an ancestor and for each one it finds, it evaluates the subexpression and each time it evaluates it, it has a different subcontext. The field references in the subexpression do not refer to the same object as the field references outside of the subexpression.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Basic Expression Grammar
+
+  At the outer level, enclose an expression, function, or field reference with a dollar sign with parentheses, as follows:
+
+  $( )
+
+  The $( can only appear as the outer most portion of the expression, and should not appear anywhere within the expression itself, except as a subexpression. If you enter $( anywhere else within the expression, the parser cannot interpret the expression properly, and incorrectly interprets the entire expression as if it were a regular text literal.
+
+  In certain cases, the parser does allow for expressing simple values, without requiring the use of $(). An example is expressing simple text literal values such as "Active".
+
+  At this time, \{\{FRS\_VARS.ProductName}} does not allow you to add comments to expressions.
+
+  At the highest level, you enter either an expression or a standalone literal.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Stored Expression Grammar
+
+  Stored expressions are expressions that \{\{FRS\_VARS.ProductName}} maintains for reuse across the system. You can associate a stored expression with a business object, or you can leave the stored expression unassociated. For more information on Stored Expressions, see [About Stored Expressions](<Stored Expressions/Stored Expressions.mdx>).
+
+  1. You can find stored expressions listed in the **Expression Editor** toolbox. You can drag stored expressions onto the editor from the toolbox, or as you begin typing the name of your stored expression, it autopopulates with matching expressions.
+
+  <hint type="info" indent="1">
+    You need to manually add the outer $() syntax to stored expressions selected from either of these methods.
+  </hint>
+
+  2. The syntax for calling a stored expression can vary depending on the context. Table 1 lists the syntax for each use context.
+
+  <Paragraph indent="1">
+    *Table 1: Contextualized Stored Expression Syntax*
+  </Paragraph>
+
+  | Unassociated Stored Expression                                                                                                                 | $(GlobalStoredExpression())                        |
+  | ---------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
+  | Associated Stored Expression for current business object context  <br />In this example, \[this] is a literal value and should not be changed. | $(\[this]AssociatedStoredExpression())             |
+  | Associated stored expression for related business object context                                                                               | $(\[OtherBusOb#.refname]RelatedStoredExpression()) |
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Calling Built-In Functions
+
+  To call a built-in function, use this syntax:
+
+  $(FunctionName (arguments))
+
+  where arguments can be zero or more arguments to the function, separated by commas. The arguments can be expressions that compute values, field references, or literals.
+
+  See [Working with Built-in Functions](../Functions/_Built_in_Functions.mdx) for complete information about all of the \{\{FRS\_VARS.ProductName}} built-in functions.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Using Values in Expressions
+
+  The values in expressions are represented as either floating point numbers or integers. \{\{FRS\_VARS.ProductName}} supports 32-bit and 64-bit integers.
+
+  However, all numbers in JavaScript are represented as double precision floating point numbers. Therefore, when expressions are executed on the client, we do not support integers at all, including 64-bit integers.  Because double-precision floating point integers can only represent integers exactly between 2-53 and 253 -1, the application rounds any calculations of integers that are larger or smaller than that, but less than 2-64 through 264 -1.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Using Stored Values in Expressions
+
+  \{\{FRS\_VARS.ProductName}} allows you to store values for reuse across the platform anywhere you can use the Expression Editor. For more information about Stored Values, see [About Stored Values](<../Stored Values/about-stored-values.mdx>).
+
+  1. To use a stored value in an expression, use the system function GetStoredValue.
+  2. The resulting expression looks like: $(GetStoredValue("YourStoredValueNameHere")).
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Using Multiple Lines and Tab Spaces in Expressions
+
+  You can add multiple lines and tab spaces in expressions, which are retained after saving the expression in the **Expression Editor**. When you open the expression in the **Expression Editor** the formatting you applied is preserved.
+
+  New lines and tab spaces are supported in expression field controls, and can be edited directly in these fields while preserving new lines. New lines are indicated by a line break symbol :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/QMbrlqEMxSH6ivM3iOl94_linebreaksymbol.png" alt caption size="10" width="17" height="16"}.
+
+  To add new lines and tab spaces:
+
+  - Press the **Enter** key to add a new line in the **Expression Editor**.
+  - Press **Alt + Enter** to add a line break when editing an expression in an expression field. This adds a line break symbol in the field, it does not display an actual break in the line. The new line is displayed if you open the expression in the **Expression Editor**.
+  - Press the **Tab** key to add a tab space to a line.
+
+  You can also add comments to your expression, see :Link[Using Comments in Expressions]{label="Using Comments in Expressions" overridedLabel="Using Comments in Expressions" spaceId docId="8F3VPUolDVlKLT4lSxU9b" version="v2" docAnchorId="#UsingComments" loadingMethod="dynamic" newTab="false" githubPath="Using Expression Editor.htm#UsingComments" href="Using Expression Editor.mdx"}
+</ExpandableHeading>

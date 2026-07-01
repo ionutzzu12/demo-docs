@@ -1,0 +1,60 @@
+---
+title: Working with Event Management
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:53 GMT+0300 (Eastern European Summer Time)
+---
+
+- :Link[About Event Management]{label="About Event Management" overridedLabel="About Event Management" spaceId docId="nGFTdc0QOOvSM6K6Ttv0h" version="v2" docAnchorId="#About-Event-Management" loadingMethod="dynamic" newTab="false" href="Event_Mgmt_Overview.mdx"}
+- :Link[Understanding Event Management]{label="Understanding Event Management" overridedLabel="Understanding Event Management" spaceId docId="nGFTdc0QOOvSM6K6Ttv0h" version="v2" docAnchorId="#Understanding-Event-Management" loadingMethod="dynamic" newTab="false" href="Event_Mgmt_Overview.mdx"}
+- :Link[How an Event is Created]{label="How an Event is Created" overridedLabel="How an Event is Created" spaceId docId="nGFTdc0QOOvSM6K6Ttv0h" version="v2" docAnchorId="#How-an-Event-is-Created" loadingMethod="dynamic" newTab="false" href="Event_Mgmt_Overview.mdx"}
+- :Link[Using Network Monitoring]{label="Using Network Monitoring" overridedLabel="Using Network Monitoring" spaceId docId="nGFTdc0QOOvSM6K6Ttv0h" version="v2" docAnchorId="#Using-Network-Monitoring" loadingMethod="dynamic" newTab="false" href="Event_Mgmt_Overview.mdx"}
+- :Link[Configuring Event Management]{label="Configuring Event Management" overridedLabel="Configuring Event Management" spaceId docId="xdxmIZqj4EoFBKZO15FZR" version="v2" docAnchorId="#Configuring-Event-Management" loadingMethod="dynamic" newTab="false" githubPath="Event_Management.htm#Configuring-Event-Management" href="Event_Management.mdx"}
+
+## About Event Management
+
+Event management allows you to capture any failure or outage that affects a configuration item (a service or device) attached to your network. See also [Working with Service Availability Management](Service_Availability_Management.mdx) for information about calculating service availability.
+
+In addition, an **Events** tab displays the information captured for each configuration item. The actions you can perform change depending on your role.
+
+As a Configuration Manager, you can:
+
+- Manually enter events for a device or a service.
+- Check **Is Outage** to assess or calculate the availability for a device or service.
+- See availability information for each configuration item for a selected time period.
+
+As a service owner you can:
+
+- Track availability of service and performance of individual configuration items.
+- Import events from an event manager application that can then be used to create an incident.
+- Capture availability, maintainability, and reliability metrics for services.
+- Compare availability against target metrics on a dashboard.
+- Track availability metrics to measure service level agreement compliance and customer satisfaction.
+- Export metrics to a business object and apply business rules or export the data to Microsoft Excel.
+- View historical availability information for each configuration item.
+
+<hint type="info">
+  If you are using a \{\{FRS\_VARS.ProductName}} release prior to \{\{FRS\_VARS.ProductName}} Release 2015.1, you must enable both the **Event** workspace and the **Event** tab functionality before they can be used. See :Link[Creating and Adding the Event Tab]{label="Creating and Adding the Event Tab" overridedLabel="Creating and Adding the Event Tab" spaceId docId="xdxmIZqj4EoFBKZO15FZR" version="v2" docAnchorId="#Creat_Add_Event_Tab" loadingMethod="dynamic" newTab="false" githubPath="Event_Management.htm#Creat_Add_Event_Tab" href="Event_Management.mdx"}.
+</hint>
+
+## Understanding Event Management
+
+With event management, \{\{FRS\_VARS.ProductName}} can track what happens to various pieces of equipment (configuration items) that are required to provide a service. The **Event** tab displays all of the events that happen to those assets and allow you to decide if they affected the service.
+
+As an example, assume that a network attached storage (NAS) device such as a server, fails. This is an event. The device is now experiencing an outage. If the server is used to store email for the Microsoft Exchange service then it is likely that the email service is also no longer functional. You are able to track both events.
+
+This enables you to build data about your assets, their usage, and reliability. Is it time to replace a device? Or is it a reliable workhorse? For information about managing service availability see [Working with Service Availability Management](Service_Availability_Management.mdx).
+
+## How an Event is Created
+
+There are two methods that can be used to create an event.
+
+- You can create an event manually from the **Events** tab within a configuration item (either a device or a service).
+- You can use network monitoring software such as SolarWinds to monitor your network devices and create events.
+
+If you are upgrading from a release prior to Release 2015.1, you must add an **Event** tab for each configuration item business object type, before you can log an event against a specific device or service. See [Configuring Event Management](Event_Management.mdx) for more information.
+
+## Using Network Monitoring
+
+You can use a network monitoring and event tracking application to track performance of devices. These systems (such as SolarWinds which works with \{\{FRS\_VARS.ProductName}}) watch devices on a network (such as servers). If a device becomes non-operational for any reason, it automatically sends an email.
+
+The email causes an outage event to be logged against the configuration item. Once the device becomes operational, the software can calculate the length of the outage (downtime) and allow you to track the availability for that item. For information about how to use and configure \{\{FRS\_VARS.ProductName}} to work with SolarWinds Network Performance Monitor, see [Integrating with the SolarWinds® Log & Event Manager](SolarWinds_Integ.mdx).

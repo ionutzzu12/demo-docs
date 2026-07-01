@@ -1,0 +1,311 @@
+---
+title: Configuring Request Offering Access
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:48 GMT+0300 (Eastern European Summer Time)
+---
+
+You can determine who can access and edit a request item when a request offering is published.
+
+From the request offering **Publish Action** page, set access by organizational unit and location.
+
+*Request Offering Publish Action Page*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Vk-62uFpm5OpYKL-6zBQ4_request-offering-publish-action.png" position="flex-start" size="40" initialPath="../../Resources/Images/help-images/request offering publish action.png" githubPath="Content/Resources/Images/help-images/request offering publish action.png" showCaption="false"></Image>
+
+- A default location allows all locations to view and submit a service request.
+- A request offering owner always has full access to the service request, even if their location or organizational unit has none.
+- Only a \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Owner}} can edit a request offering, and must be included in the designated organizational unit and location.
+
+## Configuring Access Rights by User Properties
+
+Administrators can configure access rights based on the user properties in the **Configure Access** workspace. These properties control the request offerings that are available to the Service Catalog users. After adding a property, the system updates the **Publish Action Access** tab of the request offering, which allows the usage of filters.
+
+You can configure access to a request offering by multiple properties such as department, location, and organizational unit, or simply by department or team. Configuring access by team gives access rights to members of a specific team regardless of their department, organizational unit, or location.
+
+Any rights or access added through this function are displayed on any new request offerings created after making the access changes. Rights assigned through this function appear, but should not affect the rights of existing request offerings. The owner of the request offering template retains all rights, regardless of the settings in the **Configure Access** workspace.
+
+The examples below show how to add and configure team access, but you can add department or any other business object access based on your requirements. The example also depicts how request offerings may be impacted after the configurations are complete.
+
+### Configuring Relationships
+
+To configure access rights, the **Employee** and **Access** business objects must contain relationships to the business object you use. By default, the system includes relationships to the **Org Unit** business object and the **Location** business object. The **Org Unit** filtering property is a default, and therefore cannot be deleted, nor can the **Relationship** change for this property.
+
+You must manually add relationships to other business objects, such as **Department**, or **Team** to the **Access** business object. However, you must first check that the relationships to corresponding business objects are configured for the **Employee** and **Access** (ServiceReqTemplateEntityAccess) business objects. You may need to set up validation lists for a team or department before using them to configure user access rights. Ensure that you know the name of the validation list since it needs to be selected later.
+
+The **Edit Access Object** and **Edit Employee Object** buttons in the **Configure Access** workspace take you directly to the **Access** and **Employee** business objects respectively. Click the **Relationship** tab to check the relationships or the **Fields** tab to check the default field settings. For information about how to add and configure a relationship see [Using Relationships](../../Configure/Relationships/Adding_a_Relationship_to.mdx). For information about creating validation lists, see [Configuring the List Control](Configuring-the-List-Control.mdx).
+
+After you have created the relationships, you can add the new access properties.
+
+### Configuring Access Rights
+
+1. From the \{\{FRS\_VARS.Configuration\_console}}, click **Build > Self Service > Configure Access** to open the **Configure Access** workspace.
+
+<Paragraph indent="1">
+  The following toolbar buttons are displayed:
+</Paragraph>
+
+<Paragraph indent="1">
+  *Configure Access Toolbar*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/0j45otW2CX2IdFoZq0TLA_uiconfigaccessbuttons.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/UI_Config_Access_buttons.png" githubPath="Content/Resources/Images/help-images/UI_Config_Access_buttons.png" showCaption="false"></Image>
+
+2. Click **Add Filtering Property** to open the **Create Filtering Property** dialog box.
+3. Enter information into the fields.
+
+| Field                    | Description                                                                                                                                                                                                                                                                                                                                                      |
+| ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Title                    | The title displayed in the \{\{FRS\_VARS.Configuration\_console}} and in the request offering on the **Publish Action** page.                                                                                                                                                                                                                                    |
+| Relationship             | The relationship configured on the business object that is used to filter access rights. For example, **ServiceReqTemplateEntityAccessAssocDepartment** or **ServiceReqTemplateEntityAccessAssocStandardUserTeam**.                                                                                                                                              |
+| Validation List          | The validation list required in the relationship that displays the values available. This option does not appear for relationships that do not require a validation list.                                                                                                                                                                                        |
+| Employee relationship    | A relationship from the **Employee** business object. For example, **DepartmentAssocProfileEmployee** or **StandardUserTeamAssociatedProfileEmployee**.                                                                                                                                                                                                          |
+| Allow Multiple Selection | Option selected to allow multi-select options in the associated validation list. Alternately, you can select only one option.  For example, if you use a validation list such as **Department** or **Team**, multiple departments or teams can be selected when configuring access. These global settings can later be changed from within the request offering. |
+
+4. Once the configuration is complete, set the request and offering permissions. These are default settings that apply to request offerings.
+   - **Request Permissions** allow configured users to submit, edit, or cancel a service request based on a request offering template.
+   - **Offering Permissions** allows configured users to edit, delete, or copy the service request based on a request offering template.
+
+| Field  | Description                                                                                                |
+| ------ | ---------------------------------------------------------------------------------------------------------- |
+| Submit | Users in this organizational node and location can submit a service request based on this offering.        |
+| Edit   | Users in this organizational node and location can modify a service request record based on this offering. |
+| Cancel | Users in the selected organization node and location can cancel a service request they submitted.          |
+| Delete | Users can delete a service request record based on this offering.                                          |
+| Copy   | Users can duplicate the service request record based on this offering.                                     |
+
+<hint type="info" indent="1">
+  Only \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Owner}}**s** can edit, delete, or copy a request offering.
+</hint>
+
+5. You can edit, copy, or delete an existing access configuration (filtering property) by clicking the **copy** or **delete** icon.
+6. Click **Save**.
+
+<Paragraph indent="1">
+  Request offerings mirror the settings that you created through this function.
+</Paragraph>
+
+<Paragraph indent="1">
+  *Edited Configure Access Page with Both Team and Department Added as Options*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/qAvlIZE12ubd5r6tlTCg9_configureaccess.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/configure_access.png" githubPath="Content/Resources/Images/help-images/configure_access.png" showCaption="false"></Image>
+
+<Paragraph indent="1">
+  *Request Offering Page Mirroring the Changes Made through the Configure Access Workspace*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/bTF246PpiAFRxP2VIJsnk_configaccess-reqoff.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/config_access-ReqOff.png" githubPath="Content/Resources/Images/help-images/config_access-ReqOff.png" showCaption="false"></Image>
+
+### Example: Configuring Access for a Team
+
+A company sets up access to certain service requests (request offerings) based on team membership. The **Access** business object is edited to be added as a configurable option in the **Configure Access** workspace.
+
+1. Ensure that the **Team** relationship is available to the **Employee** business object.
+
+<Paragraph indent="1">
+  a. From the **Configure Access** workspace, click **Edit Employee Object**.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Click the **Fields** tab.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. Click **Team** to go to the **Fields > Team** workspace.
+</Paragraph>
+
+<Paragraph indent="1">
+  d. Ensure that **Validated** is checked and that the name of the pick list used is **Team Of StandardUserTeam**.
+</Paragraph>
+
+<Paragraph indent="1">
+  e. Click the **Relationships** tab.
+</Paragraph>
+
+<Paragraph indent="1">
+  f. Ensure that the **Team** relationship exists. The system displays it as **ProfileEmployeeAssociatedByStandardUserTeam**.
+</Paragraph>
+
+2. Ensure that the **Team** relationship is available to the **Access** business object.
+
+<Paragraph indent="1">
+  a. From the **Configure Access** workspace, click **Edit Access Object**.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Click the **Relationships** tab.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. Click **Add new\...**.
+</Paragraph>
+
+<Paragraph indent="1">
+  d. Click **StandardUserTeam**.
+</Paragraph>
+
+<Paragraph indent="1">
+  e. Copy the value in the **Display Name** field and paste it into the **Internal Reference Name** field. (Save this information as you will need it later when you select the team relationship for configuring access.)
+</Paragraph>
+
+<Paragraph indent="1">
+  f. Under **This Business Object**, click **Zero or Many**.
+</Paragraph>
+
+<Paragraph indent="1">
+  g. Under **StandardUserTeam**, click **Zero or Many**.
+</Paragraph>
+
+<Paragraph indent="1">
+  h. At the bottom of the page, click **Add This Relationship**.
+</Paragraph>
+
+<Paragraph indent="1">
+  i. Click **Save**.
+</Paragraph>
+
+3. Return to the **Configure Access** workspace to add the **Team** business object as a configuration.
+
+<Paragraph indent="1">
+  a. Click **Add Filtering Property**.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Enter values in the **Create Filtering Property** dialog box.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. Click **OK**.
+</Paragraph>
+
+<Paragraph indent="1">
+  d. Ensure that **Team** is listed as a filtering property in the **Configure Access** workspace.
+</Paragraph>
+
+4. Configure access for this filtering property.
+
+<Paragraph indent="1">
+  a. Click **Any** to see the team list and select the teams that will have default access rights.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Set request offering permissions and offering permissions.
+</Paragraph>
+
+## Setting the Organizational Unit Access
+
+The organizational unit for a user is defined in the **Employee** record. Offerings defined for a specific node are also visible to their parent node. You can publish to a specific node excluding sub-trees.
+
+1. Log in to \{\{FRS\_VARS.ProductName}} as a \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Owner}}.
+2. Open a request offering.
+3. Click the **Publish Action** tab.
+4. Click the **add** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/JtIxGMfjslfCSitXWBu4o_addgreen.png" alt caption size="10" width="17" height="15"} at the bottom of the page.
+
+<Paragraph indent="1">
+  *Adding an Organizational Unit to a Request Offering*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/IxBPr27k4CoR1H_gYJfTh_request-offering-add.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/request offering add.png" githubPath="Content/Resources/Images/help-images/request offering add.png" showCaption="false"></Image>
+
+<Paragraph indent="1">
+  The **Select Organizational Unit** window opens.
+</Paragraph>
+
+5. Select the node for which to enable access. For example, select Marketing. Select **Include Sub Tree** to include the child nodes.
+
+<Paragraph indent="1">
+  *Selecting the Organizational Unit Node*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/4U8SzGfV9pZ-YR7szBUOa_select-organization-unit.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/select organization unit.png" githubPath="Content/Resources/Images/help-images/select organization unit.png" showCaption="false"></Image>
+
+<Paragraph indent="1">
+  Users with access to this example include Sales and Marketing, Administrators, and the Owner.
+</Paragraph>
+
+6. Click **OK**.
+
+### Example: Setting Access by Location
+
+Setting access by location gives you flexibility and allows you to manage the request offering in finer detail.
+
+- The location is determined by the **Location** field in the **Employee** record.
+- The offering owner has access, irrespective of their location.
+- A default location gives access to all locations.
+- Users in a lower location level have access to the offering.
+
+<Paragraph indent="1">
+  For example, define the following locations:
+</Paragraph>
+
+<Paragraph indent="1">
+  *Defined Locations*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Ee85pWQ5Mbfz_HXMa_C1d_locations.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/locations.png" githubPath="Content/Resources/Images/help-images/locations.png" showCaption="false"></Image>
+
+<Paragraph indent="1">
+  The result will look as follows:
+</Paragraph>
+
+<Paragraph indent="1">
+  *Access by Location*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/ZdAiDX3FnjLT_nMmfhg5e_access-by-location.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Diagrams/Access by Location.png" githubPath="Content/Resources/Diagrams/Access by Location.png" showCaption="false"></Image>
+
+<Paragraph indent="1">
+  *Select Locations Window*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/e546Vx9LpUD5buLnXyJNG_select-locations.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/select locations.png" githubPath="Content/Resources/Images/help-images/select locations.png" showCaption="false"></Image>
+
+<Paragraph indent="1">
+  If **North America** is selected, then all users in North America, Canada, Mexico, and all child locations get access. Users in Europe will not have access to the request offering.
+</Paragraph>
+
+<Paragraph listStyleType="decimal" indent="2">
+  Log in to \{\{FRS\_VARS.ProductName}} as a \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Owner}}.
+</Paragraph>
+
+<Paragraph listStyleType="decimal" listStart="2" listRestartPolite="2" indent="2">
+  Open a request offering.
+</Paragraph>
+
+<Paragraph listStyleType="decimal" listStart="3" listRestartPolite="3" indent="2">
+  Click the **Publish Action** tab.
+</Paragraph>
+
+<Paragraph listStyleType="decimal" listStart="4" listRestartPolite="4" indent="2">
+  Click **Default** in the **Location** column next to the organizational unit to define.
+</Paragraph>
+
+<Paragraph indent="2">
+  *Default Location*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/PvaQ9vqG0Q5NSrqvv08QI_location-default.png" position="flex-start" size="40" indent="2" initialPath="../../Resources/Images/help-images/Location default.png" githubPath="Content/Resources/Images/help-images/Location default.png" showCaption="false"></Image>
+
+<Paragraph indent="2">
+  The **Select Locations** window opens.
+</Paragraph>
+
+<Paragraph listStyleType="decimal" listStart="5" listRestartPolite="5" indent="2">
+  Deselect **Default**, then select locations. For example, **USA**.
+</Paragraph>
+
+<Paragraph indent="2">
+  This enables access to all USA users, including users in child locations.
+</Paragraph>
+
+<Paragraph listStyleType="decimal" listStart="6" listRestartPolite="6" indent="2">
+  Click **OK**.
+</Paragraph>
+
+<Paragraph listStyleType="decimal" listStart="7" listRestartPolite="7" indent="2">
+  Set the status to published.
+</Paragraph>
+
+<Paragraph listStyleType="decimal" listStart="8" listRestartPolite="8" indent="2">
+  Click **Save** or **Save & Exit**.
+</Paragraph>

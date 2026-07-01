@@ -1,0 +1,26 @@
+---
+title: Problem State Transitions Reference
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:48 GMT+0300 (Eastern European Summer Time)
+---
+
+Administrators can create additional statuses to meet the business needs of your organization.
+
+| From State            | To State              | When ...                                                                                                                                                                                |
+| --------------------- | --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|                       | Logged                | The problem is initially submitted.                                                                                                                                                     |
+| Logged                | Investigation         | The assigned owner has started investigating the problem.                                                                                                                               |
+| Logged                | Canceled              | The Problem Manager cancels the logged problem.                                                                                                                                         |
+| Investigation         | Identified            | The investigation has been completed and remedial measures or a workaround has been identified.                                                                                         |
+| Investigation         | Canceled              | The Problem Manager cancels the problem under investigation.                                                                                                                            |
+| Identified            | Active                | The problem is identified as a new problem and is ready to be worked on.                                                                                                                |
+| Identified            | Canceled              | The Problem Manager cancels the problem.                                                                                                                                                |
+| Active                | Waiting for 3rd party | The fix for the problem is due from a vendor.                                                                                                                                           |
+| Active                | Waiting for resource  | The fix for the problem is on hold, pending a replacement item or an individual or team to perform certain actions.                                                                     |
+| Active                | Canceled              | The Problem Manager cancels the problem.                                                                                                                                                |
+| Waiting for 3rd party | Waiting for resource  | The third party, when asked to perform certain services, might need a replacement item or an individual or team to perform certain actions.                                             |
+| Waiting for resource  | Waiting for 3rd party | The resource becomes available and the third party completes the purchase or installation, as might be needed.                                                                          |
+| Waiting for 3rd party | Resolved              | The action from the third party completes the fix.                                                                                                                                      |
+| Waiting for resource  | Resolved              | The allocated resource is commissioned and completes the fix.                                                                                                                           |
+| Active                | Resolved              | The immediate solution is identified and communicated from a diagnosis.                                                                                                                 |
+| Resolved              | Closed                | The fix is verified and the problem is closed, or the problem is auto-closed from another module, such as Release Management or CMDB, irrespective of the current state of the problem. |

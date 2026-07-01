@@ -1,0 +1,498 @@
+---
+title: Hierarchical XML File Examples
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:52 GMT+0300 (Eastern European Summer Time)
+---
+
+- :Link[Example 1: Importing a Problem and Incident]{label="Example 1: Importing a Problem and Incident" overridedLabel="Example 1: Importing a Problem and Incident" spaceId docId="VXeGk5PzwPjRdJaALTbtg" version="v2" docAnchorId="#Example1-Importing-a-Problem-and-Incident" loadingMethod="dynamic" newTab="false" href="Hierarchical XML Examples.mdx"}
+- :Link[Example 2: Importing Multiple Incidents]{label="Example 2: Importing Multiple Incidents" overridedLabel="Example 2: Importing Multiple Incidents" spaceId docId="VXeGk5PzwPjRdJaALTbtg" version="v2" docAnchorId="#Example5" loadingMethod="dynamic" newTab="false" href="Hierarchical XML Examples.mdx"}
+
+## Example 1: Importing a Problem and Incident
+
+This topic provides an example of a source document that is in XML (**Problem-Incident-raw\.xml**), but not in the hierarchical XML format.
+
+You can upload that file using the hierarchical XML import by applying the **Problem-Incident.xsl** XSL file.
+
+Internally, this transforms the file to be like the **Problem-Incident.xml** file, which does conform to the hierarchical XML format, and can then be imported.
+
+- :Link[Example 1 Source]{label="Example 1 Source" overridedLabel="Example 1 Source" spaceId docId="VXeGk5PzwPjRdJaALTbtg" version="v2" docAnchorId="#ex3" loadingMethod="dynamic" newTab="false" href="Hierarchical XML Examples.mdx"}
+- :Link[Example 1 XSL File]{label="Example 1 XSL File" overridedLabel="Example 1 XSL File" spaceId docId="VXeGk5PzwPjRdJaALTbtg" version="v2" docAnchorId="#ex1" loadingMethod="dynamic" newTab="false" href="Hierarchical XML Examples.mdx"}
+- :Link[Example 1 Output]{label="Example 1 Output" overridedLabel="Example 1 Output" spaceId docId="VXeGk5PzwPjRdJaALTbtg" version="v2" docAnchorId="#ex2" loadingMethod="dynamic" newTab="false" href="Hierarchical XML Examples.mdx"}
+
+### Example 1 Source
+
+<font color="#0000ff"></font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Problem</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">ProblemNumber</font><font color="#0000ff">&gt;</font>**1000002**<font color="#0000ff"></font><font color="#b22222">ProblemNumber</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Subject</font><font color="#0000ff">&gt;</font>**Update antivirus on AV Servers**<font color="#0000ff"></font><font color="#b22222">Subject</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">ErrorMessage</font><font color="#0000ff">&gt;</font>**Installation failed with error code: xxxxxx**<font color="#0000ff"></font><font color="#b22222">ErrorMessage</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Description</font><font color="#0000ff">&gt;</font>**The AV on the network security**<font color="#0000ff"></font><font color="#b22222">Description</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Status</font><font color="#0000ff">&gt;</font>**Active**<font color="#0000ff"></font><font color="#b22222">Status</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Category</font><font color="#0000ff">&gt;</font>**Accessibility**<font color="#0000ff"></font><font color="#b22222">Category</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Source</font><font color="#0000ff">&gt;</font>**Instant Message**<font color="#0000ff"></font><font color="#b22222">Source</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">OwnerTeam</font><font color="#0000ff">&gt;</font>**Problem Management**<font color="#0000ff"></font><font color="#b22222">OwnerTeam</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Owner</font><font color="#0000ff">&gt;</font>**ADale**<font color="#0000ff"></font><font color="#b22222">Owner</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Urgency</font><font color="#0000ff">&gt;</font>**Low**<font color="#0000ff"></font><font color="#b22222">Urgency</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Urgency</font><font color="#0000ff">&gt;</font>**High**<font color="#0000ff"></font><font color="#b22222">Urgency</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Incidents</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Incident</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">IncidentNumber</font><font color="#0000ff">&gt;</font>**50001**<font color="#0000ff"></font><font color="#b22222">IncidentNumber</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Subject</font><font color="#0000ff">&gt;</font>**Daily Backup Failure**<font color="#0000ff"></font><font color="#b22222">Subject</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Symptom</font><font color="#0000ff">&gt;</font>**Backup failed on server**<font color="#0000ff"></font><font color="#b22222">Symptom</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">Incident</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">Incidents</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">Problem</font><font color="#0000ff">&gt;</font>
+
+### Example 1 XSL File
+
+<font color="#0000ff"></font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">xsl:stylesheet</font> <font color="#ff0000">xmlns:xsl</font><font color="#0000ff">="</font>**http\://www\.w3.org/1999/XSL/Transform**<font color="#0000ff">"</font> <font color="#b22222">version</font><font color="#0000ff">="</font>**1.0**<font color="#0000ff">"&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">xsl:template match</font><font color="#0000ff">="</font>**/**<font color="#0000ff">"&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">BusinessObjectList xsi:noNamespaceSchemaLocation</font><font color="#0000ff">="</font>**HierarchicalObjects-1.0.xsd**<font color="#0000ff">"</font> <font color="#ff0000">xmlns:xsi</font><font color="#0000ff">="</font>**http\://www\.w3.org/2001/XMLSchema-instance**<font color="#0000ff">"</font> <font color="#b22222">SchemaVersion</font><font color="#0000ff">="</font>**1.0**<font color="#0000ff">"&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">BusinessObject Name</font><font color="#0000ff">="</font>**Problem**<font color="#0000ff">"&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Transaction</font><font color="#0000ff">&gt;</font>**UpdateAdd**<font color="#0000ff"></font><font color="#b22222">Transaction</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">UniqueKeyList</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">UniqueKey</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Field Name</font><font color="#0000ff">="</font>**ProblemNumber**<font color="#0000ff">"/&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">UniqueKey</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">UniqueKeyList</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">FieldList</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Field Name</font><font color="#0000ff">="</font>**ProblemNumber**<font color="#0000ff">"&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">xsl:value-of select</font><font color="#0000ff">="</font>**Problem/ProblemNumber**<font color="#0000ff">"/&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">Field</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Field Name</font><font color="#0000ff">="</font>**Subject**<font color="#0000ff">"&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">xsl:value-of select</font><font color="#0000ff">="</font>**Problem/Subject**<font color="#0000ff">"/&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">Field</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Field Name</font><font color="#0000ff">="</font>**ErrorMessage**<font color="#0000ff">"&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">xsl:value-of select</font><font color="#0000ff">="</font>**Problem/ErrorMessage**<font color="#0000ff">"/&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">Field</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Field Name</font><font color="#0000ff">="</font>**Description**<font color="#0000ff">"&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">xsl:value-of select</font><font color="#0000ff">="</font>**Problem/Description**<font color="#0000ff">"/&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">Field</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Field Name</font><font color="#0000ff">="</font>**Status**<font color="#0000ff">"&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">xsl:value-of select</font><font color="#0000ff">="</font>**Problem/Status**<font color="#0000ff">"/&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">Field</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Field Name</font><font color="#0000ff">="</font>**Category**<font color="#0000ff">"&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">xsl:value-of select</font><font color="#0000ff">="</font>**Problem/Category**<font color="#0000ff">"/&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">Field</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Field Name</font><font color="#0000ff">="</font>**Source**<font color="#0000ff">"&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">xsl:value-of select</font><font color="#0000ff">="</font>**Problem/Source**<font color="#0000ff">"/&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">Field</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Field Name</font><font color="#0000ff">="</font>**OwnerTeam**<font color="#0000ff">"&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">xsl:value-of select</font><font color="#0000ff">="</font>**Problem/OwnerTeam**<font color="#0000ff">"/&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">Field</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Field Name</font><font color="#0000ff">="</font>**Owner**<font color="#0000ff">"&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">xsl:value-of select</font><font color="#0000ff">="</font>**Problem/Owner**<font color="#0000ff">"/&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">Field</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Field Name</font><font color="#0000ff">="</font>**Impact**<font color="#0000ff">"&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">xsl:if test</font><font color="#0000ff">="</font>**Problem/Impact**<font color="#0000ff">"&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">xsl:value-of select</font><font color="#0000ff">="</font>**Problem/Impact**<font color="#0000ff">"/&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">xsl:if</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">xsl:if test</font><font color="#0000ff">="</font>**not(Problem/Impact)**<font color="#0000ff">"&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">xsl:text</font><font color="#0000ff">&gt;</font>**Low**<font color="#0000ff"></font><font color="#b22222">xsl:text</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">xsl:if</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">Field</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Field Name</font><font color="#0000ff">="</font>**Urgency**<font color="#0000ff">"&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">xsl:value-of select</font><font color="#0000ff">="</font>**Problem/Urgency**<font color="#0000ff">"/&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">Field</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">FieldList</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">RelatedBusinessObjectList</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">RelatedBusinessObject Relationship</font><font color="#0000ff">="</font>**ProblemAssociatesIncident**<font color="#0000ff">"&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">BusinessObject Name</font><font color="#0000ff">="</font>**Incident**<font color="#0000ff">"&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Transaction</font><font color="#0000ff">&gt;</font>**None**<font color="#0000ff"></font><font color="#b22222">Transaction</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">LinkTransaction</font><font color="#0000ff">&gt;</font>**Link**<font color="#0000ff"></font><font color="#b22222">LinkTransaction</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">UniqueKeyList</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">UniqueKey</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Field Name</font><font color="#0000ff">="</font>**IncidentNumber**<font color="#0000ff">"/&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">UniqueKey</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">UniqueKeyList</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">FieldList</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">xsl:for-each select</font><font color="#0000ff">="</font>**Problem/Incidents/Incident**<font color="#0000ff">"&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Field Name</font><font color="#0000ff">="</font>**IncidentNumber**<font color="#0000ff">"&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">xsl:value-of select</font><font color="#0000ff">="</font>**IncidentNumber**<font color="#0000ff">"/&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">Field</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Field Name</font><font color="#0000ff">="</font>**Subject**<font color="#0000ff">"&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">xsl:value-of select</font><font color="#0000ff">="</font>**Subject**<font color="#0000ff">"/&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">Field</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Field Name</font><font color="#0000ff">="</font>**Symptom**<font color="#0000ff">"&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">xsl:value-of select</font><font color="#0000ff">="</font>**Symptom**<font color="#0000ff">"/&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">Field</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">xsl:for-each</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">FieldList</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">BusinessObject</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">RelatedBusinessObject</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">RelatedBusinessObjectList</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">BusinessObject</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">BusinessObjectList</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">xsl:template</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">xsl:stylesheet</font><font color="#0000ff">&gt;</font>
+
+### Example 1 Output
+
+<font color="#0000ff"></font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">BusinessObjectList xsi:noNamespaceSchemaLocation</font><font color="#0000ff">="</font>**HierarchicalObjects-1.0.xsd**<font color="#0000ff">"</font> <font color="#ff0000">xmlns:xsi</font><font color="#0000ff">="</font>**http\://www\.w3.org/2001/XMLSchema-instance**<font color="#0000ff">" </font><font color="#b22222">SchemaVersion</font><font color="#0000ff">="</font>**1.0**<font color="#0000ff">"&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">BusinessObject Name</font><font color="#0000ff">="</font>**Problem**<font color="#0000ff">"&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Transaction</font><font color="#0000ff">&gt;</font>**UpdateAdd**<font color="#0000ff"></font><font color="#b22222">Transaction</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">UniqueKeyList</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">UniqueKey</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Field Name</font><font color="#0000ff">="</font>**ProblemNumber**<font color="#0000ff">"/&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">UniqueKey</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">UniqueKeyList</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">FieldList</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Field Name</font><font color="#0000ff">="</font>**ProblemNumber**<font color="#0000ff">"&gt;</font>**1000002**<font color="#0000ff"></font><font color="#b22222">Field</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Field Name</font><font color="#0000ff">="</font>**Subject**<font color="#0000ff">"&gt;</font>**Update antivirus on AV Servers**<font color="#0000ff"></font><font color="#b22222">Field</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Field Name</font><font color="#0000ff">="</font>**ErrorMessage**<font color="#0000ff">"&gt;</font>**Installation failed with error code: xxxxxx**<font color="#0000ff"></font><font color="#b22222">Field</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Field Name</font><font color="#0000ff">="</font>**Description**<font color="#0000ff">"&gt;</font>**The AV on the network security**<font color="#0000ff"></font><font color="#b22222">Field</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Field Name</font><font color="#0000ff">="</font>**Status**<font color="#0000ff">"&gt;</font>**Active**<font color="#0000ff"></font><font color="#b22222">Field</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Field Name</font><font color="#0000ff">="</font>**Category**<font color="#0000ff">"&gt;</font>**Accessibility**<font color="#0000ff"></font><font color="#b22222">Field</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Field Name</font><font color="#0000ff">="</font>**Source**<font color="#0000ff">"&gt;</font>**Instant Message**<font color="#0000ff"></font><font color="#b22222">Field</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Field Name</font><font color="#0000ff">="</font>**OwnerTeam**<font color="#0000ff">"&gt;</font>**Problem Management**<font color="#0000ff"></font><font color="#b22222">Field</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Field Name</font><font color="#0000ff">="</font>**Owner**<font color="#0000ff">"&gt;</font>**ADale**<font color="#0000ff"></font><font color="#b22222">Field</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Field Name</font><font color="#0000ff">="</font>**Impact**<font color="#0000ff">"&gt;</font>**Low**<font color="#0000ff"></font><font color="#b22222">Field</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Field Name</font><font color="#0000ff">="</font>**Urgency**<font color="#0000ff">"&gt;</font>**High**<font color="#0000ff"></font><font color="#b22222">Field</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">FieldList</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">RelatedBusinessObjectList</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">RelatedBusinessObject Relationship</font><font color="#0000ff">="</font>**ProblemAssociatesIncident**<font color="#0000ff">"&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">BusinessObject Name</font><font color="#0000ff">="</font>**Incident**<font color="#0000ff">"&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Transaction</font><font color="#0000ff">&gt;</font>**None**<font color="#0000ff"></font><font color="#b22222">Transaction</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">LinkTransaction</font><font color="#0000ff">&gt;</font>**Link**<font color="#0000ff"></font><font color="#b22222">LinkTransaction</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">UniqueKeyList</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">UniqueKey</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Field Name</font><font color="#0000ff">="</font>**IncidentNumber**<font color="#0000ff">"/&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">UniqueKey</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">UniqueKeyList</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">FieldList</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Field Name</font><font color="#0000ff">="</font>"**IncidentNumber**<font color="#0000ff">"&gt;</font>**50001**<font color="#0000ff"></font><font color="#b22222">Field</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Field Name</font><font color="#0000ff">="</font>**Subject**<font color="#0000ff">"&gt;</font>**Daily Backup Failure**<font color="#0000ff"></font><font color="#b22222">Field</font><font color="#0000ff">&gt;</font>>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Field Name</font><font color="#0000ff">="</font>**Symptom**<font color="#0000ff">"&gt;</font>**Backup failed on server**<font color="#0000ff"></font><font color="#b22222">Field</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">FieldList</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">BusinessObject</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">RelatedBusinessObject</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">RelatedBusinessObjectList</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">BusinessObject</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">BusinessObjectList</font><font color="#0000ff">&gt;</font>
+
+## Example 2: Importing Multiple Incidents
+
+This example shows how to import multiple incidents. The transaction is updateAdd, meaning that if the incident number exists, the application updates the incident, but if the incident number does not exist, the application creates the incident. The first record does not include an incident number, so the application creates a new incident. The second record contains an incident number; if that incident already exists, the application updates it, but if it does not exist, the application creates it.
+
+Below, find the following:
+
+- :Link[Example 2 Source]{label="Example 2 Source" overridedLabel="Example 2 Source" spaceId docId="VXeGk5PzwPjRdJaALTbtg" version="v2" docAnchorId="#Example2" loadingMethod="dynamic" newTab="false" href="Hierarchical XML Examples.mdx"}
+- :Link[Example 2 XSLT File]{label="Example 2 XSLT File" overridedLabel="Example 2 XSLT File" spaceId docId="VXeGk5PzwPjRdJaALTbtg" version="v2" docAnchorId="#Example8" loadingMethod="dynamic" newTab="false" href="Hierarchical XML Examples.mdx"}
+- :Link[Example 2 Output]{label="Example 2 Output" overridedLabel="Example 2 Output" spaceId docId="VXeGk5PzwPjRdJaALTbtg" version="v2" docAnchorId="#Example9" loadingMethod="dynamic" newTab="false" href="Hierarchical XML Examples.mdx"}
+
+### Example 2 Source
+
+<font color="#0000ff"></font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Incidents</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Incident</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Customer</font><font color="#0000ff">&gt;</font>**Administrator Admin**<font color="#0000ff"></font><font color="#b22222">Customer</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Summary</font><font color="#0000ff">&gt;</font>**test1**<font color="#0000ff"></font><font color="#b22222">Summary</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Category</font><font color="#0000ff">&gt;</font>**Connectivity**<font color="#0000ff"></font><font color="#b22222">Category</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Description</font><font color="#0000ff">&gt;</font>**test1**<font color="#0000ff"></font><font color="#b22222">Description</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">Incident</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Incident</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">IncidentNumber</font><font color="#0000ff">&gt;</font>**10928**<font color="#0000ff"></font><font color="#b22222">IncidentNumber</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Customer</font><font color="#0000ff">&gt;</font>**Administrator Admin**<font color="#0000ff"></font><font color="#b22222">Customer</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Summary</font><font color="#0000ff">&gt;</font>**test21**<font color="#0000ff"></font><font color="#b22222">Summary</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Category</font><font color="#0000ff">&gt;</font>**Connectivity**<font color="#0000ff"></font><font color="#b22222">Category</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Description</font><font color="#0000ff">&gt;</font>**test2 description1**<font color="#0000ff"></font><font color="#b22222">Description</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">Incident</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">Incidents</font><font color="#0000ff">&gt;</font>
+
+### Example 2 XSLT File
+
+<font color="#0000ff">&lt;</font><font color="#b22222">xsl:stylesheet</font> <font color="#ff0000">xmlns:xsl</font><font color="#0000ff">="</font>**http\://www\.w3.org/1999/XSL/Transform**<font color="#0000ff">"</font> <font color="#b22222">version</font><font color="#0000ff">="</font>**1.0**<font color="#0000ff">"&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">xsl:template match</font><font color="#0000ff">="</font>/<font color="#0000ff">"&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">BusinessObjectList</font> <font color="#ff0000">xmlns:xsi</font><font color="#0000ff">="</font>**http\://www\.w3.org/2001/XMLSchema-instance**<font color="#0000ff">"</font> <font color="#b22222">SchemaVersion</font><font color="#0000ff">="</font>**1.0**<font color="#0000ff">"</font> <font color="#b22222">xsi:noNamespaceSchemaLocation</font><font color="#0000ff">="</font>**HierarchicalObjects-1.0.xsd**<font color="#0000ff">"&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">xsl:apply-templates</font><font color="#0000ff">/&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">BusinessObjectList</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">xsl:template</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">xsl:template match</font><font color="#0000ff">="</font>**/Incidents/Incident**<font color="#0000ff">"&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">BusinessObject Name</font><font color="#0000ff">="</font>**Incident**<font color="#0000ff">"&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Transaction</font><font color="#0000ff">&gt;</font>**UpdateAdd**<font color="#0000ff"></font><font color="#b22222">Transaction</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">UniqueKeyList</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">UniqueKey</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Field Name</font><font color="#0000ff">="</font>**IncidentNumber**<font color="#0000ff">"/&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">UniqueKey</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">UniqueKeyList</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">FieldList</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">xsl:if test</font><font color="#0000ff">="</font>**IncidentNumber**<font color="#0000ff">"&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Field Name</font><font color="#0000ff">="</font>**IncidentNumber**<font color="#0000ff">"&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">xsl:value-of select</font><font color="#0000ff">="</font>**./IncidentNumber**<font color="#0000ff">"/&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">Field</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">xsl:if</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Field Name</font><font color="#0000ff">="</font>**ProfileLink**<font color="#0000ff">"&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">xsl:value-of select</font><font color="#0000ff">="</font>**./Customer**<font color="#0000ff">"/&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">Field</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Field Name</font><font color="#0000ff">="</font>**Subject**<font color="#0000ff">"&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">xsl:value-of select</font><font color="#0000ff">="</font>**./Summary**<font color="#0000ff">"/&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">Field</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Field Name</font><font color="#0000ff">="</font>**Category**<font color="#0000ff">"&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">xsl:value-of select</font><font color="#0000ff">="</font>**./Category**<font color="#0000ff">"/&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">Field</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Field Name</font><font color="#0000ff">="</font>**Symptom**<font color="#0000ff">"&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">xsl:value-of select</font><font color="#0000ff">="</font>**./Description**<font color="#0000ff">"/&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">Field</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">FieldList</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">BusinessObject</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">xsl:template</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">xsl:stylesheet</font><font color="#0000ff">&gt;</font>
+
+### Example 2 Output
+
+<font color="#0000ff"></font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">BusinessObjectList </font><font color="#ff0000">xmlns:xsi</font><font color="#0000ff">="</font>**http\://www\.w3.org/2001/XMLSchema-instance**<font color="#0000ff">"</font> <font color="#b22222">xsi:noNamespaceSchemaLocation</font><font color="#0000ff">="</font>**HierarchicalObjects-1.0.xsd**<font color="#0000ff">"</font> <font color="#b22222">SchemaVersion</font><font color="#0000ff">="</font>**1.0**<font color="#0000ff">"&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">BusinessObject Name</font><font color="#0000ff">="</font>**Incident**<font color="#0000ff">"&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Transaction</font><font color="#0000ff">&gt;</font>**UpdateAdd**<font color="#0000ff"></font><font color="#b22222">Transaction</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">UniqueKeyList</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">UniqueKey</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Field Name</font><font color="#0000ff">="</font>**IncidentNumber**<font color="#0000ff">"/&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">UniqueKey</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">UniqueKeyList</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">FieldList</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Field Name</font><font color="#0000ff">="</font>**ProfileLink**<font color="#0000ff">"&gt;</font>**Administrator Admin**<font color="#0000ff"></font><font color="#b22222">Field</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Field Name</font><font color="#0000ff">="</font>**Subject**<font color="#0000ff">"&gt;</font>**test1**<font color="#0000ff"></font><font color="#b22222">Field</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Field Name</font><font color="#0000ff">="</font>**Category**<font color="#0000ff">"&gt;</font>**Connectivity**<font color="#0000ff"></font><font color="#b22222">Field</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Field Name</font><font color="#0000ff">="</font>**Symptom**<font color="#0000ff">"&gt;</font>**test1**<font color="#0000ff"></font><font color="#b22222">Field</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">FieldList</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">BusinessObject</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">BusinessObject Name</font><font color="#0000ff">="</font>**Incident**<font color="#0000ff">"&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Transaction</font><font color="#0000ff">&gt;</font>**UpdateAdd**<font color="#0000ff"></font><font color="#b22222">Transaction</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">UniqueKeyList</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">FieldList</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Field Name</font><font color="#0000ff">="</font>**IncidentNumber**<font color="#0000ff">"/&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">UniqueKey</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">UniqueKeyList</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">FieldList</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Field Name</font><font color="#0000ff">="</font>**IncidentNumber**<font color="#0000ff">"&gt;</font>**10928**<font color="#0000ff"></font><font color="#b22222">Field</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Field Name</font><font color="#0000ff">="</font>**ProfileLink**<font color="#0000ff">"&gt;</font>**Administrator Admin**<font color="#0000ff"></font><font color="#b22222">Field</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Field Name</font><font color="#0000ff">="</font>**Subject**<font color="#0000ff">"&gt;</font>**test2**<font color="#0000ff"></font><font color="#b22222">Field</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Field Name</font><font color="#0000ff">="</font>**Category**<font color="#0000ff">"&gt;</font>**Connectivity**<font color="#0000ff"></font><font color="#b22222">Field</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Field Name</font><font color="#0000ff">="</font>**Symptom**<font color="#0000ff">"&gt;</font>**test2**<font color="#0000ff"></font><font color="#b22222">Field</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">FieldList</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">BusinessObject</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">BusinessObjectList</font><font color="#0000ff">&gt;</font>

@@ -1,0 +1,119 @@
+---
+title: Creating a Self Service Mobile Role
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:50 GMT+0300 (Eastern European Summer Time)
+---
+
+If you are using a version of \{\{FRS\_VARS.ProductName}} prior to release 2016.1, you may need to create the **Self Service Mobile** role using the following procedures. For versions of \{\{FRS\_VARS.ProductName}} beginning with Release 2016.1, the **Self Service Mobile** role is available, but will need to be assigned to users.
+
+- :Link[Creating the Self Service Mobile Role]{label="Creating the Self Service Mobile Role" overridedLabel="Creating the Self Service Mobile Role" spaceId docId="SisbdvgpyQQ08c2L6MBPV" version="v2" docAnchorId="#Creating_the_Role" loadingMethod="dynamic" newTab="false" href="Create SelfServiceMobile Role.mdx"}
+- :Link[Editing the Incident.WebSelfService.New Form]{label="Editing the Incident.WebSelfService.New Form" overridedLabel="Editing the Incident.WebSelfService.New Form" spaceId docId="SisbdvgpyQQ08c2L6MBPV" version="v2" docAnchorId="#Editing_the_Incident.WebSelfService.New_Form" loadingMethod="dynamic" newTab="false" href="Create SelfServiceMobile Role.mdx"}
+- :Link[Editing the Incident.WebSelfService.Edit Form]{label="Editing the Incident.WebSelfService.Edit Form" overridedLabel="Editing the Incident.WebSelfService.Edit Form" spaceId docId="SisbdvgpyQQ08c2L6MBPV" version="v2" docAnchorId="#Editing_the_Incident.WebSelfService.Edit_Form" loadingMethod="dynamic" newTab="false" href="Create SelfServiceMobile Role.mdx"}
+- :Link[Assigning a Role to the New Self Service User Interface]{label="Assigning a Role to the New Self Service User Interface" overridedLabel="Assigning a Role to the New Self Service User Interface" spaceId docId="SisbdvgpyQQ08c2L6MBPV" version="v2" docAnchorId="#Role_Detail_Selector" loadingMethod="dynamic" newTab="false" href="Create SelfServiceMobile Role.mdx"}
+
+## Creating the Self Service Mobile Role
+
+The **Self Service Mobile** role can access the **Self Service Mobile** user interface.
+
+Create the **Self Service Mobile** role by following these steps.
+
+1. From the Configuration console, click **Configure > Users and Permissions > Roles and Permissions**.
+2. Find the **Self Service** role in the **Role Name** column and click **Clone** in the **Action** column.
+3. In the **Clone Role** dialog box, enter **SelfServiceMobile** (with no spaces).
+
+<Paragraph indent="1">
+  Check the spelling. After you enter and save the name, you cannot change it.
+</Paragraph>
+
+4. Click the newly created **SelfServiceMobile** role to go to the **Role Details** page.
+5. Check **New Self Service UI**. This provides access to the **Self Service Mobile** user interface.
+
+<hint type="info" indent="1">
+  Enabling the **Self Service UI** check box will ignore any settings configured in the top-level tabs for that role. Use Self Service Mobile UI customizations to configure mobile options. Refer to [Configuring the Self Service Mobile Portal](Configuring-the-Self-Service-Mobile-Portal.mdx) for more information.
+</hint>
+
+6. Click **Save**.
+
+You can add this new role to any group, or assign it to any users who need to access the **Self Service Mobile** user interface.
+
+<hint type="info">
+  Ensure that the **Self Service Role** is checked under the **Branding Options**, as this setting designates the role as a self service role. For more information refer to :Link[Setting up Roles]{label="Setting up Roles" overridedLabel="Setting up Roles" spaceId docId="iUGD9ji_VgJkk9DVIGvHo" version="v2" docAnchorId="#branding-options" loadingMethod="dynamic" newTab="false" githubPath="../Roles/Setting-up-Roles.htm#branding-options" href="../Roles/Setting-up-Roles.mdx"}.
+</hint>
+
+After you create the role, edit the **WebSelfService.New** and **WebSelfService.Edit Incident** forms to ensure that they allow the appropriate views.
+
+### Editing the Incident.WebSelfService.New Form
+
+1. From the Configuration console, click **Configure > Business Objects** to open the **Business Objects** workspace.
+2. Open the **Incident** business object.
+3. Click **Forms** from the toolbar, then click **Incident (Incident.WebSelfService.New)** to open the form.
+4. Click the **Summary** field to select it.
+5. From the **Control Properties** tab, set the **Width** parameter to **21**.
+6. Click the **Description** field to select it.
+7. Click **Save**.
+
+### Editing the Incident.WebSelfService.Edit Form
+
+1. From the Configuration console, click **Configure > Business Objects** to open the **Business Objects** workspace.
+2. Open the **Incident** business object.
+3. Click **Forms** from the toolbar, then click **Incident (Incident.WebSelfService.Edit)** to open the form.
+4. Click the **Activity History** field and then click **Delete** to delete the field from the form.
+5. From the left pane, click **Other**, and then drag **Related Object List** on to the form.
+6. Ensure that the Related Object control is in its own row, and drag it to move it if needed.
+7. Select or set the following properties for the related object list from the **Control Properties** tab:
+
+| Name      | Value      |
+| --------- | ---------- |
+| Height    | 2 em       |
+| Label Pos | On the top |
+| Style     | Default    |
+| Tab Index | 1          |
+| Width     | 35 em      |
+
+8. Click **Flex Settings** to open the **Related Objects List** dialog box and modify the following settings:
+
+| Name                                 | Setting                                                                                                                                                                                                                                                                                              |
+| ------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Operations                           | Check **Multi-Select**. (Uncheck all other options.)                                                                                                                                                                                                                                                 |
+| Show Items as                        | Select **Shrink to fit** from the drop-down list.                                                                                                                                                                                                                                                    |
+| Types                                | Select **Journal#Notes**                                                                                                                                                                                                                                                                             |
+| Type Configuration: \[Journal#Notes] |                                                                                                                                                                                                                                                                                                      |
+| Show as                              | Select **Custom**. Then enter the following code:<br />\<div><br />\<p><br /><Paragraph indent="1">
+  \{CreatedDateTime\:date(\_$R("m/d/Y g\:i A"))} \&nbsp\&nbsp\&nbsp
+</Paragraph><br /><Paragraph indent="1">
+  \<FONT COLOR="#2286BB">\{\{Subject}}\</FONT>
+</Paragraph><br />\</p><br />\</div> |
+| Item Click                           | Select **Open Form**.                                                                                                                                                                                                                                                                                |
+| View Form                            | Select **Journal Notes (Journal Notes)**.                                                                                                                                                                                                                                                            |
+
+9. Click **Save** from the dialog box.
+10. Click **Save**.
+
+### Assigning a Role to the New Self Service User Interface
+
+Use this procedure to assign a role other than the Self Service role to be able to access the **Self Service Mobile** user interface.
+
+1. In the Configuration console **Build** > **User Interface Styles** > **Style Editor**.
+2. Select any role.
+3. In the **Exceptions / Custom Roles** section, click **Add Exception**.
+4. The **Add Exceptions / Custom Roles** dialog is displayed. You can define the exception based on the current version in use.
+
+<hint type="info">
+  Modify and save only one option at a time. The system allows only one change per instance.
+</hint>
+
+For non Self Service roles using V1 (Classic)
+
+To enable a non self service user role from V1 (Classic) to Self Service V3 portal, do the following:
+
+<Paragraph indent="1">
+  a. Select the appropriate role from the **Role** dropdown list.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Select **UI v3** from UI dropdown list.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. Click **Save**.
+</Paragraph>

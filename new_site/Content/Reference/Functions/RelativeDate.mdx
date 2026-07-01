@@ -1,0 +1,132 @@
+---
+title: RelativeDate
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:59 GMT+0300 (Eastern European Summer Time)
+---
+
+Returns a text description of the DateTime supplied relative to now.
+
+Use this function to get an estimated, easier to understand, description of when something happened (or will happen). For example, if you created an incident 13 days, 6 hours, 42 minutes, and 19 seconds ago, this function returns "2 weeks ago", because that is about 2 weeks ago.
+
+## Syntax
+
+RelativeDate(dateTime, timeZone)
+
+## Enabled For
+
+For a description of the business object categories, see :Link[Notes on "Enabled For"]{label="Notes on &#x22;Enabled For&#x22;" overridedLabel="Notes on &#x22;Enabled For&#x22;" spaceId docId="xObv2pIDrk60jkEIWs8mD" version="v2" docAnchorId="#Notes" loadingMethod="dynamic" newTab="false" githubPath="_Built_in_Functions.htm#Notes" href="_Built_in_Functions.mdx"}.
+
+| Business Object Category                                                                    | Yes/No |
+| ------------------------------------------------------------------------------------------- | ------ |
+| Business Rules: Before-Save Rules                                                           | Yes    |
+| Business Rules: Calculation Rules (After Save, with or without Also Recalculate on Load)    | Yes    |
+| Business Rules: Calculation Rules (Before Save or Always, without Also Recalculate On Load) | Yes    |
+| Business Rules: Calculation Rules (Before Save or Always, with Recalculate On Load)         | Yes    |
+| Business Rules: Editing Rules                                                               | Yes    |
+| Business Rules: Initialization Rules                                                        | Yes    |
+| Business Rules: Read Only Rules                                                             | Yes    |
+| Business Rules: Required Rules                                                              | Yes    |
+| Business Rules: Validation Rules                                                            | Yes    |
+| Client Expressions                                                                          | Yes    |
+| Object Permissions                                                                          | No     |
+| Services                                                                                    | Yes    |
+| LDAP                                                                                        | Yes    |
+| Mobile                                                                                      | Yes    |
+| Quick Actions (except UI Quick Actions)                                                     | Yes    |
+| UI Quick Actions                                                                            | Yes    |
+| Reports                                                                                     | Yes    |
+| Search/Dashboard without field references                                                   | Yes    |
+| Search/Dashboard with field references                                                      | No     |
+
+## Parameters
+
+| Parameter | Description                                     |
+| --------- | ----------------------------------------------- |
+| dateTime  | A date and time.                                |
+| timeZone  | (Optional) The time zone, in \{\{IANA}} format. |
+
+## Return Value
+
+<Paragraph indent="1">
+  Text value. One of the following, where n is a whole number:
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  now
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  n minute(s) ago
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  n hour(s) ago
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  yesterday
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  n day(s) ago
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  n week(s) ago
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  n month(s) ago
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  n year(s) ago
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  n minute(s) from now
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  n hour(s) from now
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  tomorrow
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  n day(s) from now
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  n week(s) from now
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  n month(s) from now
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  n year(s) from now
+</Paragraph>
+
+## Example
+
+RelativeDate(CreatedDate())
+
+<Paragraph indent="1">
+  If the value of the **CreatedDate()** function is March 10, 2015 and today is March 27, 2015, this example returns "2 weeks ago" because March 10 is about 2 weeks before March 27.
+</Paragraph>
+
+<Paragraph indent="1">
+  If the value of the **CreatedDate()** function is September 10, 2014 and today is March 27, 2015, this example returns "6 months ago" because September 10, 2014 is about 6 months before March 27, 2015.
+</Paragraph>
+
+<Paragraph indent="1">
+  If the value of the **CreatedDate()** function is March 27, 2015 at 11:16am and today is March 27, 2015 at 11:15am, this example returns "now".
+</Paragraph>
+
+<Paragraph indent="1">
+  If the value of the **CreatedDate()** function is May 25, 2015 and today is March 27, 2015, this example returns "2 months from now" because May 25 is about 2 months away from March 27.
+</Paragraph>

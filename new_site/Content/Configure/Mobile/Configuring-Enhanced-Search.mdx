@@ -1,0 +1,132 @@
+---
+title: Configuring Enhanced Search
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:50 GMT+0300 (Eastern European Summer Time)
+---
+
+<hint type="info">
+  This feature is restricted to, and relevant for, cloud deployments only.
+</hint>
+
+The Search capability in the \{\{FRS\_VARS.Self\_Service\_Mobile\_portal}} portal functions beyond a simple search where the results are displayed based on the weight assigned to the Business Object fields. Enhanced Search helps to display better and more accurate results that the user is looking for.
+
+However, this feature has to be specifically configured for user roles having access to the \{\{FRS\_VARS.Self\_Service\_Mobile\_portal}} portal.
+
+<hint type="info">
+  If no fields are configured for Enhanced Search, by default, the application considers the fields that are configured in the **Edit Preview** section with equal weights.
+</hint>
+
+## Prerequisites:
+
+1. Raise a \{\{FRS\_VARS.Service\_Request-Service-Request}} for [Ivanti Cloud Operations](../../More-Information.mdx) to enable the Enhanced Search feature.
+2. After the Enhanced Search feature is enabled, set up the following Global Constants:
+   - **SearchIndexAge** and **KnowledgeArticlesAge** - allows you to limit the search to the defined age of the documents and records. For example, if the limit is set to 6 months, then the search displays results of documents and records that are not older than 6 months. The default value is 6 and 12 months respectively, change the values as per your requirement.
+   - **SearchIndexAge\_****\{\{businessobjectname}}** - works as for **SearchIndexAge** and **KnowledgeArticlesAge**, but for a specific business object. For example, if the limit is set to 4 months for SearchIndexAge\_Incident, then the search displays results of Incident records that are not older than 4 months. The default value is 6 and 12 months respectively, change the values as per your requirement.
+
+<hint type="info" indent="1">
+  **SearchIndexAge\_FRS\_Knowledge** and **KnowledgeArticlesAge** do the same thing. We recommended removing **KnowledgeArticlesAge** if you want to use **SearchIndexAge\_FRS\_Knowledge**. You can however kee&#x70;**&#x20;KnowledgeArticlesAge** if you want to use **SearchIndexAge\_****\{\{businessobjectname}}** for other business objects alongside it.
+</hint>
+
+<Paragraph listStyleType="disc" indent="2">
+  **SearchFieldWeightRowLimit** - allows you to set the number of fields and its weight range. If the value is set as 5, then you can add 5 fields. The default value is 10. For more info, refer to :Link[Sample Scenario]{label="Sample Scenario" overridedLabel="Sample Scenario" spaceId docId="zwlvmEOmI09-dlOvLziRk" version="v2" docAnchorId="#SampleScenario" loadingMethod="dynamic" newTab="false" href="Configuring-Enhanced-Search.mdx"}.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  **SearchAutoCorrect** - set the value as True to enable auto correcting spellings of search keywords. By default it is set to False.
+</Paragraph>
+
+<Paragraph indent="2">
+  For example,
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="3">
+  If **SearchAutoCorrect** is True - if you search for **Moble**, the application corrects the spelling to **Mobile** and displays results for the corrected spelling.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="3">
+  If **SearchAutoCorrect** is False - if you search for **Moble**, the application simple displays results for **Moble** without making any spelling correction.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  **ElasticSearchUpdateAsync** - set the value as True to enable asynchronous indexing of documents in Elasticsearch for enhanced search.
+</Paragraph>
+
+<hint type="info">
+  Relationship filter is not supported in the Enhanced Search feature.
+</hint>
+
+Administrators have the ability to set permissions to ensure visibility of records. Perform the following to set permissions:
+
+1. In the Self-service portal, **Request Offering** > **Publish Action Access** > **Org Unit and Location**.
+2. Select **Values**.
+3. Select **Include sub tree**. This includes all organizations existing under the parent. Unit. For example, Sales and Marketing consists of Sales team and the marketing team as the sub tree. Checking the checkbox, selects both org units.
+4. Set **location**. For example, APAC.
+
+This ensures that only sales and marketing team from APAC can view these records.
+
+## Configuring fields
+
+<hint type="info">
+  The Enhanced Search feature won't be functional just by configuring it. For it to be functional, raise a Service Ticket for [Ivanti Cloud Operations](../../More-Information.mdx) to get it activated and ensure you specify the role for which it should be activated in the \{\{FRS\_VARS.Service\_Request-Service-Request}}.
+</hint>
+
+1. Log in to \{\{Primary.Product}} as an Administrator.
+2. Open the Configuration console.
+3. Navigate to **Users and Permissions** > **Roles and Permissions**.
+4. Select **Top Level Tabs** > **Search**.
+5. In the **Search for matches** section, click **Edit Config** under the **Search Config** column for the business object you wish to configure.
+
+<hint type="info" indent="1">
+  The **Search Config** column is available only if the Enhanced Search feature is enabled.
+</hint>
+
+6. Add fields and assign weights ranging from 1 to 10.
+
+<hint type="info" indent="1">
+  The number in the **Weight** field is relative; it helps set priority to the fields and displays results based on the set priority. The item that has more weight is visible at the top with Enhanced Search in the \{\{FRS\_VARS.Service\_Catalog-Service-Catalogue.}}.
+</hint>
+
+### Sample scenario:
+
+<Paragraph indent="1">
+  a. Click **Edit Config** for the \{\{FRS\_VARS.Knowledge-Knowledge}} Business Object.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Click the <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/JtIxGMfjslfCSitXWBu4o_addgreen.png" size="10" isUploading="false" initialPath="../../Resources/Images/buttons/add_green.png" githubPath="Content/Resources/Images/buttons/add_green.png" width="17" height="15" showCaption="false"></Image> icon, set the **Field** as **Title** and **Weight** as 2.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. Click the <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/JtIxGMfjslfCSitXWBu4o_addgreen.png" size="10" isUploading="false" initialPath="../../Resources/Images/buttons/add_green.png" githubPath="Content/Resources/Images/buttons/add_green.png" width="17" height="15" showCaption="false"></Image> icon again, set the **Field** as **Description** and **Weight** as 1.
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/ghwMX8JCAx_vF-4KD-9OZ_configurefields.png" position="flex-start" size="40" indent="2" initialPath="../../Resources/Images/Configure/EnhancedSearch/ConfigureFields.png" githubPath="Content/Resources/Images/Configure/EnhancedSearch/ConfigureFields.png" showCaption="false"></Image>
+
+<hint type="info" indent="2">
+  The maximum number of fields you can add depends on the value set in the **SearchFieldWeightRowLimit** Global Constant.
+</hint>
+
+<Paragraph indent="1">
+  d. Click **Save**.
+</Paragraph>
+
+<Paragraph indent="2">
+  Based on the above configuration, when a search is performed in the \{\{FRS\_VARS.Knowledge-Knowledge}} Business Object, the search results displays results having the keyword in the **Title** on the top followed by the keyword in the **Description** since the **Weight** defined for the **Title** is higher than **Description**.
+</Paragraph>
+
+<Paragraph indent="2">
+  For example, if there are two documents present in the \{\{FRS\_VARS.Knowledge-Knowledge}} Business Object, where one document has the word **Laptop** in the **Title** and in the other it is in the **Description**. If you search for **Laptop** in the \{\{FRS\_VARS.Knowledge-Knowledge}} Business Object, in the results displayed, the document with the word **Laptop** in the **Title** will be displayed first and then the one in the **Description** as the search algorithm emphasizes the word **Laptop** in the **Title** more than the **Description** due to a higher weight assigned to **Title**.
+</Paragraph>
+
+7. Repeat :Link[step 6]{label="step 6" overridedLabel="step 6" spaceId docId="zwlvmEOmI09-dlOvLziRk" version="v2" docAnchorId="#Step6" loadingMethod="dynamic" newTab="false" href="Configuring-Enhanced-Search.mdx"} for as many Business Objects as required. For example, you can configure search for FAQs, \{\{FRS\_VARS.Service\_Request-Service-Request}}, and Task.
+
+<hint type="info" indent="1">
+  The above steps are applicable for configuring the Enhanced Search for fields when adding new business objects as well. Ensure the required Preview and Filter configurations are added.
+</hint>
+
+8. Once the setup is done, click **Save&#x20;**&#x69;n the **Top Panel**.
+9. After saving the setup, raise a \{\{FRS\_VARS.Service\_Request-Service-Request}} for [Ivanti Cloud Operations](../../More-Information.mdx) to activate the Enhanced Search configuration. Ensure you specify the role which should be activated in the \{\{FRS\_VARS.Service\_Request-Service-Request}}. This step is mandatory for both new and modified search fields.
+
+<Paragraph indent="1">
+  Enhanced Search is only functional after the [Ivanti Cloud Operations](../../More-Information.mdx) team has performed the activation.
+</Paragraph>

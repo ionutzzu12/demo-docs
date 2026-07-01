@@ -1,0 +1,158 @@
+---
+title: Agentic AI
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:45 GMT+0300 (Eastern European Summer Time)
+---
+
+**Role**: \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}} (For Configuration), Self Service users (To chat with Agentic AI bot).
+
+**Platform**: SaaS only.
+
+**Minimum Version**: \{\{Primary.Company}} \{\{Primary.Product}} 2026.1.
+
+**Feature Eligibility**: \{\{FRS\_VARS.ProductName}} customers must purchase Agentic AI add-on license to use this capability. Once you purchase the license, reach out to your [Ivanti Account Manager](https://www.ivanti.com/lp/customers/contact/epg-contact-us) to enable the **Enable\_AI\_Feature** feature flag for you.
+
+**Prerequisites**: Enable the global constants – **ChatEnabled** and **IntelligentBotIntegrationEnabled**. For more information, refer to [List of Global Constants](../Configure/Constants/Default_Global_Constants.mdx).
+
+Agentic AI is a multi-agent system designed to enhance Ivanti Neurons for ITSM and related workflows to achieve goals with minimal human oversight. You can use textual prompts and natural language prompts to interact with them. For Self Service users, Agentic AI actively plans, reasons, and executes complex, multi-step tasks. The feature offers deeper integration with ITSM, including direct chat-based actions and context awareness. This AI solution transforms ITSM by automating complex workflows, providing intelligent assistance, and integrating deeply with Ivanti’s platform, maintaining strict security and compliance standards.
+
+The key capabilities of the feature are:
+
+- **Knowledge Search and Incident Deflection**: Agentic AI can search across vast, configurable knowledge bases and return well-formatted, contextually relevant answers using Retrieval-Augmented Generation (RAG). This helps to reduce ticket volume.
+- **Incident Agent**: Enables fully automated incident creation using natural language.
+- **Service Request Agent**: Dynamically selects the appropriate request template based on the user’s prompt and submits the request automatically.
+- **Q\&A Service**: Allows users to ask queries such as checking active incidents, incidents created last week, their status, the status of a specific incident ID, and more.
+- **Live Agent Handoff**: Configurable options to transfer conversations to human agents when necessary.
+- **AI-Powered Summaries**: Quickly access clear and concise summaries of essential details across any business object, powered by advanced AI.
+
+## Installation
+
+To learn how to install Agentic AI bot interface in Microsoft Teams, refer to the *Uploading the App in Microsoft Teams for your Organization* section in [Integrating Microsoft Teams with Ivanti Neurons for ITSM](<../Configure/Teams/Integrating Microsoft Teams with Ivanti Neurons for ITSM.mdx>).
+
+## Configuration
+
+To configure Agentic AI agents, follow these steps:
+
+1. Log in to \{\{FRS\_VARS.ProductName}} as an \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+2. Open the Configuration console and select **AI Configuration Hub** > **Agentic AI**.
+3. Under **Agent Settings**, click the radio button to enable and configure the agent of your choice.
+   - :Link[Knowledge base agent]{label="Knowledge base agent" overridedLabel="Knowledge base agent" spaceId docId="xLN3j9rCQqKcOL8I7XRLr" version="v2" docAnchorId="#Knowledg" loadingMethod="dynamic" newTab="false" githubPath="Knowledge-base-agent.htm#Knowledg" href="Knowledge-base-agent.mdx"}
+   - :Link[Incident creation agent]{label="Incident creation agent" overridedLabel="Incident creation agent" spaceId docId="OmWWwb2zi9BaiCsqKVVpJ" version="v2" docAnchorId="#Incident" loadingMethod="dynamic" newTab="false" githubPath="Incident-creation-agent.htm#Incident" href="Incident-creation-agent.mdx"}
+   - :Link[Service request agent]{label="Service request agent" overridedLabel="Service request agent" spaceId docId="DhGTXHVhqHLz--kYnTEgS" version="v2" docAnchorId="#Service" loadingMethod="dynamic" newTab="false" githubPath="Service-request-agent.htm#Service" href="Service-request-agent.mdx"}
+   - :Link[Q\&A agent]{label="Q&A agent" overridedLabel="Q&A agent" spaceId docId="dpcPc4j-mv-h1zQbIxq_z" version="v2" docAnchorId="#Q&A" loadingMethod="dynamic" newTab="false" githubPath="QA-agent.htm#Q&A" href="QA-agent.mdx"}
+   - [Summarization agent](Summarization-agent.mdx)
+
+The following image shows the **Agent Settings** page for enabling Agentic AI agents.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/6XUAHFlPh-9kcJTy-ik5c_agentic-ai-agents.png" position="flex-start" size="40" indent="1" initialPath="../Resources/Images/Agentic-AI-Images/agentic-ai-agents.png" githubPath="Content/Resources/Images/Agentic-AI-Images/agentic-ai-agents.png" showCaption="false"></Image>
+
+4. Under **Global settings**, configure the following general settings:
+
+<Paragraph indent="1">
+  a. **Agent Connection**:
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="3">
+  **MS bot ID**: Enter the MS bot ID.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="3">
+  **Secret key**: Enter the Secret key.
+</Paragraph>
+
+<Paragraph indent="2">
+  To know how to set up MS bot ID and Secret key, refer to [Integrating Microsoft Teams with Ivanti Neurons for ITSM](<../Configure/Teams/Integrating Microsoft Teams with Ivanti Neurons for ITSM.mdx>).
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="3">
+  **REST API key**: Enter the REST API key. This key will be used only for metadata access. Ensure that the appropriate permissions are available for this. For more information on REST API key, refer to [Using the REST API Key](../Configure/API/Using-REST-API-Key.mdx).
+</Paragraph>
+
+<Paragraph indent="1">
+  b. **Conversation setup**:
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="3">
+  **Greeting message**: Enter the welcome message to begin the chat.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="3">
+  **End chat message**: Enter the thank you message to conclude the chat.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="3">
+  **Out of context message**: Enter the error message to display when users ask an out-of-context question.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="3">
+  **Cancellation message**: Enter the message to display when a query is cancelled.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="3">
+  **Chat tone**: Choose the chat tone — Professional, Empathetic, Casual, or Neutral.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="3">
+  **Max response length**: Set the maximum length for chat responses that users can enter.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. **Escalation Handling**:
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="3">
+  **User Interaction Timeout (seconds)**: Enter the idle time (in seconds) after which the session will expire. The default value is 300 seconds. The maximum allowed value is 600 seconds.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="3">
+  **Allow transfer to live agent**: Enable the toggle button to transfer the interaction to the Ivanti Support Team in cases where the agent bot cannot support the user with a specific query.
+</Paragraph>
+
+<hint type="info" indent="2">
+  This is the master button for all live agent transfer capability. If this toggle is disabled, neither agents nor agent bots can perform live agent transfers — regardless of individual settings or user requests made through a chat prompt. If you enable this toggle, ensure that the Live Agent button is also enabled for each individual agent; only then will live agent transfer be active for that agent.
+</hint>
+
+<Paragraph indent="1">
+  d. **Agentic Processing**:
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="3">
+  **Display Agent Thinking Steps**: Enable the toggle button if you want to see the agent’s thought process. If disabled, only a progress bar is shown.
+</Paragraph>
+
+<Paragraph indent="1">
+  e. **Generate template embeddings**:
+
+</Paragraph>
+
+<Paragraph indent="2">
+  Click the **Generate for all templates** button to re-generate the template vector embeddings for the Incident templates, Service Request templates, and Knowledge Business Objects. This step is required if the users add new Incident or Service Request templates that they want to be searchable by the Incident or Service Request agent.
+</Paragraph>
+
+<Paragraph indent="1">
+  f. **Advanced settings**:
+</Paragraph>
+
+<Paragraph indent="2">
+  In the **Default intent description** box, enter a description to define the scope of the agents.
+</Paragraph>
+
+<Paragraph indent="2">
+  The provided description educates Agentic AI and determines the scope of what the AI can and cannot handle. Let's consider the case of Service Request as an example. If you define the types of service requests the user can interact with, such as Installation, Hardware, and Software, then if a user tries to create a Service Request for Provisioning, the agent considers it as an out-of-context question and shows the message you defined in the **Out of context message** field.
+</Paragraph>
+
+<hint type="danger" indent="2">
+  Modifying the intent description may result in unpredictable agent behavior. We recommend that only users with experience in LLM prompt engineering make these changes.
+</hint>
+
+<Paragraph indent="1">
+  The following image shows the Global settings page.
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/vScTlDz8vSCxevuLyHzpw_agentic-ai-global-setting.png" position="flex-start" size="40" indent="1" initialPath="../Resources/Images/Agentic-AI-Images/agentic-ai-global-setting.png" githubPath="Content/Resources/Images/Agentic-AI-Images/agentic-ai-global-setting.png" showCaption="false"></Image>
+
+<hint type="info">
+  Fields marked with an asterisk (\*) are mandatory.
+</hint>
+
+After completing the configuration, you are ready to use the Agentic AI bot. To learn how to use the AI bot, refer to the :Link[Sample use case]{label="Sample use case" overridedLabel="Sample use case" spaceId docId="aPsrGpz-QdGIXADL4OH2V" version="v2" docAnchorId="#Use-Case" loadingMethod="dynamic" newTab="false" githubPath="Sample-use-case.htm#Use-Case" href="Sample-use-case.mdx"}.

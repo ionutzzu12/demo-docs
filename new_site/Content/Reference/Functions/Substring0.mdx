@@ -1,0 +1,69 @@
+---
+title: Substring0
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:00 GMT+0300 (Eastern European Summer Time)
+---
+
+Returns a string containing a substring of consecutive characters from another string.
+
+<hint type="info">
+  This function can be used to replace the Left and Right modifiers as used in \{\{FRS\_VARS.CSM}}.
+</hint>
+
+## Syntax
+
+Substring0(text,startPosition,length)
+
+## Enabled For
+
+For a description of the business object categories, see :Link[Notes on "Enabled For"]{label="Notes on &#x22;Enabled For&#x22;" overridedLabel="Notes on &#x22;Enabled For&#x22;" spaceId docId="xObv2pIDrk60jkEIWs8mD" version="v2" docAnchorId="#Notes" loadingMethod="dynamic" newTab="false" githubPath="_Built_in_Functions.htm#Notes" href="_Built_in_Functions.mdx"}.
+
+| Business Object Category                                                                    | Yes/No |
+| ------------------------------------------------------------------------------------------- | ------ |
+| Business Rules: Before-Save Rules                                                           | Yes    |
+| Business Rules: Calculation Rules (After Save, with or without Also Recalculate on Load)    | Yes    |
+| Business Rules: Calculation Rules (Before Save or Always, without Also Recalculate On Load) | Yes    |
+| Business Rules: Calculation Rules (Before Save or Always, with Recalculate On Load)         | Yes    |
+| Business Rules: Editing Rules                                                               | Yes    |
+| Business Rules: Initialization Rules                                                        | Yes    |
+| Business Rules: Read Only Rules                                                             | Yes    |
+| Business Rules: Required Rules                                                              | Yes    |
+| Business Rules: Validation Rules                                                            | Yes    |
+| Client Expressions                                                                          | Yes    |
+| Object Permissions                                                                          | Yes    |
+| Services                                                                                    | Yes    |
+| LDAP                                                                                        | Yes    |
+| Mobile                                                                                      | Yes    |
+| Quick Actions (except UI Quick Actions)                                                     | Yes    |
+| UI Quick Actions                                                                            | Yes    |
+| Reports                                                                                     | Yes    |
+| Search/Dashboard without field references                                                   | Yes    |
+| Search/Dashboard with field references                                                      | Yes    |
+
+## Parameters
+
+| Parameter     | Description                                                                                                  |
+| ------------- | ------------------------------------------------------------------------------------------------------------ |
+| text          | The text from which to extract the substring.                                                                |
+| startPosition | The position of the first character to include in the output. The first character starts with position zero. |
+| length        | (Optional) The length of the substring.                                                                      |
+
+## Return Value
+
+<Paragraph indent="1">
+  Text value.
+</Paragraph>
+
+## Example
+
+$(Substring0 (Symptom, 21, 7))
+
+If the **Symptom** field in the business object being evaluated contains the following:
+
+*Printer seems to be working fine for others. His setup for the printer is fine.*
+
+The function skips the first 21 characters starting from zero and returns the substring starting with index 21 (the 22nd character). The returned string continues for 7 characters. The result in this example is "*orking* ". Note that the space after "orking" is counted as a character.
+
+<Paragraph indent="1">
+  See also [Substring](Substring.mdx)().
+</Paragraph>

@@ -1,0 +1,198 @@
+---
+title: Using the Classic Action Designer (CAD)
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:57 GMT+0300 (Eastern European Summer Time)
+---
+
+Use the Classic Action Designer (CAD) to create and edit actions associated with the workspace or object context.
+
+### Accessing the Classic Action Designer from the Neurons for ITSM Application
+
+To access the Classic Action Designer from the \{\{FRS\_VARS.ProductName}} application, your role must have create and edit permission for actions. Refer to [Working with Roles](../../../ServiceDesk/Roles/roles.mdx).
+
+1. Log in to \{\{FRS\_VARS.ProductName}}.
+2. Open a workspace.
+3. From the **Action Menu**, select **Edit Actions**. The application displays the Action Designer selection popup.
+4. Select **Classic Action Designer**.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/mZyBoZbf6gnworoc_Hatp_quickactioncenter.png" alt="Classic Action Designer screen" position="flex-start" size="40" indent="1" initialPath="../../../Resources/Images/help-images/quick_action_center.png" githubPath="Content/Resources/Images/help-images/quick_action_center.png" showCaption="false"></Image>
+
+### Accessing the Classic Action Designer from the Configuration Console
+
+1. From the Configuration Console, click **Build > Automation Tools > Quick Actions** to open the **Actions Manager** workspace. The list of business objects that have actions appears.
+2. Click **Add/Edit**to see the actions for the business object. The application displays the Action Designer selection popup.
+3. Select **Classic Action Designer**
+4. Open an action from either the **Your Actions** or the **Create New Actions** tab.
+
+### Parts of the Classic Action Designer
+
+The Classic Action Designer consists of three main areas:
+
+- The actions tabs on the left.
+
+| **Your Actions**       | Actions defined for the specific workspace and your logged-in role. Some of the actions are grouped into folders. By default, the actions are filtered based on their association. |
+| ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Create New Actions** | Action types that you use to create actions.                                                                                                                                       |
+
+- The toolbar preview list contains actions defined for the workspace.
+
+<Paragraph indent="1">
+  These actions are defined for each individual workspace by the administrator.
+</Paragraph>
+
+<Paragraph indent="1">
+  If these actions are not accessible to you, a lock button appears in the upper right corner of each action button.
+</Paragraph>
+
+- The actions interface is the main area of the window.
+
+| Field                            | Description                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| -------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Button area                      | Contains the interface buttons, such as **Edit**, **Clone**, **Disable**, **Delete**, **References** and **Append action**.                                                                                                                                                                                                                                                                                                            |
+| Configuration interface          | Contains the action parameters. Each action type has different parameters.                                                                                                                                                                                                                                                                                                                                                             |
+| **Action Settings** tab          | For the selected action, contains the publishing permissions, visibility, and prompt requirements. Refer to :Link[Action Settings Tab]{label="Action Settings Tab" overridedLabel="Action Settings Tab" spaceId docId="_8sxTsExzboE8aN_7j82R" version="v2" docAnchorId="#Action_Settings_Tab" loadingMethod="dynamic" newTab="false" githubPath="Quick_Action_Parameters.htm#Action_Settings_Tab" href="Quick_Action_Parameters.mdx"}. |
+| **Insert a Field&#x20;**&#x74;ab | Contains the fields and relationships that are associated with a business object. Drag and drop a field or relationship into the configuration interface area.                                                                                                                                                                                                                                                                         |
+| **Insert a Function** tab        | Contains the functions that are associated with a business object. Drag and drop a function into the configuration interface area.                                                                                                                                                                                                                                                                                                     |
+
+## Creating a New Action
+
+1. From the Configuration Console, click **Build > Automation Tools > Quick Actions** to open the **Actions Manager** workspace. The list of business objects that have actions appears.
+2. Click **Add/Edit** to see the actions for the business object. The application displays the Action Designer selection popup.
+3. Select **Classic Action Designer**.
+4. Select the **Create New Actions** tab to view a list of action guides. These guides are the basis for various actions.
+5. Select an action guide type. The **Action Configuration** interface appears.
+6. Enter data into the configuration fields as required. Each action guide uses both common and specific fields. Refer to [Common Action Fields](Quick_Action_Parameters.mdx). For specific parameters and actions for the action type, refer to [Action Templates](Quick_Action_Templates.mdx).
+7. Click **Save**. The action now appears under the **No Category** section of the Action Menu.
+
+## Modifying an Action
+
+You can change specific actions within an action. For example, you can change which fields are referenced within an action.
+
+<hint type="info">
+  If your action(s) includes deprecated action(s), you will either be warned about limited editing functionality (CAD), or these actions won't be visible (GAD).
+</hint>
+
+1. From the Configuration Console, click **Build > Automation Tools > Quick Actions** to open the **Actions Manager** workspace. The list of business objects that have actions appears.
+2. Click **Add/Edit** to see the actions for the business object. The application displays the Action Designer selection popup.
+3. Select **Classic Action Designer**.
+4. Select the action from the **Your Actions** list. The **Action Configuration** interface appears.
+5. Click **Edit** from the button area to activate the configuration interface.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/CsX18tpoaAj4dAfDESv-i_quickactionedit.png" alt="Action configuration buttons" position="flex-start" size="40" indent="1" initialPath="../../../Resources/Images/help-images/quick_action_edit.png" githubPath="Content/Resources/Images/help-images/quick_action_edit.png" showCaption="false"></Image>
+
+6. Modify the configuration fields as required. Each action guide uses both common and specific fields. See [Common Action Fields](Quick_Action_Parameters.mdx). For specific parameters and actions for the action type, refer to [Action Templates](Quick_Action_Templates.mdx).
+7. Click **Save**.
+
+### View Quick Action References
+
+Use the References option to view where a Quick Action is used before you modify or delete it. This helps you identify dependent components and avoid breaking existing configurations.
+
+The Quick Action References dialog displays the components that reference the selected Quick Action. Each reference type displays relevant attributes that help you identify where the Quick Action is used.
+
+### To view references for a Quick Action
+
+1. Open the **Classic Action Designer**.
+2. Select the Quick Action from the **Your Actions** list.
+3. Click **References**.
+
+The Quick Action References dialog opens.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/X48bTmywRfjoOyRvfzC8X_references-in-gad.png" position="flex-start" size="40" initialPath="../quick-actions-images/References in GAD.png" githubPath="Content/Configure/QuickActions/quick-actions-images/References in GAD.png" showCaption="false"></Image>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/_LphhGzdwwDV_4QHQyGDE_quick-action-references.png" position="flex-start" size="40" initialPath="../quick-actions-images/Quick Action References.png" githubPath="Content/Configure/QuickActions/quick-actions-images/Quick Action References.png" showCaption="false"></Image>
+
+The dialog displays the components that reference the selected Quick Action.
+
+Each reference type displays relevant attributes that help you identify where the Quick Action is used within that component.
+
+## Adding Multiple Actions to an Action
+
+Refer to [Adding Multiple Actions to a Quick Action](../Adding_Actions_to_Quick_Act.mdx).
+
+## Disabling an Action
+
+You can disable an action without deleting it or removing it permanently from the **Your Actions** list. For example, if you have created an action that you might not want to make available immediately, you can disable it.
+
+1. From the Configuration Console, click **Build > Automation Tools > Quick Actions** to open the **Actions Manager** workspace. The list of business objects that have actions appears.
+2. Click **Add/Edit** to see the actions for the business object. The application displays the Action Designer selection popup.
+3. Select **Classic Action Designer**.
+4. Click the **Your Actions** tab and select the action to disable.
+5. From the action header, click **Disable**. The button now reads enable.
+6. To enable the action, click **Enable**. The button now reads disable.
+
+<hint type="info">
+  Disabled actions continue to send notifications when defined to operate within a workflow. To prevent disabled actions from sending notifications, you must remove the action from each workflow block.
+</hint>
+
+## Deleting an Action
+
+<hint type="info">
+  - The **Delete** option is disabled for quick actions that have a linked references. You can delete a quick action only when it does not have a reference.
+  - If a quick action has a reference, first delete the reference, and then delete the quick action. Alternatively, raise a service request to enable override of the restriction on deleting Quick Actions with references. After you enable this setting, the **Delete anyway** option becomes available, allowing you to delete Quick Actions even if they have existing references.
+  - In Ivanti Cloud environments, you can enable this option only in staging, UAT, or other development environments. You cannot enable this option in production.
+</hint>
+
+### From the Configuration Console
+
+1. Click **Build > Automation Tools > Quick Actions** to open the **Actions Manager** workspace. The list of business objects that have actions appears.
+2. Click **Add/Edit** to see the actions for the business object. The application displays the Action Designer selection popup.
+3. Select **Classic Action Designer**.
+4. Click the **Your Actions** tab and select the action to delete.
+5. If the quick action has a linked reference, the **Delete** option is unavailable.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Xp_Z_rR-CJuhoTyzndMvx_delete-option-is-not-available.png" position="flex-start" size="40" indent="2" initialPath="../quick-actions-images/Delete option is not available.png" githubPath="Content/Configure/QuickActions/quick-actions-images/Delete option is not available.png" showCaption="false"></Image>
+
+<Paragraph indent="1">
+  To override this restriction, raise a service request to enable the **Delete anyway** option.
+</Paragraph>
+
+6. If the **Delete anyway** option is enabled, the **Delete** button becomes available. When you click **Delete**, the application displays the list of references.
+   The **Quick Action** dialog opens and displays the following message:
+   **“This action is referenced by other components and should not be deleted.”**
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/IWjZ-sd7nCF-ffZALlx3__warning-message-for-deleting-a-quick-action.png" position="flex-start" size="40" indent="2" initialPath="../quick-actions-images/Warning message for deleting a Quick Action.png" githubPath="Content/Configure/QuickActions/quick-actions-images/Warning message for deleting a Quick Action.png" showCaption="false"></Image>
+
+7. If you still want to delete the Quick Action even though references exist, click **Delete anyway**. The **Delete Confirmation** dialog appears.
+8. Click **Yes** to delete the Quick Action.
+
+## Configure Delete Behavior for Referenced Quick Actions
+
+You can control whether users can delete Quick Actions that are referenced by other components. This behavior is managed through a feature configuration in **Feature Management**.
+
+**To configure delete behavior for referenced Quick Actions**
+
+1. Open **Feature Management**.
+2. In the list view, locate the feature:
+   **"PreventReferencedQuickActionDeletion"**
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/_MKrHf8M41MQMxRqvtTGP_feature-flag.png" position="flex-start" size="40" indent="2" initialPath="../quick-actions-images/Feature Flag.png" githubPath="Content/Configure/QuickActions/quick-actions-images/Feature Flag.png" showCaption="false"></Image>
+
+3. Select the feature to open its details.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/164mo7iOk8CjWZaf5Cq0B_feature-flag-settings.png" position="flex-start" size="40" indent="2" initialPath="../quick-actions-images/Feature Flag Settings.png" githubPath="Content/Configure/QuickActions/quick-actions-images/Feature Flag Settings.png" showCaption="false"></Image>
+
+4. In the **State** field, select the required option:
+   - **Unconditionally ON**
+   - **TrialPeriod**
+   - **TrialCompleted**
+   - **Disable**
+5. Click **Save**.
+
+**Behavior based on the feature state**
+
+When set to **Unconditionally ON**
+
+- If a Quick Action is referenced by other components:
+  - The system blocks the delete operation.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/0iYlGXGe301st-aZ0BuMZ_delete-option-disabled.png" position="flex-start" size="40" indent="3" initialPath="../quick-actions-images/Delete option disabled.png" githubPath="Content/Configure/QuickActions/quick-actions-images/Delete option disabled.png" showCaption="false"></Image>
+
+When set to **Disable**
+
+- If a Quick Action is referenced by other components:
+  - The system displays a warning in the **Quick Action References** dialog.
+    **“This action is referenced by other components and should not be deleted.”**
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/TYz0FVnMjucyNPQNYKnNC_delete-option-is-available.png" position="flex-start" size="40" indent="3" initialPath="../quick-actions-images/Delete option is available.png" githubPath="Content/Configure/QuickActions/quick-actions-images/Delete option is available.png" showCaption="false"></Image>
+
+- The **Delete anyway** option is available.

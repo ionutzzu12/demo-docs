@@ -1,0 +1,149 @@
+---
+title: Creating a Triggered Action for a Business Object
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:57 GMT+0300 (Eastern European Summer Time)
+---
+
+<hint type="info">
+  For information about creating a Triggered Action, see [Creating a Triggered Action](https://help.ivanti.com/ht/help/en_US/ISM/2023/admin/Content/Configure/BusinessRules/Business_Rules.htm?Highlight=business%20rules#Creating_a_Triggered_Action).
+</hint>
+
+To create a Triggered action:
+
+1. Log in to the **Configuration Console&#x20;**&#x74;o access the **Graphical Action Designer**. From the Configuration console, click **Build&#x20;**> **Business Objects** to open the Business Objects workspace.
+2. Select **Incidents**. The Business Object Incident page appears.
+3. Click **Business Rules**. Expand the **Triggered Actions** header and click **Add Trigger**. The application displays the Action Designer selection popup.
+4. Select **Graphical Action Designer**. The application displays the Graphical Action Designer.
+5. Drag an action onto the designer board, and then select the **Triggered** option on the **Common** tab before completing any fields.
+
+<hint type="info">
+  When you select the **Triggered&#x20;**&#x6F;ption, the following actions are removed from the Action Designer list: Go to Record, Run for Collection, Go to Action, Decision Action, and Show a Popup. These actions cannot be used with triggers.
+</hint>
+
+7. Enter the following fields:
+
+| Field       | Description                                                      |
+| ----------- | ---------------------------------------------------------------- |
+| Name<br />  | Mandatory. A unique name for the Triggered action business rule. |
+| Description | Optional. Description for the Triggered action business rule.    |
+
+8. Click **Add Rules**. The **Triggered Action Rules** pane appears. Enter information under each tab, and clic&#x6B;**&#x20;Ok**.
+
+<Paragraph indent="1">
+  Choose from the following options on the **Events&#x20;**&#x74;ab.
+</Paragraph>
+
+<table isTableHeaderOn="true">
+  <tr>
+    <td>
+      Field
+    </td>
+    <td>
+      Description
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Object event: On insert
+    </td>
+    <td>
+      Runs when the business object is inserted.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Object Event: On Delete
+    </td>
+    <td>
+      Runs when the business object is deleted.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Object Event: On Update
+    </td>
+    <td>
+      Runs when the business object is modified and saved.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Field Event: On Initialize
+    </td>
+    <td>
+      Runs when a specific field is initialized. Select the field from the drop-down list.
+      The following condition parameters are enabled when this option is selected, depending on the specified field:
+      **is changed** (runs when the field is modified)
+      **is set to** condition (runs when the field is modified to a specific string)
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Field Event: On Update
+    </td>
+    <td>
+      Runs when a specific field is modified. Select the field from the drop-down list.
+      The following condition parameters are enabled when this option is selected, depending on the specified field:
+      - **&#x20;is changed** (runs when the field is modified)
+      - **is changed to** condition (runs when the field is modified)
+      - **is changed from** condition (runs when the field is modified from a specific string)
+      - **is changed from** condition to other condition (runs when the field is modified from a specific string to a specific string)
+      - **&#x20;is set to** condition (runs when the field is modified to a specific string)
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Relationship Event: On Link
+    </td>
+    <td>
+      Runs when a specified relationship is linked. Select the relationship from the drop-down list.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Relationship Event: On Unlink
+    </td>
+    <td>
+      Runs when a specified relationship is unlinked. Select the relationship from the drop-down list.
+    </td>
+  </tr>
+</table>
+
+<Paragraph indent="1">
+  **Conditional Expression** tab
+</Paragraph>
+
+<table isTableHeaderOn="true">
+  <tr>
+    <td>
+      Field
+    </td>
+    <td>
+      Description
+    </td>
+  </tr>
+  <tr>
+    <td>
+      In addition to the above criteria, the action only triggers if the following expression is true:
+    </td>
+    <td>
+      Specifies a Boolean expression that allows the trigger to occur if this expression is true.
+      - The action only triggers if both the selected event, as specified above, occurs and the expression specified in this field occurs.
+      - The action does not trigger if the expression specified in this field occurs but the selected event as specified above does not occur.
+      - The action also does not trigger if the expression specified in this field does not occur but the selected event, as specified above, does occur.
+      - Both must occur for the action to trigger.
+      For information about the expression editor, see [Simplified Expression Editor](<../../../Reference/Expressions/Simplified Expression Editor.mdx>).
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/gxWHsh9mDFWiET2HvZIsV_enabled-toggle-button120x34.png" position="flex-start" size="40" initialPath="../quick-actions-images/Enabled Toggle button_120x34.png" githubPath="Content/Configure/QuickActions/quick-actions-images/Enabled Toggle button_120x34.png" showCaption="false"></Image>
+    </td>
+    <td>
+      Disables this triggered action. Select this option to create a read-only business rule.
+      You cannot disable triggered actions that contain calculations.
+    </td>
+  </tr>
+</table>
+
+A saved Triggered action cannot be converted to a non-triggered Action.

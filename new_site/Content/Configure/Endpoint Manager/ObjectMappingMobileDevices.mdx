@@ -1,0 +1,52 @@
+---
+title: Object Mapping - Mobile Devices
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:51 GMT+0300 (Eastern European Summer Time)
+---
+
+The object mappings for the Business Object Mobile Devices are given in the below table:
+
+| Source - EPM Data                | Method | Target - \{\{FRS\_VARS.ProductName}} Data                       |
+| -------------------------------- | ------ | --------------------------------------------------------------- |
+| DateTimeNow                      | -->    | Audit.TimeStamp                                                 |
+| 0                                | -->    | Audit.RequestID                                                 |
+| 0                                | -->    | Audit.FirstSequence                                             |
+| 1                                | -->    | Audit.LastSequence                                              |
+| Full                             | -->    | Audit.Type                                                      |
+| EPM                              | -->    | Identity.Property.ScanMethod                                    |
+| Computer.Computer\_Idn           | -->    | Identity.Property.EPMComputerID                                 |
+| Computer.DisplayName             | -->    | ComputerSystem.Property.DeviceName                              |
+| Computer.LDAPLocation            | -->    | Identity.Property.EPMLDAPLocation                               |
+| Computer.Type                    | -->    | ComputerSystem.Property.CIType                                  |
+| Computer.Status                  | -->    | ComputerSystem.Property.Status                                  |
+| Computer.DeviceId                | -->    | Identity.Property.ClientID                                      |
+| Computer.Model                   | -->    | ComputerSystem.Property.ModelName                               |
+| MobileDevices.CarrierNetwork     | -->    | ComputerSystem.Property.SIMCarrierNetwork                       |
+| MobileDevices.IosTopic           | -->    | ComputerSystem.Property.IosApplicationPushToken                 |
+| MobileDevices.Rooted             | -->    | ComputerSystem.Property.IsJailbroken                            |
+| MobileDevices.FirmwareVersion    | -->    | ComputerSystem.Property.MajorVersion                            |
+| MobileDevices.BuildVersion       | -->    | ComputerSystem.Property.MinorVersion                            |
+| MobileDevices.NotifyType         | -->    | ComputerSystem.Property.MobilePlatform                          |
+| Computer.Model                   | -->    | ComputerSystem.Property.Model                                   |
+| Operating\_System.OSType         | -->    | ComputerSystem.Property.OperatingSystem                         |
+| Operating\_System.Version        | -->    | ComputerSystem.Property.BuildNumber                             |
+| MobileDevices.PhoneNumber        | -->    | ComputerSystem.Property.PhoneNumber                             |
+| MobileDevices.WlanIPv4Address    | -->    | Identity.Property.IPAddress                                     |
+| NetworkSoftware.NicAddress       | -->    | ComputerSystem.Property.MACAddress                              |
+| NetworkSoftware.NicAddress       | -->    | Identity.Property.MACaddress                                    |
+| BoundAdapter.BoundAdapter\_Idn   | -->    | Category.Component.Property-Hardware.NetworkAdapter.ID          |
+| BoundAdapter.SubnetMask          | -->    | Category.Component.Property-Hardware.NetworkAdapter.SubnetMask  |
+| BoundAdapter.PhysAddress         | -->    | Category.Component.Property-Hardware.NetworkAdapter.MACaddress  |
+| BoundAdapter.Description         | -->    | Category.Component.Property-Hardware.NetworkAdapter.Description |
+| Computer.DomainName              | -->    | Identity.Property.DomainName                                    |
+| Computer.Manufacturer            | -->    | ComputerSystem.Property.Manufacturer                            |
+| MobileDevices.MobileDevices\_Idn | -->    | ComputerSystem.aProperty.CloudID                                |
+| MobileDevices.IMEISim1           | -->    | ComputerSystem.Property.IMEI                                    |
+| MobileDevices.MDMToken           | -->    | ComputerSystem.Property.IosMdmPushToken                         |
+| MobileDevices.SerialNumber       | -->    | Identity.Property.SerialNumber                                  |
+| TCP.HostName                     | -->    | Identity.Property.FullyQualifiedDomainName                      |
+| Computer.Description             | -->    | Identity.Property.DeviceDescription                             |
+| Computer.PrimaryOwner            | -->    | Identity.Property.UserName                                      |
+| Computer.RecordDate              | -->    | ComputerSystem.Property.EnrolledDateTime                        |
+| MobileDevices.TotalStorage       | -->    | ComputerSystem.Property.TotalDiskSpace                          |
+| MobileDevices.IosTopic           | -->    | ComputerSystem.Property.DeviceToken                             |

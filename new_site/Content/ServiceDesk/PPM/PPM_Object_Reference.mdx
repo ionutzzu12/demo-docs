@@ -1,0 +1,173 @@
+---
+title: Project and Portfolio Module Business Object Reference
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:47 GMT+0300 (Eastern European Summer Time)
+---
+
+The following sections describe the default **Project and Portfolio Module** business object.
+
+- :Link[Project Business Object Field Descriptions]{label="Project Business Object Field Descriptions" overridedLabel="Project Business Object Field Descriptions" spaceId docId="R1CfKLQuVsCf7EhegJ_DF" version="v2" docAnchorId="#Project_BO_Field_Desc" loadingMethod="dynamic" newTab="false" href="PPM_Object_Reference.mdx"}
+- :Link[Project Business Object Relationship Definitions]{label="Project Business Object Relationship Definitions" overridedLabel="Project Business Object Relationship Definitions" spaceId docId="R1CfKLQuVsCf7EhegJ_DF" version="v2" docAnchorId="#Project_BO_Relationship_Defs" loadingMethod="dynamic" newTab="false" href="PPM_Object_Reference.mdx"}
+- :Link[Project Business Object Layout]{label="Project Business Object Layout" overridedLabel="Project Business Object Layout" spaceId docId="R1CfKLQuVsCf7EhegJ_DF" version="v2" docAnchorId="#Project_BO_Layout" loadingMethod="dynamic" newTab="false" href="PPM_Object_Reference.mdx"}
+- :Link[Project Phase Business Object Field Definitions]{label="Project Phase Business Object Field Definitions" overridedLabel="Project Phase Business Object Field Definitions" spaceId docId="R1CfKLQuVsCf7EhegJ_DF" version="v2" docAnchorId="#ProjectPhase_BO_Field_Defs" loadingMethod="dynamic" newTab="false" href="PPM_Object_Reference.mdx"}
+- :Link[Project Phase Business Object Relationship Definitions]{label="Project Phase Business Object Relationship Definitions" overridedLabel="Project Phase Business Object Relationship Definitions" spaceId docId="R1CfKLQuVsCf7EhegJ_DF" version="v2" docAnchorId="#ProjectPhase_BO_RelationshipDef" loadingMethod="dynamic" newTab="false" href="PPM_Object_Reference.mdx"}
+- :Link[Project Phase Business Object Layout]{label="Project Phase Business Object Layout" overridedLabel="Project Phase Business Object Layout" spaceId docId="R1CfKLQuVsCf7EhegJ_DF" version="v2" docAnchorId="#ProjectPhase+BO_Layouts" loadingMethod="dynamic" newTab="false" href="PPM_Object_Reference.mdx"}
+- :Link[Portfolio Business Object Layout]{label="Portfolio Business Object Layout" overridedLabel="Portfolio Business Object Layout" spaceId docId="R1CfKLQuVsCf7EhegJ_DF" version="v2" docAnchorId="#Portfolio_BO_Layout" loadingMethod="dynamic" newTab="false" href="PPM_Object_Reference.mdx"}
+- :Link[Portfolio Business Object Quick Actions]{label="Portfolio Business Object Quick Actions" overridedLabel="Portfolio Business Object Quick Actions" spaceId docId="R1CfKLQuVsCf7EhegJ_DF" version="v2" docAnchorId="#Portfolio_BO_Quick_Actions" loadingMethod="dynamic" newTab="false" href="PPM_Object_Reference.mdx"}
+- :Link[Project Risk Business Object Field Definitions]{label="Project Risk Business Object Field Definitions" overridedLabel="Project Risk Business Object Field Definitions" spaceId docId="R1CfKLQuVsCf7EhegJ_DF" version="v2" docAnchorId="#ProjectRisk_BO_Field_Def" loadingMethod="dynamic" newTab="false" href="PPM_Object_Reference.mdx"}
+- :Link[Project Risk Business Object Relationship Definitions]{label="Project Risk Business Object Relationship Definitions" overridedLabel="Project Risk Business Object Relationship Definitions" spaceId docId="R1CfKLQuVsCf7EhegJ_DF" version="v2" docAnchorId="#ProjectRisk_BO_Relationship_Def" loadingMethod="dynamic" newTab="false" href="PPM_Object_Reference.mdx"}
+- :Link[Project Issue Business Object Field Definitions]{label="Project Issue Business Object Field Definitions" overridedLabel="Project Issue Business Object Field Definitions" spaceId docId="R1CfKLQuVsCf7EhegJ_DF" version="v2" docAnchorId="#ProjectIssue_BO_Field_Defs" loadingMethod="dynamic" newTab="false" href="PPM_Object_Reference.mdx"}
+- :Link[Project Issue Business Object Relationship Definitions]{label="Project Issue Business Object Relationship Definitions" overridedLabel="Project Issue Business Object Relationship Definitions" spaceId docId="R1CfKLQuVsCf7EhegJ_DF" version="v2" docAnchorId="#ProjectIssue_BO_Object_Relationship_Defs" loadingMethod="dynamic" newTab="false" href="PPM_Object_Reference.mdx"}
+
+### Project Business Object Field Descriptions
+
+| Field Name               | Type     | Size   | Comments                                                                                                                           |
+| ------------------------ | -------- | ------ | ---------------------------------------------------------------------------------------------------------------------------------- |
+| ProjectNumber            | Number   | 8,0    | Required, apply Project ID counter                                                                                                 |
+| ProjectName              | Text     | 100    | Required                                                                                                                           |
+| Priority                 | Text     | 35     |                                                                                                                                    |
+| Status                   | Text     | 35     | Validated value: \{initial, active, on hold, closed, reopened}                                                                     |
+| ProjectOwnerLink         | Link     |        | Link field to employee, required                                                                                                   |
+| ProjectSponsorLink       | Link     |        | Link field to employee                                                                                                             |
+| PortfolioLink            | Link     |        | Link field to pPortfolio                                                                                                           |
+| Background               | Text     |        | Memo field                                                                                                                         |
+| Deliverable              | Text     |        | Memo field                                                                                                                         |
+| Scope                    | Text     |        | Memo field                                                                                                                         |
+| SuccessCriteria          | Text     |        | Memo field                                                                                                                         |
+| Objective                | Text     |        | Memo field                                                                                                                         |
+| ProjectStartDate         | DateTime |        | Date only                                                                                                                          |
+| ProjectEndDate           | DateTime |        | Date only                                                                                                                          |
+| ProjectBudgetAllocated   | Currency | (15,2) |                                                                                                                                    |
+| ProjectBudgetConsumed    | Currency | (15,2) | Track consumed budget so far                                                                                                       |
+| Progress Bar on Budget   |          |        | Display budget consumed vs budget allocated comparison in graph                                                                    |
+| Actual Duration          | Number   | 10     |                                                                                                                                    |
+| DeliverableStatus        | Text     | 35     | Validate value: \{on track \[default value], at risk, off track} display color code in grid accordingly from green, yellow, to red |
+| ScopeStatus              | Text     | 35     | Validate value: \{on track \[default value], at risk, off track} display color code in grid accordingly from green, yellow, to red |
+| ScheduleStatus           | Text     | 35     | Validate value: \{on track \[default value], at risk, off track} display color code in grid accordingly from green, yellow, to red |
+| BudgetStatus             | Text     | 35     | Validate value: \{on track \[default value], at risk, off track} display color code in grid accordingly from green, yellow, to red |
+| ProjectCompletionPercent | Number   | (3,2)  | Project Manager manually input the value used to display in grid in project completion progress bar                                |
+| ProjectHealth            | Text     | 35     | Validate value: \{on track \[default value], at risk, off track} display color code in grid accordingly from green, yellow, to red |
+
+### Project Business Object Relationship Definitions
+
+| Relationship Name              | Cardinality  | To Business Object              | Through Fields                        |
+| ------------------------------ | ------------ | ------------------------------- | ------------------------------------- |
+| AuditHistoryRelationship       | one to many  | Audit\_Project                  | RecID=(other)AuditHistoryUpdateRecID  |
+| IncidentAssocProject           | zero or many | Incident                        | RecID=(other)ProjectLink\_RecID       |
+| ProblemAssocProject            | zero or many | Problem                         | RecID=(other)ProjectLink\_RecID       |
+| ServiceReqAssocProject         | zero or many | ServiceReq                      | RecID=(other)ProjectLink\_RecID       |
+| ChangeAssocProject             | zero or many | Change                          | RecID=(other)ProjectLink\_RecID       |
+| ServiceAssocProject            | many to many | Service                         | Link Table                            |
+| ProjectAssocProjectTeamMemeber | many to many | Frs\_CompositeContract\_Contact | Link Table                            |
+| PortfolioAssocProject          | many to one  | Portfolio                       | PortfolioLink\_RecID=(other)RecID     |
+| ProjectAssocProjectOwner       | many to one  | Frs\_CompositeContract\_Contact | ProjectOwnerLink\_RecID=(other)RecId  |
+| ProjectAssocProjectSponsor     | many to one  | Frs\_CompositeContract\_Contact | ProjectSpnsorLink\_RecID=(other)RecID |
+| ProjectAssocProjectBudget      | exactly one  | Frs\_ITFM\_SubBudgetPlan        | RecID=(other)ProjectLink\_RecID       |
+| ProjectAssocProjectPhase       | zero or many | ProjectPhase                    | RecID=(other)ParentLink\_RecID        |
+| ProjectAssocProjectMilestone   | zero or many | ProjectMilestone                | RecID=(other)ParentLink\_RecID        |
+| ProjectAssocProjectIssue       | zero or many | IssueRegister                   | RecID=(other)ParentLink\_RecID        |
+| ProjectAssocCalendarItem       | zero or many | CalendarItem(TBD)               | RecID=(other)ParentLink\_RecID        |
+| ProjectAssocCostItem           | zero or many | Frs\_ITFM\_Transaction          | RecID=(other)ParentLink\_RecID        |
+| ProjectAssocTask               | zero or many | Task                            | RecID=(other)ParentLink\_RecID        |
+| ProjectContainsJournal         | zero or many | Journal                         | RecID=(other)ParentLink\_RecID        |
+| ProjectContainsAttachment      | zero or many | Attachment                      | RecID=(other)ParentLink\_RecID        |
+
+### Project Business Object Layout
+
+| Layout         | Context                            | Roles                                             |
+| -------------- | ---------------------------------- | ------------------------------------------------- |
+| Project Layout | Create, change, or view a Project. | Administrator, Portfolio Manager, Project Manager |
+
+### Project Phase Business Object Field Definitions
+
+| Name             | Type     | Size   | Notes                                                          |
+| ---------------- | -------- | ------ | -------------------------------------------------------------- |
+| Phase            | Text     | 300    | Required                                                       |
+| Status           | Text     | 35     | Validated value: \{initial, active, on hold, closed, reopened} |
+| Description      | Text     |        | Memo field                                                     |
+| PlannedStartDate | DateTime |        | Date only                                                      |
+| PlannedEndDate   | DateTime |        | Date only. Apply validation rule: EndDate>StartDate            |
+| ActualEndDate    | DateTime |        | Date only                                                      |
+| Cost             | Currency | (15,2) | Used to track cost for project phases and underlying tasks     |
+
+### Project Phase Business Object Relationship Definitions
+
+| Relationship Name                 | Cardinality | To Business Object      | Through Fields                       |
+| --------------------------------- | ----------- | ----------------------- | ------------------------------------ |
+| AuditHistoryRelationship          | 1:0..N      | Audit\_ProjectMilestone | RecID=(other)AuditHistoryUpdateRecID |
+| ProjectAssocProjectPhase          | 0..N:0..1   | Project                 | ParentLink\_RecID=(other)RecID       |
+| ProjectPhaseAssocProjectMilestone | 0..1:0..N   | ProjectMilestone        | RecID=(other)ParentLink\_RecID       |
+| ProjectPhaseAssocCostItem         | 0..1:0..N   | Frs\_ITFM\_Transaction  | RecID=(other)ParentLink\_RecID       |
+| ProjectPhaseAssocTask             | 0..1:0..N   | Task                    | RecID=(other)ParentLink\_RecID       |
+| ProjectPhaseAssocCalendarItem     | 0..1:0..N   | CalendarItem(TBD)       | RecID=(other)ParentLink\_RecID       |
+| ProjectPhaseContainsJournal       | 0..1:0..N   | Journal                 | RecID=(other)ParentLink\_RecID       |
+| ProjectPhaseContainsAttachment    | 0..1:0\:N   | Attachment              | RecID=(other)ParentLink\_RecID       |
+
+### Project Phase Business Object Layout
+
+| Tab           | Relationship                      |
+| ------------- | --------------------------------- |
+| Milestone     | ProjectPhaseAssocProjectMilestone |
+| Cost Item     | ProjectPhaseAssocCostItem         |
+| Task          | ProjectPhaseAssocTask             |
+| Journal       | ProjectPhaseContainsJournal       |
+| Audit History | AuditHistoryRelationship          |
+| Attachment    | ProjectPhaseContainsAttachment    |
+
+### Portfolio Business Object Layout
+
+| Layout           | Context                              | Roles                            |
+| ---------------- | ------------------------------------ | -------------------------------- |
+| Portfolio Layout | Create, change, or view a portfolio. | Administrator, Portfolio Manager |
+
+### Portfolio Business Object Quick Actions
+
+| Name        | Invocation | Description           |
+| ----------- | ---------- | --------------------- |
+| Add Project | Manual     | Creates a new project |
+
+### Project Risk Business Object Field Definitions
+
+| Name                 | Type    | Size | Notes                                                                         |
+| -------------------- | ------- | ---- | ----------------------------------------------------------------------------- |
+| RiskNumber           | Text    | 35   | Apply risk number counter                                                     |
+| RiskType             | Text    | 35   | Validated value: \{resource, budget, schedule, scope, other}, required        |
+| SeverityLevel        | Text    | 35   | Validated value: \{low, medium, high}, required                               |
+| Description          | Text    |      | Memo field, required                                                          |
+| Status               | Text    | 35   | Validated values: \{open, closed}                                             |
+| RiskOwner            | Link    |      | Link field to employee. Required and visible if risk flag set to true         |
+| ContingencyPlan      | Text    |      | Memo field, required                                                          |
+| EsclatedFlag         | Boolean |      |                                                                               |
+| EscalatedContactLink | Link    |      | Link field to employee. Visible if escalated flag set to true                 |
+| Send Escalation      | Button  |      | Used to send out escalation. Visible if **EscalatedContactLink** is populated |
+
+### Project Risk Business Object Relationship Definitions
+
+| Relationship Name                | Cardinality | To Business Object              | Through Fields                           |
+| -------------------------------- | ----------- | ------------------------------- | ---------------------------------------- |
+| ProjectRiskAssocRiskOwner        | 0..N:0..1   | Frs\_CompositeContract\_Contact | RiskOwnerLink\_RecID=(other)RecID        |
+| ProjectRiskAssocEscalatedContact | 0..N:0..1   | Frs\_CompositeContract\_Contact | EscalatedContactLink\_RecID=(other)RecID |
+| ProjectIssueAssocProjectRisk     | 0..1:0\:N   | ProjectIssue                    | RecID=(other)RiskLink\_RecID             |
+| ProjectRiskContainsAttachment    | 0..1:0\:N   | Attachment                      | RecID=(other)ParentLink\_RecID           |
+
+### Project Issue Business Object Field Definitions
+
+| Name           | Type     | Size | Notes                                                                |
+| -------------- | -------- | ---- | -------------------------------------------------------------------- |
+| IssueNumber    | Text     | 35   | Apply issue number counter                                           |
+| IssueTitle     | Text     | 100  | Title                                                                |
+| Severity       | Text     | 35   | Validated value: \{low, medium, high}, required                      |
+| Description    | Text     |      | Memo field, required                                                 |
+| IssueOwner     | Link     |      | Link field to employee                                               |
+| RiskLink       | Link     |      | Link field to project link                                           |
+| Status         | Text     | 35   | Validated values: \{open, resolved, closed, deferred, canceled}      |
+| ClosedDate     | DateTime |      | Date only, auto-populates current date when status changes to closed |
+| ResolutionNote | Text     |      | Memo field detailing the resolution and actions taken.               |
+
+### Project Issue Business Object Relationship Definitions
+
+| Relationship Name              | Cardinality | To Business Object | Through Fields                 |
+| ------------------------------ | ----------- | ------------------ | ------------------------------ |
+| ProjectAssocProjectIssue       | 0..N:0..1   | Project            | ParentLink\_RecID=(other)RecID |
+| ProjectIssueAssocProjectRisk   | 0..N:0..1   | ProjectRisk        | RiskLink\_RecID=(other)RecID   |
+| ProjectIssueContainsAttachment | 0..1:0\:N   | Attachment         | RecID=(other)ParentLink\_RecID |

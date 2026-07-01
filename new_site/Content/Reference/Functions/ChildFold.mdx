@@ -1,0 +1,105 @@
+---
+title: ChildFold
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:58 GMT+0300 (Eastern European Summer Time)
+---
+
+The Childfold function iterates through a parent's business object's child objects, evaluating an expression in the context of each of the child objects. The results of the expression evaluations are aggregated using the **aggregatorFunc** parameter.
+
+The **childPredicateExpression** parameter, if specified, selects which related objects to include. If not specified, they are all included.
+
+## Syntax
+
+```bash
+ChildFold(parentObjectRef, parentRecId, childRelationshipRef, childExpression, aggregatorFunc, childPredicateExpression)
+```
+
+## Enabled For
+
+For a description of the business object categories, see :Link[Notes on "Enabled For"]{label="Notes on &#x22;Enabled For&#x22;" overridedLabel="Notes on &#x22;Enabled For&#x22;" spaceId docId="xObv2pIDrk60jkEIWs8mD" version="v2" docAnchorId="#Notes" loadingMethod="dynamic" newTab="false" githubPath="_Built_in_Functions.htm#Notes" href="_Built_in_Functions.mdx"}.
+
+| Business Object Category                                                                    | Yes/No |
+| ------------------------------------------------------------------------------------------- | ------ |
+| Business Rules: Before-Save Rules                                                           | Yes    |
+| Business Rules: Calculation Rules (After Save, with or without Also Recalculate on Load)    | Yes    |
+| Business Rules: Calculation Rules (Before Save or Always, without Also Recalculate On Load) | Yes    |
+| Business Rules: Calculation Rules (Before Save or Always, with Recalculate On Load)         | Yes    |
+| Business Rules: Editing Rules                                                               | Yes1   |
+| Business Rules: Initialization Rules                                                        | Yes    |
+| Business Rules: Read Only Rules                                                             | No     |
+| Business Rules: Required Rules                                                              | Yes1   |
+| Business Rules: Validation Rules                                                            | Yes    |
+| Client Expressions                                                                          | No     |
+| Object Permissions                                                                          | No     |
+| Services                                                                                    | Yes    |
+| LDAP                                                                                        | Yes    |
+| Mobile                                                                                      | Yes    |
+| Quick Actions (except UI Quick Actions)                                                     | Yes    |
+| UI Quick Actions                                                                            | No     |
+| Reports                                                                                     | Yes    |
+| Search/Dashboard without field references                                                   | Yes    |
+| Search/Dashboard with field references                                                      | No     |
+| 1. Except when this field appears on a form or is triggered by such a field.                |        |
+
+## Parameters
+
+| Parameter                | Description                                                                                                                                                       |
+| ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| parentObjectRef          | The name of the parent business object.                                                                                                                           |
+| parentRecId              | The RecID of the instance of the parent business object.                                                                                                          |
+| relationshipKey          | A relationship key for the relationship relating the parent to its related object (child business object).                                                        |
+| childExpression          | The expression to evaluate for each child business object.                                                                                                        |
+| aggregatorFunc           | An aggregation function specified as a string. In this release, \{\{FRS\_VARS.ProductName}} supports the plus (+), SUM, AVG, AVERAGE, MIN, MAX, COUNT aggregator. |
+| childPredicateExpression | (Optional) A Boolean expression that is evaluated for each child. The child is only included if the result of this evaluation is true.                            |
+
+## Return Value
+
+Unicode text value.
+
+## Examples
+
+### **Example 1:**
+
+To determine the number of instances of the child business objects associated with a parent incident business object, enter the following:
+
+```bash
+$(ChildFold("Incident#", "213KJASD92132SD", "Task#Assignment.Rev3", Cost + 100, "+"))
+```
+
+This looks up the incident business object where the **RecID&#x20;**&#x69;s **213KJASD92132SD&#x20;**&#x61;nd finds all of the task business objects related to this change business object through the **Task#Assignment.Rev3** relationship. In the context of each of these child business objects, the function evaluates the expression **Cost + 100** and combines all of these computed values using addition.
+
+### **Example 2:**
+
+To count all the **Task#Assignment** children that are not canceled, enter the following:
+
+```bash
+$(ChildFold("Incident#", RecId, "Task#Assignment.Rev3", 1, "SUM", $(Status != 'Canceled')))
+```
+
+### **Example 3:**
+
+To update a field in the Change business object to get a count of the incidents:
+
+```bash
+$(ChildFold("Change#", RecId, "Incident#.", 1, "+", $(Status != 'Active')))
+```
+
+**Incident#.** is the relationship reference to the child incident business object, where the internal reference name for this relationship is empty. If the internal reference name of the relationship is not empty, use instead: **Incident#.Internal Reference Name**, where the internal reference name is after the period.
+
+If the relationship is to a group member business object such as FRS\_Knowledge.IssueResolution, you would use: **FRS\_Knowledge#IssueResolution.Interna**l Reference Name. Notice that the member business object is between the **#** and th&#x65;**&#x20;.&#x20;**&#x69;n all examples.
+
+## Advanced Example
+
+To create a client-side calculated value field (client visibility, or required rule) that uses the results of the **ChildFold()** function results (for example, if the visibility rule depends on the number of open tasks), follow these instructions.
+
+Since the **ChildFold()&#x20;**&#x66;unction is not supported on clients, you can create a helper field, such as **TaskCount**, and add a calculation rule that is evaluated on the server context.
+
+1. To hide a button in the user interface based on the teams to which a user belongs, create a visibility rule.
+2. When you refer to a calculated field value in a client side (visibility or read-only) rule, the following happens:
+   1. If the field is an existing stored field, use the norma&#x6C;**&#x20;BeforeSave** condition. You do not need to select **Also Recalculate On Load**.
+   2. If the field is intended for user interface visibility only, create a new field that is not stored with a calculation rule set to **AfterSave**, by doing the following:
+      1. Open the field, such as **TaskCount**, and ensure that **Stored&#x20;**&#x69;s not selected.
+      2. Edit the calculation rule for that field, and set the condition to **AfterSave**. Select **Also Recalculate On Load**.
+      3. Add the **TaskCount&#x20;**&#x66;ield as an invisible field to the header form of an incident.
+      4. Add the user interface visibility rule to a form action.
+3. Now the button is only visible when the visibility rule returns false and it is hidden when the visibility rule returns true.

@@ -1,0 +1,47 @@
+---
+title: Responding to Incidents
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:47 GMT+0300 (Eastern European Summer Time)
+---
+
+When an end user submits an incident through the \{\{FRS\_VARS.Self\_Service\_Portal-Self-Service}} portal, the application sets its initial status to logged. The status of the incident is changed to assigned when it assigns the incident to an owner, such as a \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Analyst-Service-Desk-Analyst}}.
+
+The amount of time that the incident is in the logged state is called the incident response time. If the incident response time exceeds a certain duration, as defined by the service level agreement, the application displays a notification on the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Console}} Management dashboard, and displays a breached status on the response progress bar.
+
+The amount of time that an incident is in the logged, active, or waiting for resolution state before being set to resolved or closed is called the incident resolution time. When the incident resolution time exceeds the time defined for an incident to be resolved, its status is displayed in the **Resolution Target** area on the **Incident** workspace. Incident resolution has five increasingly urgent levels of escalation: 1st, 2nd, 3rd, 4th, and 5th (or breach).
+
+To end an incident resolution escalation, resolve or close the incident.
+
+If the incident is waiting for a response from someone (usually the person who opened it), the application sets the escalation clock back to zero. After a certain amount of time, as defined by the service level agreement, the application notifies the requester that there has been no response. If the requester does not respond in a certain amount of time (usually one business day), the system automatically closes the incident.
+
+## Responding to an Escalated Incident
+
+When you are notified of an incident response escalation, do the following:
+
+1. Log in to the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Console}} console.
+2. From the **Home** tab, select either **My Team's Unassigned Incidents** or **Incidents Pending Assignment**.
+3. Open the incident that is identified in the escalation notification.
+4. In the **Owner** field, choose a name from the drop-down list.
+5. Click **Save**.
+
+<Paragraph indent="1">
+  The application does the following:
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  Changes the status of the incident to active (the system considers the incident responded to) and ends the escalation.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  Creates a journal entry in the **Journal** section of the **Incident** workspace.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  Notifies the requester.
+</Paragraph>
+
+Refer to the following links to investigate and resolve the incidents:
+
+### [Investigating Incidents](Investigating-Incidents.mdx)
+
+### [Resolving Incidents](Resolving-Incidents.mdx)

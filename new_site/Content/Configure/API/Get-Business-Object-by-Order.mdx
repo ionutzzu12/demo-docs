@@ -1,0 +1,137 @@
+---
+title: Get Business Object by Order
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:01 GMT+0300 (Eastern European Summer Time)
+---
+
+Fetches business object records by the defined order. For example, you can define to display the business object records in ascending order.
+
+**Base URL:**
+
+https\://\{tenant url}/api/odata/businessobject/\{business object name}?$orderby=\{order parameter}
+
+<hint type="info">
+  Ensure the business object name is suffixed with an "s".
+</hint>
+
+<ExpandableHeading>
+  ## Get Business Object by Order - Example
+
+  Here is an example to fetch incidents by its incident number in ascending order.
+
+  | URL                                      | https\://\{tenant url}/api/odata/businessobject/incidents?$orderby=IncidentNumber asc                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+  | ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+  | <font color="#ffffff">Method</font>      | GET                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+  | Header Name                              | Authorization: JTW Token/Session Key/REST API Key                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+  | <font color="#ffffff">Status Code</font> | 200                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+  |                                          |   <ExpandableHeading>
+      ## Click to view response payload
+
+      \{
+
+      "@odata.context": "\{tenant url}/api/odata/$metadata#incidents",
+
+      "@odata.count": 44,
+
+      "value": \[
+
+      \{
+
+      "ActualCategory\_Valid": "641C539C94A449FDBEC1FCCE462E8C89",
+
+      "ActualCategory": "Application Error",
+
+      "CreatedBy": "JClerk",
+
+      "Email": "BLevitt\@saasitdemo.com",
+
+      "IncidentNumber": 10001,
+
+      "IsNotification": true,
+
+      "IsVIP": false,
+
+      },
+
+      \{
+
+      "ActualCategory\_Valid": "601387668EAE4F09BB6D8DE4E922B2C7",
+
+      "ActualCategory": "Connectivity",
+
+      "CreatedBy": "Email Listener",
+
+      "Email": "PChang\@saasitdemo.com",
+
+      "IncidentNumber": 10002,
+
+      "IsNotification": true,
+
+      "IsVIP": false,
+
+      },
+
+      \{
+
+      "ActualCategory\_Valid": "B30A0BC3F3174B22B328D742C24B59C4",
+
+      "ActualCategory": "Account Lockout",
+
+      "CreatedBy": "Admin",
+
+      "Email": "RThomas\@saasitdemo.com",
+
+      "IncidentNumber": 10003,
+
+      "IsNotification": true,
+
+      "IsVIP": false,
+
+      },
+    </ExpandableHeading> |
+</ExpandableHeading>
+
+<hint type="info">
+  The data displayed in the Response Payload is only a sample data, it does not contain the full list of responses but only a few are shown for sample.
+</hint>
+
+## Unsuccessful Responses
+
+<ExpandableHeading>
+  ## Empty Orderby Parameter
+
+  Scenario: Trying to fetch incidents when orderby is blank.
+
+  https\://\{tenant url}/api/odata/businessobject/incidents?$orderby=
+
+  Header Name:
+
+  **Authorization: Sessionkey**
+
+  | Code                                          | ISM\_5000                                                                                                                   |
+  | --------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+  | Description                                   | Invalid Request                                                                                                             |
+  | Message                                       | \[  <br />"The parameter 'orderby' cannot be empty.  <br />Please provide a valid orderby parameter and try again"  <br />] |
+  | <font color="#ffffff">HTTP STATUS CODE</font> | **500**                                                                                                                     |
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Incorrect Orderby Parameter
+
+  Scenario: Trying to fetch incidents when orderby is invalid.
+
+  https\://\{tenant url}/api/odata/businessobject/incidents?$orderby=IncidentNumber ascending
+
+  Header Name:
+
+  **Authorization: Sessionkey**
+
+  | Code                                          | ISM\_2004  |
+  | --------------------------------------------- | ---------- |
+  | Description                                   | No Content |
+  | <font color="#ffffff">HTTP STATUS CODE</font> | **204**    |
+</ExpandableHeading>
+
+<hint type="info">
+  If the Orderby argument is missing, then the application returns the results by ordering in ascending order which the default. For example, https\://\{tenant url}/api/odata/businessobject/incidents?$orderby=IncidentNumber, in this url the orderby argument 'asc' or 'desc' is missing, in such scenario, the application returns the results in ascending order.
+</hint>

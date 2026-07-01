@@ -1,0 +1,122 @@
+---
+title: Adding Users to the System and Assigning Roles to Users
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:49 GMT+0300 (Eastern European Summer Time)
+---
+
+**Role**: Administrator
+
+**Minimum Version**: \{\{FRS\_VARS.Company}} \{\{FRS\_VARS.ProductName}} 2019
+
+Use the **Application Setup - Users** page to create users and assign them to roles.
+
+<hint type="info">
+  This is one step of the application setup process. For more information about this process, including how to access this page, refer to [Setting Up the Application](<Setting Up The Application.mdx>).
+</hint>
+
+This topic describes how to manually add employees to your application. This information is stored as part of the **Employee.Profile** business object.
+
+## Before Adding Users
+
+1. **Add managers**: Add all employees that are managers to your application. Add them using the process as described in :Link[Adding Users]{label="Adding Users" overridedLabel="Adding Users" spaceId docId="xpMFCIyLxe7Mj1I_zEdUj" version="v2" docAnchorId="#Adding_Users" loadingMethod="dynamic" newTab="false" href="Adding Users to Roles.mdx"}.
+
+<hint type="info" indent="1">
+  You must add managers before adding teams so that new team records can be saved to the manager employee profiles.
+</hint>
+
+2. **Create teams**: Use teams to group your employees to simplify the assignment process for incidents, problems, and changes. The application assigns newly-created assignments to a team. Users who are not part of a team do not appear in the **Assignee** drop-down menu.
+
+<hint type="info" indent="1">
+  You must create teams before adding non-manager users. This allows you to assign users to teams when defining the employee information.
+</hint>
+
+3. **Add users**: Refer to :Link[Adding Users]{label="Adding Users" overridedLabel="Adding Users" spaceId docId="xpMFCIyLxe7Mj1I_zEdUj" version="v2" docAnchorId="#Adding_Users" loadingMethod="dynamic" newTab="false" href="Adding Users to Roles.mdx"}.
+
+## Adding Users
+
+1. Click **Users**. The application displays the **Application Setup - Users** page.
+2. To add a new user to the application and assign the user to one or more roles, do the following:
+
+<Paragraph indent="1">
+  a. Click **Add User**.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Enter the first name, last name, login ID, email address, and phone number for the new user.
+</Paragraph>
+
+<hint type="info" indent="1">
+  The value of the **Login** field cannot contain angle brackets. This is to avoid the possible addition of malicious JavaScript being added to the application.
+</hint>
+
+<Paragraph indent="1">
+  c. Select an organization and a team for the new user.
+</Paragraph>
+
+<Paragraph indent="1">
+  d. Select the roles to assign the new user to.
+</Paragraph>
+
+<Paragraph indent="1">
+  e. Click **Save**.
+</Paragraph>
+
+3. To assign an existing user to a role, do the following:
+
+<Paragraph indent="1">
+  a. Find the name of the user in the **Users** column for any role.
+</Paragraph>
+
+<Paragraph indent="1">
+  For example, if you want to add a user to the Configuration Manager role, the name of the user will not be listed in the **Users** column for that role, so look under another role for the name of the user.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Click **Edit** next to the name of the user.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. In the **Member Of** field, select the roles to assign the user to.
+</Paragraph>
+
+<Paragraph indent="1">
+  d. Click **Save**.
+</Paragraph>
+
+<hint type="success" indent="1">
+  The system delivers certain system accounts (for example, frs.tso, frs.pso, etc.), and these accounts are critical to system stability. You cannot delete, disable, rename, or assign new roles to these accounts. The system blocks any attempt to modify them. Use the predefined workflow configurations instead of editing these accounts.
+</hint>
+
+4. To remove a user from a role, do the following:
+
+<Paragraph indent="1">
+  a. Highlight the name of the role in the **Roles** column.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Find the name of the user in the **Users** column.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. Click **Revoke** next to the name of the user.
+</Paragraph>
+
+5. To remove a user from the application, do the following:
+
+<Paragraph indent="1">
+  This removes the user from the application.  It does not just remove the role from the user, but also removes the user from the application. Use caution when selecting this option.
+</Paragraph>
+
+<Paragraph indent="1">
+  a. Find the name of the user in the **Users** column for any role.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Next to the name of the user, click **Remove**.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. Click **Yes** in the confirmation message.
+</Paragraph>
+
+6. Click **Next** to save your settings and go to the next page. Refer to [Reviewing and Finishing the Application Setup](<Review and Finish Application Setup.mdx>).

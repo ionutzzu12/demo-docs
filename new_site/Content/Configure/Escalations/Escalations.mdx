@@ -1,0 +1,69 @@
+---
+title: Working with Escalations
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:57 GMT+0300 (Eastern European Summer Time)
+---
+
+- :Link[About Escalations]{label="About Escalations" overridedLabel="About Escalations" spaceId docId="kfxL4A-RzHCCUz0SnOzem" version="v2" docAnchorId="#About-Escalations" loadingMethod="dynamic" newTab="false" href="Escalations.mdx"}
+- :Link[Default Escalations]{label="Default Escalations" overridedLabel="Default Escalations" spaceId docId="kfxL4A-RzHCCUz0SnOzem" version="v2" docAnchorId="#Default-Escalations" loadingMethod="dynamic" newTab="false" href="Escalations.mdx"}
+- :Link[Factors Affecting Escalations]{label="Factors Affecting Escalations" overridedLabel="Factors Affecting Escalations" spaceId docId="kfxL4A-RzHCCUz0SnOzem" version="v2" docAnchorId="#Factors" loadingMethod="dynamic" newTab="false" href="Escalations.mdx"}
+- :Link[Creating an escalation]{label="Creating an escalation" overridedLabel="Creating an escalation" spaceId docId="PXd5CaWJxYHxxo9tptWbG" version="v2" docAnchorId="#Creating-an-Escalation" loadingMethod="dynamic" newTab="false" githubPath="create_escalations.htm#Creating-an-Escalation" href="create_escalations.mdx"}
+- :Link[Adding escalation levels]{label="Adding escalation levels" overridedLabel="Adding escalation levels" spaceId docId="PXd5CaWJxYHxxo9tptWbG" version="v2" docAnchorId="#Adding-Escalation-Levels" loadingMethod="dynamic" newTab="false" githubPath="create_escalations.htm#Adding-Escalation-Levels" href="create_escalations.mdx"}
+- :Link[Modifying an escalation schedule]{label="Modifying an escalation schedule" overridedLabel="Modifying an escalation schedule" spaceId docId="PXd5CaWJxYHxxo9tptWbG" version="v2" docAnchorId="#Modifying-an-Escalation-Schedule" loadingMethod="dynamic" newTab="false" githubPath="create_escalations.htm#Modifying-an-Escalation-Schedule" href="create_escalations.mdx"}
+- :Link[Deleting an escalation schedule]{label="Deleting an escalation schedule" overridedLabel="Deleting an escalation schedule" spaceId docId="PXd5CaWJxYHxxo9tptWbG" version="v2" docAnchorId="#Deleting-an-Escalating-Schedule" loadingMethod="dynamic" newTab="false" githubPath="create_escalations.htm#Deleting-an-Escalating-Schedule" href="create_escalations.mdx"}
+- [Working with Escalation Exceptions](escalation_exceptions.mdx)
+- [Watching Escalations](<Escalation Watch.mdx>)
+- [About Resolution Details](<Resolution Details.mdx>)
+- [Example: Setting an Escalation Schedule by Priority](<Set Escalation Schedule by Priorty.mdx>)
+- [Default Escalation Settings](Default_Escalations.mdx)
+
+## About Escalations
+
+An escalation clock monitors various \{\{FRS\_VARS.ProductName}} events. If an event does not occur in a prescribed period, \{\{FRS\_VARS.ProductName}} executes an escalation action. The exact timing and actions of an escalation depend on how you configure the escalation. By default, escalations are defined for incidents, service requests, and tasks, and automatically run unless you are using the **Service Level Management** module.
+
+Escalations typically provide notification in a dashboard or in a business object form (such as an **Incident Details** form). It is up to the Service Desk Analyst or Service Desk Manager to take appropriate action based on such notifications.
+
+You can define and manage escalations through service level packages and service level agreements. An escalation is executed by the escalation engine when a triggering event occurs or condition exists, and can be affected by hours of operation and service level agreements. See [Creating an escalation](create_escalations.mdx).
+
+<hint type="info">
+  Service level agreements associated with a service override any application escalations when service level agreements are associated with a request item. In the absence of service level agreements, default escalations are run. See [Creating an escalation](create_escalations.mdx).
+</hint>
+
+Do not delete the **ServiceReq - Delivery Default** escalation, as you will not be able to create and save new request offerings.
+
+## Default Escalations
+
+Default \{\{FRS\_VARS.ProductName}} escalation states are provided for these events:
+
+- :Link[Incident]{label="Incident" overridedLabel="Incident" spaceId docId="kfxL4A-RzHCCUz0SnOzem" version="v2" docAnchorId="#Incident" loadingMethod="dynamic" newTab="false" href="Escalations.mdx"}
+- :Link[Service Request]{label="Service Request" overridedLabel="Service Request" spaceId docId="kfxL4A-RzHCCUz0SnOzem" version="v2" docAnchorId="#Service" loadingMethod="dynamic" newTab="false" href="Escalations.mdx"}
+- :Link[Task]{label="Task" overridedLabel="Task" spaceId docId="kfxL4A-RzHCCUz0SnOzem" version="v2" docAnchorId="#Task" loadingMethod="dynamic" newTab="false" href="Escalations.mdx"}
+
+### Incident
+
+- Closing
+- Resolution
+- Response
+- Waiting
+
+### Service Request
+
+- Closing
+- Delivery
+- Response
+- Waiting
+
+### Task
+
+- Task Assignment - Acceptance
+- Task Assignment - Completion
+- Task Work Order - Acceptance
+- Task Work Order - Completion
+
+## Factors Affecting Escalations
+
+Escalation configurations define the business object and the field that the escalation is based on. An escalation is based on the status of a specified field in a business object form. For example, the **IncidentClosing** escalation is based on the value of the status field in the incident business object form.
+
+- **How form events are mapped to escalation clock activity**: Because escalations are time-based, each has an escalation clock that you can configure to run, stop, reset, and so on based on the status of the specified form field. For example, the **IncidentClosing** escalation is configured so that when the **Incident Status** field is set to resolved, the escalation clock starts running.
+- **The number and target duration of escalation levels, and what action is taken when the target duration is exceeded**: After the escalation clock starts, it runs for a specified period of time at one or more stages, or escalation levels. Escalation levels are defined by thresholds that must be reached to trigger a call for additional resources to meet a service level target or customer expectation. When the duration at any level is exceeded, the escalation engine takes an action that you specify. For example, the **IncidentClosing** escalation is configured so that if the escalation clock runs for more than one day, the application executes the **Auto Close** quick action. You can configure up to three escalation levels for each escalation. Each level can have its own target duration and action when the target duration is exceeded.
+- **Exceptions to field status that the escalation is based on**: You can specify that different escalation levels be based on form fields other than the field that the escalation was based on originally. For example, you could specify that level 2 of the **IncidentClosing** escalation be based on the value of the **Priority** field instead of the **Status** field (which the escalation was originally based on).

@@ -1,0 +1,62 @@
+---
+title: CurrentUserEmail
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:58 GMT+0300 (Eastern European Summer Time)
+---
+
+Returns the primary email address of the user associated with the current session. This is the **Primary Email** field from the **Details** tab in the user profile.
+
+## Syntax
+
+CurrentUserEmail()
+
+## Enabled For
+
+For a description of the business object categories, see :Link[Notes on "Enabled For"]{label="Notes on &#x22;Enabled For&#x22;" overridedLabel="Notes on &#x22;Enabled For&#x22;" spaceId docId="xObv2pIDrk60jkEIWs8mD" version="v2" docAnchorId="#Notes" loadingMethod="dynamic" newTab="false" githubPath="_Built_in_Functions.htm#Notes" href="_Built_in_Functions.mdx"}.
+
+| Business Object Category                                                                    | Yes/No |
+| ------------------------------------------------------------------------------------------- | ------ |
+| Business Rules: Before-Save Rules                                                           | Yes1   |
+| Business Rules: Calculation Rules (After Save, with or without Also Recalculate on Load)    | Yes1   |
+| Business Rules: Calculation Rules (Before Save or Always, without Also Recalculate On Load) | Yes1   |
+| Business Rules: Calculation Rules (Before Save or Always, with Recalculate On Load)         | Yes1   |
+| Business Rules: Editing Rules                                                               | Yes1   |
+| Business Rules: Initialization Rules                                                        | Yes1   |
+| Business Rules: Read Only Rules                                                             | Yes1   |
+| Business Rules: Required Rules                                                              | Yes1   |
+| Business Rules: Validation Rules                                                            | Yes1   |
+| Client Expressions                                                                          | Yes    |
+| Object Permissions                                                                          | Yes    |
+| Services                                                                                    | Yes    |
+| LDAP                                                                                        | Yes    |
+| Mobile                                                                                      | Yes    |
+| Quick Actions (except UI Quick Actions)                                                     | Yes1   |
+| UI Quick Actions                                                                            | Yes    |
+| Reports                                                                                     | Yes1   |
+| Search/Dashboard without field references                                                   | Yes1   |
+| Search/Dashboard with field references                                                      | Yes1   |
+| 1. Except in services.                                                                      |        |
+
+## Parameters
+
+None.
+
+## Return Value
+
+<Paragraph indent="1">
+  Unicode text value. Returns an email address value, such as admin\@company.com.
+</Paragraph>
+
+<Paragraph indent="1">
+  If the **Primary Email** field on the **Details** tab in the user profile is empty, returns an error.
+</Paragraph>
+
+## Example
+
+<Paragraph indent="1">
+  The following example finds the active incident instances for the employee with the email address associated with the user of the current session.
+</Paragraph>
+
+*CurrentUserEmail() Example*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/YIShdDV45HJXsoqAsfXdm_currentuseremail.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/currentUserEmail.png" githubPath="Content/Resources/Images/help-images/currentUserEmail.png" showCaption="false"></Image>

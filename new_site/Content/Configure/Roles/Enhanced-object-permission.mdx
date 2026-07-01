@@ -1,0 +1,157 @@
+---
+title: Using Enhanced Object Permissions
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:50 GMT+0300 (Eastern European Summer Time)
+---
+
+**Role**: Administrators.
+
+**Minimum Version**: \{\{Primary.Company}}\{\{Primary.Product}} 2024.2.
+
+\{\{FRS\_VARS.ProductName}} enables full access rights to the business objects associated with a role when you create it. You have to manually modify the permissions for each role. The enhanced object permissions feature allows you to apply permissions for a role based on the **Top Level Tabs** and metadata configuration.
+
+<hint type="info">
+  Enhanced object permissions do not include **Create (For Self)** permissions such as **Actions**, **Search** and **Dashboard** in the **System Permissions** tab. These permissions are user specific, and you must manually apply required permissions to the role. In addition, the Admin role has all permissions granted by default, so the **Apply Enhanced Permissions** and **Remove Enhanced Permissions** buttons are not available.
+</hint>
+
+You must select **Apply Enhanced Permissions** to update the additional permissions when making changes such as publishing dashboards/saved search/Quick Actions, enabling disabled business rules, or changing metadata such as adding fields.
+
+<hint type="info">
+  This feature requires you to set the **EnableEnhancedObjectPermission** global constant to True. After applying enhanced object permissions, you cannot remove or apply enhanced permissions to a role because the **Apply Enhanced Permissions** and **Remove Enhanced Permission** buttons are unavailable when you disable the global constant.
+</hint>
+
+<ExpandableHeading>
+  ## Enable the global constant to use enhanced object permissions
+
+  1. Log in to \{\{Primary.Product}} with the Administrator user role.
+  2. Select **Configure Application** to go to the Configuration Console.
+  3. Select **Build > Global Constants** to open the Global Constants window.
+  4. Set th&#x65;**&#x20;EnableEnhancedObjectPermission** value to True. By default, **EnableEnhancedObjectPermission** value is False.
+  5. Select **Save**.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Assigning enhanced object permissions to a new role
+
+  This procedure allows you to configure permissions automatically based on objects assigned to a role in the **Top Level Tabs** workspace.
+
+  <hint type="info">
+    When you add any object in the **Top Level Tabs** workspace, you must select **Apply Enhanced Permissions** to update the permissions.
+  </hint>
+
+  1. Follow the steps for :Link[Creating a Role]{label="Creating a Role" overridedLabel="Creating a Role" spaceId docId="iUGD9ji_VgJkk9DVIGvHo" version="v2" docAnchorId="#roles_1236189643_1266760" loadingMethod="dynamic" newTab="false" githubPath="Setting-up-Roles.htm#roles_1236189643_1266760" href="Setting-up-Roles.mdx"}.
+  2. Select **Top Level Tabs** to add objects to that role's tabs. For more information, refer to [Setting up Roles](Setting-up-Roles.mdx).
+  3. Select the **Object Permissions** tab.
+
+  <hint type="info" indent="2">
+    By default, the application gives minimum permissions to the new role.
+  </hint>
+
+  4. Select **Apply Enhanced Permissions** and select **OK**.
+
+  <hint type="info" indent="2">
+    This option does not override manually applied permission changes.
+  </hint>
+
+  5. The system automatically selects the permissions based on metadata configuration and on the objects you chose in the **Top Level Tabs** workspace.
+
+  <hint type="info" indent="2">
+    Certain top level tabs don't support enhanced object permissions: **License Manager Wizard**, **ProcessWizard**, **IPCMWebStat**, and **AdminUiTreeMetadata**. Manually update the permissions for these business objects.
+  </hint>
+
+  6. Enter data in the remaining fields. Refer to [Setting up Roles](Setting-up-Roles.mdx).
+  7. Select **Save**.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Assigning Enhanced Object Permissions to an Existing Role
+
+  1. Log in to \{\{Primary.Product}} with the Administrator user role
+  2. Open the Configuration Console, select **Configure** > **Users and Permissions** > **Roles and Permissions**.
+  3. Select a role to open the **Role Details** page.
+  4. Select the **Object Permissions** tab.
+  5. Select **Apply Enhanced Permissions**. The system automatically selects the permissions based on the metadata configuration and on the objects available in the **Top Level Tabs** workspace
+  6. Select **Save**.
+
+  <hint type="info" indent="1">
+    When you apply the enhanced object permissions, the system creates a backup of the existing permissions for use as a backup. Also, if you add more workspaces to the **Top Level Tabs** for a role to access some more workspaces, select **Apply Enhanced Permissions** to re-run the evaluation process and apply the appropriate permissions.
+  </hint>
+
+  You can also select the permission level (**Add**, **View**, **Edit**, **Delete**), **Lifecycle**, and limit **Access** manually if the **Apply Enhanced Permissions** does not apply permissions to a required object pertaining to the role.
+
+  *Selecting object permissions manually for a new role*
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/7t3yi585ZJbjlv2i-KHyX_manually-adding-permissions.png" alt="Manually selecting the permissions level to a required object" position="flex-start" size="40" initialPath="../../Resources/Images/help-images/Enhanced Permissions/manually-adding-permissions.png" githubPath="Content/Resources/Images/help-images/Enhanced Permissions/manually-adding-permissions.png" showCaption="false"></Image>
+
+  <hint type="info">
+    If you give admin rights to an existing role after applying enhanced object permissions, you must remove enhanced permissions (refer to :Link[Removing Enhanced Object Permissions]{label="Removing Enhanced Object Permissions" overridedLabel="Removing Enhanced Object Permissions" spaceId docId="u3EXwGQh9gITOezme9rHb" version="v2" docAnchorId="#Removing" loadingMethod="dynamic" newTab="false" href="Enhanced-object-permission.mdx"}) before granting admin rights to that role.
+  </hint>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Removing Enhanced Object Permissions
+
+  1. From the Configuration console, select **Configure** > **Users and Permissions** > **Roles and Permissions** to open the **Roles and Permissions** workspace and display a list of roles.
+  2. Open the role for which you want to edit the object permissions. The system displays the **Role Details** page.
+  3. Select the **Object Permissions** tab.
+  4. Select **Remove Enhanced Permissions** to revert the permissions to the initial stage (refer to the :Link[note in Step 4]{label="note in Step 4" overridedLabel="note in Step 4" spaceId docId="u3EXwGQh9gITOezme9rHb" version="v2" docAnchorId="#Step4Note" loadingMethod="dynamic" newTab="false" href="Enhanced-object-permission.mdx"} in the :Link[Assigning Enhanced Object Permissions to an Existing Role]{label="Assigning Enhanced Object Permissions to an Existing Role" overridedLabel="Assigning Enhanced Object Permissions to an Existing Role" spaceId docId="u3EXwGQh9gITOezme9rHb" version="v2" docAnchorId="#Assignin" loadingMethod="dynamic" newTab="false" href="Enhanced-object-permission.mdx"} section). The system displays a confirmation.
+
+  <hint type="info" indent="2">
+    Be careful to remove enhanced object permissions after modifying the permissions. The **Remove Enhanced Permissions** option removes all manual modifications made in the **Object Permissions**, **System Permissions** and **Permission to Grant Roles** tabs, and reverts the permissions to its initial stage (see the :Link[note in step 4]{label="note in step 4" overridedLabel="note in step 4" spaceId docId="u3EXwGQh9gITOezme9rHb" version="v2" docAnchorId="#Step4Note" loadingMethod="dynamic" newTab="false" href="Enhanced-object-permission.mdx"} in the :Link[Assigning Enhanced Object Permissions to an Existing Role]{label="Assigning Enhanced Object Permissions to an Existing Role" overridedLabel="Assigning Enhanced Object Permissions to an Existing Role" spaceId docId="u3EXwGQh9gITOezme9rHb" version="v2" docAnchorId="#Assignin" loadingMethod="dynamic" newTab="false" href="Enhanced-object-permission.mdx"} section). Manually modify these three tabs before applying the enhanced object permissions for the first time. You can also remove the enhanced object permissions, make the manual changes, and then apply the enhanced permissions.
+  </hint>
+
+  5. Select **Ok**. The system will remove all enhanced object permissions and display initially saved permissions. For new roles, the system will automatically select all access rights associated with the business objects.
+  6. Select **Save**.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Secure Organizational Unit Without Breaking Service Catalog
+
+  You can restrict access to Organizational Unit records while ensuring that **Request Offerings** published to **Any** or to a parent Organizational Unit (including its subtree) remains visible in the **Service Catalog**.
+
+  **To configure Organizational Unit Without Breaking Service Catalog**
+
+  1. Log in to \{\{Primary.Product}} as an **Administrator**.
+  2. Open the Configuration Console, select **Configure** > **Users and Permissions** > **Roles and Permissions**.
+  3. Select the **Self Service** role (or any custom self-service role) > **Object Permissions**.
+  4. Find **OrganizationalUnit** in the list and click **Edit** in the **Access** column.
+  5. Under **Update and View** set:
+     - Field: **RecId (Record Identifier)**.
+     - Operator: **is** and **equal to**.
+     - Value: select the **fx** icon and enter the following expression and click **Save**:
+
+  <Paragraph indent="2">
+    $(if Find(Frs\_CompositeContract\_Entity\_RecId,
+  </Paragraph>
+
+  <Paragraph indent="2">
+    CurrentUserAvailableOrganizationalUnits()) > -1
+  </Paragraph>
+
+  <Paragraph indent="2">
+    then Frs\_CompositeContract\_Entity\_RecId
+  </Paragraph>
+
+  <Paragraph indent="2">
+    else "")
+  </Paragraph>
+
+  6. Click **Update** and then **Save**.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/_sgvN6KcI8fd4k4ntwZfU_organization-unit-recid.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/organization-unit-recid.png" githubPath="Content/Resources/Images/organization-unit-recid.png" showCaption="false"></Image>
+
+  <hint type="info" indent="1">
+    The CurrentUserAvailableOrganizationalUnits() function returns a list of Organizational Units the user can access based on Service Catalog logic. This function is available only in **Object Permissions**.
+  </hint>
+</ExpandableHeading>
+
+## Tips for Using Enhanced Object Permissions Feature
+
+- When you configure a role without including the **Employee** business object as the top level tab, the **View** and/o&#x72;**&#x20;Edit** permissions will be granted to the **Employee** business object due to its dependency on other business objects. Because of this dependency, you can configure the segregation rules to the **Employee** business object by selecting **Edit** in the **Access** column of the **Object Permissions** workspace.
+  The below example restricts the self service user from viewing all records. However, users can update their own Employee data.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/-M5Pkc02xCTNxifEZwc0v_tc-example1.jpg" position="flex-start" size="40" indent="2" initialPath="../../Resources/Images/help-images/Enhanced Permissions/tc-example1.jpg" githubPath="Content/Resources/Images/help-images/Enhanced Permissions/tc-example1.jpg" showCaption="false"></Image>
+
+- Configure the fields' permissions based on your business requirement.
+- When configuring the **Social Board** top level tab, you must provide an **Edit** permission for the additional fields; the additional fields rely on the **Employee** business object to update your profile information in the **Social Board** workspace.
+- Analytic Metrics is independent of enhanced object permissions, and the metrics functionalities will continue to work even if the associated permissions are revoked.

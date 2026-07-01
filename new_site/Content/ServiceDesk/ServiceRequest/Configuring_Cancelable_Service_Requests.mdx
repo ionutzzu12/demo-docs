@@ -1,0 +1,168 @@
+---
+title: Managing Service Request Actions and Permissions
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:47 GMT+0300 (Eastern European Summer Time)
+---
+
+You can configure service requests to allow users to edit or cancel them after submission. This provides flexibility to accommodate changes or corrections while maintaining control over the request lifecycle. In addition, you can restrict editing or cancellation after a specific stage in the workflow. For example, you might allow users to cancel a request until it has been approved. Once approval occurs, you can prevent further changes.
+
+By default, requests with a status of Canceled, Closed, or Fulfilled cannot be edited or canceled. These statuses indicate that the request has reached a final state and is no longer actionable.
+
+<ExpandableHeading>
+  ## Configuring Request Editing and Cancellation
+
+  1. Log in to the application as a service owner or \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+  2. Open the **Request Offerings** workspace.
+  3. Open the service request to configure.
+
+  <Paragraph indent="1">
+    The **Request Offerings** wizard appears.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    *Request Offerings Wizard*
+  </Paragraph>
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/mV7PEjBz1-vUlqGUHDnnS_request-offerings-wizard.png" alt="Request Offerings Wizard" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/Request Offerings Wizard.png" githubPath="Content/Resources/Images/help-images/Request Offerings Wizard.png" showCaption="false"></Image>
+
+  4. In the **Define Request Offering** tab, select:
+     - **Enable Request Editing** - Enables self service users to edit a submitted request, allowing them to update details after submission when corrections or additional information are needed.
+     - **Enable Request Cancellation** - Allows self service users to cancel a submitted request. Canceling sets the request status to Canceled and ends processing when the request is no longer needed or was submitted by mistake.
+  5. Click **Save**.
+
+  <Paragraph indent="1">
+    Users can now cancel or edit a service request once it has been submitted.
+  </Paragraph>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Disable the Cancel Button
+
+  Users (except those in the Self service Portal) see a **Cancel** button (:inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/dRU8-RSgjiu0B_MQ9rDga_cancel23x8.png" alt caption size="10" width="23" height="8"}) in the service request toolbar. They can click this to set the status to canceled.
+
+  To remove cancel button:
+
+  1. In the Configuration console, click **Build > Business Objects**.
+  2. Click **Service Request**.
+
+  <Paragraph indent="1">
+    The **Service Request details** page appears.
+  </Paragraph>
+
+  3. In the **Layouts** tab, select **ServiceReqLayout.New**.
+
+  <Paragraph indent="1">
+    The **Layout Editor** appears.
+  </Paragraph>
+
+  4. Click **formView**.
+
+  <Paragraph indent="1">
+    The **Form View Editor** appears.
+  </Paragraph>
+
+  5. In the toolbar area, click **Edit**.
+
+  <Paragraph indent="1">
+    The **Toolbar Editor** appears.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    *Toolbar Editor*
+  </Paragraph>
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Gh87L1QPsy2ncm1j5tgw1_servicereqlayout-toolbar-editor.png" alt="Toolbar Editor" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/ServiceReqLayout Toolbar Editor.png" githubPath="Content/Resources/Images/help-images/ServiceReqLayout Toolbar Editor.png" showCaption="false"></Image>
+
+  <Paragraph indent="1">
+    In the **Toolbar Editor**, the **Cancel Service Request** button appears in the white area. If the button does not appear, then it has been disabled.
+  </Paragraph>
+
+  6. Drag **Cancel Service Request** over the trash can icon.
+
+  <Paragraph indent="1">
+    This removes the button from the layout. The **Delete Confirmation** window appears.
+  </Paragraph>
+
+  7. Click **OK**.
+  8. Click **Save** to close the window.
+  9. Click **Save** again to save the layout.
+
+  <Paragraph indent="1">
+    The **Cancel Service Request** button no longer appears on the user workspace.
+  </Paragraph>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Enable the Cancel Button
+
+  Administrators can add the Cancel button if it does not appear.
+
+  1. In the Toolbar Editor, drag **Cancel Service Request** from the list to the toolbar area.
+
+  <Paragraph indent="1">
+    The **Toolbar Button Editor** window appears.
+  </Paragraph>
+
+  2. Enter the following parameters:
+
+  | Parameter | Description                                                |
+  | --------- | ---------------------------------------------------------- |
+  | Action    | Select **Button Invokes Action > Cancel Service Request**. |
+  | Display   | Select **Image and Text**.                                 |
+  | Image     | icon\_task\_cancel.png                                     |
+  | Text      | Default                                                    |
+  | Tooltip   | Enter **Cancel Service Request**                           |
+
+  3. Click **Save**.
+  4. Click **Save** again to close the editor.
+  5. From the toolbar, click **Save**.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Prevent editing or canceling Service Requests
+
+  You can prevent editing or canceling at specific points in the workflow by setting the **ForceNotEditable** and **ForceNotCancelable** to **True** in the **Update** workflow block.
+
+  1. Log in to the application as the service owner.
+  2. Open the **Request Offerings** workspace.
+  3. Double click the request to modify.
+
+  <Paragraph indent="1">
+    The **Request Offerings** wizard appears.
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    In the **Plan Request Fulfillment** tab, the **Fulfill** option must be set to **Workflow**.
+  </Paragraph>
+
+  4. Drag the **Update** block onto the Workflow Designer, and double click the block header to open the properties.
+  5. Set the following parameters under **ServiceReq > Fields** (you can set either item or both items):
+
+  | Field                | Description                           |
+  | -------------------- | ------------------------------------- |
+  | Force Not Cancelable | Set to **True** to prevent canceling. |
+  | Force Not Editable   | Set to **True** to prevent editing.   |
+
+  *Prevent Editable or Cancellable Service Requests*
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/DYeK65859QQQj0wCd19p2_prevent-editable-or-cancellable-service-requests.png" alt="Prevent Editable or Cancellable Service Requests" position="flex-start" size="40" initialPath="../../Resources/Images/help-images/Prevent Editable or Cancellable Service Requests.png" githubPath="Content/Resources/Images/help-images/Prevent Editable or Cancellable Service Requests.png" showCaption="false"></Image>
+
+  6. Click **Save**.
+  7. Connect the block to the workflow. For example, connect the **Approval** block to the **Update** block, then connect the **Update** block to the next block.
+
+  *Approval Block in Workflow*
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/iYOlSLcDRC9KegvitZuuB_approval-block-in-workflow.png" alt="Approval Block in Workflow" position="flex-start" size="40" initialPath="../../Resources/Images/help-images/Approval Block in Workflow.png" githubPath="Content/Resources/Images/help-images/Approval Block in Workflow.png" showCaption="false"></Image>
+
+  After approval, users cannot edit or cancel the request.
+
+  8. Click **Save**.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Cancel Button in the Self-Service Portal
+
+  Users in the Self service Portal do not have a toolbar. The **Cancel** button appears in the form interface.
+
+  Service owners must define the **Cancel Request** quick action within the request offering workflow. Refer to [Using Workflows](../../Configure/Workflows/Using_Workflows.mdx).
+</ExpandableHeading>

@@ -1,0 +1,47 @@
+---
+title: Working with Request Offerings and Service Requests
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:01 GMT+0300 (Eastern European Summer Time)
+---
+
+- :Link[About Request Offering and Service Request Web Methods]{label="About Request Offering and Service Request Web Methods" overridedLabel="About Request Offering and Service Request Web Methods" spaceId docId="8aYf2SkKvNuIZt1M167NL" version="v2" docAnchorId="#About-Request-Offering-and-Service-Request-Web-Methods" loadingMethod="dynamic" newTab="false" href="Request Offering.mdx"}
+- :Link[Using the GetCategories Web Method]{label="Using the GetCategories Web Method" overridedLabel="Using the GetCategories Web Method" spaceId docId="iLk_Y4maIi1EjfAIgy-Rp" version="v2" docAnchorId="#Using-the-GetCategories-Web-Method" loadingMethod="dynamic" newTab="false" githubPath="GetCategories.htm#Using-the-GetCategories-Web-Method" href="GetCategories.mdx"}
+- :Link[Using the GetCategoryTemplates Web Method]{label="Using the GetCategoryTemplates Web Method" overridedLabel="Using the GetCategoryTemplates Web Method" spaceId docId="VfVNj4qpD2yDYCAlZc_G4" version="v2" docAnchorId="#Using-the-GetCategoryTemplates-Web-Method" loadingMethod="dynamic" newTab="false" githubPath="GetCategoryTemplates.htm#Using-the-GetCategoryTemplates-Web-Method" href="GetCategoryTemplates.mdx"}
+- :Link[Using the GetAllTemplates Web Method]{label="Using the GetAllTemplates Web Method" overridedLabel="Using the GetAllTemplates Web Method" spaceId docId="8ho1UIxnQB0Ygv-5oQ7qS" version="v2" docAnchorId="#Using-the-GetAllTemplates-Web-Method" loadingMethod="dynamic" newTab="false" githubPath="GetAllTemplates.htm#Using-the-GetAllTemplates-Web-Method" href="GetAllTemplates.mdx"}
+- :Link[Using the GetSubscriptionId Web Method]{label="Using the GetSubscriptionId Web Method" overridedLabel="Using the GetSubscriptionId Web Method" spaceId docId="AwCwK3pmxbz8S7vw0Fhn7" version="v2" docAnchorId="#Using-the-GetSubscriptionId-Web-Method" loadingMethod="dynamic" newTab="false" githubPath="GetSubscriptionId.htm#Using-the-GetSubscriptionId-Web-Method" href="GetSubscriptionId.mdx"}
+- :Link[Using the GetPackageData Web Method]{label="Using the GetPackageData Web Method" overridedLabel="Using the GetPackageData Web Method" spaceId docId="n1jiEc4UW5j1v3TYeFhD0" version="v2" docAnchorId="#Using-the-GetPackageDataWeb-Method" loadingMethod="dynamic" newTab="false" githubPath="GetPackageData.htm#Using-the-GetPackageDataWeb-Method" href="GetPackageData.mdx"}
+- :Link[Using the UserCanAccessRequestOffering Web Method]{label="Using the UserCanAccessRequestOffering Web Method" overridedLabel="Using the UserCanAccessRequestOffering Web Method" spaceId docId="lr65lp9i1kdPZpQnWBncm" version="v2" docAnchorId="#Using-the-UserCanAccessRequestOffering-Web-Method" loadingMethod="dynamic" newTab="false" githubPath="UserCanAccessRequestOffering.htm#Using-the-UserCanAccessRequestOffering-Web-Method" href="UserCanAccessRequestOffering.mdx"}
+- :Link[Using the SubmitRequest Web Method]{label="Using the SubmitRequest Web Method" overridedLabel="Using the SubmitRequest Web Method" spaceId docId="nlBLyz2YhTmDXgCgeag0H" version="v2" docAnchorId="#Using-the-SubmitRequest-Web-Method" loadingMethod="dynamic" newTab="false" githubPath="SubmitRequest.htm#Using-the-SubmitRequest-Web-Method" href="SubmitRequest.mdx"}
+- :Link[Using the GetRequestData Web Method]{label="Using the GetRequestData Web Method" overridedLabel="Using the GetRequestData Web Method" spaceId docId="ck2e_-S-yuQtqNUC3nYR9" version="v2" docAnchorId="#Using_the_GetRequestData_Web_Method" loadingMethod="dynamic" newTab="false" githubPath="GetRequestData.htm#Using_the_GetRequestData_Web_Method" href="GetRequestData.mdx"}
+- :Link[Using the FetchServiceReqValidationListData Web Method]{label="Using the FetchServiceReqValidationListData Web Method" overridedLabel="Using the FetchServiceReqValidationListData Web Method" spaceId docId="e8ZrqA27UeWS6c-VB7SYJ" version="v2" docAnchorId="#Using-the-FetchServiceReqValidationListData-Web-Method" loadingMethod="dynamic" newTab="false" githubPath="FetchServiceReqValidtionListData.htm#Using-the-FetchServiceReqValidationListData-Web-Method" href="FetchServiceReqValidtionListData.mdx"}
+
+## About Request Offering and Service Request Web Methods
+
+There are several web methods that provide access to the request offerings available in the Service Catalog, provide the ability to submit service requests, and provide access to retrieve them once they are submitted.
+
+The following table summarizes the available web methods for this.
+
+| <font color="#FFFFFF">Web Method</font> | <font color="#FFFFFF">Description</font>                                                              |
+| --------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| GetCategories                           | Returns a list of categories in the Service Catalog.                                                  |
+| GetCategoryTemplates                    | Returns a list of the request offerings in the Service Catalog that belong to the specified category. |
+| GetAllTemplates                         | Returns a list of all of the request offerings in the Service Catalog.                                |
+| GetSubscriptionId                       | Returns the subscription ID that corresponds to the request offering for the current user.            |
+| GetPackageData                          | Returns the details of the specified request offering.                                                |
+| UserCanAccessRequestOffering            | Checks if the current user can access the specified request offering.                                 |
+| SubmitRequest                           | Creates and submits the service request on behalf of a specified user.                                |
+| GetRequestData                          | Returns the data for the specified service request.                                                   |
+| FetchServiceReqValidationListData       | Returns the allowable validation list data for the specified service request parameter.               |
+
+When accessing the various Service Catalog web methods via the API, most of the web methods are invoked based on the ID of the service request subscription record, and not with the ID of the request offering itself. When you define the request offering, you must specify whether it is configured as "Publish and Subscribe" or "Publish".
+
+*Publish Action*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/0CYddhl26f49QqzrnH78H_03000008.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/03000008.png" githubPath="Content/Resources/Images/help-images/03000008.png" showCaption="false"></Image>
+
+- When configured as "Publish and Subscribe", users belonging to the indicated organizational unit have access to the request offering.
+- When configured as "Publish", users have access to the request offering based on the service level agreement for the organizational unit to which the user belongs.
+
+The **ServiceReqSubscription** record (used internally by the Service Catalog) contains information about the organizational unit to which the request offering is associated, along with the service level agreement information if it is configured relative to the service level agreement.
+
+In the following sections, several of the web methods use the ID value of the **ServiceReqSubscription** record. You can use a helper web method called **GetSubscriptionId** to obtain the subscription ID, which can then be used in any subsequent operations, such as **SubmitRequest**.

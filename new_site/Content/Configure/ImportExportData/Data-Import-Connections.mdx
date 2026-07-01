@@ -1,0 +1,801 @@
+---
+title: Configuring Data Import Connections
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:52 GMT+0300 (Eastern European Summer Time)
+---
+
+**Role** : \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}
+
+Before you configure any Data Import Connections, make sure that the Asset Processor Configuration is defined. For details, refer to [Asset Processor Configuration](../AssetProcessor/Asset-Processor-Configuration.mdx).
+
+Use SQL server authentication credentials, not Windows authentication. You should also have the db\_datareader permissions for the database.
+
+Use the Data Integration Wizard to import data from a predefined source into the \{\{FRS\_VARS.ProductName}} database.
+
+## Viewing, Cloning, and Deleting Data Import Connections
+
+To view, clone, or delete Data Import Connections, follow these steps:
+
+1. From the Configuration console, click **Extend** > **Integration Tools** > **Data Import Connections** to open the **Data Source Manager** page.
+
+<Paragraph indent="1">
+  *Data Source Manager*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/tEwf_TJ3_hPBtFmZ70B8P_data-source-manager.png" alt="Image of the Data Source Manager page." position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/Configure/data-source-manager.png" githubPath="Content/Resources/Images/Configure/data-source-manager.png" showCaption="false"></Image>
+
+<Paragraph indent="1">
+  The **Data Source Manager** page has the following fields:
+</Paragraph>
+
+<table isTableHeaderOn="true">
+  <tr>
+    <td>
+      Field
+    </td>
+    <td>
+      Description
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Name
+    </td>
+    <td>
+      The name of the data import connection.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Connector
+    </td>
+    <td>
+      The connection import type:
+      - SCCM
+      - Email import
+      - Advanced file import (Secure FTP, hierarchical XML)
+      - Discovery (for Release 9.3.x and later)
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Connection Source
+    </td>
+    <td>
+      Information about the source, such as server name and database name (for SCCM and Discovery Release 9.3.x and later) or server path and file name (for file).
+    </td>
+  </tr>
+  <tr>
+    <td>
+      \--
+    </td>
+    <td>
+      Displays the creation and last modification dates of the data import connection.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Active
+    </td>
+    <td>
+      Indicates whether the connection is active. Only published connections can be active.
+      Click **ON** to activate or **OFF** to deactivate the connection.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Published
+    </td>
+    <td>
+      Indicates whether the data import connection is published.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Mapping
+    </td>
+    <td>
+      The name of the integration job associated with the connection.
+    </td>
+  </tr>
+</table>
+
+2. To clone a data import connection, including all mappings and schedules:
+
+<Paragraph indent="1">
+  a. Click the **Clone** icon <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/ebLr38hnYNATpWSNvpVXz_copygrid.png" size="10" isUploading="false" initialPath="../../Resources/Images/buttons/copy_grid.png" githubPath="Content/Resources/Images/buttons/copy_grid.png" width="17" height="17" showCaption="false"></Image> at the end of the row.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. In the confirmation message, click **Ok**.
+</Paragraph>
+
+<Paragraph indent="1">
+  The new data import connection appears in the list as unpublished.
+</Paragraph>
+
+<hint type="danger" indent="1">
+  Ensure that the connection being cloned is of the same type as the target connection. Cloning a connection and changing its type may cause errors with the new connection. If errors occur, delete the new connection and clone another, ensuring the source connection matches the target connection type.
+</hint>
+
+3. To delete a data import connection:
+
+<Paragraph indent="1">
+  a. Click the **Delete** icon <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/USPl9Egu4Y2Blx7HKC3mA_deleteredx.png" size="10" isUploading="false" initialPath="../../Resources/Images/buttons/delete_red_x.png" githubPath="Content/Resources/Images/buttons/delete_red_x.png" width="14" height="13" showCaption="false"></Image> at the end of the row.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. In the confirmation message, click **Ok**.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. If there are any mappings associated with this data import connection, a second confirmation message appears.  Click **Ok**.
+</Paragraph>
+
+<Paragraph indent="2">
+  The data import connection is no longer displayed.
+</Paragraph>
+
+4. To submit an integration job for execution by the integration server:
+
+<Paragraph indent="1">
+  a. Click **Run Now** at the end of the row.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. In the confirmation message, click **Yes**.
+</Paragraph>
+
+<Paragraph indent="2">
+  For a manual upload, the application prompts you to upload the file before submitting the job.
+</Paragraph>
+
+## Setting Up a Data Import Connection
+
+Use this process to set up a connection to the server where the data is located.
+
+If you import data on a schedule, the options are defined in the **Schedule Entry** workspace. Refer to [About the Schedule Entry and Scheduled Jobs Workspaces](../Schedules/Schedule_Entry.mdx) for more information.
+
+For example, to set up an Endpoint Manager integration, define a daily CMDB import schedule in the Schedule Entry workspace before selecting it in the Import Wizard. The schedule setting option only appears if **Discovery 9.x**, **SCCM**, **(EPM**, **Secure FTP (SSH)**, or **Ivanti Cloud Connector** is selected as the connection type, or if you create a new web service connection. The basic steps shown below are followed by specific set ups for different connectors.
+
+*Data Import Setup Sequence -- Connection Setting*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/tTXBg2muBGFGn3hrlw3OF_data-import-sequence.png" alt="Data import setup sequence - connection setting." position="flex-start" size="40" initialPath="../../Resources/Images/help-images/data import sequence.png" githubPath="Content/Resources/Images/help-images/data import sequence.png" showCaption="false"></Image>
+
+1. From the Configuration console, click **Extend** > **Integration Tools** > **Data Import Connections**, to open the **Data Source Manager** page.
+
+<Paragraph indent="1">
+  The page lists all the connections that are already defined for your installation.
+</Paragraph>
+
+2. Click **Add New** to create a new connection and open the **Settings** page.
+
+<Paragraph indent="1">
+  *Connection Settings Page*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/S1SZwMsBsneIdbo32NDv3_data-import-connections-settings-page.png" alt="Image of the Connection Settings page." position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/Configure/data-import-connections-settings-page.png" githubPath="Content/Resources/Images/Configure/data-import-connections-settings-page.png" showCaption="false"></Image>
+
+3. In the **Connection Name** field, enter a unique name for the connection.
+4. Select a **Connection Type** from the dropdown list:
+   - **Email Import**. Refer to :Link[Email Import]{label="Email Import" overridedLabel="Email Import" spaceId docId="z2z90_aQskfSDzXRA7Lii" version="v2" docAnchorId="#EmailImport" loadingMethod="dynamic" newTab="false" href="Data-Import-Connections.mdx"}.
+   - **Discovery 9.x.** (Only applicable for Discovery Release 9.3.x and later). Refer to :Link[Ivanti HEAT Discovery File]{label="Ivanti HEAT Discovery File" overridedLabel="Ivanti HEAT Discovery File" spaceId docId="z2z90_aQskfSDzXRA7Lii" version="v2" docAnchorId="#Discovery" loadingMethod="dynamic" newTab="false" href="Data-Import-Connections.mdx"}.
+   - **Manual File Upload**. Refer to :Link[Manual File Upload]{label="Manual File Upload" overridedLabel="Manual File Upload" spaceId docId="z2z90_aQskfSDzXRA7Lii" version="v2" docAnchorId="#ManualFileUpload" loadingMethod="dynamic" newTab="false" href="Data-Import-Connections.mdx"}.
+   - **SCCM**. Refer to [About Importing Data from SCCM into Neurons for ITSM](SCCM-Configuration.mdx).
+   - **Secure FTP (SSH)**. Refer to :Link[Secure FTP (SSH)]{label="Secure FTP (SSH)" overridedLabel="Secure FTP (SSH)" spaceId docId="z2z90_aQskfSDzXRA7Lii" version="v2" docAnchorId="#SecureFTP" loadingMethod="dynamic" newTab="false" href="Data-Import-Connections.mdx"}
+   - **EPM**. Refer to :Link[Endpoint Manager (EPM) Connector]{label="Endpoint Manager (EPM) Connector" overridedLabel="Endpoint Manager (EPM) Connector" spaceId docId="z2z90_aQskfSDzXRA7Lii" version="v2" docAnchorId="#IEM" loadingMethod="dynamic" newTab="false" href="Data-Import-Connections.mdx"}.
+   - **Ivanti Cloud Connector**. Refer to [Ivanti Neurons Connector](Ivanti-Neurons-Connector.mdx).
+
+<hint type="danger">
+  The **File on Shared Folder** and **FTP Connection Type** features are deprecated. For customers who prefer to use FTP, we recommend switching to :Link[Secure FTP (SSH)]{label="Secure FTP (SSH)" overridedLabel="Secure FTP (SSH)" spaceId docId="z2z90_aQskfSDzXRA7Lii" version="v2" docAnchorId="#SecureFTP" loadingMethod="dynamic" newTab="false" href="Data-Import-Connections.mdx"}.
+</hint>
+
+### Email Import
+
+Select this option to import data from an email message and continue to :Link[Enter information about the specific file. Select the file type to import:]{label="Enter information about the specific file. Select the file type to import:" overridedLabel="Enter information about the specific file. Select the file type to import:" spaceId docId="z2z90_aQskfSDzXRA7Lii" version="v2" docAnchorId="#Step_7" loadingMethod="dynamic" newTab="false" href="Data-Import-Connections.mdx"}
+
+### Ivanti HEAT Discovery File
+
+Select this option to import data from a Discovery Release 9.3.x and later database.
+
+<Paragraph indent="1">
+  a. Enter information into the fields.
+</Paragraph>
+
+| Field           | Description                                                                                                                                                     |
+| --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Connection Name | The connection name.  Always use **Discovery 9.x**. Do not change the name unless you are setting up a new configuration or modifying this one for your import. |
+| SSL Encryption  | Specifies if the connection uses SSL encryption.                                                                                                                |
+| Server Name     | The server path, such as Servername or **IP Address**, where the database is located.                                                                           |
+| Database Name   | The database name. Enter \{\{FRS\_VARS.Company}}**&#x20;HEAT Discovery**.                                                                                       |
+
+<Paragraph indent="1">
+  b. Continue to [Importing Data from Ivanti HEAT Discovery Release 9.3.x or Later](Disc_Data_Import.mdx) to set the object mapping, field setting, field mapping, and schedule settings.
+</Paragraph>
+
+<hint type="info">
+  Whenever you connect to Ivanti Neurons for ITSM to import data from EPM, or SCCM, or Secure FTP, enter the server name, database name, and authentication credentials (login and password), even if the credentials were saved during a previous configuration. Credentials cannot be saved for this connection.
+</hint>
+
+### Manual File Upload
+
+Select this option to create a non-scheduled one-time data import. You can import data from a local file source into your database. This import configuration can be saved to your list of integration connections, but cannot be scheduled, due to the nature of a manual import. You must manually import the data file each time you run the connection.  Supported file types are .CSV, .XLS, and .XML
+
+<Paragraph indent="1">
+  a. Enter information into the fields.
+</Paragraph>
+
+| Field          | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Data File Name | The name of the data file.<br />Refer to :Link[About Importing Multiple Files]{label="About Importing Multiple Files" overridedLabel="About Importing Multiple Files" spaceId docId="Bqdqz7jP_wiYj2synDcym" version="v2" docAnchorId="#Import_multiple_files" loadingMethod="dynamic" newTab="false" githubPath="Data-Integration.htm#Import_multiple_files" href="Data-Integration.mdx"} for information about using the \* wildcard to import multiple files at once. |
+
+<Paragraph indent="1">
+  b. Continue to :Link[Enter information about the specific file. Select the file type to import:]{label="Enter information about the specific file. Select the file type to import:" overridedLabel="Enter information about the specific file. Select the file type to import:" spaceId docId="z2z90_aQskfSDzXRA7Lii" version="v2" docAnchorId="#Step_7" loadingMethod="dynamic" newTab="false" href="Data-Import-Connections.mdx"} 
+</Paragraph>
+
+### Secure FTP (SSH)
+
+Select this option to connect to a secure file server (not a web server) to transfer data. The Secure FTP protocol is used to upload files from a workstation to a specified secure FTP server.
+
+<hint type="info">
+  The global constant **EnableFTPSharing** must be set to **True** to display the Secure FTP options in the **Connection Type** dropdown list.
+</hint>
+
+<Paragraph indent="1">
+  a. Enter information into the fields.
+</Paragraph>
+
+| Field              | Description                                                                                                                                                                                                                        |
+| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Data File Path     | The path of the data file.                                                                                                                                                                                                         |
+| Template File Path | Optional. The path of the file that is a subset of the mapping file. If your mapping file is large, you might want to create a smaller file containing only the columns or fields for mapping, to create a map before data import. |
+
+<Paragraph indent="1">
+  b. Continue to :Link[Enter authentication information if required.]{label="Enter authentication information if required." overridedLabel="Enter authentication information if required." spaceId docId="z2z90_aQskfSDzXRA7Lii" version="v2" docAnchorId="#Step_6" loadingMethod="dynamic" newTab="false" href="Data-Import-Connections.mdx"}
+</Paragraph>
+
+### Endpoint Manager (EPM) Connector
+
+Select this option if you are using \{\{Primary.Company}} Endpoint Manager and you want to import data from the Endpoint Manager database into \{\{Primary.Company}} \{\{FRS\_VARS.ProductName}}.
+
+<Paragraph indent="1">
+  a. Enter information into the fields.
+</Paragraph>
+
+| Field         | Description                                                                          |
+| ------------- | ------------------------------------------------------------------------------------ |
+| Server Name   | The name or the IP address of the server where the Endpoint Manager data is located. |
+| Database Name | Use the default of **EPM**.                                                          |
+
+<Paragraph indent="1">
+  b. Enter authentication information as seen in :Link[Enter authentication information if required.]{label="Enter authentication information if required." overridedLabel="Enter authentication information if required." spaceId docId="z2z90_aQskfSDzXRA7Lii" version="v2" docAnchorId="#Step_6" loadingMethod="dynamic" newTab="false" href="Data-Import-Connections.mdx"}
+</Paragraph>
+
+<Paragraph indent="1">
+  c. Next, test the connection: :Link[Test the data import connection]{label="Test the data import connection" overridedLabel="Test the data import connection" spaceId docId="z2z90_aQskfSDzXRA7Lii" version="v2" docAnchorId="#Test2" loadingMethod="dynamic" newTab="false" href="Data-Import-Connections.mdx"}. As specified, do not click **Close** or move to the next step until the connection test is successful.
+</Paragraph>
+
+<Paragraph indent="1">
+  d. If the connection is successful, click **Close** then click **Next** to specify Object-level Mappings. Refer to :Link[Object Mapping]{label="Object Mapping" overridedLabel="Object Mapping" spaceId docId="z2z90_aQskfSDzXRA7Lii" version="v2" docAnchorId="#Object" loadingMethod="dynamic" newTab="false" href="Data-Import-Connections.mdx"} and :Link[Mapping Fields for Import]{label="Mapping Fields for Import" overridedLabel="Mapping Fields for Import" spaceId docId="z2z90_aQskfSDzXRA7Lii" version="v2" docAnchorId="#MappingFields" loadingMethod="dynamic" newTab="false" href="Data-Import-Connections.mdx"}. When creating a mapping for this connector, select **EPM Connector** from the dropdown.
+</Paragraph>
+
+<hint type="info">
+  Use the wizard to identify the next step in the process to map fields or objects, use transitions, and to schedule your import.
+</hint>
+
+Use the following steps only as indicated by the connector.
+
+5. Enter authentication information if required.
+
+| Field                                       | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| ------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Use global constants for login and password | Specifies if the login and password information are global constants. If you check this option, you *must&#x20;*&#x63;reate the login and password global constants before you can use them. Refer to :Link[Using Global Constants to Hide Login ID and Password Information]{label="Using Global Constants to Hide Login ID and Password Information" overridedLabel="Using Global Constants to Hide Login ID and Password Information" spaceId docId="hdqjMZ0xNIIUp-39YljO9" version="v2" docAnchorId="#Using_the_Login_ID_and_Password_Global_Constants" loadingMethod="dynamic" newTab="false" githubPath="../Constants/Defining_Global_Constant.htm#Using_the_Login_ID_and_Password_Global_Constants" href="../Constants/Defining_Global_Constant.mdx"}. |
+| Login                                       | The login ID used to access the server.<br />Enter a value if you did not check **Use global constants for login and password**.<br />Select a value from the dropdown list if you checked **Use global constants for login and password**).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| Password                                    | The password used to access the server.<br />Enter a value if you *did not&#x20;*&#x63;heck **Use global constants for login and password**.<br />Select a value from the dropdown list if you checked **Use global constants for login and password**).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+
+6. Enter information about the specific file. Select the file type to import:
+   - :Link[Comma Delimited (CSV)]{label="Comma Delimited (CSV)" overridedLabel="Comma Delimited (CSV)" spaceId docId="z2z90_aQskfSDzXRA7Lii" version="v2" docAnchorId="#Comma" loadingMethod="dynamic" newTab="false" href="Data-Import-Connections.mdx"}
+   - :Link[Excel Spreadsheet (XLS, XLSX)]{label="Excel Spreadsheet (XLS, XLSX)" overridedLabel="Excel Spreadsheet (XLS, XLSX)" spaceId docId="z2z90_aQskfSDzXRA7Lii" version="v2" docAnchorId="#Excel" loadingMethod="dynamic" newTab="false" href="Data-Import-Connections.mdx"}
+   - :Link[XML]{label="XML" overridedLabel="XML" spaceId docId="z2z90_aQskfSDzXRA7Lii" version="v2" docAnchorId="#Important_Note_About_XML_files" loadingMethod="dynamic" newTab="false" href="Data-Import-Connections.mdx"}
+   - :Link[Hierarchical XML]{label="Hierarchical XML" overridedLabel="Hierarchical XML" spaceId docId="z2z90_aQskfSDzXRA7Lii" version="v2" docAnchorId="#Hierarchical" loadingMethod="dynamic" newTab="false" href="Data-Import-Connections.mdx"}
+
+### Comma Delimited (CSV)
+
+<Paragraph indent="1">
+  Most applications, including Microsoft Word and Microsoft Excel, can read CSV files. However, this format does not support line breaks. Do not include including commas in the data of the last column. If a value in the last column contains a comma even when enclosed in quotes CSV interprets it as a field separator.
+</Paragraph>
+
+<Paragraph indent="1">
+  For example: "Initials", "mail", "telephoneNumber", "givenName", "company", "Wilma", "wasselt", "Asselt", "van".
+</Paragraph>
+
+<Paragraph indent="1">
+  In this example, the last field represents lastName, with the value "Asselt, "van". If this field appears in any column other than the last, the import correctly recognizes "Asselt, "van" as a single value. However, if it is in the last column, the import reads only "Asselt" and ignores the data after the comma.
+</Paragraph>
+
+<table isTableHeaderOn="true">
+  <tr>
+    <td>
+      Field
+    </td>
+    <td>
+      Description
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Delimiter
+    </td>
+    <td>
+      Defines the character used to separate fields in the file.
+      Select an option from the dropdown list:
+      - Comma (,)
+      - Colon (:)
+      - Semicolon (;)
+      Enter a custom value.
+    </td>
+  </tr>
+</table>
+
+### Excel Spreadsheet (XLS, XLSX)
+
+Microsoft Excel and other compatible applications can read these file formats. You can import only a single worksheet per Excel file. You can import up to 5,000 rows per file. If your file contains more than 5,000 records, split it into smaller files and import each file separately.
+
+### About Multiple Role Support for CSV and XLS files
+
+To support multiple roles, add a column named **Role** (including the asterisks) to the input file. This column must contain the role display names, not the internal role names.
+
+- Use display names like **Self Service**, not internal names like **SelfService**.
+- Separate multiple roles in the same cell with commas.
+
+The application does not create new roles during import. You must define roles in the system before assigning them to employees.
+
+When importing, the application merges roles by default. For example, if an employee currently has two roles Service Desk and IT and you import three roles IT, admin, and service owner the final result is four roles:
+
+Service Desk, IT, admin, service owner.
+
+### XML
+
+Imports generic XML data.
+
+| Field              | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Table Element      | The name of the table object.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Row Element        | The name of the row object.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Include Header Row | Inputs an XML file in legacy GBU format. In this format, the table element is "Rows", and row element is "Row".<br />\<Rows>&#xA;    \<Row>&#xA;        \<Field>PrimaryEmail\</Field>&#xA;        \<Field>FirstName\</Field>&#xA;         ...&#xA;    \<Row>&#xA;\<Rows><br />Do not check this option to use the flexible two-level format.<br />In this example,the table element is "Employee\_Info", and the row element is "Employee". The field names for this "Employee" object can be an element (such as Name) or a row-level attribute (such as Employee\_Number).<br />\<Employee\_Info xmlns\:xsi="http\://www\.w3.org/2001/XMLSchema-instance" xsi\:noNamespaceSchemaLocation="employee.xs"><br />    \<Employee Employee\_Number="105"><br />        \<Name>Masashi Okamura\</Name><br />        \<Department>Design Department\</Department><br />         ...<br />    \</Employee>&#xA;\</Employee\_Info> |
+
+Data with null values do not appear in the XML file, which can cause problems when exporting data.
+
+For example, consider the following XML. Note the data for the second employee contains an email cell with no attributes. This cause the data to import incorrectly.
+
+\<Employee\_Info>
+    \<Employee Employee\_Number="105">
+        \<Name>Masashi Okamura\</Name>
+        \<Department>Design Department\</Department>
+         \<Email>masashi\@design.com\</Email>
+        \<Phone>408.555.1234\</Phone>
+    \</Employee>
+    \<Employee Employee\_Number="106">
+        \<Name>Frank Smith\</Name>
+        \<Department>Design Department\</Department>
+         \<Email>\</Email>
+        \<Phone>408.555.1235\</Phone>
+    \</Employee>
+\</Employee\_Info>
+
+To alleviate this issue, create an empty string:
+
+\<Employee\_Info>
+    \<Employee Employee\_Number="105">
+        \<Name>Masashi Okamura\</Name>
+        \<Department>Design Department\</Department>
+         \<Email>masashi\@design.com\</Email>
+        \<Phone>408.555.1234\</Phone>
+    \</Employee>
+    \<Employee Employee\_Number="106">
+        \<Name>Frank Smith\</Name>
+        \<Department>Design Department\</Department>
+         \<Email>""\</Email>
+        \<Phone>408.555.1235\</Phone>
+    \</Employee>
+\</Employee\_Info>
+
+### Hierarchical XML
+
+Use this option to import structured XML files.
+
+| Field                                                  | Description                                                                                                        |
+| ------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ |
+| Table Element<br />Row Element<br />Include Header Row | These options are disabled because the values are automatically picked up by the XML file.                         |
+| Main XSLT                                              | (Optional) Defines a template to apply to your XML file.<br />Click **Upload** and navigate to your template file. |
+| Additional XSLT                                        | Click to add additional XSLT files.                                                                                |
+
+For more details, see [Importing Hierarchical XML Data](About-Hierarchical-XML-Format.mdx).
+
+Files larger than 50 MB take longer to preview. This happens because the application downloads the entire file before displaying the first batch. For hierarchical XML, the application skips the mapping pages, so the file is only copied or downloaded when you preview it.
+
+### Enter hierarchical information into the fields.
+
+| Field                                     | Description                                                                                                                                                                                                                                           |
+| ----------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Decimal separator                         | The decimal separator symbol. Enter a value or choose one from the dropdown list.                                                                                                                                                                     |
+| Encoding                                  | The character standard of your file. Select from the dropdown list.                                                                                                                                                                                   |
+| Date Format&#xA;Time Format&#xA;Time Zone | The date, time, and time zone format of your file. Select values from the dropdown lists.<br />This ensures that your data is imported correctly into the database.<br />If your data does not contain date or time fields, use the default settings. |
+
+### Test the data import connection
+
+1. Click **Test Connection**.
+
+<Paragraph indent="1">
+  If your connection is set up correctly, the application displays a success confirmation message and updates the connection date and time.
+</Paragraph>
+
+<Paragraph indent="1">
+  If the connection fails, do not click **Next** until the test connection shows the success message. The connection could fail because of various reasons such as incorrect authentication, restricted or no FTP access, or restricted file permissions.
+</Paragraph>
+
+2. Click **Next**.
+
+<Paragraph indent="1">
+  Depending on the data import connection type, the next page in the Data Integration Wizard appears.  The next page is as follows:
+</Paragraph>
+
+| Connection Type                                                 | Additional Pages                                                                                    |
+| --------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| Email Import                                                    | none                                                                                                |
+| Discovery 9.x<br />(only for Discovery Release 9.3.x and later) | Object Mapping<br />Filter Setting<br />Field Mapping<br />Schedule Setting<br />Review and Publish |
+| Manual File Upload                                              | Object Mapping<br />Filter Setting<br />Field Mapping<br />Review and Publish                       |
+| SCCM                                                            | Refer to [About Importing Data from SCCM into Neurons for ITSM](SCCM-Configuration.mdx).            |
+| Secure FTP (SSH)                                                | Object Mapping<br />Filter Setting<br />Field Mapping<br />Schedule Setting<br />Review and Publish |
+| EPM Connector                                                   | Object Mapping<br />Filter Setting<br />Field Mapping<br />Schedule Setting<br />Review and Publish |
+
+- When testing the connection, the application checks if $ and URI exist in the Server Path. If it does, then the following error message is displayed.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/_DBPEbW8HiNQbiG5d5gL0_test-connection-error.png" alt="Error if the server path contains a dollar sign or URl." position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/Configure/Data-Import-Connections/Test-Connection-Error.png" githubPath="Content/Resources/Images/Configure/Data-Import-Connections/Test-Connection-Error.png" showCaption="false"></Image>
+
+Object Mapping
+
+
+
+
+*Data Import Setup Sequence -- Object Mapping*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Rw_3__T5uLe6qZ-eNxvxF_objectmapping.png" alt="Data import setup sequence - object mapping." position="flex-start" size="40" initialPath="../../Resources/Images/help-images/object_mapping.png" githubPath="Content/Resources/Images/help-images/object_mapping.png" showCaption="false"></Image>
+
+1. Enter information into the fields. Some fields do not appear on all options.
+
+| Field                        | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Mapping                      | The mapping. Select the default mapping or select **Add New** from the dropdown list.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| Name                         | The mapping name. Use the default name, modify the name, or choose **Add New** from the dropdown list to create a new mapping. To modify the existing name, click **Save as New**. The application creates a clone of the mapping, which you can then modify. This button is only enabled if you select an existing mapping.                                                                                                                                                                                                                                                                |
+| Source Mapping Tables        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| Max file size                | Read only. Shows the maximum file size that you can import. The default maximum file size is 250 MB.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| Max size                     | **For EPM Connector:** Enter the number of records that should be retrieved each time the database is queried.                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Root Table                   | **For EPM Connector:** Select the table that contains the records which can uniquely identify the computers or other machines in your organization.                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| Source File Name             | Read only. Taken from the value in the **File Name** field.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| Source Unique Key/Unique Key | Lists the fields containing keys that uniquely identify your record. The fields that appear in the list are taken from the first record in your source file. Select the field that is primary in identifying your records, which can be used to retrieve additional information.                                                                                                                                                                                                                                                                                                            |
+| Change Time column           | **For EPM Connector:** Select **TimeKey**; this records the time when a record is updated. Keep the default Computer since this is a top-level object equivalent to a CI Business object.                                                                                                                                                                                                                                                                                                                                                                                                   |
+| Target Business Object       | The primary business object in \{\{FRS\_VARS.ProductName}} into which the data is imported. Highlight the business object in the list.<br /><br />The list shows all the business objects in \{\{FRS\_VARS.ProductName}}. Use the **Target Business Object** field to enter a few letters of the target business object and then click **Filter by Name** or **Filter by Object** to narrow your search. For example, if you are importing a list of employee records into \{\{FRS\_VARS.ProductName}}, the primary business object you need to map to is the **Employee** business object. |
+
+2. Click **Next**. The application displays the **Filter Setting** page.
+
+<hint type="info">
+  To include the decimal value in the EPM database, a new method is added (ToDecimal) that divides an integer value by 100 and returns decimal with two digits.
+</hint>
+
+### Setting Filter Conditions&#xA;&#xA;
+
+*Data Import Setup Sequence -- Filter Setting*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/u4tB_GgJeMeXf1eXIveHh_filtersetting.png" alt="Data import setup sequence - filter setting." position="flex-start" size="40" initialPath="../../Resources/Images/help-images/filter_setting.png" githubPath="Content/Resources/Images/help-images/filter_setting.png" showCaption="false"></Image>
+
+After mapping the business object tables to query, you can optionally specify filter conditions for the root business object.
+
+1. Click **Create Filter**. The filter fields appear. If the **Create Filter** button is not visible, delete the default mappings on the previous page.
+2. Select a condition.
+3. Enter the fields and operators into the form.
+
+<hint type="info">
+  Do not use comma-separated values in the **Create Filter** field. If the source database has a device name with comma-separated values (for example, VMWare7,1), then use Microsoft SQL function "CHAR(44)" that converts ASCII code 44 to "," character.
+</hint>
+
+*Filter Manager Conditions and Fields*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/km-dS_c9CLYJBMRtPegn7_dataimportfiltermanager.png" alt="Filter Manager conditions and fields." position="flex-start" size="40" initialPath="../../Resources/Images/help-images/dataimport_filtermanager.png" githubPath="Content/Resources/Images/help-images/dataimport_filtermanager.png" showCaption="false"></Image>
+
+4. Click the **add** icon to add another row.
+5. Select the **Fetch data post last import timestamp** check box.
+
+<hint type="info">
+  The **Fetch data post last import timestamp** option is available only when a filter is applied to a connector. It is applicable only for OData Connections to fetch the delta records since last import from Neurons. This cannot be used for any other connector, if used, system will ignore this condition as the filter conditions will not be satisfied.
+</hint>
+
+### Mapping Fields
+
+### Mapping Fields for Import
+
+*Data Import Setup Sequence -- Field Mapping*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/W9LeZdNi8UmUoPJiFlroZ_fieldmappingline.png" alt="Data import setup sequence - field mapping." position="flex-start" size="40" initialPath="../../Resources/Images/help-images/field_mapping_line.png" githubPath="Content/Resources/Images/help-images/field_mapping_line.png" showCaption="false"></Image>
+
+Use this page to define the field level mapping and transformation. The left column shows the source file name and the right column shows the target business object field name. It is assumed that the Source mapping names are known or identified in advance.
+
+**For Endpoint Manager (EPM)** The first 5 field mappings: Audit.TimeStamp, Audit.RequestID, Audit.FirstSequence, Audit.LastSequence. Audit.Type are required.
+
+*Map Fields for Import*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/NaMwzK3MS6Tk5BaBtH1Dj_dataimportfieldmapping.png" alt="Map the fields to be imported." position="flex-start" size="40" initialPath="../../Resources/Images/help-images/dataimport_fieldmapping.png" githubPath="Content/Resources/Images/help-images/dataimport_fieldmapping.png" showCaption="false"></Image>
+
+1. If appropriate, select a transformation function from the middle column. Refer to :Link[About Transformation Functions]{label="About Transformation Functions" overridedLabel="About Transformation Functions" spaceId docId="z2z90_aQskfSDzXRA7Lii" version="v2" docAnchorId="#AboutTransformationFunctions" loadingMethod="dynamic" newTab="false" href="Data-Import-Connections.mdx"} for a list of the transformation functions.
+2. Select the field names to map between the source file and the target business object in \{\{FRS\_VARS.ProductName}}.
+
+<Paragraph indent="1">
+  For example: an EPM Connector (EPM) field CompSystem.Manufacturer would map to \{\{FRS\_VARS.ProductName}} ComputerSystem.Property.Manufacturer asset identifier.
+</Paragraph>
+
+3. If the target field is a link field, determine the name of the field to use. Refer to :Link[About Mapping Link Fields]{label="About Mapping Link Fields" overridedLabel="About Mapping Link Fields" spaceId docId="z2z90_aQskfSDzXRA7Lii" version="v2" docAnchorId="#AboutLink" loadingMethod="dynamic" newTab="false" href="Data-Import-Connections.mdx"}.
+4. (Optional) Click **Auto Map** to map the source file column header to the target field name. Remapping the source column header does not change your existing mapping.
+5. Click **Next**. The application displays the **Schedule Setting** page or the **Review and Publish** page.
+
+### About Transformation Functions
+
+The following table lists the transformation functions.
+
+| Function Name   | Category | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | Input                                                  | Output   |
+| --------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ | -------- |
+| -->             | None     | Returns the source value (does nothing).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |                                                        |          |
+| Abs             | Math     | The absolute value of input value.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | Double                                                 | Double   |
+| AssetIdentifier | Special  | Creates a unique identifier from the SCCM or EPM Connector machine ID and<br />the instance key.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | SCCM machineID<br />SCCM InstanceKey&#xA;EPM machineID |          |
+| Avg             | Math     | The arithmetic mean or average of all the input values.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | Double                                                 | Double   |
+| Cbrt            | Math     | The cube root of the input value.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | Double                                                 | Double   |
+| Ceiling         | Math     | Smallest integer value less, greater than, or equal to the given value.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | Double                                                 | Double   |
+| Century         | DateTime | Returns the century part of the input date time value.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | DateTime                                               | Double   |
+| CIType          | Special  | Returns configuration item types from the SCCM or EPM mappings and role.<br />Refer to :Link[Example 1: Mapping CI Type]{label="Example 1: Mapping CI Type" overridedLabel="Example 1: Mapping CI Type" spaceId docId="M0CTCq0GpI9tbnaGYqy1Z" version="v2" docAnchorId="#CI_Type_Mapping_Example" loadingMethod="dynamic" newTab="false" githubPath="About-Field-Mapping.htm#CI_Type_Mapping_Example" href="About-Field-Mapping.mdx"}.&#xA;**For EPM**, mapping examples are:<br />If role = SQLServer, return Server<br />If role=not defined or does not exist, return default value Computer<br />If role=LM\_Workstation, return Workstation. | SCCM Mapping and Role<br />EPM Mapping and role.       |          |
+| CIType2         | Special  | Returns configuration item types from the SCCM mappings, role, model and virtual keywords.<br />Refer to :Link[Example 1: Mapping CI Type]{label="Example 1: Mapping CI Type" overridedLabel="Example 1: Mapping CI Type" spaceId docId="M0CTCq0GpI9tbnaGYqy1Z" version="v2" docAnchorId="#CI_Type_Mapping_Example" loadingMethod="dynamic" newTab="false" githubPath="About-Field-Mapping.htm#CI_Type_Mapping_Example" href="About-Field-Mapping.mdx"}.                                                                                                                                                                                          | SCCM Mapping and Role&#xA;EPM Mapping                  |          |
+| Concat          | String   | Concatenates string values together.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | String Array                                           | String   |
+| ConvertToLocal  | DateTime | Converts a DateTime value to a local DateTime value.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | DateTime                                               | DateTime |
+| ConvertToUTC    | DateTime | Converts a DateTime value to a UTC DateTime value.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | DateTime                                               | DateTime |
+| DateTimeNow     | DateTime | Current date and time in yyyy-MM-ddThh🇲🇲ss format.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | None                                                   | String   |
+| DateTimeUTCNow  | DateTime | Current UTC date and time in yyyy-MM-ddThh🇲🇲ss format.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          | None                                                   | String   |
+| DayOfMonth      | DateTime | Returns the day of the month of the input DateTime value.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | DateTime                                               | Double   |
+| DayOfWeekNo     | DateTime | Returns the day number of the week of the input DateTime value.<br />**0**: Sunday<br />**1**: Monday<br />**2**: Tuesday<br />**3**: Wednesday<br />**4**: Thursday<br />**5**: Friday<br />**6**: Saturday                                                                                                                                                                                                                                                                                                                                                                                                                                      | DateTime                                               | Double   |
+| DayOfWeekStr    | DateTime | Returns the day string of the week of the input DateTime value.<br />Sunday<br />Monday<br />Tuesday<br />Wednesday<br />Thursday<br />Friday<br />Saturday                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | DateTime                                               | String   |
+| DayOfYear       |          | Returns the day of the year of the input DateTime value.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          | DateTime                                               | Double   |
+| Diff            | Math     | Subtracts all the values from the first value.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | Double Array                                           | Double   |
+| Div             | Math     | Divides the first value by the remainder of the values.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | Double Array                                           | Double   |
+| Floor           | Math     | Largest integer value less, greater than, or equal to the given value.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | Double                                                 | Double   |
+| Hour            | DateTime | Returns the hour part of the input DateTime value.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | DateTime                                               | Double   |
+| IsoWeek         | DateTime | Returns the ISO week number of the input DateTime value.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          | DateTime                                               | Double   |
+| Leap            |          |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |                                                        |          |
+| Length          | String   | The length of the string.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | String                                                 | Double   |
+| Max             |          |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |                                                        |          |
+| Min             |          |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |                                                        |          |
+| Minute          | DateTime | Returns the minute part of the DateTime value.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | DateTime                                               | Double   |
+| Mod             | Math     | Remainder after dividing first value by the second value.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | Double,<br />Double                                    | Double   |
+| Month           | DateTime | Returns the month part of the input DateTime value.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | DateTime                                               | Double   |
+| Pow             | Math     | The number raised to the power.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | Double                                                 | Double   |
+| Product         | Math     | Product of all values.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | Double Array                                           | Double   |
+| Quarter         | DateTime | Returns the quarter of the input DateTime value. Quarter ranges from 1 to 4.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | DateTime                                               | Double   |
+| RegexMatch      | String   | Returns a matched value from the input value for a pattern in a position (zero-based).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | String                                                 |          |
+| RegexReplace    | String   | Returns a string that has been replaced with a string that matches a pattern in the input string.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | String                                                 |          |
+| Replace         | String   | Replaces the part of a string with given value.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | String                                                 | String   |
+| Round           | Math     | Rounds a double-precision floating-point value to the nearest integer.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | Double                                                 | Double   |
+| Second          | DateTime | Returns the second part of the DateTime value.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | DateTime                                               | Double   |
+| Select          | Special  | Return the first item in the list where the corresponding predicate is equal to a given value.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |  String                                                |  String  |
+| SelectNotNull   | Special  | Returns the first input value that is not empty or not null for the group of items.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | String                                                 | String   |
+| SelectSort      | Special  | Returns the first item in the list after sorting by the SortField on SortValue; **Asc** for ascending order and **Desc** for descending order, where the corresponding predicate is equal to a given value.<br />SortValue should be either **Asc** or **Desc**, and the SortFeild should support three types of datatypes such as Integer, Datetime, and String.                                                                                                                                                                                                                                                                                 | String                                                 | String   |
+| Split           | String   | Returns a specific part of a string split using a separator.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | String                                                 | String   |
+| Sqrt            | Math     | The square root of the input value.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | Double                                                 | Double   |
+| Substring       | String   | Returns part of a string.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | String                                                 | String   |
+| Sum             | Math     | Sum of given values.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | Double                                                 | Double   |
+| Switch          | Special  | Returns the string based on the input value and corresponding mappings (delimiter is ':')                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | String                                                 | String   |
+| TimeDiff        | DateTime | Returns the period between two DateTime values.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | DateTime, DateTime                                     | TimeSpan |
+| ToLower         | String   | Converts to lowercase text.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | String                                                 | String   |
+| ToProper        | String   | Converts to proper case text.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | String                                                 | String   |
+| ToUpper         | String   | Converts to uppercase text.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | String                                                 | String   |
+| Trim            | String   | Removes all leading and trailing white spaces.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | String                                                 | String   |
+| TrimLeft        | String   | Removes the leading white spaces.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | String                                                 | String   |
+| TrimRight       | String   | Removes the trailing white spaces.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | String                                                 | String   |
+| Truncate        | Math     | The integral part of the value. In other words, rounds up or down towards zero.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | Double                                                 | Double   |
+| Week            | DateTime | Returns the standard week number of the input DateTime value.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | DateTime                                               | Double   |
+| Year            | DateTime | Returns the year part of the input DateTime value.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | DateTime                                               | Double   |
+
+### About Mapping Link Fields
+
+When specifying links to a related business object as part of data import, note the following:
+
+- Data import can only be linked when using link fields such as **OrgUnitLink** or **ManagerLink**. Only a one-to-one link is supported.
+- For CSV files, the data should display the name of a business object. For example, for organization unit, use the name of the organization. For employee, use the display name of the employee (for example, Marcia S Hendric) rather than the login ID (MHendric).
+
+When mapping link fields, such as **OrgUnitLink** or **ManagerLink**, note the following:
+
+- For the **source** value, on the left, use the value of the **Display** field under the **Special Purpose Fields** section and not the value of the **Display Name** field. You need to determine this field name before mapping the fields.
+
+*Linked Field Reference*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/aRU5KNYg_1LS7Csr6Zhru_linkedfield-ref.png" alt="Linked field reference." position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/linked_field-ref.png" githubPath="Content/Resources/Images/help-images/linked_field-ref.png" showCaption="false"></Image>
+
+- For the **target** value, on the right, use the name of the link field, such as **OrgUnitLink** or **ManagerLink**.
+
+The following shows mapping a linked field using the field name:
+
+*Field Mapping Example - Linked Field*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/OrNTMWfgJCCbN98_ezksX_fieldmappingou.png" alt="Field mapping example - linked field." position="flex-start" size="40" initialPath="../../Resources/Images/help-images/field_mapping_OU.png" githubPath="Content/Resources/Images/help-images/field_mapping_OU.png" showCaption="false"></Image>
+
+### About Mapping Files with Currency Data
+
+To prevent errors while importing files containing currency data, map the currency value and the currency type separately.
+
+For example, if your file contains a currency code value such as NNN.NN GBP (for example, 8999.00 GBP), create a column for the numeric value (NNN.NN) and another column for the currency type (GBP).
+
+If that is not practical, then you can use the **Split** function on the **Field Mapping** page:
+
+"Currency", , 0 - Split - "Currency"
+
+"Currency", , 1 - Split - "Currency\_Currency"
+
+*Field Mapping for Currency*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/lca1qMiU2Vkknk24EnGrk_dataimportcurrency.png" alt="Field mapping for currency." position="flex-start" size="40" initialPath="../../Resources/Images/help-images/data_import_currency.png" githubPath="Content/Resources/Images/help-images/data_import_currency.png" showCaption="false"></Image>
+
+### Setting the Data Import or Web Service Connection Schedule
+
+After mapping the fields you must schedule the import and associate the mapping with one or more *existing* or previously created schedule entries.
+
+*Data Import Setup Sequence -- Schedule Setting*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/OreEcVAd3kQQtqDeEUyF4_schedulesetting.png" alt="Data import setup sequence - schedule setting." position="flex-start" size="40" initialPath="../../Resources/Images/help-images/schedule_setting.png" githubPath="Content/Resources/Images/help-images/schedule_setting.png" showCaption="false"></Image>
+
+This option only appears if you select one of the following connection types: **Discovery 9.x**, **SCCM**, **EPM Connector**, or **Secure FTP (SSH)**, or if you create a new web service connection. In addition, when the Global Constant *EnableNeuronSyncByAPI* is activated, the schedule option is activated on two connectors: *Ivanti Neurons Connector - Device* and *Ivanti Neurons Connector - Invoice*. For more information on scheduling inside these connectors, refer to the [Scheduling API Data Sync from Ivanti Neurons for Discovery to Ivanti Neurons for ITSM](<Scheduling Sync From Neurons Discovery to ISM.mdx>) help document.
+
+As noted in :Link[Setting Up a Data Import Connection]{label="Setting Up a Data Import Connection" overridedLabel="Setting Up a Data Import Connection" spaceId docId="z2z90_aQskfSDzXRA7Lii" version="v2" docAnchorId="#SettingUpDataImportConnection" loadingMethod="dynamic" newTab="false" href="Data-Import-Connections.mdx"}, the schedule options are defined and can be viewed in the **Schedule Entry** workspace. Refer to [About the Schedule Entry and Scheduled Jobs Workspaces](../Schedules/Schedule_Entry.mdx) for more information.
+
+*Data Import Schedule*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/PQfn8sgfdtHaBcWY-83M2_schedulesettingpage.png" alt="Data import schedule." position="flex-start" size="40" initialPath="../../Resources/Images/help-images/schedule_setting_page.png" githubPath="Content/Resources/Images/help-images/schedule_setting_page.png" showCaption="false"></Image>
+
+Schedules determine when the import or data connection is added to the queue for processing. You can create multiple entries in the **Schedule Entry** table to run multiple imports of the same data each day.
+
+1. Select one or more schedules from the schedule list. (Use the Ctrl key to select more than one schedule.)
+
+<Paragraph indent="1">
+  The application displays information about each schedule that you select at the bottom of the page.
+</Paragraph>
+
+<hint type="info">
+  If you are not the owner of a schedule that you have selected, and the schedule is changed by the owner, your import time might be affected.
+</hint>
+
+<Paragraph indent="1">
+  The supported schedule types are: Daily, Weekly (once a week), or Monthly (once a month with a date).
+</Paragraph>
+
+2. Click **Next**. The application displays the **Review and Publish** page.
+
+### Reviewing and Publishing Import or Web Service Connection Data
+
+*Data Import Setup Sequence -- Review and Publish*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/XbigtpaRaeN65u67BP6M7_reviewpublish.png" alt="Data import setup sequence - review and publish." position="flex-start" size="40" initialPath="../../Resources/Images/help-images/review_publish.png" githubPath="Content/Resources/Images/help-images/review_publish.png" showCaption="false"></Image>
+
+Click the **Test Transformation** button in order to view all the mappings specified by you. The mapping configurations appear in a pop-up window as an xml file. If desired, you can copy and paste the information from this window to another file.
+
+You have four options to review or publish your import data:
+
+- **Preview**: Views the form with your field mappings. All records from the first batch appear showing the mapping configuration and the associated data. You can check these records for import errors before beginning import.
+- **Publish**: The application only shows this option if there is a schedule involved, like with the **Secure FTP (SSH)** connection types. Activates the connection so that it can run according to the schedule.
+- **Publish & Run Now**: Runs the import immediately and places it on the import schedule.
+- **Publish & Test Run**: Runs the import with only the first batch of records. A batch is 200 records. If errors or problems occur in this job, you can go back to your data and troubleshoot before running the entire job.
+
+The application automatically saves all field mappings even if they are not immediately published. After you publish the data, the job runs based on the schedule/s you selected.
+
+### Viewing, Changing or Deactivating a Published Connection
+
+1. Log in to the \{\{FRS\_VARS.ProductName}} application.
+2. Open the **Integration** workspace.
+3. Select a record to open and view the settings.
+4. To deactivate a **Published** connection, uncheck the **Active** check box then click **Save**.
+
+<Paragraph indent="1">
+  You can resume the imports by checking the **Active** checkbox if needed.
+</Paragraph>
+
+### Troubleshooting
+
+Troubleshoot your connections using one of the following methods:
+
+- :Link[View the Integration Log]{label="View the Integration Log" overridedLabel="View the Integration Log" spaceId docId="z2z90_aQskfSDzXRA7Lii" version="v2" docAnchorId="#View" loadingMethod="dynamic" newTab="false" href="Data-Import-Connections.mdx"}
+- :Link[View the Integration Queue]{label="View the Integration Queue" overridedLabel="View the Integration Queue" spaceId docId="z2z90_aQskfSDzXRA7Lii" version="v2" docAnchorId="#View2" loadingMethod="dynamic" newTab="false" href="Data-Import-Connections.mdx"}
+
+### View the Integration Log
+
+Use the log to view details of the job from the Integration workspace.
+
+1. Log in to the \{\{FRS\_VARS.ProductName}} application.
+2. Open the **Integration Log** workspace.
+3. Select a log to view the details.
+
+| Field               | Description                                                                                                                                                                                                                                                                                                                       |
+| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Name                | Name of the mapping.                                                                                                                                                                                                                                                                                                              |
+| Start Time/ EndTime | Indicates the time the job should run and the time the job should end.                                                                                                                                                                                                                                                            |
+| Log Type            | **Queued:** Indicates that the source ID from SCCM has been queued in the inventory management asset data processor.<br />**Verified:** Indicates that the source ID from SCCM has been successfully created in the \{\{FRS\_VARS.ProductName}} database.<br />**Stats:** Displays statistics about the number of rows processed. |
+| Total Processed     | Total number of records processed. If no new mappings were added, no records will be processed.                                                                                                                                                                                                                                   |
+| Source ID           | The root table key shown on the **Object Mapping** page of the wizard.                                                                                                                                                                                                                                                            |
+| Failed Count        | Displays the number of records that failed to process.                                                                                                                                                                                                                                                                            |
+| Target ID           | The Asset ID derived from the asset identifier mapping function on the **Field Mapping** page of the wizard.                                                                                                                                                                                                                      |
+| Message             | Varies based on the log type. the messages can be viewed wile the job is being processed                                                                                                                                                                                                                                          |
+
+### View the Integration Queue
+
+While the job runs, you can view the record in the **Integration Queue** workspace. After the job completes, you can the record only in the **Integration Log** workspace.
+
+### Questions and Answers
+
+**Q.** I made attribute mapping changes to the SCCM integration. Whenever I run the integration, it appears to be pulling information for all computers that have been audited since the last SCCM integration was run.
+
+Is it possible to perform a complete import of all computers regardless of when they were last audited by SCCM?
+
+**A.** Yes. Follow these steps:
+
+1. Log in to the \{\{FRS\_VARS.ProductName}} application.
+2. Open the **Integration** workspace.
+3. Open the integration to update.
+4. In the **Last Data Changed Time** field, set the last scanned date to a really old date, such as January 1, 1949.
+
+*Setting an Arbitrary Date for the Last Audit*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/sdp2XqHoezKXlStGd68SZ_sccmearlydate.png" alt="Setting an arbitrary date for the last audit." position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/sccm_early_date.png" githubPath="Content/Resources/Images/help-images/sccm_early_date.png" showCaption="false"></Image>
+
+5. Run the job as scheduled.
+
+<Paragraph indent="1">
+  The application captures all information.
+</Paragraph>
+
+### Example: Importing Configuration Item Relationships
+
+This example shows how to import data for a configuration item (CI) map tree.
+
+Previously, to define a relationship between a configuration item and an application, you used the Map Tree tab to link related configuration items based on a specific named relationship. This method still works, but it can be time‑consuming if you need to map many configuration items.
+
+In \{\{FRS\_VARS.ProductName}} Release 2015.1,a new feature lets you use data integration to link multiple configuration items from a CSV or Microsoft Excel file. To use this feature, you must have:
+
+- The DataIDs, SourceIDs, and TargetIDs of the configuration item records to link as well as
+- The RecID of the **CINamedRelConstraints** record that defines the name of the relationship between the configuration items (such as "managed by" or "runs on").
+
+This feature also requires the **CINamedRelLink** business object, which is new in \{\{FRS\_VARS.ProductName}} Release 2015.1. If you do not have that business object, contact \{\{FRS\_VARS.Company-short}}.
+
+### Importing Relationship Records
+
+To import the relationship records, follow the steps in :Link[Setting Up a Data Import Connection]{label="Setting Up a Data Import Connection" overridedLabel="Setting Up a Data Import Connection" spaceId docId="z2z90_aQskfSDzXRA7Lii" version="v2" docAnchorId="#SettingUpDataImportConnection" loadingMethod="dynamic" newTab="false" href="Data-Import-Connections.mdx"} and then continue with the steps below:
+
+1. Follow steps 1-4 in :Link[Setting Up a Data Import Connection]{label="Setting Up a Data Import Connection" overridedLabel="Setting Up a Data Import Connection" spaceId docId="z2z90_aQskfSDzXRA7Lii" version="v2" docAnchorId="#SettingUpDataImportConnection" loadingMethod="dynamic" newTab="false" href="Data-Import-Connections.mdx"}.
+2. In the **Connection Type** field, select **Manual File Upload**.
+3. In the **Data File Name** field, click **Upload** to navigate to the file that contains the configuration item relationship information. In this example, the file is called CIRelations.csv.
+4. Test the data import connection by clicking **Test Connection** and click **Close** to close the dialog box.
+5. Click **Next**.
+
+<Paragraph indent="1">
+  The application displays the **Object Mapping** screen.
+</Paragraph>
+
+6. Enter the following:
+   - In the **Mapping** field, select **Add new**.
+   - In the **Name** field, enter a name, such as **CI Name Relation mapping**.
+   - In the **Source Unique Key** field, select all three keys (DataID, SourceID, TargetID).
+   - In the **Target Business Object** field, enter **CINamedRelLink \[CINamedRelLink#]**.
+7. Click **Next**. The application displays the **Filter Setting** screen.
+8. Enter the following values:
+
+| Source: CIRelations.csv |     | Target: CINamedRelLink# |
+| ----------------------- | --- | ----------------------- |
+| DataID                  | --> | DataID                  |
+| SourceID                | --> | SourceID                |
+| TargetID                | --> | TargetID                |
+
+9. Click **Next**. The application displays the **Field Mapping** screen.
+10. Enter values. Refer to :Link[Mapping Fields]{label="Mapping Fields" overridedLabel="Mapping Fields" spaceId docId="z2z90_aQskfSDzXRA7Lii" version="v2" docAnchorId="#Mapping" loadingMethod="dynamic" newTab="false" href="Data-Import-Connections.mdx"}.
+11. Click **Next**. The application displays the **Review and Publish** screen.
+12. Click **Publish & Run Now**.

@@ -1,0 +1,21 @@
+---
+title: Using SIP User Name
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:54 GMT+0300 (Eastern European Summer Time)
+---
+
+This is introduced to support @ and \ symbols in the ISM Login ID for a Voice enabled user. If you need to use @ and \ symbols while logging in to \{\{FRS\_VARS.ITSM}} for Voice, it is required to change the communication between ITSM and Ivanti Voice to use SIP username (which can be configured in the associated CI VOIP business object) instead of the default Service Manager Login ID. ISM uses ISM Login ID to communicate with Voice by default.
+
+A global constant should be configured as given below:
+
+- Name: SIPUserNameEnabled
+- Value: False
+- Type: Boolean
+
+<Paragraph indent="1">
+  SIPUserNameEnabled is false by default. Here, ITSM-Voice communication is using ITSM Login ID. If the SIPUserNameEnabled is set to True, it will use SIP Username instead of ISM Login ID.
+</Paragraph>
+
+<hint type="info">
+  Configure SIP username in the asssociated CI VOIP business object of the agent such way that it's devoid of any special characters.Also,it's required to delete the agent from Ivanti Voice and synchronise from ISM to make this feature work. The login field under users page in Ivanti Voice updates with SIP username instead of ISM Login ID.
+</hint>

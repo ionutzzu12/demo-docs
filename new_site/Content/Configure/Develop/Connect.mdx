@@ -1,0 +1,407 @@
+---
+title: Using the Connect Web Method
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:01 GMT+0300 (Eastern European Summer Time)
+---
+
+Performs both the authentication and authorization operations, and ensures that the user is properly authenticated and belongs to the specified role.
+
+## Request Syntax
+
+FRSHEATIntegrationConnectionResponse Connect(string userName, string password, string tenantId, string role)
+
+## Parameters
+
+- **userName**: The login ID  for which the session is created. The web method searches for the login ID in the **LoginID** column in the **Profile.Employee** business object (profile table).
+- **password**: The user password. This can be either an internal or external (Active Directory) password, depending on the employee record configuration.
+- **tenantId**: The tenant for which the session is created. The web method searches for the tenant ID in the **TenantURL** field in the business object for the tenant in the \{\{FRS\_VARS.ProductName}} Configuration Database (called ConfigDB). The tenant record must be in the *active* state for the authentication to succeed.
+- **role**: The role that the user logs in as.
+
+## Return Value
+
+**FRSHEATIntegrationConnectionResponse** class, defined as follows:
+
+public class FRSHEATIntegrationConnectionResponse
+
+    \{
+
+public string connectionStatus;
+
+public string sessionKey;
+
+public string exceptionReason;
+
+    }
+
+The **FRSHEATIntegrationConnectionResponse** class has the following fields:
+
+- **connectionStatus**: Provides a status about the state of the connection. The table below contains a full
+  description of the available status values.
+- **sessionKey**: The session key to use in all subsequent web service operations. This field is only populated when the **connectionStatus** parameter has a value of *success*. Otherwise, the value is null.
+- **exceptionReason**: Contains exception information, if the application throws an exception when running this web method.
+
+If the **Connect** web method completes successfully, the application stores the session key in the corresponding member in the **FRSHEATIntegrationConnectiontResponse** object.
+
+## Exceptions
+
+If there is an error during the **Connect** web method operation (either during the authentication or authorization phases), the server throws a SOAP exception and the web services client must handle the exception.
+
+The following table lists the exceptions that can be encountered when executing the **Connect** web method.
+
+| <font color="#FFFFFF">SOAP Exception</font> | <font color="#FFFFFF">Explanation</font>                                                                                                                                                                           | Action                                                                                                                                               |
+| ------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| AccessDenied                                | Either the specified user name does not exist in the tenant, or the password provided is invalid for the user name.                                                                                                | Ensure that the credentials are correctly specified.                                                                                                 |
+| TenantNotFound                              | Either the specified tenant URL cannot be found or the tenant is not currently in *active* status.<br />                                                                                                           | Ensure that the tenant URL is correct for accessing the tenant. If it is, contact \{\{FRS\_VARS.Company-short}} regarding the status of this tenant. |
+| TenantInMaintenance                         | The specified tenant is currently in maintenance mode.<br />                                                                                                                                                       | Confirm that the tenant is in maintenance mode.  If it is, contact \{\{FRS\_VARS.Company}} about when the tenant will be set back to active status.  |
+| InvalidRole                                 | Either the specified role definition is not available in the tenant or the user is not currently associated with the specified role.                                                                               | Confirm that the role exists in the tenant and that the user belongs to the specified role.                                                          |
+| SessionExpired                              | The session key refers to a session that has expired. This typically occurs when the API operation uses the session key from an earlier **Connect** web method call and the session has expired due to inactivity. | Execute the **Connect** web method again to obtain a new session key.                                                                                |
+
+<hint type="info">
+  If you use the same session key when running other web methods, you may run into authentication or authorization errors. The web services client must account for the possibility of connection failures when running additional web methods.
+</hint>
+
+## Example
+
+FRSHEATIntegration frSvc = new FRSHEATIntegration();
+
+FRSHEATIntegrationConnectionResponse connectresponse = frSvc.Connect(username, password, tenantId, role);
+
+if (connectresponse.connectionStatus == "Success")
+
+\{
+
+        ...
+
+}
+
+## Handling Session Expirations
+
+After making the initial call to the **Connect** web method to obtain the session key, typically web service clients reuse the same session key value for subsequent web methods.
+
+If the web services client is idle for longer than the session timeout value, the session expires and the session key is no longer valid. After the session expires, if you try to use the expired session key again, the server returns a SOAP exception stating that the session has expired. By throwing the explicit SOAP exception back to the client, the client can then use standard exception handling techniques for calling the **Connect** web method again to obtain a new session key to use in subsequent web methods.
+
+For .NET-based web services clients, you can reference the **FRSHEATIntegration** API by using either a web reference or a service reference. The code to handle the SOAP exception differs slightly based on the type of reference.
+
+The following code illustrates how this can be achieved, if the web services client is defined using a web reference to the FRSHEATIntegration API:
+
+ObjectQueryDefinition query = new ObjectQueryDefinition();
+
+query.Select = new SelectClass();
+
+FieldClass\[] incidentFieldObjects = new FieldClass\[] \{
+
+<Paragraph indent="1">
+  new FieldClass()
+</Paragraph>
+
+    \{
+
+         Name = "IncidentNumber",
+
+         Type = "Text"
+
+    },
+
+<Paragraph indent="1">
+  new FieldClass()
+</Paragraph>
+
+    \{
+
+         Name = "Service",
+
+         Type = "Text"
+
+    }
+
+};
+
+query.Select.Fields = incidentFieldObjects;
+
+query.From = new FromClass();
+
+query.From.Object = "Incident";
+
+query.Where = new RuleClass\[] \{
+
+<Paragraph indent="1">
+  new RuleClass()
+</Paragraph>
+
+    \{
+
+         Join = "AND",
+
+         Condition = "=",
+
+         Field = "IncidentNumber",
+
+         Value = "10001"
+
+    }
+
+};
+
+FRSHEATIntegrationSearchResponse searchResponse = null;
+
+try
+
+\{
+
+    searchResponse = frSvc.Search(authSessionKey, tenantId, query);
+
+}
+
+catch (SoapException soapException)
+
+\{
+
+<Paragraph indent="1">
+  if (soapException.Actor == "SessionExpired")
+</Paragraph>
+
+    \{
+
+         connectresponse = frSvc.Connect(username, password, tenantId, role);
+
+<Paragraph indent="3">
+  if (connectresponse.connectionStatus == "Success")
+</Paragraph>
+
+            \{
+
+                authSessionKey = connectresponse.sessionKey;
+
+                searchResponse = frSvc.Search(connectresponse.sessionKey, tenantId, query);
+
+            }
+
+    }
+
+}
+
+<Paragraph indent="1">
+  if (searchResponse != null && searchResponse.status == "Success")
+</Paragraph>
+
+    \{
+
+<Paragraph indent="3">
+  WebServiceBusinessObject\[]\[] incidentList = searchResponse.objList;
+</Paragraph>
+
+<Paragraph indent="3">
+  foreach (WebServiceBusinessObject\[] incidentOuterList in incidentList)
+</Paragraph>
+
+            \{
+
+<Paragraph indent="4">
+  foreach (WebServiceBusinessObject incident in incidentOuterList)
+</Paragraph>
+
+               \{
+
+<Paragraph indent="5">
+  Console.WriteLine("Incident \{\{0}} matches the selection criteria", incident.FieldValues\[0].Value);
+</Paragraph>
+
+                }
+
+            }
+
+    }
+
+In particular, note the following code fragment:
+
+try
+
+\{
+
+    searchResponse = frSvc.Search(authSessionKey, tenantId, query);
+
+}
+
+catch (SoapException soapException)
+
+\{
+
+<Paragraph indent="1">
+  if (soapException.Actor == "SessionExpired")
+</Paragraph>
+
+    \{
+
+         connectresponse = frSvc.Connect(username, password, tenantId, role);
+
+<Paragraph indent="3">
+  if (connectresponse.connectionStatus == "Success")
+</Paragraph>
+
+            \{
+
+                authSessionKey = connectresponse.sessionKey;
+
+                searchResponse = frSvc.Search(connectresponse.sessionKey, tenantId, query);
+
+            }
+
+    }
+
+}
+
+Notice that the **Search** web method operation is wrapped inside the try-catch block.
+
+If the SOAP exception occurs corresponding to the session expiration, review the **Actor** property in the SOAP exception to determine if the connection error is due to the session timeout. If the exception is due to the session timeout, the application invokes the **Connect** web method again to obtain a new session key. If the **authSessionKey** parameter is a globally accessible string, the application updates the session key property of the **connect response** object and you can run the **Search** web method again.
+
+The following code sample/example now illustrates this, if the web services client is defined using a service reference to the **FRSHEATIntegration** API:
+
+ObjectQueryDefinition query = new ObjectQueryDefinition();
+
+            query.Select = new SelectClass();
+
+FieldClass\[] incidentFieldObjects = new FieldClass\[] \{
+
+new FieldClass()
+
+                \{
+
+                    Name = "IncidentNumber",
+
+                    Type = "Text"
+
+                },
+
+new FieldClass()
+
+                \{
+
+                    Name = "Service",
+
+                    Type = "Text"
+
+                }
+
+            };
+
+            query.Select.Fields = incidentFieldObjects;
+
+            query.From = new FromClass();
+
+            query.From.Object = "Incident";
+
+            query.Where = new RuleClass\[] \{
+
+new RuleClass()
+
+                \{
+
+                    Join = "AND",
+
+                    Condition = "=",
+
+                    Field = "IncidentNumber",
+
+                    Value = "10001"
+
+                }
+
+            };
+
+FRSHEATIntegrationSearchResponse searchResponse = null;
+
+try
+
+            \{
+
+                searchResponse = frSvc.Search(authSessionKey, tenantId, query);
+
+            }
+
+catch (FaultException faultException)
+
+            \{
+
+MessageFault messageFault = faultException.CreateMessageFault();
+
+if (messageFault.Actor == "SessionExpired")
+
+                \{
+
+                    connectresponse = frSvc.Connect(username, password, tenantId, role);
+
+if (connectresponse.connectionStatus == "Success")
+
+                    \{
+
+                        authSessionKey = connectresponse.sessionKey;
+
+                        searchResponse = frSvc.Search(connectresponse.sessionKey, tenantId, query);
+
+                    }
+
+                }
+
+            }
+
+if (searchResponse != null && searchResponse.status == "Success")
+
+            \{
+
+WebServiceBusinessObject\[]\[] incidentList = searchResponse.objList;
+
+foreach (WebServiceBusinessObject\[] incidentOuterList in incidentList)
+
+                \{
+
+foreach (WebServiceBusinessObject incident in incidentOuterList)
+
+                    \{
+
+Console.WriteLine("Incident \{\{0}} matches the selection criteria", incident.FieldValues\[0].Value);
+
+                    }
+
+                }
+
+            }
+
+In particular, note the following code fragment:
+
+try
+
+            \{
+
+                searchResponse = frSvc.Search(authSessionKey, tenantId, query);
+
+            }
+
+catch (FaultException faultException)
+
+            \{
+
+MessageFault messageFault = faultException.CreateMessageFault();
+
+if (messageFault.Actor == "SessionExpired")
+
+                \{
+
+                    connectresponse = frSvc.Connect(username, password, tenantId, role);
+
+if (connectresponse.connectionStatus == "Success")
+
+                    \{
+
+                        authSessionKey = connectresponse.sessionKey;
+
+                        searchResponse = frSvc.Search(connectresponse.sessionKey, tenantId, query);
+
+                    }
+
+                }
+
+            }
+
+Notice that the **Search** web method operation is wrapped inside the try-catch block. However, for service references, the exception that is caught is now a fault exception, and not the SOAP exception (as was the case with the earlier web reference). After the application catches the fault exception, it obtains the message fault. Review the **Actor** property in the SOAP exception to determine if the connection error is due to the session timeout.
+
+The example illustrates how to properly handle session expirations. You can use the same technique for handling other kinds of exceptions, such as access denied, invalid role, and so on. For example, for the access denied exception, the web services client might log the error locally to a log file or send an email to the administrator that the user name and password are not valid when used in the client.

@@ -1,0 +1,83 @@
+---
+title: ForEachChild
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:58 GMT+0300 (Eastern European Summer Time)
+---
+
+Iterates child business object instances and computes a text value for each of them. These values are then optionally sorted, and then concatenated and separated by a specified delimiter.
+
+Evaluates a text-valued expression for each related (child) business object and concatenates the results into a single text value. The related objects are related to a single parent business object via the **childRelationshipRef** parameter. The children can be ordered by specifying one or more sort fields of the child object as ordering keys.
+
+## Syntax
+
+ForEachChild(parentObjectRef, recId, childRelationshipRef, childExpression, fieldAndOrder)
+
+## Enabled For
+
+For a description of the business object categories, see :Link[Notes on "Enabled For"]{label="Notes on &#x22;Enabled For&#x22;" overridedLabel="Notes on &#x22;Enabled For&#x22;" spaceId docId="xObv2pIDrk60jkEIWs8mD" version="v2" docAnchorId="#Notes" loadingMethod="dynamic" newTab="false" githubPath="_Built_in_Functions.htm#Notes" href="_Built_in_Functions.mdx"}.
+
+| Business Object Category                                                                    | Yes/No |
+| ------------------------------------------------------------------------------------------- | ------ |
+| Business Rules: Before-Save Rules                                                           | Yes    |
+| Business Rules: Calculation Rules (After Save, with or without Also Recalculate on Load)    | Yes    |
+| Business Rules: Calculation Rules (Before Save or Always, without Also Recalculate On Load) | Yes    |
+| Business Rules: Calculation Rules (Before Save or Always, with Recalculate On Load)         | Yes    |
+| Business Rules: Editing Rules                                                               | Yes1   |
+| Business Rules: Initialization Rules                                                        | Yes    |
+| Business Rules: Read Only Rules                                                             | No     |
+| Business Rules: Required Rules                                                              | Yes1   |
+| Business Rules: Validation Rules                                                            | Yes    |
+| Client Expressions                                                                          | No     |
+| Object Permissions                                                                          | No     |
+| Services                                                                                    | Yes    |
+| LDAP                                                                                        | Yes    |
+| Mobile                                                                                      | Yes    |
+| Quick Actions (except UI Quick Actions)                                                     | Yes    |
+| UI Quick Actions                                                                            | No     |
+| Reports                                                                                     | Yes    |
+| Search/Dashboard without field references                                                   | Yes    |
+| Search/Dashboard with field references                                                      | No     |
+| 1. Except when this field appears on a form or is triggered by such a field.                |        |
+
+## Parameters
+
+| Parameter            | Description                                                                                                                                                                                                                                                                                                                                                         |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| parentObjectRef      | The parent business object as an object reference.                                                                                                                                                                                                                                                                                                                  |
+| recId                | RecID of the parent business object instance.                                                                                                                                                                                                                                                                                                                       |
+| childRelationshipRef | The relationship that relates the parent to its children.                                                                                                                                                                                                                                                                                                           |
+| childExpression      | An expression to evaluate for each child.<br /><br />**NOTE**: If the final element of the concatenation is the same for each instance and is a literal value, the application interprets that literal value to be a delimiter. The application adds the delimiter to the end of every entry except for the last entry.                                             |
+| fieldAndOrder        | (Optional) The order by which to sort the results. Each argument is a list of field names optionally followed by a space and ASC (ascending) or DESC (descending).  Ascending is the default.<br /><br />This function can take an unlimited number of these parameters, including none.  Use additional instances of this parameter to sort the results even more. |
+
+## Return Value
+
+<Paragraph indent="1">
+  Text value.
+</Paragraph>
+
+## Example
+
+<Paragraph indent="1">
+  For example, to iterate all instances of the **ResNoteHistory** child business object for a fixed issue with a certain RecID, use the following within the business rule of the parent business object:
+</Paragraph>
+
+ForEachChild("Issue\_Fix", RecId, "ResNoteHistory#.", "LastModBy + '\t'
+\+ LastModDateTime
+\+ '\r\n' + ResolutionNote
+\+ '\r\n\_\_\_\_\_\_\_\_\_\_\_\_\_\_\r\n'", "CreatedDateTime ASC")
+
+<Paragraph indent="1">
+  For each instance, the application concatenates the following information: the name of the person who last modified the instance (LastModBy), followed by a tab, followed by the date and time it was last modified (LastModDateTime), followed by a new line, and then the text of the resolution note (ResolutionNote), followed by a new line that contains an underline and followed by another new line. These concatenations are sorted by the date and time the instance was created (CreatedDateTime) in ascending (ASC) order.
+</Paragraph>
+
+<Paragraph indent="1">
+  Here is another example that puts all incident-related configuration items into a single text field:
+</Paragraph>
+
+$(ForEachChild("Incident#",
+
+RecId,
+
+"CI#.",
+
+"CIType + '\t' + Name + '\r\n' + IPAddress + '\t' + Model +'\r\n\_\_\_\_\_\_\_\_\_\_\_\_\_\_\r\n'", "Name ASC"))

@@ -1,0 +1,126 @@
+---
+title: Saved Search
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:01 GMT+0300 (Eastern European Summer Time)
+---
+
+Execute a search using a Saved Search. The search is executed based on the Saved Search name.
+
+<hint type="info">
+  You can get the saved search name from the [Metadata API](Metadata.mdx).
+</hint>
+
+**Base URL**
+
+https\://\{tenant url}/api/odata/businessobject/\{business object name}/\{saved search name}?ActionId=\{saved search action Id}
+
+<hint type="info">
+  Ensure the business object name is suffixed with an "s".
+</hint>
+
+<ExpandableHeading>
+  ## Search using Saved Search - Example
+
+  Here is an example to execute a saved search to get my active incidents.
+
+  | URL                                           | https\://\{tenant url}/api/odata/businessobject/incidents/My\_Active?ActionId=  <br />e8e4ea03-73e3-41fd-bcfc-d29ad7492fd8                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+  | --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | <font color="#ffffff">Method</font>           | GET                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+  | Header Name                                   | Authorization: JTW Token/Session Key/REST API Key                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+  | Status Code                                   | 200                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+  | <font color="#ffffff">Response Payload</font> |   <ExpandableHeading>
+      ## Click to view the response payload
+
+      \{
+
+      "@odata.context": "\{tenant url}/api/odata/$metadata#incidents",
+
+      "value": \[
+
+      \{
+
+      "RecId": "CFB1FF8FB136443C892D6A17D4B8430D",
+
+      "Resolution": null,
+
+      "Service\_Valid": null,
+
+      "Service": "Desktop Service",
+
+      "Status": "Active",
+
+      "Subject": "Cannot Login to Windows Intel",
+
+      },
+
+      \{
+
+      "RecId": "C8EB63C9C75447DDBA40C08AA3B0135A",
+
+      "Resolution": null,
+
+      "Service\_Valid": null,
+
+      "Service": "Desktop Service",
+
+      "Status": "Active",
+
+      "Subject": "PC is very Slow",
+
+      },
+
+      \{
+
+      "RecId": "E3C1FFD12A8945BAADEF1CD439A87B0E",
+
+      "Resolution": null,
+
+      "Service\_Valid": null,
+
+      "Service": "Desktop Service",
+
+      "Status": "Active",
+
+      "Subject": "Cannot Login to Windows Intel",
+
+      }
+    </ExpandableHeading> |
+</ExpandableHeading>
+
+### Unsuccessful Responses
+
+<ExpandableHeading>
+  ## Blank Action ID
+
+  Scenario: Executing a search with blank Action ID.
+
+  https\://\{tenant url}/api/odata/businessobject/incidents/My\_Active?ActionId=
+
+  Header Name:
+
+  **Authorization: Sessionkey**
+
+  | Code                                          | ISM\_4000                                                             |
+  | --------------------------------------------- | --------------------------------------------------------------------- |
+  | Description                                   | Invalid Request Payload                                               |
+  | Message                                       | "Action ID cannot be blank. Provide a valid Action ID and try again". |
+  | <font color="#ffffff">HTTP STATUS CODE</font> | **400**                                                               |
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Invalid Action ID
+
+  Scenario: Executing a search with invalid Action ID.
+
+  https\://\{tenant url}/api/odata/businessobject/incidents/My\_Active?ActionId=abc123
+
+  Header Name:
+
+  **Authorization: Sessionkey**
+
+  | Code                                          | ISM\_4000                                                     |
+  | --------------------------------------------- | ------------------------------------------------------------- |
+  | Description                                   | Invalid Request Payload                                       |
+  | Message                                       | "Invalid Action ID. Provide a valid Action ID and try again". |
+  | <font color="#ffffff">HTTP STATUS CODE</font> | **400**                                                       |
+</ExpandableHeading>

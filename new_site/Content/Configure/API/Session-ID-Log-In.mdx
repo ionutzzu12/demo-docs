@@ -1,0 +1,31 @@
+---
+title: Log in using session ID
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:00 GMT+0300 (Eastern European Summer Time)
+---
+
+Use a session ID to log into the tenant.
+
+**Base URL:**
+
+https\://\{tenant url}/api/rest/authentication/login
+
+Use this information to log in to a tenant using the session ID authorization. A session ID contans a tenant URL, while a JWT does not.
+
+| URL             | https\://\{tenant url}/api/rest/authentication/login                                                                                                                                        |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Method          | POST                                                                                                                                                                                        |
+| Request Payload | \{<br />"tenant" :"\{tenant url}",<br />"username" :"\{name of the user}",<br />"password" :"\{password set for the user}",<br />"role" :"\{user role to log-in to the application}"<br />} |
+| Status Code     | 200                                                                                                                                                                                         |
+
+<hint type="info">
+  When providing the "role" parameter, you need to provide the internal name of the role and not the display name. For example, Admin is the internal name of the role \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+</hint>
+
+If the log in API is executed successfully, the application generates a session ID. Follow the steps below to log in to a tenant:
+
+1. Create a new request in the **Postman** application.
+2. Enter the following information in the **Header** tab:
+   - Select the **Authorization** check box.
+   - Enter the generated session ID in the **Value** column.
+3. Enter the endpoint request payload details and select **Send**.

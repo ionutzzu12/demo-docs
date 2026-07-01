@@ -1,0 +1,53 @@
+---
+title: Export Data Action
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:57 GMT+0300 (Eastern European Summer Time)
+---
+
+- :Link[About the Export Data Action]{label="About the Export Data Action" overridedLabel="About the Export Data Action" spaceId docId="cXOW61Kyi7zm1bhYzwala" version="v2" docAnchorId="#About_the_Export_Data_Quick_Action" loadingMethod="dynamic" newTab="false" href="Export Data.mdx"}
+- :Link[Parameters]{label="Parameters" overridedLabel="Parameters" spaceId docId="cXOW61Kyi7zm1bhYzwala" version="v2" docAnchorId="#Parameters" loadingMethod="dynamic" newTab="false" href="Export Data.mdx"}
+- :Link[Actions]{label="Actions" overridedLabel="Actions" spaceId docId="cXOW61Kyi7zm1bhYzwala" version="v2" docAnchorId="#Actions" loadingMethod="dynamic" newTab="false" href="Export Data.mdx"}
+- [Example: Working with the Export Data Action (CAD)](<../Examples of Using Actions (CAD)/Creating an Export Data QA.mdx>)
+- **Graphical Action Designer**: [Export Data Quick Action](<../../Graphical Action Designer/Common Actions/Export Data.mdx>)
+
+## About the Export Data Action
+
+Use the **Export Data** action with the data export integration connection. See [Exporting Data](../../../ImportExportData/Data-Export.mdx).
+
+*Export Data Action*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/AJ9mdqWr0AvuwVXiaibFH_qa-export-data.png" position="flex-start" size="40" indent="1" initialPath="../../../../Resources/Images/help-images/qa export data.png" githubPath="Content/Resources/Images/help-images/qa export data.png" showCaption="false"></Image>
+
+<hint type="info">
+  Multi-select parameters are not supported for this action. Use simple text parameters.
+
+  Only a simple table valued report template can be exported. Grouped records are not supported.
+</hint>
+
+### Parameters
+
+| Parameter                    | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| ---------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Enter action name            | A unique name for the action.                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| Enter action description     | Optional. A description of what the action does.                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| Enter category               | Optional. The category. Select from the drop-down list.                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| Report Name                  | The report name. Choose from the drop-down list. See [https://help.ivanti.com/ht/help/en\_US/ISM/2022/user/Content/ServiceDesk/Reports/Reports.htm?Highlight=working%20with%20reports](https://help.ivanti.com/ht/help/en_US/ISM/2022/user/Content/ServiceDesk/Reports/Reports.htm?Highlight=working%20with%20reports)[Working with Reports and Report Management](../../../../ServiceDesk/Reports/Reports.mdx).<br />Check **Can Run from Export Data Action** within the report configuration page. |
+| Can run for multiple records | Includes data from multiple records. We recommend, as a best practice, including a unique field, such as RecID, in the dataset.                                                                                                                                                                                                                                                                                                                                                                       |
+| Connection                   | The defined connection. Choose from the drop-down list. Administrators create the connections. See [About Configuring Data Integration](../../../ImportExportData/About-Configuring-Data-Integration.mdx).                                                                                                                                                                                                                                                                                            |
+| Schedule                     | The schedule. Choose from the drop-down list. See [About the Schedule Entry and Scheduled Jobs Workspaces](../../../Schedules/Schedule_Entry.mdx).                                                                                                                                                                                                                                                                                                                                                    |
+| Report Parameters            | The report parameters are automatically generated based on the chosen report. Not all reports contain parameters. In the **Source Value** field, you can use a field, enter an expression, or enter a specific value. Only non-scheduled reports (run now) can use expressions.                                                                                                                                                                                                                       |
+| Export Format                | The type of file to export:<br />**CSV (Comma Separated Values)**: Field values are separated by commas (CSV).<br />**Excel**: File can be opened by Microsoft Excel (.xls or .xlsx).<br />**XML**: Generic data can be read by other systems.                                                                                                                                                                                                                                                        |
+| Field Delimiter              | Appears when you select **CSV (Comma Separated Values)**. The field delimiter (for example, #). Enter a value or choose an option from the drop-down list:<br />Comma (,)<br />Colon (:)<br />Semicolon (;)                                                                                                                                                                                                                                                                                           |
+| Record Delimiter             | Appears when you select **CSV (Comma Separated Values)**. The record delimiter (for example, % or ###).                                                                                                                                                                                                                                                                                                                                                                                               |
+| Qualifier                    | Appears when you select **CSV (Comma Separated Values)**. The character to use as an escape character (for example, %%%).                                                                                                                                                                                                                                                                                                                                                                             |
+
+### Actions
+
+| Button | Action                 |
+| ------ | ---------------------- |
+| Save   | Commits your settings. |
+| Cancel | Exits without saving.  |
+
+<hint type="info">
+  This action does not respect the **Auto-save** checkbox option in the **Action Settings** tab. It does save changes directly to the database, but please ensure that the behaviour you expect still occurs.
+</hint>

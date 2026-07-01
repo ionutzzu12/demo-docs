@@ -1,0 +1,58 @@
+---
+title: Configuring Saved Search
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:53 GMT+0300 (Eastern European Summer Time)
+---
+
+## Accessing Saved Searches by Business Object
+
+Administrators can see all saved searches for each business object.
+
+1. From the Configuration Console, click **Build > Search Tools > Saved Searches** to open the **Saved Searches** workspace. The application displays a list of business objects with saved searches.
+2. Click **Edit** under the **Action** column for the business object for which to view saved searches. The application displays the list of saved searches for the business object.
+
+You can also access all saved searches for a business object by doing the following:
+
+1. From the Configuration Console, click **Build > Business Objects** to open the **Business Objects** workspace.
+2. Open a business object. The application displays the workspace for that business object.
+3. Along the top, click **Saved Searches**. The application lists all of the saved searches associated with that business object.
+
+## Giving Roles Permission to Export a Saved Search
+
+Users with administrator rights can perform this procedure.
+
+1. From the Configuration Console, click **Configure > Users and Permissions > Roles and Permissions** to open the **Roles and Permissions** workspace. The list of roles appears.
+2. Select the role to have export permissions. The **Role Details** page appears.
+3. Select the **System Permissions** tab.
+4. At the bottom of the page, check **Allow Microsoft Excel download from saved searches**.
+5. Click **Save**.
+
+<Paragraph indent="1">
+  The users for that role see the export icons on the **Saved Searches** page after they refresh or login again.
+</Paragraph>
+
+## Giving Roles Permission to Email a Saved Search
+
+Users with administrator rights can perform this procedure.
+
+1. From the Configuration Console, click **Configure > Users and Permissions > Roles and Permissions** to open the **Roles and Permissions** workspace. The roles list appears.
+2. Select the role to have email permissions. The **Role Details** page appears.
+3. Select the **System Permissions** tab.
+4. At the bottom of the page, check **Allow Email to yourself from saved searches**.
+5. Click **Save**.
+
+<Paragraph indent="1">
+  The users for that role see the email icons on the **Saved Searches** page after they refresh or login again.
+</Paragraph>
+
+## Setting the Visibility of a Saved Search
+
+You can make a saved search visible or hidden depending on a condition.  Follow these steps:
+
+1. From the Configuration Console, click either **Build > Search Tools > Saved Searches** or **Build > Automation Tools > Saved Searches** to open the **Saved Searches** workspace. The application displays a list of business objects with saved searches.
+2. Click **Edit** under the **Action** column for the business object to set the visibility of a saved search for. The application displays the list of saved searches for that business object.
+3. Hover the cursor over a search name and click **Edit**. The application displays the saved search format area.
+4. Click **Hidden Expression**. The application displays an **Expression Editor** pop-up window where you can enter an expression that specifies when the saved search is visible.
+5. Enter an expression such as **$(GetGlobal("FeatureA"))**.
+6. Click **Save**.
+7. Save the saved search. The application displays the list of business objects with saved searches. Notice that there is a function symbol in the **Hidden** column, to denote that the saved search has a hidden expression associated with it.

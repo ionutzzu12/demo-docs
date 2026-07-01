@@ -1,0 +1,123 @@
+---
+title: Knowledge Business Object Reference
+slug: knowledge-business-object-reference
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:03 GMT+0300 (Eastern European Summer Time)
+---
+
+The following tables list the default definitions of the **Knowledge** business object.
+
+- :Link[Knowledge Business Object Field Descriptions]{label="Knowledge Business Object Field Descriptions" overridedLabel="Knowledge Business Object Field Descriptions" spaceId docId="ktEMlvi39GFivswznS38W" version="v2" docAnchorId="#Fields" loadingMethod="dynamic" newTab="false" href="knowledge-business-object-reference.mdx"}
+- :Link[Knowledge Business Object Relationship Definitions]{label="Knowledge Business Object Relationship Definitions" overridedLabel="Knowledge Business Object Relationship Definitions" spaceId docId="ktEMlvi39GFivswznS38W" version="v2" docAnchorId="#Relationships" loadingMethod="dynamic" newTab="false" href="knowledge-business-object-reference.mdx"}
+- :Link[Knowledge Business Object Layouts]{label="Knowledge Business Object Layouts" overridedLabel="Knowledge Business Object Layouts" spaceId docId="ktEMlvi39GFivswznS38W" version="v2" docAnchorId="#Layouts" loadingMethod="dynamic" newTab="false" href="knowledge-business-object-reference.mdx"}
+- :Link[Knowledge Business Object Forms]{label="Knowledge Business Object Forms" overridedLabel="Knowledge Business Object Forms" spaceId docId="ktEMlvi39GFivswznS38W" version="v2" docAnchorId="#Forms" loadingMethod="dynamic" newTab="false" href="knowledge-business-object-reference.mdx"}
+- :Link[Knowledge Business Object Quick Actions]{label="Knowledge Business Object Quick Actions" overridedLabel="Knowledge Business Object Quick Actions" spaceId docId="ktEMlvi39GFivswznS38W" version="v2" docAnchorId="#QuickActions" loadingMethod="dynamic" newTab="false" href="knowledge-business-object-reference.mdx"}
+- :Link[Knowledge Business Object Searches]{label="Knowledge Business Object Searches" overridedLabel="Knowledge Business Object Searches" spaceId docId="ktEMlvi39GFivswznS38W" version="v2" docAnchorId="#Searches" loadingMethod="dynamic" newTab="false" href="knowledge-business-object-reference.mdx"}
+
+### Knowledge Business Object Field Descriptions
+
+| Display Name                        | Type        | Size                | Description                                                                                                                                                                                                                                                |
+| ----------------------------------- | ----------- | ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| AttachmentData                      | Binary File | n/a                 | Control for attaching indexed documents to the article that can be indexed and searched (if the attachment is a format that can be indexed).                                                                                                               |
+| AttachmentData\_&#xA;Filename       | Text        | 256                 | Attachment file name.                                                                                                                                                                                                                                      |
+| AttachmentData\_&#xA;Filetype       | Text        | 10                  | Attachment file type.                                                                                                                                                                                                                                      |
+| Author                              | Text        | 100                 | Used in the case where the article author is not the creator. Defaults to the login ID of the article creator.                                                                                                                                             |
+| Category                            | Text        | 50                  | One of the knowledge categories.                                                                                                                                                                                                                           |
+| Collection                          | Text        | 50                  | The knowledge collection.                                                                                                                                                                                                                                  |
+| CountFeedback                       | Number      | 8 digits            | Number of times users answered "This solved my problem" question.                                                                                                                                                                                          |
+| CountHelpful                        | Number      | 8 digits            | Number of times users answered yes to "This solved my problem".                                                                                                                                                                                            |
+| CountNotHelpful                     | Number      | 8 digits            | Number of times users answered no to "This solved my problem".                                                                                                                                                                                             |
+| CountView                           | Number      | 8 digits            | Number of views from users in the Self-Service Portal.                                                                                                                                                                                                     |
+| CreatedBy                           | Text        | 200                 | Login ID of the person who created the article.                                                                                                                                                                                                            |
+| CreatedDateTime                     | DateTime    | n/a                 | Date and time when the article was created.                                                                                                                                                                                                                |
+| Details                             | Text        | Unlimited           | Description of the knowledge article.                                                                                                                                                                                                                      |
+| DisplayText                         | Text        | 350                 | Text displayed for knowledge article.                                                                                                                                                                                                                      |
+| EffectiveDate                       | Date        | n/a                 | Date at which the article is effective and should be published for user access. Currently there are no actions associated with this date.                                                                                                                  |
+| Environment                         | Text        | 200                 | The knowledge environment.                                                                                                                                                                                                                                 |
+| Expiration                          | Date        | n/a                 | Date at which the article is no longer considered valid.                                                                                                                                                                                                   |
+| KnowledgeType (FRS\_KnowledgeType)  | Text        | 30                  | Specifies the type of knowledge.                                                                                                                                                                                                                           |
+| IsBusinessApproval&#xA;Required     | Boolean     | Y/N                 | Specifies whether approval is required from the business unit.                                                                                                                                                                                             |
+| IsPresentationApproval&#xA;Required | Boolean     | Y/N                 | Specifies whether approval is required from the presentation unit.                                                                                                                                                                                         |
+| IsTechnicalApproval&#xA;Required    | Boolean     | Y/N                 | Specifies whether technical approval is required.                                                                                                                                                                                                          |
+| Keywords                            | Text        | 200                 | Allows keyword entry to assist in searches.                                                                                                                                                                                                                |
+| KnowledgeNumber                     | Number      | 8 digits            | Knowledge article ID number.                                                                                                                                                                                                                               |
+| KnowledgeVersion                    | Number      | 4 digits            | Knowledge article version number.                                                                                                                                                                                                                          |
+| LastModBy                           | Text        | 200                 | Login ID for the last person to modify the article.                                                                                                                                                                                                        |
+| LastModDateTime                     | DateTime    | n/a                 | Date and time when the article was modified.                                                                                                                                                                                                               |
+| NextReviewDate                      | Date        | n/a                 | Date used by the workflow engine to determine when the article review period has ended. If the article approval yes vote criteria has not been met by this time the article is considered to have failed the review process and is set to rejected status. |
+| Owner                               | Text        | 200                 | User who created the article.                                                                                                                                                                                                                              |
+| OwnerEmail                          | Text        | 100                 | Email address of the owner.                                                                                                                                                                                                                                |
+| OwnerTeam                           | Text        | 30                  | Owner team.                                                                                                                                                                                                                                                |
+| OwnerType                           | Text        | 30                  | Owner type.                                                                                                                                                                                                                                                |
+| PublishedDate                       | Date        | n/a                 | Date published.                                                                                                                                                                                                                                            |
+| RecID                               | Text        | 32                  | Record ID.                                                                                                                                                                                                                                                 |
+| RetiredDate                         | Date        | n/a                 | Date when the article was moved into the archived status.                                                                                                                                                                                                  |
+| Status                              | Text        | 50                  | The knowledge status.                                                                                                                                                                                                                                      |
+| SubCategory                         | Text        | 100                 | The knowledge subcategory.                                                                                                                                                                                                                                 |
+| Title                               | Text        | 300                 | Article title.                                                                                                                                                                                                                                             |
+| UserRating                          | Number      | 10 digit, 2 decimal | Average value for the user ratings.                                                                                                                                                                                                                        |
+
+### Knowledge Business Object Relationship Definitions
+
+| Child Object                             | Binding    | Cardinality  |
+| ---------------------------------------- | ---------- | ------------ |
+| FRS\_KnowledgeAssocAttachment            | contains   | zero or many |
+| AuditHistoryRelationship                 | contains   | zero or many |
+| CIAssociatedFRS\_Knowledge               | associated | zero or many |
+| FRS\_KnowledgeAssociatedFAQ              | associated | zero or many |
+| FRS\_KnowledgeAssociatedFRS\_Approval    | associated | zero or many |
+| FRS\_KnowledgeAssociatedWorkflowInstance | associated | zero or many |
+| FRS\_KnowledgeAssociatedFRS\_Knowledge   | associated | zero or many |
+| IncidentAssocFRS\_Knowledge              | associated | zero or many |
+| FRS\_KnowledgeContainsJournal            | contains   | many         |
+| FRS\_KnowledgeContainsKMFeedback         | contains   | many         |
+| FRS\_KnowledgeAssociatedProblem          | associated | zero or many |
+| FRS\_KnowledgeAssociatedTask             | associated | zero or many |
+
+### Knowledge Business Object Layouts
+
+| Layout         | Context                                                  | Default Role                                         | Associated Forms                                                                                                                                                  |
+| -------------- | -------------------------------------------------------- | ---------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| FRS\_Knowledge | Create, publish, archive, and manage knowledge articles. | \{\{FRS\_VARS.Neurons\_ITSM\_-\_Knowledge\_Manager}} | KnowledgeStatus<br />KnowledgeRepositories<br />KnowledgeCategory<br />KnowledgeSubCategory<br />KnowledgeEnvironment<br />Profile.Employee<br />StandardUserTeam |
+
+### Knowledge Business Object Forms
+
+| Name                 | Purpose                            |
+| -------------------- | ---------------------------------- |
+| FRS\_Knowledge       | Main FRS\_Knowledge edit.          |
+| FRS\_Knowledge.Brief | Brief preview below list (browse). |
+
+### Knowledge Business Object Quick Actions
+
+| Name                      | Action                                                                                         |
+| ------------------------- | ---------------------------------------------------------------------------------------------- |
+| Archive Knowledge Article | Change article status to archived.                                                             |
+| Article Feedback          | Create new **KMFeedback** business object.                                                     |
+| Publish Knowledge Article | Update status to published. Run for workflow instance.                                         |
+| Submit for Review         | Change article status to in review.                                                            |
+| Create Assignment         | Change owner team to knowledge management. Change summary to **Knowledge Article for Review**. |
+
+### Knowledge Business Object Searches
+
+| Name                                   | Criteria                                                                                                                                                                |
+| -------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Articles created in the last 30 days   | Find 'FRS\_Knowledge' where: FRS Knowledge# CreatedDateTime Greater or Equal $(LastThirtyDays())                                                                        |
+| Articles created this month            | Find 'FRS\_Knowledge' where: FRS Knowledge# CreatedDateTime Greater or Equal $(StartOfThisMonth())                                                                      |
+| Articles modified in the last 30 days  | Find 'FRS\_Knowledge' where: FRS Knowledge# LastModDateTime Greater or Equal $(StartOfThisMonth())                                                                      |
+| Articles published this month          | Find 'FRS\_Knowledge' where: FRS Knowledge# Status Equal to Published<br />*AND*<br />Find 'FRS\_Knowledge' where: LastModDateTime Greater or Equal $(LastThirtyDays()) |
+| Articles rejected this month           | Find 'FRS\_Knowledge' where: FRS Knowledge# Status Equal to Rejected<br />*AND*<br />Find 'FRS\_Knowledge' where: LastModDateTime Greater or Equal $(LastThirtyDays())  |
+| Articles retired this month            | Find 'FRS\_Knowledge' where: FRS Knowledge# Status Equal to Expired<br />*AND*<br />Find 'FRS\_Knowledge' where: RetiredDate Greater or Equal $(LastThirtyDays())       |
+| Articles this year                     | Find 'FRS\_Knowledge' where: FRS Knowledge# CreatedDateTime Greater or Equal $(StartOfThisYear())                                                                       |
+| Articles updated this month            | Find 'FRS\_Knowledge' where: FRS Knowledge# LastModDateTime Greater or Equal $(StartOfThisMonth())                                                                      |
+| Articles with pending actions          | Find 'Task' where: Task# Status Equal to Logged<br />OR Task# Status Equal to Assigned<br />OR Task# Status Equal to Accepted                                           |
+| Articles with solved incidents         | Find 'Incident' where: Incident# Status In List Closed, Resolved                                                                                                        |
+| My authored articles                   | Find 'FRS\_Knowledge' where: FRS Knowledge# Author Equal to $(CurrentLoginId())                                                                                         |
+| All articles                           | Find 'FRS\_Knowledge' where: FRS Knowledge# RecID Is Not Empty                                                                                                          |
+| Articles archived this month           | Find 'FRS\_Knowledge' where: FRS Knowledge# Status Equal to Archived<br />*AND*<br />LastModDateTime Greater or Equal $(LastThirtyDays())                               |
+| Articles in draft this month           | Find 'FRS\_Knowledge' where: FRS Knowledge# Status Equal to Draft<br />*AND*<br />LastModDateTime Greater or Equal $(LastThirtyDays())                                  |
+| Articles in review this month          | Find 'FRS\_Knowledge' where: FRS Knowledge# Status Equal to In Review<br />*AND*<br />LastModDateTime Greater or Equal $(LastThirtyDays())                              |
+| Articles reviewed this month           | Find 'FRS\_Knowledge' where: FRS Knowledge# Status Equal to Reviewed<br />*AND*<br />LastModDateTime Greater or Equal $(LastThirtyDays())                               |
+| Articles with feedback                 | Find 'KM\_Feedback' where: KMFeedbackType Equal To ArticleFeedback                                                                                                      |
+| Articles with feedback in last 30 days | Find 'KM\_Feedback' where: KMFeedbackType Equal To ArticleFeedback<br />*AND*<br />'KM\_Feedback' CreatedDateTime Greater or Equal $(LastThirtyDays())                  |
+| Articles with feedback this month      | Find 'KM\_Feedback' where: KMFeedbackType Equal To ArticleFeedback<br />*AND*<br />'KM\_Feedback' CreatedDateTime Greater or Equal $(StartOfThisMonth())                |
+| My owned articles                      | Find 'FRS\_Knowledge' where: FRS Knowledge# Owner Equal to $(CurrentLoginId())                                                                                          |

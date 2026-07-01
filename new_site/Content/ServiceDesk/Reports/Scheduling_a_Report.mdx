@@ -1,0 +1,72 @@
+---
+title: Scheduling Reports
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:49 GMT+0300 (Eastern European Summer Time)
+---
+
+- :Link[About Scheduling a Report]{label="About Scheduling a Report" overridedLabel="About Scheduling a Report" spaceId docId="JefTZcnXeATKkK0BLSq06" version="v2" docAnchorId="#Abuot_Scheduling_a_Report" loadingMethod="dynamic" newTab="false" href="Scheduling_a_Report.mdx"}
+- :Link[Scheduling a Report]{label="Scheduling a Report" overridedLabel="Scheduling a Report" spaceId docId="JefTZcnXeATKkK0BLSq06" version="v2" docAnchorId="#Scheduling_a_Report" loadingMethod="dynamic" newTab="false" href="Scheduling_a_Report.mdx"}
+- :Link[About Reports and Daylight Savings Time]{label="About Reports and Daylight Savings Time" overridedLabel="About Reports and Daylight Savings Time" spaceId docId="JefTZcnXeATKkK0BLSq06" version="v2" docAnchorId="#About" loadingMethod="dynamic" newTab="false" href="Scheduling_a_Report.mdx"}
+
+### About Scheduling a Report
+
+You can schedule a report to run at specific times.
+
+In previous releases, the system did not take into account daylight savings time when running scheduled reports. This is because the \{\{FRS\_VARS.ProductName}} reports use the Microsoft SSRS report builder which does not support the daylight savings time offset. Starting in \{\{FRS\_VARS.ProductName}} Release 2016.1, we added two **Time Zone** fields and the **Update Report Schedule DST** quick action to account for daylight savings time.
+
+### Scheduling a Report
+
+Use this procedure in conjunction with the procedure described in [Creating Reports and Report Templates](Creating_Custom_Reports.mdx).
+
+1. Log in to \{\{FRS\_VARS.ProductName}}.
+2. Open the **Reports** workspace. The system displays a list of reports.
+3. Click the **edit** :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/WTLKbMa5PI7qeazzbj0FD_edit-old.png" alt caption size="10" width="16" height="16"} icon next to the report to set the scheduling parameters for.
+4. In the **Schedule Information** section, enter the following (you can only select one):
+
+| Option               | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| -------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| No Schedule          | Does not run the report on a schedule. To run the report on a schedule, do not select this option.                                                                                                                                                                                                                                                                                                                                                                                                  |
+| Run once on          | The date to run the report. Enter a date or select a date from the calendar, then choose a time from the drop-down list.                                                                                                                                                                                                                                                                                                                                                                            |
+| Time Zone            | This field is only enabled if you selected **Run once on**.  <br /><br />Specifies the time zone associated with the date that you entered in the **Run once on** field.                                                                                                                                                                                                                                                                                                                            |
+| Daily at             | Automatically runs this report every day. Select a time from the drop-down list.                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| Weekly on            | Automatically runs this report each week. Select the days for it to run, then choose a time from the drop-down list.                                                                                                                                                                                                                                                                                                                                                                                |
+| Monthly (by week) on | Automatically runs this report on a specific week each month. Select the months from the drop-down list. For example, you could run this report every month or every other month.<br />Choose the week from the drop-down list:<br />First<br />Second<br />Third<br />Fourth<br />Last<br />Choose the day of the week to run the report, and then choose the time of day from the drop-down lists.                                                                                                |
+| Monthly (by day) on  | Automatically runs this report on a specific day each month. Select the months from the drop-down list. For example, you could run this report every month or every other month. Enter the number for the day to run the report. For example, to run the report on the fourth of every month, enter **4**. To run the report on the 5th, 10th and 15th of the month, enter **5, 10, 15**, separated by commas. To run the report within a date range, say from the 5th to the 10th, enter **5-10**. |
+| Start                | The start date. All scheduled reports can be designated to start on a specific date. Select a start date from the calendar, or enter a date into the field.                                                                                                                                                                                                                                                                                                                                         |
+| End                  | The end date. All scheduled reports can be designated to end on a specific date. Select an end date from the calendar, or enter a date into the field.                                                                                                                                                                                                                                                                                                                                              |
+| Time Zone            | This field is only enabled if you selected **Daily at**, **Weekly on**, **Monthly (by week) on**, or **Monthly (by day) on**.  <br /><br />Specifies the time zone associated with the date that you entered in the **Daily at**, **Weekly on**, **Monthly (by week) on**, or **Monthly (by day) on** fields.                                                                                                                                                                                       |
+
+5. Click **Save**.
+
+After you run the scheduled report, you can download it from the report center (if you selected **Download** in the **Distribution Information** section) or email it (if you selected **Email** in the **Distribution Information** section). The schedule status indicates if the report ran successfully and the time when it ran.
+
+### About Reports and Daylight Savings Time
+
+- :Link[About Daylight Savings Time]{label="About Daylight Savings Time" overridedLabel="About Daylight Savings Time" spaceId docId="JefTZcnXeATKkK0BLSq06" version="v2" docAnchorId="#About_Reports_and_Daylight_Savings_Time" loadingMethod="dynamic" newTab="false" href="Scheduling_a_Report.mdx"}
+- :Link[Working with the Update Report Schedule DST Quick Action]{label="Working with the Update Report Schedule DST Quick Action" overridedLabel="Working with the Update Report Schedule DST Quick Action" spaceId docId="JefTZcnXeATKkK0BLSq06" version="v2" docAnchorId="#Working_with_the_Update_Report_Schedule_DSTQuick_Action" loadingMethod="dynamic" newTab="false" href="Scheduling_a_Report.mdx"}
+
+### About Daylight Savings Time
+
+Under certain conditions, reports created while Daylight Savings Time (DST) is in effect might not show events on the correct days. To prevent incorrect reporting, ensure that the event time does not occur exactly at midnight (12:00 AM) on the day that Daylight Savings Time ends.
+
+For example, if you specify a date of 4 Nov 2012 12:00 AM, the record appears on the report as having occurred on November 3. Set the event time to something other than midnight (such as 1:00 AM) to yield a correct report. The following illustrates this concept:
+
+*Target Times Set at Midnight on the Last Day of DST Yields an Incorrect Report*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/jdV6xbEQIA5TK8xGho9Pv_dst1.png" position="flex-start" size="40" initialPath="../../Resources/Images/help-images/dst_1.png" githubPath="Content/Resources/Images/help-images/dst_1.png" showCaption="false"></Image>
+
+*Set Target Times to Other Than Midnight (such as 1:00 AM) to Yield a Correct Report*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/pdXJZUhFklX5sUq02JqwD_dst2.png" position="flex-start" size="40" initialPath="../../Resources/Images/help-images/DST_2.png" githubPath="Content/Resources/Images/help-images/DST_2.png" showCaption="false"></Image>
+
+### Working with the Update Report Schedule DST Quick Action
+
+To ensure that scheduled reports run at the correct time during daylight savings time, run the **Update Report Schedule DST** quick action. You can either schedule it to run at certain intervals, such as daily or monthly, or you can manually run it any time.  When daylight savings time happens, the schedule shifts and the system runs the report at the correct time.
+
+For this quick action to run correctly, you must enter a value other than **Your local time** in either of the **Time Zone** fields; that is, you must select a specific time zone for the report schedule.
+
+Follow the steps below to manually run the **Update Report Schedule DST** quick action:
+
+1. Log in to \{\{FRS\_VARS.ProductName}}.
+2. Open the **Notification** workspace.
+3. From the Action Menu, select **No Category > Update Report Schedule DST**. The system runs the **Update Report Schedule DST** quick action.

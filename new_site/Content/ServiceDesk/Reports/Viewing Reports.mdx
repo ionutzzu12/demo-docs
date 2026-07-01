@@ -1,0 +1,260 @@
+---
+title: Viewing Reports
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:49 GMT+0300 (Eastern European Summer Time)
+---
+
+- :Link[About Viewing Reports]{label="About Viewing Reports" overridedLabel="About Viewing Reports" spaceId docId="GLZ7C7icWk4Ww7zctGeeW" version="v2" docAnchorId="#About_Viewing_Reports" loadingMethod="dynamic" newTab="false" href="Viewing Reports.mdx"}
+- :Link[Viewing Reports from the Reports Workspace]{label="Viewing Reports from the Reports Workspace" overridedLabel="Viewing Reports from the Reports Workspace" spaceId docId="GLZ7C7icWk4Ww7zctGeeW" version="v2" docAnchorId="#1View" loadingMethod="dynamic" newTab="false" href="Viewing Reports.mdx"}
+- :Link[Viewing Reports from a Dashboard]{label="Viewing Reports from a Dashboard" overridedLabel="Viewing Reports from a Dashboard" spaceId docId="GLZ7C7icWk4Ww7zctGeeW" version="v2" docAnchorId="#2View" loadingMethod="dynamic" newTab="false" href="Viewing Reports.mdx"}
+- :Link[Viewing Reports from the Quick Actions Menu]{label="Viewing Reports from the Quick Actions Menu" overridedLabel="Viewing Reports from the Quick Actions Menu" spaceId docId="GLZ7C7icWk4Ww7zctGeeW" version="v2" docAnchorId="#3View" loadingMethod="dynamic" newTab="false" href="Viewing Reports.mdx"}
+- :Link[Displaying Times and Dates in Reports for Different Cultures]{label="Displaying Times and Dates in Reports for Different Cultures" overridedLabel="Displaying Times and Dates in Reports for Different Cultures" spaceId docId="GLZ7C7icWk4Ww7zctGeeW" version="v2" docAnchorId="#Adding" loadingMethod="dynamic" newTab="false" href="Viewing Reports.mdx"}
+- :Link[Displaying Report Data as Local Time]{label="Displaying Report Data as Local Time" overridedLabel="Displaying Report Data as Local Time" spaceId docId="GLZ7C7icWk4Ww7zctGeeW" version="v2" docAnchorId="#Date" loadingMethod="dynamic" newTab="false" href="Viewing Reports.mdx"}
+
+### About Viewing Reports
+
+You can only view reports published to your role. Each role has different reports available. To make a report available to a certain role, the administrator must do the following first:
+
+- Make the **Report** workspace available to that role.
+- Publish the report to that role.
+
+### Viewing Reports from the Reports Workspace
+
+You can only see reports available to your user role.
+
+Follow these steps to view reports from the **Reports** workspace:
+
+1. Log in to the Service Desk Console.
+2. Open the **Reports** workspace. The system displays a list of reports that have been published to your role.
+3. Click the report name to generate a report. The system opens a new window with the report.
+
+<hint type="info">
+  Be sure to enable popups in your browser when running reports.  See the online help for your specific browser for more information.
+</hint>
+
+4. Set the parameters in the header area of the report.
+5. Click **View Report**.
+
+### Viewing Reports from a Dashboard
+
+To view a report from a dashboard, you must first add the report to the dashboard. Follow these steps to add a list of reports to the dashboard:
+
+1. Log into the Service Desk Console.
+2. Click the down arrow to the right of ***your role name*****&#xA0;Dashboard**. For example, if you are logged in as a Change Manager, click the down arrow to the right of **Change Dashboard**.
+3. At the bottom right, click **All Dashboards**. The system displays a list of dashboards.
+4. Click the **edit** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/WTLKbMa5PI7qeazzbj0FD_edit-old.png" alt caption size="10" width="16" height="16"} next to the dashboard to add the report list part to. The system displays the Dashboard Center.
+5. Under **Dashboard Objects**, expand the **Special parts** tab from the accordion menu.
+6. Drag and drop a report list from the accordion menu to the dashboard area. The system adds the report list to the dashboard.
+7. Click **Save**.
+8. Click the **home** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/zPjU5ypNRvhSIFRWjefSn_home.png" alt caption size="10" width="18" height="16"} to return to the home page. The system displays the **Report List** in your dashboard, listing the reports available to your role.
+
+### Viewing Reports from the Quick Actions Menu
+
+1. Log into the Service Desk Console.
+2. Open a workspace.
+3. Select one or more records to view.
+4. From the **Action Menu**, choose **Print > Print&#x20;*****business object name***. The system displays the report in a separate window.
+
+### Displaying Times and Dates in Reports for Different Cultures
+
+To add support for browsers in different locations covering multiple countries, use the Microsoft SSRS report builder to add query parameters to detect the current browser culture.
+
+For example, you can edit a parameter to account for Great Britain, which displays date ranges differently than the U.S.
+
+1. Open the Microsoft SSRS report builder.
+2. Make the parameter that governs the browser culture visible by doing the following:
+
+<Paragraph indent="1">
+  a. From the **Report Data** pane, click the **CurrentBrowserCulture** parameter. The system displays the **Report Parameter Properties** dialog box.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. For the **Select parameter visibility** field, select **Visible**. When running the report, this parameter detects the browser culture.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. Click **OK**.
+</Paragraph>
+
+3. Add support for a local browser culture to your report query by doing the following:
+
+<Paragraph indent="1">
+  a. In the **Report Data** pane, right click the **Datasets** folder and select **Add Dataset**. The system displays the **Dataset Properties** dialog box.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Select **Use a dataset embedded in my report.**.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. For the **Data Source** field, select **SaaSAppmodel**.
+</Paragraph>
+
+<Paragraph indent="1">
+  d. For the **Query type** field, select **Text**.
+</Paragraph>
+
+<Paragraph indent="1">
+  e. Click **Query Designer...**.
+</Paragraph>
+
+<Paragraph indent="1">
+  f. In the **Enter Data Source Credentials** dialog box, enter your Microsoft SSRS user name and password, then click **OK**. The system displays the **Query Designer** dialog box.
+</Paragraph>
+
+<Paragraph indent="1">
+  g. Enter query text in the field provided. The following simple query is an example:
+</Paragraph>
+
+<Paragraph indent="1">
+  SELECT
+</Paragraph>
+
+<Paragraph indent="1">
+  Incident.CreatedDateTime
+</Paragraph>
+
+<Paragraph indent="1">
+  FROM
+</Paragraph>
+
+<Paragraph indent="1">
+  Incident
+</Paragraph>
+
+4. Add fields to the report template. In each field using DateTime fields, use the **Properties** pane to change the language properties to add an expression using the current browser culture value: **=Parameters!CurrentBrowserCulture.Value**.
+5. Complete the report template design, and click **OK**.
+
+### Displaying Report Data as Local Time
+
+- :Link[About Displaying Report Data as Local Time]{label="About Displaying Report Data as Local Time" overridedLabel="About Displaying Report Data as Local Time" spaceId docId="GLZ7C7icWk4Ww7zctGeeW" version="v2" docAnchorId="#Adding_Support_for_Browser_Offsets" loadingMethod="dynamic" newTab="false" href="Viewing Reports.mdx"}
+- :Link[Creating a Browser Offset Within a Report Template Field]{label="Creating a Browser Offset Within a Report Template Field" overridedLabel="Creating a Browser Offset Within a Report Template Field" spaceId docId="GLZ7C7icWk4Ww7zctGeeW" version="v2" docAnchorId="#Creating" loadingMethod="dynamic" newTab="false" href="Viewing Reports.mdx"}
+- :Link[Creating a Browser Offset within a Report Template Query]{label="Creating a Browser Offset within a Report Template Query" overridedLabel="Creating a Browser Offset within a Report Template Query" spaceId docId="GLZ7C7icWk4Ww7zctGeeW" version="v2" docAnchorId="#Creating3" loadingMethod="dynamic" newTab="false" href="Viewing Reports.mdx"}
+
+### About Displaying Report Data as Local Time
+
+By default, records are stored in UTC time. However, you can use the Microsoft SSRS report builder to change the report parameters to display the record time as local time. For example, you can display a report in Pacific Standard Time when run from a browser in that time zone.
+
+This can be combined with the **CurrentBrowserCulture** parameter to change the format in which the time is displayed.
+
+You can change the browser offset value in a report template field or in a report template query.
+
+### Creating a Browser Offset Within a Report Template Field
+
+1. Open the Microsoft SSRS report builder.
+2. Make the parameter that governs the displayed time zones visible by doing the following:
+
+<Paragraph indent="1">
+  a. Select the **BrowserTimeZoneOffset** parameter from the **Report Data** pane. The system displays the **Report Parameter Properties** dialog box.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. For the **Select parameter visibility** field, select **Visible**. When running the report, this parameter detects the browser time zone.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. Click **OK**.
+</Paragraph>
+
+3. Add support for a browser offset to your report field by doing the following:
+
+<Paragraph indent="1">
+  a. In the **Report Data** pane, right click the **Datasets** folder and select **Add Dataset**. The system displays the **Dataset Properties** dialog box.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Select **Use a dataset embedded in my report.**.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. For the **Data Source** field, select **SaaSAppmodel**.
+</Paragraph>
+
+<Paragraph indent="1">
+  d. For the **Query type** field, select **Text**.
+</Paragraph>
+
+<Paragraph indent="1">
+  e. Click **Query Designer**.
+</Paragraph>
+
+<Paragraph indent="1">
+  f. In the **Enter Data Source Credentials** dialog box, enter your Microsoft SSRS user name and password, then click **OK**. The system displays the **Query Designer** dialog box.
+</Paragraph>
+
+<Paragraph indent="1">
+  g. Enter query text in the field provided. The following simple query is an example:
+</Paragraph>
+
+<Paragraph indent="1">
+  SELECT
+</Paragraph>
+
+<Paragraph indent="1">
+  Incident.CreatedDateTime
+</Paragraph>
+
+<Paragraph indent="1">
+  FROM
+</Paragraph>
+
+<Paragraph indent="1">
+  Incident
+</Paragraph>
+
+4. Add fields to the report template. In each field using DateTime fields, use the **Properties** pane to add an expression specifying the browser offset to the language properties: **=Code.AdjustBrowserOffsetToDatetime(Fields!createddatetime.Value,Parameters!BrowserTimezoneOffSet.Value)**.
+5. Complete the report template design, and click **OK**.
+
+### Creating a Browser Offset within a Report Template Query
+
+1. Open the Microsoft SSRS report builder.
+2. Make the parameter that governs browser culture visible by doing the following:
+
+<Paragraph indent="1">
+  a. From the **Report Data** pane, click the **BrowserTimeZoneOffset** parameter . The system displays the **Report Parameter Properties** dialog box.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. For the **Select parameter visibility** field, select **Visible**. When running the report, this parameter detects the browser time zone.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. Click **OK**.
+</Paragraph>
+
+3. Add support for a browser offset to your report query by doing the following:
+
+<Paragraph indent="1">
+  a. In the **Report Data** pane, right click the **Datasets** folder and select **Add Dataset**. The system displays the **Dataset Properties** dialog box.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Select **Use a dataset embedded in my report.**.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. For the **Data Source** field, select **SaaSAppmodel**.
+</Paragraph>
+
+<Paragraph indent="1">
+  d. For the **Query type** field, select **Text**.
+</Paragraph>
+
+<Paragraph indent="1">
+  e. Click **Query Designer...**.
+</Paragraph>
+
+<Paragraph indent="1">
+  f. In the **Enter Data Source Credentials** dialog box, enter your Microsoft SSRS user name and password, then click **OK**. The system displays the **Query Designer** dialog box.
+</Paragraph>
+
+<Paragraph indent="1">
+  g. Enter query text in the field provided. The following simple query is an example of using the browser offset within the query: **select IncidentNumber,DATEADD(mi,@offset,createddatetime) as createddatetime from incident**
+</Paragraph>
+
+<Paragraph indent="1">
+  h. From the **Dataset Properties** panel, edit the **offset** parameter using the following expression: **=Parameters!BrowserTimezoneOffSet.Value**.
+</Paragraph>
+
+4. Add fields to the report template. You do not need to edit the DateTime fields in this procedure.
+5. Complete the report template design, and click **OK**.

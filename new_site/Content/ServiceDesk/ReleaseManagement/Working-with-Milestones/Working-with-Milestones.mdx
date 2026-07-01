@@ -1,0 +1,65 @@
+---
+title: Working with Milestones
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:48 GMT+0300 (Eastern European Summer Time)
+---
+
+If you use a release template to create a major release, \{\{FRS\_VARS.ProductName}} automatically defines milestones. You can also create custom milestones from the **Quick Actions** menu, from the **Milestones** tab, or from the **Schedule** tab using the Gantt chart.
+
+## Best Practice for Release Milestones
+
+We recommend the following best practice when using milestones:
+
+- Include risk assessment as an activity in the **Planning** milestone of a major release and document the result of the activity as an attachment to the release.
+- Include the confirmed availability of the required configuration item for the release as an activity within the **Planning** milestone.
+- Include financial planning to ensure that the cost of the project is justified and approved as an activity in the **Planning** milestone. Include documentation of the financial analysis and approval process as an attachment.
+- Include the updates for the CMDB with the post-release configuration item detail as an activity within the **Release Review and Closure** milestone.
+
+## Milestones Created by Templates
+
+| Release Template            | Milestones Created                                                                                                                                                                             |
+| --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Major Master Location Based | Release and Deployment Planning<br />Build and Test Release<br />Service Testing and Pilot<br />Release Review and Closure                                                                     |
+| Major Master Feature Based  | Release and Deployment Planning<br />Release Review and Closure                                                                                                                                |
+| Major Phase Feature Based   | Build and Test Release<br />Service Testing and Pilot<br />Deployment Preparation<br />Deployment<br />Early Life Support                                                                      |
+| Major Phase Location Based  | Deployment Preparation<br />Deployment<br />Early Life Support                                                                                                                                 |
+| Major Standalone            | Build and Test Release<br />Deployment<br />Deployment Preparation<br />Early Life Support<br />Release and Deployment Planning<br />Release Review and Closure<br />Service Testing and Pilot |
+
+## Milestone Rules
+
+- By default, milestones are not created automatically for minor and emergency releases. You may decide as a rule not to create milestones for emergency releases because they are usually recorded after-the-fact. If the release type is minor, you may decide to create some of the milestones.
+- Release and deployment activities should be planned in stages as details of the deployment might not be known in detail initially. You have the option of creating milestones and adding information to a milestone record at any time in the release cycle. However, it is best to identify them in advance, even if you do not have all the information.
+- Good planning and management are essential to deploy a release, across distributed environments and locations, into production successfully. Milestones that are created as a result of selecting or applying a major release template have an associated workflow that triggers the first milestone in the sequence when the release status is set to active, and the milestone status is set to active. As each milestone in the sequence is approved and set to completed, the next milestone in the sequence is initiated.
+- When a milestone is created for a release using the milestone templates, and both the release status and milestone status are set to active, tasks and checklists are automatically created for the first milestone in the sequence. Add more information to each task record and identify a team and owner to work on each task. See [Working with Tasks](../../Tasks/Tasks.mdx) for more information about creating, working with, assigning, and canceling tasks, as well as task escalations.
+- By default, tasks are created for the IT, Application Development, and QA teams. When each task defined in the milestone is set to complete by the appropriate task owner, an approval notification is sent to the users defined in the Release Review Board. When the milestone is approved, its status is updated to completed.
+- You can then go to the next milestone in the sequence and update its status to active. Tasks and checklists for the next milestone in the sequence appear and notification is sent to the appropriate task owner teams. When those tasks are completed, again the approval notifications are generated. When the milestone is approved, its status is updated to completed.
+- After all the milestones defined for the release have completed status, the release status is updated to closed.
+- Checklists are also created for each milestone record. You can add attachments to build and test plans that are referenced in the checklist and any other documentation that is needed for the milestone.
+- Add other activities, such as notes or emails, to the **Activity History** tab of the milestone record.
+- The cost of a milestone is calculated when all the tasks associated with the milestone are completed. The cost of a task associated with a milestone is calculated by multiplying the average cost of the actual effort by the average cost of the owner team assigned to the task. The cost of all the tasks associated with the milestone are rolled into the total cost of the milestone when the milestone is completed.
+- Upon completion of the tasks, the sum of the actual time spent on all the associated tasks in the milestone is also rolled up into the milestone record and shown in the **Time** field.
+- If you create a new milestone, there is no workflow associated with it. You need to add tasks to it and assign the tasks to appropriate owners.
+
+## Milestone Workflows
+
+<hint type="info">
+  The milestone workflows described here reference the default application. You can work with your administrator to create or modify the workflows to meet your business and organizational needs.
+</hint>
+
+Milestone workflows are defined for five combinations of the major release. The first specified milestone workflow in the sequence is invoked when the milestone status is updated to active. When the final milestone for the release is approved and the status is updated to completed, the release status is updated to closed.
+
+- Milestones are defined when you create a major release using a release template.
+- The milestone workflow starts when both the status of the release and the status of the milestone are updated to active.
+- When the milestone status is updated to active, checklist records and tasks are created for the milestone record. Notifications are sent to the appropriate teams to work on the tasks. When a task is completed, the QA team is notified. Finally, when the QA team sets the task status to complete, the users identified in the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Release\_Review\_Board}} are notified to approve the milestone.
+- The Application Development team (AppDevEmailAddress), the IT team (ITEmail Address), and the QA team (QAEmailAddress) are generic teams with corresponding email addresses that are set up in global constants in the **Configuration Console**. Your administrator can add or modify these groups and email addresses associated with the groups.
+- When the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Release\_Review\_Board}} approves the milestone, the status of the milestone is set to complete. Associated tasks and checklists for the next milestone in the sequence are created when the status of the preceding milestone is set to complete. After each milestone defined for the release is approved and the status is updated to complete, the release status is updated to closed.
+
+The **Build and Test Release** milestone workflow is an example:
+
+<hint type="success">
+  The workflow shown is by default. You might be using a workflow customized by your administrator.
+</hint>
+
+*Build and Test Release Milestone Workflow*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/kiR91212HvTBii6XUM1gP_milestonewrkflow.png" position="flex-start" size="40" initialPath="../../../Resources/Images/help-images/milestone_wrkflow.png" githubPath="Content/Resources/Images/help-images/milestone_wrkflow.png" showCaption="false"></Image>

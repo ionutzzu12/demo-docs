@@ -1,0 +1,109 @@
+---
+title: Example: Creating or Linking Business Objects via Email
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:50 GMT+0300 (Eastern European Summer Time)
+---
+
+Configure this option after you have created and saved an inbox.
+
+You can set up inbound emails to create an employee record or link to an employee record, or you can create a business object record that is associated with the incident without creating an employee record.
+
+- :Link[About Creating or Linking to an Employee or External Contact]{label="About Creating or Linking to an Employee or External Contact" overridedLabel="About Creating or Linking to an Employee or External Contact" spaceId docId="JC3YtYLh5mzeinEwYZRkZ" version="v2" docAnchorId="#About-Creating-or-Linking-to-an-Employee-or-External-Contact" loadingMethod="dynamic" newTab="false" href="Create_or_Link_Objects_by_Email.mdx"}
+- :Link[Creating a Link to a Custom Business Object]{label="Creating a Link to a Custom Business Object" overridedLabel="Creating a Link to a Custom Business Object" spaceId docId="JC3YtYLh5mzeinEwYZRkZ" version="v2" docAnchorId="#Create_a_Link_to_a_Custom_Object" loadingMethod="dynamic" newTab="false" href="Create_or_Link_Objects_by_Email.mdx"}
+- :Link[Creating Incidents if the Employee or External Contact is Not in the System]{label="Creating Incidents if the Employee or External Contact is Not in the System" overridedLabel="Creating Incidents if the Employee or External Contact is Not in the System" spaceId docId="JC3YtYLh5mzeinEwYZRkZ" version="v2" docAnchorId="#Creating2" loadingMethod="dynamic" newTab="false" href="Create_or_Link_Objects_by_Email.mdx"}
+- :Link[Configuring an Inbox for Emails without a From Address]{label="Configuring an Inbox for Emails without a From Address" overridedLabel="Configuring an Inbox for Emails without a From Address" spaceId docId="JC3YtYLh5mzeinEwYZRkZ" version="v2" docAnchorId="#Configur" loadingMethod="dynamic" newTab="false" href="Create_or_Link_Objects_by_Email.mdx"}
+
+## About Creating or Linking to an Employee or External Contact
+
+From the **Inbox Configuration** workspace, select **Create record by creating or linking the Employee or External Contact** to create a new employee using the incoming email address of a message received from a permitted domain. This option is available whether you select **Incident**, **Problem**, or **Other** from the **Email Processor** field.
+
+*Inbox - Create or Link to an Employee*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/7Al688wV2PfBmIEBy1DUH_email04.png" alt="Creating or linking an employee to an inbox." position="flex-start" size="40" initialPath="../../Resources/Images/help-images/email_04.png" githubPath="Content/Resources/Images/help-images/email_04.png" showCaption="false"></Image>
+
+- If you select this option and the user is in the application, the application creates a new incident or generic business object and links it to the existing employee record.
+- If you select this option and the user is not in the application, the application creates a new employee record and associates it with the newly created incident or generic business object.
+
+If you do not select **Create record by creating or linking the Employee or External Contact**, the application creates or updates a generic business object only if the employee is in the application. Otherwise, the email listener does not take any action. The application discards the incoming message and creates a log entry in the application log facility called syslog.
+
+By default, the application adds all new employees to the default organizational unit. However, you must manually change them to active status, even if they are assigned to a team or organizational unit.
+
+Use caution when designating a default domain when using this feature. If the application cannot find the domain, the application attempts to create a new domain for this new user, possibly causing an infinite loop. The best way to prevent this is to define a failure keyword. Refer to :Link[Working with Email Inboxes]{label="Working with Email Inboxes" overridedLabel="Working with Email Inboxes" spaceId docId="oxavypV7mXubKfaNhVDO1" version="v2" docAnchorId="#Working-with-Email-Inboxes" loadingMethod="dynamic" newTab="false" githubPath="Inbox_Configuration.htm#Working-with-Email-Inboxes" href="Inbox_Configuration.mdx"}.
+
+## Creating a Link to a Custom Business Object
+
+1. From the Configuration Console, click **Configure > Email Configuration > Mail Boxes** to open the **Inbox Configuration** workspace.
+2. Enter values. Refer to :Link[Creating an Inbox]{label="Creating an Inbox" overridedLabel="Creating an Inbox" spaceId docId="oxavypV7mXubKfaNhVDO1" version="v2" docAnchorId="#Creating-an-Inbox" loadingMethod="dynamic" newTab="false" githubPath="Inbox_Configuration.htm#Creating-an-Inbox" href="Inbox_Configuration.mdx"}.
+3. Check **Use Method 2 (for Custom BO)**.
+4. In the **Relationship to Custom BO** field, enter the name of the business object to relate to the incident.
+
+*Inbox - Create an Object Related to Incident Fields*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/HZvl79-XtxN2QEYGsQ6sU_email05.png" alt="Create an object related to incident fields." position="flex-start" size="40" initialPath="../../Resources/Images/help-images/email_05.png" githubPath="Content/Resources/Images/help-images/email_05.png" showCaption="false"></Image>
+
+<Paragraph indent="1">
+  Business objects related to the incident are listed in the **Relationships** child tab of the incident business object.
+</Paragraph>
+
+<Paragraph indent="1">
+  For example, to create a knowledge record and associate it with the incident, enter **IncidentAssocFRS\_Knowlege**.
+</Paragraph>
+
+5. In the **Match the email address from value to the related object field value** field, enter the display name of a valid business object field from the related business object. This value is required. This field cannot be empty when you check **Use Method 2 (for Custom BO)**.
+
+<Paragraph indent="1">
+  For example, if you are creating a knowledge record, enter keywords to map the **From** value of the email to the keywords field of the knowledge record. The sender of the email (or the **From** value) is mapped to the field that you specify.
+</Paragraph>
+
+6. Click **Save** to update the record before continuing.
+7. In the **Field Mapping** child tab, click **New Tenant Email Mailbox Mapping**. The **New Tenant Email Mailbox Mapping** window appears.
+
+*New Tenant Email Mailbox Mapping*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Y-6v3xE6G5mWJRa6nKk6h_email06.png" alt="Map a new tenant email mailbox." position="flex-start" size="40" initialPath="../../Resources/Images/help-images/email_06.png" githubPath="Content/Resources/Images/help-images/email_06.png" showCaption="false"></Image>
+
+8. Enter the following information:
+
+| Field     | Description                                              |
+| --------- | -------------------------------------------------------- |
+| Map Field | The name of the field to map. For example, PrimaryEmail. |
+| Map Value | The value for the field to contain. For example, @From:  |
+
+9. Click **Save**.
+10. Repeat as needed to map additional values. Ensure that you map all of the required fields in the target form.
+
+## Creating Incidents if the Employee or External Contact is Not in the System
+
+You can create an incident if the employee or external contact does not exist in \{\{FRS\_VARS.ProductName}}.
+
+1. From the Configuration Console, click **Configure > Email Configuration > Mail Boxes** to open the **Inbox Configuration** workspace.
+2. Enter values. Refer to :Link[Creating an Inbox]{label="Creating an Inbox" overridedLabel="Creating an Inbox" spaceId docId="oxavypV7mXubKfaNhVDO1" version="v2" docAnchorId="#Creating-an-Inbox" loadingMethod="dynamic" newTab="false" githubPath="Inbox_Configuration.htm#Creating-an-Inbox" href="Inbox_Configuration.mdx"}.
+3. Set the following:
+
+| Field                                                                  | Value                             |
+| ---------------------------------------------------------------------- | --------------------------------- |
+| Relationship to Custom BO                                              | Enter EmployeeAssociatesIncident. |
+| Match the email address "from" value to the related object field value | Enter PrimaryEmail.               |
+| OR related object field value                                          | Leave this field empty.           |
+
+*Inbox - Creating an Incident*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/xWC68Cg5-FGSMb3VtsDSS_email-create-incident-non-employee.png" alt="Create an incident." position="flex-start" size="40" initialPath="../../Resources/Images/help-images/email create incident non-employee.png" githubPath="Content/Resources/Images/help-images/email create incident non-employee.png" showCaption="false"></Image>
+
+4. Click **Save**.
+
+Using this feature incorrectly can cause an infinite loop. The best way to prevent this is to define a failure keyword. Refer to :Link[Working with Email Inboxes]{label="Working with Email Inboxes" overridedLabel="Working with Email Inboxes" spaceId docId="oxavypV7mXubKfaNhVDO1" version="v2" docAnchorId="#Working-with-Email-Inboxes" loadingMethod="dynamic" newTab="false" githubPath="Inbox_Configuration.htm#Working-with-Email-Inboxes" href="Inbox_Configuration.mdx"}.
+
+## Configuring an Inbox for Emails without a From Address
+
+1. From the Configuration Console, click **Configure > Email Configuration > Mail Boxes** to open the **Inbox Configuration** workspace.
+2. Enter values. Refer to :Link[Creating an Inbox]{label="Creating an Inbox" overridedLabel="Creating an Inbox" spaceId docId="oxavypV7mXubKfaNhVDO1" version="v2" docAnchorId="#Creating-an-Inbox" loadingMethod="dynamic" newTab="false" githubPath="Inbox_Configuration.htm#Creating-an-Inbox" href="Inbox_Configuration.mdx"}.
+3. Ensure that there is a value in the **Default Domain** field.
+4. Check **Use Method 1 (for Employee / External Contact / None)**.
+5. Select **Create record by creating or linking the Employee or External Contact**.
+6. Click **Save**.
+7. From the Configuration Console, click **Build > Business Objects** to open the **Business Objects** workspace.
+8. Open the **Journal.Email** business object.
+9. Click the **Business Rules** tab.
+10. Under the **Required Rules** section, disable the rule called **Required Rule for Journal#Email.FromAddr (Default)**.
+11. Click **Save**.

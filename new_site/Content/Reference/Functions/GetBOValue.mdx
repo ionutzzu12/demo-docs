@@ -1,0 +1,83 @@
+---
+title: GetBOValue
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:58 GMT+0300 (Eastern European Summer Time)
+---
+
+This function is only used with the **Insert Multi Child** workflow block. This function is executed by the **Insert Object** quick action during run time and returns the value of a field within an instance of a business object.
+
+Use this function with caution. Because it connects with the database, using this function too often can affect the application performance.
+
+## Syntax
+
+GetBOValue(recId, boRecId, boRef, boField)
+
+## Enabled For
+
+For a description of the business object categories, see :Link[Notes on "Enabled For"]{label="Notes on &#x22;Enabled For&#x22;" overridedLabel="Notes on &#x22;Enabled For&#x22;" spaceId docId="xObv2pIDrk60jkEIWs8mD" version="v2" docAnchorId="#Notes" loadingMethod="dynamic" newTab="false" githubPath="_Built_in_Functions.htm#Notes" href="_Built_in_Functions.mdx"}.
+
+| Business Object Category                                                                    | Yes/No |
+| ------------------------------------------------------------------------------------------- | ------ |
+| Business Rules: Before-Save Rules                                                           | Yes    |
+| Business Rules: Calculation Rules (After Save, with or without Also Recalculate on Load)    | Yes    |
+| Business Rules: Calculation Rules (Before Save or Always, without Also Recalculate On Load) | Yes    |
+| Business Rules: Calculation Rules (Before Save or Always, with Recalculate On Load)         | Yes    |
+| Business Rules: Editing Rules                                                               | Yes1   |
+| Business Rules: Initialization Rules                                                        | Yes    |
+| Business Rules: Read Only Rules                                                             | No     |
+| Business Rules: Required Rules                                                              | Yes1   |
+| Business Rules: Validation Rules                                                            | Yes    |
+| Client Expressions                                                                          | No     |
+| Object Permissions                                                                          | No     |
+| Services                                                                                    | Yes    |
+| LDAP                                                                                        | Yes    |
+| Mobile                                                                                      | Yes    |
+| Quick Actions (except UI Quick Actions)                                                     | Yes    |
+| UI Quick Actions                                                                            | No     |
+| Reports                                                                                     | Yes    |
+| Search/Dashboard without field references                                                   | Yes    |
+| Search/Dashboard with field references                                                      | No     |
+| 1. Except when this field appears on a form or is triggered by such a field.                |        |
+
+## Parameters
+
+| Parameter | Description                                                                         |
+| --------- | ----------------------------------------------------------------------------------- |
+| recId     | The RecID of the context business object.                                           |
+| boRecId   | The RecID of the related business object instance.                                  |
+| boRef     | The name of the business object, such as Profile#Employee.                          |
+| boField   | The field of the business object instance (**boRecId**) for which to get the value. |
+
+## Return Value
+
+<Paragraph indent="1">
+  The same type as the **boField** parameter type. For example, if the **boField** parameter is a DateTime value, this function returns a DateTime value.
+</Paragraph>
+
+## Example
+
+Task#Assignment.Details = $(GetBOValue(RecId, 'boRecId', 'Journal#', 'Subject'))
+
+<Paragraph indent="1">
+  In this example, there are the following values:
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  **RecId** is the RecID of an incident
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  **boRecId** is the RecID of the journal
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  **boRef** is Journal#
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  **boField** is 'Subject'
+</Paragraph>
+
+<Paragraph indent="1">
+  If the Journal.Subject value is "Incident 10945 is assigned to you", then the Task#Assignment has in its **Details** field the following: "Incident# 10945 is assigned to you".
+</Paragraph>

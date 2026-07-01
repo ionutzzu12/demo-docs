@@ -1,0 +1,64 @@
+---
+title: GetSRPValue
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:58 GMT+0300 (Eastern European Summer Time)
+---
+
+Gets the service request parameter value as part of a workflow.
+
+## Syntax
+
+GetSRPValue(recId, parameterFieldName)
+
+## Enabled For
+
+For a description of the business object categories, see :Link[Notes on "Enabled For"]{label="Notes on &#x22;Enabled For&#x22;" overridedLabel="Notes on &#x22;Enabled For&#x22;" spaceId docId="xObv2pIDrk60jkEIWs8mD" version="v2" docAnchorId="#Notes" loadingMethod="dynamic" newTab="false" githubPath="_Built_in_Functions.htm#Notes" href="_Built_in_Functions.mdx"}.
+
+| Business Object Category                                                                    | Yes/No |
+| ------------------------------------------------------------------------------------------- | ------ |
+| Business Rules: Before-Save Rules                                                           | Yes    |
+| Business Rules: Calculation Rules (After Save, with or without Also Recalculate on Load)    | Yes    |
+| Business Rules: Calculation Rules (Before Save or Always, without Also Recalculate On Load) | Yes    |
+| Business Rules: Calculation Rules (Before Save or Always, with Recalculate On Load)         | Yes    |
+| Business Rules: Editing Rules                                                               | Yes1   |
+| Business Rules: Initialization Rules                                                        | Yes    |
+| Business Rules: Read Only Rules                                                             | No     |
+| Business Rules: Required Rules                                                              | Yes1   |
+| Business Rules: Validation Rules                                                            | Yes    |
+| Client Expressions                                                                          | No     |
+| Object Permissions                                                                          | No     |
+| Services                                                                                    | Yes    |
+| LDAP                                                                                        | Yes    |
+| Mobile                                                                                      | Yes    |
+| Quick Actions (except UI Quick Actions)                                                     | Yes    |
+| UI Quick Actions                                                                            | No     |
+| Reports                                                                                     | Yes    |
+| Search/Dashboard without field references                                                   | Yes    |
+| Search/Dashboard with field references                                                      | No     |
+| Export to Excel                                                                             | No     |
+| 1. Except when this field appears on a form or is triggered by such a field.                |        |
+
+## Parameters
+
+| Parameter          | Description                                                                                   |
+| ------------------ | --------------------------------------------------------------------------------------------- |
+| recId              | The RecID of the service request instance.                                                    |
+| parameterFieldName | The name of the service request field on the **Parameter** tab for which to return the value. |
+
+## Return Value
+
+<Paragraph indent="1">
+  The same type as the value of the **parameterFieldName** parameter. For example, if the **parameterFieldName** parameter is a DateTime value, this function returns a DateTime value.
+</Paragraph>
+
+## Example
+
+$(GetSRPValue(RecId, "RequesterDepartment") != "IT")
+
+<Paragraph indent="1">
+  Use the example above to retrieve the value of a parameter in a service request. In this example, the **GetSRPValue** function retrieves the **RequesterDepartment** parameter from the service request and determines if the requester is not in the IT department. This example might be used in a triggered action to send a notification to the user if they are not in IT and would therefore not see the service request as a normal course of business.
+</Paragraph>
+
+<Paragraph indent="1">
+  This function is often used in conjunction with the **summary** field of the service request to identify which service request is in use to know which parameters are available.
+</Paragraph>

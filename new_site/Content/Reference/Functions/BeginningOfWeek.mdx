@@ -1,0 +1,66 @@
+---
+title: BeginningOfWeek
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:59 GMT+0300 (Eastern European Summer Time)
+---
+
+Returns the UTC date and time for the beginning of the local week based on the local date and time of the current session.
+
+In \{\{FRS\_VARS.ProductName}}, the beginning of the week is Sunday.
+
+## Syntax
+
+BeginningOfWeek(numWeeks, baseDateTime, timeZone)
+
+## Enabled For
+
+For a description of the business object categories, see :Link[Notes on "Enabled For"]{label="Notes on &#x22;Enabled For&#x22;" overridedLabel="Notes on &#x22;Enabled For&#x22;" spaceId docId="xObv2pIDrk60jkEIWs8mD" version="v2" docAnchorId="#Notes" loadingMethod="dynamic" newTab="false" githubPath="_Built_in_Functions.htm#Notes" href="_Built_in_Functions.mdx"}.
+
+| Business Object Category                                                                    | Yes/No |
+| ------------------------------------------------------------------------------------------- | ------ |
+| Business Rules: Before-Save Rules                                                           | Yes    |
+| Business Rules: Calculation Rules (After Save, with or without Also Recalculate on Load)    | Yes    |
+| Business Rules: Calculation Rules (Before Save or Always, without Also Recalculate On Load) | Yes    |
+| Business Rules: Calculation Rules (Before Save or Always, with Recalculate On Load)         | Yes    |
+| Business Rules: Editing Rules                                                               | Yes    |
+| Business Rules: Initialization Rules                                                        | Yes    |
+| Business Rules: Read Only Rules                                                             | Yes    |
+| Business Rules: Required Rules                                                              | Yes    |
+| Business Rules: Validation Rules                                                            | Yes    |
+| Client Expressions                                                                          | Yes    |
+| Object Permissions                                                                          | Yes    |
+| Services                                                                                    | Yes    |
+| LDAP                                                                                        | Yes    |
+| Mobile                                                                                      | Yes    |
+| Quick Actions (except UI Quick Actions)                                                     | Yes    |
+| UI Quick Actions                                                                            | Yes    |
+| Reports                                                                                     | Yes    |
+| Search/Dashboard without field references                                                   | Yes    |
+| Search/Dashboard with field references                                                      | Yes    |
+
+## Parameters
+
+| Parameter    | Description                                                                                                                                                                                                              |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| numWeeks     | (Optional) The number of intervals. If not specified, uses the default interval which is 0. Can be either a positive integer, to indicate weeks in the future, or a negative integer, to indicate weeks in the past.     |
+| baseDateTime | (Optional) The base date for the function. If not specified, uses the default date which is the current date and time.                                                                                                   |
+| timeZone     | (Optional) The time zone, in IANA format.                                                                                                                                                                                |
+
+## Return Value
+
+<Paragraph indent="1">
+  DateTime value in UTC time.
+</Paragraph>
+
+<hint type="info">
+  - If the application has to display the return value, it implicitly converts it to text, thereby allowing the display format to change depending on your culture code. See :Link[Available Languages and Cultures]{label="Available Languages and Cultures" overridedLabel="Available Languages and Cultures" spaceId docId="ZOdB7cSrDXVspZWLePaWn" version="v2" docAnchorId="#culture" loadingMethod="dynamic" newTab="false" githubPath="../../Configure/Localization/Setting Up Languages.htm#culture" href="../../Configure/Localization/Setting Up Languages.mdx"} for a list of the culture codes used by \{\{FRS\_VARS.ProductName}}.
+  - In this release of \{\{FRS\_VARS.ProductName}}, there is a known issue, where if the time zone offset between the current date and time and the DateTime value returned by the function is different, the return value is off by one hour. This happens when the current date is before daylight savings time and the DateTime value that is returned is after daylight savings time, or vice versa.
+</hint>
+
+## Example
+
+$(BeginningOfWeek(0))
+
+<Paragraph indent="1">
+  If today is Wednesday August 13, 2014 and your time zone is Pacific time (which is UTC-7 during daylight savings time but UTC-8 during standard time), this function returns Sunday August 10, 2014 at 07:00:00 AM.
+</Paragraph>

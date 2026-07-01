@@ -1,0 +1,27 @@
+---
+title: Asset Processor Configuration
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:54 GMT+0300 (Eastern European Summer Time)
+---
+
+This topic provides information on the steps to configure the Asset Processor feature, specific to Windows, Unix, and LanProbe platforms.
+
+<hint type="info">
+  On the Asset Processor Configuration page, the **Create a new CI** checkbox is disabled, by default from the 2019.1 release. This change was introduced in the “Asset Processor Configuration” workspace due to the consolidation of AMDB and CMDB resulting in a unified IxM DB, introduced in the 2019.1 release.
+</hint>
+
+To import any CI specific to \{\{FRS\_VARS.ProductName}}, the following configuration needs to be done in the Asset Processor Configuration workspace.
+
+1. Log in to \{\{FRS\_VARS.ProductName}}.
+2. Go to the **Asset Processor Configuration** workspace.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/hpDCKqMauR-nK7SXck4Ts_asset-processor-configuration-page.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/asset-processor-configuration-page.png" githubPath="Content/Resources/Images/help-images/asset-processor-configuration-page.png" showCaption="false"></Image>
+
+3. Select the required platforms and define the following configurations.
+   - In the **Matching Fields** text box, enter **PrevId,MACAddress,BIOSGuid,VMuuid,FQDN,HostName,SerialNumber,IPAddress**. Only these values are available for use.
+   - Select the **Create a new CI** check box (by default, this check box is not selected).
+   - In the **New CI Type** field, **ivnt\_UnmanagedAsset** is selected by default. Remove the selected value and make it a blank field instead.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/l2ChsIm50s-_RgTffBT1Q_asset-processor-configuration.png" position="flex-start" size="40" indent="2" initialPath="../../Resources/Images/Asset-Processor-Configuration.png" githubPath="Content/Resources/Images/Asset-Processor-Configuration.png" showCaption="false"></Image>
+
+4. Click **Save**.

@@ -1,0 +1,261 @@
+---
+title: Working with Employees
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:50 GMT+0300 (Eastern European Summer Time)
+---
+
+\{\{FRS\_VARS.ProductName}} contains a user named **InternalServices** by default to support the workflow and escalation engines. This user is linked to the admin role. You cannot delete this user. Do not link it to other roles or unlink it from the admin role. Doing so will disable the workflow and escalation features.
+
+An employee is an internal customer who uses \{\{FRS\_VARS.ProductName}}. The application provides employees with an account that defines the login access and available roles. The application assigns at least one role to all employees and they use this role to log into the application.
+
+Employee accounts include general information (login and role information) and extended information (personal information).
+
+<hint type="info">
+  To add a large number of users within Active Directory, use the LDAP Active Directory Import tool. Refer to [Configuring LDAP Settings](../ImportExportData/LDAP_Settings.mdx).
+</hint>
+
+## Accessing the Employee List
+
+1. Do one of the following:
+   - From the Configuration Console, click **Configure > Users and Permissions > Users** to open the **Users** workspace.
+   - Log in to the application and open the **Employee** workspace.
+2. Open an employee record to view its properties.
+
+## Creating an Employee
+
+Employee information is stored in the **StandardEmployee** business object. Edit this business object to track information to capture about each employee in your application.
+
+1. From the Configuration Console, click **Configure > Users and Permissions > Users** to open the **Users** workspace.
+2. Click **New Employee** from the toolbar. The application displays an empty employee form. The following default tabs appear (results may vary depending on your application setup):
+   - **Details**: Continue to the next step.
+   - **Roles**: The roles to which the employee belongs. Refer to [Working with Roles](../../ServiceDesk/Roles/roles.mdx).
+   - **Incident**: Incidents in which the employee is the customer. Refer to :Link[About Creating an Incident for an Employee]{label="About Creating an Incident for an Employee" overridedLabel="About Creating an Incident for an Employee" spaceId docId="gO65DKWOS0RTWm_hpdz38" version="v2" docAnchorId="#Create_an_Incident_for_Employees" loadingMethod="dynamic" newTab="false" href="Working_with_employees.mdx"}.
+   - **Change**: Changes in which the employee is the requester. Refer to [Creating a Change Request](../../ServiceDesk/Change/Creating-a-Change-Request.mdx).
+   - **Contact Group**: Refer to :Link[Adding an Employee to a Contact Group]{label="Adding an Employee to a Contact Group" overridedLabel="Adding an Employee to a Contact Group" spaceId docId="gO65DKWOS0RTWm_hpdz38" version="v2" docAnchorId="#Add_an_Employee_to_a_Contact_Group" loadingMethod="dynamic" newTab="false" href="Working_with_employees.mdx"}.
+   - **CI**: Configuration items in which the employee is the owner. Refer to [About Creating a Configuration Item](../../ServiceDesk/ConfigurationMgmt/About_Creating_a_Configuration_Item.mdx).
+   - **Activity History**: Refer to [About Activity History](../../ServiceDesk/ActivityHistory/Activity_History.mdx).
+   - **Attachment**: Refer to [Working With Attachments and URLs](../Attachments/Attachments.mdx).
+   - **Team**: The teams to which the employee belongs. Refer to [Working with Teams](Teams.mdx).
+   - **Recurring Service Subscription**: The recurring service subscription is related to cost allocation as part of IT Finance Management (ITFM) and is used to allocate costs for any recurring services that an employee subscribes to.
+   - **Time Off** - Request time off. Click **New Employee Time Off**, enter the required details and save. A time off is created and ready for approval.
+   - **Accessible Org Units** - Employees can be added to accessible org units to control the and set access permissions as to who can access certain assets. If an employee is added to Brand Marketing and Communications Accessible Org Units, only assets that are linked to Brand Marketing and Communications org units are accessible by that employee. For more information on linking assets to Org Units, refer to Viewing and Associating Configuration Items with Organizational Units.
+
+<hint type="info" indent="2">
+  This feature is available for customers who have access to the Facilities Line of Business.
+</hint>
+
+<Paragraph indent="2">
+  For this feature to work, the following configuration setting is required:
+</Paragraph>
+
+<Paragraph indent="2">
+  a. In the \{\{FRS\_VARS.Configuration\_console}}, click **Users and Permissions** > **Roles and Permissions** > select the role for which you want to set the permission.
+</Paragraph>
+
+<Paragraph indent="2">
+  b. In the **Role details** page, select the **Object Permissions** tab.
+</Paragraph>
+
+<Paragraph indent="2">
+  c. Search for **CI** in the **Find** bar and click **Access** against the CI record.
+</Paragraph>
+
+<Paragraph indent="2">
+  d. Click the Add icon to set the permission and enter the following details:
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="4">
+  Set **CI's - AccessList is equal to** in the fields and enter the following expression in the **expression editor** - $( if AccessList in CurrentUserField("AccessListOrgUnit") then AccessList else null).
+</Paragraph>
+
+<Paragraph indent="2">
+  e. Save and exit.
+</Paragraph>
+
+<Paragraph indent="3">
+  Now, the access control of assets for Employees based on Accessible Org Unit will work. Without the above setting, even if Accessible Org Units are added to employees, they will still be able to access all assets without any restriction.
+</Paragraph>
+
+<Paragraph indent="3">
+  For more information on Org Units, refer to Org Unit Management.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  **Client**: refers to client in Managed Service Provider (MSP). Client is a third party company that manages employees and company information remotely. These clients are linked to Employee record in **Client** tab.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  **Child Tenants**: Refer to :Link[Creating a Child Tenant]{label="Creating a Child Tenant" overridedLabel="Creating a Child Tenant" spaceId docId="0tq31X5AmkDD7Qrtrm7lm" version="v2" docAnchorId="#Creating-a-Slave-Tenant" loadingMethod="dynamic" newTab="false" githubPath="../UniversalWorklist/UniversalWorklist.htm#Creating-a-Slave-Tenant" href="../UniversalWorklist/UniversalWorklist.mdx"}.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  **Audit History**: Refer to [Accessing the Audit History](../AuditHistory/Audit_History.mdx).
+</Paragraph>
+
+3. Enter information into the fields.
+
+### Contact Information
+
+| Field           | Description                                                                                                                                                                                                |
+| --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Prefix          | The prefix of the user.                                                                                                                                                                                    |
+| First Name      | The first name of the user.                                                                                                                                                                                |
+| Middle Name     | The middle name or initial of the user.                                                                                                                                                                    |
+| Last Name       | The last name of the user.                                                                                                                                                                                 |
+| Suffix          | The suffix of the user.                                                                                                                                                                                    |
+| Primary Email   | The email address of the user. This field is used in part to verify the user when logging in. If **Open ID** authentication is set up for the user, enter the email address of the user from the provider. |
+| Primary Phone   | The phone number of the user.                                                                                                                                                                              |
+| Primary Address | The street address of the user.                                                                                                                                                                            |
+| City            | The mailing city of the user.                                                                                                                                                                              |
+| State           | The mailing state of the user.                                                                                                                                                                             |
+| Zip             | The mailing zip code of the user.                                                                                                                                                                          |
+| Country         | The mailing country of the user.                                                                                                                                                                           |
+| Photo           | A photo of the user. Click **Upload** to attach a photo to this record. The photo appears in messages in the Social Board.                                                                                 |
+
+<hint type="info">
+  The **EmployeePhotoRevision** business rule (a new saving business rule in the **Employee** business object) increments the value by 1 each time the record is saved. This might cause earlier versions of \{\{FRS\_VARS.ProductName}} to not update the employee photo correctly.
+</hint>
+
+### Organizational Information
+
+| Field                    | Description                                                                                                                                         |
+| ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Organizational Unit      | The organization unit associated with the user. Enter **Default** if this employee is not assigned to any business units.                           |
+| Department               | The work department of the user. Refer to [Working with Departments](Department.mdx).                                                               |
+| Cost Center              | A cost center. Select **None** if this employee is not assigned to any business units.                                                              |
+| Default Charging Account | Select a default charging account from the list. The Org Unit must have default charging accounts set up before one can be assigned to an employee. |
+| Title                    | The job title of the user.                                                                                                                          |
+| Manager                  | The reporting manager of the user.                                                                                                                  |
+| Location                 | The work location of the user. Defined in the **Location** workspace.                                                                               |
+| Floor                    | The work floor number for the user.                                                                                                                 |
+| Room                     | The work room number for the user.                                                                                                                  |
+
+### Status & Team
+
+| Field  | Description                                                                                      |
+| ------ | ------------------------------------------------------------------------------------------------ |
+| Status | Status of the user. The default statuses are:<br />Active<br />New<br />On Leave<br />Terminated |
+| Team   | Team associated with the user.                                                                   |
+
+### Authentication Information
+
+| Field                   | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Disabled                | Disables the ability to log in. Their information still appears in the user list.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| Login ID                | The login ID name of the user. This field is used in part to verify the user on log in. If you use internal authentication to log employees in, this identification is also used as the official login ID. If you use internal authentication, the login ID is limited to 30 characters. If the employee is using NT authentication, the limit does not apply. A login ID should be meaningful, such as a role in the application (Admin) or a first initial/last name (JSmith).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| Enable Internal Auth    | Performs login authentication for this employee. If selected, internal authentication is available for the employee. Otherwise, it is disabled.<br />Local authentication requires employees to enter an application-specific login ID and password when accessing the application. Enter a password for the login, then reenter the password to confirm; the ID automatically fills from the login ID defined previously. LDAP authentication verifies employee login information for employees imported using the LDAP Active Directory integration. Employees enter their active directory employee name (\[domain name]/\[employee ID]) and password to log in. To use LDAP authentication, you must specify the LDAP server path to authenticate against as well as the employee name and password required to access that server (if applicable); specify this information in the LDAPInfo.xml configuration file located in the messaging folder of your application installation directory. |
+| Internal Auth PWD       | The password used to access the application using the internal login ID.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| Enable External Auth    | Select this option to enable the user to access the application using operating system authentication.<br />Authentication is supported via Open ID, OpenID Connect, SAML/ADFS, and LDAP, which allows users to access the application from another website.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| Login for External Auth | The external login ID. Used if the user is authorized to login from outside the organization.<br />You can employ multiple external authentication providers.<br />Click **Add New**, then provide the user's login and select to select a new authentication provider. In some cases (for example, Google), this may be a profile URL.<br />This field is populated the first time the user logs in using the external authentication.<br />Users cannot use the same external account for authorization purposes.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| Disable PWD Expiration  | Overrides the password expiration setting specified by the administrator.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| Enable Voice            | Uses \{\{FRS\_VARS.Company}} Voice and enables the \{\{FRS\_VARS.Company}} Voice toolbar. Adds the **Voice-Agent Properties** and **Voice - Agent Skill** tabs to the employee record. Refer to [Working with Ivanti Voice](../Voice/Voice.mdx).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| Is Named User           | Designates the user as a named user. Tracks named user licenses. Once a user is designated as a named user, a named user license is consumed, whether the user is logged in or not.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| Is Auto Provisioned     | Designates the user as auto provisioned. When an employee first logs into the application using an authentication provider URL, then a new employee record is created and the application displays this option as selected. To add new users via authentication, you must select the auto provisioning option in the authentication provider record. this checkbox, you also have the options to auto provision the new user's role, status, and team.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Creation Method         | Choose from the drop-down list:<br />Auto provisioned through Open ID<br />Auto provisioned through OpenID Connect<br />Auto provisioned through SAML<br />Created by the email listener<br />Created by LDAP Import<br />Manually created<br />The first two methods of creation are populated automatically if the user is created via auto provisioning. The authentication method depends on the identity provider protocol.<br />For the created by email listener method, the employee record is created when the user sends an incoming email to , then the record is created. The option to create or link to an employee must be selected for the business object, referenced in the incoming email, in the inbox settings of the tenant email configuration record. If the employee record is created when the user is imported via LDAP, the record is created via LDAP import.                                                                                                          |
+| IVR PIN Code            | The PIN assigned to employees of certain \{\{FRS\_VARS.Company}} Voice applications. This code is frequently the last four digits of an employee Social Security number.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+
+### Miscellaneous
+
+| Field            | Description                           |
+| ---------------- | ------------------------------------- |
+| Network Username | The name that appears on the network. |
+| Customer ID      | The customer ID.                      |
+| Hired Date       | The hiring date of the employee.      |
+| Terminated Date  | The termination date of the employee. |
+
+4. Click **Save**.
+
+## Modifying Employees
+
+1. From the Configuration Console, click **Configure > Users and Permissions > Users** to open the **Users** workspace.
+2. Open an employee record.
+3. Edit the employee fields and tabs as described in :Link[Creating an Employee]{label="Creating an Employee" overridedLabel="Creating an Employee" spaceId docId="gO65DKWOS0RTWm_hpdz38" version="v2" docAnchorId="#employees_2653137062_1265285" loadingMethod="dynamic" newTab="false" href="Working_with_employees.mdx"}.
+4. Click **Save**.
+
+## Deleting Employees
+
+Employees can not be deleted from the application. To remove an employee from the active list, set their status to terminated.
+
+1. From the Configuration Console, click **Configure > Users and Permissions > Users** to open the **Users** workspace.
+2. Open an employee record.
+3. From the **Status** field, select **Terminated** from the drop-down list.
+4. Click **Save**.
+
+### Linking Roles to an Employee
+
+An employee must be linked to a role before they can access \{\{FRS\_VARS.ProductName}}. You can link multiple roles to an employee record. Upon logging in, the employee can select a role from the list defined in this workspace.
+
+1. From the Configuration Console, click **Configure > Users and Permissions > Users** to open the **Users** workspace.
+2. Open the employee record.
+3. Click the **Roles** tab.
+4. From the toolbar, click **Link**. The application displays the **Link Roles** dialog box.
+5. Choose a role from the list, then click **Select**. The role appears on the list.
+6. Click **Save**. The role is added to the list for the user. Repeat to assign additional roles.
+
+## About Creating an Incident for an Employee
+
+You can immediately create an incident on behalf of an employee when creating the employee record. For existing employee records, you can view the list of incidents for that employee. Refer to [About Incident Management](../../ServiceDesk/Incidents/About-Incident-Management.mdx).
+
+## Adding an Employee to a Contact Group
+
+For information about contact groups, refer to :Link[Using Contact Groups]{label="Using Contact Groups" overridedLabel="Using Contact Groups" spaceId docId="z-Xlil9c9ZIMBKov_m4u4" version="v2" docAnchorId="#groups_917076060_1196694" loadingMethod="dynamic" newTab="false" githubPath="Using_Contact_Groups.htm#groups_917076060_1196694" href="Using_Contact_Groups.mdx"}.
+
+1. From the Configuration Console, click **Configure > Users and Permissions > Users** to open the **Users** workspace.
+2. Open an employee record.
+3. Click the **Contact Group** tab. The group list appears.
+4. From the toolbar, click **Link**. A list of contact groups appears.
+5. Choose a group name from the list, then click **Select**. The contact group appears on the employee's list.
+6. Click **Save**.
+
+### Adding Employees Through Incoming Messages
+
+You can set your email listener parameters to add employee accounts when an incoming email message is received from a trusted domain. For more information, refer to [Working with Email Servers](../Email/Email_Configuration.mdx).
+
+## Adding an Employee to a Team
+
+For information about teams, refer to [Working with Teams](Teams.mdx).
+
+1. From the Configuration Console, click **Configure > Users and Permissions > Users** to open the **Users** workspace.
+2. Open an employee record.
+3. Click the **Team** tab. The team list appears.
+4. From the toolbar, click **Link**. A list of teams appears.
+5. Choose a team name from the list, then click **Select**. The team appears on the employee's team list.
+6. Click **Save**.
+
+## Inserting Non-LDAP Authentication Providers to Employee Profiles
+
+To provide non-LDAP authentication providers to employee profiles, you can configure a workflow triggered whenever an employee record is created or modified. This workflow simply executes a quick action. The quick action adds a child record to the **FRS\_ExternalLoginAssocProfileEmployee** business object with **AuthProvider** and **Login** fields. Get the RecID from the authentication provider table to add this child record to the **Employee** business object.
+
+## Creating a Call-Back Method
+
+You can create a field in which users can select their preferred method of call-back contact.
+
+1. Create a validation business object containing the values that the customer can choose from. Refer to [Using Validation Business Objects](../PickLists/Validation_Objects.mdx) for a description on how to do this.
+2. From the **Employee** business object, create a new text field called **CallbackMethod**.
+3. Check **Validated** under **Pick List** and select the validation business object that you created above. Refer to [Working with Fields](../BusinessObjects/Using-Fields.mdx) for a description on how to do this.
+
+*Sample Callback Field*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Ea46UBZaEpixfHM3iZooV_callbackmethod.png" alt="Sample Callback field." position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/callback_method.png" githubPath="Content/Resources/Images/help-images/callback_method.png" showCaption="false"></Image>
+
+4. Add this field to the **Profile.Employee** form. Refer to [Using Forms](../Forms/Forms.mdx) for a description on how to do this.
+5. Click **Save**.
+
+<Paragraph indent="1">
+  When the customer refreshes their screen, the new field appears in their employee record. They can then choose their preferred call-back method from the drop-down list.
+</Paragraph>
+
+## Creating an Employment Type
+
+Use the **Employment Types** workspace to define various types of employees.
+
+The default types of employees are:
+
+- Permanent
+- Contractor
+- Contractor - Part Time
+
+1. From the Configuration Console, click **Configure > Organization Profile > Employment Types** to open the **Employment Types** workspace.
+2. Click **New Employment Type**. The application displays a blank field.
+3. Enter a unique name for the employment type.
+4. Click **Save**. The employment type now appears on the list.

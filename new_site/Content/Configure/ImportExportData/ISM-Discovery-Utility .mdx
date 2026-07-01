@@ -1,0 +1,80 @@
+---
+title: Neurons for ITSM Discovery Utility
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:52 GMT+0300 (Eastern European Summer Time)
+---
+
+The Discovery utility contains tools to enable you to:
+
+- Migrate \{\{FRS\_VARS.Company}} HEAT Discovery Release 9.x settings to \{\{FRS\_VARS.ProductName}}. Click **Migration Tool** to open the utility which walks you through the process.
+- Test that all processes are running. Click **Diagnostic Tool** to open the diagnostic utility.
+
+Click the desktop shortcut to open the **Discovery Utility**. The available tools are listed on the page.
+
+### Migration Tool
+
+1. Click the **Discovery Utility** to open the utility.
+2. Select **Migration Tool** to open the Server Settings page and enter the following information:
+
+| Field Name | Setting                                                                                                                                 |
+| ---------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| Server     | Enter the path for the \{\{FRS\_VARS.ProductName}} server. Click **Change Server** if entering a different location than the one shown. |
+| Tenant     | Select a tenant from the drop-down if more than one is listed. This is the target for the settings.                                     |
+
+<Paragraph indent="1">
+  a. Confirm the Discovery configuration and click **Save Server Config**.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Then click **Go To Next**.
+</Paragraph>
+
+3. At the **Discovery Database Information** page enter the following:
+
+| Field Name                     | Setting                                                                     |
+| ------------------------------ | --------------------------------------------------------------------------- |
+| Discovery Database Server      | Enter the IP address or domain name for the server.                         |
+| Database User                  | Enter the database user name.                                               |
+| Database password              | Enter the database user password.                                           |
+| User to access Discovery Share | Enter the user name (usually this is the administrator).                    |
+| User password                  | Enter the password for the Discover Share user (usually the administrator). |
+
+<Paragraph indent="1">
+  Click **Save the Config** then click **Go To Next**.
+</Paragraph>
+
+4. At the **Ivanti HEAT Discovery Migration Selection** page, select the settings you want to migrate to \{\{FRS\_VARS.ProductName}} by checking the box. The options are:
+   - Migrate User Input Script
+   - Migrate SNMP setting
+   - Migrate the subnet scan config
+   - Migrate the VMHA (Virtual Machine Host Auditor) config
+   - Migrate the Folder Exclude config
+
+<Paragraph indent="1">
+  a. Confirm the selection by clicking **Save the Migration Selection**.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Click **Go To Next**.
+</Paragraph>
+
+5. At the **Start the Migration based on previous settings** page click **Start Migration**.
+
+### Diagnostic Tool
+
+1. Click **Discovery Utility** to open the utility.
+2. Select **Diagnostic Tool** to open the diagnostic page.
+3. At the **Test Servers** page:
+   For **Central Configure Host** field, enter the name of the server where \{\{FRS\_VARS.ProductName}} is deployed.
+4. Click on **Get Tenant List** to find available tenants and select a tenant from the drop-down list.
+5. Click **Start Test** to check which processes are running on the selected tenant.
+
+<Paragraph indent="1">
+  The test verifies whether or not the processes are running successfully.
+</Paragraph>
+
+<Paragraph indent="1">
+  If a process (such as the message queue) has stopped running, the list displays an error message.
+</Paragraph>
+
+After troubleshooting the error messages, you can restart the test by clicking **Clear Record** then **Start Test**.

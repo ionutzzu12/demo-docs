@@ -1,0 +1,63 @@
+---
+title: Export to Microsoft Excel Action
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:57 GMT+0300 (Eastern European Summer Time)
+---
+
+- :Link[About the Export to Microsoft Excel Action]{label="About the Export to Microsoft Excel Action" overridedLabel="About the Export to Microsoft Excel Action" spaceId docId="XrQVsH4qMfvmz-AMBYnPb" version="v2" docAnchorId="#About_the_Export_toExcel_QuickAction" loadingMethod="dynamic" newTab="false" href="Export to Excel.mdx"}
+- :Link[Parameters]{label="Parameters" overridedLabel="Parameters" spaceId docId="XrQVsH4qMfvmz-AMBYnPb" version="v2" docAnchorId="#Parameters" loadingMethod="dynamic" newTab="false" href="Export to Excel.mdx"}
+- :Link[Actions]{label="Actions" overridedLabel="Actions" spaceId docId="XrQVsH4qMfvmz-AMBYnPb" version="v2" docAnchorId="#Actions" loadingMethod="dynamic" newTab="false" href="Export to Excel.mdx"}
+- [Example: Using the Export to Microsoft Excel Action (CAD)](<../Examples of Using Actions (CAD)/Using the Export to Excel QA.mdx>)
+- **Graphical Action Designer**: [Export to Microsoft Excel Quick Action](<../../Graphical Action Designer/Common Actions/Export to Excel.mdx>)
+
+## About the Export to Microsoft Excel Action
+
+You can use the **Export to Microsoft Excel** action to export all or some of the field values from a business object in the these file formats:
+
+- Microsoft Excel 2007 and later (.xlsx)
+- Microsoft Excel 2003 and earlier (.xls)
+- Comma Separated Values (.csv)
+- XML (.xml)
+
+The output contains the rows from a query created within its action wizard. The list of columns exported is the same as shown in the list view by default, but you can override or expand them here. This action creates only one worksheet.
+
+You cannot use the **Export to Microsoft Excel** action in a composite action.
+
+\{\{FRS\_VARS.ProductName}} automatically applies sorting settings to any records that you export, including from the dashboard and the **Saved Searches Overview** page.
+
+When you use the **Export to Microsoft Excel** action, the spreadsheet file is sorted with both the simple sort order and the multisort settings that you previously set in the list.
+
+If you want to export the list data from user interface, export to browser. \{\{FRS\_VARS.ProductName}} saves the exported file to your local application. The export to browser option cannot be used in a composite action.
+
+if you want to run this action in the background through a workflow or schedule, export to a remote host connection. \{\{FRS\_VARS.ProductName}} saves the exported file to the specified remote host. You can automate the **Export to Microsoft Excel** action by scheduling the workflow that can run this action. See [Using Workflows](../../../Workflows/Using_Workflows.mdx).
+
+You can open an XML spreadsheet in Microsoft Excel 2007 and later.
+
+By default, there is a limit of 50,000 records that this action can process at one time. \{\{FRS\_VARS.ProductName}} on-premise customers can change this default value in the web.config file on the \{\{FRS\_VARS.ProductName}} application server. The value to change is \<add key="MaximumRowsForExcelExport" value = "50000"/>.
+
+### Parameters
+
+| Parameter                | Description                                                                                                                                                                                                                                                                                                                              |
+| ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Enter action name        | A unique name for the action.                                                                                                                                                                                                                                                                                                            |
+| Enter action description | Optional. A description of what the action does.<br />This field can contain a maximum of 32,767 characters, if the limit exceeds, an error is thrown.                                                                                                                                                                                   |
+| Enter category           | Optional. The category. Select from the drop-down list.                                                                                                                                                                                                                                                                                  |
+| Export Format            | The output format. Can be one of the following:<br />Excel - 2007 and Above<br />Excel - lower version<br />Comma separated values<br />XML                                                                                                                                                                                              |
+| Column Header            | The name of the item whose value is given in the **Fields to Export** column or in the **Value Expression** column.                                                                                                                                                                                                                      |
+| Fields to Export         | The name of the field to export. Choose a value from the drop-down list.<br /><br />**NOTE**: You can specify either a value in the **Fields to Export** column or a value in the **Value Expression** column, but not both.                                                                                                             |
+| Value Expression         | An expression that describes the column header item to export.<br /><br />**NOTE**: You can specify either a value in the **Fields to Export** column or a value in the **Value Expression** column, but not both.<br /><br />**NOTE**: This action does not support the **FormatDate** built-in function.                               |
+| Export To                | Where to export the data to. You can specify to a browser or to an external connection, if one exists. Click the **external connection** icon to specify an external connection. You must create the external connection before you can select it. See [Exporting Data](../../../ImportExportData/Data-Export.mdx) for more information. |
+| Saved Search             | Runs a saved search against the values specified in the **Fields to Export** column or in the **Value Expression** column. To use this option, you must specify an external data connection.                                                                                                                                             |
+
+### Actions
+
+| Button                                                                                                                                                                                                                                                                                                                                 | Action                                  |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------- |
+| <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/JtIxGMfjslfCSitXWBu4o_addgreen.png" size="10" isUploading="false" initialPath="../../../../Resources/Images/buttons/add_green.png" githubPath="Content/Resources/Images/buttons/add_green.png" width="17" height="15" showCaption="false"></Image> | Adds fields to the export list.         |
+| <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/uN-MJlNAhdQXruh5k_EsW_delete.png" size="10" isUploading="false" initialPath="../../../../Resources/Images/buttons/delete.png" githubPath="Content/Resources/Images/buttons/delete.png" width="19" height="16" showCaption="false"></Image>         | Removes the field from the export list. |
+| Save                                                                                                                                                                                                                                                                                                                                   | Commits your settings.                  |
+| Cancel                                                                                                                                                                                                                                                                                                                                 | Exits without saving.                   |
+
+<hint type="info">
+  This action does not respect the **Auto-save** checkbox option in the **Action Settings** tab. It does save changes directly to the database, but please ensure that the behaviour you expect still occurs.
+</hint>

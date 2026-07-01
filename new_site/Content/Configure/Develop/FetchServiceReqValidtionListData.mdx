@@ -1,0 +1,114 @@
+---
+title: Using the FetchServiceReqValidationListData Web Method
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:01 GMT+0300 (Eastern European Summer Time)
+---
+
+Returns the allowable validation list data for the specified service request parameter.
+
+## Request Syntax
+
+public FRSHEATFetchSRValListDataResponse FetchServiceReqValidationListData(string sessionKey, string tenantId, string offeringName, string paramName, FRSHEATDepValItem depvalItem = null, string subStrMatch = "")
+
+## Parameters
+
+- **sessionKey**: The session key from the **Connect** web method.
+- **tenantId**: The tenant for which the session key is authenticated.
+- **offeringName**: The name of the request offering.
+- **paramName**: The name of the parameter in the request offering.
+- **depValItem**: An **FRSHEATDepValItem** object, that represents the dependent validation item.
+- **subStrMatch**: A substring to match against the returned validation list items.
+
+## Return Value
+
+**FRSHEATFetchSRValListDataResponse** object, defined as follows:
+
+public class FRSHEATFetchSRValListDataResponse
+
+    \{
+
+public string status \{ get; set; }
+
+public string exceptionReason \{ get; set; }
+
+public List\<FRSHEATValListValue> validationValuesList \{ get; set; }
+
+    }
+
+The **FRSHEATFetchSRValListDataResponse** class has the following fields:
+
+- **status**: Provides a status about the state of the connection. The table below contains a full description of the available status values.
+- **exceptionReason**: Contains exception information, if the application throws an exception when running this web method.
+- **validationValuesList**: Contains a list of **FRSHEATValListValue** objects, each of which represents a record matching the specified search criteria.
+
+The **FRSHEATValListValue** class is defined as follows:
+
+public class FRSHEATValListValue
+
+    \{
+
+public string strRecId;
+
+public string strStoredValue;
+
+public string strDisplayValue;
+
+    }
+
+The **FRSHEATValListValue** class has the following fields:
+
+- **strRecId**: The RecID corresponding to the validation list.
+- **strStoredValue**: The stored value of the validation list record.  For example, "ASimon" if the validation list record corresponds to the "Ashley Simon" employee record.
+- **strDisplayValue**: The display value of the validation list record.  For example, "Ashley Simon" if the validation list record corresponds to the "Ashley Simon" employee record.
+
+The following table lists the available status values and describes how to interpret them.
+
+| <font color="#FFFFFF">Status</font> | <font color="#FFFFFF">Explanation</font>                                                                                                                           |
+| ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Success**                         | Successfully retrieved the service request with the specified numeric ID. This is available in the **reqData** field.                                              |
+| **NotFound**                        | The tenant does not contain a service request with the specified numeric ID. Ensure that the numeric ID is spelled correctly.                                      |
+| **Error**                           | An error was encountered during the execution of this web method.  Inspect the corresponding **exceptionReason** field to determine why the web method has failed. |
+
+## Example
+
+// Fetch the matching validation list records for requester, in the
+// "Domain Password Reset" request offering
+
+// Since the requester is constrained by the "RequesterDeparment" parameter,
+// this needs to be specified as an input parameter to the web method
+
+string offeringName = "Domain Password Reset";
+
+string paramName = "Requester";
+
+FRSHEATDepValItem depValItem = newFRSHEATDepValItem()
+
+            \{
+
+                strParName = "RequesterDepartment",
+
+                strParValue = "IT"
+
+            };
+
+FRSHEATFetchSRValListDataResponse validationValuesResponse = frSvc.FetchServiceReqValidationListData(authSessionKey, tenantId, offeringName, paramName, depValItem, subStrQuery);
+
+FRSHEATValListValue\[] valListValues;
+
+if (validationValuesResponse.status == "Success")
+
+            \{
+
+                valListValues = validationValuesResponse.validationValuesList;
+
+Console.WriteLine("Here are the matching validation list records:\n");
+
+foreach (FRSHEATValListValue valListItem in valListValues)
+
+                \{
+
+Console.WriteLine("Stored Value: \\"\{\{0}}\\"\t\tDisplay Value: \\"\{\{1}}\\"", valListItem.strStoredValue, valListItem.strDisplayValue);
+
+                }
+
+            }

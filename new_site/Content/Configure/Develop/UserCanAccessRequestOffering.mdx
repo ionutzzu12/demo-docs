@@ -1,0 +1,79 @@
+---
+title: Using the UserCanAccessRequestOffering Web Method
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:01 GMT+0300 (Eastern European Summer Time)
+---
+
+Checks if the current user is entitled to access the specified request offering.
+
+## Request Syntax
+
+public FRSHEATUserCanAccessReqOfferingResponse UserCanAccessRequestOffering(string sessionKey, string tenantId, string loginId, string reqOfferingName)
+
+## Parameters
+
+- **sessionKey**: The session key from the **Connect** web method.
+- **tenantId**: The tenant for which the session key is authenticated.
+- **loginId**: The login ID of the user.
+- **reqOfferingName**: The name of the request offering.
+
+## Return Value
+
+**FRSHEATUserCanAccessReqOfferingResponse** object, defined as follows:
+
+public class FRSHEATUserCanAccessReqOfferingResponse
+
+    \{
+
+public string status \{ get; set; }
+
+public string exceptionReason \{ get; set; }
+
+public bool canAccess \{ get; set; }
+
+    }
+
+The **FRSHEATUserCanAccessReqOfferingResponse** class has the following fields:
+
+- **status**: Provides a status about the state of the connection. The table below contains a full description of the available status values.
+- **exceptionReason**: Contains exception information, if the application throws an exception when running this web method.
+- **canAccess**: Indicates if the user is entitled to access the specified request offering.
+
+The following table lists the available status values and describes how to interpret them.
+
+| <font color="#FFFFFF">Status</font> | <font color="#FFFFFF">Explanation</font>                                                                                                                                               |
+| ----------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Success**                         | Successfully retrieved the user and request offering in the tenant. Review the **canAccess** field<br />to determine if the specified user is entitled to access the request offering. |
+| **UserNotFound**                    | The tenant does not contain a user record with the specified login ID. Ensure that the login ID is spelled correctly.                                                                  |
+| **OfferingNotFound**                | The tenant does not contain a request offering with the specified name. Ensure that the name is spelled correctly.                                                                     |
+| **Error**                           | An error was encountered during the execution of this web method.  Inspect the corresponding **exceptionReason** field to determine why the web method has failed.                     |
+
+## Example
+
+string loginId = "ASimon";
+
+string reqOfferingName = "Domain Password Reset";
+
+FRSHEATUserCanAccessReqOfferingResponse canAccessReqOfferingResponse = frSvc.UserCanAccessRequestOffering(sessionKey, tenantId, loginId, reqOfferingName);
+
+if (canAccessReqOfferingResponse.status == "Success")
+
+            \{
+
+if (canAccessReqOfferingResponse.canAccess)
+
+                \{
+
+Console.WriteLine("User \{\{0}} can access the Request Offering \{\{1}}", loginId, reqOfferingName);
+
+                }
+
+else
+
+                \{
+
+Console.WriteLine("User \{\{0}} has no access to the Request Offering \{\{1}}", loginId, reqOfferingName);
+
+                }
+
+            }

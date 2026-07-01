@@ -1,0 +1,454 @@
+---
+title: Importing Hierarchical XML Data
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:52 GMT+0300 (Eastern European Summer Time)
+---
+
+- :Link[About Hierarchical XML Format]{label="About Hierarchical XML Format" overridedLabel="About Hierarchical XML Format" spaceId docId="fg24i6rNc1p9x5F5V_6Y_" version="v2" docAnchorId="#About-Hierarchical-XMLFormat" loadingMethod="dynamic" newTab="false" href="About-Hierarchical-XML-Format.mdx"}
+- :Link[Hierarchical XML Notes]{label="Hierarchical XML Notes" overridedLabel="Hierarchical XML Notes" spaceId docId="fg24i6rNc1p9x5F5V_6Y_" version="v2" docAnchorId="#Hierarchical_XML_Notes" loadingMethod="dynamic" newTab="false" href="About-Hierarchical-XML-Format.mdx"}
+- :Link[Example Import File - Incident containing Task.Assignment containing Journal.Notes]{label="Example Import File - Incident containing Task.Assignment containing Journal.Notes" overridedLabel="Example Import File - Incident containing Task.Assignment containing Journal.Notes" spaceId docId="fg24i6rNc1p9x5F5V_6Y_" version="v2" docAnchorId="#Example_Import_File_-__Incident_containing_Task.Assignment_containing_Journal.Notes" loadingMethod="dynamic" newTab="false" href="About-Hierarchical-XML-Format.mdx"}
+- [Hierarchical XML File Import Notes](<Hierarchical XML File Import.mdx>)
+- [Hierarchical XML File Examples](<Hierarchical XML Examples.mdx>)
+
+## About Hierarchical XML Format
+
+\{\{FRS\_VARS.ProductName}} can import XML files containing more than one business object. To do so, the file must follow a strict format (outlined below). The hierarchical import process supports preprocessing via XSLT to transcribe your current data format to meet this requirement.
+
+Large files (over 50 MB) take longer to preview, because the entire file is downloaded before the first batch can be shown. In other types, the copy/download occurs when moving from the connection to the **Object Mapping** page. In hierarchical XML, we bypass all mapping pages; hence, the copy/download only occurs when a user wants to preview the file.
+
+The 1.0 schema the XML must follow is:
+
+\<xs\:schema xmlns\:xs="http\://www\.w3.org/2001/XMLSchema" version="1.0">
+
+\<!-- decimal or empty string-->
+
+\<xs\:simpleType name="decimal-or-empty">
+
+    \<xs\:union memberTypes="xs\:decimal empty-string" />
+
+\</xs\:simpleType>
+
+\<xs\:simpleType name="empty-string">
+
+    \<xs\:restriction base="xs\:string">
+
+        \<xs\:enumeration value="" />
+
+    \</xs\:restriction>
+
+\</xs\:simpleType>
+
+\<!-- Parent/Primary BusinessObject (BO) -->
+
+\<xs\:element name="BusinessObject">
+
+    \<xs\:complexType>
+
+        \<xs\:all>
+
+\<!-- Parent/Primary BO transaction action -->
+
+            \<xs\:element name="Transaction" minOccurs="1" maxOccurs="1">
+
+                \<xs\:simpleType>
+
+                    \<xs\:restriction base="xs\:string">
+
+\<!-- Insert only if it does not exist - will not update and error if it exists -->
+
+                        \<xs\:enumeration value="Insert"/>
+
+\<!-- Update only if it exists - will not insert and error if it does not exist -->
+
+                        \<xs\:enumeration value="Update"/>
+
+\<!-- Insert if it does not exist or Update if it exists -->
+
+                        \<xs\:enumeration value="UpdateAdd"/>
+
+\<!-- Delete if it exists or Ignore if it does not exist -->
+
+                        \<xs\:enumeration value="Delete"/>
+
+\<!-- Do nothing -->
+
+                        \<xs\:enumeration value="None"/>
+
+                    \</xs\:restriction>
+
+               \</xs\:simpleType>
+
+            \</xs\:element>
+
+            \<xs\:element name="LinkTransaction" minOccurs="0" maxOccurs="1">
+
+                \<xs\:simpleType>
+
+                   \<xs\:restriction base="xs\:string">
+
+\<!-- Link to parent/primary BO -->
+
+                       \<xs\:enumeration value="Link"/>
+
+\<!-- Unlink from parent/primary BO -->
+
+                       \<xs\:enumeration value="Unlink"/>
+
+\<!-- Do nothing -->
+
+                                        \<xs\:enumeration value="None"/>
+
+                    \</xs\:restriction>
+
+                \</xs\:simpleType>
+
+            \</xs\:element>
+
+\<!-- List of composite keys that uniquely locate the onject in the target system -->
+
+            \<xs\:element name="UniqueKeyList" minOccurs="1" maxOccurs="1">
+
+                 \<xs\:complexType>
+
+                     \<xs\:sequence>
+
+\<!-- In schema version 1.0 only one unique key is supported -->
+
+                        \<xs\:element name="UniqueKey" minOccurs="1" maxOccurs="1">
+
+                 \<xs\:complexType>
+
+                     \<xs\:sequence>
+
+            \<xs\:element name="Field" minOccurs="1" maxOccurs="unbounded">
+
+                 \<xs\:complexType>
+
+\<xs\:attribute name="Name" type="xs\:string" use="required"/>
+
+\</xs\:complexType>
+
+\</xs\:element>
+
+\</xs\:sequence>
+
+\</xs\:complexType>
+
+\</xs\:element>
+
+\</xs\:sequence>
+
+\</xs\:complexType>
+
+\</xs\:element>
+
+\<xs\:element name="FieldList" minOccurs="1" maxOccurs="1">
+
+\<xs\:complexType>
+
+\<xs\:sequence>
+
+\<xs\:element name="Field" minOccurs="0" maxOccurs="unbounded">
+
+\<xs\:complexType mixed="true">
+
+\<xs\:all>
+
+\<xs\:element name="LanguageValues" minOccurs="0" maxOccurs="1">
+
+\<xs\:complexType mixed="true">
+
+\<xs\:all>
+
+\<xs\:element name="de" type="xs\:string" minOccurs="0" maxOccurs="1"/>
+
+\<xs\:element name="fr" type="xs\:string" minOccurs="0" maxOccurs="1"/>
+
+\<xs\:element name="es" type="xs\:string" minOccurs="0" maxOccurs="1"/>
+
+\<xs\:element name="pt\_BR" type="xs\:string" minOccurs="0" maxOccurs="1"/>
+
+\<xs\:element name="nl" type="xs\:string" minOccurs="0" maxOccurs="1"/>
+
+\<xs\:element name="jp" type="xs\:string" minOccurs="0" maxOccurs="1"/>
+
+\<xs\:element name="ru" type="xs\:string" minOccurs="0" maxOccurs="1"/>
+
+\<xs\:element name="default" type="xs\:string" minOccurs="0" maxOccurs="1"/>
+
+\</xs\:all>
+
+\</xs\:complexType>
+
+\</xs\:element>
+
+\<xs\:element name="CurrencyValue" type="decimal-or-empty" minOccurs="0" maxOccurs="1"/>
+
+\<xs\:element name="CurrencyCode" type="xs\:string" minOccurs="0" maxOccurs="1"/>
+
+\</xs\:all>
+
+\<xs\:attribute name="Name" type="xs\:string" use="required"/>
+
+\<xs\:attribute name="Type" use="optional">
+
+\<xs\:simpleType>
+
+\<xs\:restriction base="xs\:string">
+
+\<xs\:enumeration value="" />
+
+\<xs\:enumeration value="System.String" />
+
+\<xs\:enumeration value="System.Int32" />
+
+\<xs\:enumeration value="System.Int64" />
+
+\<xs\:enumeration value="System.Single" />
+
+\<xs\:enumeration value="System.Double" />
+
+\<xs\:enumeration value="System.Decimal" />
+
+\<xs\:enumeration value="System.DateTime" />
+
+\<xs\:enumeration value="System.Boolean" />
+
+\<xs\:enumeration value="Currency" />
+
+\</xs\:restriction>
+
+\</xs\:simpleType>
+
+\</xs\:attribute>
+
+\</xs\:complexType>
+
+\</xs\:element>
+
+\</xs\:sequence>
+
+\</xs\:complexType>
+
+\</xs\:element>
+
+\<!-- List of related BOs -->
+
+\<xs\:element name="RelatedBusinessObjectList" minOccurs="0" maxOccurs="1">
+
+\<xs\:complexType>
+
+\<xs\:sequence>
+
+\<!-- support a maximum of 100 related objects for each parent/primary BO-->
+
+\<xs\:element name="RelatedBusinessObject" maxOccurs="100">
+
+\<xs\:complexType>
+
+\<xs\:sequence>
+
+\<xs\:element ref="BusinessObject" minOccurs="0" maxOccurs="1"/>
+
+\</xs\:sequence>
+
+\<xs\:attribute name="Relationship" type="xs\:string" use="required"/>
+
+\</xs\:complexType>
+
+\</xs\:element>
+
+\</xs\:sequence>
+
+\</xs\:complexType>
+
+\</xs\:element>
+
+\</xs\:all>
+
+\<xs\:attribute name="Name" type="xs\:string" use="required"/>
+
+\</xs\:complexType>
+
+\</xs\:element>
+
+\<!-- Hierarchical Business Objects -->
+
+    \<xs\:element name="BusinessObjectList">
+
+        \<xs\:complexType>
+
+            \<xs\:sequence>
+
+                \<xs\:element ref="BusinessObject" maxOccurs="unbounded"/>
+
+            \</xs\:sequence>
+
+            \<xs\:attribute name="SchemaVersion" use="required">
+
+                \<xs\:simpleType>
+
+                    \<xs\:restriction base="xs\:string">
+
+\<!-- schema versions -->
+
+                        \<xs\:enumeration value="1.0"/>
+
+                    \</xs\:restriction>
+
+                \</xs\:simpleType>
+
+            \</xs\:attribute>
+
+        \</xs\:complexType>
+
+    \</xs\:element>
+
+\</xs\:schema>
+
+## Hierarchical XML Notes
+
+- The **SchemaVersion** attribute must be 1.0.
+- The maximum levels of child business object is two.  For example, Incident-Task.Assignment-Journal.Notes.
+- The transaction must be one of the following: insert, update, updateAdd, delete, or none.
+  - UpdateAdd inserts a new record if not found, or updates it if it is found.
+  - None is used when only child business object is linked or unlinked. Otherwise, there is no action.
+- LinkTransaction must be one of the following: link, unlink, or none. LinkTransaction is only used in the child business object context. If it is specified in the root level parent info, it is ignored.
+- The maximum number of RelationBusinessObjects supported is 100.
+- The **Type** attribute can be one of the following:
+  - System.Int32
+  - System.Int64
+  - System.Single
+  - System.Double
+  - System.Decimal
+  - System.DateTime
+  - System.Boolean
+  - Currency
+
+## Example Import File - Incident containing Task.Assignment containing Journal.Notes
+
+\<?xml version="1.0" encoding="utf-8"?>
+
+\<BusinessObjectList SchemaVersion="1.0" xmlns\:xsi="http\://www\.w3.org/2001/XMLSchema-instance" xsi\:noNamespaceSchemaLocation="HierarchicalObjects-1.0.xsd">
+
+    \<BusinessObject Name="Incident">
+
+        \<Transaction>UpdateAdd\</Transaction>
+
+        \<UniqueKeyList>
+
+            \<UniqueKey>
+
+                \<Field Name="IncidentNumber" />
+
+            \</UniqueKey>
+
+        \</UniqueKeyList>
+
+        \<FieldList>
+
+            \<Field Name="IncidentNumber">50011\</Field>
+
+            \<Field Name="Subject">Daily Backup Failure\</Field>
+
+            \<Field Name="Symptom">Backup failed on server\</Field>
+
+            \<Field Name="Service">Data Service\</Field>
+
+            \<Field Name="Category">Backup\</Field>
+
+            \<Field Name="Owner">JClerk\</Field>
+
+            \<Field Name="OwnerTeam">Service Desk\</Field>
+
+            \<Field Name="Impact">Low\</Field>
+
+            \<Field Name="Urgency">High\</Field>
+
+            \<Field Name="Source">Phone\</Field>
+
+            \<Field Name="ProfileLink">John M Doe\</Field>
+
+        \</FieldList>
+
+        \<RelatedBusinessObjectList>
+
+            \<RelatedBusinessObject Relationship="IncidentAssocTaskAssignment">
+
+                \<BusinessObject Name="Task.Assignment">
+
+                    \<Transaction>UpdateAdd\</Transaction>
+
+                    \<LinkTransaction>Link\</LinkTransaction>
+
+                    \<UniqueKeyList>
+
+                        \<UniqueKey>
+
+                            \<Field Name="AssignmentID" />
+
+                        \</UniqueKey>
+
+                    \</UniqueKeyList>
+
+                    \<FieldList>
+
+                        \<Field Name="AssignmentID">400011\</Field>
+
+                        \<Field Name="Subject">Please restore the backup on the Server\</Field>
+
+                        \<Field Name="OwnerTeam">Service Desk\</Field>
+
+                    \</FieldList>
+
+                    \<RelatedBusinessObjectList>
+
+                        \<RelatedBusinessObject Relationship="IncidentContainsJournal">
+
+                            \<BusinessObject Name="Journal.Notes">
+
+                                \<Transaction>UpdateAdd\</Transaction>
+
+                                \<LinkTransaction>Link\</LinkTransaction>
+
+                                \<UniqueKeyList>
+
+                                    \<UniqueKey>
+
+                                        \<Field Name="RecId" />
+
+                                    \</UniqueKey>
+
+                                \</UniqueKeyList>
+
+                                \<FieldList>
+
+                                    \<Field Name="RecId">2B4FDD4BF1FD49FFAD4BF0249A4038EE\</Field>
+
+                                    \<Field Name="Category">Memo\</Field>
+
+                                    \<Field Name="Source">Voice Mail\</Field>
+
+                                    \<Field Name="Subject">Additional Info Request\</Field>
+
+                                    \<Field Name="TimeSpent">10\</Field>
+
+                                    \<Field Name="NotesBody">How soon do you need the backup.\</Field>
+
+                                \</FieldList>
+
+                            \</BusinessObject>
+
+                        \</RelatedBusinessObject>
+
+                    \</RelatedBusinessObjectList>
+
+                \</BusinessObject>
+
+            \</RelatedBusinessObject>
+
+        \</RelatedBusinessObjectList>
+
+    \</BusinessObject>
+
+\</BusinessObjectList>

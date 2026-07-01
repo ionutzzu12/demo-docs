@@ -1,0 +1,68 @@
+---
+title: Social Board Actions
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:57 GMT+0300 (Eastern European Summer Time)
+---
+
+\{\{FRS\_VARS.ProductName}} contains two **Insert Child Object** actions that support the Social Board.
+
+The first **Insert Child Object** action is defined relative to business objects, such as incident or change. Use this action to share postings from specific business objects.
+
+For example, the following **Insert Child Object** action is defined in the **Incident** business object:
+
+*Post Social Message Associated with Incident Action*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/F3yFWqvBrFVAA7NWRTPrv_action-incident.png" position="flex-start" size="40" indent="1" initialPath="../../../Resources/Images/help-images/action incident.png" githubPath="Content/Resources/Images/help-images/action incident.png" showCaption="false"></Image>
+
+This action is defined as:
+
+- **Name**: Post Social message associated with incident
+- **Child Object**: SocialFeedsAssocIncident
+- **Publish to**: All
+
+The following field-to-value mappings are defined:
+
+| Message        | $(Prompt("Message", "", 400, 200)) |
+| -------------- | ---------------------------------- |
+| PostedById     | $(CurrentLoginId())                |
+| PostedDateTime | $(CurrentDateTime())               |
+
+The second **Insert Child Object** action is defined in the **SocialFeeds** business object for creating the respective child business objects such as incident or change based on the information from the posting.
+
+For example, the following **Insert Child Object** action creates a new incident based on a particular posting:
+
+*Create Incident Action*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/0nmgU6spVS8fyc1UvYH2q_qa-social-feeds.png" position="flex-start" size="40" indent="1" initialPath="../../../Resources/Images/help-images/qa social feeds.png" githubPath="Content/Resources/Images/help-images/qa social feeds.png" showCaption="false"></Image>
+
+This action is defined as follows:
+
+- **Name**: Create incident
+- **Child Object**: SocialFeedsAssocIncident
+- **Publish to**: All roles except Self Service and service owner roles
+
+The following field-to-value mappings are defined:
+
+| Field Name   | Field Value                                                                                            |
+| ------------ | ------------------------------------------------------------------------------------------------------ |
+| Profile Link | $(CurrentLoginId())                                                                                    |
+| Service      | $(Prompt("Service", "Incident.Service validated by CI.Service.Name", 350, 25, "", "", "Service Desk")) |
+| Category     | $(Prompt("Category", "Category of Category used in Incident", 350, 25, "", "", "Service Desk"))        |
+| Summary      | $(Prompt("Summary", "", 350, 25, "", "", "\_ConversationTitle\_"))                                     |
+| Description  | $(Prompt("Description", "", 400, 200, "", "", "\_ConversationContent\_"))                              |
+
+Notice that the field-to-value mappings must be tailored to fit the given business object. The previous example shows that the incident-specific fields are specified with the appropriate prompt expressions.
+
+Two prompt expressions are available for fetching the title and content of the posting, respectively:
+
+- $(Prompt("Summary", "", 350, 25, "", "", "\_ConversationTitle\_"))
+- $(Prompt("Description", "", 400, 200, "", "", "\_ConversationContent\_"))
+
+The following business objects have the **Insert Child Object** actions included by default:
+
+- Change
+- Incident
+- Problem
+- Release
+
+You can add new **Insert Child Object** actions that support the Social Board for additional business objects. See [Insert Child Object Action](<templates/Insert Child Object.mdx>).

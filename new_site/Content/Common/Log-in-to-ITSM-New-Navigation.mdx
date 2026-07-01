@@ -1,0 +1,191 @@
+---
+title: Unified Product Experience
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:45 GMT+0300 (Eastern European Summer Time)
+---
+
+**Role**: All roles except \{\{FRS\_VARS.Self\_Service\_Portal-Self-Service}} and \{\{FRS\_VARS.Self\_Service\_Mobile\_portal}}.
+
+**Minimum Version**: \{\{FRS\_VARS.ProductName}} 2024.3.
+
+**Availability**: The new navigation is available to users who have both \{\{FRS\_VARS.Neurons}} and \{\{Primary.Product}} licenses for a \{\{FRS\_VARS.unified\_product\_experience}}. It also available for existing cloud and on-premises users who do not have \{\{FRS\_VARS.Neurons}} subscription on enabling the feature flags. Refer to [Feature flags and global constants - unified product experience](Feature-Flags-Global-Constants.mdx) for more information.
+
+Unified Product Experience (UPE) provides a centralized platform where you can link all your Ivanti products such as Unified Endpoint Management, \{\{Primary.Product}}, and Modern Device Management and navigate between them seamlessly, without requiring multiple authentications. Users can switch between a new menu and the old one, depending on what they prefer. The new menu matches other Ivanti products.
+
+Unified Product Experience consists of the following key features:
+
+- Unified Ivanti Login or One Ivanti Login (OIL)
+- One Navigation
+- Global Settings
+- Session management
+
+The authentication when using \{\{FRS\_VARS.ITSM}} via \{\{FRS\_VARS.unified\_product\_experience}}, is set up in \{\{FRS\_VARS.Neurons}}. For more information, refer to [Authentication](https://help.ivanti.com/ht/help/en_US/CLOUD/vNow/authentication.htm) in \{\{FRS\_VARS.Neurons\_platform}}.
+
+## Feature Configuration
+
+This section explains the features of \{\{FRS\_VARS.unified\_product\_experience}} and the steps to configure them.
+
+### One Navigation
+
+One Navigation allows users to switch between the Classic View and the Unified Product Experience within their Ivanti tenant.
+
+### <font color="#000000"></font>Enable One Navigation
+
+<font color="#000000"></font>By default, the \{\{FRS\_VARS.unified\_product\_experience}} navigation is switched off.
+
+<font color="#000000"></font>To enable the feature, enable the status of **EnableOneNavUI** or **ForceOneNav** feature flags in the ConfigDB tenant. For more information, refer to [Feature flags and global constants - unified product experience](Feature-Flags-Global-Constants.mdx).
+
+Once the feature is enabled, the \{\{FRS\_VARS.New\_navigation}} toggle appears on the top header in the home page.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/RhOnSBLV965EpkasojuuL_newnav-header-bar.png" position="flex-start" size="40" initialPath="../Resources/Images/Common/NewNav-Header-Bar.png" githubPath="Content/Resources/Images/Common/NewNav-Header-Bar.png" showCaption="false"></Image>
+
+You can enable the toggle to switch to \{\{FRS\_VARS.unified\_product\_experience}} view.
+
+### Unified Ivanti Login
+
+The Unified Ivanti Login is an integrated authentication solution for accessing \{\{FRS\_VARS.Company}}\{\{FRS\_VARS.Neurons\_for\_UEM}}, \{\{FRS\_VARS.Company}}\{\{FRS\_VARS.Neurons\_for\_MDM}}, and \{\{FRS\_VARS.Company}}\{\{FRS\_VARS.ProductName}}. This solution is based on an Single Sign-On (SSO) identity provider (IdP). When you log in to \{\{FRS\_VARS.ProductName}}, the **Neurons App Switcher** enables you to switch between all the other applications available to you without the need to log in to each application separately.
+
+### Enable Unified Ivanti Login
+
+Enabling the feature involves two steps:
+
+- **OpenID Connect (OIDC) authentication**: The ITSM tenant always uses OIDC authentication to connect to the Neurons Platform. The Neurons Platform administrator sets up the authentication providers on the Neurons Platform and the ITSM administrator ensures that ITSM users are enabled to use external authentication via OIDC on their tenant. For more information, refer [Setting up ITSM users for authentication via the Neurons Platform](../../setting-up-itsm-users-for-authentication-via-the-neurons-platform.mdx).
+  For further support on this, reach out to Ivanti Operations team.
+- **Enable the feature flags**: Enable the status of the **EnableOIL** and **EnableOIDCClientSecretEncode** feature flags in the ConfigDB tenant. For more information, refer to [Feature flags and global constants - unified product experience](Feature-Flags-Global-Constants.mdx).
+
+### Log in to ITSM via Unified Ivanti Login
+
+**Prerequisites:**
+
+Before you begin, make sure the following requirements are met:
+
+- <font color="#000000"></font>User must have the login credentials of \{\{FRS\_VARS.Company}}\{\{FRS\_VARS.Neurons\_for\_UEM}} to log in to the ITSM tenant.
+- User must be assigned to at least one role to log in.
+
+<font color="#000000"></font>**Log in to&#x20;**\{\{FRS\_VARS.ITSM}}**:**
+
+1. Enter the URL for \{\{FRS\_VARS.ITSM}} in a browser.
+2. In the login page, enter your user name and password of \{\{FRS\_VARS.Company}}\{\{FRS\_VARS.Neurons\_for\_UEM}}.
+
+<Paragraph indent="1">
+  You are taken automatically to \{\{FRS\_VARS.ITSM}} after logging in.
+</Paragraph>
+
+3. To switch to a different products, click the **Neurons App Switcher** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/1TjulfreattdD2t1uigK6_iconappswitcher.png" alt="icon for neurons application switcher" caption size="10" width="23" height="22"} and select the product. For example, Modern Device Management.
+
+<hint type="info" indent="1">
+  The products available to you depends on the licenses you have subscribed to.
+</hint>
+
+<Paragraph indent="1">
+  *App Switcher*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/6GOWwVCfyKiQA4DTG2TwY_new-nav-app-switch.png" position="flex-start" size="40" indent="1" initialPath="../Resources/Images/Common/New-Nav-App-Switch.png" githubPath="Content/Resources/Images/Common/New-Nav-App-Switch.png" showCaption="false"></Image>
+
+### Log out
+
+1. Click your profile icon in the upper-right corner.
+2. Click **Log out**.
+
+<Paragraph indent="1">
+  You are now logged out of all available products.
+</Paragraph>
+
+### Global Settings
+
+The Global Settings is available only if you enable the **EnableGobalSettings** feature flag in ConfigDB tenant. And this feature is not available to on-premises users. For more information, refer to [Feature Flags and Global Constants - unified product experience](Feature-Flags-Global-Constants.mdx).
+
+<ExpandableHeading>
+  ## Access Control
+
+  The access control settings are made in Neurons and applied to all the linked products including \{\{FRS\_VARS.ITSM}}.
+
+  For more information, refer to [Access Control](https://help.ivanti.com/ht/help/en_US/CLOUD/vNow/access-control.htm) in \{\{FRS\_VARS.Neurons\_platform}}.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Branding
+
+  You can use this feature to customize the top header of the homepage, including elements like logos, colors, and titles as per your organization preference. The branding settings are made in Neurons and applied to all linked products including \{\{FRS\_VARS.ITSM}}.
+
+  <font color="#000000"></font>For more information, refer to [Branding ](https://help.ivanti.com/ht/help/en_US/CLOUD/vNow/branding.htm)in \{\{FRS\_VARS.Neurons\_platform}}.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Authentication
+
+  The authentication settings are made in Neurons for all the linked products including \{\{FRS\_VARS.ITSM}}. For more information, refer to [Authentication](https://help.ivanti.com/ht/help/en_US/CLOUD/vNow/authentication.htm) in \{\{FRS\_VARS.Neurons\_platform}}.
+</ExpandableHeading>
+
+### Session management
+
+### Session inactivity
+
+When multiple applications are open in different tabs but you are only working with one application, all application sessions remain active. If you are inactive in all applications beyond the configured timeout, the session is terminated due to inactivity.
+
+### Session timeout
+
+If the administrator sets the session timeout value in the \{\{FRS\_VARS.Neurons\_for\_UEM}}, this value is applicable for all the applications available to you.
+
+## Feature Navigation
+
+This section explains the home page of \{\{FRS\_VARS.unified\_product\_experience}} and how to navigate within it.
+
+### Home page
+
+By default, the new - \{\{FRS\_VARS.unified\_product\_experience}} navigation is switched off. Refer :Link[One Navigation]{label="One Navigation" overridedLabel="One Navigation" spaceId docId="5Ek-o4VdbmXna-eWLl2PZ" version="v2" docAnchorId="#One" loadingMethod="dynamic" newTab="false" href="Log-in-to-ITSM-New-Navigation.mdx"} to know how to enable it.
+
+When you log in to \{\{FRS\_VARS.ProductName}}, the **Home** page is displayed with widgets and reports configured for your user role.
+
+You can navigate to different workspaces configured for your user role. When you open a workspace, a list of records pertaining to the selected workspace is displayed.
+
+*User Home Page with New navigation in&#x20;*\{\{FRS\_VARS.ITSM}}
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/lWeocFPQikq1rdLshoJry_upeanalysthomepage.png" alt="Analyst home page when new navigation is switched on for the Unified Product Experience" position="flex-start" size="40" initialPath="../Resources/Images/Common-images/UPE_analyst_homepage.png" githubPath="Content/Resources/Images/Common-images/UPE_analyst_homepage.png" showCaption="false"></Image>
+
+The following are the new navigation workspace parts:
+
+### Top Header Bar
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/RhOnSBLV965EpkasojuuL_newnav-header-bar.png" position="flex-start" size="40" initialPath="../Resources/Images/Common/NewNav-Header-Bar.png" githubPath="Content/Resources/Images/Common/NewNav-Header-Bar.png" showCaption="false"></Image>
+
+From left to right:
+
+- **New navigation** toggle: Turn on or off the toggle to switch between new and classic navigation for \{\{FRS\_VARS.ITSM}}. When you log out, your choice of Navigation is retained for when you log in next time.
+- **Full screen**: Select to go full screen mode; click **Esc** to exit full screen.
+- **Help menu**: Click to access the \{\{FRS\_VARS.ITSM}} online help.
+- **What's New**: Select to view the latest \{\{FRS\_VARS.ITSM}} features and announcements.
+
+<Paragraph indent="1">
+  This is not available to on-premises users.
+</Paragraph>
+
+- **Neurons App Switcher**: Switch to other products available within your organization such as \{\{FRS\_VARS.Company}} Unified Endpoint Management (UEM) or \{\{FRS\_VARS.Company}} Modern Device Management (MDM).
+
+<Paragraph indent="1">
+  This is not available to on-premises users.
+</Paragraph>
+
+- **User profile menu**: Includes the ability to Change Role, Change Locale, Change Password, Change Picture, and Log out.
+
+### Left Navigation Menu
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/9swn0FZ9HDtF1qqDr5_L8_newnav-leftmenu-no-plp.png" position="flex-start" size="40" initialPath="../Resources/Images/Common/NewNav-LeftMenu - no PLP.png" githubPath="Content/Resources/Images/Common/NewNav-LeftMenu - no PLP.png" showCaption="false"></Image>
+
+1. **Navigation&#x20;**&#x74;ab.
+2. **Search**: Use **Search&#x20;**&#x74;o search for all the workspaces available for your role.
+3. **Home**: Your home page with dashboard and content as determined by the Administrator.
+4. **Product-relevant workspaces**: Section of features that differs depending on which product you are using: \{\{FRS\_VARS.Company}} Unified Endpoint Management (UEM), \{\{FRS\_VARS.Company}} Modern Device Management (MDM), or \{\{FRS\_VARS.Company}} IT Service Management (\{\{FRS\_VARS.ITSM}}).
+5. **More Workspaces:&#x20;**&#x41; list of workspaces available for your role.
+6. **Configuration section**:
+
+<Paragraph indent="1">
+  a. **Settings**: Takes you to the [Configuration console](../Configure/CONFIGURE.mdx) of the classic \{\{FRS\_VARS.ITSM}} navigation.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. **Global Settings**: For more information, refer to :Link[Global Settings]{label="Global Settings" overridedLabel="Global Settings" spaceId docId="5Ek-o4VdbmXna-eWLl2PZ" version="v2" docAnchorId="#Global_Settings" loadingMethod="dynamic" newTab="false" href="Log-in-to-ITSM-New-Navigation.mdx"}.
+</Paragraph>
+
+7. **Collapse:** Select to reduce the navigation to icons only.

@@ -1,0 +1,160 @@
+---
+title: Email Templates
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:51 GMT+0300 (Eastern European Summer Time)
+---
+
+**Role**: Administrator
+
+**Minimum Version**: \{\{FRS\_VARS.Company}} \{\{FRS\_VARS.ProductName}} 2019
+
+Email templates are created through quick actions. You must create a template for each business object created by email (except incident, which exists by default). This ensures your users will provide the correct information in an acceptable format.
+
+The inbound email creates the appropriate business object record and associates a duplicate record with the employee record.
+
+The default fields and field values are provided as examples; you enter the field names to populate from the email in \{\{FRS\_VARS.ProductName}}, and the users enter their own field values. In the examples provided, the $ symbol is the field value separator and the # symbol is the record separator (which means that you can create multiple records from the same email). Because $ and # are frequently used in data, we recommend you use different common characters.
+
+## Allowed Email Formats and Sanitization Rules
+
+For security reasons, \{\{FRS\_VARS.ProductName}} sanitizes email content to help prevent cross-site scripting (XSS) attacks. Email fields in incidents or business objects support the following formats:
+
+- \<email\@domain.com>
+- Name \<email\@domain.com>
+- \<email\@domain.com> Name
+
+\{\{FRS\_VARS.ProductName}} removes any other use of \< or > tags from text fields. Arbitrary HTML tags, scripts, or unsupported patterns remain blocked.
+
+| Valid Format                      | Invalid Format                     |
+| --------------------------------- | ---------------------------------- |
+| John Doe \<john.doe\@example.com> | \<script>alert('script')\</script> |
+| \<email\@example.com>             | \<\<email\@example.com>>           |
+
+## Knowledge Templates
+
+You must create a template for each type of knowledge article to create knowledge articles by email. The following knowledge templates fields are provided as examples only:
+
+| Field Name         | Field Value            |
+| ------------------ | ---------------------- |
+| FRS\_KnowledgeType | $Document              |
+| Title              | $\<title of article>   |
+| Details            | $\<details of article> |
+| Collection         | $IT Knowledge          |
+| Category           | $Printer               |
+| OwnerTeam          | $Operations            |
+| Owner              | $Admin                 |
+| Version            | $1                     |
+| Author             | $Admin                 |
+| Status             | $Draft                 |
+| Subcategory        | $Outage                |
+| Environment        | $Outlook 2007          |
+
+| Field Name         | Field Value            |
+| ------------------ | ---------------------- |
+| FRS\_KnowledgeType | $IssueResolution       |
+| Title              | $\<title of article>   |
+| Details            | $\<details of article> |
+| Collection         | $IT Knowledge          |
+| Category           | $Printer               |
+| OwnerTeam          | $Operations            |
+| Owner              | $Admin                 |
+| Version            | $1                     |
+| Author             | $Admin                 |
+| Status             | $Draft                 |
+| Resolution         | $\<resolution details> |
+| Subcategory        | $Outage                |
+| Environment        | $Outlook 2007          |
+
+| Field Name         | Field Value            |
+| ------------------ | ---------------------- |
+| FRS\_KnowledgeType | $ErrorMessage          |
+| Title              | $\<title of article>   |
+| Details            | $\<details of article> |
+| Collection         | $IT Knowledge          |
+| Category           | $Printer               |
+| OwnerTeam          | $Operations            |
+| Owner              | $Admin                 |
+| Version            | $1                     |
+| Author             | $Admin                 |
+| Status             | $Draft                 |
+| Resolution         | $\<resolution details> |
+| Subcategory        | $Outage                |
+| Environment        | $Outlook 2007          |
+
+| Field Name         | Field Value            |
+| ------------------ | ---------------------- |
+| FRS\_KnowledgeType | $Patch                 |
+| Title              | $\<title of article>   |
+| Details            | $\<details of article> |
+| Collection         | $IT Knowledge          |
+| Category           | $Printer               |
+| OwnerTeam          | $Operations            |
+| Owner              | $Admin                 |
+| Version            | $1                     |
+| Author             | $Admin                 |
+| Status             | $Draft                 |
+| Resolution         | $\<resolution details> |
+| Subcategory        | $Outage                |
+| Environment        | $Outlook 2007          |
+
+| Field Name         | Field Value            |
+| ------------------ | ---------------------- |
+| FRS\_KnowledgeType | $QandA                 |
+| Title              | $\<title of article>   |
+| Details            | $\<details of article> |
+| Collection         | $IT Knowledge          |
+| Category           | $Printer               |
+| OwnerTeam          | $Operations            |
+| Owner              | $Admin                 |
+| Version            | $1                     |
+| Author             | $Admin                 |
+| Status             | $Draft                 |
+| Resolution         | $\<resolution details> |
+| Subcategory        | $Outage                |
+| Environment        | $Outlook 2007          |
+
+## Problem Template
+
+| Field Name       | Field Value                    |
+| ---------------- | ------------------------------ |
+| Summary          | $\<Problem summary>            |
+| Description      | $\<Problem description>        |
+| Status           | $Logged                        |
+| Category         | $Documentation                 |
+| Source           | $Supplier                      |
+| Team             | $Problem Management            |
+| Owner            | $ADale                         |
+| Urgency          | $High                          |
+| Impact           | $Medium                        |
+| ResolutionAction | $Training                      |
+| Environment      | $Windows 7                     |
+| ErrorMessage     | $\<error message, if any>      |
+| Resolution       | $\<resolution details, if any> |
+| Workaround       | $\<workaround details, if any> |
+
+## Generic Template
+
+Use this template to link the new business object record to an employee based on the login ID of the employee (and not the name of the employee). When using the generic template, make sure that the business object field is set to other and that the employee record exists in \{\{FRS\_VARS.ProductName}}.
+
+| Field Name       | Field Value                   |
+| ---------------- | ----------------------------- |
+| LinkfieldName    |                               |
+| TargetFieldName1 | $Data for Target Field Name 1 |
+| TargetFieldName2 | $Data for Target Field Name 2 |
+| TargetFieldName3 | $Data for Target Field Name 3 |
+| TargetFieldName4 | $Data for Target Field Name 4 |
+
+## Link to an Object
+
+The link field name is a unique field that is used for linking the email to an existing business object record. For example, from the email address of a sender, a link is set up between the employee record and the business object record (such as an incident).
+
+| Field Name       | Field Value                                                                       |
+| ---------------- | --------------------------------------------------------------------------------- |
+| LinkfieldName    | $\<RetrievalBusinessObjectName.RetrievalField Name(ConditionalField Name= Value)> |
+| TargetFieldName1 | $Data for Target Field Name 1                                                     |
+| TargetFieldName2 | $Data for Target Field Name 2                                                     |
+| TargetFieldName3 | $Data for Target Field Name 3                                                     |
+| TargetFieldName4 | $Data for Target Field Name 4                                                     |
+
+For example, to link to an employee record from an email, use the following syntax: **ProfileLink$\<Profile#Employee.RecId(LoginID = EmployeeName)>**.
+
+Note that the # character is used to identify the related field in the **Employee** business object. Sometimes the inbox configuration also uses the same # character as the record marker. In such cases, change the record marker to some other character (for example, ^), so the reference to the link field name can be properly read.

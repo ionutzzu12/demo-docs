@@ -1,0 +1,67 @@
+---
+title: Classic UI Enhancements
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:56 GMT+0300 (Eastern European Summer Time)
+---
+
+**Role**: Administrator.
+
+**Minimum Version**: 2023.4.
+
+## Key Enhancements
+
+1. **Rounded Corners Styling**
+   - **UI Controls**: Rounded corners applied to all UI controls for a smoother, more modern appearance.
+   - **List View**: The Priority and Ticket Progress columns are visually emphasized with rounded corners.
+   - **Toolbar and Labels**: Buttons, tabs, and controls are now styled with rounded edges. The Priority, Response, and Resolution labels are also visually enhanced with rounded corners.
+2. **Enhanced Journal Entry**
+   - **Updated Icons:&#x20;**&#x4E;ew icons for journal types such as Email and Notes for better clarity and distinction.
+3. **Customer Image in Incident View**
+   - **Incident Header Form**
+     - Displays the **Customer Image** for quick identification.
+     - Highlights the **Customer Name**, **Priority**, and **Incident Summary** for easy access to key information.
+4. **Spark UI theme**:
+   - **New Role**: Introduced the AdminAUSpark role, which can be assigned to users to access the Spark UI theme.
+   - **Key Features:**
+     - **Form View**: Cells are now highlighted for improved visibility.
+     - **List View**: Selected incidents are highlighted with a blue background for better distinction.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/KV3NoIgEZoNyihjGtR5Jk_image1.png" position="flex-start" size="40" initialPath="../../Resources/Images/image1.png" githubPath="Content/Resources/Images/image1.png" showCaption="false"></Image>
+
+**Impacted Business Objects**
+
+- **Incident**
+- Service Request
+- Change
+- Task
+- Problem
+- CI / Hardware & Software Assets
+
+**To change the form and list elements of a business object to have rounded corners on fields:**
+
+1. Login as ISM application.
+2. From the Configuration console, click **Build&#x20;**>**&#x20;Business Objects**.
+3. Select the Business object for which rounded corners needs to be implemented.
+4. Go to **Layouts** > Click on the layout for which rounded corners must be enabled.
+5. In the **View in the layout** section, select **formView&#x20;**>**Edit** next to the **Main Form:** name.
+6. Drag the Command button to Form.
+7. Click **Control Properties** and change label expression to read *$(GetGlobal("RoundedCornersStyling"))*.
+8. **Save** the form.
+
+To verify, log in to the and navigate to an Incident record or list view to see the rounded corners.
+
+## Availability for Customers
+
+**For Customers On-boarded from version ITSM 2023.3 or greater versions:**
+
+Customers on-boarded from version ITSM 2023.3 or greater versions will have these enhancements available by default.
+
+**For Customers Onboarded prior to ITSM 2023.3 Version:**
+
+Customers onboarded prior to ITSM 2023.3 can import the custom package for the ITSM Classic UI Enhancements via the [marketplace](https://marketplace.ivanti.com/xchange/64b5b48e2ee9d6e08c3e6724/solution/6745766a28bb05fac029ae86).
+
+This package introduces new forms, list and layouts, which can be customized by the customer for their existing configurations.
+
+<hint type="info">
+  The package must be applied in the STG/UAT environment first and validated before deploying to PRD.
+</hint>

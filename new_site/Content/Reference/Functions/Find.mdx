@@ -1,0 +1,73 @@
+---
+title: Find
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:59 GMT+0300 (Eastern European Summer Time)
+---
+
+Returns the starting position of the first instance of a specific text value within a field value.
+
+<hint type="info">
+  Searches are not case-sensitive.
+</hint>
+
+## Syntax
+
+```bash
+Find(str, strToFind, startingPosition)
+```
+
+## Enabled For
+
+For a description of the business object categories, see :Link[Notes on "Enabled For"]{label="Notes on &#x22;Enabled For&#x22;" overridedLabel="Notes on &#x22;Enabled For&#x22;" spaceId docId="xObv2pIDrk60jkEIWs8mD" version="v2" docAnchorId="#Notes" loadingMethod="dynamic" newTab="false" githubPath="_Built_in_Functions.htm#Notes" href="_Built_in_Functions.mdx"}.
+
+| Business Object Category                                                                    | Yes/No |
+| ------------------------------------------------------------------------------------------- | ------ |
+| Business Rules: Before-Save Rules                                                           | Yes    |
+| Business Rules: Calculation Rules (After Save, with or without Also Recalculate on Load)    | Yes    |
+| Business Rules: Calculation Rules (Before Save or Always, without Also Recalculate On Load) | Yes    |
+| Business Rules: Calculation Rules (Before Save or Always, with Recalculate On Load)         | Yes    |
+| Business Rules: Editing Rules                                                               | Yes    |
+| Business Rules: Initialization Rules                                                        | Yes    |
+| Business Rules: Read Only Rules                                                             | Yes    |
+| Business Rules: Required Rules                                                              | Yes    |
+| Business Rules: Validation Rules                                                            | Yes    |
+| Client Expressions                                                                          | Yes    |
+| Object Permissions                                                                          | Yes    |
+| Services                                                                                    | Yes    |
+| LDAP                                                                                        | Yes    |
+| Mobile                                                                                      | Yes    |
+| Quick Actions (except UI Quick Actions)                                                     | Yes    |
+| UI Quick Actions                                                                            | Yes    |
+| Reports                                                                                     | Yes    |
+| Search/Dashboard without field references                                                   | Yes    |
+| Search/Dashboard with field references                                                      | Yes    |
+
+## Parameters
+
+| Parameter        | Description                                             |
+| ---------------- | ------------------------------------------------------- |
+| str              | Text value to be searched for.                          |
+| strToFind        | Text you want to search in.                             |
+| startingPosition | (Optional) The position from which to start the search. |
+
+## Return Value
+
+<Paragraph indent="1">
+  Number value.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  Returns -1 if the text is not found.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  If the text is found, returns the starting position (zero-based index) of the first parameter (**str**) in the second parameter (**strToFind**).
+</Paragraph>
+
+## Example
+
+```bash
+$(Find("printer", Symptom))
+```
+
+If Symptom (Description) contains the text "The printer is broken.", this example returns 4.

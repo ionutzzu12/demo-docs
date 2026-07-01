@@ -1,0 +1,70 @@
+---
+title: LocalMinute
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:59 GMT+0300 (Eastern European Summer Time)
+---
+
+Returns the value for the minute of the hour for the local date.
+
+## Syntax
+
+LocalMinute(utcDateTime, timeZone)
+
+## Enabled For
+
+For a description of the business object categories, see :Link[Notes on "Enabled For"]{label="Notes on &#x22;Enabled For&#x22;" overridedLabel="Notes on &#x22;Enabled For&#x22;" spaceId docId="xObv2pIDrk60jkEIWs8mD" version="v2" docAnchorId="#Notes" loadingMethod="dynamic" newTab="false" githubPath="_Built_in_Functions.htm#Notes" href="_Built_in_Functions.mdx"}.
+
+| Business Object Category                                                                    | Yes/No |
+| ------------------------------------------------------------------------------------------- | ------ |
+| Business Rules: Before-Save Rules                                                           | Yes    |
+| Business Rules: Calculation Rules (After Save, with or without Also Recalculate on Load)    | Yes    |
+| Business Rules: Calculation Rules (Before Save or Always, without Also Recalculate On Load) | Yes    |
+| Business Rules: Calculation Rules (Before Save or Always, with Recalculate On Load)         | Yes    |
+| Business Rules: Editing Rules                                                               | Yes    |
+| Business Rules: Initialization Rules                                                        | Yes    |
+| Business Rules: Read Only Rules                                                             | Yes    |
+| Business Rules: Required Rules                                                              | Yes    |
+| Business Rules: Validation Rules                                                            | Yes    |
+| Client Expressions                                                                          | Yes    |
+| Object Permissions                                                                          | Yes    |
+| Services                                                                                    | Yes    |
+| LDAP                                                                                        | Yes    |
+| Mobile                                                                                      | Yes    |
+| Quick Actions (except UI Quick Actions)                                                     | Yes    |
+| UI Quick Actions                                                                            | Yes    |
+| Reports                                                                                     | Yes    |
+| Search/Dashboard without field references                                                   | Yes    |
+| Search/Dashboard with field references                                                      | Yes    |
+
+## Parameters
+
+| Parameter   | Description                                                                                                                                          |
+| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| utcDateTime | (Optional) The DateTime value for which to find the minute of the hour.                                                                              |
+| timeZone    | (Optional) The time zone, in IANA format. If you do not specify a time zone, the application uses the time zone associated with the current session. |
+
+## Return Value
+
+<Paragraph indent="1">
+  Number between 0 and 59.
+</Paragraph>
+
+## Example
+
+$(LocalMinute())
+
+<Paragraph indent="1">
+  If today is Wednesday April 10, 2014 at 13:45:26 in the current time zone, this function returns 45.
+</Paragraph>
+
+$(LocalMinute(CreatedDateTime))
+
+<Paragraph indent="1">
+  Returns the minute of the hour in the current time zone when the incident was created.
+</Paragraph>
+
+$(LocalMinute(CreatedDateTime, "Antarctica/South\_Pole"))
+
+<Paragraph indent="1">
+  Returns the minute of the hour in the Antarctica time zone when the incident was created.
+</Paragraph>

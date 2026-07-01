@@ -1,0 +1,29 @@
+---
+title: Using Direct Relationships in a List
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:55 GMT+0300 (Eastern European Summer Time)
+---
+
+You can use direct relationships when designing a list. See [Working with Lists](../Lists/Lists.mdx). However, indirect or distant relationships do not work.
+
+For example, when you add a list control to a form (see [Using Forms](../Forms/Forms.mdx)), you can configure it to show data related to the business object.
+
+| Field         | Description                                                                                           |
+| ------------- | ----------------------------------------------------------------------------------------------------- |
+| List Relation | The actual name of the relationship to the related business objects, such as **ProblemContainsTask**. |
+| List Name     | The name of the related business object.                                                              |
+
+*List Control*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/wjSY_qL_kfJI9fL1dj6z3_relationship-grid.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/relationship grid.png" githubPath="Content/Resources/Images/help-images/relationship grid.png" showCaption="false"></Image>
+
+This results in a list of related tasks for the current problem (the same data in the **Task** child panel).
+
+- For one-to-many relationships, this means identical field configuration and relationship conditions.
+- The data appears correctly for one-to-many and one-to-one relationships, because they use direct database join.
+- For many-to-many relationships (link table relationships), the relationship is used for both linking and display. This relationship does not work.
+- Intermediate relationships do not work. These use RecIDs for both objects and the relationship name to link two objects. It is not possible to create a copy of the link table relationship and retrieve the same records as the relationship names are different and there are no records found.
+
+*Example of the Link Table; Note the Relationship Name Column*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/jboXXR8x0G9qs2zgllfgi_relationship-table.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/relationship table.png" githubPath="Content/Resources/Images/help-images/relationship table.png" showCaption="false"></Image>

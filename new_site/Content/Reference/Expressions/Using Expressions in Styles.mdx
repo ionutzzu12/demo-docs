@@ -1,0 +1,56 @@
+---
+title: About Using Expressions in Styles
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:58 GMT+0300 (Eastern European Summer Time)
+---
+
+Style expressions override any default options selected. Only specific words are recognized as style expressions. See :Link[Using Style Rule Expressions in the Form Editor]{label="Using Style Rule Expressions in the Form Editor" overridedLabel="Using Style Rule Expressions in the Form Editor" spaceId docId="cPVNqPKnvPV2lHE1WntJD" version="v2" docAnchorId="#Words" loadingMethod="dynamic" newTab="false" href="Using Expressions in Styles.mdx"} for a list of acceptable words.
+
+After adding a control to a form (within the Form Editor), click the down arrow in the **Style Rule** field, and the Expression Editor appears.
+
+*Style Rule Field in a Control*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/dqEjJ4AoOqA0GzspVFu1O_style-rulle-field.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/style rulle field.png" githubPath="Content/Resources/Images/help-images/style rulle field.png" showCaption="false"></Image>
+
+See [Using Forms](../../Configure/Forms/Forms.mdx) for information about the **Style Rule** field.
+
+Enter an expression to apply to this style, if needed. You can define what existing style (bold, header, etc.) to apply to a control based on a condition. See [Using the Expression Editor](<Using Expression Editor.mdx>) for more information.
+
+For example, enter the following expression into the **Style** field of a list:
+
+$(if Status == "Closed" then "RedStyle" else "LimeStyle")
+
+This returns the row as the red style if the record status is closed and returns the row as the lime green style if it is not closed.
+
+## Using Style Rule Expressions in the Form Editor
+
+You can use expressions when defining style rules in the Form Editor. However, style rules only recognize specific words. The following table lists the recognized words:
+
+| Rule Name               | Rule Value         |
+| ----------------------- | ------------------ |
+| Default                 | (leave blank)      |
+| Black Combo Box         | blkcombo           |
+| Blue Text               | bluetext           |
+| Bold Highlighted        | boldhighlight      |
+| Bold Label              | bold               |
+| Bold w/ Horizontal Rule | boldhr             |
+| Counter                 | counter            |
+| Header                  | header             |
+| Highlighted Row         | highlight          |
+| Horizontal Rule         | hr                 |
+| Horizontal Rule Header  | hrheader           |
+| Light Blue Text         | lightbluetext      |
+| Light Blue Text Right   | lightbluetextright |
+| Link (button)           | x-btn-link         |
+| Panel Body              | panelBody          |
+| Panel Body (First Row)  | panelBodyFirstRow  |
+| Panel Body (No Border)  | panelBodyNoBorder  |
+| Panel Footer            | panelFooter        |
+| Panel Header            | panelHeader        |
+| Red Label               | red                |
+| Right Label             | right              |
+| Therm labels bottm      | temp-t2            |
+| Therm labels top        | temp-t1            |
+| Vertical Rule           | vr                 |
+| Vertical Rule (long)    | vrl                |
+| VIP                     | vip                |

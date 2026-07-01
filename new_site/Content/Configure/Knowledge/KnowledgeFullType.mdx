@@ -1,0 +1,36 @@
+---
+title: Using the KnowledgeFullType Field
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:55 GMT+0300 (Eastern European Summer Time)
+---
+
+**KnowledgeFullType** is a picklist field that lists the Display Name of the Knowledge article Type such as Reference, Error Message, or FAQ.
+
+This topic details how to add a new Knowledge Type in the **KnowledgeFullType** field.
+
+## Sample scenario
+
+Let us add **Troubleshooting** as a new Knowledge Type.
+
+1. Sign in to Neurons for ITSM as an Administrator.
+2. Open the Configuration console.
+3. Select **Build** > **Business Object** > **Knowledge**.
+4. In the **Knowledge Business Object**, select the **Fields** tab.
+5. Select **Value** in th&#x65;**&#x20;Pick List** section.
+6. Select **Add**.
+7. Type Troubleshooting in the **Type** field and select **Save**.
+8. The new **Knowledge Type** is created.
+   From the **Business Object** page, open the Troubleshooting child/member business object.
+9. Select the **Business Rules** tab.
+10. Create **Before Save Rule** with the following details:
+    - **Field Name** – KnowledgeFullType
+    - **Name** – Enter a contextual name such as Before-save Rule for FRS\_Knowledge#Troubleshooting.KnowledgeFullType
+    - **Description** – Enter a relevant description.
+    - **Expression Editor**
+      ```bash
+      $(if FRS_KnowledgeType == "Troubleshooting" then "Troubleshooting" else FRS_KnowledgeType
+      ```
+
+<hint type="success" indent="2">
+  The **Before Save Rule** ensures that the **Troubleshooting** Knowledge Type is listed in picklists where this field is used.
+</hint>

@@ -1,0 +1,227 @@
+---
+title: Deploying Software from a Request Offering
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:50 GMT+0300 (Eastern European Summer Time)
+---
+
+If you have \{\{Primary.Company}} Automation and \{\{Primary.Company}} Endpoint Manager (EPM), you can configure a Request Offering that automatically installs software on an end user's computer. The end user can log in to the Self Service portal and request the required item from the **Software** category of the Service Catalog. After the required approvals occur that are set for the Request Offering, the software is automatically installed on the end user's computer.
+
+To set up this feature, you first need to:
+
+- Download the Software Deployment from Service Request package from the [Ivanti Marketplace](https://marketplace.ivanticloud.com/packages/SoftwareDeploymentinServiceCatalogusingEndpointManagerandIvantiAutomation/).
+- [Set up - Endpoint Manager Integration](https://insider.ivanti.com/docs/DOC-12117)
+
+Next, follow the procedures in the following sections.
+
+## Setting up Ivanti Automation
+
+<ExpandableHeading>
+  ## Prerequisites
+
+  - **Windows PowerShell**: The Ivanti Automation environment needs PowerShell 5.1 or later installed on your computer.
+  - **Ivanti Automation Tool**: You need to have Ivanti Automation installed on your computer and have the following components in it:
+    - The Automation console.
+    - At least one dispatcher and an agent.
+
+  <Paragraph indent="1">
+    For more information about installing and using Ivanti Automation, refer to the Automation help on [https://www.ivanti.com/support/product-documentation](https://help.ivanti.com/).
+  </Paragraph>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Enabling the Automation Dispatcher API
+
+  The Dispatcher API is disabled by default; you need to enable it from the \{\{Primary.Company}} Automation console by either:
+
+  - Enabling it globally: Click **Setup&#x20;**>**&#x20;Global Settings**, then under **Dispatcher WebAPI** double-click **WebAPI state** to display the **Edit Setting** dialog box.
+
+  <Paragraph indent="1">
+    or
+  </Paragraph>
+
+  - Enabling at the dispatcher level: From **Topology&#x20;**>**&#x20;Dispatchers**, then from the **Action** menu, select **Dispatchers&#x20;**>**&#x20;Change settings of selected Dispatchers** to display the **Change settings of selected Dispatchers** dialog box, then double-click **WebAPI state** under **Dispatcher WebAPI**.
+
+  You can also enable secure communication using HTTPS.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Adding the Global Variables
+
+  Before creating the Ivanti Automation run books, you need to add the following Global Variables at **Library > Variables** with the values set to match your environment.
+
+  | Name                                              | Type     | Value                                                                                                                                       |
+  | ------------------------------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+  | **General**                                       |          |                                                                                                                                             |
+  | IvantiServiceManager\_API\_Key                    | Text     | API Key used by the Administrator. Can be found the \{\{FRS\_VARS.ProductName}} Configuration console > **Security Control** > **API Key**. |
+  | IvantiServiceManager\_Tenant\_Url                 | Text     | \{\{FRS\_VARS.ProductName}} tenant URL.                                                                                                     |
+  | **EPM**                                           |          |                                                                                                                                             |
+  | EPM\_ClientId                                     | Text     | Client ID created to communicate with EPM server (roclient)                                                                                 |
+  | EPM\_ClientSecret                                 | Text     | EPM client secret key for the above client ID.                                                                                              |
+  | EPM\_Host                                         | Text     | IP address of EPM client.                                                                                                                   |
+  | EPM\_PackageCategoryId                            | Text     | EPM PackageCategoryId (refer to the next section to learn how to determine the value for this field).                                       |
+  | EPM\_Password                                     | Password | EPM server password.                                                                                                                        |
+  | EPM\_Username                                     | Text     | EPM server user name.                                                                                                                       |
+  | \{\{FRS\_VARS.ProductName}}                       |          |                                                                                                                                             |
+  | ISM\_APIKey                                       | Text     | API Key used by the Administrator. Can be found the \{\{FRS\_VARS.ProductName}} Configuration console > **Security Control** > **API Key**. |
+  | ISM\_Password                                     | Password | \{\{FRS\_VARS.ProductName}} tenant password.                                                                                                |
+  | ISM\_TenantID                                     | Text     | \{\{FRS\_VARS.ProductName}} tenant ID.                                                                                                      |
+  | ISM\_TenantURL                                    | Text     | \{\{FRS\_VARS.ProductName}} tenant URL.                                                                                                     |
+  | ISM\_Username                                     | Text     | \{\{FRS\_VARS.ProductName}} tenant user name.                                                                                               |
+  | **Ivanti Automation**                             |          |                                                                                                                                             |
+  | IA\_Password                                      | Password | Ivanti Automation client password.                                                                                                          |
+  | IA\_Username                                      | Text     | Ivanti Automation client user name.                                                                                                         |
+  | \{\{Primary.Company}} \{\{FRS\_VARS.ProductName}} |          |                                                                                                                                             |
+  | Ivanti Service Manager Password                   | Password |                                                                                                                                             |
+  | Ivanti Service Manager Tenant                     | Text     |                                                                                                                                             |
+  | Ivanti Service Manager Tenant URL                 | Text     |                                                                                                                                             |
+  | Ivanti Service Manager UserName                   | Text     |                                                                                                                                             |
+
+  <ExpandableHeading>
+    ## Determining the EPM\_PackageCategoryId
+
+    1. From \{\{Primary.Company}} Automation Console, under **Library**. click **Run Books**. The Run Books appear.
+    2. Expand **Software Installation**.
+    3. Right-click **Get Category Id for Package**, then click **Schedule job**. The **New Job** dialog box appears.
+    4. On the **Job Parameters** tab, enter the required **PackageName**, then click **OK** to execute the job.
+    5. When the job has run, click **Job History** under **Jobs** and open the **Get EPM Package Category** record. The Job dialog opens.
+    6. On the **Tasks** tab, select the task and click **Details**.
+    7. Click the **Console Output** tab. The CategoryId for the specified package is reported at the top of the output. Use this value for the **EPM\_PackageCategoryId** Global Variable.
+  </ExpandableHeading>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Importing the Building Blocks
+
+  To import the building blocks, you should have downloaded the Software Deployment from Service Request package from the [Ivanti Marketplace](https://marketplace.ivanticloud.com/packages/SoftwareDeploymentinServiceCatalogusingEndpointManagerandIvantiAutomation/).
+
+  1. After downloading the Software Deployment from Service Request package, right-click the package file and click **Extract files**.
+
+  <Paragraph indent="1">
+    The files get extracted in a folder.
+  </Paragraph>
+
+  2. Open the folder and navigate to **content** > **EPM Prebuild** > **building blocks**. The following building block files are available.
+
+  - For a single software installation:
+    - **runbook\_epm connector software install** - this module is used to send request to EPM with the software package details and send status to \{\{FRS\_VARS.ProductName}} upon completion.
+    - **runbook\_get category id for package** - this module is used to get the category ID of the EPM server which is required in the variables.
+    - **runbook\_send packages to ism** - this module is used to send the EPM packages from EPM server to \{\{FRS\_VARS.ProductName}}.
+    - **runbook\_send runbooks to ism** - this module is used to sync the Ivanti Automation runbooks to \{\{FRS\_VARS.ProductName}}.
+  - For multiple software installations:
+    - **runbook\_multiple software install** - this module is used to send request to EPM with the software package details and send the status to \{\{FRS\_VARS.ProductName}} upon completion.
+    - **runbook\_get category id for package** - this module is used to get the category ID of the EPM server which is required in the variables.
+    - **runbook\_send packages to ism** - this module is used to send the EPM packages from EPM server to \{\{FRS\_VARS.ProductName}}.
+    - **runbook\_send runbooks to ism** - this module is used to sync the Ivanti Automation runbooks to \{\{FRS\_VARS.ProductName}}.
+
+  <hint type="info" indent="1">
+    For each of the building block files, a passkey file is available, which is required to import the building blocks.
+  </hint>
+
+  3. From the \{\{Primary.Company}} Automation console, under **Library**, click **Modules** > **Building Blocks** > **Import Building Blocks** and import the above mentioned building blocks one at a time.
+  4. Enter the passkey. Get the passkey from the respective file's passkey file. For example, while importing the **runbook\_epm connector software install** building block, get the passkey from th&#x65;**&#x20;passkey\_epm connector software install** file. While importing the **runbook\_multiple software install** building block, get the passkey from the **passkey\_multiple software install** file.
+  5. Repeat step 3 and 4 and import all the four building blocks.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Scheduling the run books
+
+  To sync the packages to \{\{FRS\_VARS.ProductName}}, you need to schedule these two runbooks - **Send Packages to ISM** and **Send Runbooks to ISM**.
+
+  1. From the Ivanti Automation console, under **Library**, select **Runbooks**.
+
+  <Paragraph indent="1">
+    A list of runbooks is displayed.
+  </Paragraph>
+
+  2. Right-click the **Send Packages to ISM**, select **Schedule job**.
+  3. Click **Ok** in the **New Job - Send Packages to ISM** dialog box.
+  4. Repeat step 2 and 3 for **Send Runbooks to ISM**.
+  5. To confirm if the above jobs are schedules, go to **Jobs** > **Job History**. You should see the entries for **Send Packages to ISM** and **Send Runbooks to ISM** in the list.
+
+  <Paragraph indent="1">
+    The Ivanti Automation setup is complete.
+  </Paragraph>
+</ExpandableHeading>
+
+## Setting up Neurons for ITSM
+
+Once you have finished setting up \{\{Primary.Company}} Automation, you need to set up the connection between Automation and \{\{FRS\_VARS.ProductName}}, and then set up the required approvals for the software packages. Finally, set up the Request Offering.
+
+<ExpandableHeading>
+  ## Setting up Ivanti Automation Connection
+
+  The **Ivanti Automation Configuration** business object in \{\{FRS\_VARS.ProductName}} is used to setup the connection details of Ivanti Automation.
+
+  1. Log in to \{\{FRS\_VARS.ProductName}} as Administrator.
+  2. From the workspace menu, click **More** and select **Ivanti Automation Configuration**.
+  3. Enter information into the fields:
+     - **Host**: IP address of the EPM client.
+     - **Username**: Name of the user as in Ivanti Automation.
+     - **Password**: Login credentials of the user for Ivanti Automation.
+     - **Authentication Type**: Select **Basic**.
+     - **Primary Host**: Select this check box.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Setting the Display Name and Approvals for Software Packages
+
+  After you have set up \{\{Primary.Company}} Automation and Endpoint Manager, the list of packages is displayed in the EPM Automation workspace. You can set a display name and approvals for the software packages.
+
+  1. Log in to \{\{FRS\_VARS.ProductName}} as Administrator.
+  2. From the workspace menu, click **More** and select **EPM Automation Package**.
+
+  <Paragraph indent="1">
+    A list of software packages is displayed.
+  </Paragraph>
+
+  3. Click the software package you want to set the display name and approvals for. The package page is displayed.
+  4. Enter a contextual name.
+  5. Select the **Approval Required** and **License Approval Required** check boxes as appropriate.
+     - Selecting **Approval Required** means that the manager of the self service user has to approve the software installation.
+     - Selecting **License Approval Required** means that a member of the **License Approver** contact group has to approve the software installation. See :Link[License Approval]{label="License Approval" overridedLabel="License Approval" spaceId docId="Za2LbzL21I8HilN2kjjs5" version="v2" docAnchorId="#LicenseApproval" loadingMethod="dynamic" newTab="false" href="software-deployment.mdx"} for adding or removing users from the License Approval group. For more information about contact groups, see [Using Contact Groups](Users/Using_Contact_Groups.mdx).
+  6. Click **Save** to save the software package.
+  7. Repeat the steps 3 - 5 for all the software packages.
+
+  **License Approval**
+
+  1. Log in to \{\{FRS\_VARS.ProductName}} as Administrator.
+  2. Open the Configuration console.
+  3. Under **Users and Permission**, select **Groups** and double-click **License Approval**.
+  4. To add users, click **Link** and select the user to be added.
+  5. To remove users, select the user from the list and click **Unlink**.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Setting up Request Offerings
+
+  When you have set up the approvals for the software packages, you can configure the Request Offerings for the EPM Automation Packages.
+
+  The software packages imported after the Ivanti Automation and EPM setup is the basis for creating Request Offerings which can be used by end users to deploy software through Request Offering.
+
+  1. Log in to \{\{FRS\_VARS.ProductName}} with any role having access to Request Offering workspace.
+  2. From the workspace menu, select **Request Offering**.
+  3. In the **Browse by Category** panel, click **Software**. The different Software Request Offerings provided as part of the out-of-the-box installation are displayed. You can now either update or copy these request offerings to match your EPM software packages.
+  4. To copy and reconfigure an existing request offering, click the **Duplicate Template** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/3a_0YQXsV5EaPQ60wXVWO_duplicate-template-button23x23.png" alt caption size="10" width="23" height="23"} in the **Actions** column. The **Copy Template** dialog box is displayed.
+  5. Enter a **New Template Name**, then click **Copy**. you can now update the new Request Offering to match your requirements.
+  6. Click the **Design request form** tab, and edit the **Available Software** field.
+  7. Click the **Publish Action Access** tab to publish the offering, then click **Save & Exit**.
+  8. Repeat for your other Request Offerings.
+</ExpandableHeading>
+
+## Requesting a Software Deployment
+
+When you have completed all of the above settings, end-users can request a software deployment using the Request Offering.
+
+<ExpandableHeading>
+  ## To request a software deployment from a Request Offering
+
+  1. Log in as a Self Service User or Self Service Mobile user and open the **Service Catalog**.
+  2. In the **Browse by Category** panel, expand **Software** then click the required sub-category. The software packages you have configured are displayed.
+  3. Click the software package you want to request. The **Service Request** page opens for the requested software.
+  4. In the **Computer** drop-down, select the computer you want the software to be installed on. The drop-down lists only those computers associated with the current user.
+
+     If the required computer does not appear in the list, type the computer name in the box under the **Computer** list to log a manual service request.
+  5. Click **Review & Submit**. The **Review** page appears.
+  6. Click **Submit**. The request is submitted and sent for the specified approvals.
+     When the Service Request has been approved, \{\{Primary.Company}} Automation fulfills the software deployment.
+</ExpandableHeading>

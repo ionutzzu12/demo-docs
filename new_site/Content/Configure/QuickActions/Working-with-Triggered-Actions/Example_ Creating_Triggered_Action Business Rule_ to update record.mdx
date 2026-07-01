@@ -1,0 +1,64 @@
+---
+title: Example: Creating Triggered Action Business Rule to update a record
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:57 GMT+0300 (Eastern European Summer Time)
+---
+
+This example shows how to trigger an action to update the symptom description of a record when the impact field is changed from Medium to High.
+
+**Prerequisite**
+
+This example assumes you have administrator-level access to the **Configuration console** and are familiar with creating business objects.
+
+**To create a triggered action:**
+
+1. In the Graphical Action Designer, under **Record Actions**, drag**Update a Record&#x20;**&#x61;ction block on the page.
+2. In the **Block** tab, enter the following details:
+
+| Field       | Description                                                                                                                                              |
+| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Field Name  | Mandatory. A unique name for the triggered action business rule.<br />In this example, select **Symptom Description&#x20;**&#x66;rom the drop-down list. |
+| Field Value | Optional. Description of the field.<br />In this example, enter description as Symptom description updated\:Impact value updated from Medium to High     |
+
+3. Click **Save** In th&#x65;**&#x20;Common** tab, enter the following details:
+
+| Field       | Description                                                                                                                                              |
+| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Field Name  | Mandatory. A unique name for the triggered action business rule,.<br />In this example, select **Symptom Description&#x20;**&#x66;rom the drop-down list |
+| Field Value | Optional. Description of the field.                                                                                                                      |
+
+4. Clic&#x6B;**&#x20;Save**.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/KprLTJrjouOFx4mOlFUz1_trigger-rule-update-record-example.png" position="flex-start" size="40" indent="1" initialPath="../../../Resources/Images/help-images/Trigger Rule update Record example.png" githubPath="Content/Resources/Images/help-images/Trigger Rule update Record example.png" showCaption="false"></Image>
+
+5. Click **Add Rules**. In the **Events** tab, enter the following details:
+
+| Field        | Description                                                                                                                                                               |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Object Event | The trigger is based on one of the events or a combination of events, such as business object events (insert, delete, or update),<br />In this example, select On Update. |
+| Field Event  | The trigger is based on one of the field events (initialize or update). Select the field from the drop-down list.<br />In this example, select On Update.                 |
+| Field        | Value field.<br />In this example, select Impact.                                                                                                                         |
+| Condition    | Specifies when the business rule is evaluated.<br />In this example, select is changed from as Medium.                                                                    |
+
+6. Click :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/57-mEQohV7yN6U21Ecdmb_enable-disable23x17.png" alt caption size="10" width="23" height="17"} to select the condition change as **is changed to** and **Closed** from the **Field** drop-down list.
+7. Click **Ok**.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/KprLTJrjouOFx4mOlFUz1_trigger-rule-update-record-example.png" position="flex-start" size="40" indent="2" initialPath="../../../Resources/Images/help-images/Trigger Rule update Record example.png" githubPath="Content/Resources/Images/help-images/Trigger Rule update Record example.png" showCaption="false"></Image>
+
+8. From the incident workspace, select an active incident and modify the following fields:
+
+| Field      | Description                                                                               |
+| ---------- | ----------------------------------------------------------------------------------------- |
+| Status     | Status of the incident.<br />In this example, change the status to Closed.                |
+| Resolution | Mandatory. Description of the Triggered action.                                           |
+| Cause Code | Mandatory. Incident cause code.<br />Select the Cause Code option from the drop-down list |
+
+9. Click **Save**.
+
+## Testing the Triggered Action Rule
+
+In the incident page, select a record that is active. Change the impact severity from Medium to High. The Description field is automatically updated. In this example, the description field is updated as: Symptom description updated: Impact value updated from Medium to High.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/bFk4lm07132tOtRhe6__D_incident-page-update-reocrd-example.png" position="flex-start" size="40" initialPath="../../../Resources/Images/help-images/Incident page - update reocrd example.png" githubPath="Content/Resources/Images/help-images/Incident page - update reocrd example.png" showCaption="false"></Image>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/cPt8ZywXYHS-_lVIHPz0e_modify1example-triiger.JPG" position="flex-start" size="40" initialPath="../quick-actions-images/modify1_Example Triiger.JPG" githubPath="Content/Configure/QuickActions/quick-actions-images/modify1_Example Triiger.JPG" showCaption="false"></Image>

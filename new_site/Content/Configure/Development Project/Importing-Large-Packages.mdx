@@ -1,0 +1,29 @@
+---
+title: Importing large packages
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:54 GMT+0300 (Eastern European Summer Time)
+---
+
+<hint type="danger">
+  This feature is in Beta phase in 2023.1 release.
+</hint>
+
+Use this workspace to import large packages or packages that requires additional processing time. This utility also supports packages smaller than 30 MB. Packages are automatically split and imported to prevent timeout errors.
+
+## To import a package
+
+1. Log in to \{\{FRS\_VARS.ProductName}} as an \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+2. Open the Configuration console > **Build** > **Development Package** > **Large Packages (Beta)**.
+3. Click the **Import Package** button.
+4. Browse the package to be imported and click **Ok**.
+5. Select **Preview Impact**.
+
+<hint type="info">
+  - In case of package containing large tables or records over a million, such as in CI or Audit\_CI, it is possible for the import to be unsuccessful or with warnings. The **Preview Impact** displays the details of the impacted table. In such a scenario, raise a Service Request to the Ivanti Operations team to take a backup of the tables and then apply the package.
+  - The default limit is set to 1 million, if the package contains more records than the set limit, a warning is shown in the **Preview Impact**. The limit can be changed if required by the \{\{FRS\_VARS.Company}} Operations team.
+  - If the package import takes longer than 30 minutes, it is possible for the import to fail. Reach out to the Ivanti Operations team to help you with the import.
+</hint>
+
+## Predicate Conditions
+
+When importing packages, if some of the packages are skipped in the process, the warning messages displays the details of the packages that did not get imported and the unmet predicate conditions. This helps is getting a clear picture of what went wrong and how it can be fixed.

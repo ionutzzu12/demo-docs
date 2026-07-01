@@ -1,0 +1,22 @@
+---
+title: Example: Using a Counter Name in an Initialization Rule
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:57 GMT+0300 (Eastern European Summer Time)
+---
+
+Before performing this task, ensure that the counter name that you want to use exists.
+
+1. From the Configuration Console, click **Build > Business Objects** to open the **Business Objects** workspace.
+2. Open the business object to use.
+3. Choose the **Business Rules** tab. The application displays a list of business rules.
+4. From the **Initialization Rules** section, click **Add Initialization Rule**. The application displays the **Add Initialization Rule** window.
+5. Enter information into the fields.
+
+| Field       | Description                                                                                                                                                                                                                                                                                                                |
+| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Disabled    | Specifies if the rule is disabled. Ensure that this option is not checked.                                                                                                                                                                                                                                                 |
+| Field Name  | The field in which this initialization rule applies.                                                                                                                                                                                                                                                                       |
+| Field Value | Enter the expression: **$(GetNextCounter(counterName))**<br /><br />For example, if the field name is a business object ID field, then the counter that is referenced in the expression will use the incremental value defined in the counter record to populate the ID field for the next record in that business object. |
+
+6. Click **Save**.
+7. Click **Save**.

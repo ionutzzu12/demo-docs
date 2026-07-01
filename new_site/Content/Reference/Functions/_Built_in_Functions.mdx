@@ -1,0 +1,92 @@
+---
+title: Working with Built-in Functions
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:58 GMT+0300 (Eastern European Summer Time)
+---
+
+- :Link[Function Information]{label="Function Information" overridedLabel="Function Information" spaceId docId="xObv2pIDrk60jkEIWs8mD" version="v2" docAnchorId="#Function" loadingMethod="dynamic" newTab="false" href="_Built_in_Functions.mdx"}
+- :Link[Notes on "Enabled For"]{label="Notes on &#x22;Enabled For&#x22;" overridedLabel="Notes on &#x22;Enabled For&#x22;" spaceId docId="xObv2pIDrk60jkEIWs8mD" version="v2" docAnchorId="#Notes" loadingMethod="dynamic" newTab="false" href="_Built_in_Functions.mdx"}
+- :Link[Default Arguments in Functions]{label="Default Arguments in Functions" overridedLabel="Default Arguments in Functions" spaceId docId="xObv2pIDrk60jkEIWs8mD" version="v2" docAnchorId="#Default_Arguments_in_Functions" loadingMethod="dynamic" newTab="false" href="_Built_in_Functions.mdx"}
+- :Link[About Executing Business Rules on Clients]{label="About Executing Business Rules on Clients" overridedLabel="About Executing Business Rules on Clients" spaceId docId="xObv2pIDrk60jkEIWs8mD" version="v2" docAnchorId="#About" loadingMethod="dynamic" newTab="false" href="_Built_in_Functions.mdx"}
+
+<hint type="info">
+  See also [Deprecated Functions](Deprecated_Functions.mdx).
+</hint>
+
+## Function Information
+
+Built-in functions can be used in various places:
+
+- As parameters for search and dashboard queries.
+- As values or expression members in quick actions.
+- As values or expression members in object and relationship rules.
+- As values in workflow objects.
+- As values in reports.
+
+Each function description contains the following information:
+
+- Name of the function.
+- Brief description of the function.
+- Syntax of the function.
+- The business objects for which this function is enabled. See :Link[Notes on "Enabled For"]{label="Notes on &#x22;Enabled For&#x22;" overridedLabel="Notes on &#x22;Enabled For&#x22;" spaceId docId="xObv2pIDrk60jkEIWs8mD" version="v2" docAnchorId="#Notes" loadingMethod="dynamic" newTab="false" href="_Built_in_Functions.mdx"} for more information.
+- Input parameters for the function. These inputs can be literals, field references, function calls, text concatenation, expressions, and so on. For details on expressions, see [About Expressions](../Expressions/Expressions.mdx).
+- The type of value that the function returns. Possible values are as follows:
+  - Text
+  - DateTime
+  - Boolean
+  - Number
+  - Unicode text
+  - Fixed text
+  - Currency
+  - List of text items (only valid in certain areas)
+  - Regular expression
+- An example of how the function is used, with parameters. Functions that have no parameters generally do not have an example given.
+
+## Notes on "Enabled For"
+
+The "Enabled For" section includes the following areas:
+
+- **Business Rules: Before-Save Rules**
+- **Business Rules: Calculation (After Save, with or without Also Recalculate on Load)**
+- **Business Rules: Calculation (Before Save or Always, without Also Recalculate On Load)**
+- **Business Rules: Calculation (Before Save or Always, with Also Recalculate On Load)**
+- **Business Rules: Editing Rules**
+- **Business Rules: Initialization Rules**
+- **Business Rules: Read-Only Rules, Required Rules, Validation Rules**. This includes regular expression validation rules.
+- **Client Expressions**. This includes form style, visibility, and toolbar expressions.
+- **Object Permissions**
+- **Services**. This includes workflows and escalation. In future releases, we may add more services.
+- **LDAP**
+- **Mobile**
+- **Quick Actions** except for the user interface quick actions.
+- **UI Quick Actions**
+- **Reports**
+- **Search/Dashboard without Field References**
+- **Search/Dashboard with Field References**. See :Link[Searching for Related Business Objects in a Saved Search]{label="Searching for Related Business Objects in a Saved Search" overridedLabel="Searching for Related Business Objects in a Saved Search" spaceId docId="CIenYSx6F-Fs9r5kmHfn8" version="v2" docAnchorId="#Searchin" loadingMethod="dynamic" newTab="false" githubPath="../../ServiceDesk/Search/Search Features.htm#Searchin" href="../../ServiceDesk/Search/Search Features.mdx"} for information about searching with field references.
+
+## Default Arguments in Functions
+
+Almost every built-in function has arguments. Some arguments are required and some are optional. If you leave out an optional arguments, the function uses a default value.
+
+You can use an underscore or leave the argument blank. If you leave it blank, the application inserts an underscore.
+
+For example, the EndOfQuarter() function takes three optional arguments. Therefore, the following are all equivalent:
+
+- $(EndOfQuarter())
+- $(EndOfQuarter(,,,))
+- $(EndOfQuarter(\_,\_,\_))
+
+## About Executing Business Rules on Clients
+
+Business rules and their associated expressions are executed in several places:
+
+- On the client
+- On the server
+- As part of a Microsoft SQL query
+- On the mobile client
+
+Visibility rules and read-only rules are always executed on the client only. They are translated to JavaScript and executed within the browser of the user. While some of the data from the server is transferred to the client, not all of it can be for performance reasons, and therefore what client-executed business rules can do is necessarily limited.
+
+<hint type="info">
+  See :Link[Using Values in Expressions]{label="Using Values in Expressions" overridedLabel="Using Values in Expressions" spaceId docId="4_t7-8mnatsAE0wnALxRp" version="v2" docAnchorId="#Values_inExpressions" loadingMethod="dynamic" newTab="false" githubPath="../Expressions/Expression Grammar.htm#Values_inExpressions" href="../Expressions/Expression Grammar.mdx"} for information about using 64-bit integers versus 32-bit integers.
+</hint>

@@ -1,0 +1,16 @@
+---
+title: Example: Setting Hours of Operation Off Hours
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:53 GMT+0300 (Eastern European Summer Time)
+---
+
+You might want to determine the amount of time spent resolving an incident when an incident gets entered into the application after the hours of operation ends for the day and is resolved before the next hours of operation interval begins. The gap between the hours of operation intervals could be anywhere from minutes to months, and cannot be calculated.
+
+In this case, use an if-then expression to calculate the duration. For example:
+
+'$(if((HOPCalcDuration("Midnight", CreatedDateTime, ResolvedDateTime) / 60) > 0) then (HOPCalcDuration("Midnight", CreatedDateTime, ResolvedDateTime) / 60) else \<Whatever appropriate>)'
+
+Where,
+
+- **Midnight** is the name of the hours of operation schedule.
+- **Whatever appropriate** is what to use as an alternative expression.

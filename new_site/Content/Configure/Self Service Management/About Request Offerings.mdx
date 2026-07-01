@@ -1,0 +1,106 @@
+---
+title: About Request Offerings
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:50 GMT+0300 (Eastern European Summer Time)
+---
+
+**Role**: Administrator
+
+A request offering is an item that describes the item, assistance, or action available to users in the Self-Service portal from the Service Catalog. Request offerings are normally placed in logical groups of services. Both services and their request offerings are available to users in the Self-Service portal when the status of the request offering is set to published and if the user has been assigned a corresponding \{\{FRS\_VARS.ProductName}} role. Only users who have been assigned a user role associated with a Service Catalog group that contains Service Catalog items can use the Self-Service portal to access the Service Catalog.
+
+Service owners create request offerings, which are used by Self Service users in the Service Catalog.
+
+After you define a service, Self Service users do not see the service itself. Instead, they see and request certain aspects of a service (called request offerings), which are features of the service being defined and published. The choices and configurations you make here, such as displaying or hiding costs, are for each request offering service type such as Mobile Communication, Printing Service, or Data Service. You can show or hide information from Self Service users.
+
+For example, one of the default services is Mobile Communication. However, users in the Self-Service Portal cannot place a request for the Mobile Communications service. Instead, they can select a request offering such as **Mobile Phone Request** or **Mobile Smartphone Request** from the Service Catalog. You can choose to display the costs that will be incurred by the users in the Self-Service portal for this request offering such as the price of the phone or the recurring cost per month charged by the carrier. These request offerings are based on the **Mobile Communications** service, but have different costs, fulfillment workflows, and other aspects of the service.
+
+<ExpandableHeading>
+  ## Viewing Request Offerings
+
+  Only service owners and administrators can view the list of request, form, and external offerings unless the administrator has provided another role with this access.
+
+  1. Log in to the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Console}} console.
+  2. Open the **Request Offerings** workspace. A list of request offerings is displayed.
+  3. Double-click an item to view details.
+  4. You can sort the request offerings by name, status, or owner by clicking the arrow in the header next to the **Name**, **Status**, or **Owner** headings. You can sort either ascending or descending.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Share Direct Link of Request Offering
+
+  In the bottom of the Request Offering form select **Direct link to this offering** button that prompts the direct link to the offering.
+
+  ***Direct link to this offering****&#x20;button in the Request Offering form*
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/5oJ2CrGwlKJi_xAaevk_b_deep-link-ro.png" position="flex-start" size="40" initialPath="../../Resources/Images/SelfServiceMgmt-images/deep-link-ro.png" githubPath="Content/Resources/Images/SelfServiceMgmt-images/deep-link-ro.png" showCaption="false"></Image>
+
+  *Prompt of direct link of the offering*
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/A83EcIlP_RpRnabcp39bc_direct-link-ro.png" position="flex-start" size="40" initialPath="../../Resources/Images/SelfServiceMgmt-images/direct-link-ro.png" githubPath="Content/Resources/Images/SelfServiceMgmt-images/direct-link-ro.png" showCaption="false"></Image>
+
+  <hint type="success">
+    <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/ZUMLfokNEo8SwWKXk25yN_service-form-preview-deep-link.png" position="flex-start" size="40" initialPath="../../Resources/Images/SelfServiceMgmt-images/service-form-preview-deep-link.png" githubPath="Content/Resources/Images/SelfServiceMgmt-images/service-form-preview-deep-link.png" showCaption="false"></Image>
+
+    This Direct Link point straight to the Self Service request form of the Service Catalog.
+  </hint>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Managing Service Request Actions and Permissions
+
+  You can configure service requests to allow users to edit, cancel, reopen, request again, or escalate them after submission. This provides flexibility to accommodate changes or corrections while maintaining control over the request lifecycle. In addition, you can restrict editing or cancellation after a specific stage in the workflow. For example, you might allow users to cancel a request until it has been approved. Once approval occurs, you can prevent further changes.
+
+  The Request Offering, Form Offering, and External Offering components support HTML tags to enhance how service information appears to users. The application renders only supported and secure HTML tags and ignores unsupported or unsafe tags. You can use these tags to format content in the following fields to improve readability of users:
+
+  - Service Name
+  - Offering Name
+  - Description
+  - Category
+
+  By default, requests with a status of Cancelled, Closed, or Fulfilled cannot be edited or cancelled. These statuses indicate that the request has reached a final state and is no longer actionable.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Configuring Service Request Permissions
+
+  1. Log in to the application as a service owner or \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+  2. Open the **Request Offerings** workspace.
+
+  <Paragraph indent="1">
+    The **Request Offerings** window appears.
+  </Paragraph>
+
+  3. Select the \{\{FRS\_VARS.Service\_Requests}} to configure the permissions.
+
+  <Paragraph indent="1">
+    *Request Offerings Wizard*
+  </Paragraph>
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/d9vil-NIBcsu4Uzkvs5Vq_request-offering-permissions.png" alt="Request Offerings Wizard" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/SelfServiceMgmt-images/request-offering-permissions.png" githubPath="Content/Resources/Images/SelfServiceMgmt-images/request-offering-permissions.png" showCaption="false"></Image>
+
+  4. In the **Define Request Offering** tab, select:
+     - **Enable Request Cancellation** - Allows users to cancel a submitted request. The request status changes to Cancelled and processing stops.
+     - **Enable Request Editing** - Allows users to edit a submitted request, updating details after submission when corrections or additional information are required.
+     - **Enable Reopen Request** - Allows users to reopen a fulfilled request when it was not resolved correctly or when more information must be added to resolve.
+     - **Enable Escalate Request** - Allows users to escalate a submitted request, raising its priority for faster resolution.
+     - **Enable Request Again** - Allows users to resubmit a previously closed or fulfilled request as a new request, with new ticket ID. The **Request Again** button can be enabled only when all of the following conditions are met:
+       - The **Request Again** option can be enabled only in Request offering feature.
+       - This option is available only for \{\{FRS\_VARS.Self\_Service\_Portal-Self-Service}} role
+       - The **Anonymous Submit** option is disabled.
+       - To request status is neither Closed nor Cancelled status.
+       - The request has not already been escalated.
+  5. Click **Save**.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Limitations in Request Offering in Self Service Portal V3
+
+  Currently, the following features are not supported in Request Offerings when used with Self Service Portal V3:
+
+  - Wizard layout is not supported
+  - Multi-column layout is not supported
+  - Request Offering preview mode is not supported
+  - URL redirection using the generated Request Offering URL is not supported
+  - HTML formatting does not apply to breadcrumbs in Request Offerings, Form Offerings, or External Offerings.
+  - Potentially vulnerable or unsafe HTML tags are not supported.
+</ExpandableHeading>

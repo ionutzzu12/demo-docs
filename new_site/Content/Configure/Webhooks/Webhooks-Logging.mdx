@@ -1,0 +1,39 @@
+---
+title: Webhooks Logging
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:01 GMT+0300 (Eastern European Summer Time)
+---
+
+Check the **Service Log** in \{\{Primary.Company}} \{\{FRS\_VARS.ProductName}} to see whether a request has succeeded or failed.
+
+For general information about how logs work in \{\{FRS\_VARS.ITSM}}, see: [Working with Logs](../Localization/Logging.mdx)
+
+## Viewing the Service Log
+
+The Service Log is included by default and lists all the information about requests for services and their status.
+
+1. From the Configuration Console, click **Monitor > Application Logs > Service Log** to open the **Service Log&#x20;**&#x77;orkspace.
+2. The list of services appears.
+3. To filter on Webhook services, select the Filter icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/-N2SZ0jGM7NTpngKiswXE_filter.png" alt caption size="10" width="22" height="22"} for the **SubSystem Id** and then enter **Webhook&#x20;**&#x69;n the **Filters&#x20;**&#x62;ox.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/vXBO9k7Exd56FdaoVYqEV_webhooks-logging.png" position="flex-start" size="40" indent="1" initialPath="images/webhooks-logging.png" githubPath="Content/Configure/Webhooks/images/webhooks-logging.png" showCaption="false"></Image>
+
+<hint type="info">
+  **Tip:&#x20;**&#x59;ou can also filter on **Service Name = Appserver**. If Appserver is not visible, go to the Logging Configuration and set APPSERVER to ALL. See: [Viewing the Logging Configuration](../Logging/ConfigureLogging.mdx).
+</hint>
+
+<Paragraph indent="1">
+  All requests to the Webhooks service are listed as shown.
+</Paragraph>
+
+4. Double-click a record to see more detail or expand the bottom pane of the workspace.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/VUcy2i55fV-peGsGh4AxL_webhooks-logging2.png" position="flex-start" size="40" indent="1" initialPath="images/webhooks-logging2.png" githubPath="Content/Configure/Webhooks/images/webhooks-logging2.png" showCaption="false"></Image>
+
+<Paragraph listStyleType="disc" indent="2">
+  If a webhook EXECUTE request fails, the Service Log has an entry detailing the reason as to why each record failed, and the HTTP status code. The Log Severity is shown as **ERROR**.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  If a webhook EXECUTE request succeeds, an entry appears in the log detailing that the request ran and how many records succeeded. The Log Severity is shown as **INFO**.
+</Paragraph>

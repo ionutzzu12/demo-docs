@@ -1,0 +1,139 @@
+---
+title: Using the ReadAttachment Web Method
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:01 GMT+0300 (Eastern European Summer Time)
+---
+
+Reads the data of a specific attachment record, given its RecID value.
+
+## Request Syntax
+
+FRSHEATIntegrationReadAttachmentResponse ReadAttachment(string sessionKey, string tenantId, ObjectAttachmentCommandData commandData)
+
+## Parameters
+
+- **sessionKey**: The session key from the **Connect** web method.
+- **tenantId**: The tenant for which the session key is authenticated.
+- **commandData**: A structure containing information about the attachment.
+
+public class ObjectAttachmentCommandData
+
+\{
+
+public string ObjectId;
+
+}
+
+- **ObjectId**: RecID of the new attachment.
+
+## Return Value
+
+**FRSHEATIntegrationReadAttachmentResponse** object, defined as follows:
+
+public class FRSHEATIntegrationReadAttachmentResponse
+
+    \{
+
+public string status \{ get; set; }
+
+public string exceptionReason \{ get; set; }
+
+public byte\[] attachmentData \{ get; set; }
+
+    }
+
+The **FRSHEATIntegrationReadAttachmentResponse** class has the following fields:
+
+- **status**: Provides a status about the state of the connection. The table below contains a full description of the available status values.
+- **exceptionReason**: Contains exception information, if the application throws an exception when running this web method.
+- **attachmentData**: A byte array that contains the contents of the specified attachment.
+
+The following table lists the available status values and describes how to interpret them.
+
+| Status   | Explanation                                                                                                                                                        |
+| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Success  | Successfully retrieved the attachment from the tenant. The attachment is available in the **attachmentData** field.                                                |
+| NotFound | The tenant does not contain an attachment with the specified name. Ensure that the name of the attachment is spelled correctly and that it exists.                 |
+| Error    | An error was encountered during the execution of this web method.  Inspect the corresponding **exceptionReason** field to determine why the web method has failed. |
+
+## Example
+
+byte\[] AttachmentData;
+
+const string fileName = "C:\\\Temp\\\test.png";
+
+ObjectAttachmentCommandData data = new ObjectAttachmentCommandData()
+
+\{
+
+ObjectId = "94069732037142E7BF3D81DB02128289", // RecId of the Attachment record
+
+};
+
+FRSHEATIntegrationReadAttachmentResponse response = frSvc.ReadAttachment(authSessionKey, tenantId, data);
+
+if (response.status == "Success")
+
+\{
+
+AttachmentData = response.attachmentData;
+
+if (AttachmentData != null)
+
+\{
+
+using (FileStream fs = new FileStream(fileName, FileMode.Create))
+
+              \{
+
+using (BinaryWriter w = new BinaryWriter(fs))
+
+                     \{
+
+for (int i = 0; i \< AttachmentData.Length; i++)
+
+                            \{
+
+                                w\.Write(AttachmentData\[i]);
+
+                            }
+
+}
+
+              }
+
+}
+
+}
+
+else if (response.status == "NotFound")
+
+\{
+
+Console.WriteLine("The attachment record with the specified RecId, cannot be located in the tenant");
+
+}
+
+else
+
+\{
+
+Console.WriteLine("Encountered the following error while reading the attachment from the record: " + response.exceptionReason);
+
+}
+
+## Increasing the Size of Allowed Messages
+
+For Microsoft .NET based web service clients, the application may run into the following error when retrieving large attachments, via the web service:
+
+Communication exception occurred: The maximum message size quota for incoming messages (65536) has been exceeded.
+
+To increase the quota, configure the **MaxReceivedMessageSize** and **MaxBufferSize** attributes in the App.config file to accommodate the large attachment sizes for the Microsoft .NET client application that consumes the web service.  See the following example:
+
+                \<binding name="IPCMServiceSoap" closeTimeout="00:01:00" openTimeout="00:01:00" receiveTimeout="00🕙00" sendTimeout="00:01:00" allowCookies="false" bypassProxyOnLocal="false" hostNameComparisonMode="StrongWildcard" maxBufferSize="65536" maxBufferPoolSize="524288" maxReceivedMessageSize="65536" messageEncoding="Text" textEncoding="utf-8" transferMode="Buffered" useDefaultWebProxy="true">
+
+                     ...
+
+                \</binding>
+
+The size values above are represented in bytes.

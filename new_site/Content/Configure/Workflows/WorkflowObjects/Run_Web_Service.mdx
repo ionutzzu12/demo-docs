@@ -1,0 +1,51 @@
+---
+title: Run Web Service Workflow Block
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:58 GMT+0300 (Eastern European Summer Time)
+---
+
+The **Run Web Service** workflow block creates a quick action that runs a web service.
+
+Use the **Run Web Service** workflow block to assemble the details needed to call an external web service such as cost service, data access, or notification. This involves defining the Web Services Description Language (WSDL) document, service and method to use, and then specifying the parameters.
+
+Parameters are mapped either from a business object field or a constant value.
+
+A quick action used to obtain information from a web service is often used in conjunction with an **Update Record** quick action. You also can use it in conjunction with a business rule to calculate a parameter, then use it in a process.
+
+<hint type="info">
+  When defining this block for a cost service, you can first use the $(ServerURL()) expression to obtain the tenant URL, which can then be used as part of the URL for accessing the cost web service: **$(ServerURL() + '/Services/CostService.asmx?wsdl')**.
+</hint>
+
+*Run Web Service Workflow Block Properties*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/KAtDWNxnmIJIiZOfxzbaz_run-web-service-block.png" position="flex-start" size="40" indent="1" initialPath="../../../Resources/Images/help-images/run web service block.png" githubPath="Content/Resources/Images/help-images/run web service block.png" showCaption="false"></Image>
+
+## Exit Ports
+
+| Exit Port | Description                                                                                          |
+| --------- | ---------------------------------------------------------------------------------------------------- |
+| OK        | Continue to the next block.                                                                          |
+| Failed    | General exit port for a failed integration action. A logical next step is to trigger a notification. |
+
+## Properties
+
+| Property                   | Description                                                                                                                                                                         |
+| -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Title                      | A unique name for the workflow block.                                                                                                                                               |
+| WSDL URL                   | The URL of the WSDL document. Click **Load Service definitions** to import the settings in the document. This is the equivalent to the service reference in the web service script. |
+| Service Name               | The service to use. This is equivalent to the web service list.                                                                                                                     |
+| Operation Name             | The operation (method) to use. This is equivalent to the method list.                                                                                                               |
+| Basic Authentication       | Specifies if basic authentication is used, which means that you must supply a user ID and password.                                                                                 |
+| Domain Name                | The domain name to use.                                                                                                                                                             |
+| User Id                    | A valid user name or ID.                                                                                                                                                            |
+| Password                   | A valid password for the user ID.                                                                                                                                                   |
+| Input Parameters           | Automatically displayed by the application based on the WSDL file.                                                                                                                  |
+| Output/Response Parameters | Automatically displayed by the application based on the WSDL file.                                                                                                                  |
+| Store Error Message        | If there are web service errors, the application stores it in this field.                                                                                                           |
+
+## Actions
+
+| Button | Action                 |
+| ------ | ---------------------- |
+| Save   | Commits your settings. |
+| Cancel | Exits without saving.  |

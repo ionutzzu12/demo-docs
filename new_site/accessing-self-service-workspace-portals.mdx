@@ -1,0 +1,381 @@
+---
+title: Accessing Self Service Workspace Portals
+slug: accessing-self-service-workspace-portals
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:03 GMT+0300 (Eastern European Summer Time)
+---
+
+Administrators can use Self Service URLs to enable direct access to Self Service workspaces and actions, such as creating requests, opening records, and searching content. The system authenticates users and provides access based on role and permissions.
+
+<ExpandableHeading>
+  ## Access URLs using Self Service Role
+
+  Create a new service request
+
+  https\://tenant\_URL/Login.aspx?
+
+  Scope=SelfService
+
+  \&Role=SelfService \&CommandId=New
+
+  \&Tab=ServiceCatalog
+
+  \&Template=\<OfferingRecID>
+
+  Navigate to the search page
+
+  https\://tenant\_URL/Login.aspx?
+
+  Scope=SelfService
+
+  \&Role=SelfService \&CommandId=Open \&Tab=Search
+
+  Navigate to the search page and perform a search using a passed-in string
+
+  https\://tenant\_URL/Login.aspx?
+
+  Scope=SelfService
+
+  \&Role=SelfService
+
+  \&CommandId=Search
+
+  \&Tab=Search
+
+  \&SearchString=SearchString
+
+  <ExpandableHeading>
+    ## Knowledge workspace
+
+    To navigate to \{\{FRS\_VARS.Knowledge-Knowledge}} workspace:
+
+    https\://tenant\_URL/Login.aspx?
+
+    Scope=SelfService
+
+    \&Role=SelfService
+
+    \&CommandId=Open \&Tab=Knowledge
+
+    Perform a search using a passed-in string:
+
+    https\://tenant\_URL/Login.aspx?
+
+    Scope=SelfService
+
+    \&Role=SelfService \&CommandId=Open
+
+    \&Tab=Knowledge
+
+    \&SearchString=SearchString
+
+    To Open a knowledge article
+
+    https\://tenant\_URL/Login.aspx?
+
+    Scope=SelfService
+
+    \&Role=SelfService
+
+    \&CommandId=Open
+
+    \&Tab=Knowledge
+
+    \&ItemId=ItemRecID
+
+    To list all Knowledge Articles of a Specific Category or Sub-Category
+
+
+
+    https\://tenant\_URL/Login.aspx?
+
+    Scope=SelfService
+
+    \&Role=SelfService
+
+    \&CommandId=ShowKnowledgeCategory
+
+    \&CategoryId=CategoryRecId
+
+    \&SubCategoryId=SubCategoryRecId
+
+    \&AppFrame=true|false
+  </ExpandableHeading>
+
+  <ExpandableHeading>
+    ## Business Object workspace
+
+    To navigate to a business object workspace
+
+    https\://tenant\_URL/Login.aspx?
+
+    Scope=SelfService
+
+    \&Role=SelfService
+
+    \&CommandId=New
+
+    \&Tab=ObjectRef
+
+    To create a record
+
+    https\://tenant\_URL/Login.aspx?
+
+    Scope=SelfService
+
+    \&Role=SelfService
+
+    \&CommandId=New
+
+    \&Tab=ObjectRef
+
+    \&Template=TemplateRecID
+
+    To open an existing record
+
+    https\://tenant\_URL/Login.aspx?
+
+    Scope=SelfService
+
+    \&Role=SelfService
+
+    \&CommandId=Open
+
+    \&Tab=ObjectRef
+
+    \&ItemId=ItemRecID
+
+    Create a New Issue
+
+
+
+    https\://tenant\_URL/Login.aspx?
+    Role=SelfService
+    \&Scope=SelfService
+    \&CommandId=NewIssue
+  </ExpandableHeading>
+
+  <ExpandableHeading>
+    ## Service Catalog workspace
+
+    To navigate to the Service Catalog workspace
+
+    https\://tenant\_URL/Login.aspx?
+
+    Scope=SelfService
+
+    \&Role=SelfService
+
+    \&CommandId=NewServiceRequest
+
+    \&Tab=ServiceCatalog
+
+    \&Template=OfferingRecID
+
+
+
+    https\://tenant\_URL/Login.aspx?
+
+    Scope=SelfService
+
+    \&Role=SelfService
+
+    \&CommandId=NewServiceRequestByOfferingId
+
+    \&Tab=ServiceCatalog
+
+    \&Template=OfferingRecID
+
+
+
+    https\://tenant\_URL/Login.aspx?
+
+    Scope=SelfService
+
+    \&Role=SelfService
+    \&CommandId=Open
+    \&Tab=ServiceCatalog
+
+    Create a New External Request
+
+    https\://tenant\_URL/Login.aspx?
+
+    Scope=SelfService
+
+    \&Role=SelfService
+
+    \&CommandId=NewExternalRequest
+
+    \&Tab=ServiceCatalog
+
+    \&Template=OfferingRecID
+
+    Load a draft Service Request
+
+    https\://tenant\_URL/Login.aspx?
+
+    Scope=SelfService
+
+    \&Role=SelfService
+
+    \&CommandId=LoadServiceRequestDraft
+
+    \&Tab=ServiceCatalog
+
+    \&Template=OfferingRecID
+
+    To Show All Service Requests
+
+
+
+    https\://tenant\_URL/Login.aspx?
+
+    Scope=SelfService
+
+    \&Role=SelfService
+    \&CommandId=ShowAll
+    \&Tab=ServiceCatalog
+  </ExpandableHeading>
+
+  <ExpandableHeading>
+    ## My Items workspace
+
+    Navigating to the My Items Workspace
+
+
+
+    https\://tenant\_URL/Login.aspx?
+
+    Scope=SelfService
+
+    \&Role=SelfService
+
+    \&CommandId=ShowAll
+
+    \&Tab=MyItems
+
+    Open a Record
+
+    https\://tenant\_URL/Login.aspx?
+
+    Scope=SelfService
+
+    \&Role=SelfService
+
+    \&CommandId=ShowArticle
+
+    \&Tab=MyItems
+
+    \&ItemId=ItemRecID
+
+
+
+    https\://tenant\_URL/Login.aspx?
+
+    Scope=SelfService
+
+    \&Role=SelfService
+
+    \&CommandId=ShowArticle
+
+    \&Tab=MyItems
+
+    \&Id=ItemRecID
+
+    Note that the **Tab** parameter can accept two types of values: either **ObjectRef** or **SearchTag**. The **ObjectRef** value is the name of the business object with # at the end. However, you cannot use the # character as it is a predefined character so replace it with its URL-encoded entity of %23.
+
+    The following is an example:
+
+    https\://tenant\_URL/Login.aspx?
+
+    Scope=SelfService
+
+    \&Role=SelfService
+
+    \&CommandId=New
+
+    \&Tab=FAQ%23
+  </ExpandableHeading>
+
+  <ExpandableHeading>
+    ## To create a new FAQ
+
+
+
+    https\://tenant\_URL/Login.aspx?
+
+    Scope=SelfService
+
+    \&Role=SelfService
+
+    \&CommandId=New
+
+    \&Tab=FAQ%23
+
+    To create a new custom business object record under the Self Service role using a predefined template action
+
+    https\://tenant\_URL/Login.aspx?
+
+    Scope=SelfService
+
+    \&Role=SelfService
+
+    \&CommandId=New
+
+    \&Tab=\_CustomObject%23
+
+    \&Template=603E24AB-68EE-4D75-A275-551C702BF002
+  </ExpandableHeading>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Access knowledge articles using the Self service mobile role
+
+  Example 1:
+
+  https\://tenant\_URL/Login.aspx?
+
+  Scope=SelfServiceMobile
+
+  \&role=SelfServiceMobile
+
+  \&CommandId=ssmknowledge
+
+  \&categoryid=ItemRecID
+
+  Example 2:
+
+  https\://tenant\_URL/Login.aspx?
+
+  Scope=SelfServiceMobile
+
+  \&role=SelfServiceMobile
+
+  \&CommandId=ssmknowledge
+
+  \&categoryquery=backup
+
+  Example 3:
+
+  https\://tenant\_URL/Login.aspx?
+
+  Scope=SelfServiceMobile
+
+  \&role=SelfServiceMobile
+
+  \&CommandId=ssmknowledge
+
+  \&subcategoryquery=Login
+
+  Example 4:
+
+  https\://tenant\_URL/Login.aspx?
+
+  Scope=SelfServiceMobile
+
+  \&role=SelfServiceMobile
+
+  \&CommandId=ssmknowledge
+
+  \&subcategoryid=ItemRecID
+</ExpandableHeading>

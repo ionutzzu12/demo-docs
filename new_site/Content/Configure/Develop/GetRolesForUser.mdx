@@ -1,0 +1,62 @@
+---
+title: Using the GetRolesForUser Web Method
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:01 GMT+0300 (Eastern European Summer Time)
+---
+
+Returns a list of roles that are available to the current user. It returns a response object that contains a field that stores an array of roles that are associated with the employee record of the current user.
+
+## Request Syntax
+
+FRSHEATIntegrationGetRolesResponse GetRolesForUser(string sessionKey, string tenantId) NameDisplayPair\[] GetRolesForUser(string sessionKey, string tenantId, string userName)
+
+## Parameters
+
+- **sessionKey**: The session key from the **Connect** web method.
+- **tenantId**: The tenant for which the session key is authenticated.
+
+## Return Value
+
+**FRSHEATIntegrationGetRolesResponse** class, defined as follows:
+
+public class FRSHEATIntegrationGetRolesResponse
+
+    \{
+
+public string status \{ get; set; }
+
+public List\<NameDisplayPair> roleList \{ get; set; }
+
+public string exceptionReason \{ get; set; }
+
+    }
+
+The **FRSHEATIntegrationGetRolesResponse** class has the following fields:
+
+- **status**: Contains a status indicating whether the web method successfully retrieved the list of roles for the current user. If the session key (returned from the **Connect** web method) is valid, this field returns a value of success.
+- **roleList**: Contains an array of **NameDisplayPair** objects. Each **NameDisplayPair** entry corresponds to a role to which the current user belongs. For each **NameDisplayPair** record in the array, the **name** property returns the name of the role, whereas the **displayName** property returns the display name of the role.
+- **exceptionReason**: Contains exception information, if the application throws an exception when running this web method.
+
+## Example
+
+FRSHEATIntegrationGetRolesResponse getRolesResponse = frSvc.GetRolesForUser(authSessionKey, tenantId);
+
+NameDisplayPair\[] rolePairList = null;
+
+if (getRolesResponse.status == "Success")
+
+\{
+
+                rolePairList = getRolesResponse.roleList;
+
+Console.WriteLine("The current user belongs to the following roles:");
+
+foreach (NameDisplayPair rolePair in rolePairList)
+
+                \{
+
+Console.WriteLine("\tRole: \{\{0}} => DisplayName: \\"\{\{1}}\\"", rolePair.Name, rolePair.DisplayName);
+
+                }
+
+}

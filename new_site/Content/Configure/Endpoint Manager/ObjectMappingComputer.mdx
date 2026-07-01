@@ -1,0 +1,126 @@
+---
+title: Object Mapping - Computer
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:51 GMT+0300 (Eastern European Summer Time)
+---
+
+The object mappings for the Business Object Computer are given in the below table:
+
+| Source - EPM Data                                 | Method       | Target - \{\{FRS\_VARS.ProductName}} Data                                   |
+| ------------------------------------------------- | ------------ | --------------------------------------------------------------------------- |
+| DateTimeNow                                       | -->          | Audit.TimeStamp                                                             |
+| 0                                                 | -->          | Audit.RequestID                                                             |
+| 0                                                 | -->          | Audit.FirstSequence                                                         |
+| 1                                                 | -->          | Audit.LastSequence                                                          |
+| Full                                              | -->          | Audit.Type                                                                  |
+| EPM                                               | -->          | Identity.Property.ScanMethod                                                |
+| Computer.LDAPLocation                             | -->          | Identity.Property.EPMLDAPLocation                                           |
+| Computer.Computer\_Idn                            | -->          | Identity.Property.EPMComputerID                                             |
+| Computer.DeviceId                                 | -->          | Identity.Property.ClientID                                                  |
+| Computer.DeviceName                               | -->          | ComputerSystem.Property.DeviceName                                          |
+| CompSystem.SerialNum                              | -->          | Identity.Property.SerialNumber                                              |
+| CompSystem.Manufacturer                           | -->          | ComputerSystem.Property.Manufacturer                                        |
+| CompSystem.Model                                  | -->          | ComputerSystem.Property.Model                                               |
+| CompSystem.ChassisType                            | -->          | ComputerSystem.Property.ChassisType                                         |
+| CompSystem.AssetTag                               | -->          | ComputerSystem.Property.AssetTag                                            |
+| Computer.DeviceName                               | -->          | Identity.Property.HostName                                                  |
+| Operating\_System.OSType                          | -->          | ComputerSystem.Property.OperatingSystem                                     |
+| Operating\_System.Version                         | -->          | ComputerSystem.Property.MajorVersion                                        |
+| OSNT.ReleaseID                                    | -->          | ComputerSystem.Property.MinorVersion                                        |
+| Operating\_System.OSType                          | RegexReplace | ComputerSystem.Property.OSEdition                                           |
+| .+?(Enterprise\|Professional\|Ultimate\|Education |              |                                                                             |
+| $1                                                |              |                                                                             |
+| OSNT.ServicePack                                  | -->          | ComputerSystem.Property.ServicePack                                         |
+| Computer.LoginName                                | -->          | Identity.Property.UserName                                                  |
+| Computer.DomainName                               | -->          | Identity.Property.DomainName                                                |
+| Computer.ComputerLocation                         | -->          | ComputerSystem.Property.PhysicalLocation                                    |
+| FixedDrives.FixedDrives\_Idn                      | -->          | Category.Component.Property-Hardware.PhysicalStorage.ID                     |
+| FixedDrives.MediaType                             | -->          | Category.Component.Property-Hardware.PhysicalStorage.StorageType            |
+| FixedDrives.Model                                 | -->          | Category.Component.Property-Hardware.PhysicalStorage.Model                  |
+| FixedDrives.SerialNumber                          | -->          | Category.Component.Property-Hardware.PhysicalStorage.Serial Number          |
+| FixedDrives.StorageTotal                          | Div          | Category.Component.Property-Hardware.PhysicalStorage.Size                   |
+| 10240                                             |              |                                                                             |
+| FixedDrives.StorageTotal                          | Div          | ComputerSystem.Property.TotalDiskSpace                                      |
+| 10240                                             |              |                                                                             |
+| BoundAdapter.BoundAdapter\_Idn                    | -->          | Category.Component.Property-Hardware.NetworkAdapter.ID                      |
+| BoundAdapter.IPAddress                            | IPv4Trim     | Category.Component.Property-Hardware.NetworkAdapter.IPAddress               |
+| BoundAdapter.SubnetMask                           | -->          | Category.Component.Property-Hardware.NetworkAdapter.SubnetMask              |
+| BoundAdapter.PhysAddress                          | -->          | Category.Component.Property-Hardware.NetworkAdapter.MACaddress              |
+| BoundAdapter.Description                          | -->          | Category.Component.Property-Hardware.NetworkAdapter.Description             |
+| BoundAdapter.NetworkID                            | -->          | Category.Component.Property-Hardware.NetworkAdapter.NetworkID               |
+| NetworkSoftware.NicAddress                        | -->          | ComputerSystem.Property.MACAddress                                          |
+| NetworkSoftware.NicAddress                        | -->          | Identity.Property.MACaddress                                                |
+| TCP.Address                                       | IPv4Trim     | Identity.Property.IPAddress                                                 |
+| TCP.HostName                                      | -->          | Identity.Property.FullyQualifiedDomainName                                  |
+| TCP.SubnetMask                                    | -->          | Identity.Property.SubnetMask                                                |
+| Computer.Type                                     | CIType       | ComputerSystem.Property.CIType                                              |
+| Virtual Server                                    |              |                                                                             |
+| VirtualServer                                     |              |                                                                             |
+| Server                                            |              |                                                                             |
+| Server                                            |              |                                                                             |
+| Workstation                                       |              |                                                                             |
+| Computer                                          |              |                                                                             |
+| Portable                                          |              |                                                                             |
+| Computer                                          |              |                                                                             |
+| Mac                                               |              |                                                                             |
+| Computer                                          |              |                                                                             |
+| Linux                                             |              |                                                                             |
+| Computer                                          |              |                                                                             |
+| Computer                                          |              |                                                                             |
+| True                                              | -->          | Category.Component.Property-Hardware.NetworkAdapter.IPEnabled               |
+| Processor.ID                                      | -->          | Category.Component.Property-Hardware.Processor.ID                           |
+| Processor.CoresPerPkg                             | -->          | Category.Component.Property-Hardware.Processor.PhysicalCores                |
+| Processor.Type                                    | -->          | Category.Component.Property-Hardware.Processor.ProcessorName                |
+| Processor.Speed                                   | -->          | Category.Component.Property-Hardware.Processor.ProcessorSpeed               |
+| Processor.Architecture                            | -->          | ComputerSystem.Property.CPUArchitecture                                     |
+| Physical                                          | -->          | ComputerSystem.Property.ExecutionEnvironment                                |
+| Processor.Vendor                                  | -->          | Category.Component.Property-Hardware.Processor.Manufacturer                 |
+| Processor.ProcCount                               | -->          | ComputerSystem.Property.CPUCount                                            |
+| BIOS.BiosDate                                     | -->          | Category.Component.Property-Hardware.BIOS.Date                              |
+| BIOS.Manufacturer                                 | -->          | Category.Component.Property-Hardware.BIOS.Manufacturer                      |
+| BIOS.RomVersion                                   | -->          | Category.Component.Property-Hardware.BIOS.Version                           |
+| MemorySlot.MemorySlot\_Idn                        | -->          | Category.Component.Property-Hardware.MemorySlot.ID                          |
+| MemorySlot.FormFactor                             | -->          | Category.Component.Property-Hardware.MemorySlot.FormFactor                  |
+| MemorySlot.CurrentType                            | -->          | Category.Component.Property-Hardware.MemorySlot.MemoryType                  |
+| MemorySlot.Manufacturer                           | -->          | Category.Component.Property-Hardware.MemorySlot.Manufacturer                |
+| MemorySlot.InstalledSize                          | Div          | Category.Component.Property-Hardware.MemorySlot.Size                        |
+| 1024                                              |              |                                                                             |
+| MemorySlot.PartNum                                | -->          | Category.Component.Property-Hardware.MemorySlot.Description                 |
+| MemorySlot.SlotNo                                 | -->          | Category.Component.Property-Hardware.MemorySlot.SlotNumber                  |
+| Memory.BytesTotal                                 | Div          | Category.Component.Property-Hardware.TotalMemory.Size                       |
+| 1024                                              |              |                                                                             |
+| Memory.NumSlots                                   | -->          | ComputerSystem.Property.MemorySlotCount                                     |
+| VideoAdapter.VideoAdapter\_Idn                    | -->          | Category.Component.Property-Hardware.DisplayAdapter.ID                      |
+| VideoAdapter.ChipType                             | -->          | Category.Component.Property-Hardware.DisplayAdapter.Manufacturer            |
+| VideoAdapter.AdapterString                        | -->          | Category.Component.Property-Hardware.DisplayAdapter.Description             |
+| VideoConnMonitor.VideoConnMonitor\_Idn            | -->          | Category.Component.Property-Hardware.Monitor.ID                             |
+| VideoConnMonitor.SerialNum                        | -->          | Category.Component.Property-Hardware.Monitor.Serial Number                  |
+| VideoConnMonitor.VendorID                         | -->          | Category.Component.Property-Hardware.Monitor.EDID Manufacturer ID           |
+| VideoConnMonitor.Model                            | -->          | Category.Component.Property-Hardware.Monitor.Model                          |
+| VideoAdapter.Memory                               | RegexReplace | Category.Component.Property-Hardware.DisplayAdapter.RamSize                 |
+| (\d+).+                                           |              |                                                                             |
+| $1                                                |              |                                                                             |
+| AppSoftwareSuites.AppSoftwareSuites\_Idn          | -->          | Category.Component.Property-SoftwarePackages.SoftwarePackage.ID             |
+| AppSoftwareSuites.Publisher                       | -->          | Category.Component.Property-SoftwarePackages.SoftwarePackage.Publisher      |
+| AppSoftwareSuites.SuiteName                       | -->          | Category.Component.Property-SoftwarePackages.SoftwarePackage.DisplayName    |
+| AppSoftwareSuites.Version                         | -->          | Category.Component.Property-SoftwarePackages.SoftwarePackage.DisplayVersion |
+| AppSoftwareSuites.InstallDate                     | ToDateTime   | Category.Component.Property-SoftwarePackages.SoftwarePackage.InstallDate    |
+| yyyyMMdd                                          |              |                                                                             |
+| en-US                                             |              |                                                                             |
+| Services.Services\_Idn                            | -->          | Category.Component.Property-WMI.Win32\_Service.ID                           |
+| Services.Path                                     | -->          | Category.Component.Property-WMI.Win32\_Service.PathName                     |
+| Services.Status                                   | -->          | Category.Component.Property-WMI.Win32\_Service.State                        |
+| Services.StartType                                | -->          | Category.Component.Property-WMI.Win32\_Service.StartMode                    |
+| Services.StartName                                | -->          | Category.Component.Property-WMI.Win32\_Service.StartName                    |
+| Services.ShortName                                | -->          | Category.Component.Property-WMI.Win32\_Service.Name                         |
+| Services.Description                              | -->          | Category.Component.Property-WMI.Win32\_Service.Description                  |
+| Services.Name                                     | -->          | Category.Component.Property-WMI.Win32\_Service.Caption                      |
+| LogicalDrives.DriveLetter                         | -->          | Category.Component.Property-Hardware.LogicalStorage.DriveLetter             |
+| LogicalDrives.SerialNumber                        | -->          | Category.Component.Property-Hardware.LogicalStorage.DiskNumber              |
+| LogicalDrives.Description                         | -->          | Category.Component.Property-Hardware.LogicalStorage.Description             |
+| LogicalDrives.FileSystem                          | -->          | Category.Component.Property-Hardware.LogicalStorage.Format                  |
+| LogicalDrives.StorageAvail                        | Div          | Category.Component.Property-Hardware.LogicalStorage.FreeSpace               |
+| 10240                                             |              |                                                                             |
+| LogicalDrives.LogicalDrives\_Idn                  | -->          | Category.Component.Property-Hardware.LogicalStorage.ID                      |
+| LogicalDrives.StorageTotal                        | Div          | Category.Component.Property-Hardware.LogicalStorage.Size                    |
+| 10240                                             |              |                                                                             |

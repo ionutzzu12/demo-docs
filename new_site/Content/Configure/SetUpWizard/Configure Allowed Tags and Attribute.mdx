@@ -1,0 +1,343 @@
+---
+title: To Configure Allowed HTML Tags and Attributes
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:49 GMT+0300 (Eastern European Summer Time)
+---
+
+**Role**: \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}
+
+**Minimum Version**: \{\{FRS\_VARS.Company}} \{\{Primary.Product}} 2025.3
+
+You can now enable support for specific HTML tags and attributes, such as **\<object>**, **\<iframe>**&#x69;n HTML type fields across all business objects. Common use cases include embedding advanced HTML formatting or video objects into **Incident**, **Knowledge**, and **Problem** records. This feature allows users to embed custom HTML content safely.
+
+## Background
+
+The ITSM application sanitizes HTML content using the **DOMPurify** library during UI rendering. By default, DOMPurify removes all potentially malicious or unwanted HTML tags and attributes to ensure secure display of user generated content.
+
+Some business scenarios may require specific HTML elements, such as **\<object>**, **\<iframe>**. To support these cases, this feature allows administrators to configure a list of allowed tags and attributes, effectively whitelisting only the required HTML elements for those scenarios.
+
+This feature helps organizations maintain a secure-by-design application and gives administrators control over which HTML content is preserved during sanitization. You can define allowed tags and attributes at the field level to minimize exposure.
+
+**Additional notes on HTML Sanitization behavior**
+
+Currently, you can enable configurable HTML sanitization in the following two areas:
+
+- **Business object fields:** Fields set to type HTML are sanitized to prevent cross-site scripting (XSS) and other security vulnerabilities.
+- **Journal emails and journal notes:** When configured as HTML fields, these components are sanitized to ensure secure rendering and proper handling.
+
+<Paragraph indent="1">
+  Journal notes are currently stored as text fields but render as HTML inside a flex component. This is unintended behavior and introduces a potential security risk. To follow secure practices, administrators must do one of the following:
+</Paragraph>
+
+- **Convert journal notes to HTML fields**: This allows the system to apply proper sanitization and reduce the risk of XSS attacks.
+
+For detailed information on future changes to DOMPurify behavior and global constant defaults, see :Link[Whitelisted HTML Tags and Attributes (DOMPurify)]{label="Whitelisted HTML Tags and Attributes (DOMPurify)" overridedLabel="Whitelisted HTML Tags and Attributes (DOMPurify)" spaceId docId="JL0Li9JwxzgkqVtV9jlWD" version="v2" docAnchorId="#Whitelis" loadingMethod="dynamic" newTab="false" href="Configure Allowed Tags and Attribute.mdx"}.
+
+## Blacklisted HTML Attributes
+
+The application permanently blocks the following attributes to protect against cross-site scripting (XSS) and other security vulnerabilities. These blacklisted items are hard-coded and cannot be overridden through configuration.
+
+The following items are blacklisted:
+
+- **Attribute values containing scripting keywords:**
+  javascript, jscript, vbscript, expression
+- **Event-driven attributes**:
+  onclick, ondblclick, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup,
+  onkeydown, onkeypress, onkeyup, onabort, onerror, onload, onunload, onresize,
+  onscroll, onblur, onchange, onfocus, onreset, onselect, onsubmit, onpointerover
+
+<hint type="info">
+  These tags and attributes are blacklisted for the current release (2025.4). The product team is still finalizing and the blacklist may change in a future release.
+</hint>
+
+## Whitelisted HTML Tags and Attributes (DOMPurify)
+
+Ivanti Neurons for ITSM uses the DOMPurify library to sanitize HTML input fields and ensure secure rendering of user-generated content. DOMPurify relies on a default whitelist to determine which HTML tags and attributes are permitted.
+
+This topic provides an overview of the default whitelist behavior in DOMPurify version 1.0.8, which is used in release 2025.3 onwards.
+
+**Overview:**
+
+DOMPurify uses an internal whitelist that defines which HTML tags and attributes are considered safe. Any tag or attribute not included in this list is automatically removed during sanitization.
+
+You can define additional tags and attributes using **Allowed Tags/Attributes** configuration.
+
+**Whitelisted HTML Tags and Attributes:**
+
+The following are examples of tags and attributes whitelisted by DOMPurify. This list is not exhaustive and is based on version 1.0.8.
+
+Common HTML Tags (Whitelisted by Default)
+
+\<a>, \<abbr>, \<b>, \<blockquote>, \<br>, \<caption>, \<cite>, \<code>, \<col>, \<colgroup>, \<dd>, \<del>, \<dfn>, \<div>, \<dl>, \<dt>, \<em>, \<h1>–\<h6>, \<hr>, \<i>, \<img>, \<ins>, \<kbd>, \<li>, \<mark>, \<ol>, \<p>, \<pre>, \<q>, \<s>, \<samp>, \<section>, \<small>, \<span>, \<strong>, \<sub>, \<sup>, \<table>, \<tbody>, \<td>, \<tfoot>, \<th>, \<thead>, \<tr>, \<u>, \<ul>, \<var>, \<style>, \<base>, \<xml>, \<script>, \<applet>, \<embed>, \<iframe>
+
+Common HTML Attributes (Whitelisted by Default)
+
+abbr, align, alt, axis, bgcolor, border, cellpadding, cellspacing, char, charoff,
+
+cite, class, clear, cols, colspan, color, compact, coords, datetime, dir, face,
+
+headers, height, href, hreflang, hspace, id, ismap, lang, longdesc, name, nohref,
+
+noshade, nowrap, rel, rev, rows, rowspan, rules, scope, shape, size, span, src,
+
+start, summary, tabindex, target, title, type, valign, value, vspace, width
+
+<hint type="info">
+  - **data-\*** and **aria-\*** attributes are also whitelisted by default. You can control them using DOMPurify options **ALLOW\_DATA\_ATTR** and **ALLOW\_ARIA\_ATTR**.
+  - Any tag or attribute not explicitly defined in your configured whitelist (or not supported by DOMPurify) is removed automatically during rendering.
+</hint>
+
+<ExpandableHeading>
+  ## For Incident
+
+  The following procedure describes how to configure allowed HTML tags and attributes for the Incident workspace.
+
+  - :Link[Create a HTML Tags and Attribute Set.]{label="Create a HTML Tags and Attribute Set." overridedLabel="Create a HTML Tags and Attribute Set." spaceId docId="JL0Li9JwxzgkqVtV9jlWD" version="v2" docAnchorId="#Create" loadingMethod="dynamic" newTab="false" href="Configure Allowed Tags and Attribute.mdx"}
+  - :Link[Configure the Description Field to Use HTML Viewer.]{label="Configure the Description Field to Use HTML Viewer." overridedLabel="Configure the Description Field to Use HTML Viewer." spaceId docId="JL0Li9JwxzgkqVtV9jlWD" version="v2" docAnchorId="#Configur" loadingMethod="dynamic" newTab="false" href="Configure Allowed Tags and Attribute.mdx"}
+  - :Link[Apply Whitelist to an HTML Field.]{label="Apply Whitelist to an HTML Field." overridedLabel="Apply Whitelist to an HTML Field." spaceId docId="JL0Li9JwxzgkqVtV9jlWD" version="v2" docAnchorId="#Apply" loadingMethod="dynamic" newTab="false" href="Configure Allowed Tags and Attribute.mdx"}
+  - :Link[Use Configured HTML Tags in the Incident Workspace.]{label="Use Configured HTML Tags in the Incident Workspace." overridedLabel="Use Configured HTML Tags in the Incident Workspace." spaceId docId="JL0Li9JwxzgkqVtV9jlWD" version="v2" docAnchorId="#Use" loadingMethod="dynamic" newTab="false" href="Configure Allowed Tags and Attribute.mdx"}
+
+  ## Create a HTML Tags and Attribute Set
+
+  1. Go to **Settings** > **Configure** > **Security Controls** > **Allowed Tags/Attributes**.
+
+  <Image src="../../Resources/Images/SelfServiceMgmt-images/ Attributes page.png" position="flex-start" size="40" indent="2" initialPath="../../Resources/Images/SelfServiceMgmt-images/ Attributes page.png" githubPath="../Resources/Images/SelfServiceMgmt-images/ Attributes page.png" showCaption="false"></Image>
+
+  2. Click **New.**
+  3. In the **Name** field, enter a descriptive name (for example, Description).
+  4. In the **Value** field, add the allowed tags and attributes in JSON format:
+     \{
+     "object": \["data", "type", "width", "height"]
+     }
+
+  <Image src="../../Resources/Images/SelfServiceMgmt-images/ Attributes.png" position="flex-start" size="40" indent="2" initialPath="../../Resources/Images/SelfServiceMgmt-images/ Attributes.png" githubPath="../Resources/Images/SelfServiceMgmt-images/ Attributes.png" showCaption="false"></Image>
+
+  5. Click **Save**.
+
+  <hint type="info">
+    Only the tags and attributes in this new set will become unblocked when applied to a field. Any unspecified tags and attributes defined in the default set will continue to be blocked.
+  </hint>
+
+  ## Configure the Description field to Use HTML Viewer
+
+  After assigning a tag and attribute whitelist to an HTML field, you must configure how the field is rendered in the form. In this case, the **Description** field within the **Incident** business object is updated to use the HTML Viewer control to correctly display allowed HTML tags.
+
+  To configure the field on the form:
+
+  1. Navigate to **Build** > **Business Objects** > **Incident** > **Forms**.
+  2. Open the form named **Incident.PopUp**.
+  3. In the form layout, select the **Description** field
+  4. In the **Control Properties** pane on the left, locate the **Control Type** field.
+  5. From the dropdown list, select **HTML Viewer**.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/b8HKJbetlGhmKS5kFi4IC_description-field-setting-in-incident-pop-up.png" position="flex-start" size="40" indent="2" initialPath="../../Resources/Images/SelfServiceMgmt-images/Description Field setting in Incident pop-up.png" githubPath="Content/Resources/Images/SelfServiceMgmt-images/Description Field setting in Incident pop-up.png" showCaption="false"></Image>
+
+  6. Click **Save**.
+
+  ## Apply Whitelist to an HTML Field
+
+  1. Navigate to **Build** > **Business Objects** > **Incident** > **Fields**.
+  2. Locate and select the desired field (for example, **Symptom**).
+  3. Set the **Field Type** as **HTML**.
+  4. In the **Set Name** field, select the appropriate html tag set (for example, Description) from the dropdown.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/3WYD0M2hSHjFc00XCERSs_business-objectfield-type-and-set-name.png" position="flex-start" size="40" indent="2" initialPath="../../Resources/Images/SelfServiceMgmt-images/Business Object(Field Type and Set Name).png" githubPath="Content/Resources/Images/SelfServiceMgmt-images/Business Object(Field Type and Set Name).png" showCaption="false"></Image>
+
+  5. Click **Save**.
+
+  ## Use Configured HTML Tags in the Incident Workspace
+
+  After configuration is complete, you can add HTML content to the configured field using the **Source Edit** option.
+
+  **Add HTML Content to the Description Field**
+
+  1. Navigate to the **Home** page.
+  2. Select **Incident** on the navigation bar to open the **Incident** workspace.
+  3. Select the appropriate incident record.
+  4. In the **Description** field, click the double arrow :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/r2SrRVtQfYDXmeSwytVhr_double-arrow-in-the-control-panel-of-description-in-incident36x21.png" alt caption size="10" width="36" height="21"} icon to expand the editor.
+  5. In the expanded panel, click **Source Edit**.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/vqzDQPiu74C6bmbIbytCr_source-edit-in-description-in-incident-field.png" position="flex-start" size="40" indent="2" initialPath="../../Resources/Images/SelfServiceMgmt-images/source edit in Description in incident field.png" githubPath="Content/Resources/Images/SelfServiceMgmt-images/source edit in Description in incident field.png" showCaption="false"></Image>
+
+  6. Enter the required HTML code using the allowed tags and attributes.
+     \<object width="1590" height="560" title="Client Software" data=https\://www\.html-seminar.de/ frameborder="0">\</object>
+  7. Click **Save**.
+
+  You can view the configured HTML content in the Description field on the Incident form, rendered according to the assigned tag and attribute settings.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/gtkNFS482x_3WbyEYSPnY_configured-html-in-the-description.png" position="flex-start" size="40" initialPath="../../Resources/Images/SelfServiceMgmt-images/Configured HTML in the description.png" githubPath="Content/Resources/Images/SelfServiceMgmt-images/Configured HTML in the description.png" showCaption="false"></Image>
+
+  <hint type="info">
+    Only the HTML tags and attributes that are explicitly configured in the assigned tag set will be retained. Any disallowed tags or attributes will be removed automatically during rendering the **Description** field.
+  </hint>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## For Knowledge
+
+  The following procedure describes how to configure allowed HTML tags and attributes for the Knowledge workspace.
+
+  - :Link[Create a HTML Tags and Attribute Set]{label="Create a HTML Tags and Attribute Set" overridedLabel="Create a HTML Tags and Attribute Set" spaceId docId="JL0Li9JwxzgkqVtV9jlWD" version="v2" docAnchorId="#Create2" loadingMethod="dynamic" newTab="false" href="Configure Allowed Tags and Attribute.mdx"}.
+  - :Link[Configure the Answer field to Use HTML Viewer]{label="Configure the Answer field to Use HTML Viewer" overridedLabel="Configure the Answer field to Use HTML Viewer" spaceId docId="JL0Li9JwxzgkqVtV9jlWD" version="v2" docAnchorId="#Configur2" loadingMethod="dynamic" newTab="false" href="Configure Allowed Tags and Attribute.mdx"}.
+  - :Link[Apply Whitelist to an HTML Field]{label="Apply Whitelist to an HTML Field" overridedLabel="Apply Whitelist to an HTML Field" spaceId docId="JL0Li9JwxzgkqVtV9jlWD" version="v2" docAnchorId="#Apply2" loadingMethod="dynamic" newTab="false" href="Configure Allowed Tags and Attribute.mdx"}.
+  - :Link[Use Configured HTML Tags in the Knowledge Workspace]{label="Use Configured HTML Tags in the Knowledge Workspace" overridedLabel="Use Configured HTML Tags in the Knowledge Workspace" spaceId docId="JL0Li9JwxzgkqVtV9jlWD" version="v2" docAnchorId="#Use2" loadingMethod="dynamic" newTab="false" href="Configure Allowed Tags and Attribute.mdx"}.
+
+  ## Create a HTML Tags and Attribute Set
+
+  1. Go to **Settings** > **Configure** > **Security Controls** > **Allowed Tags/Attributes**.
+
+  <Image src="../../Resources/Images/SelfServiceMgmt-images/ Attributes page.png" position="flex-start" size="40" indent="2" initialPath="../../Resources/Images/SelfServiceMgmt-images/ Attributes page.png" githubPath="../Resources/Images/SelfServiceMgmt-images/ Attributes page.png" showCaption="false"></Image>
+
+  2. Click **New.**
+  3. In the **Name** field, enter a descriptive name (for example, Description).
+  4. In the **Value** field, add the allowed tags and attributes in JSON format:
+     \{
+     "object": \["data", "type", "width", "height"]
+     }
+
+  <Image src="../../Resources/Images/SelfServiceMgmt-images/ Attributes.png" position="flex-start" size="40" indent="2" initialPath="../../Resources/Images/SelfServiceMgmt-images/ Attributes.png" githubPath="../Resources/Images/SelfServiceMgmt-images/ Attributes.png" showCaption="false"></Image>
+
+  5. Click **Save**.
+
+  <hint type="info">
+    Only the tags and attributes in this new set will become unblocked when applied to a field. Any unspecified tags and attributes defined in the default set will continue to be blocked.
+  </hint>
+
+  ## Configure the Answer field to Use HTML Viewer
+
+  After assigning a tag and attribute whitelist to an HTML field, you must configure how the field is rendered in the form. In this case, the **Answer** field within the **Knowledge** business object is updated to use the HTML Viewer control to correctly display allowed HTML tags.
+
+  To configure the field on the form:
+
+  1. Navigate to **Build** > **Business Objects** > **Business Object FRS\_Knowledge#QandA** > **Forms**.
+  2. Open the form named Form **FRS\_Knowledge.QandA.ArticleView**.
+  3. In the form layout, select the **Answer** field
+  4. In the **Control Properties** pane on the left, locate the **Control Type** field.
+  5. From the dropdown list, select **HTML Viewer**.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/r9Nt2LZapiAvGE_9c4xft_knowledgeforms-business-objects.png" position="flex-start" size="40" indent="2" initialPath="../../Resources/Images/SelfServiceMgmt-images/Knowledge_Forms_ Business Objects.png" githubPath="Content/Resources/Images/SelfServiceMgmt-images/Knowledge_Forms_ Business Objects.png" showCaption="false"></Image>
+
+  6. Click **Save**.
+
+  ## Apply Whitelist to an HTML Field
+
+  1. Navigate to **Build** > **Business Objects** > **Business Object FRS\_Knowledge#QandA** > **Fields**.
+  2. Locate and select the desired field (for example Field Name, **Resolution**).
+  3. Set the **Field Type** as **HTML**.
+  4. In the **Set Name** field, select the appropriate html tag set (for example, **Description**) from the dropdown.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/9R0EEMiXqgy3hf-d3iSpJ_knoiwledgefieldbusiness-objects.png" position="flex-start" size="40" indent="2" initialPath="../../Resources/Images/SelfServiceMgmt-images/Knoiwledge_Field_Business Objects.png" githubPath="Content/Resources/Images/SelfServiceMgmt-images/Knoiwledge_Field_Business Objects.png" showCaption="false"></Image>
+
+  5. Click **Save**.
+
+  ## Use Configured HTML Tags in the Knowledge Workspace
+
+  After configuration is complete, you can add HTML content to the configured field using the **Source Edit** option.
+
+  **Add HTML Content to the Answer Field**
+
+  1. Navigate to the **Home** page.
+  2. Select **Knowledge** on the navigation bar to open the **Knowledge** workspace.
+  3. Select the appropriate record.
+  4. In the **Answer** field, click the double arrow :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/r2SrRVtQfYDXmeSwytVhr_double-arrow-in-the-control-panel-of-description-in-incident36x21.png" alt caption size="10" width="36" height="21"} icon to expand the editor.
+  5. In the expanded panel, click **Source Edit**.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/tSUi5vJZYyE0Ir4UCdSAG_knowledge-answersourceedit.png" position="flex-start" size="40" indent="2" initialPath="../../Resources/Images/SelfServiceMgmt-images/Knowledge Answer_SourceEdit.png" githubPath="Content/Resources/Images/SelfServiceMgmt-images/Knowledge Answer_SourceEdit.png" showCaption="false"></Image>
+
+  6. Enter the required HTML code using the allowed tags and attributes.
+     \<object width="1590" height="560" title="Client Software" data=https\://www\.html-seminar.de/ frameborder="0">\</object>
+  7. Click **Save**.
+
+  You can view the configured HTML content in the Description field on the Incident form, rendered according to the assigned tag and attribute settings.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/ksl-47gT-pPWvUqSVqymK_knowledgehtmlviweranswer.png" position="flex-start" size="40" initialPath="../../Resources/Images/SelfServiceMgmt-images/Knowledge_HTML_Viwer_Answer.png" githubPath="Content/Resources/Images/SelfServiceMgmt-images/Knowledge_HTML_Viwer_Answer.png" showCaption="false"></Image>
+
+  <hint type="info">
+    Only the HTML tags and attributes that are explicitly configured in the assigned tag set will be retained. Any disallowed tags or attributes will be removed automatically during rendering the **Answer** field.
+  </hint>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## For Problem
+
+  The following procedure describes how to configure allowed HTML tags and attributes for the Problem workspace.
+
+  - :Link[Create a HTML Tags and Attribute Set]{label="Create a HTML Tags and Attribute Set" overridedLabel="Create a HTML Tags and Attribute Set" spaceId docId="JL0Li9JwxzgkqVtV9jlWD" version="v2" docAnchorId="#Create3" loadingMethod="dynamic" newTab="false" href="Configure Allowed Tags and Attribute.mdx"}.
+  - :Link[Configure the Description field to Use HTML Viewer]{label="Configure the Description field to Use HTML Viewer" overridedLabel="Configure the Description field to Use HTML Viewer" spaceId docId="JL0Li9JwxzgkqVtV9jlWD" version="v2" docAnchorId="#Configur3" loadingMethod="dynamic" newTab="false" href="Configure Allowed Tags and Attribute.mdx"}.
+  - :Link[Apply Whitelist to an HTML Field]{label="Apply Whitelist to an HTML Field" overridedLabel="Apply Whitelist to an HTML Field" spaceId docId="JL0Li9JwxzgkqVtV9jlWD" version="v2" docAnchorId="#Apply3" loadingMethod="dynamic" newTab="false" href="Configure Allowed Tags and Attribute.mdx"}.
+  - :Link[Use Configured HTML Tags in the Problem Workspace]{label="Use Configured HTML Tags in the Problem Workspace" overridedLabel="Use Configured HTML Tags in the Problem Workspace" spaceId docId="JL0Li9JwxzgkqVtV9jlWD" version="v2" docAnchorId="#Use3" loadingMethod="dynamic" newTab="false" href="Configure Allowed Tags and Attribute.mdx"}.
+
+  ## Create a HTML Tags and Attribute Set
+
+  1. Go to **Settings** > **Configure** > **Security Controls** > **Allowed Tags/Attributes**.
+
+  <Image src="../../Resources/Images/SelfServiceMgmt-images/ Attributes page.png" position="flex-start" size="40" indent="2" initialPath="../../Resources/Images/SelfServiceMgmt-images/ Attributes page.png" githubPath="../Resources/Images/SelfServiceMgmt-images/ Attributes page.png" showCaption="false"></Image>
+
+  2. Click **New.**
+  3. In the **Name** field, enter a descriptive name (for example, Description).
+  4. In the **Value** field, add the allowed tags and attributes in JSON format:
+     \{
+     "object": \["data", "type", "width", "height"]
+     }
+
+  <Image src="../../Resources/Images/SelfServiceMgmt-images/ Attributes.png" position="flex-start" size="40" indent="2" initialPath="../../Resources/Images/SelfServiceMgmt-images/ Attributes.png" githubPath="../Resources/Images/SelfServiceMgmt-images/ Attributes.png" showCaption="false"></Image>
+
+  5. Click **Save**.
+
+  <hint type="info">
+    Only the tags and attributes in this new set will become unblocked when applied to a field. Any unspecified tags and attributes defined in the default set will continue to be blocked.
+  </hint>
+
+  ## Configure the Description field to Use HTML Viewer
+
+  After assigning a tag and attribute whitelist to an HTML field, you must configure how the field is rendered in the form. In this case, the **Answer** field within the **Knowledge** business object is updated to use the HTML Viewer control to correctly display allowed HTML tags.
+
+  To configure the field on the form:
+
+  1. Navigate to **Build** > **Business Objects** > **Business Object Problem** > **Forms**.
+  2. Open the form named Form **Problem.PopUp**.
+  3. In the form layout, select the **Description** field
+  4. In the **Control Properties** pane on the left, locate the **Control Type** field.
+  5. From the dropdown list, select **HTML Viewer**.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/7ZJDofep_zftG9D4L3xTT_problembusiness-objectsdescription.png" position="flex-start" size="40" indent="2" initialPath="../../Resources/Images/SelfServiceMgmt-images/Problem_Business Objects_Description.png" githubPath="Content/Resources/Images/SelfServiceMgmt-images/Problem_Business Objects_Description.png" showCaption="false"></Image>
+
+  6. Click **Save**.
+
+  ## Apply Whitelist to an HTML Field
+
+  1. Navigate to **Build** > **Business Objects** > **Business Object Problem** > **Fields**.
+  2. Locate and select the desired field (for example Field Name, **Description**).
+  3. Set the **Field Type** as **HTML**.
+  4. In the **Set Name** field, select the appropriate html tag set (for example, **Description**) from the dropdown.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/pDdPMc1Mx5XyqNsoiAUnZ_problembusiness-objectsfield.png" position="flex-start" size="40" indent="2" initialPath="../../Resources/Images/SelfServiceMgmt-images/Problem_Business Objects_Field.png" githubPath="Content/Resources/Images/SelfServiceMgmt-images/Problem_Business Objects_Field.png" showCaption="false"></Image>
+
+  5. Click **Save**.
+
+  ## Use Configured HTML Tags in the Problem Workspace
+
+  After configuration is complete, you can add HTML content to the configured field using the **Source Edit** option.
+
+  **Add HTML Content to the Answer Field**
+
+  1. Navigate to the **Home** page.
+  2. Select **Problem** on the navigation bar to open the **Problem** workspace.
+  3. Select the appropriate record.
+  4. In the **Description** field, click the double arrow :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/r2SrRVtQfYDXmeSwytVhr_double-arrow-in-the-control-panel-of-description-in-incident36x21.png" alt caption size="10" width="36" height="21"} icon to expand the editor.
+  5. In the expanded panel, click **Source Edit**.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/pVl-CJI0b3D8OsmQlhlPV_problemdescriptionfieldsource-edit.png" position="flex-start" size="40" indent="2" initialPath="../../Resources/Images/SelfServiceMgmt-images/Problem_Description_Field_Source Edit.png" githubPath="Content/Resources/Images/SelfServiceMgmt-images/Problem_Description_Field_Source Edit.png" showCaption="false"></Image>
+
+  6. Enter the required HTML code using the allowed tags and attributes.
+     \<object width="1590" height="560" title="Client Software" data=https\://www\.html-seminar.de/ frameborder="0">\</object>
+  7. Click **Save**.
+
+  You can view the configured HTML content in the Description field on the Incident form, rendered according to the assigned tag and attribute settings.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/3vcNBzb-zcL4nwKgjWFEf_problemsource-edithtml.png" position="flex-start" size="40" initialPath="../../Resources/Images/SelfServiceMgmt-images/Problem_Source EDIT_HTML.png" githubPath="Content/Resources/Images/SelfServiceMgmt-images/Problem_Source EDIT_HTML.png" showCaption="false"></Image>
+
+  <hint type="info">
+    Only the HTML tags and attributes that are explicitly configured in the assigned tag set will be retained. Any disallowed tags or attributes will be removed automatically during rendering the **Description** field.
+  </hint>
+</ExpandableHeading>

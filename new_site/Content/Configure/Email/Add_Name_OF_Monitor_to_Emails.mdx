@@ -1,0 +1,31 @@
+---
+title: Adding the Email Monitor Name to Emails
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:51 GMT+0300 (Eastern European Summer Time)
+---
+
+This feature enables you to add the name of an email monitor to incoming emails picked up by the monitor. The monitor name is added to the **Created By** field in the email so you can identify which monitor picked up the email. This is useful for identification when you have multiple email monitors.
+
+To use this feature, you need to add and enable the **EnableInboundEmailSuffix** global constant.
+
+## Add and Enable the EnableInboundEmailSuffix Global Constant
+
+1. Log in to \{\{Primary.Product}} as \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+2. From the Configuration Console, click **Build > Global Constants** to open the **Global Constants** workspace.
+3. Click **Add**.
+4. In the **Name** field, enter EnableInboundEmailSuffix.
+5. In the **Value** field, enter **True** to enable the global constant.
+
+<hint type="info">
+  You can disable the global constant at any time by entering **False** in this field.
+</hint>
+
+6. In the **Type** field, select **Boolean** from the drop-down list.
+7. Enter a description in the **Description** field if required.
+8. Click **Save**.
+
+When the global constant is enabled and saved, all emails picked up by the email monitor and display the name of the monitor in their **Created By** field.
+
+<hint type="info">
+  You may need to expand the **Created By** field length to display the monitor name. Open the Journal.Email business object form to edit the field length.
+</hint>

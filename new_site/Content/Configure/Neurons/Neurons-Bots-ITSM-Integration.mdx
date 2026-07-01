@@ -1,0 +1,194 @@
+---
+title: Neurons Bots Integration for ITSM
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:51 GMT+0300 (Eastern European Summer Time)
+---
+
+The \{\{Primary.Company}} \{\{FRS\_VARS.Neurons\_Bots}} integration allows \{\{FRS\_VARS.Neurons\_Bots}} defined on an \{\{FRS\_VARS.Company}} \{\{FRS\_VARS.Neurons}} tenant to be executed from within \{\{FRS\_VARS.ProductName}}. This integration is provided in the form of a new \{\{FRS\_VARS.Quick\_Action}} that enables users to configure the inputs required by the \{\{FRS\_VARS.Neurons\_Bot}}, so that they are automatically populated from the current business object context at run time.
+
+## Prerequisites
+
+The following prerequisites are required before you can configure an \{\{FRS\_VARS.Company}} \{\{FRS\_VARS.Neurons\_Bot}} for use within \{\{FRS\_VARS.ProductName}}:
+
+- **Request that feature flags be enabled:** The Neurons Bot and Action Service are disabled by default. Contact the Ivanti Cloud Operations team and request that these two feature flags are enabled. Refer to [More Information](../../More-Information.mdx).
+- **Enable the Action Service global constant**: To use \{\{FRS\_VARS.Neurons\_Bots}}, the **EnableActionService** must be set to **True**. If **EnableActionService** is not available in the global constants list (this may be the case for upgraded instances), Administrators can manually add the global constant. Refer to [Working with Global Constants](../Constants/Defining_Global_Constant.mdx).
+- **Define an App Registration in&#x20;**\{\{FRS\_VARS.Company}} \{\{FRS\_VARS.Neurons}}**:** The app registration parameters are required for your \{\{FRS\_VARS.Neurons\_Bot}} client registration within \{\{FRS\_VARS.ITSM}}. You can skip this prerequisite step if you already have a suitable app registration defined in \{\{FRS\_VARS.Company}} \{\{FRS\_VARS.Neurons}}. You need the **Neurons Auth URL**, **Client ID** and **Client Secret** details of the app registation when configuring your client registration in \{\{FRS\_VARS.ITSM}}. For infomation on creating an app registration in \{\{FRS\_VARS.Company}} \{\{FRS\_VARS.Neurons}}, refer to [App Registrations](https://help.ivanti.com/ht/help/en_US/CLOUD/vNow/app-registrations.htm).
+- **Define a&#x20;**\{\{FRS\_VARS.Neurons\_Bot}}**&#x20;in&#x20;**\{\{FRS\_VARS.Company}} \{\{FRS\_VARS.Neurons}}**:** You must either define a new \{\{FRS\_VARS.Neurons\_Bot}}, or have a suitable existing \{\{FRS\_VARS.Neurons\_Bot}} defined in your \{\{FRS\_VARS.Company}} \{\{FRS\_VARS.Neurons}} tenant. For information on creating a \{\{FRS\_VARS.Neurons\_Bot}}, refer to [Neurons Bots creation](https://help.ivanti.com/ht/help/en_US/CLOUD/vNow/neurons-bots-creation.htm).
+
+## Configure a Client Registration for your Neurons Bot
+
+<hint type="info">
+  Configuring a client registration only needs to be done if it has not already been setup previously for other integrations. Only a single client registration should ever be created.
+</hint>
+
+To configure the client registration:
+
+1. From \{\{FRS\_VARS.ITSM}}, open the **Client Registration** workspace.
+2. Enter the following details:
+   - **Name:** Enter a contextual name.
+   - **Is On premise:** Clear the check box, this is not supported for on-premises installations.
+   - **Client Registration URL:** Enter the Neurons Auth URL from the \{\{FRS\_VARS.Company}} \{\{FRS\_VARS.Neurons}} app registration.
+   - **Client ID** and **Client Secret:** Enter the Client ID and Client Secret from the \{\{FRS\_VARS.Company}} \{\{FRS\_VARS.Neurons}} app registration.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/47sr-E6ZMLG-tTi9R5jh9_clientregistrationscreenshot.png" alt="screenshot of the client registration configuration form" position="flex-start" size="40" indent="2" initialPath="../../Resources/Images/help-images/client_registration_screenshot.png" githubPath="Content/Resources/Images/help-images/client_registration_screenshot.png" showCaption="false"></Image>
+
+<Paragraph indent="1">
+  Click **Save**.
+</Paragraph>
+
+## Add the Neurons Bot Results Child Panel to the CI Business Object Layouts
+
+If you are upgrading from a \{\{FRS\_VARS.ProductName}} version earlier than 2024.2, you need to add the **Neurons Bot Results** child panel to the **CI** business object layouts.
+
+The **Neurons Bot Results** child panel enables you to monitor the progress of a \{\{FRS\_VARS.Neurons\_Bot}} when invoked.
+
+For more information on layouts, refer to [Creating a Layout](../Layouts/Creating-a-new-Layout.mdx).
+
+1. Navigate to the **Computer** form view for the **CI** business object.
+
+<Paragraph indent="1">
+  a. Open the Configuration console, and then select **Build > Business Objects**.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Open the **CI** business object, and then select **Layouts**.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. Select the layout you want to add the panel to.
+  For new setups this is typically added to the **AMC.CI** layout.
+</Paragraph>
+
+<Paragraph indent="1">
+  d. From **View in this layout**, select the view that you want to add the child panel to. For example, select **Computer**.
+</Paragraph>
+
+2. Add the **Neurons Bot Results** child panel.
+
+<Paragraph indent="1">
+  a. Scroll to the bottom of the **Child Panels** table, and click **Add Child Panel**.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Click **\<Not set>** in the **Display Name** column, and enter Neurons Bot Results .
+</Paragraph>
+
+<Paragraph indent="1">
+  c. Click **\<Not Set>** in the **Object** column (2nd column) to open the **Relationship Editor**, configure the following settings:
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/bxEQFJdRhWixiRmkeOi-i_childpanelrelationshipeditor.png" alt="Image of the relationship editor" position="flex-start" size="40" indent="2" initialPath="images/child_panel_relationship_editor.png" githubPath="Content/Configure/Neurons/images/child_panel_relationship_editor.png" showCaption="false"></Image>
+
+<Paragraph listStyleType="disc" indent="3">
+  Select **Use only direct relationship to child object(s)**.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="3">
+  Set **Direct Relationship** to **NeuronsBotInvocationCIResult (via ResultAssocCI)**.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="3">
+  Click **Save**, and then click **Yes**.
+</Paragraph>
+
+<Paragraph indent="1">
+  d. Click **\<Not Set>** in the **List** column, and select **NeuronsBotInvocationCIResults**.
+</Paragraph>
+
+<Paragraph indent="1">
+  e. Click **\<Not Set>** in the **Form(s)** column, and select **NeuronsBotInvocationCIResult**.
+</Paragraph>
+
+<Paragraph indent="1">
+  f. Select the **Show Count in Title** checkbox.
+</Paragraph>
+
+<Paragraph indent="1">
+  g. Click **Save**.
+</Paragraph>
+
+3. Add the **Neurons Bot Invocations** child panel.
+
+<Paragraph indent="1">
+  a. Scroll to the bottom of the **Child Panels** table, and click **Add Child Panel**.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Click **\<Not set>** in the **Display Name** column, and enter Neurons Bot Invocations.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. Click **\<Not Set>** in the **Object** column (2nd column) to open the **Relationship Editor**, and configure the following settings:
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="3">
+  Select **Use only rollup relationship(s) to grandchild objects**.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="3">
+  Set **Business Object** to **NeuronsBotInvocation**.
+</Paragraph>
+
+<Paragraph indent="1">
+  d. Click **Add New Rollup Sequence**, and configure the following settings.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="3">
+  Enter Invocations for the **Display Name**.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="3">
+  Select the **Show rollup records by default** checkbox.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="3">
+  Click the plus :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/0T2GD89ALzCw_AhelHk9y_plusicon.png" alt caption size="10" width="19" height="19"} icon next to rollup chain, and then click **\<Not Set>** under **no object selected**.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="3">
+  Select **NeuronsBotInvocationCIResult** from the drop-down list.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="3">
+  Click the plus :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/0T2GD89ALzCw_AhelHk9y_plusicon.png" alt caption size="10" width="19" height="19"} icon again, and then click **\<Not Set>** under **no object selected**.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="3">
+  Select **NeuronsBotInvocation** from the drop-down list.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="3">
+  Click **Save**, and then click **Save** again.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="3">
+  Click **Yes**, and then click **OK**
+</Paragraph>
+
+<Paragraph indent="1">
+  e. Click **\<Not Set>** in the **List** column, and select **NeuronsBotInvocations**.
+</Paragraph>
+
+<Paragraph indent="1">
+  f. Click **\<Not Set>** in the **Form(s)** column, and select **NeuronsBotInvocation**.
+</Paragraph>
+
+<Paragraph indent="1">
+  g. Select the **Show Count in Title** checkbox.
+</Paragraph>
+
+<Paragraph indent="1">
+  h. Click **Save**.
+</Paragraph>
+
+## Configure a Neurons Bot Quick Action
+
+You need to configure a \{\{FRS\_VARS.Neurons\_Bot}} Quick Action in the \{\{FRS\_VARS.Graphical\_Action\_Designer}}, which defines how a \{\{FRS\_VARS.Neurons\_Bot}} is invoked within \{\{FRS\_VARS.ITSM}}.
+
+To open the \{\{FRS\_VARS.Graphical\_Action\_Designer}}, refer to [Using the Graphical Action Designer (GAD)](<../QuickActions/Graphical Action Designer/Using_the_Graphical_Action_Designer.mdx>).
+
+For information on configuring a \{\{FRS\_VARS.Neurons\_Bot}} Quick Action, refer to [Neurons Bot Quick Action](<../QuickActions/Graphical Action Designer/Integration Actions/Neurons Bot.mdx>).
+
+## Invoke a Neurons Bot
+
+Refer to [Invoking a Neurons Bot](Triggering_a_Neurons_Bot.mdx)

@@ -1,0 +1,24 @@
+---
+title: Using the GetAllAllowedObjectNames Web Method
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:01 GMT+0300 (Eastern European Summer Time)
+---
+
+Retrieves a list of all business objects.
+
+## Request Syntax
+
+List\<string> GetAllAllowedObjectNames(string sessionKey, string tenantId);
+
+## Parameters
+
+- **sessionKey**: The session key from the **Connect** web method.
+- **tenantId**: The tenant for which the session key is authenticated.
+
+## Return Value
+
+An array of strings, where each item corresponds to the name of the business object.
+
+## Example
+
+string\[] boNameArray = frSvc.GetAllAllowedObjectNames(authSessionKey, tenantId);

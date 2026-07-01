@@ -1,0 +1,276 @@
+---
+title: Work Order
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:46 GMT+0300 (Eastern European Summer Time)
+---
+
+<hint type="info">
+  This is the Out Of The Box (OOTB) version of Facilities Management, if you are using \{\{FRS\_VARS.Company}} \{\{FRS\_VARS.Neurons\_for\_Facilities}}, refer to [Create a Work Order](<../Neurons for Facilities/Create-Work_Order.mdx>)
+</hint>
+
+A Work Order is either a one-time job or scheduled maintenance job that occurs at regular intervals to be done at a facility or a site. It involves multiple tasks and checklists to be completed before closing the Work Order.
+
+<hint type="info">
+  If you get an error when creating a Work Order, it is most likely due to the Security Operations package that is applied which deletes the **Work Order** and **HR Case** business objects for My Items' Configuration in the Configuration console. Reach out to your organization's administrator to fix this issue.
+
+  For more information, refer to :Link[Adding Customized Business Objects]{label="Adding Customized Business Objects" overridedLabel="Adding Customized Business Objects" spaceId docId="VpH742vA_kwaOL-MVX57Y" version="v2" docAnchorId="#Adding" loadingMethod="dynamic" newTab="false" githubPath="../../Configure/Layouts/Configure_Workspace_Options.htm#Adding" href="../../Configure/Layouts/Configure_Workspace_Options.mdx"}.
+</hint>
+
+## Creating a Work Order
+
+1. From the workspace menu, select **Work Orders**.
+2. Enter information into the fields:
+   - **Requested For**: Select the customer for whom the Work Order is requested for.
+   - **Summary** and **Description**.
+   - **Status**: It is set to **Active** initially, as the Work Order progresses through the workflow, the owner can change to different statuses such as **Logged** or **Approval Rejected**, to mark the exact state the Work Order is in. **Closed** is the last status which marks the Work Order completion.
+   - **Team** and **Owner**.
+   - **Priority**: Set a priority between **1** to **5**, **1** being the highest priority. By default, it is set to **2**.
+   - **Location**: Select a location or create one clicking Add Location. See Location for more information.
+   - **Category**, **Sub-category**, and **Work Order Type**.
+   - **Schedule Type**: Displayed if the Work Order Type is **Scheduled Maintenance**. You can schedule the maintenance for hourly, daily, weekly, monthly, or yearly. And link a maintenance record from the Schedule Maintenance tab or create one. See Preventive Maintenance for more information.
+3. Click **Save**.
+
+### Work Order Tabs
+
+If you do not see some of the tabs listed here, they may be hidden, click the :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/QguiND0-Jf_eYUcrBPGk3_unhide-tabs.png" alt caption size="10" width="14" height="14"} icon at the right corner of the tabs list and select the tab you wish to reveal.
+
+<ExpandableHeading>
+  ## Details
+
+  You can add notes, send emails, attach files, and link assets here.
+
+  ### To send an email:
+
+  1. Click **Add** under **Journals** and select **Email**.
+  2. Enter information into fields and click **OK**.
+
+  <Paragraph indent="1">
+    The email is sent to the recipient and the copy is saved in the **Journal** area.
+  </Paragraph>
+
+  ### To add a note:
+
+  1. Click **Add** under **Journals** and select **Notes**.
+  2. Enter information into fields and click **OK**.
+
+  <Paragraph indent="1">
+    The note is saved in the **Journal** area.
+  </Paragraph>
+
+  ### To attach a file:
+
+  1. Click **Attach** under **Attachment** to attach a file or an image.
+  2. Browse the file and click **OK**.
+
+  <Paragraph indent="1">
+    The selected file is attached to the Work Order and displayed in the **Attachment** area.
+  </Paragraph>
+
+  ### To link an asset to the Work Order:
+
+  1. Click **Link** under **Asset**.
+  2. Select an asset and click **OK**.
+
+  <Paragraph indent="1">
+    The linked asset is displayed in the **Asset** area.
+  </Paragraph>
+
+  <hint type="info">
+    You can only link and use Facility Assets in Facilities Management.
+  </hint>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Task
+
+  Add tasks and assign them to relevant teams and owners that can help complete this order. When a task is added, the assigned owner is notified of the task. The task owner can accept, reject, reassign, or complete the task.
+
+  ### To add a task:
+
+  1. Click **New Task** and enter information into the fields.
+     - **Summary** and **Details**.
+     - **Priority**: Select a value from 1 to 5 based on the priority to want to give to complete the task.
+     - **Service**: Select the area which the task belongs.
+     - **Team** and **Owner**: Assign the team and owner. The owner gets notified of the task and will take necessary action.
+     - **Effort** and **Cost**: The effort and cost is calculated based on the **Cost per Minute** defined for the team and or owner and the time spent to complete the task.
+  2. Click **Save**.
+
+  <Paragraph indent="1">
+    The task is created and a record is displayed in the Task tab.
+  </Paragraph>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Confidential Participants
+
+  This tab is available only when you select the **Confidential** check box.
+
+  You can limit access to the Work Order to selected users by adding Confidential Participants.
+
+  ### To add Confidential Participants:
+
+  1. Click **Link** and select the user to whom you wish to give access to the Work Order.
+  2. Press the **SHIFT** key to select multiple users.
+  3. Click **Select**.
+
+  <Paragraph indent="1">
+    The selected users are added to the Confidential Participants list and only they will have access to the Work Order.
+  </Paragraph>
+
+  ### To remove a Confidential Participant:
+
+  1. Select the user whom you wish to deny access to the Work Order.
+  2. Click **Unlink**.
+
+  <Paragraph indent="1">
+    The selected user is removed from the Confidential Participants list and will not have access to the Work Order.
+  </Paragraph>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Checklist
+
+  You can add one or more checklist items to the Work Order which can help as reminders that need to be completed before closing a Work Order.
+
+  ### To add a checklist:
+
+  - Click the **Add New Check List** to add a new checklist.
+
+  <Paragraph indent="1">
+    Or
+  </Paragraph>
+
+  - Click **Link** to link an existing checklist to the Work Order.
+
+  ### To complete a checklist:
+
+  - Select the checklist and click **Complete**.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Facilities Assets
+
+  Link facility assets that will be used for the Work Order.
+
+  ### To link/unlink a facility asset:
+
+  1. Click **Link** and select the facility asset that will be used for the Work Order.
+  2. Click **OK**.
+
+  <Paragraph indent="1">
+    The selected facility asset is added to the Work Order.
+  </Paragraph>
+
+  3. To unlink, select the facility asset you wish to remove from the Work Order and click **Unlink**.
+
+  <Paragraph indent="1">
+    The selected facility asset is removed from the Work Order.
+  </Paragraph>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Work Order Financials
+
+  The cost of the Work Order is managed in this tab. You can either add cost item from the existing list or create a new cost item.
+
+  ### To add cost from existing list:
+
+  1. Click **New from price list item**.
+  2. Select the cost item.
+
+  ### To create a new cost item:
+
+  3. Click **New Cost Item**.
+  4. Enter cost details into the fields and click **Save**.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Scheduled Maintenance
+
+  This tab is displayed only when the **Work Order Type** is **Scheduled Maintenance**. You need to first setup Preventive Maintenance records which can then be linked to the Scheduled Maintenance.
+
+  To link a maintenance schedule, click **Link** and select a record. Based on the Preventive Maintenance Schedule definition that is linked, the Child Work Orders are created.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Child Work Order
+
+  This tab is displayed only when the **Work Order Type** is **Scheduled Maintenance**. Based on the Preventive Maintenance Schedule definition, the number of Child Work Orders are created.
+
+  For example, if the Preventive Maintenance Schedule occurs daily, then one maintenance schedule record for each day is created in the **Child Work Order** tab.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Purchase Order, Vendor, Invoice, and Shipment
+
+  You can link Purchase Order, Vendor, Invoice, and Shipment records to the Work Order.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Work Order Project
+
+  This tab is displayed when the **Work Order Type** is **Project Related**. You can link the associated Work Order Project to the Work Order.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Workflow Instance
+
+  The workflow applied to the Work Order based on the Schedule Maintenance linked to the Work Order is displayed. Double-click the workflow record and then click **View Instance** to view the workflow.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Activity History
+
+  The history of all emails and notes is displayed here. This includes emails you've sent to users, as well as system-generated emails. You can also link to relevant emails associated with other work orders.
+
+  ### To link or unlink an email:
+
+  1. Click **Link** and select the email from the list.
+
+  <Paragraph indent="1">
+    The selected email is linked to the Work Order.
+  </Paragraph>
+
+  2. Select the email record and click **Unlink** to remove the link from the Work Order.
+
+  ### To send an email
+
+  3. Click **New** > **Email**.
+  4. Enter information into the fields:
+     - **Category**: Select Outgoing.
+     - **From**: Is auto-filled with the logged-in user's email ID.
+     - **From Name**: Is auto-filled the logged-in user's name.
+     - **To**: The recipient's email ID.
+     - **Subject**: The email subject.
+     - **Processed**: This checkbox is selected by default, leave it selected.
+     - **Publish to Web**: Select this to publish the email in the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Self\_Service\_User}} portal.
+     - **Message**: The email message.
+  5. Click **Save**.
+
+  ### To add a note:
+
+  6. Click **New** > **New Notes**.
+  7. Enter information into the fields:
+     - **Category**, **Source**, and **Summary**.
+     - **Duration in mins**: The amount of time spent on the activity.
+     - **Publish to Web**: Select this to publish the note in the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Self\_Service\_User}} portal.
+  8. Click **Save**.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Audit History
+
+  You can view all the changes made to the Work Order here, such as the status changes, email records, links, and unlinks.
+</ExpandableHeading>
+
+## Printing the Work Order
+
+1. From the workspace menu, select **Work Orders**.
+2. Select the Work Order you wish to print.
+3. Click **More** > **Print** > **Print Work Order**.
+
+<Paragraph indent="1">
+  The Work Order is displayed in a Report Viewer.
+</Paragraph>
+
+4. Select the format and print the Work Order.

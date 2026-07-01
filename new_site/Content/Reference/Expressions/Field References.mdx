@@ -1,0 +1,321 @@
+---
+title: Using Field References
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:58 GMT+0300 (Eastern European Summer Time)
+---
+
+- :Link[About the Current Business Object]{label="About the Current Business Object" overridedLabel="About the Current Business Object" spaceId docId="LE0re3RODaLD2TMvD4oNG" version="v2" docAnchorId="#AboutCurrent" loadingMethod="dynamic" newTab="false" href="Field References.mdx"}
+- :Link[Referencing a Field in the Current Business Object]{label="Referencing a Field in the Current Business Object" overridedLabel="Referencing a Field in the Current Business Object" spaceId docId="LE0re3RODaLD2TMvD4oNG" version="v2" docAnchorId="#Referencing" loadingMethod="dynamic" newTab="false" href="Field References.mdx"}
+
+## About the Current Business Object
+
+Most expressions refer to fields of business objects.
+
+In business rules, the current business object is the instance of the business object that contains the business rule. For example, if a business rule is part of the definition of an incident, the current business object is the specific incident that triggered this business rule.
+
+In other types of expressions, for example, toolbar expressions, the current business object is the business object whose workspace contains the toolbar. For every kind of expression, there is a current business object that makes sense for that expression.
+
+If an expression does not have a relationship specifier, the field name refers to the current business object. For example, **$(Status)** refers to the **Status** field of the current business object.
+
+The one exception is LDAP expressions. They do not refer to business object fields.  Instead, they refer to fields of the structures in an LDAP model. For more information, see [Configuring LDAP Settings](../../Configure/ImportExportData/LDAP_Settings.mdx).
+
+## Referencing a Field in the Current Business Object
+
+The simplest field reference is a field name. To reference a field within the current business object, refer to the name of the field. You can use a field reference alone, as in the first example below, or put field references inside of an expression, as in the second example below. If the field reference does not have square brackets in front of it, it refers to the current object.
+
+$(*FieldName*)
+
+$(PrimaryCost + SecondaryCost)
+
+For example, if you are in the **Incident** business object, to reference the **Service** field, use the syntax:
+
+$(Service)
+
+You can also reference a field in the current business object in business rules. For example, the following business rule sets the **ActualService** field to the value of the **Service** field in the **Incident** business object whenever the **Service** field is changed. The value of the **ActualService** field is computed by an expression:
+
+*Example of Referencing a Field within the Current Business Object*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/FZyxvzsCRSu4ysGMfuZp1_expressionreffield.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/expression_ref_field.png" githubPath="Content/Resources/Images/help-images/expression_ref_field.png" showCaption="false"></Image>
+
+## Using Relationship Specifiers
+
+- :Link[Referencing a Field in a Related Business Object]{label="Referencing a Field in a Related Business Object" overridedLabel="Referencing a Field in a Related Business Object" spaceId docId="LE0re3RODaLD2TMvD4oNG" version="v2" docAnchorId="#FieldRefNames" loadingMethod="dynamic" newTab="false" href="Field References.mdx"}
+- :Link[Accessing a Field that is Referenced by a Link Field in the Business Object]{label="Accessing a Field that is Referenced by a Link Field in the Business Object" overridedLabel="Accessing a Field that is Referenced by a Link Field in the Business Object" spaceId docId="LE0re3RODaLD2TMvD4oNG" version="v2" docAnchorId="#AccessingLink" loadingMethod="dynamic" newTab="false" href="Field References.mdx"}
+- :Link[Referencing a Business Object Using an Absolute Field Reference]{label="Referencing a Business Object Using an Absolute Field Reference" overridedLabel="Referencing a Business Object Using an Absolute Field Reference" spaceId docId="LE0re3RODaLD2TMvD4oNG" version="v2" docAnchorId="#Using" loadingMethod="dynamic" newTab="false" href="Field References.mdx"}
+- :Link[Accessing a Field from the Other Business Object]{label="Accessing a Field from the Other Business Object" overridedLabel="Accessing a Field from the Other Business Object" spaceId docId="LE0re3RODaLD2TMvD4oNG" version="v2" docAnchorId="#AccessingValid" loadingMethod="dynamic" newTab="false" href="Field References.mdx"}
+- :Link[Using Object Matching to Reference a Specific Value of a Business Object]{label="Using Object Matching to Reference a Specific Value of a Business Object" overridedLabel="Using Object Matching to Reference a Specific Value of a Business Object" spaceId docId="LE0re3RODaLD2TMvD4oNG" version="v2" docAnchorId="#Accessing" loadingMethod="dynamic" newTab="false" href="Field References.mdx"}
+- :Link[Referencing a Constrained Validation List for a Business Object]{label="Referencing a Constrained Validation List for a Business Object" overridedLabel="Referencing a Constrained Validation List for a Business Object" spaceId docId="LE0re3RODaLD2TMvD4oNG" version="v2" docAnchorId="#DefiningValid" loadingMethod="dynamic" newTab="false" href="Field References.mdx"}
+
+### Referencing a Field in a Related Business Object
+
+You can reference a related business object through a relationship or through a link field. For information about using link fields, see :Link[Accessing a Field that is Referenced by a Link Field in the Business Object]{label="Accessing a Field that is Referenced by a Link Field in the Business Object" overridedLabel="Accessing a Field that is Referenced by a Link Field in the Business Object" spaceId docId="LE0re3RODaLD2TMvD4oNG" version="v2" docAnchorId="#AccessingLink" loadingMethod="dynamic" newTab="false" href="Field References.mdx"}.
+
+- :Link[About Related Business Objects]{label="About Related Business Objects" overridedLabel="About Related Business Objects" spaceId docId="LE0re3RODaLD2TMvD4oNG" version="v2" docAnchorId="#About1" loadingMethod="dynamic" newTab="false" href="Field References.mdx"}
+- :Link[About Empty Internal Reference Names]{label="About Empty Internal Reference Names" overridedLabel="About Empty Internal Reference Names" spaceId docId="LE0re3RODaLD2TMvD4oNG" version="v2" docAnchorId="#About_Empty_InternalReference_Names" loadingMethod="dynamic" newTab="false" href="Field References.mdx"}
+- :Link[Referencing a Remote Related Business Object]{label="Referencing a Remote Related Business Object" overridedLabel="Referencing a Remote Related Business Object" spaceId docId="LE0re3RODaLD2TMvD4oNG" version="v2" docAnchorId="#Referencing2" loadingMethod="dynamic" newTab="false" href="Field References.mdx"}
+- :Link[Using an Internal Reference Name to Access a Business Object Through a Relationship]{label="Using an Internal Reference Name to Access a Business Object Through a Relationship" overridedLabel="Using an Internal Reference Name to Access a Business Object Through a Relationship" spaceId docId="LE0re3RODaLD2TMvD4oNG" version="v2" docAnchorId="#Using3" loadingMethod="dynamic" newTab="false" href="Field References.mdx"}
+- :Link[Example of Referencing a Related Business Object]{label="Example of Referencing a Related Business Object" overridedLabel="Example of Referencing a Related Business Object" spaceId docId="LE0re3RODaLD2TMvD4oNG" version="v2" docAnchorId="#Example5" loadingMethod="dynamic" newTab="false" href="Field References.mdx"}
+
+### About Related Business Objects
+
+To access a related business object through a relationship, the relationship must be one-to-one or many-to-one to remove ambiguity. That is, the expression expects to find at the most one matching child record for the corresponding relationship. At most, one related business object must be found for a given business object.
+
+Use the following syntax to reference a related business object:
+
+$(\[BusinessObjectName#SubObjectName.InternalReferenceName]*FieldName*)
+
+where BusinessObjectName#SubObjectName.InternalReferenceName refers to a relationship. Anything in square brackets is a relationship specifier.
+
+where *BusinessObjectName*#*SubObjectName* is the name of the business object that the relationship references. The *InternalReferenceName* specifies the relationship to the business object if there is more than one.
+
+### About Empty Internal Reference Names
+
+You must always specify the internal reference name. However, if you have an older expression that does not specify the internal reference name, that older expression will still work unless you make any changes to it. Once you make changes to it, you can no longer use it without the internal reference name. You cannot create any new relationships that have a null reference name. See [Using Relationships](../../Configure/Relationships/Adding_a_Relationship_to.mdx).
+
+You must specify an internal reference name in a relationship specifier if the relationship has an internal reference name. If you do not specify an internal reference name, the application assumes that you are specifying a relationship with a null reference name. A relationship specifier with an internal reference name can only refer to the relationship with that internal reference name.  A relationship specifier without an internal reference name can only refer to the relationship with an empty or a null internal reference name. (In previous releases, you could leave the internal reference name blank and the application would use any internal reference name.)
+
+If the internal reference name is empty, the business object name must still end with a period. An example is: \[Task#Assignment.]Owner.
+
+If a relationship specifier has a non-empty internal reference name, it must be explicitly used in any references that use that expression.  A business object reference without an internal reference name cannot use a relationship with a named internal reference name.
+
+For example, if you enter **\[Incident#.]**, the application looks for a relationship from the current business object (in this case, incident) that has an empty internal reference name field; however, the internal reference name field is required, and therefore it cannot find one. (In previous releases, it would look for any relationship that matched and used that.) You must enter an internal reference name, such as \[Incident#.name].
+
+Therefore, if you enter something like **\[Incident#.]** in a business rule, it fails.  
+
+### Referencing a Remote Related Business Object
+
+You can use more than one relationship specifier to specify a path for a field reference to a remote related business object. Each relationship specifier is enclosed in square brackets, specifying a multi-hop path to the field:
+
+\[RelSpecifier1]\[RelSpecifier2]\[RelSpecifier3]FieldName
+
+### Using an Internal Reference Name to Access a Business Object Through a Relationship
+
+To access a related business object through a relationship, use this form \[BusinessObjectName#SubObjectName.InternalReferenceName], where:
+
+- BusinessObjectName#SubObjectName is the business object name (ending with or containing #) for the related business object and ends with a period. An example is: Task#Assignment.. The # separates the name of the business object from the name of the subobject.
+  - For regular business objects, the BusinessObjectName is of the form \[*BusinessObjectName*#.], for example, \[Problem#.].
+  - For group member or sub business objects, the BusinessObjectName is of the form \[BusinessObjectName#SubObjectName.], for example, \[Profile#Employee.].
+- InternalReferenceName distinguishes one relationship from another. There are times when there is more than one relationship between the same parent and child business objects (for example, incident to employee). In such cases, the application uses the internal reference name of the relationship to distinguish between the relationships. This parameter is specified after the period.
+
+The internal reference name is specified in the **Internal Reference Name** field on the **Relationships** tab of the business object. An example is \[Problem#.ProblemAssocProblemWorkaround].
+
+*Example of a Relationship with the Problem Business Object*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/afr0uDVQB3c-44-_rMo-S_borelationship.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/BO_relationship.png" githubPath="Content/Resources/Images/help-images/BO_relationship.png" showCaption="false"></Image>
+
+### Example of Referencing a Related Business Object
+
+Use this type of syntax in the Form Editor to bring in values from a related business object (for example, the **EmployeeLocation** field from the **Employee** business object):
+
+*Example of Accessing a Value from a Related Business Object*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/_FnTuHSaI1WXmSrM6qWQ8_expression-employee.jpg" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/expression employee.jpg" githubPath="Content/Resources/Images/help-images/expression employee.jpg" showCaption="false"></Image>
+
+### Accessing a Field that is Referenced by a Link Field in the Business Object
+
+You can use link fields to refer to related objects. Link fields are associated with relationships and are an alternate form of reference. To access a related object through a link field, use the relationship specifier \[link\:LinkField]. This must be used from the business object containing the link field; you cannot reference remote link fields.
+
+To access a field that is referenced by a link in a business object, use the following syntax:
+
+$(\[**link**:LinkField]FieldName)
+
+For example, the **OrgUnitLink** field in the **Incident** business object points to a corresponding organizational unit record. To reference the value of the **Name** field of the organizational unit record by means of the **OrgUnitLink** field, use the following expression:
+
+$(\[link\:OrgUnitLink]Name)
+
+You can use this syntax in the following editing rule, to set the organization unit ID of the incident:
+
+*Example of Accessing a Field Referenced by a Link*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/gRCQFYhkdyO5KKYCoYl2f_expressionreflinkfield.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/expression_ref_link_field.png" githubPath="Content/Resources/Images/help-images/expression_ref_link_field.png" showCaption="false"></Image>
+
+Here is another example:
+
+$("9"+\[link\:ProfileLink]Phone1)
+
+This returns a phone number from a related business object, prefixed by a number 9.
+
+### Referencing a Business Object Using an Absolute Field Reference
+
+Absolute references, which are another way of referencing a business object, use this syntax: 
+
+<Paragraph indent="1">
+  \[^BusinessObjectName#]FieldName
+</Paragraph>
+
+Use an absolute reference to return the value of the field regardless of the current business object.  This syntax can use a constraint which is a "where" clause followed by an expression. For example:
+
+<Paragraph indent="1">
+  \[^BusinessObjectName# **where** FieldValue == value]FieldName
+</Paragraph>
+
+such as
+
+<Paragraph indent="1">
+  \[^Incident# where IncidentNumber == 123456] Category
+</Paragraph>
+
+In this example, the application finds the particular incident with an incident number of 123456 and returns it and then you can reference the **Category** field. If the "where" clause returns more than one business object, then this fails.
+
+An alternate syntax is this:
+
+<Paragraph indent="1">
+  \[^BusinessObjectName# **object** LinkField]
+</Paragraph>
+
+such as
+
+<Paragraph indent="1">
+  \[^Incident# **object** RecID]
+</Paragraph>
+
+where RecID is the RecID of a business object, which is normally specified by a link field.
+
+This syntax is mainly designed for integration scenarios.
+
+### Accessing a Field from the Other Business Object
+
+Most expressions that are focused on the relationship between one business object and another have what is known as the other business object. For example, editing business rules that have link fields have other business objects.
+
+Many, but not all, expressions also have an other business object. The expressions that have other business objects are those where there is a related business object that is associated with the editing business rule for the expression. (Only editing business rules have an other business object; however, other expressions can have an other business object, such as the **Send Email** and **Insert Child Object** quick actions or the **Condition** field under the **Relationships** tab.)
+
+For example, the following editing rule is for a link field that associates an incident with an owner team. The current object is the specific incident and the other object is the **Team** business object. The other object is referred to by using the relationship specifier \[**OtherObject**].
+
+Below, **OwnerTeam** is a link field and the **OwnerTeam** field is referring to another business object.
+
+*Example of Using an "Other" Object in an Editing Rule*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/1c0VdGV70w6vVWtbUE7qK_editingrule.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/editing_rule.png" githubPath="Content/Resources/Images/help-images/editing_rule.png" showCaption="false"></Image>
+
+In an editing business rule, whenever the field to be set is a validated field, the other object refers to the validation business object of the validated field. You can use the other object syntax to refer to fields of the validation business object. This is how you can access validation lists with additional information. Use the following syntax:
+
+$(\[**OtherObject**]*FieldName*)
+
+For example:
+
+$(\[OtherObject]PrimaryEmail)
+
+This returns a pick list called OtherObject in reference to the **PrimaryEmail** field in the business object. You can only use this in editing business rules.
+
+For example, if you are in an incident and want to access the **TeamEmail** value for the **OwnerTeam** currently set for the incident record, first ensure that the **OwnerTeam** field in the incident is configured to be validated. (To see if the field is validated, go to the **Fields** tab of the business object, select the **OwnerTeam** field, and under the **Pick List** category, see if the **Validated** field is checked.) In this example, the **OwnerTeam** field in the incident is validated using the named validation list **Team of StandardUserTeam used in Incident**.
+
+*Accessing a Field from a Validated Business Object Example 1*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/c5v5cNqS6s4vRDIN0LaTl_validationlist.jpg" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/validation_list.jpg" githubPath="Content/Resources/Images/help-images/validation_list.jpg" showCaption="false"></Image>
+
+Second, (with the **OwnerTeam** field validation in place), define an editing rule against the **OwnerTeam** field in the incident, so that when this field is changed, the rule returns the field value of the validated business object (that is, the other object). See the following example:
+
+*Accessing a Field from a Validated Business Object Example 2*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/95mWAeh92u8qaZkEdwXEN_expressionvalidatedlist.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/expression_validated_list.png" githubPath="Content/Resources/Images/help-images/expression_validated_list.png" showCaption="false"></Image>
+
+There are two special cases of other business objects that have special syntax:
+
+- In an object matching expression, \[**MatchedObject**] refers to an object that has been matched.
+- In a pick list constraint, \[**ValidationList**] refers to the validation object.
+
+### Using Object Matching to Reference a Specific Value of a Business Object
+
+$(\[**MatchedObject**]FieldName)
+
+This syntax is only used within the context of object matching.
+
+For example, consider the **Link and Resolve** button used in incident object matching. It links a knowledge article to the current incident record and resolves the incident:
+
+*Matched Object Example*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/b2SvyWHSGkTu48jkVVHyp_512.jpg" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/5_12.jpg" githubPath="Content/Resources/Images/help-images/5_12.jpg" showCaption="false"></Image>
+
+In the example, the fields on the left side are from the business object referencing the object matching definition (in this example, the **Incident** business object), whereas the $(\[MatchedObject]Resolution) expression on the right side references the field of the business object from object matching (that is, the **Resolution** field from the **Knowledge** business object.)
+
+In this example, when the user clicks the **Link and Resolve** button, the application populates the **Resolution** field in the incident with the value of the **Resolution** field from the **Knowledge** business object (that is, the matched object).
+
+### Referencing a Constrained Validation List for a Business Object
+
+To define a constrained validation list (also called a pick list), use the following syntax within the context of the named validation list definition:
+
+$(\[**ValidationList**]*FieldName*)
+
+Typically the values from one validated field are constrained based on the value of another field in the same business object. For example, the **JobTitle** field in the **Employee** business object is constrained based on the value of the department selected for the employee.
+
+To define such a validation list, do the following:
+
+1. From the Configuration Console, click **Build > Pick Lists** to open the **Pick Lists** workspace.
+2. Open a pick list.
+3. In the **Constraints** area, enter the following:
+   - In the first field, select a field name from the drop-down list.
+   - In the second field, select **Equal to** from the drop-down list.
+   - In the third field, enter **$(\[ValidationList] FieldName>)**, where FieldName is the name of a field in the business object.
+
+*Defining a Constrained Validation List Example*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Ccr6eq1Zen068axhhMF___510new.jpg" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/5_10NEW.jpg" githubPath="Content/Resources/Images/help-images/5_10NEW.jpg" showCaption="false"></Image>
+
+In this example, the values in the first field come from the validation business object. The business object is **JobTitle** (as indicated in the **Get list data from** drop-down list).
+
+The $(\[ValidationList]Department) expression references the field from the business object, which utilizes this named validation list. In this case, the named validation list is **Employee** business object.
+
+With this configuration, the job titles that can be selected for the employee are based on the department value that was previously selected. The department value from the employee is then used to determine the job title records with the same department name and return the constrained results accordingly.
+
+To reference the named validation list across other business objects, use the $(\[**ValidationList**]FieldName) syntax (instead of $(FieldName)). For example, if there is a new business object that needs to implement the same constrained validation list, use the same named validation list for that business object.
+
+## Using Field Qualifiers
+
+Field qualifiers are keywords after a colon.
+
+- :Link[Referencing a Translated Value of a Business Object Field]{label="Referencing a Translated Value of a Business Object Field" overridedLabel="Referencing a Translated Value of a Business Object Field" spaceId docId="LE0re3RODaLD2TMvD4oNG" version="v2" docAnchorId="#Translated" loadingMethod="dynamic" newTab="false" href="Field References.mdx"}
+- :Link[Referencing the Original Value of a Business Object]{label="Referencing the Original Value of a Business Object" overridedLabel="Referencing the Original Value of a Business Object" spaceId docId="LE0re3RODaLD2TMvD4oNG" version="v2" docAnchorId="#Original" loadingMethod="dynamic" newTab="false" href="Field References.mdx"}
+
+### Referencing a Translated Value of a Business Object Field
+
+To return information from an expression in the culture of the current browser, use this syntax:
+
+<Paragraph indent="1">
+  FieldName:**language**
+</Paragraph>
+
+To return information from an expression in another culture, use this syntax:
+
+<Paragraph indent="1">
+  FieldName:**language** ("CultureCode")
+</Paragraph>
+
+For example:
+
+<Paragraph indent="1">
+  Status\:language ("fr-FR")
+</Paragraph>
+
+To see a list of supported languages and cultures, see :Link[Available Languages and Cultures]{label="Available Languages and Cultures" overridedLabel="Available Languages and Cultures" spaceId docId="ZOdB7cSrDXVspZWLePaWn" version="v2" docAnchorId="#culture" loadingMethod="dynamic" newTab="false" githubPath="../../Configure/Localization/Setting Up Languages.htm#culture" href="../../Configure/Localization/Setting Up Languages.mdx"}.
+
+### Referencing the Original Value of a Business Object
+
+To reference a business object in an expression with its original, pre-transaction value (as opposed to its updated value), use this syntax:
+
+<Paragraph indent="1">
+  \[BusinessObjectName#.InternalReferenceName]FieldName:**original**
+</Paragraph>
+
+To reference a business object in an expression with its updated, post-transaction value, use this syntax:
+
+<Paragraph indent="1">
+  \[BusinessObjectName#.InternalReferenceName]FieldName
+</Paragraph>
+
+For example, if you have changed the **Status** field from open to resolved, the expression would normally use the status of resolved. However, to reference the original status of open, use this syntax:
+
+<Paragraph indent="1">
+  \[BusinessObjectName#.InternalReferenceName]FieldName:**original**
+</Paragraph>
+
+For example:
+
+<Paragraph indent="1">
+  \[Task#.name]Status\:original
+</Paragraph>
+
+Use this syntax when you need to reference the transition (that is, the beginning and ending values) and not just the ending value. For example, if you want to do something every time a task moves from open status to resolved status, you could set a rule, but you could set a different rule every time a task goes from logged status directly to resolved status.
+
+<hint type="info">
+  The syntax - Original does not work for Send Email Quick Action.
+</hint>

@@ -1,0 +1,48 @@
+---
+title: Create a Child Record Quick Action
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:56 GMT+0300 (Eastern European Summer Time)
+---
+
+- :Link[About the Create a Child Record Quick Action]{label="About the Create a Child Record Quick Action" overridedLabel="About the Create a Child Record Quick Action" spaceId docId="e2UZPqUSp80hFfijWDp8p" version="v2" docAnchorId="#About_the_Create_a_Child_Record" loadingMethod="dynamic" newTab="false" href="Create a Child Record.mdx"}
+- :Link[Parameters]{label="Parameters" overridedLabel="Parameters" spaceId docId="e2UZPqUSp80hFfijWDp8p" version="v2" docAnchorId="#Create_Child_Record_Parameters" loadingMethod="dynamic" newTab="false" href="Create a Child Record.mdx"}
+- \{\{FRS\_VARS.Classic\_Action\_Designer}}: [Insert Child Object Action](<../../Classical Action Designer/templates/Insert Child Object.mdx>)
+
+## About the Create a Child Record Quick Action
+
+The **Create a Child Record** action inserts a child business object into a form or list, such as a new incident, field value, or a note. Use this action to add clarity, constructing additional expressions restricting the viewing and use of the action to certain field states.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/YeNpR2AIMW9r3Qo-CaqW2_qa-create-a-child-block.png" position="flex-start" size="40" initialPath="../../../../Resources/Images/help-images/qa create a child block.png" githubPath="Content/Resources/Images/help-images/qa create a child block.png" showCaption="false"></Image>
+
+## Parameters
+
+To access the parameters, select the **Action Block** to display them in the **Settings** pane.
+
+### Action Block Settings
+
+- **Block Label**: A unique name for the block. This is useful to identify each action when you have more than one of the same action block added or cloned in the design area.
+- **Child Object**: The child business object to insert. Select from the dropdown list. The fields that appear are based on this value.
+- **Field Name**: The name of the field to insert.
+
+<hint type="info" indent="1">
+  For version prior to 2025.4 release, to enable the save functionality for any custom object, enter ‘Save’ as the name text field. This changes the button’s function to ‘Save’ for that custom object.
+</hint>
+
+- **Field Value**: The value of the field to insert.
+- **Web UI parameters**: This field is only used to post the object to the Social Board, and it takes only one expression:
+
+<Paragraph indent="2">
+  \{socialshare\:true, elementId: $(elementId)}
+</Paragraph>
+
+<Paragraph indent="1">
+  For example, in an Incident, this field is used in the Post social massage associated with Incident action.
+</Paragraph>
+
+- **Add Field**: Adds a field to the list.
+
+Click **Save** to commit your changes.
+
+### Start Block Settings
+
+These settings are accessed by selecting the **Start Block**, refer to :Link[Start Block Settings]{label="Start Block Settings" overridedLabel="Start Block Settings" spaceId docId="T_2hq2qRJzWxiHLCfgn-7" version="v2" docAnchorId="#CommonTab" loadingMethod="dynamic" newTab="false" githubPath="../Using_the_Graphical_Action_Designer.htm#CommonTab" href="../Using_the_Graphical_Action_Designer.mdx"}.

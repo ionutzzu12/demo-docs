@@ -1,0 +1,112 @@
+---
+title: Send an email Quick Action
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:56 GMT+0300 (Eastern European Summer Time)
+---
+
+- :Link[About the Send an email Quick Action]{label="About the Send an email Quick Action" overridedLabel="About the Send an email Quick Action" spaceId docId="RJy16cffm-ilBhZ3x8nQv" version="v2" docAnchorId="#About_the_Send_EmailQuickAction" loadingMethod="dynamic" newTab="false" href="Send Email.mdx"}
+- :Link[Parameters]{label="Parameters" overridedLabel="Parameters" spaceId docId="RJy16cffm-ilBhZ3x8nQv" version="v2" docAnchorId="#Parameters" loadingMethod="dynamic" newTab="false" href="Send Email.mdx"}
+- \{\{FRS\_VARS.Classic\_Action\_Designer}}: [Send Email Action](<../../Classical Action Designer/templates/Send Email.mdx>)
+
+## About the Send an email Quick Action
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/RpGtKYyhnCGTn9S0L27xC_qa-send-email-block.png" alt="Image of the Send an Email Quick Action Block." position="flex-start" size="40" initialPath="../../../../Resources/Images/help-images/qa send email block.png" githubPath="Content/Resources/Images/help-images/qa send email block.png" showCaption="false"></Image>
+
+Use the **Send an email** action to compose an email to send to a designated person or group. For example, you can send a confirmation email when a change is approved. The email can be populated with data such as field values, functions, counters, or global values.
+
+You also can send updates to the calendar application of the target group, such as task updates when a change occurs in an incident or change record.
+
+Group emails are facilitated using address book-style functionality. The default is to send one email. To send an email for each record in a relationship, select the appropriate radio button, then select the related business object from the drop-down list. This also allows you to select email targets for the parent record and related record when completing the email template.
+
+You can also send emails to child business object records associated with the parent business object. An email is sent for each instance of the child business object.
+
+Journal.Email records are linked to the parent business object when running the **Send an email** action and business rule, regardless of whether the relationship internal reference name is defined or not.
+
+The behavior for escalation and workflow services in \{\{FRS\_VARS.ProductName}} is as follows:
+
+- Only one relationship exists between two business objects.
+- If more than one relationship is found, the relationship references cannot be resolved unless one of the relationships has an empty internal reference name.
+- If more than one relationship exists and neither one can be removed, contact \{\{FRS\_VARS.Company-short}} support to remove the internal reference name. This allows escalation and workflow services to uniquely identify it.
+
+## Parameters
+
+To access the parameters, select the **Action Block** to display them in the **Settings** pane.
+
+### Action Block Settings
+
+- **Block Label**: A unique name for the block. This is useful to identify each action when you have more than one of the same action block added or cloned in the design area.
+- **Block Label**: Enter a unique label for th&#x65;**&#x20;Send an email** action block.
+
+<hint type="info" indent="2">
+  You can have multiple **Send an email** action blocks, each sending a separate email, in one composite action; therefore, you should populate this field with a unique, descriptive title. See [Composite Action](<../../Classical Action Designer/templates/Composite Action.mdx>) for more information on composite actions.
+</hint>
+
+- **Log in Journal**: Specifies which emails to keep. Select one of the following:
+  - **All**: Default. Keeps all emails.
+  - **Failed**: Keeps only failed emails.
+  - To view the emails, log in to the application and open the **Email** workspace. The list in the **Email** workspace contains a column called **Sent** that indicates if the application sent the email. If you set this parameter to **Failed**, the application enters an N (for no) in this column.
+- **From Address**: The address from which the email is sent. Click into the field and type your from address, or click the
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/4W5r0UaoDoTCCRpkzrpS3_qa-expression-editor-icon.png" alt="Image of a function, or f(x) symbol used to open the Expression Editor" position="flex-start" size="40" indent="2" initialPath="../../../../Resources/Images/help-images/qa expression editor icon.png" githubPath="Content/Resources/Images/help-images/qa expression editor icon.png" showCaption="false"></Image>
+
+<Paragraph indent="1">
+  icon to open the **Expression Editor** and create an expression-based address.
+</Paragraph>
+
+- **To Address**: The address or addresses to which the email is sent. This field can contain multiple entries. Click **Address book** to enter the addresses. Alternatively, you can or click the
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/4W5r0UaoDoTCCRpkzrpS3_qa-expression-editor-icon.png" alt="Image of a function, or f(x) symbol used to open the Expression Editor" position="flex-start" size="40" indent="2" initialPath="../../../../Resources/Images/help-images/qa expression editor icon.png" githubPath="Content/Resources/Images/help-images/qa expression editor icon.png" showCaption="false"></Image>
+
+<Paragraph indent="1">
+  icon to open the **Expression Editor** and create an expression-based address (or addresses).
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  **Add cc**: Adds a cc (carbon copy) field to the form. Use this field to enter addresses you want to cc, or click the
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/4W5r0UaoDoTCCRpkzrpS3_qa-expression-editor-icon.png" alt="Image of a function, or f(x) symbol used to open the Expression Editor" position="flex-start" size="40" indent="3" initialPath="../../../../Resources/Images/help-images/qa expression editor icon.png" githubPath="Content/Resources/Images/help-images/qa expression editor icon.png" showCaption="false"></Image>
+
+<Paragraph indent="2">
+  icon to open the **Expression Editor** and create an expression-based address (or addresses).
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  **Add bcc**: Adds a bcc (blind carbon copy) field to the form. Use this field to enter addresses you want to bcc, or click the
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/4W5r0UaoDoTCCRpkzrpS3_qa-expression-editor-icon.png" alt="Image of a function, or f(x) symbol used to open the Expression Editor" position="flex-start" size="40" indent="3" initialPath="../../../../Resources/Images/help-images/qa expression editor icon.png" githubPath="Content/Resources/Images/help-images/qa expression editor icon.png" showCaption="false"></Image>
+
+<Paragraph indent="2">
+  icon to open the **Expression Editor** and create an expression-based address (or addresses).
+</Paragraph>
+
+- **Subject**: The subject of the email. You can either enter a subject, or click the
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/4W5r0UaoDoTCCRpkzrpS3_qa-expression-editor-icon.png" alt="Image of a function, or f(x) symbol used to open the Expression Editor" position="flex-start" size="40" indent="2" initialPath="../../../../Resources/Images/help-images/qa expression editor icon.png" githubPath="Content/Resources/Images/help-images/qa expression editor icon.png" showCaption="false"></Image>
+
+<Paragraph indent="1">
+  icon to open the **Expression Editor** and create an expression-based subject.
+</Paragraph>
+
+- **Attach from related business objects**: Allows you to attach a related business object.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/dRvzx_2LhzdlUtom0PUSP_attachrelatedobjectsgraphicalui.png" position="flex-start" size="40" indent="2" initialPath="../../quick-actions-images/attach_related_objects_graphical_ui.png" githubPath="Content/Configure/QuickActions/quick-actions-images/attach_related_objects_graphical_ui.png" showCaption="false"></Image>
+
+<Paragraph listStyleType="disc" indent="2">
+  **Include Attachments**: Check this box to enable the **Business Object** dropdown menu.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  **Business Object**: Use the dropdown menu to select the business object you want to attach.
+</Paragraph>
+
+- **Prompt for Attachments**: When you run the **Send an email** action block, if you have checked this box, the **Send an email** action prompts you to attach a file.
+- **Attach a File**: Click to attach a file to the email before running the **Send an email** action.
+- **Compose Email**: The body of the email. Construct the body of your email using the controls in the email body area.
+
+Click **Save** to commit your settings.
+
+### Start Block Settings
+
+These settings are accessed by selecting the **Start Block**, refer to :Link[Start Block Settings]{label="Start Block Settings" overridedLabel="Start Block Settings" spaceId docId="T_2hq2qRJzWxiHLCfgn-7" version="v2" docAnchorId="#CommonTab" loadingMethod="dynamic" newTab="false" githubPath="../Using_the_Graphical_Action_Designer.htm#CommonTab" href="../Using_the_Graphical_Action_Designer.mdx"}.

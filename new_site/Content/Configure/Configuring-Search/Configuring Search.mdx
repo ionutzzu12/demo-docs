@@ -1,0 +1,163 @@
+---
+title: Configuring Search
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:53 GMT+0300 (Eastern European Summer Time)
+---
+
+- :Link[How to Change the Default Full-Text Search Language of the Ivanti Server]{label="How to Change the Default Full-Text Search Language of the Ivanti Server" overridedLabel="How to Change the Default Full-Text Search Language of the Ivanti Server" spaceId docId="QDJG1hefttW1ULlotB2md" version="v2" docAnchorId="#Changing" loadingMethod="dynamic" newTab="false" href="Configuring Search.mdx"}
+- :Link[Configuring Ivanti for Searching in PDF Files]{label="Configuring Ivanti for Searching in PDF Files" overridedLabel="Configuring Ivanti for Searching in PDF Files" spaceId docId="QDJG1hefttW1ULlotB2md" version="v2" docAnchorId="#Configur" loadingMethod="dynamic" newTab="false" href="Configuring Search.mdx"}
+- [Working with Filter Panels for Searching](<Configuring Filter Search.mdx>)
+- [Working with Object Matching and Related Items](<Configuring Related Items Search.mdx>)
+- [Configuring Search Settings](<Configure Object Search.mdx>)
+- [Default Saved Searches](Default_Saved_Searches.mdx)
+
+Also refer to [Translating Saved Searches](<../Localization/Translate Saved Searches.mdx>).
+
+## How to Change the Default Full-Text Search Language of the Ivanti Server
+
+- :Link[About the Full-Text Index Language]{label="About the Full-Text Index Language" overridedLabel="About the Full-Text Index Language" spaceId docId="QDJG1hefttW1ULlotB2md" version="v2" docAnchorId="#About" loadingMethod="dynamic" newTab="false" href="Configuring Search.mdx"}
+- :Link[Changing the Default Full-Text Search Language for a Tenant]{label="Changing the Default Full-Text Search Language for a Tenant" overridedLabel="Changing the Default Full-Text Search Language for a Tenant" spaceId docId="QDJG1hefttW1ULlotB2md" version="v2" docAnchorId="#Changing2" loadingMethod="dynamic" newTab="false" href="Configuring Search.mdx"}
+- :Link[Changing the Default Full-Text Search Language for a Single Field]{label="Changing the Default Full-Text Search Language for a Single Field" overridedLabel="Changing the Default Full-Text Search Language for a Single Field" spaceId docId="QDJG1hefttW1ULlotB2md" version="v2" docAnchorId="#Changing3" loadingMethod="dynamic" newTab="false" href="Configuring Search.mdx"}
+- :Link[Troubleshooting Changing the Default Full-Text Search Language]{label="Troubleshooting Changing the Default Full-Text Search Language" overridedLabel="Troubleshooting Changing the Default Full-Text Search Language" spaceId docId="QDJG1hefttW1ULlotB2md" version="v2" docAnchorId="#Troubles" loadingMethod="dynamic" newTab="false" href="Configuring Search.mdx"}
+
+### About the Full-Text Index Language
+
+When creating a full-text index, you must specify a column-level language for the indexed column. Full-text queries on the column use the word breakers and stemmers of the specified language.
+
+A word breaker tokenizes the text being indexed on word boundaries, which are language specific. Therefore, word-breaking behavior differs among different languages. Stemming in full-text queries is the process of searching for all stemmed forms of a word (for example, drive, driving, drove, etc) in a particular language. When you use a generic word breaker to process several languages, the stemming process works only for the language specified for the column, not for other languages in the column.
+
+In this workspace, the application displays a list of all of the business objects and any non-derived fields that have the **Full-text Indexed** field set to true.
+
+Depending on the size of your database, the first time that you rebuild the indexes for a language, it may take several minutes. The process goes faster for subsequent rebuilds. We recommend setting only a limited number of fields to full-text indexed, because setting too many fields can cause performance issues.
+
+### Changing the Default Full-Text Search Language for a Tenant
+
+As a whole, you can change the default full-text search language for a tenant for the following:
+
+- All text and binary fields that are non-derived fields.
+- All text and binary fields that are marked with the **Full-text Indexed** attribute. To see if a field is marked with the **Full-text Indexed** attribute, go to **Build > Business Objects**, open the business object, click the **Fields** tab, click a field to open it, and under **Field Attributes**, look for the **Full-text Indexed** option.
+- All text and binary fields that are not marked with the **Localized** attribute. To see if a field is marked with the **Localized** attribute, go to **Build > Business Objects**, open the business object, click the **Fields** tab, click a field to open it, and under **Field Attributes**, look for the **Localized** option.
+
+Follow these steps:
+
+1. From the Configuration Console, click **Build > Search Tools > Full-Text Indexes** to open the **Full-Text Indexes** workspace.
+2. In the **Default Full-Text Language** field, select the language to use. The set of languages to choose from is from Microsoft SQL Server and therefore you cannot modify the values that are displayed here.
+3. Click **Save**.
+4. At the confirmation message, click **Yes**. The application starts rebuilding the full-text indexes and displays a status bar.
+
+### Changing the Default Full-Text Search Language for a Single Field
+
+To set the default full-text search language for a single field within \{\{FRS\_VARS.ProductName}}, follow these steps:
+
+1. From the Configuration Console, click **Build > Business Objects**.
+2. Open the business object with the field to change.
+3. Click the **Fields** tab and then click the field to open it.
+4. Under **Full-Text Properties**, for the **Language Term** field, select the language to use. The set of languages to choose from is from Microsoft SQL Server and therefore you cannot modify the values that are displayed here.
+5. Click **Save**.
+
+### Defining a New Global Constant for Full Text Search Relevancy
+
+Customers who want to roll back the **Full Text Search Relevancy** to the older model used for releases proior to \{\{Primary.Company}} \{\{FRS\_VARS.ProductName}} 2017.1, must define a new Global Constant. Changing the settings for the global constant will either enable or disable the feature. For information about how to create a global constant refer to :Link[Creating a Global Constant]{label="Creating a Global Constant" overridedLabel="Creating a Global Constant" spaceId docId="hdqjMZ0xNIIUp-39YljO9" version="v2" docAnchorId="#Creating" loadingMethod="dynamic" newTab="false" githubPath="../Constants/Defining_Global_Constant.htm#Creating" href="../Constants/Defining_Global_Constant.mdx"}.
+
+| Parameter   | Description                                                                                                                                                                                                                           |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Name        | FullTextSearchRelevanceRanking<br />Enter the name for the constant exactly as shown.                                                                                                                                                 |
+| Value       | False<br />**False&#x20;**&#x64;isables the new model and reverts the search relevancy to 2016.x functionality. Set the **Value&#x20;**&#x74;o **True&#x20;**&#x74;o enable the newer functionalityThe value for the global constant. |
+| Type        | Boolean                                                                                                                                                                                                                               |
+| Description | Revert search behavior.                                                                                                                                                                                                               |
+
+### Troubleshooting Changing the Default Full-Text Search Language
+
+The application rebuilds the full-text index using a separate thread. If there are any issues, the application displays a message indicating the problem. For example, you may see the following errors:
+
+- "Rebuilding the full-text indexes failed at x%. See the application logs for more information." The application displays this error if there is a problem with rebuilding the indexes.
+- "Rebuilding the full-text indexes failed. Unhandled application exception: The full-text indexes rebuild is already running." The application displays this error if you try to rebuild the full-text index while it is still running.
+- "Checking the full-text indexes rebuild state failed. Unhandled system exception." The application displays this error if there are any errors while the application checks the rebuild state. The application does not stop rebuilding the full-text indexes, but it does stop sharing the progress of the rebuild.
+
+Do the following to see the logs:
+
+1. Log into the Service Desk Console.
+2. Open the **Logs** workspace. The application displays a list of logs.
+3. Click the arrow next to **Error Code** and check **Show in groups**.  The application displays the logs by error code.
+4. Look for the logs for the **Exception** error code or the **InvalidOperationException** error code and double-click the log associated with the error to open it.
+
+## Configuring Ivanti for Searching in PDF Files
+
+<hint type="info">
+  The following procedure only applies to on-premise installations.
+</hint>
+
+In order to search within PDFs in \{\{FRS\_VARS.ProductName}}, for example, in the \{\{FRS\_VARS.ProductName}} Knowledge Base, you must download and install the Adobe iFilter, which is a plug-in for Microsoft SQL Server.
+
+- :Link[Downloading the iFilter]{label="Downloading the iFilter" overridedLabel="Downloading the iFilter" spaceId docId="QDJG1hefttW1ULlotB2md" version="v2" docAnchorId="#Download" loadingMethod="dynamic" newTab="false" href="Configuring Search.mdx"}
+- :Link[Setting the iFilter Path]{label="Setting the iFilter Path" overridedLabel="Setting the iFilter Path" spaceId docId="QDJG1hefttW1ULlotB2md" version="v2" docAnchorId="#Setting" loadingMethod="dynamic" newTab="false" href="Configuring Search.mdx"}
+- :Link[Rebuilding the FRS\_Knowledge Full-Text Index]{label="Rebuilding the FRS_Knowledge Full-Text Index" overridedLabel="Rebuilding the FRS_Knowledge Full-Text Index" spaceId docId="QDJG1hefttW1ULlotB2md" version="v2" docAnchorId="#Rebuildi" loadingMethod="dynamic" newTab="false" href="Configuring Search.mdx"}
+
+### Downloading the iFilter
+
+1. Download the Adobe PDF iFilter version 11 from http\://www\.adobe.com/support/downloads/product.jsp?product=1\&platform=Windows.
+2. Run the executable.
+3. If you have a Sharepoint implementation, do the following:
+
+<Paragraph indent="1">
+  a. Stop the Microsoft IIS admin service by choosing **Start > Settings > Control Panel > Administrator Tools > Services > IIS Admin Service > Stop**.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Close the window.
+</Paragraph>
+
+4. Restart your computer.
+
+### Setting the iFilter Path
+
+Depending on your application, do one of the following:
+
+- For Windows 7, 64-bit:
+  1. From the **Start** menu, click **Computer**.
+  2. On the toolbar, click **System properties**.
+  3. On the left, click **Advanced system settings**.
+  4. Click the **Advanced** tab.
+  5. Click **Environment Variables...**.
+  6. In the **System variables** section, highlight **Path**.
+  7. Click **Edit...**.
+  8. Set the **PATH** variable to the bin folder from where you installed the iFilter. For example, in the **PATH** variable, add the path **C:\Program Files\Adobe\Adobe PDF iFilter 11 for 64-bit platforms\bin\\**.
+  9. Confirm that you set the path correctly by opening a command prompt and typing **path**. The application displays all of the paths defined for the application, including the path for the iFilter.
+  10. Restart the Microsoft SQL Server.
+- For Windows 8, 64-bit:
+  1. From the **Start** menu, click **Control Panel > System > Advanced**.
+  2. Click **Environment Variables...**.
+  3. In the **System variables** section, highlight **Path**.
+  4. Click **Edit...**.
+  5. Set the **PATH** variable to the bin folder from where you installed the iFilter. For example, in the **PATH** variable, add the path **C:\Program Files\Adobe\Adobe PDF iFilter 11 for 64-bit platforms\bin\\**.
+  6. Confirm that you set the path correctly by opening a command prompt and typing **path**. The application displays all of the paths defined for the application, including the path for the iFilter.
+  7. Restart the Microsoft SQL Server.
+- For Windows XP, 64 bit:
+  1. From the **Start** menu, click **Control Panel > System > Advanced**.
+  2. Click **Environment Variables...**.
+  3. In the **System variables** section, highlight **Path**.
+  4. Click **Edit...**.
+  5. Set the **PATH** variable to the bin folder from where you installed the iFilter. For example, in the **PATH** variable, add the path **C:\Program Files\Adobe\Adobe PDF iFilter 11 for 64-bit platforms\bin\\**.
+  6. Confirm that you set the path correctly by opening a command prompt and typing **path**. The application displays all of the paths defined for the application, including the path for the iFilter.
+  7. Restart the Microsoft SQL Server.
+
+### Rebuilding the FRS\_Knowledge Full-Text Index
+
+1. From the Configuration Console, click **Build > Business Objects** to open the **Business Objects** workspace.
+2. Open the **Knowledge** business object.
+3. Click the **Fields** tab.
+4. Open any field that has a checkmark in the **Full-Text Indexed** column. The application displays the workspace for the field.
+5. Under **Field Attributes**, uncheck **Full-Text Indexed**.
+6. Click **Save**.
+
+<Paragraph indent="1">
+  The application rebuilds the entire full-text index. This process can take more than 20 minutes. To determine if the process has finished, open the Task Manager and look for the **SQL Full Text host** entry. When it stops running, the index has been rebuilt.
+</Paragraph>
+
+7. Open the same field again.
+8. Under **Field Attributes**, check **Full-Text Indexed**.
+9. Click **Save**.
+
+<Paragraph indent="1">
+  The application rebuilds the entire full-text index. This process can take more than 20 minutes. To determine if the process has finished, open the Task Manager and look for the **SQL Full Text host** entry. When it stops running, the index has been rebuilt.
+</Paragraph>

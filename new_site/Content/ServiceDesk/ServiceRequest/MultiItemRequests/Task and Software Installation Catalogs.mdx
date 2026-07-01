@@ -1,0 +1,74 @@
+---
+title: Working with Task and Software Installation Catalogs
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:47 GMT+0300 (Eastern European Summer Time)
+---
+
+- :Link[About Task and Software Installation Catalogs]{label="About Task and Software Installation Catalogs" overridedLabel="About Task and Software Installation Catalogs" spaceId docId="JCDOQ4LXTo7zmdjl_kqr5" version="v2" docAnchorId="#About_Task_and_Software_InstallationCatalogs" loadingMethod="dynamic" newTab="false" href="Task and Software Installation Catalogs.mdx"}
+- :Link[Creating a Task Catalog]{label="Creating a Task Catalog" overridedLabel="Creating a Task Catalog" spaceId docId="JCDOQ4LXTo7zmdjl_kqr5" version="v2" docAnchorId="#Creating_a_Task_Catalog" loadingMethod="dynamic" newTab="false" href="Task and Software Installation Catalogs.mdx"}
+- :Link[Creating Software Installation Catalogs]{label="Creating Software Installation Catalogs" overridedLabel="Creating Software Installation Catalogs" spaceId docId="JCDOQ4LXTo7zmdjl_kqr5" version="v2" docAnchorId="#Creating_Software_Installation_Catalogs" loadingMethod="dynamic" newTab="false" href="Task and Software Installation Catalogs.mdx"}
+
+## About Task and Software Installation Catalogs
+
+Task catalogs define manual tasks that a Service Desk Analyst performs when fulfilling multi-item requests. Software installation catalogs define tasks that run automatically to install one or more DSM-managed software packages.
+
+<hint type="info">
+  Desktop and Server Management (DSM) aids IT organizations with automating, regulating, and simplifying how desktops and servers are managed.
+</hint>
+
+When a Service Catalog user submits a request for a fulfillment item package, the task catalogs and software installation catalogs in the fulfillment item package are used to create tasks. Those tasks are part of the fulfillment item that is in the resulting service request.
+
+The following sections describe how to create task catalogs and software installation catalogs.
+
+<hint type="info">
+  As an alternative to the procedure described here, you can create task catalogs and software installation catalogs from the **Task Catalog** tab in the **Fulfillment Item Package** workspace. You can do this while or after you create a fulfillment item package.
+</hint>
+
+## Creating a Task Catalog
+
+1. Log into the Service Desk Console.
+2. Open the **Fulfillment Item Package** workspace.
+3. Open an item from the list. The fulfillment item package record appears.
+4. From the **Task Catalog** tab, choose **New Record Menu > New Task Catalog Item**. The **New Task Catalog Item** window appears.
+5. Enter your information into the fields.
+
+| Field        | Description                                                                                                                                                                                                                                  |
+| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Name         | A name for the task.                                                                                                                                                                                                                         |
+| Status       | The status:<br />**Active**: The task is triggered when the fulfillment item package is selected and approved.<br />**Inactive**: The task is not triggered when the fulfillment item package is selected and approved.                      |
+| Task Subject | The subject, which appears in these locations:<br />The **Task Subject** column in the list view for task catalog search results.<br />Forms and notifications viewed by the task owner.<br />Summary information in the **Task** workspace. |
+| Task Details | Additional task details as necessary. This information appears in the task details area in the **Task** workspace.                                                                                                                           |
+| Task Team    | The organizational unit that is responsible for performing this task.                                                                                                                                                                        |
+| Task Owner   | The owner who is responsible for this task.                                                                                                                                                                                                  |
+
+6. Click **Save**.
+
+<Paragraph indent="1">
+  This task catalog can now be linked to any number of fulfillment item packages. You can now create a template instance map to define which fields from the task catalog will be used in a task form when the task is created.
+</Paragraph>
+
+<hint type="info">
+  You can create template instance maps at any time. You do not need to create them immediately upon creating task catalogs.
+</hint>
+
+## Creating Software Installation Catalogs
+
+1. Log into the Service Desk Console.
+2. Open the **Fulfillment Item Package** workspace.
+3. Open an item from the list. The fulfillment item package record appears.
+4. From the **Task Catalog** tab, choose **New Record Menu > New Task Catalog Software Installation**. The **New Task Catalog Software Installation** window appears.
+5. Enter information into the fields.
+
+| Field                   | Description                                                                                                                                                                                                                                 |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Name                    | A name for the task.                                                                                                                                                                                                                        |
+| Status                  | The status:<br />**Active**: The task is triggered when the fulfillment item package is selected and approved.<br />**Inactive**: The task is not triggered when the fulfillment item package is selected and approved.                     |
+| Task Subject            | The subject which appears in these locations:<br />The **Task Subject** column in the list view for task catalog search results.<br />Forms and notifications viewed by the task owner.<br />Summary information in the **Task** workspace. |
+| Task Details            | Additional task details. This information appears in the task details area in the **Task** workspace.                                                                                                                                       |
+| Software Package        | The software package that is installed by this task.                                                                                                                                                                                        |
+| Request Type            | Request type. This field is read only and defaults to **Install Software** because that is the only type of request that a software installation catalog can fulfill.                                                                       |
+| Ignore Maintenance Time | Install the software as soon as the task executes and not at the scheduled maintenance time.                                                                                                                                                |
+| Task Team               | The organizational unit that is responsible for performing this task.                                                                                                                                                                       |
+| Task Owner              | The owner who is responsible for this task.                                                                                                                                                                                                 |
+
+6. Click **Save**.

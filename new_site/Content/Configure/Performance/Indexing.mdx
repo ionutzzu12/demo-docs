@@ -1,0 +1,254 @@
+---
+title: Indexing Business Objects
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:58 GMT+0300 (Eastern European Summer Time)
+---
+
+<hint type="info">
+  These guidelines apply primarily to Cloud administrators. On-premise customers are responsible for tuning their own individual databases.
+</hint>
+
+- :Link[About Indexing]{label="About Indexing" overridedLabel="About Indexing" spaceId docId="O10zreid9ftZ080Fp3WwG" version="v2" docAnchorId="#About" loadingMethod="dynamic" newTab="false" href="Indexing.mdx"}
+- :Link[Accessing Indexes]{label="Accessing Indexes" overridedLabel="Accessing Indexes" spaceId docId="O10zreid9ftZ080Fp3WwG" version="v2" docAnchorId="#Accessin" loadingMethod="dynamic" newTab="false" href="Indexing.mdx"}
+- :Link[Adding Indexes]{label="Adding Indexes" overridedLabel="Adding Indexes" spaceId docId="O10zreid9ftZ080Fp3WwG" version="v2" docAnchorId="#Adding-Indexes" loadingMethod="dynamic" newTab="false" href="Indexing.mdx"}
+- :Link[About Synchronizing Indexes]{label="About Synchronizing Indexes" overridedLabel="About Synchronizing Indexes" spaceId docId="O10zreid9ftZ080Fp3WwG" version="v2" docAnchorId="#About3" loadingMethod="dynamic" newTab="false" href="Indexing.mdx"}
+
+## About Indexing
+
+- :Link[Indexing Benefits]{label="Indexing Benefits" overridedLabel="Indexing Benefits" spaceId docId="O10zreid9ftZ080Fp3WwG" version="v2" docAnchorId="#benefits" loadingMethod="dynamic" newTab="false" href="Indexing.mdx"}
+- :Link[Indexing Rules]{label="Indexing Rules" overridedLabel="Indexing Rules" spaceId docId="O10zreid9ftZ080Fp3WwG" version="v2" docAnchorId="#rules" loadingMethod="dynamic" newTab="false" href="Indexing.mdx"}
+- :Link[About Derived Objects]{label="About Derived Objects" overridedLabel="About Derived Objects" spaceId docId="O10zreid9ftZ080Fp3WwG" version="v2" docAnchorId="#derived" loadingMethod="dynamic" newTab="false" href="Indexing.mdx"}
+
+### Indexing Benefits
+
+You can index various fields within a business object. Indexing decreases the execution time for queries. Designating a field as an index field can help the search performance in the following instances:
+
+- Indexing fields that containing many (thousands of) records that are frequently accessed can improve performance.
+- Indexing fields that are not used often or that have few records might reduce performance. Therefore, we do not recommend this.
+- Indexing too many fields can slow down performance. The optimum number of fields is based on the amount of access, number of users, and number of records, and is usually determined by trial and error.
+
+Metadata also contains index-related information. Use cached metadata to reduce the number of times that the database is accessed. Metadata indexes are a subset of the indexes in the database schema.
+
+Smart indexing does the following:
+
+- Enables you to capture indexes from the database schema and import them to a business object definition (table metadata). 
+- Automatically creates and maintains cover indexes based on the business object metadata.
+- Automates the creation of the primary and unique key constraints, to manage data integrity.
+- Automates the creation of cover indexes with commonly-searched fields, to improve query performance.
+
+You can manage indexes directly from the Configuration Console, even without direct access to the \{\{FRS\_VARS.ProductName}} database. You can fix mismatches and resolve discrepancies between indexes in the metadata and database schemas.
+
+### Indexing Rules
+
+- The primary key column must be a unique, non-nullable, single-column that does not have a filter, and has a maximum size of 900 bytes.
+- If the unique key column is nullable, then it must have a filter expression.
+- View cannot have filter expressions.
+- The maximum total size of index key columns is 900 bytes.
+
+<hint type="info">
+  If you try to add an index to a business object that has more than one million records, you get an error message. Contact Ivanti SRE (Site Reliability Engineering) via your portal and raise a ticket. They can edit the database directly to make the change for you.
+</hint>
+
+### About Derived Objects
+
+Group objects share fields with other objects and contain derived objects. For example, **Address** is a group object.
+
+For example: A sales area is determined by a BrokerID (with its own table), company (with its own table), and StateID (with its own table). These three fields need to connect to a fourth table to pull proper information about the sales area (such as sales area number, sales reps, sales region, and sales regional manager), and this fourth table also has BrokerID, company and StateID fields. We need to connect three fields from three different tables to this fourth table. The fourth table is known as a derived object.
+
+Derived objects list the base object indexed items. You can index the fields from this derived object, and at the same time, see which fields are indexed in the original objects.
+
+## Accessing Indexes
+
+1. From the Configuration Console, click **Build > Business Objects**. The application displays the **Business Objects** workspace.
+2. Select any business object. The application displays the **Business Object** workspace.
+3. Click the **Indexes** tab. The application displays the **Indexes** workspace with a list of indexes for the business object.
+
+*Indexes Workspace*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/dFA0cQxBtRIly0tuKmVhn_indexpage.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/index_page.png" githubPath="Content/Resources/Images/help-images/index_page.png" showCaption="false"></Image>
+
+The **Indexes** workspace contains the following information:
+
+- **Name**: The name of the index.
+- **Configuration**: Describes the index configuration, in a comma-separated list, including the following:
+  - **Primary Key**: Specifies that the index is defined for a field with a primary key constraint (such as the RecID field for incidents).
+  - **Clustered**: Specifies that the index is clustered. Currently, this is always disabled and cannot be changed.
+  - **Unique**: Specifies that the index is defined for a field with a unique constraint. When you set a field as unique, the application creates a unique constraint and unique index in the database schema.
+  - **Filtered**: Specifies that the index has at least one filter expression defined.
+  - **Cover**: Indicates that the index has at least one included field.
+  - **Disabled**: Indicates that the index is disabled. You cannot set this parameter from the **Indexes** workspace. It must be set within the database.
+  - **System**: Indicates that the index is a application index. You cannot set this parameter from the **Indexes** workspace. It must be set within the database.
+- **Key Fields**: Lists the key fields for this index. See :Link[Viewing, Adding, and Deleting Key Fields]{label="Viewing, Adding, and Deleting Key Fields" overridedLabel="Viewing, Adding, and Deleting Key Fields" spaceId docId="O10zreid9ftZ080Fp3WwG" version="v2" docAnchorId="#ViewingKey" loadingMethod="dynamic" newTab="false" href="Indexing.mdx"}.
+- **Included Fields**: Displays a list of all the included columns used by the index. The order of included fields does not matter. See :Link[Viewing, Adding, and Deleting Included Fields]{label="Viewing, Adding, and Deleting Included Fields" overridedLabel="Viewing, Adding, and Deleting Included Fields" spaceId docId="O10zreid9ftZ080Fp3WwG" version="v2" docAnchorId="#ViewingIncluded" loadingMethod="dynamic" newTab="false" href="Indexing.mdx"}.
+
+4. To delete an index, click the **delete** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/USPl9Egu4Y2Blx7HKC3mA_deleteredx.png" alt caption size="10" width="14" height="13"} at the end of the row.
+
+## Adding Indexes
+
+- :Link[Adding a New Index]{label="Adding a New Index" overridedLabel="Adding a New Index" spaceId docId="O10zreid9ftZ080Fp3WwG" version="v2" docAnchorId="#Addnew" loadingMethod="dynamic" newTab="false" href="Indexing.mdx"}
+- :Link[Viewing, Adding, and Deleting Key Fields]{label="Viewing, Adding, and Deleting Key Fields" overridedLabel="Viewing, Adding, and Deleting Key Fields" spaceId docId="O10zreid9ftZ080Fp3WwG" version="v2" docAnchorId="#ViewingKey" loadingMethod="dynamic" newTab="false" href="Indexing.mdx"}
+- :Link[Viewing, Adding, and Deleting Included Fields]{label="Viewing, Adding, and Deleting Included Fields" overridedLabel="Viewing, Adding, and Deleting Included Fields" spaceId docId="O10zreid9ftZ080Fp3WwG" version="v2" docAnchorId="#ViewingIncluded" loadingMethod="dynamic" newTab="false" href="Indexing.mdx"}
+- :Link[Viewing, Adding, and Deleting Filter Expressions]{label="Viewing, Adding, and Deleting Filter Expressions" overridedLabel="Viewing, Adding, and Deleting Filter Expressions" spaceId docId="O10zreid9ftZ080Fp3WwG" version="v2" docAnchorId="#ViewFilter" loadingMethod="dynamic" newTab="false" href="Indexing.mdx"}
+
+### Adding a New Index
+
+1. From the Configuration Console, click **Build > Business Objects**. The application displays the **Business Objects** workspace.
+2. Select any business object. The application displays the **Business Object** workspace.
+3. Click the **Indexes** tab. The application displays the **Indexes** workspace with a list of indexes for the business object.
+4. To add a new index, click **Add new\...**. The application displays index fields associated with this business object.
+5. Select the field to index for this business object. You can add more fields later. The application displays the **System Properties** workspace.
+
+*System Properties Page*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/og-x12h0rKfBUtmFaiSXg_advanced-index.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/advanced index.png" githubPath="Content/Resources/Images/help-images/advanced index.png" showCaption="false"></Image>
+
+6. Enter information into the fields.
+
+| Field             | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Index Name        | A unique name for this index.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| Description       | A useful description for this index.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Unique            | Designates this value as unique, preventing duplicate entries in the index and its backing table. You can create uniqueness by using multiple fields. This option automatically creates an unique index of this field.<br />Unlike the primary key field:<br />You can have multiple unique fields in the business object.<br />This field is allowed to contain NULL values (although the NULL values are not indexed).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| Clustered         | Checks if the business object is part of a clustered index at the database level. Clustered indexes can greatly increase overall speed of retrieval, but usually only where data is accessed sequentially in the same or reverse order of the clustered index, or when a range of items is selected. This is the same as a clustered index function for a Microsoft SQL database.<br /><br />A clustered index cannot contain included fields (it cannot be a cover index).<br /><br />This checkbox is disabled for index fields that have an increasing value, such as GUID.                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| Key Fields        | See :Link[Viewing, Adding, and Deleting Key Fields]{label="Viewing, Adding, and Deleting Key Fields" overridedLabel="Viewing, Adding, and Deleting Key Fields" spaceId docId="O10zreid9ftZ080Fp3WwG" version="v2" docAnchorId="#ViewingKey" loadingMethod="dynamic" newTab="false" href="Indexing.mdx"}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| Included Fields   | See :Link[Viewing, Adding, and Deleting Included Fields]{label="Viewing, Adding, and Deleting Included Fields" overridedLabel="Viewing, Adding, and Deleting Included Fields" spaceId docId="O10zreid9ftZ080Fp3WwG" version="v2" docAnchorId="#ViewingIncluded" loadingMethod="dynamic" newTab="false" href="Indexing.mdx"}.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| Filter Expression | Optional. You can apply a filter to the index that does not include NULL values. Click the **add** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/JtIxGMfjslfCSitXWBu4o_addgreen.png" alt caption size="10" width="17" height="15"}, then choose a field from the list to create a filter. Repeat as needed.<br />**Operation**: Choose an operation from the drop-down list for this filter.<br />**NotNull**: The filter does not index NULL values. See :Link[About Null Values]{label="About Null Values" overridedLabel="About Null Values" spaceId docId="DFEtZeMGBHrcwmhNBrP6m" version="v2" docAnchorId="#About-Null-Values" loadingMethod="dynamic" newTab="false" githubPath="../../Reference/Expressions/Null Value.htm#About-Null-Values" href="../../Reference/Expressions/Null Value.mdx"} for more information on defining NULL values.<br />**Value**: Enter a string value or expression (see [About Expressions](../../Reference/Expressions/Expressions.mdx)) for this filter. |
+
+7. Click **Add this Index**. The application adds the index to the business object.
+
+### Viewing, Adding, and Deleting Key Fields
+
+The application displays the running size, in bytes, of the index for the key fields. The limit is 900 bytes.
+
+1. From the Configuration Console, click **Build > Business Objects**. The application displays the **Business Objects** workspace.
+2. Select any business object. The application displays the **Business Object** workspace.
+3. Click the **Indexes** tab. The application displays the **Indexes** workspace with a list of indexes for the business object.
+4. Click an index name to open the record.
+5. To add a key field, do the following:
+
+<Paragraph indent="1">
+  a. Click the **add** icon <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/JtIxGMfjslfCSitXWBu4o_addgreen.png" size="10" isUploading="false" initialPath="../../Resources/Images/buttons/add_green.png" githubPath="Content/Resources/Images/buttons/add_green.png" width="17" height="15" showCaption="false"></Image> at the end of the row.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Click **not set** to select a field from the drop-down list.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. Click **Ascending** to change the order. You can select either ascending or descending.
+</Paragraph>
+
+6. To delete a key field, click the **delete** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/USPl9Egu4Y2Blx7HKC3mA_deleteredx.png" alt caption size="10" width="14" height="13"} at the end of the row.
+7. Click **Save**.
+
+### Viewing, Adding, and Deleting Included Fields
+
+1. From the Configuration Console, click **Build > Business Objects**. The application displays the **Business Objects** workspace.
+2. Select any business object. The application displays the **Business Object** workspace.
+3. Click the **Indexes** tab. The application displays the **Indexes** workspace with a list of indexes for the business object.
+4. Click an index name to open the record.
+5. To add an included field, do the following:
+
+<Paragraph indent="1">
+  a. Click the **add** icon <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/JtIxGMfjslfCSitXWBu4o_addgreen.png" size="10" isUploading="false" initialPath="../../Resources/Images/buttons/add_green.png" githubPath="Content/Resources/Images/buttons/add_green.png" width="17" height="15" showCaption="false"></Image> at the end of the row.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Click **not set** to select a field from the drop-down list.
+</Paragraph>
+
+6. To delete an included field, click the **delete** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/USPl9Egu4Y2Blx7HKC3mA_deleteredx.png" alt caption size="10" width="14" height="13"} at the end of the row.
+7. Click **Save**.
+
+### Viewing, Adding, and Deleting Filter Expressions
+
+1. From the Configuration Console, click **Build > Business Objects**. The application displays the **Business Objects** workspace.
+2. Select any business object. The application displays the **Business Object** workspace.
+3. Click the **Indexes** tab. The application displays the **Indexes** workspace with a list of indexes for the business object.
+4. Click an index name to open the record.
+5. To add a filter expression, do the following:
+
+<Paragraph indent="1">
+  a. Click the **add** icon <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/JtIxGMfjslfCSitXWBu4o_addgreen.png" size="10" isUploading="false" initialPath="../../Resources/Images/buttons/add_green.png" githubPath="Content/Resources/Images/buttons/add_green.png" width="17" height="15" showCaption="false"></Image> at the end of the row.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Click **not set** under **Field** to select a field from the drop-down list.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. Click **NotNull** to select an operation from the drop-down list.
+</Paragraph>
+
+<Paragraph indent="1">
+  d. Click **not set** under **Value** to enter a value.
+</Paragraph>
+
+6. To delete a filter expression, click the **delete** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/USPl9Egu4Y2Blx7HKC3mA_deleteredx.png" alt caption size="10" width="14" height="13"} at the end of the row.
+7. Click **Save**.
+
+## About Synchronizing Indexes
+
+- :Link[Index Types]{label="Index Types" overridedLabel="Index Types" spaceId docId="O10zreid9ftZ080Fp3WwG" version="v2" docAnchorId="#Index" loadingMethod="dynamic" newTab="false" href="Indexing.mdx"}
+- :Link[Synchronizing Index Messages]{label="Synchronizing Index Messages" overridedLabel="Synchronizing Index Messages" spaceId docId="O10zreid9ftZ080Fp3WwG" version="v2" docAnchorId="#SynchronizingMsg" loadingMethod="dynamic" newTab="false" href="Indexing.mdx"}
+- :Link[Synchronizing Indexes]{label="Synchronizing Indexes" overridedLabel="Synchronizing Indexes" spaceId docId="O10zreid9ftZ080Fp3WwG" version="v2" docAnchorId="#SynchronizingProc" loadingMethod="dynamic" newTab="false" href="Indexing.mdx"}
+
+### Index Types
+
+There are two types of indexes: database schema and metadata.
+
+| Property                | Metadata Indexes | Database Schema Indexes | Are Compared? |
+| ----------------------- | ---------------- | ----------------------- | ------------- |
+| Index name              | IndexName        | index name              | Yes           |
+| Description             | Description      | N/A                     | No            |
+| Fields                  | Fields           | N/A                     | Yes           |
+| Condition: Unique       | Unique           | is\_unique              | Yes           |
+| Condition: System       | System           | N/A                     | No            |
+| Condition: IsDisabled   | IsDisabled       | is\_disabled            | Yes           |
+| Condition: IsClustered  | IsClustered      | is\_clustered           | Yes           |
+| Origin                  | Origin           | N/A                     | No            |
+| Condition: IsPrimaryKey | IsPrimaryKey     | is\_primary\_key        | Yes           |
+| Table Name              | N/A              | table\_name             | No            |
+| Index ID                | N/A              | index\_id               | No            |
+| Unique Constraint       | N/A              | is\_unique\_constraint  | No            |
+
+The application compares some of the index values, and if there are any differences, the application displays the differences.
+
+### Synchronizing Index Messages
+
+If you open a business object and see a caution sign next to the **Indexes** tab, that means that the indexes need to be synchronized.
+
+*Mismatched Index Message 1*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/OHRWs0jShr6OJRxHLzdXG_indexmismatch.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/index_mismatch.png" githubPath="Content/Resources/Images/help-images/index_mismatch.png" showCaption="false"></Image>
+
+The application also displays a warning message on the **Indexes** workspace.
+
+*Mismatched Index Message 2*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/WkPiVfM1WbhWw561o-N18_indexmismatch2.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/index_mismatch2.png" githubPath="Content/Resources/Images/help-images/index_mismatch2.png" showCaption="false"></Image>
+
+Depending on the type of error, you may also see both an error message and a caution icon next to the affected index.
+
+### Synchronizing Indexes
+
+1. From the Configuration Console, click **Build > Business Objects**. The application displays the **Business Objects** workspace.
+2. Select any business object. The application displays the **Business Object** workspace.
+3. Click the **Indexes** tab. The application displays the **Indexes** workspace with a list of indexes for the business object.
+
+<Paragraph indent="1">
+  If there are any indexes that need to be synchronized, the application displays an error message.
+</Paragraph>
+
+4. Click **Save**. The application displays the **Resolve Indexing Discrepancies** dialog box.
+5. Select one of the following:
+   - **Accept database indexes**: Select this option if you see an error that an index is not defined in the metadata. Does the following:
+     - Copies database schema indexes to the metadata if they are not in the metadata.
+     - Removes metadata indexes from the metadata if they are not in the database schema.
+     - Applies changes from the database schema indexes to the metadata indexes.
+   - **Accept metadata indexes**: Select this option if you see an error that an index is not defined in the database schema. Does the following:
+     -  Copies metadata indexes to the database schema if they are not in the database schema.
+     - Removes database schema indexes from the database schema if they are not in the metadata.
+     - Applies changes from the metadata indexes to the database schema indexes.
+   - **Resolve later**: Does not change the indexes.
+6. Click **OK**.

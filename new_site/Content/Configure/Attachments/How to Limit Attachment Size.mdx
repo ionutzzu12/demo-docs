@@ -1,0 +1,52 @@
+---
+title: Limiting Attachment Size
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:51 GMT+0300 (Eastern European Summer Time)
+---
+
+You can limit the size of attachments that users can attach to specific types of business object records, or globally for all business objects to which you can add an attachment.
+
+## Limiting Attachment Size for a Specific Type of Business Object
+
+Using this method, you can limit the size and number of any attachments that users can attach to a specific type of business object (example: Incident). You set the attachment limit when you design the form from the attachment form control.
+
+1. From the Configuration Console, select **Build > Business Objects** to open the **Business Objects** workspace.
+2. Open the business object containing the form.
+3. Select the **Forms** tab.
+4. Open the form. Refer to [Using Forms](../Forms/Forms.mdx).
+5. On the left side, expand **Other** and highlight **Attachments**.
+6. Drag the **Attachments** control from the list onto the form.
+7. On the right side, highlight the **Attachments** control.
+8. On the bottom left, select the **Control Properties** tab.  This pane lists the properties that you can define. Refer to [About the "Other" Form Controls](<../Forms/Other Form Controls.mdx>).
+9. To set limits, define the following properties:
+
+| Property               | Description                                                                                                                                                                                          |
+| ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Max files              | The maximum number of files allowed to be attached to a record. For example, to have no more than ten files be attached, enter **10**. Enter at least **1** to enable file upload.                   |
+| Max files per upload   | The maximum number of files allowed to be uploaded at one time. For example, to allow only six files to be uploaded during a single upload, enter **6**. Enter at least **1** to enable file upload. |
+| Max single file size   | The maximum file size allowed to be attached. For example, to allow files of 2000 MB, enter **2000&#x20;**&#x69;n this field and **MB&#x20;**&#x69;n the **Size in** field.                          |
+| Max summary files size | The maximum file size allowed for the summary file. For example, to allow a summary file of 1 MB, enter **1** in this field and **MB&#x20;**&#x69;n the **Size in** field.                           |
+
+10. Select **Save**.
+
+<hint type="info">
+  Users must log out and log back in to see the changes.
+</hint>
+
+## Limiting Attachment Size Globally
+
+Limiting attachment size globally applies the limitation to all business object types to which users can add an attachment.
+
+1. From the Configuration Console, select **Build > Global Constants** to open the **Global Constants** workplace.
+2. Find the global constant named MaximumFileAttachmentSize.
+
+<hint type="info">
+  If this global constant does not exist you will need to create it, refer to [Working with Global Constants](../Constants/Defining_Global_Constant.mdx)
+</hint>
+
+3. In the **Value** field, enter the size limit as a numeric value. This is the maximum size in MB applied to file attachments.
+4. Select **Save**.
+
+<hint type="info">
+  Users must refresh any record they have open to apply the newly configured attachment limit size.
+</hint>

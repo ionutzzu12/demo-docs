@@ -1,0 +1,291 @@
+---
+title: Creating Reports and Report Templates
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:49 GMT+0300 (Eastern European Summer Time)
+---
+
+- :Link[About Creating Reports and Report Templates]{label="About Creating Reports and Report Templates" overridedLabel="About Creating Reports and Report Templates" spaceId docId="lqyFeWH0iCqzwXKTAJ5TX" version="v2" docAnchorId="#About" loadingMethod="dynamic" newTab="false" href="Creating_Custom_Reports.mdx"}
+- :Link[Step 1: Creating a Report Template]{label="Step 1: Creating a Report Template" overridedLabel="Step 1: Creating a Report Template" spaceId docId="lqyFeWH0iCqzwXKTAJ5TX" version="v2" docAnchorId="#Step1" loadingMethod="dynamic" newTab="false" href="Creating_Custom_Reports.mdx"}
+- :Link[Step 2: Uploading a Report Template]{label="Step 2: Uploading a Report Template" overridedLabel="Step 2: Uploading a Report Template" spaceId docId="lqyFeWH0iCqzwXKTAJ5TX" version="v2" docAnchorId="#Step2" loadingMethod="dynamic" newTab="false" href="Creating_Custom_Reports.mdx"}
+- :Link[Step 3: Creating a Report]{label="Step 3: Creating a Report" overridedLabel="Step 3: Creating a Report" spaceId docId="lqyFeWH0iCqzwXKTAJ5TX" version="v2" docAnchorId="#Step3" loadingMethod="dynamic" newTab="false" href="Creating_Custom_Reports.mdx"}
+- :Link[Creating a Time-Based Report Template]{label="Creating a Time-Based Report Template" overridedLabel="Creating a Time-Based Report Template" spaceId docId="lqyFeWH0iCqzwXKTAJ5TX" version="v2" docAnchorId="#Creating2" loadingMethod="dynamic" newTab="false" href="Creating_Custom_Reports.mdx"}
+- :Link[Modifying a Report Template]{label="Modifying a Report Template" overridedLabel="Modifying a Report Template" spaceId docId="lqyFeWH0iCqzwXKTAJ5TX" version="v2" docAnchorId="#Modifying" loadingMethod="dynamic" newTab="false" href="Creating_Custom_Reports.mdx"}
+- :Link[Downloading and Uploading a Report Template]{label="Downloading and Uploading a Report Template" overridedLabel="Downloading and Uploading a Report Template" spaceId docId="lqyFeWH0iCqzwXKTAJ5TX" version="v2" docAnchorId="#Downloading_and_Uploading_a_Report_Template" loadingMethod="dynamic" newTab="false" href="Creating_Custom_Reports.mdx"}
+- :Link[About Data Security for Report Templates]{label="About Data Security for Report Templates" overridedLabel="About Data Security for Report Templates" spaceId docId="lqyFeWH0iCqzwXKTAJ5TX" version="v2" docAnchorId="#reports_1544019203_1257646" loadingMethod="dynamic" newTab="false" href="Creating_Custom_Reports.mdx"}
+
+### About Creating Reports and Report Templates
+
+Only Report Managers and administrators can create report templates.
+
+You create reports in \{\{FRS\_VARS.ProductName}} from report templates; however, the system does not support drill-down reports. You can create report templates using the report builder in Microsoft SQL Server Reporting Service (SSRS). Microsoft SSRS is integrated with \{\{FRS\_VARS.ProductName}} to facilitate building templates.
+
+<hint type="info">
+  - In addition to using the report builder in Microsoft SSRS to create reports, you can also use Microsoft Business Intelligence Studio (BIDS) to create reports. See [Creating a Report Using Microsoft Business Intelligence Development Studio (BIDS)](<Creating a Report Using Microsoft Business Intelligence Development Studio.mdx>) for more information about using Microsoft BIDS.
+  - This documentation applies to Microsoft SSRS 2008 and earlier versions.
+</hint>
+
+After you create a report template, upload it to \{\{FRS\_VARS.ProductName}}. You can then use the report template that you created to create new reports. In addition, \{\{FRS\_VARS.ProductName}} has predefined report templates that you can also use to create reports.
+
+When using the Microsoft SSRS report builder, note the following:
+
+- if you are inactive for 180 minutes or longer, the report builder times out and displays the following error: **Object moved ReportServer Logon.aspx**.
+- You only need to enter your credentials once per session.
+
+The main steps in creating a custom report are:
+
+- :Link[Step 1: Creating a Report Template]{label="Step 1: Creating a Report Template" overridedLabel="Step 1: Creating a Report Template" spaceId docId="lqyFeWH0iCqzwXKTAJ5TX" version="v2" docAnchorId="#Step1" loadingMethod="dynamic" newTab="false" href="Creating_Custom_Reports.mdx"}
+- :Link[Step 2: Uploading a Report Template]{label="Step 2: Uploading a Report Template" overridedLabel="Step 2: Uploading a Report Template" spaceId docId="lqyFeWH0iCqzwXKTAJ5TX" version="v2" docAnchorId="#Step2" loadingMethod="dynamic" newTab="false" href="Creating_Custom_Reports.mdx"}
+- :Link[Step 3: Creating a Report]{label="Step 3: Creating a Report" overridedLabel="Step 3: Creating a Report" spaceId docId="lqyFeWH0iCqzwXKTAJ5TX" version="v2" docAnchorId="#Step3" loadingMethod="dynamic" newTab="false" href="Creating_Custom_Reports.mdx"}
+
+### Step 1: Creating a Report Template
+
+Before you can create a custom report, you must have a report template. The report template contains the search parameters, filters, and layout of a report. When you run a report, the data is organized according to the definition of the report template.
+
+Report Managers create report templates using the Microsoft SSRS report builder, which is integrated with \{\{FRS\_VARS.ProductName}}. You can go directly to the database and build your own datasets in Microsoft SSRS or you can use the Microsoft SSRS report builder and build a dataset in Microsoft SSRS. For more information on installing the report builder, view the Microsoft website at [http://www.microsoft.com/](http://www.microsoft.com/en-us/download/details.aspx?id=29072).
+
+1. Log in to the application as a Report Manager.
+2. Open the **Report Templates** workspace. The system displays a list of report templates.
+3. Click **New Report Template**. The system opens the Microsoft SSRS report builder.
+4. If this is the first time that you are using the report builder, enter your credentials by doing the following:
+
+<Paragraph indent="1">
+  a. In the **Application Run** dialog box, click **Run**. The report builder starts to download. This might take a few minutes.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. In the **Connect to Report Server** dialog box, enter the following:
+</Paragraph>
+
+| Field    | Value                           |
+| -------- | ------------------------------- |
+| Username | Enter *userID***#***tenant ID*. |
+| Password | Enter the application password. |
+
+<Paragraph indent="1">
+  c. Click **OK**. The system displays the Microsoft SSRS report builder.
+</Paragraph>
+
+5. From the left **Report Data** pane, from **Data Sources**, right-click **SaaSAppmodel**, then choose **Add Dataset**. The system displays the **Dataset Properties** dialog box.
+
+<Paragraph indent="1">
+  *Dataset Properties Dialog Box*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/QTUnDf2TJ4Pe-xBvD8fEL_report-builder-dataset.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/report builder dataset.png" githubPath="Content/Resources/Images/help-images/report builder dataset.png" showCaption="false"></Image>
+
+6. Click **Query Designer**. The system displays the **Enter Data Source Credentials** dialog box.
+7. Enter your Microsoft SSRS user name and password, then click **OK**. The system displays the **Query Designer** dialog box.
+8. Right-click the **Parameters** folder and choose **Add Parameter.**
+9. Enter the report template parameters.
+
+<hint type="info">
+  Report parameter values do not support angle brackets (\<>). Microsoft has implemented this feature in Microsoft SSRS for security reasons. See :Link[About Data Security for Report Templates]{label="About Data Security for Report Templates" overridedLabel="About Data Security for Report Templates" spaceId docId="lqyFeWH0iCqzwXKTAJ5TX" version="v2" docAnchorId="#reports_1544019203_1257646" loadingMethod="dynamic" newTab="false" href="Creating_Custom_Reports.mdx"}. Click **Help** on the window for more information on how to create a parameter.
+</hint>
+
+10. Select the fields for the report template and then design the appearance of the template.
+
+<Paragraph indent="1">
+  a. Click to expand the **Tables** folder, select the fields that are to appear on the report template, then click **OK**.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Click **OK** to close the **Dataset Properties** dialog box.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. Design the template by dragging and dropping the fields you selected to the right pane.
+</Paragraph>
+
+<Paragraph indent="1">
+  d. Click the field that you dropped so that its edges are highlighted, right-click and select **Insert**, then insert any of the design items.
+</Paragraph>
+
+<Paragraph indent="1">
+  e. Click **Run** to preview the template.
+</Paragraph>
+
+11. When you have finished designing the template, click **Save As** and save the template locally.
+
+Do not click **Save**; click **Save As**.
+
+### Step 2: Uploading a Report Template
+
+After creating a report template, upload it to the **Report Templates** workspace.
+
+1. Log in to the application as a Report Manager.
+2. Open the **Report Templates** workspace. The system displays a list of report templates.
+3. Click **Upload Report**. The system displays the **Upload Report Template** dialog box.
+4. For the **Report Template Name** field, enter the report name.
+5. For the **Report template** parameter, select the report template file.
+6. Click **Save**.
+7. In the message dialog box, click **OK**. The system displays the newly uploaded report template in the **Template Name** column.
+
+### Step 3: Creating a Report
+
+After creating a custom report template, you are ready to create a report.
+
+1. Log in to the application as a Report Manager.
+2. Open the **Reports** workspace. The system displays a list of reports.
+3. Click **New Report**. The system displays a blank report form.
+4. Enter information into the fields.
+
+| Field                                 | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| ------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Report template                       | The name of the report template to base this report on. Choose from the drop-down list. The template that you imported should automatically appear in the list.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| Display Name                          | A descriptive name that appears on the reports list.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| Description                           | A brief description of the report.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| Category                              | The category. Choose from the drop-down list.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| Publish Report to                     | The roles that can view and use this report.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| Report Options                        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| Allow run now                         | Enables users to run the report immediately.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| Can run from Run Report quick action  | Enables the report to be run from the **Run Report** quick action. See [Run Report Action](<../../Configure/QuickActions/Classical Action Designer/templates/Run Report.mdx>) quick action parameters. When checked, the report appears in the quick action report list. The report must be published to the role using the quick action.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Can run from Export Data quick action | Enables the report to be run from the **Export Data** quick action. See [Export Data Action](<../../Configure/QuickActions/Classical Action Designer/templates/Export Data.mdx>) parameters. The report must be published to the role using the quick action.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| Parameter Information                 | Automatically populated from the report template. Not all reports have parameter options, and they vary for each report.<br /><br />Under the **Hidden** column, specify if the parameter is hidden from users. If you select **No**, the parameter field is visible to the user to select when they run the report. If you select **Yes**, the parameter field is hidden to the user, although the report will run according to the parameter you set up.<br />For example, to limit a user to viewing only their incidents, create a report template that includes a parameter that limits the results to incidents where the incident owner is the logged-in user or **owner = $(CurrentloginId())**. If you select **Yes** for this parameter, a user cannot change this filter when running the report.<br /><br />The value of the **CurrentBrowserCulture** parameter must be the same as the value of this same parameter on the report server.<br /><br />See :Link[About Using Last 1 Year vs Last 4 Quarters]{label="About Using Last 1 Year vs Last 4 Quarters" overridedLabel="About Using Last 1 Year vs Last 4 Quarters" spaceId docId="lqyFeWH0iCqzwXKTAJ5TX" version="v2" docAnchorId="#About2" loadingMethod="dynamic" newTab="false" href="Creating_Custom_Reports.mdx"} for more information about the parameters. |
+| Schedule Information                  |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| No Schedule                           | Does not run the report on a schedule.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| Run once on                           | See [Scheduling Reports](Scheduling_a_Report.mdx) for information on using the scheduler.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Time zone                             | See [Scheduling Reports](Scheduling_a_Report.mdx) for information on using the scheduler.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Daily at                              | See [Scheduling Reports](Scheduling_a_Report.mdx) for information on using the scheduler.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Weekly on                             | See [Scheduling Reports](Scheduling_a_Report.mdx) for information on using the scheduler.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Monthly (by week) on                  | See [Scheduling Reports](Scheduling_a_Report.mdx) for information on using the scheduler.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Monthly (by day) on                   | See [Scheduling Reports](Scheduling_a_Report.mdx) for information on using the scheduler.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Start                                 | See [Scheduling Reports](Scheduling_a_Report.mdx) for information on using the scheduler.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| End                                   | See [Scheduling Reports](Scheduling_a_Report.mdx) for information on using the scheduler.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Time zone                             | See [Scheduling Reports](Scheduling_a_Report.mdx) for information on using the scheduler.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Distribution Information              |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| Report Format                         | The format of the report. Choose from the drop-down list. Available formats are:<br />Acrobat (PDF file)<br />CSV (comma delimited)<br />XML file with report data<br />Embedded HTML<br />Microsoft Excel<br />TIFF file<br />Microsoft Word                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| No Distribution                       | Does not automatically distribute this report.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| Download                              | Makes this report available for download from the report link in the workspace of the user.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| Email                                 | Sends the report by email. Enter the email addresses, subject line, and descriptive text.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+
+5. Click the **preview** :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/7wVbvmMhNZlax0zFTJ2Ag_preview.png" alt caption size="10" width="20" height="12"} icon to preview the report.
+6. Click the **save** :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/0FVYqgve_U6q_TxsDLnZl_savedownarrow.png" alt caption size="10" width="20" height="17"} icon. The system displays the report on the report list.
+
+### About Using Last 1 Year vs Last 4 Quarters
+
+If you are using a report template, such as the **Executive Scorecard** report template, in the **Parameter Information** section, there are fields where you can specify the time.
+
+*Report Template with Time Parameters*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/H2c7E5ndWFmay03tvelMS_report-sample4.png" position="flex-start" size="40" initialPath="../../Resources/Images/help-images/report sample4.png" githubPath="Content/Resources/Images/help-images/report sample4.png" showCaption="false"></Image>
+
+The system returns different results based on the values that you enter.  For example, entering **1** in the **Last** field and selecting **year** from the second field is not the same as entering **4** in the **Last** field and selecting **quarters** in the second field. The system calculates quarters and years differently.
+
+Whenever you choose **last year**, **last quarter**, **last month**, **last week**, or **last day**, the system ignores the current year, quarter, month, week, or day.
+
+**Example 1**: If you run the report on January 8, 2014, then entering **4** in the **Last** field and selecting **quarters** in the second field displays information from 4/1/2013 to 1/8/2014.
+
+<Paragraph indent="1">
+  Last 4 quarters =
+</Paragraph>
+
+<Paragraph indent="1">
+  \[Current quarter (1/1/2014 - 1/8/2014 (today) \[1st quarter]]
+</Paragraph>
+
+<Paragraph indent="1">
+  \+
+</Paragraph>
+
+<Paragraph indent="1">
+  \[Quarter 10/1/2013 - 12/31/2013 (2nd quarter)]
+</Paragraph>
+
+<Paragraph indent="1">
+  \+
+</Paragraph>
+
+<Paragraph indent="1">
+   \[Quarter 7/1/2013 - 9/30/2013 (3rd quarter)]
+</Paragraph>
+
+<Paragraph indent="1">
+  \+
+</Paragraph>
+
+<Paragraph indent="1">
+   \[Quarter 4/1/2013 - 6/30/2013 (4th quarter)]
+</Paragraph>
+
+**Example 2**: If you run the report on January 8, 2014, then entering **1** in the **Last** field and selecting **year** in the second field displays information from 1/1/2014 to 1/8/2014.
+
+<Paragraph indent="1">
+  Last 1 year = Current year 1/1/2014 - 1/8/2014 (today)
+</Paragraph>
+
+### Creating a Time-Based Report Template
+
+1. Log in to the application as a Report Manager.
+2. Open the **Report Templates** workspace. The system displays a list of report templates.
+3. Click **New Report Template**. The system opens the report builder.
+4. Make the parameters that govern the time ranges visible by doing the following:
+
+<Paragraph indent="1">
+  a. From the **Report Data** pane, click the **Last** parameter. This is the parameter that governs report intervals. The system displays the **Report Parameter Properties** dialog box.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. For the **Select parameter visibility** field, select **Visible**. When running the report, this parameter detects the report runtime defined in the query.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. Click **OK**.
+</Paragraph>
+
+<Paragraph indent="1">
+  d. Repeat steps a-c for the **DataRangeOptions** and **BrowserTimeZoneOffset** parameters.
+</Paragraph>
+
+5. Create the interval report query, including the date ranges (start and end date). For example, create the following query: **select incidentnumber,createddatetime from incident where createddatetime>(@startdate) and createddatetime \<(@enddate)**.
+6. From the **Dataset Properties Parameters** pane, set the expressions for the values:
+
+| Value      | Expression                                                                                                                                     |
+| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| @startdate | =Code.getStartDateTime(<br />Parameters!DataRangeOptions.Value,<br />Parameters!BrowserTimezoneOffSet.Value,<br />Parameters!Last.Value<br />) |
+| @enddate   | =Code.GetEndDateTime(<br />Parameters!DataRangeOptions .Value,<br />Parameters!BrowserTimezoneOffSet.Value<br />)                              |
+
+7. Complete the template design, and click **OK**.
+
+When you run the report, the **startdate** and **enddate** query parameters return the dates in the format defined by the user (year, month, quarter, etc.).
+
+### Modifying a Report Template
+
+After creating a report template, you might want to edit it or create a duplicate report template.
+
+1. Log in to the application as a Report Manager.
+2. Open the **Report Templates** workspace. The system displays a list of report templates.
+3. Click the **Edit** :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/WTLKbMa5PI7qeazzbj0FD_edit-old.png" alt caption size="10" width="16" height="16"} icon next to the report template to edit. The system launches the report builder.
+4. Log in to the report builder and select the report template to modify.
+5. Make changes as needed.
+6. Click **Save As** to save your report template locally or click **Save** to overwrite the existing report template.
+
+<hint type="info">
+  The edit option is disabled in \{\{FRS\_VARS.ProductName}} cloud environment, you can only edit in the on-premise environment.
+</hint>
+
+### Downloading and Uploading a Report Template
+
+You can save a report template from one instance of \{\{FRS\_VARS.ProductName}} to use in another instance. For example, if you create report templates in your staging environment, you can easily save the templates to your local machine and upload them to your production environment without logging into Microsoft SSRS.
+
+1. Log in to the application as a Report Manager.
+2. Open the **Report Templates** workspace. The system displays a list of report templates.
+3. Click the **download** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/QkS28GwRu8yF92cyaGtGs_download.png" alt caption size="10" width="18" height="14"} next to the report template to save. The system downloads the report template to your downloads folder.
+4. Log into a new instance of \{\{FRS\_VARS.ProductName}} and open the **Report Templates** workspace again.
+5. Click **Upload Report**. The system displays the **Upload Report Template** dialog box.
+6. For the **Report Template Name** field, enter the report name.
+7. For the **Report template** parameter, select the report template file.
+8. Click **Save**.
+9. In the message dialog box, click **OK**.
+
+The system saves the report template and it is ready to use.
+
+### About Data Security for Report Templates
+
+When creating a report template, you can add parameters to the template to make the report data secure or to give users options in selecting the data that they can view. When you use the report template to create a report, you can make these parameter fields hidden or visible.
+
+- For reports with restricted data, you can hide the parameter fields. For example, the **Owner =$(CurrentLoginId())** parameter restricts the report data to the logged-in user, so the user can only view a report of records where the logged-in user is the owner. If you hide this parameter, the user cannot change it. In the same way, you can restrict reports to generate data limited to the team or organization unit of the logged-in user.
+- For reports where users can make selections to the report data, make the parameter fields visible. For example, make the **Start Date** and **End Date** parameters visible to allow users to select a date range for the report data.
+
+<hint type="info">
+  Parameters that specify context (for example, logged-in user) do not work for scheduled reports.
+</hint>

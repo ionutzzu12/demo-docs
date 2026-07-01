@@ -1,0 +1,104 @@
+---
+title: Working with Price Lists
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:48 GMT+0300 (Eastern European Summer Time)
+---
+
+The **Price List** workspace allows you to set different prices for services based on the regional settings for a user. You can define prices for all items (including services and subscriptions) within a single global list.
+
+This feature is only enabled when you select **Use Price List** from a request offering. See [About Request Offerings](About-Request-Offerings.mdx).
+
+## Creating a Price List Item
+
+1. Log in to the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Console}} console.
+2. Open the **Price List** workspace. The lists of prices is displayed.
+3. From the toolbar, click **New Price List Item**. A blank **Price List Item** form opens.
+4. Enter information into the fields.
+
+| Field                          | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| ------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Enabled                        | Enables th&#x65;**&#x20;Price List Item**.                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| Item Name                      | A unique name for the item.                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Item Revision                  | Optional. A revision code indicating the item version.                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| Type                           | Types include:<br />**Personal Hardware**: Use for personal hardware, such as phones or computers.<br />**Network Hardware**: Use for network hardware, such as cables or printers.<br />**Subscription**: Use for recurring prices.<br />**Software License**: Use for software purchases.<br />**Service**: Use for services, such as shipping.<br />**Facility**: Use for services provided on the customer's site.<br />**Allocation**: Use to track time (cost) of a specific task. |
+| Recurrence Type                | The type of recurrence.                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| Price                          | The price value and currency type. The price is the amount charged to the customer or end user. When linking the price to a custom business object, ensure that the business object is linked to **FRS\_PriceItem**.                                                                                                                                                                                                                                                                     |
+| Cost                           | The cost number and currency type. Cost is the value incurred by the service provider.                                                                                                                                                                                                                                                                                                                                                                                                   |
+| Unit of Measure                | Unit value in days, hours, minutes, or years.                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| Description                    | A brief description describing the item.                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| Vendor                         | Choose from the drop-down list. See [Creating a Vendor](<../ServiceLevelMgmt/Creating a Vendor.mdx>).                                                                                                                                                                                                                                                                                                                                                                                    |
+| Cost Driver                    | Available cost drivers.                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| Cost Driver Category           | Category of the cost driver.                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| Direct, Fixed, Capital Expense | Option selected if the price is direct, fixed, and a capital expense.                                                                                                                                                                                                                                                                                                                                                                                                                    |
+
+5. Click **Save**.
+
+## Adding Prices to a Request Offering
+
+1. When defining a request offering (either new request offering or new form offering), check **Use Price List**. **Enable Financial Transaction** also becomes checked.
+
+<Paragraph indent="1">
+  The **Use Price List** option tells the application to use the **Price List** workspace to obtain prices for your request offering options. The **Enable Financial Transaction** option saves a log of transactions that occur from end users.
+</Paragraph>
+
+<Paragraph indent="1">
+  Request Offering - Use Price List
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/eQ2sHh6FhZuQ62t6Hx_h__request-offering-use-price-list.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/request offering use price list.png" githubPath="Content/Resources/Images/help-images/request offering use price list.png" showCaption="false"></Image>
+
+2. Click **Add from Price List**. The **Select Price List Items** window opens. This adds a base price to your request offering.
+
+<Paragraph indent="1">
+  *Select Price List Items*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/0jOp6y_yAI9Jd5uJ3NK0O_select-price-list-items.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/select price list items.png" githubPath="Content/Resources/Images/help-images/select price list items.png" showCaption="false"></Image>
+
+3. Choose an item from the list, then click **Select**. Repeat as needed to add more base items.
+4. Click the **Design Request Form** tab. The request form opens.
+5. Click the **edit** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/WTLKbMa5PI7qeazzbj0FD_edit-old.png" alt caption size="10" width="16" height="16"} next to the field for which to designate a price. The **Configuration Editor** opens.
+6. Designate the prices.
+   - If the field is a checkbox control, expand the **Field Options** area.
+
+| Field                         | Description                                       |
+| ----------------------------- | ------------------------------------------------- |
+| Indent this field on the form | Shows the checkbox indented on the form to users. |
+| Price                         | Cost of the request offering.                     |
+| Recurrent Price               | Recurrent cost of the request offering.           |
+
+<Paragraph listStyleType="disc" indent="2">
+  If the field is a drop-down selection control, expand the **Price List** area.
+</Paragraph>
+
+7. Do one of the following:
+   - Click **Custom**, then click the **add** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/JtIxGMfjslfCSitXWBu4o_addgreen.png" alt caption size="10" width="17" height="15"} to add items and prices to the list. Use this option to create an ad-hoc list.
+
+<Paragraph indent="2">
+  *Configuration Editor - Custom Pick List*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/ukO0HB1c-fkUExGt5sIHi_configuraiton-editor-custom-pick-list.png" position="flex-start" size="40" indent="2" initialPath="../../Resources/Images/help-images/configuraiton editor custom pick list.png" githubPath="Content/Resources/Images/help-images/configuraiton editor custom pick list.png" showCaption="false"></Image>
+
+<Paragraph listStyleType="disc" indent="2">
+  Click **Validation List** to define the validation list items. Use this option to create a validation or cascading validation list.
+</Paragraph>
+
+<Paragraph indent="2">
+  *Configuration Editor - Validation List*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/xzcWv6V70HqWmxvJp70QN_configuration-editor-validation-list.png" position="flex-start" size="40" indent="2" initialPath="../../Resources/Images/help-images/Configuration editor validation list.png" githubPath="Content/Resources/Images/help-images/Configuration editor validation list.png" showCaption="false"></Image>
+
+| Field                           | Description                                                                                                                                                                                                                                                              |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Validation List to Use          | A validation list that must be defined in the business object before it appears here.                                                                                                                                                                                    |
+| Exclude items with no price     | Does not include items without a price in the list that appears to users.                                                                                                                                                                                                |
+| Price Field                     | Reflects the initial or base price.                                                                                                                                                                                                                                      |
+| Recurring Price Field           | Reflects the recurring price.                                                                                                                                                                                                                                            |
+| Title Field                     | Shows the item title.                                                                                                                                                                                                                                                    |
+| Cascading Validation Definition | Includes a cascading validation list.                                                                                                                                                                                                                                    |
+| Additional Fields               | Additional business objects and fields used when creating a cascading validation definition. This section serves as a filter for the validation list.<br />See [Using Pick Lists](../../Configure/PickLists/Pick_Lists.mdx) for instructions on how to use this feature. |
+
+8. Click **OK**.
+9. Continue editing the service request offering as described in [Creating a Request Offering](Creating-a-Request-Offering.mdx).

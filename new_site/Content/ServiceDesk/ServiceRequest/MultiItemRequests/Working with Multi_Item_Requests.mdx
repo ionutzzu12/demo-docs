@@ -1,0 +1,35 @@
+---
+title: Working with Multi-Item Service Requests
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:47 GMT+0300 (Eastern European Summer Time)
+---
+
+- :Link[About Multi-Item Service Requests]{label="About Multi-Item Service Requests" overridedLabel="About Multi-Item Service Requests" spaceId docId="U7lHgrWhiqX_oODZlwu0i" version="v2" docAnchorId="#About" loadingMethod="dynamic" newTab="false" href="Working with Multi_Item_Requests.mdx"}
+- [About Creating Multi-Item Service Requests](<About Creating MultiItem Requests.mdx>)
+- [Working with Task and Software Installation Catalogs](<Task and Software Installation Catalogs.mdx>)
+- [Working with Fulfillment Items](<Fulfillment Items.mdx>)
+- [Working with Fulfillment Item Packages](<Fulfillment Item Packages.mdx>)
+- [Fulfilling Multiple Software Service Requests](<Fulfilling_Multiple_Software Service Requests.mdx>)
+
+## About Multi-Item Service Requests
+
+Multi-item requests allow users to request more than one item in a single request form. For example, a multi-item request could allow a user to select one or more items from a list of available products and services such as software packages, account creation, and so on.
+
+Multi-item requests enable multiple tasks to be managed by one service request and initiated by one workflow.
+
+The following is the overall sequence of events starting when a Service Catalog user places a multi-item request and ending when the request is fulfilled.
+
+*Multi-Item Sequence of Events*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/AiiTOm8MN715su_-qZDwo_multiitem-sequence-of-events.png" alt="Multi-Item Sequence of Events" position="flex-start" size="40" indent="1" initialPath="../../../Resources/Diagrams/MultiItem Sequence of Events.png" githubPath="Content/Resources/Diagrams/MultiItem Sequence of Events.png" showCaption="false"></Image>
+
+- The choices that are available to a user in the request form are based on the entitlement defined in the fulfillment item package. By basing choices on entitlement, different organizational units can be configured to see different choices even though the request form is defined just once in the request offering.
+- Each fulfillment item package creates one fulfillment item.
+- Fulfillment items contain workflows; fulfillment item packages do not.
+- After fulfillment items are created, their workflows control details of task execution.
+
+The delivery workflow defined in the multi-item request offering triggers the creation of fulfillment items based on the definitions in fulfillment item packages:
+
+*Delivery Workflow*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/peXh3ESCSo5C0SqXAXjxL_delivery-workflow.png" alt="Delivery Workflow" position="flex-start" size="40" indent="1" initialPath="../../../Resources/Diagrams/Delivery Workflow.png" githubPath="Content/Resources/Diagrams/Delivery Workflow.png" showCaption="false"></Image>

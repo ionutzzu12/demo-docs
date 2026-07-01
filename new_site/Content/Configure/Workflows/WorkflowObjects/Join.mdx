@@ -1,0 +1,88 @@
+---
+title: Join Workflow Block
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:58 GMT+0300 (Eastern European Summer Time)
+---
+
+The **Join** workflow block combines two or more workflow paths. For example, you can specify the required actions (paths) that must reach this **Join** workflow block before the workflow can continue. The exit port in this block allows a common path to resume after combining workflows.
+
+*Join Workflow Block Properties*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/thrStLgU77j5CLaJ6W-ws_joinblock.png" position="flex-start" size="40" indent="1" initialPath="../../../Resources/Images/help-images/join_block.png" githubPath="Content/Resources/Images/help-images/join_block.png" showCaption="false"></Image>
+
+## Exit Ports
+
+| Exit Port | Description                 |
+| --------- | --------------------------- |
+| OK        | Continue to the next block. |
+
+## Properties
+
+| Property | Description                     |
+| -------- | ------------------------------- |
+| Title    | A unique name for the junction. |
+
+## Actions
+
+| Button | Action                 |
+| ------ | ---------------------- |
+| Save   | Commits your settings. |
+| Cancel | Exits without saving.  |
+
+## How the Join Workflow Block Works
+
+The process is as follows:
+
+1. The **Join** workflow block checks to see if any of its predecessors are still executing.  
+
+<Paragraph indent="1">
+  If any of its predecessors are still executing, the **Join** workflow block waits indefinitely.
+</Paragraph>
+
+2. When one of its predecessors has finished executing, the **Join** workflow block checks to see if any of its predecessors are unexecuted.
+
+<Paragraph indent="1">
+  If none of its predecessors are still unexecuted (that is, they are all complete), the **Join** workflow continues as configured.
+</Paragraph>
+
+3. For any of its predecessors that are unexecuted, the **Join** workflow block checks to see if those predecessors are executable.
+
+<Paragraph indent="1">
+  If there are any predecessors that are executable but have not been executed yet, the **Join** workflow block waits indefinitely.
+</Paragraph>
+
+4. After all of the executable predecessors have executed, the **Join** workflow continues as configured.
+
+The **Join** workflow block does not know the exit value of the predecessors; it only knows if it has been executed or not.
+
+*Join Workflow Block Example*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/7tqK0Ovk7cqgtjByVj8Ov_join-wf-example.png" position="flex-start" size="40" indent="1" initialPath="../../../Resources/Images/help-images/join-WF-example.png" githubPath="Content/Resources/Images/help-images/join-WF-example.png" showCaption="false"></Image>
+
+In this example, the **Join** workflow block is called "Wait for Tasks" and it waits until the two **Task** workflow blocks that are its predecessors (one is called "Task for IT" and one is called "Task for Operations") have finished executing.  After they both finish executing, the workflow progresses to the next workflow block which in this case is the **Notification** workflow block.
+
+## Using the Join Workflow Block with the If Workflow Block
+
+If you use the **Join** workflow block with an **If** workflow block, and if both exit ports (true and false) of the **If** workflow block directly or indirectly lead to the **Join** workflow block, you must create the workflow by putting the workflow blocks into the Workflow Designer in this order:
+
+1. **If** workflow blocks
+2. **Task** workflow blocks
+3. **Join** workflow block
+4. Connect the exit ports of the **If** workflow block to the **Join** workflow block
+5. Connect the exit ports of the **If** workflow block to the **Task** workflow block(s)
+6. Connect the exit ports of the **Task** workflow block to the **Join** workflow block
+
+<hint type="info">
+  You must follow this order so that the **Join** workflow block can check is predecessors correctly.
+</hint>
+
+*Example of Using the Join Workflow Block with the If Workflow Block*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/ECCb_BSZ3XH24gHvzk4B1_join-if-wf-example.png" position="flex-start" size="40" indent="1" initialPath="../../../Resources/Images/help-images/join-if-WF-example.png" githubPath="Content/Resources/Images/help-images/join-if-WF-example.png" showCaption="false"></Image>
+
+If you have any problems with the way the **Join** workflow block works, such as if the workflow is blocked or stuck, try these suggestions:
+
+1. Delete the **Join** workflow block's predecessor workflow blocks that are controlled by the **If** workflow block exit port. In the example above, this is the **Task** workflow block.
+2. Save the workflow.
+3. Put the deleted workflow blocks back and reconnect them.
+4. Save the workflow.

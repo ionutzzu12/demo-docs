@@ -1,0 +1,295 @@
+---
+title: Fields Collected by Agent and Agentless Scans
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:49 GMT+0300 (Eastern European Summer Time)
+---
+
+Data from the source fields (first column) is automatically mapped to the target fields (second column) in \{\{FRS\_VARS.ProductName}}.
+
+<ExpandableHeading>
+  ## Agent Scans
+
+  | Client Message From Agent Scanner                                          | Field in \{\{Primary.Company}} \{\{FRS\_VARS.ProductName}} | Table                             |
+  | -------------------------------------------------------------------------- | ---------------------------------------------------------- | --------------------------------- |
+  | Identity                                                                   |                                                            |                                   |
+  | Registration                                                               |                                                            |                                   |
+  | Product.SaaS Client Agent.DisplayVersion                                   | AgentVersion                                               | CI                                |
+  | BIOS UUID                                                                  | BIOSGuid                                                   | CI                                |
+  | Cid                                                                        | ClientID                                                   | CI                                |
+  | Computer Description                                                       | Description                                                | CI                                |
+  | Manufacturer                                                               |                                                            |                                   |
+  | Model                                                                      |                                                            |                                   |
+  | Login Name                                                                 |                                                            |                                   |
+  | Full Computer Name                                                         | FullyQualifiedDomainName                                   | CI                                |
+  | Network Domain                                                             | DomainName                                                 | CI                                |
+  | FQDN (extract domain from FQDN)                                            |                                                            |                                   |
+  | Domain                                                                     |                                                            |                                   |
+  | Computer Name                                                              | Name                                                       | CI                                |
+  | IP                                                                         | IPaddress                                                  | CI                                |
+  | Port                                                                       | Subnet                                                     | CI                                |
+  | MAC                                                                        | MACaddress                                                 | CI                                |
+  | Serial Number                                                              | SerialNumber                                               | CI                                |
+  | Login Name                                                                 | LoginName                                                  | CI                                |
+  | VM UUID                                                                    | VMUUID                                                     | CI                                |
+  |                                                                            |                                                            |                                   |
+  | Chassis Type                                                               | ChassisType                                                | CI                                |
+  | Hardware.CPU Sockets                                                       | no match field                                             | CI                                |
+  | Virtualization                                                             | ExecutionEnvironment                                       | CI                                |
+  | Manufacturer                                                               | Manufacturer                                               | CI                                |
+  | Model                                                                      | Model                                                      | CI                                |
+  | OS Platform                                                                | OperatingSystem                                            | CI                                |
+  | OS Product                                                                 | OSEdition                                                  | CI                                |
+  | OS Class                                                                   | CIType                                                     | CI                                |
+  | Major Version                                                              | OSMajorVersion                                             | CI                                |
+  | Minor Version                                                              | OSMinorVersion                                             | CI                                |
+  | Build Number                                                               | OSBuildNumber                                              | CI                                |
+  | Partition.Size                                                             | TotalDiskSpace                                             | CI                                |
+  | Partition.Free                                                             | FreeDiskSpace                                              | CI                                |
+  | sum\{\{Hardware.Partition.Free}} \* 100 / sum\{\{Hardware.Partition.Size}} | PercentFreeDiskspace                                       | CI                                |
+  | Hardware.CPU                                                               | CPUCount                                                   | CI                                |
+  | Hardware.RAM Module                                                        | MemorySlotCount                                            | CI                                |
+  | Hardware(Match FRS\_CIComponentType)                                       |                                                            |                                   |
+  |                                                                            | FRS\_CIComponentType                                       |                                   |
+  | Adapter : NIC                                                              | NetworkAdapter                                             |                                   |
+  | Ports : IP                                                                 | IPAddress                                                  | FRS\_CIComponent                  |
+  | Check IP is empty or not                                                   | IPEnabled                                                  | FRS\_CIComponent                  |
+  | MAC                                                                        | MACaddress                                                 | FRS\_CIComponent                  |
+  | Manufacturer                                                               | Manufacturer                                               | FRS\_CIComponent                  |
+  | Model                                                                      | DisplayName                                                | FRS\_CIComponent                  |
+  | Manufacturer                                                               | OriginalManufacturer                                       | FRS\_CIComponent                  |
+  | PCI Device ID                                                              | PCIDeviceID                                                | FRS\_CIComponent                  |
+  | PCI Vendor ID                                                              | PCIVendorID                                                | FRS\_CIComponent                  |
+  | Port                                                                       | Subnet                                                     | FRS\_CIComponent                  |
+  | Adapter : Display                                                          | DisplayAdapter                                             |                                   |
+  | Model                                                                      | Description                                                | FRS\_CIComponent                  |
+  | Model\_PCI                                                                 | DisplayName                                                | FRS\_CIComponent                  |
+  | Maximum bits per pixel                                                     | MaxBitsPerPixel                                            | FRS\_CIComponent                  |
+  | Model                                                                      | Model                                                      | FRS\_CIComponent                  |
+  | Manufacturer                                                               | OriginalManufacturer                                       | FRS\_CIComponent                  |
+  | PCI Device ID                                                              | PCIDeviceID                                                | FRS\_CIComponent                  |
+  | PCI Vendor ID                                                              | PCIVendorID                                                | FRS\_CIComponent                  |
+  | RAM                                                                        | Memory                                                     | FRS\_CIComponent                  |
+  | Disk                                                                       | PhysicalStorage                                            |                                   |
+  | Unit                                                                       | DiskNumber                                                 | FRS\_CIComponent                  |
+  | Model                                                                      | Model                                                      | FRS\_CIComponent                  |
+  | Serial Number                                                              | SerialNumber                                               | FRS\_CIComponent                  |
+  | Size                                                                       | DiskSize                                                   | FRS\_CIComponent                  |
+  | Type                                                                       | DiskType                                                   | FRS\_CIComponent                  |
+  | Partition                                                                  | LogicalStorage                                             |                                   |
+  | Host Units                                                                 | DiskNumber                                                 | FRS\_CIComponent                  |
+  | Name                                                                       | DisplayName                                                | FRS\_CIComponent                  |
+  | Type                                                                       | DriveFormat                                                | FRS\_CIComponent                  |
+  | Free                                                                       | FreeSpace                                                  | FRS\_CIComponent                  |
+  | Size                                                                       | Capacity                                                   | FRS\_CIComponent                  |
+  | RAM Module                                                                 | Memory                                                     |                                   |
+  | Slot Name+Size+Width+Speed+Type+Form Factor                                | DisplayName                                                | FRS\_CIComponent                  |
+  | Form Factor                                                                | FormFactor                                                 | FRS\_CIComponent                  |
+  | Type                                                                       | MemoryType                                                 | FRS\_CIComponent                  |
+  | Size                                                                       | MemorySize                                                 | FRS\_CIComponent                  |
+  | Slot Number                                                                | SlotNumber                                                 | FRS\_CIComponent                  |
+  | Peripheral : Monitor                                                       | Monitor                                                    |                                   |
+  | Date of Manufacture                                                        | ManufacturedDate                                           | FRS\_CIComponent                  |
+  | EDID Manufacturer ID                                                       | Manufacturer                                               | FRS\_CIComponent                  |
+  | HardwareID                                                                 | HardwareId                                                 | FRS\_CIComponent                  |
+  | Manufacturer                                                               | Manufacturer                                               | FRS\_CIComponent                  |
+  | Max Horizontal Size                                                        | MaxHorizontalSize                                          | FRS\_CIComponent                  |
+  | Max Horizontal Size.u                                                      | MaxHorizontalSizeUnit                                      | FRS\_CIComponent                  |
+  | Max Vertical Size                                                          | MaxVerticalSize                                            | FRS\_CIComponent                  |
+  | Max Vertical Size.u                                                        | MaxVerticalSizeUnit                                        | FRS\_CIComponent                  |
+  | Model                                                                      | DisplayName                                                | FRS\_CIComponent                  |
+  | Serial Number                                                              | SerialNumber                                               | FRS\_CIComponent                  |
+  | Hardware - General                                                         |                                                            |                                   |
+  | BIOS                                                                       |                                                            |                                   |
+  | Date                                                                       | BIOSDate                                                   | CI                                |
+  | Version                                                                    | BIOSVersion                                                | CI                                |
+  | Manufacturer                                                               | BIOSManufacturer                                           | CI                                |
+  | Manufacturer                                                               | OriginalManufacturer                                       | CI                                |
+  | CPU                                                                        |                                                            |                                   |
+  | Manufacturer                                                               | CPUManufacturer                                            | CI                                |
+  | Cores                                                                      | CPUCoreCount                                               | CI                                |
+  | Name                                                                       | CPUName                                                    | CI                                |
+  | Speed                                                                      | CPUSpeed                                                   | CI                                |
+  | Speed Unit                                                                 | CPUSpeedUnit                                               | CI                                |
+  | Computer                                                                   |                                                            |                                   |
+  | BIOS UUID                                                                  | BIOSGuid                                                   | CI                                |
+  | Chassis Type                                                               | ChassisType                                                | CI                                |
+  | Serial Number                                                              | SerialNumber                                               | CI                                |
+  | Network Identity                                                           |                                                            |                                   |
+  | Domain                                                                     | DomainName                                                 | CI                                |
+  | Full Computer Name                                                         | FullyQualifiedDomainName                                   | CI                                |
+  | OS                                                                         |                                                            |                                   |
+  | Build Number                                                               | OSBuildNumber                                              | CI                                |
+  | OS Class                                                                   | CIType                                                     | CI                                |
+  | Major Version                                                              | OSMajorVersion                                             | CI                                |
+  | Minor Version                                                              | OSMinorVersion                                             | CI                                |
+  | OS Platform                                                                | OperatingSystem                                            | CI                                |
+  | Processor Architecture                                                     | CPUArchitecture                                            | CI                                |
+  | OS Product                                                                 | OSEdition                                                  | CI                                |
+  | Product Type                                                               | OSEdition                                                  | CI                                |
+  | Service Pack                                                               | OSServicePackLevel                                         | CI                                |
+  | RAM                                                                        |                                                            |                                   |
+  | Size                                                                       | TotalMemory                                                | CI                                |
+  | Size Unit                                                                  | TotalMemoryUnit                                            | CI                                |
+  | Software                                                                   |                                                            |                                   |
+  | Product/Usage                                                              | FRS\_CIComponent#InstalledApplication                      |                                   |
+  | DisplayName                                                                | DisplayName/SoftwareName                                   | FRS\_CIComponent/SoftwareIdentity |
+  | DisplayVersion                                                             | VersionNumber/SoftwareVersion                              | FRS\_CIComponent/SoftwareIdentity |
+  | Freq                                                                       | UsageFrequency                                             | FRS\_CIComponent                  |
+  | GUID                                                                       | Guid                                                       | FRS\_CIComponent/SoftwareIdentity |
+  | InstallDate                                                                | InstallDate                                                | FRS\_CIComponent                  |
+  | Language                                                                   | LanguageCode                                               | FRS\_CIComponent/SoftwareIdentity |
+  | Last Used                                                                  | LastUsedDateTime                                           | FRS\_CIComponent                  |
+  | Product ID                                                                 | ProductID                                                  | FRS\_CIComponent                  |
+  | Publisher                                                                  | Manufacturer                                               | FRS\_CIComponent/SoftwareIdentity |
+  | Subkey                                                                     | Tag                                                        | FRS\_CIComponent                  |
+  | UninstallString                                                            | UninstallString                                            | FRS\_CIComponent                  |
+  | Name                                                                       | FileName                                                   | FRS\_CIComponent                  |
+  | Software/Usage                                                             |                                                            |                                   |
+  | Date                                                                       | FileDate                                                   | FRS\_IM\_FileInstance             |
+  | Description                                                                | Description                                                | FRS\_IM\_SoftwareFile             |
+  | File Version                                                               | FileVersion                                                | FRS\_IM\_SoftwareFile             |
+  | Name                                                                       | FileName                                                   | FRS\_IM\_SoftwareFile             |
+  | FileVersion String                                                         | FileVersionFull                                            | FRS\_IM\_SoftwareFile             |
+  | Freq                                                                       | UsageFrequency                                             | FRS\_IM\_FileInstance             |
+  | Internal Name                                                              | InternalName                                               | FRS\_IM\_SoftwareFile             |
+  | Language                                                                   | LanguageCode                                               | FRS\_IM\_SoftwareFile             |
+  | Last Used                                                                  | LastUsedDateTime                                           | FRS\_IM\_FileInstance             |
+  | Manufacturer                                                               | Manufacturer                                               | FRS\_IM\_SoftwareFile             |
+  | Name                                                                       | Filename                                                   | FRS\_IM\_SoftwareFile             |
+  | Original Name                                                              | OriginalName                                               | FRS\_IM\_SoftwareFile             |
+  | Path                                                                       | FilePath                                                   | FRS\_IM\_FileInstance             |
+  | Product                                                                    | Product                                                    | FRS\_IM\_SoftwareFile             |
+  | Size                                                                       | Size                                                       | FRS\_IM\_SoftwareFile             |
+  | Product Version                                                            | ProductVersion                                             | FRS\_IM\_SoftwareFile             |
+  | CIM Row                                                                    | FRS\_CIComponent#WindowsService                            |                                   |
+  | Caption                                                                    | Caption/DisplayName                                        | FRS\_CIComponent                  |
+  | Description                                                                | Description                                                | FRS\_CIComponent                  |
+  | DesktopInteract                                                            | DesktopInteract                                            | FRS\_CIComponent                  |
+  | Name                                                                       | Name/ComponentId                                           | FRS\_CIComponent                  |
+  | PathName                                                                   | PathName                                                   | FRS\_CIComponent                  |
+  | ProcessId                                                                  | ProcessId                                                  | FRS\_CIComponent                  |
+  | StartMode                                                                  | StartMode                                                  | FRS\_CIComponent                  |
+  | StartName                                                                  | StartName/ServiceAccountName                               | FRS\_CIComponent                  |
+  | State                                                                      | State                                                      | FRS\_CIComponent                  |
+  | SystemName                                                                 | SystemName                                                 | FRS\_CIComponent                  |
+  | Product                                                                    | FRS\_CIComponent#Hotfix                                    |                                   |
+  | DisplayName                                                                | DisplayName                                                | FRS\_CIComponent                  |
+  | Subkey                                                                     | HotfixID                                                   | FRS\_CIComponent                  |
+  | InstallDate                                                                | InstallDate                                                | FRS\_CIComponent                  |
+  | Publisher                                                                  | Manufacturer                                               | FRS\_CIComponent                  |
+  | VM                                                                         | GuestHostRelationship                                      |                                   |
+  | Name Description                                                           | ClientName                                                 | GuestHostRelationship             |
+  | VM UUID                                                                    | VMUUID                                                     | GuestHostRelationship             |
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Agentless Scans
+
+  | Client Message by WMI Scanner                   | Field in \{\{Primary.Company}} \{\{FRS\_VARS.ProductName}} | Table                |
+  | ----------------------------------------------- | ---------------------------------------------------------- | -------------------- |
+  | Identity                                        |                                                            |                      |
+  | BIOS UUID                                       | BIOSGuid                                                   | CI                   |
+  | Cid                                             | ClientID                                                   | CI                   |
+  | Computer Description                            | Description                                                | CI                   |
+  | Manufacturer                                    |                                                            |                      |
+  | Model                                           |                                                            |                      |
+  | Login Name                                      |                                                            |                      |
+  | Full Computer Name                              | FullyQualifiedDomainName                                   | CI                   |
+  | Network Domain                                  | DomainName                                                 | CI                   |
+  | FQDN(extract domain from FQDN)                  |                                                            |                      |
+  | Domain                                          |                                                            |                      |
+  | Computer Name                                   | Name                                                       | CI                   |
+  | IP                                              | IPaddress                                                  | CI                   |
+  | Port                                            | Subnet                                                     | CI                   |
+  | MAC                                             | MACaddress                                                 | CI                   |
+  | Serial Number                                   | SerialNumber                                               | CI                   |
+  | Login Name                                      | LoginName                                                  | CI                   |
+  | Chassis Type                                    | ChassisType                                                | CI                   |
+  | Virtualization                                  | ExecutionEnvironment                                       | CI                   |
+  | Manufacturer                                    | Manufacturer                                               | CI                   |
+  | Model                                           | Model                                                      | CI                   |
+  | OS Platform                                     | OperatingSystem                                            | CI                   |
+  | OS Product                                      | OSEdition                                                  | CI                   |
+  | OS Class                                        | not found                                                  | CI                   |
+  | Service Pack                                    | OSServicePackLevel                                         | CI                   |
+  | Major Version                                   | OSMajorVersion                                             | CI                   |
+  | Minor Version                                   | OSMinorVersion                                             | CI                   |
+  | Build Number                                    | OSBuildNumber                                              | CI                   |
+  | Partition.Size                                  | TotalDiskSpace                                             | CI                   |
+  | Hardware(Match FRS\_CIComponentType)            |                                                            | FRS\_CIComponentType |
+  | Adapter: NIC                                    | NetworkAdapter                                             |                      |
+  | Ports : IP                                      | IPAddress                                                  | FRS\_CIComponent     |
+  | Check IP is empty or not                        | IPEnabled                                                  | FRS\_CIComponent     |
+  | MAC                                             | MACaddress                                                 | FRS\_CIComponent     |
+  | Manufacturer                                    | Manufacturer                                               | FRS\_CIComponent     |
+  | Model                                           | DisplayName                                                | FRS\_CIComponent     |
+  | Manufacturer                                    | OriginalManufacturer                                       | FRS\_CIComponent     |
+  | PCI Device ID                                   | PCIDeviceID                                                | FRS\_CIComponent     |
+  | PCI Vendor ID                                   | PCIVendorID                                                | FRS\_CIComponent     |
+  | Port                                            | Subnet                                                     | FRS\_CIComponent     |
+  | Adapter: Display                                | DisplayAdapter                                             |                      |
+  | Model                                           | Description                                                | FRS\_CIComponent     |
+  | Model\_PCI                                      | DisplayName                                                | FRS\_CIComponent     |
+  | Maximum bits per pixel                          | MaxBitsPerPixel                                            | FRS\_CIComponent     |
+  | Manufacturer                                    | OriginalManufacturer                                       | FRS\_CIComponent     |
+  | PCI Device ID                                   | PCIDeviceID                                                | FRS\_CIComponent     |
+  | PCI Vendor ID                                   | PCIVendorID                                                | FRS\_CIComponent     |
+  | RAM                                             | Memory                                                     | FRS\_CIComponent     |
+  | Disk                                            | PhysicalStorage                                            |                      |
+  | Unit                                            | DiskNumber                                                 | FRS\_CIComponent     |
+  | Model                                           | Model                                                      | FRS\_CIComponent     |
+  | Serial Number                                   | SerialNumber                                               | FRS\_CIComponent     |
+  | Size                                            | DiskSize                                                   | FRS\_CIComponent     |
+  | Type                                            | DiskType                                                   | FRS\_CIComponent     |
+  | Partition                                       | LogicalStorage                                             |                      |
+  | Host Units                                      | DiskNumber                                                 | FRS\_CIComponent     |
+  | Name                                            | DisplayName                                                | FRS\_CIComponent     |
+  | Type                                            | DriveFormat                                                | FRS\_CIComponent     |
+  | Free                                            | FreeSpace                                                  | FRS\_CIComponent     |
+  | Size                                            | Capacity                                                   | FRS\_CIComponent     |
+  | RAM Module                                      | Memory                                                     |                      |
+  | Slot Name+Size+Width+Speed+Type+Form Factor     | DisplayName                                                | FRS\_CIComponent     |
+  | Form Factor                                     | FormFactor                                                 | FRS\_CIComponent     |
+  | Type                                            | MemoryType                                                 | FRS\_CIComponent     |
+  | Size                                            | MemorySize                                                 | FRS\_CIComponent     |
+  | Slot Number                                     | SlotNumber                                                 | FRS\_CIComponent     |
+  | Peripheral : Monitor(No information in Monitor) | Monitor                                                    |                      |
+  | Hardware - General                              |                                                            |                      |
+  | BIOS                                            |                                                            |                      |
+  | Date                                            | BIOSDate                                                   | CI                   |
+  | Version                                         | BIOSVersion                                                | CI                   |
+  | Manufacturer                                    | BIOSManufacturer                                           | CI                   |
+  | CPU                                             |                                                            |                      |
+  | Manufacturer                                    | CPUManufacturer                                            | CI                   |
+  | Cores                                           | CPUCoreCount                                               | CI                   |
+  | Name                                            | CPUName                                                    | CI                   |
+  | Speed                                           | CPUSpeed                                                   | CI                   |
+  | Speed Unit                                      | CPUSpeedUnit                                               | CI                   |
+  | Computer                                        |                                                            |                      |
+  | Chassis Type                                    | ChassisType                                                | CI                   |
+  | BIOS UUID                                       | BIOSGuid                                                   | CI                   |
+  | Serial Number                                   | SerialNumber                                               | CI                   |
+  | Network Identity                                |                                                            |                      |
+  | Domain                                          | DomainName                                                 | CI                   |
+  | Full Computer Name                              | FullyQualifiedDomainName                                   | CI                   |
+  | OS                                              |                                                            |                      |
+  | Build Number                                    | OSBuildNumber                                              | CI                   |
+  | Class                                           | CIType                                                     | CI                   |
+  | Major Version                                   | OSMajorVersion                                             | CI                   |
+  | Minor Version                                   | OSMinorVersion                                             | CI                   |
+  | Platform                                        | OperatingSystem                                            | CI                   |
+  | Product                                         | OSEdition                                                  | CI                   |
+  | Product Type                                    | OSEdition                                                  | CI                   |
+  | Check Service Pack                              | OSServicePackLeve                                          | CI                   |
+  | RAM                                             |                                                            |                      |
+  | Size                                            | TotalMemory                                                | CI                   |
+  | Size Unit                                       | TotalMemoryUnit                                            | CI                   |
+  | Software                                        |                                                            |                      |
+  | Product                                         |                                                            |                      |
+  | DisplayName                                     | DisplayName                                                | FRS\_CIComponent     |
+  | DisplayVersion                                  | VersionNumber                                              | FRS\_CIComponent     |
+  | GUID                                            | Guid                                                       | FRS\_CIComponent     |
+  | InstallDate                                     | InstallDate                                                | FRS\_CIComponent     |
+  | Publisher                                       | Manufacturer                                               | FRS\_CIComponent     |
+  | UninstallString                                 | UninstallString                                            | FRS\_CIComponent     |
+</ExpandableHeading>

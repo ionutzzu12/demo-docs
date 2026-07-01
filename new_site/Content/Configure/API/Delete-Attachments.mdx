@@ -1,0 +1,44 @@
+---
+title: Delete Attachments
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:01 GMT+0300 (Eastern European Summer Time)
+---
+
+You can delete attachments in business objects.
+
+**Base URL:**
+
+https\://\{tenant url}/api/rest/Attachment?ID=\{business object unique key}
+
+<ExpandableHeading>
+  ## Delete Attachments - Example
+
+  Here is an example to delete attachments present in a particular business object.
+
+  | URL                                           | https\://\{tenant url}/api/rest/Attachment?ID=DBBA75D38DAE4FADABC475669136728A                                      |
+  | --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+  | <font color="#ffffff">Method</font>           | DELETE                                                                                                              |
+  | Header Name                                   | Authorization: JWT Token/Session Key/REST API Key                                                                   |
+  | Status Code                                   | 204                                                                                                                 |
+  | <font color="#ffffff">Response Payload</font> | \{  <br />"code": "ISM\_2003",  <br />"description": "No Content",  <br />"message": "",  <br />"help": ""  <br />} |
+</ExpandableHeading>
+
+### Unsuccessful Response - Upload Attachments
+
+<ExpandableHeading>
+  ## Invalid URL
+
+  Scenario: Trying to attach a file with a file name that already exists in the business object.
+
+  https\://\{tenant url}/api/rest/Attachments?ID=1968C01EFAB244AD8C67648E7578A30E
+
+  Header Name:
+
+  **Authorization: Sessionkey**
+
+  | Code                                          | ISM\_4004                                            |
+  | --------------------------------------------- | ---------------------------------------------------- |
+  | Description                                   | Not Found                                            |
+  | Message                                       | \[  <br />"Requested resource is not found"  <br />] |
+  | <font color="#ffffff">HTTP STATUS CODE</font> | **400**                                              |
+</ExpandableHeading>

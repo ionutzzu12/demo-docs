@@ -1,0 +1,95 @@
+---
+title: Using Expressions in Quick Actions
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:58 GMT+0300 (Eastern European Summer Time)
+---
+
+You can configure Quick Actions using expressions to trigger notifications and alerts. For example, to send notification emails when an incident is escalated for the first time or when a change is initiated. These alerts and emails can be sent to specific recipients as configured.
+
+A quick action can employ full expression syntax, surrounded by $(). For example:
+
+$(FieldName)
+
+$(\[Problem#]Category)
+
+$(2+2)
+
+## Creating an Expression for a Quick Action
+
+1. Log in to the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Console}} console with the Administrator user role.
+2. Open a Business Object (Change, Incident) to configure a Quick Action.
+3. Click the **Action Menu** > **Edit Actions**. The application displays the **Action designer** page.
+4. From the **Your Actions** tab on the left panel, select a Quick Action category. For example, select **Notification** > **1st Escalation Notification**.
+
+<Paragraph indent="1">
+  The **Action designer** displays the fields for the selected Quick Action category.
+</Paragraph>
+
+<hint type="info" indent="1">
+  To create a new Quick Action category click the **Create New Actions** tab.
+</hint>
+
+5. Click the **Edit** icon.
+6. Do one of the following:
+   - Manually define the expression in the text box.
+   - Select either the **Insert a Field** or **Insert a Function** tab from the left panel and drag and drop the required fields into the text box.
+
+<hint type="info" indent="1">
+  The items in these tabs may vary according to the workspace and the logged in user role.
+</hint>
+
+7. You can also include expressions for the **To** and **From** fields:
+   - **From**: Enter an expression to indicate the sender of the email. For example, **$(GetGlobal("ListenerEmailAddress"))**.
+   - **To**: Enter an expression to indicate the recipient of the email. For example, **$(OwnerEmail)**.
+
+<Paragraph indent="1">
+  *Example: Creating an Expression in a Quick Action*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/ynntY2Mnx7oBu3KGEWl0Q_creatinganexpressioninquickactions.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/Reference/CreatingAnExpressionInQuickActions.png" githubPath="Content/Resources/Images/Reference/CreatingAnExpressionInQuickActions.png" showCaption="false"></Image>
+
+8. Click **Save**.
+
+## Example: Accessing a Record from a Notification Email
+
+The following is the syntax for creating a direct link to access a record from a notification email:
+
+\<a href="$(*Server\_URL*())/?Scope=ObjectWorkspace\&CommandId=Search\&ObjectType=Change%23\&CommandData=RecId,%3D,0,$(\[FRS\_Approval#.]\[Change#.]RecId),string,AND|#">
+
+where:
+
+- *Server\_URL* specifies the function name.
+- *Scope=ObjectWorkspace* specifies the access to the specified object workspace from the \{\{FRS\_VARS.ProductName}} web client.
+- *CommandId=Search* is to search for the specific record in the object workspace.
+- *ObjectType=**business\_object* specifies the name of the business object in which to search for the record (for example, Change#). Notice in the example URL, the presence of %23, which corresponds in hexadecimal to the "#" character in ASCII.
+- *CommandData=RecId,%3D,0,$(\[FRS\_Approval#.]\[Change#.]RecId),string,AND|#* searches for the record.
+
+## Example: Accessing the My Items list in the Self Service Portal from a Notification Email
+
+The following is the syntax for creating a link to access the **My Items** workspace in the Self Service portal from a notification email:
+
+\<a href="$(Server\_URL())?Scope=SelfService\&role=SelfService\&CommandId=OpenMyItem\&ItemType=FRS\_ApprovalVoteTracking\&ItemId=$(RecId)">
+
+where,
+
+- *ServerURL* specifies the name of the function.
+- *Scope=SelfService* specifies to access the Self Service portal.
+- *role=SelfService* specifies the user role. Here, it is the Self Service role.
+- *CommandId=OpenMyItem* specifies the fixed user interface action command to open the **My Items** workspace in the Self Service portal.
+- *ItemType=FRS\_ApprovalVoteTracking* specifies the approval vote tracking object.
+- *ItemId=$(RecId)* specifies the specific record identified by its associated RecID.
+
+## Example: Accessing the My Items List in the Self Service Mobile Portal from a Notification Email
+
+The following is the syntax for creating a link to access the **My Items** workspace in the Self Service Mobile portal from a notification email:
+
+\<a href="$(*Server\_URL*())/Login.aspx?Scope=SelfServiceMobile\&role=SelfServiceMobile\&CommandId=OpenMyItem\&ItemType=FRS\_ApprovalVoteTracking\&ItemId=$(*ParentRecId*)">Open Approval Record in Self Service\</a>
+
+where,
+
+- *ServerURL()* specifies the name of the function.
+- *Scope=SelfServiceMobile* specifies to access the Self Service Mobile portal.
+- *role=SelfServiceMobile* specifies the user role. Here, it is the Self Service role.
+- *CommandId=OpenMyItem* specifies the fixed user interface action command to open the **My Items** workspace in the Self Service Mobile portal.
+- *ItemType=FRS\_ApprovalVoteTracking* specifies the approval vote tracking object.
+- *ItemId=$(ParentRecId)* specifies the specific record identified by its associated RecID.

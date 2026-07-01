@@ -1,0 +1,41 @@
+---
+title: Import Controls and Citations Group Data
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:45 GMT+0300 (Eastern European Summer Time)
+---
+
+Before you create Authority Documents, import Citations and Controls via the **Data Import Wizard**.
+
+Create Control Groups that align with current industry standards such as:
+
+- FedRAMP 20x (Federal Risk and Authorization Management Program)
+- ISO 27001:2022 (Information Security Management)
+- ISO31000:2018 (Risk Management)
+- NIST SP 800-53 (National Institute of Standards and Technology Special Publication)
+- PCI DSS (Payment Card Industry Data Security Standard)
+- GDPR (General Data Protection Regulation)
+
+Citations are passages or expressions in a document that are quoted or cited and express a specific requirement from the Authority Document. Controls are the specific steps or actions within a compliance mandate that must be met to fulfill a compliance requirement. Controls can be mapped to multiple Citations from multiple Authority Documents.
+
+**To import Citations and Controls:**
+
+1. Set up the Data Import Connection.
+
+<Paragraph indent="1">
+  Refer to :Link[Setting Up a Data Import Connection]{label="Setting Up a Data Import Connection" overridedLabel="Setting Up a Data Import Connection" spaceId docId="z2z90_aQskfSDzXRA7Lii" version="v2" docAnchorId="#SettingUpDataImportConnection" loadingMethod="dynamic" newTab="false" githubPath="../../Configure/ImportExportData/Data-Import-Connections.htm#SettingUpDataImportConnection" href="../../Configure/ImportExportData/Data-Import-Connections.mdx"}.
+</Paragraph>
+
+2. Use **Manual File Upload** for the **Connection Type** and upload the Excel spreadsheet.
+3. The **Source Unique Key** is **ID**.
+4. The **Target Business Object** is **GRC Citation**.
+5. No **Filter Setting** is necessary.
+6. Add a row for the **Reference ID**, and the corresponding field is **CitatationID**.
+7. Click **Publish & Run Now**.
+
+<Paragraph indent="1">
+  This imports the data from an outside source into the \{\{FRS\_VARS.Neurons\_for\_GRC}} database and creates new records. Each record needs a unique ID (**Control\_RecID** or **Citation\_RecID**).
+</Paragraph>
+
+<hint type="info">
+  You must have permissions for shared access to both the file (and its enclosing directories) and the \{\{FRS\_VARS.Neurons\_for\_GRC}} server receiving the data.
+</hint>

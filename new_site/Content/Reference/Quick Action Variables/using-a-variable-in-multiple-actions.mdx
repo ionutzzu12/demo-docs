@@ -1,0 +1,68 @@
+---
+title: Using a Variable within multiple Actions
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:58 GMT+0300 (Eastern European Summer Time)
+---
+
+**Role**: *Administrator*
+
+**Minimum Version**: \{\{FRS\_VARS.Company}} \{\{FRS\_VARS.ProductName}}*&#x20;2023*
+
+Within a composite quick action, you can re-use a variable from an earlier action in a subsequent later action.
+
+For example, you create and use the same variable in multiple [Composite Action](<../../Configure/QuickActions/Classical Action Designer/templates/Composite Action.mdx>). In first action you create the variable with **Text** type that displays the user's name that has cloned the incident, then in the second action use the same variable with the **Symptom** expression to clone the object, and again using the same variable with the **Send Email** action. So when you run this action it clones the object, print the user name that cloned the business object, and sends an email with the same information.
+
+**Following are the actions:**
+
+### Action 1 - Creating Variable
+
+1. Sign in to \{\{FRS\_VARS.ProductName}} as an \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+2. From the Configuration console, select **Build > Business Objects** open a business object, and select **Quick Actions**.
+3. Create the variable within a new composite action as described in [Creating a Quick Action Variable](creating-a-quick-action-variable.mdx).
+
+<Paragraph indent="1">
+  In this example, the variable is called **ClonedByUserMessage** with type **Text** and contains a value o&#x66;**&#x20;$("Incident cloned by "+ CurrentUserDisplayName())**.
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/U5qnJSIj5aMMeGTzdvugU_using-var-in-multi-actions-1.png" position="flex-start" size="40" indent="1" initialPath="i/using-var-in-multi-actions-1.png" githubPath="Content/Reference/Quick Action Variables/i/using-var-in-multi-actions-1.png" showCaption="false"></Image>
+
+<hint type="info" indent="1">
+  Variables are created within a composite quick action and can only be used within that ONE composite action, and not in other actions or elsewhere within \{\{FRS\_VARS.ITSM}}.
+</hint>
+
+### Action 2 - Cloning the business object
+
+1. Select **Clone Object** from the **Add new action** dropdown list. Select :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/6Wv_JthalmAZhtfiji5J3_plus-icon.png" alt caption size="10" width="16" height="16"}.
+2. For **Field Name**, select **Symptom (Description)**.
+3. For the first part of **Field Value**, select fx and then search for **Symptom** in the Toolbox **Search&#x20;**&#x66;ield on the right-hand side.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/nu-mBCnpwBGueGu9G6gNh_edit-exp-in-multi-actions-1a.png" position="flex-start" size="40" indent="1" initialPath="i/edit-exp-in-multi-actions-1a.png" githubPath="Content/Reference/Quick Action Variables/i/edit-exp-in-multi-actions-1a.png" showCaption="false"></Image>
+
+4. Drag or double-click to add the **Symptom** field to your expression.
+5. Remove the **Symptom** search term from the box so that the menus appear underneath, then drag or double-click your previously created variable **ClonedByUserMessage** from the **Variables** menu.
+
+<hint type="success" indent="1">
+  Add an "/r/n" in between the description and the variable to insert a new line in the contents of the **Symptom** field if desired.
+</hint>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/1JGyAvQ4UipW0qEFX7DGA_edit-exp-in-multi-actions-2.png" position="flex-start" size="40" indent="1" initialPath="i/edit-exp-in-multi-actions-2.png" githubPath="Content/Reference/Quick Action Variables/i/edit-exp-in-multi-actions-2.png" showCaption="false"></Image>
+
+<hint type="info" indent="1">
+  If no variables have been defined within your composite action, you won't see a variables folder in the Toolbox.
+</hint>
+
+### Action 3 - Email
+
+1. Select **Send Email** from the **Add new action** dropdown. Select :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/6Wv_JthalmAZhtfiji5J3_plus-icon.png" alt caption size="10" width="16" height="16"} .
+2. Complete the fields fo&#x72;**&#x20;Log in Journal, From:, To:,** and **Subject**:, and then change any settings on the right-hand-side in the **Action Settings** tab.
+3. Select the **Insert a Function** tab and drag over the **ClonedByUserMessage** variable into the body of the email.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/9aWw5QQqKB0_YugJJzwVy_edit-exp-in-multi-actions-3.png" position="flex-start" size="40" indent="1" initialPath="i/edit-exp-in-multi-actions-3.png" githubPath="Content/Reference/Quick Action Variables/i/edit-exp-in-multi-actions-3.png" showCaption="false"></Image>
+
+4. Select **Save** to save all three actions in one composite action.
+
+### Run quick action
+
+To run your composite action Go to an Incident in a Service Desk dashboard and select **More > No category > Name of Composite Action**.
+
+After cloning is completed, you see **Incident cloned by \[current user]** in the **Description** field and an email sends to the team notifying that the Incident has been cloned with the details of the user who performed the action.

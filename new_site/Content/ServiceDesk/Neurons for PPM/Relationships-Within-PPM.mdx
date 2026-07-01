@@ -1,0 +1,42 @@
+---
+title: Relationships Within PPM
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:47 GMT+0300 (Eastern European Summer Time)
+---
+
+## About PPM Relationships
+
+The **Alignment To** field in the Overview part of a Program allows you to determine the route or mechanism you want to use for rolling up both Effort and Budget.
+
+The content of the drop-down list for the **Alignment To** field changes dependent on whether you are creating a Program, Portfolio, or Project. If you are working with a Project, the **Alignment To** field has a choice of **Portfolios**, **Program&#x20;**&#x6F;r **Major Project**. If you are working in a Program, you have a choice of **Portfolios&#x20;**&#x6F;r **Program**. If working with a Portfolio, you have a choice of **Portfolio** only.
+
+The unique feature of \{\{Primary.Company}} \{\{FRS\_VARS.Neurons\_for\_PPM}} is that *both* Projects and Programs can be aligned to multiple Portfolios.
+
+<hint type="info">
+  **Tip:** Major and Sub-Projects use the same business object; the only difference is the position in the relationship map.
+</hint>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Y8SXWSMQSVYtj-vy3MDse_ppm-mapping.png" alt="Graphic showing relationships, financial and hierarchical between Portfolios, Programs and Projects" position="flex-start" size="40" initialPath="../../Resources/Images/PPM-Images/PPM-Mapping.png" githubPath="Content/Resources/Images/PPM-Images/PPM-Mapping.png" showCaption="false"></Image>
+
+### Projects
+
+- A Project can be aligned to a Program or directly to a Portfolio.
+- A Project can be aligned to multiple Portfolios.
+- A Project can only be aligned with *one* Program (hence Program is always singular in the **Alignment To** drop-down list).
+- A Sub-Project(s) can be nested under a Major Project and has its finances automatically rolled up into the Major Project.
+- Green and Red Budget symbols together: The Project has 2 sub-projects that roll directly up to *two* portfolios and it pulls funds from both green and red Portfolio Master Budgets.
+
+### Programs
+
+- A Program can be aligned to multiple Portfolios.
+- A Sub-Program can be nested under a Major Program.
+- A Program cannot be nested under a Project.
+- You can't align a Program to more than one different entities at the top level (example: A Program cannot align to a Program *and* a Portfolio).
+- Programs do not have any budget triangles or circles on them in the diagram. This is because Programs don't usually have their own Budgets; Programs are for organizing and grouping Projects. The **Portfolio Budgets** tab is initially hidden but can be used in the rare instance that a Program has expenses of its *own*.
+- You can allocate Portfolio budgets in tabs, but the actual figures are unavailable for editing because they come from Project-owned fields. Programs show managers *which* budgets they are using money from. If you are a manager you can see which Portfolio Budget Plan you can use to create a budget for a Project in a Program.
+
+### Portfolios
+
+- A Portfolio cannot be nested under a Program.
+- A Portfolio has a budget, shown on the image by triangles.
+- If you have a very large organisation, you can nest a Sub-Portfolio under a Major Portfolio. If a Sub-Portfolio has a budget it gets automatically linked to the Master Portfolio. The Projects with the turquoise triangles roll up to *both* Portfolios, whereas the yellow Project budget only rolls up to the Portfolio with the yellow budget triangle.

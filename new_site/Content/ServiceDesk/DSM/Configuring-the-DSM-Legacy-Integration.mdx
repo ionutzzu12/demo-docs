@@ -1,0 +1,91 @@
+---
+title: Configuring the DSM Legacy Integration
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:48 GMT+0300 (Eastern European Summer Time)
+---
+
+Before you can install the software through a service request or incident in \{\{FRS\_VARS.ProductName}}, you must synchronize the software between Desktop and Server Management (DSM) and \{\{FRS\_VARS.ProductName}}. (See [Synchronizing Software Packages and Sets](Synchronizing-Software-Packages-and-Sets.mdx).) The software must also be activated on \{\{FRS\_VARS.ProductName}}. (See [Activating Software Packages and OS Sets](Activating-Software-Packages-and-OS-Sets.mdx).)
+
+\{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Analyst-Service-Desk-Analyst}}s periodically synchronize software packages to keep the list up to date. After manually activating packages, sets, and operating systems, \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Analyst-Service-Desk-Analyst}}s can install or provision a software package on a managed computer.
+
+## Establishing the DSM Legacy Environment
+
+| Step # | Step Description                                                                                                                                                                                                                                                                              | Reference                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1      | Specify the DSM server URL and restart the DSM Messenger service.                                                                                                                                                                                                                             | See [Configuring the New DSM Integration](Configuring-the-New-DSM-Integration.mdx).                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| 2      | Ping the DSM server from \{\{FRS\_VARS.ProductName}} to verify connectivity.                                                                                                                                                                                                                  |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| 3      | Synchronize software so that software packages and sets on the DSM application are accessible through \{\{FRS\_VARS.ProductName}}.                                                                                                                                                            | See [Synchronizing Software Packages and Sets](Synchronizing-Software-Packages-and-Sets.mdx).                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| 4      | Activate the software to make it available for installation or provisioning through \{\{FRS\_VARS.ProductName}}.<br />During activation you can update software parameters, specify whether approval is required, and publish the software by making it available in the Self-Service Portal. | [Activating Software Packages and OS Sets](Activating-Software-Packages-and-OS-Sets.mdx) and :Link[Specifying Approval for Software Packages]{label="Specifying Approval for Software Packages" overridedLabel="Specifying Approval for Software Packages" spaceId docId="UptjATS8q-bxPXaH7-2VR" version="v2" docAnchorId="#SpecifyingApprovalForSoftwarePackages" loadingMethod="dynamic" newTab="false" githubPath="Synchronizing-Software-Packages-and-Sets.htm#SpecifyingApprovalForSoftwarePackages" href="Synchronizing-Software-Packages-and-Sets.mdx"} |
+| 5      | Update the default software package parameters.                                                                                                                                                                                                                                               | :Link[Viewing and Editing Default Installation Parameters]{label="Viewing and Editing Default Installation Parameters" overridedLabel="Viewing and Editing Default Installation Parameters" spaceId docId="UptjATS8q-bxPXaH7-2VR" version="v2" docAnchorId="#ViewingAndEditingDefaultistallationParameters" loadingMethod="dynamic" newTab="false" githubPath="Synchronizing-Software-Packages-and-Sets.htm#ViewingAndEditingDefaultistallationParameters" href="Synchronizing-Software-Packages-and-Sets.mdx"}                                                |
+| 6      | Link the software packages to \{\{FRS\_VARS.ProductName}} software records to enable DSM-managed software to appear in the \{\{FRS\_VARS.ProductName}} software list.                                                                                                                         | [Linking Software Packages to Software Records](Linking-Software-Packages-to-Records.mdx)                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| 7      | Create the hardware and software profiles for provisioning.                                                                                                                                                                                                                                   | [Defining Hardware and Software Profiles](Creating-Hardware-and-Software-Profiles.mdx)                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| 8      | Map the \{\{FRS\_VARS.ProductName}} configuration items to DSM-managed computers.                                                                                                                                                                                                             | [Mapping Configuration Items to DSM-Managed Computers](Mapping-Configuration-Items-to-DSM-Managed-Computers.mdx)                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+
+## Configuring the Software
+
+You must apply the following changes in DSM:
+
+1. Update to DSM Release 7.0.2 or a newer version.
+2. Open the DSM console.
+3. Specify the URL for the DSM integration service.
+
+<Paragraph indent="1">
+  *DSM Console*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/KAv2JI6gmXfFkcsl2Sz38_dsmconsole.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/DSM_console.png" githubPath="Content/Resources/Images/help-images/DSM_console.png" showCaption="false"></Image>
+
+4. Log into the \{\{FRS\_VARS.ProductName}} Configuration Database. See the *Configuration Database Guide for&#x20;*\{\{Primary.Company}} \{\{FRS\_VARS.ProductName}} for more information about using the \{\{FRS\_VARS.ProductName}} Configuration Database.
+5. Open the **Tenants** workspace and then open the tenant.
+6. Copy the value in the **Client Authentication Key** field into the **DSM Console** field in the DSM console.
+7. Set the **Integration with** field to **Cloud Platform**. (This was formerly called **ITSM SaaS**.)
+8. Save the changes that you made in the DSM console.
+9. Stop and restart the DSM Messenger Service.
+10. Ping the DSM server from \{\{FRS\_VARS.ProductName}} to verify connectivity, as described in :Link[Pinging the DSM Server]{label="Pinging the DSM Server" overridedLabel="Pinging the DSM Server" spaceId docId="d09wrHdYcjzlD-8taNz7S" version="v2" docAnchorId="#PingingDSMServer" loadingMethod="dynamic" newTab="false" href="Configuring-the-DSM-Legacy-Integration.mdx"}.
+
+## Pinging the DSM Server
+
+Ping the DSM server to check the connection between \{\{FRS\_VARS.ProductName}} and DSM.
+
+1. Log into the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Console}} console.
+2. Open the **DSM On-Demand Sync Request - Legacy** workspace.
+3. Click **New DSM Sync Request**.
+4. From the **Sync Request Type** menu, choose **Ping DSM Service**.
+5. Click **Save**.
+6. Click **Refresh**.
+   - If the ping is successful, the status changes to completed.
+   - If the ping fails, the status changes to failed.
+
+<Paragraph indent="1">
+  *DSM Ping Server*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/tu1IdlGFHcfvQvHBLtxgq_dsmpingserver.jpg" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/DSM_pingserver.jpg" githubPath="Content/Resources/Images/help-images/DSM_pingserver.jpg" showCaption="false"></Image>
+
+<Paragraph indent="1">
+  If the ping fails, do the following:
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  Check the connectivity between the DSM Messenger Service and the DSM integration web services.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  Check the connectivity between the DSM server and the DSM integration web services.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  Check the workflow instantiation record upon creating the ping request.
+</Paragraph>
+
+## Viewing Configuration Items in the DSM Managed Software - Legacy Workspace
+
+\{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Analyst-Service-Desk-Analyst}}s can open the **DSM Managed Software - Legacy** workspace to view (but not change) managed software, its status, and other information.
+
+1. Log in to \{\{FRS\_VARS.ProductName}}.
+2. Open the **DSM Managed Software - Legacy** workspace to view:
+   - Software synchronization and activation status.
+   - Software parameters.
+   - Whether a package is uninstallable.
+   - Whether an approval is required for a package.
+   - Whether a package or set is published to the \{\{FRS\_VARS.Self\_Service\_Portal-Self-Service}} portal.

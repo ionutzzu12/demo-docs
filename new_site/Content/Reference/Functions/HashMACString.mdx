@@ -1,0 +1,107 @@
+---
+title: HashMACString
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:00 GMT+0300 (Eastern European Summer Time)
+---
+
+Applies cryptographic hashing algorithms with Message Authentication signing to text strings. Provide a Hash MAC (Message Authentication Code) Key for an extra level of security. By default, hashed strings are converted to hex format and use UTF-8 encoding.
+
+## Syntax
+
+HashMACString(textValue, hashingAlgorithm, key, isBase64Result, isBase64Key)
+
+## Enabled For
+
+For a description of the business object categories, see :Link[Notes on "Enabled For"]{label="Notes on &#x22;Enabled For&#x22;" overridedLabel="Notes on &#x22;Enabled For&#x22;" spaceId docId="xObv2pIDrk60jkEIWs8mD" version="v2" docAnchorId="#Notes" loadingMethod="dynamic" newTab="false" githubPath="_Built_in_Functions.htm#Notes" href="_Built_in_Functions.mdx"}.
+
+| Business Object Category                                                                                                                                                                                                                                                                             | Yes/No |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| Business Rules: Before-Save Rules                                                                                                                                                                                                                                                                    | Yes    |
+| Business Rules: Calculation Rules (After Save, with or without Also Recalculate on Load)                                                                                                                                                                                                             | Yes1   |
+| Business Rules: Calculation Rules (Before Save or Always, without Also Recalculate On Load)                                                                                                                                                                                                          | Yes    |
+| Business Rules: Calculation Rules (Before Save or Always, with Recalculate On Load)                                                                                                                                                                                                                  | Yes1   |
+| Business Rules: Editing Rules                                                                                                                                                                                                                                                                        | Yes2   |
+| Business Rules: Initialization Rules                                                                                                                                                                                                                                                                 | Yes    |
+| Business Rules: Read Only Rules                                                                                                                                                                                                                                                                      | No     |
+| Business Rules: Required Rules                                                                                                                                                                                                                                                                       | Yes2   |
+| Business Rules: Validation Rules                                                                                                                                                                                                                                                                     | Yes    |
+| Client Expressions                                                                                                                                                                                                                                                                                   | No     |
+| Object Permissions                                                                                                                                                                                                                                                                                   | No     |
+| Services                                                                                                                                                                                                                                                                                             | No     |
+| LDAP                                                                                                                                                                                                                                                                                                 | No     |
+| Mobile                                                                                                                                                                                                                                                                                               | No     |
+| Quick Actions (except UI Quick Actions)                                                                                                                                                                                                                                                              | Yes    |
+| UI Quick Actions                                                                                                                                                                                                                                                                                     | No     |
+| Reports                                                                                                                                                                                                                                                                                              | Yes    |
+| Search/Dashboard without field references                                                                                                                                                                                                                                                            | No     |
+| Search/Dashboard with field references                                                                                                                                                                                                                                                               | No     |
+| 1. Not fully supported in calculation rules that have a condition of **After Save** or the **Also Recalculate on Load** option selected. It may fail if the rule's field is used in a grid, form, or saved search.<br />2. Except when this field appears on a form or is triggered by such a field. |        |
+
+## Parameters
+
+<table isTableHeaderOn="true">
+  <tr>
+    <td>
+      Parameter
+    </td>
+    <td>
+      Description
+    </td>
+  </tr>
+  <tr>
+    <td>
+      textValue
+    </td>
+    <td>
+      The text data to have the hashing function applied.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      hashingAlgorithm
+    </td>
+    <td>
+      Hashing algorithm for the function, The following are supported:
+      - MD5
+      - SHA1
+      - SHA256
+      - SHA512
+    </td>
+  </tr>
+  <tr>
+    <td>
+      key
+    </td>
+    <td>
+      Hash function key value.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      isBase64Result
+    </td>
+    <td>
+      (Optional) Flag for returning result in base64 format. Default value is false.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      isBase64Key
+    </td>
+    <td>
+      (Optional) Flag to specify that key is in base64 format. Default value is false.
+    </td>
+  </tr>
+</table>
+
+## Return Value
+
+String hash, either in hexidecimal format or Base64 encoded.
+
+## Example
+
+$(HashMACString("Test value", "MD5", "keyValue", false, false))
+
+Returns this value:
+
+"10ffe441a1b9db39adb520d9781958db"

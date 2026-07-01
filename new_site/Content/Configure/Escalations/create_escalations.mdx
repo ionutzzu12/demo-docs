@@ -1,0 +1,90 @@
+---
+title: Creating an escalation
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:57 GMT+0300 (Eastern European Summer Time)
+---
+
+<hint type="info">
+  If an escalation includes automatic email notification, ensure that the email server is configured correctly. Refer to [Setting Up Email](../Email/Email.mdx).
+</hint>
+
+- :Link[Creating an escalation schedule]{label="Creating an escalation schedule" overridedLabel="Creating an escalation schedule" spaceId docId="PXd5CaWJxYHxxo9tptWbG" version="v2" docAnchorId="#Creating-an-Escalation-Schedule" loadingMethod="dynamic" newTab="false" href="create_escalations.mdx"}
+- :Link[Adding escalation levels]{label="Adding escalation levels" overridedLabel="Adding escalation levels" spaceId docId="PXd5CaWJxYHxxo9tptWbG" version="v2" docAnchorId="#Adding-Escalation-Levels" loadingMethod="dynamic" newTab="false" href="create_escalations.mdx"}
+- :Link[Modifying an escalation schedule]{label="Modifying an escalation schedule" overridedLabel="Modifying an escalation schedule" spaceId docId="PXd5CaWJxYHxxo9tptWbG" version="v2" docAnchorId="#Modifying-an-Escalation-Schedule" loadingMethod="dynamic" newTab="false" href="create_escalations.mdx"}
+- :Link[Deleting an escalation schedule]{label="Deleting an escalation schedule" overridedLabel="Deleting an escalation schedule" spaceId docId="PXd5CaWJxYHxxo9tptWbG" version="v2" docAnchorId="#Deleting-an-Escalating-Schedule" loadingMethod="dynamic" newTab="false" href="create_escalations.mdx"}
+
+## Creating an escalation schedule
+
+Escalations for incidents, service requests, and tasks automatically run by default when you are not using service level agreements.
+
+1. From the Configuration console, select **Build** > **Automation Tools** > **Escalation Schedules** to open the **Escalation Schedules** workspace.
+
+The list of escalation schedules appears, sorted by business object. Although you can create an escalation for any object, escalations are usually created for incidents, service requests, tasks, or problems.
+
+2. Select **Add New**. The **New Escalation Settings** window appears.
+3. Enter information into the fields.
+
+| Field                                                                              | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| ---------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Business Object                                                                    | The name of the business object.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| Schedule name                                                                      | A unique name for the schedule.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Escalation clock is regulated by                                                   | The event that drives the escalation schedule.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| Value                                                                              | The clock action for each value of the selected field.  The default is Run.<br />The values in this table are derived from the selected field. If needed, you can set a clock action for individual values. Refer to [Watching Escalations](<Escalation Watch.mdx>).                                                                                                                                                                                                                                                                         |
+| Keep a secondary (response) clock                                                  | Optional. Specifies a controlling field. The secondary clock resets when the value of the field that you specify here changes. When the secondary clock has run for a duration set in the escalation lifecycle, (that is, when the specified field has remained unchanged for that amount of time) a quick action executes. A secondary clock is typically used to monitor response times.                                                                                                                                                   |
+| When this escalation schedule replaces a schedule already in place                 | Recalculate the escalation clock value from the business object's creation time: Continues using the original creation time of the record as the starting point for elapsed time calculations.&#xA;With this option, if the new schedule reduces the target time from, for example, 10 days to five days, and if the current record was created six days ago, the schedule is considered breached as soon as it is implemented.<br />Reset the escalation clock to zero: Restarts the escalation clock when the new schedule is implemented. |
+| Link escalation watches directly to business object using the following link field | Required. Employs a link field in an escalation watch.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+
+4. Select **Save** to save the escalation schedule. The escalation is added to the list in the left panel and in the escalation schedules area.
+
+## Adding escalation levels
+
+After you create an escalation, you can define its lifecycle by defining its escalation levels, which are the thresholds that must be reached to trigger a call for additional resources to meet a service level target or customer expectation.
+
+The following procedure describes how to define escalations only if the **Service Level Management** module is not available. Don't use this procedure if the **Service Level Management** module is available at your site; instead, define and manage escalations through service level packages and service level agreements.
+
+1. From the Configuration console, select **Build** > **Automation Tools** > **Escalation Schedules** to open the **Escalation Schedules** workspace.
+2. Select the schedule to which to add a level.
+3. Select **Set Thresholds**. The **Escalation Parameters for** window appears.
+4. Enter information under the **Service Target and Breach** tab.
+
+| Field                 | Description                                                                                                                                                                                   |
+| --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Schedule is Enabled   | Activates the escalation schedule after the item has been saved.  Enable the fields.                                                                                                          |
+| Target Duration       | Defines the total amount of time used to track this escalation. Enter values in the day (d), hour (h) and minute (m) fields.<br /><br />Do not use with the **Target DateTime Field** option. |
+| Target DateTime Field | Defines the deadline for the target.<br /><br />Do not use with the **Target Duration** option.                                                                                               |
+| Hours of Operation    | The business operating hours to apply to this escalation.                                                                                                                                     |
+| On breach, run action | The quick action that executes if the escalation lifecycle exceeds the time limit defined above.                                                                                              |
+
+5. If you have configured a secondary clock, enter the following information in the **Response and Periodic Update Target** area:
+
+| Field                                                      | Description                                                                                    |
+| ---------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| If 'x' field value hasn't changed, while clock is running: | Schedules actions at intervals within the lifecycle.                                           |
+| for                                                        | Defines the interval used to track this action in the day (d), hour (h) and minute (m) fields. |
+| then run action                                            | The quick action that executes.                                                                |
+
+6. Enter information under the **Escalation Level 1**, **2** and **3** tabs as needed. If the Service Desk cannot successfully meet a service level target, the incident is elevated to a second or even third tier of support.
+
+| Field                         | Description                                                                                                                                                                                        |
+| ----------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Do Not escalate at this level | Ignores this escalation level.                                                                                                                                                                     |
+| Set as follows                | Enables the escalation threshold and action parameters area.                                                                                                                                       |
+| Escalate at (%)               | The percentage of the escalation lifecycle to elapse before raising the escalation to the next level. You can enter a value or use the slider bar to set the percentage.                           |
+| i.e. at:<br />out of target:  | Reflects hours and minutes in relation to the breach target interval (in the **out of target:** field).                                                                                            |
+| By running action             | The quick action to execute when this interval is exceeded. Examples of quick actions include closing an incident, reassigning an incident, or sending an escalation or automated failure message. |
+
+7. Select **OK** to save the escalation schedule.
+
+## Modifying an escalation schedule
+
+1. From the Configuration console, select **Build** > **Automation Tools** > **Escalation Schedules** to open the **Escalation Schedules** workspace.
+2. Select the schedule to modify.
+3. Select **Edit Schedule**. The **Edit Escalation Settings** window appears.
+4. Modify the information as described above.
+5. Select **Save**.
+
+## Deleting an escalation schedule
+
+1. From the Configuration console, select **Build** > **Automation Tools** > **Escalation Schedules** to open the **Escalation Schedules** workspace.
+2. Select the **delete** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/USPl9Egu4Y2Blx7HKC3mA_deleteredx.png" alt caption size="10" width="14" height="13"} in the row containing the escalation schedule to remove. The application displays a confirmation message.
+3. Select **Yes** to delete the escalation.

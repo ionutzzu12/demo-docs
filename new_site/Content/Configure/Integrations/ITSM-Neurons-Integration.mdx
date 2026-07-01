@@ -1,0 +1,250 @@
+---
+title: Neurons Platform Integration
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:51 GMT+0300 (Eastern European Summer Time)
+---
+
+**Role**: \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+
+**Platform**: SaaS and on-premises.
+
+**Minimum Version**: \{\{Primary.Company}} \{\{Primary.Product}} 2025.2.
+
+**Feature Availability**: New customers get this feature OOTB by default. Existing customers upgrading to version 2025.2 should raise a request to Ivanti Operations team to get it enabled.
+
+With Neurons Platform Integration feature, \{\{FRS\_VARS.ITSM}} and \{\{FRS\_VARS.Neurons}} tenants can be integrated for a seamless centralized experience without the involvement of the Operations team. With this, \{\{FRS\_VARS.ITSM}} Administrators can manage the integrations from the Configuration console ensuring a streamlined and user-friendly experience. The ability to test connections instantly provides immediate confirmation of connectivity, reducing delays and uncertainty. Additionally, this feature simplifies troubleshooting by allowing quick identification of common integration issues.
+
+<ExpandableHeading>
+  ## Existing Users
+
+  - If you are upgrading to version 2025.3, you can access **Asset Import Configuration** and **Client Registration** pages.
+  - To enhance security and standardized connection methods, the manual URL-based connection option is removed for SaaS based customers. URL-based connections must be configured through the Client-Based Connection option. For more information, see :Link[Configure the Integration using Client Based Connection.]{label="Configure the Integration using Client Based Connection." overridedLabel="Configure the Integration using Client Based Connection." spaceId docId="NTz81S_vm1wWpJxEy6Tla" version="v2" docAnchorId="#Configur" loadingMethod="dynamic" newTab="false" href="ITSM-Neurons-Integration.mdx"}
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## New Users
+
+  From Neurons ITSM 2025.3 release, new customers receive a seamless, centralized experience OOTB. To reduce need of operations team involvement, and admins to manage configurations directly through the Configuration console.
+
+  - The **Asset Import Configuration** and **Client Registration** pages are disabled by default. To configure, see :Link[Configure the Integration using Client Based Connection]{label="Configure the Integration using Client Based Connection" overridedLabel="Configure the Integration using Client Based Connection" spaceId docId="NTz81S_vm1wWpJxEy6Tla" version="v2" docAnchorId="#Configur" loadingMethod="dynamic" newTab="false" href="ITSM-Neurons-Integration.mdx"}.
+  - The manual URL-based connection option is removed for SaaS based customers. Connections must now be configured using the Client-Based Connection method.
+  - To configure integrations, use **Neurons Platform Integration** → click **Manage Connections**, then proceed with **App Registration**.
+  - To enable or disable features use the **Options** menu instead of managing features in **Asset Import Configuration** page. The Asset Import Configuration page is disabled. For more information, see :Link[Working with Integrated Features]{label="Working with Integrated Features" overridedLabel="Working with Integrated Features" spaceId docId="NTz81S_vm1wWpJxEy6Tla" version="v2" docAnchorId="#Working" loadingMethod="dynamic" newTab="false" href="ITSM-Neurons-Integration.mdx"}.
+</ExpandableHeading>
+
+**Prerequisite**
+
+Existing users must submit a service request to Ivanti Operations to enable the **EnableNeuronIntegrationToken** feature flag in Config DB. If you upgrade to 2025.3 version, this feature is enabled by default.
+
+## Configure the Integration using Client Based Connection
+
+1. Log in to \{\{FRS\_VARS.ProductName}} as an Administrator.
+2. Open the Configuration console > **Extend** > **Neurons Platform Integration**.
+
+<Paragraph indent="1">
+  The **Neurons Platform Integration** page is displayed.
+</Paragraph>
+
+<Paragraph indent="1">
+  *Neurons Platform Integration page*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/phuZOOiVXyIkjCyOGNZmS_neuronsintegrationplatform.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/Integration-images/NeuronsIntegrationPlatform.png" githubPath="Content/Resources/Images/Integration-images/NeuronsIntegrationPlatform.png" showCaption="false"></Image>
+
+3. Click **Setup Neurons Platform Connection**.
+
+<Paragraph indent="1">
+  The platform information of the tenant is displayed at the top.
+</Paragraph>
+
+4. Enter the following details:
+
+<Paragraph indent="2">
+  a. **Connection Type**- By default, the system sets the connection type to **Client Based Connection**.
+</Paragraph>
+
+<Paragraph indent="2">
+  b. **Name**- Enter a contextual name for the connection.
+</Paragraph>
+
+<Paragraph indent="2">
+  c. **Neurons Platform Tenant URL**:- Enter the Neurons Platform Tenant URL.
+</Paragraph>
+
+<Paragraph indent="2">
+  d. **Authentication Details** - Enter the relevant information for:
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="4">
+  **Neurons Platform Auth URL**
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="4">
+  **Client ID**
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="4">
+  Client Secret
+</Paragraph>
+
+<Paragraph indent="2">
+  *Setup Neurons Platform Integration Display*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/iWqm62roRHdLOv3C9ZtpB_new-document.png" position="flex-start" size="40" indent="2" initialPath="../../Resources/Images/New document.png" githubPath="Content/Resources/Images/New document.png" showCaption="false"></Image>
+
+<Paragraph indent="2">
+  To obtain the authentication details go to the App Registration section in any Neurons Tenant.
+</Paragraph>
+
+<Paragraph indent="1">
+  ### Retrieve Authentication Details from Neurons
+</Paragraph>
+
+<Paragraph indent="2">
+  To fetch the required authentication details follow the steps:
+</Paragraph>
+
+<Paragraph listStyleType="decimal" indent="3">
+  Open a web browser and log into any Neurons Tenant.
+</Paragraph>
+
+<Paragraph listStyleType="decimal" listStart="2" listRestartPolite="2" indent="3">
+  Go to **Home** > **Admin**.
+</Paragraph>
+
+<Paragraph listStyleType="decimal" listStart="3" listRestartPolite="3" indent="3">
+  Click **App Registration** > **New Registration**
+</Paragraph>
+
+<Paragraph listStyleType="decimal" listStart="4" listRestartPolite="4" indent="3">
+  Select **Ivanti Neurons for ITSM and ITAM (SaaS)** on the displayed right panel.
+</Paragraph>
+
+<Paragraph listStyleType="decimal" listStart="5" listRestartPolite="5" indent="3">
+  Click **Continue**.
+</Paragraph>
+
+<Paragraph listStyleType="decimal" listStart="6" listRestartPolite="6" indent="3">
+  \[Optional] You can enter a description in the text field.
+</Paragraph>
+
+<Paragraph listStyleType="decimal" listStart="7" listRestartPolite="7" indent="3">
+  Click **Register**.
+</Paragraph>
+
+<Paragraph indent="3">
+  A success message is displayed and values with authentication details appears on the right panel.
+</Paragraph>
+
+<Paragraph listStyleType="decimal" listStart="8" listRestartPolite="8" indent="3">
+  Copy the **Neurons Platform Auth URL**, **Client ID**, **Client Secret** values.
+</Paragraph>
+
+<Paragraph indent="3">
+  *Neurons Tenant Home Page*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/4i3HgR_mfADpSp0cXylPr_image26.png" position="flex-start" size="40" indent="3" initialPath="../../Resources/Images/image26.png" githubPath="Content/Resources/Images/image26.png" showCaption="false"></Image>
+
+<Paragraph indent="3">
+  *Continue with choosing Ivanti Neurons for ITSM and ITAM (SaaS)*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/YcLy7h3oJgD8fn7UaQzhe_continue-with-choosing-custom-app.png" position="flex-start" size="40" indent="3" initialPath="../../Resources/Images/Integration-images/Continue with choosing Custom App.png" githubPath="Content/Resources/Images/Integration-images/Continue with choosing Custom App.png" showCaption="false"></Image>
+
+<Paragraph indent="3">
+  *Displayed Authentication Values*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/eekrNNw4ogd3d48k6hPx7_displayed-authentication-values-v1.png" position="flex-start" size="40" indent="3" initialPath="../../Resources/Images/Displayed Authentication Values v1.png" githubPath="Content/Resources/Images/Displayed Authentication Values v1.png" showCaption="false"></Image>
+
+<hint type="info" indent="3">
+  - For more information, refer to the [New Registration section in the Neurons App Registration topic](https://help.ivanti.com/ht/help/en_US/CLOUD/vNow/app-registrations.htm).
+  - Ensure that the **App registration** is set up as a **Ivanti Neurons for ITSM and ITAM (SaaS)**, as this is required to support all Client based connections such as **Patch Intelligence**, **Neurons Bot**, and others.
+</hint>
+
+5. Navigate to **Setup Neurons Platform Connection** display and paste the values.
+6. Click **Test Connection**.
+
+<Paragraph indent="1">
+  *Fill Authentication Values*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/SXASoqrsHCR-t6CnxiiYU_image-comaprison.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/Image Comaprison.png" githubPath="Content/Resources/Images/Image Comaprison.png" showCaption="false"></Image>
+
+After the test connection is successful, the **Neurons Platform Integration** page is displayed with details of the account and the integrated features are listed with a green check mark.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/s5cu-3Z6mIh--rMs0DkFG_neuronsintegrationplatformintegratedfeatures.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/Integration-images/NeuronsIntegrationPlatformIntegratedFeatures.png" githubPath="Content/Resources/Images/Integration-images/NeuronsIntegrationPlatformIntegratedFeatures.png" showCaption="false"></Image>
+
+<hint type="info" indent="1">
+  If you upgrade to version 2025.4, after the initial app registration using the client secret ID, you can test the connection multiple times without re-registering the app. The client secret ID is retained and doesn’t need to be re-entered for subsequent tests.
+</hint>
+
+<Paragraph indent="1">
+  You can monitor synchronization activity in **Device Sync Status** section. This section displays the number of devices and the number of software items imported. By default, the status shows data for a single day.
+</Paragraph>
+
+<Paragraph indent="1">
+  To change the time period, select an option from the dropdown. You can view synchronization results for up to 30 days, with interval options of 1 day, 3 days, 7 days, or 30 days.
+</Paragraph>
+
+## Configure the Integration using URL Based Connection
+
+<hint type="info">
+  From version 2025.3, to enhance security and standardize connections, manual URL-based connection is removed for SaaS customers. URL connections must be configured via Client-Based Connection.
+</hint>
+
+1. From the **Neurons Platform Integration** page, select **URL Based Connection**.
+
+<Paragraph indent="1">
+  When you select URL-Based Connection, make sure you do the following configurations in the Config Tenant:
+</Paragraph>
+
+<Paragraph indent="1">
+  UnoLandscape, UnoTenantId, and UnoRecId
+</Paragraph>
+
+2. Provide a contextual name for the connection.
+3. Enter the URL in **Neurons Platform Tenant URL**.
+4. Click **Test Connection**.
+
+<Paragraph indent="1">
+  Once the connection is successful, the **Neurons Platform Integration** page is displayed with details of the account and the integrated features are listed with a green check.
+</Paragraph>
+
+## Working with Integrated Features
+
+The **Neurons Platform Integration** page displays all the Neurons integrated features. You can control the feature from this page without going through the hassle of navigating to the Global Constants or the relevant feature page.
+
+App registration is a one time configuration. Enter the app registration credentials in Manage Connections in \{\{FRS\_VARS.ProductName}} to complete the setup. A successful test confirms that all integrations display a **Connected** status. To perform the test connection again, you must complete the app registration in Neurons Discovery and enter the new credentials, as the client secret resets to the default.
+
+Ivanti recommends migrating to app registration and testing the connection to ensure continued integration support, as upcoming releases support integration exclusively through app registration.
+
+### Enable/disable the feature
+
+- From the **Neurons Platform Integration** page, use the toggle button for the feature you wish to enable or disable.
+
+<Paragraph indent="1">
+  If the feature is enabled, the relevant Global Constant is set to **True**. If not, it's set to **False**.
+</Paragraph>
+
+### Other actions
+
+1. Log in to \{\{FRS\_VARS.ProductName}} as an Administrator.
+2. Open the Configuration console > **Extend** > **Neurons Platform Integration**.
+
+<Paragraph indent="1">
+  The **Neurons Platform Integration** page is displayed.
+</Paragraph>
+
+3. From the **Neurons Platform Integration** page, click the **Options** button for the feature you wish to take action.
+
+<Paragraph indent="1">
+  A list of options is displayed.
+</Paragraph>
+
+4. Use the toggle button next to the option to enable or disable it.
+5. Click the link to navigate to the relevant page to make necessary changes.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/U6XbSd9tuPmh66K7B6mYV_otheractions.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/Integration-images/OtherActions.png" githubPath="Content/Resources/Images/Integration-images/OtherActions.png" showCaption="false"></Image>

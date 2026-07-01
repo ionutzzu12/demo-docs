@@ -1,0 +1,64 @@
+---
+title: IP Whitelisting
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:57 GMT+0300 (Eastern European Summer Time)
+---
+
+IP Whitelisting is a security feature that allows you to control IP addresses that can access \{\{Primary.Product}} APIs. It is done using the **API Trusted Host** business object by which you can specify a range of trusted host IP addresses or specific host IP addresses that are allowed access to APIs.
+
+<hint type="info">
+  This feature is applicable for both REST and SOAP APIs.
+</hint>
+
+## Enabling and Disabling IP Whitelisting
+
+You can enable or disable the IP Whitelisting feature from the Configuration console. By default this feature is disabled.
+
+1. Log in to the \{\{FRS\_VARS.Configuration\_console}} > **Build** > **Global Constants**.
+2. To enable - set the **Value** field in the **API\_White\_Listing\_Enable** option as **True**.
+3. To disable - set the **Value** field in the **API\_White\_Listing\_Enable** option as **False**.
+
+<hint type="info">
+  If you have enabled the IP Whitelisting feature but haven't configured any API Trusted Host, then all the IP addresses will be allowed access to \{\{Primary.Product}} APIs.
+</hint>
+
+## Creating a new API Trusted Host
+
+1. Log in to \{\{FRS\_VARS.ProductName}} with \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}} user role.
+2. Open the **API Trusted Host** business object.
+3. Click **New API Trusted Host** and enter the following details:
+
+| Field           | Description                                                                                                                                                             |
+| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Name**        | Name of the API Trusted Host.                                                                                                                                           |
+| **Description** | Description for the API Trusted Host.                                                                                                                                   |
+| **Start IP**    | First IP address in the range of the trusted IP addresses.                                                                                                              |
+| **End IP**      | Last IP address in the range of the trusted IP addresses.<br />In case of specifying a single IP address, the Start IP address and the End IP address will be the same. |
+
+4. Click **Save**.
+
+<Paragraph indent="1">
+  A new API Trusted Host record is created which allows the configured IP addresses access to \{\{Primary.Product}} APIs.
+</Paragraph>
+
+## Viewing and Modifying an API Trusted Host
+
+1. Log in to \{\{FRS\_VARS.ProductName}} with \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}} user role.
+2. Open the **API Trusted Host** business object. The application displays a list of API Trusted Hosts.
+3. Double-click the API Trusted Host record you wish to modify.
+4. Modify the details as required and click **Save**.
+
+<Paragraph indent="1">
+  The API Trusted Host record is saved with the latest changes.
+</Paragraph>
+
+## Deleting an API Trusted Host
+
+1. Log in to \{\{FRS\_VARS.ProductName}} with \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}} user role.
+2. Open the **API Trusted Host** business object. The application displays a list of API Trusted Hosts.
+3. Select the API Trusted Host record you wish to delete and click **Delete**.
+4. Click **Yes** in the prompt message.
+
+<Paragraph indent="1">
+  The selected API Trusted Host record is deleted and the IP addresses associated with it no longer have access to \{\{Primary.Product}} APIs.
+</Paragraph>

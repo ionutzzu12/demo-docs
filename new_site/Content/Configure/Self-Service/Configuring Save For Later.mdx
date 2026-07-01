@@ -1,0 +1,26 @@
+---
+title: Configuring the Save For Later Feature
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:50 GMT+0300 (Eastern European Summer Time)
+---
+
+The **Save For Later** feature allows you to create a service request in the Self Service portal without immediately submitting it.
+
+When you do not have all of the information needed to submit the service request, but want to start the service request, a service request that has been saved for later appears as a draft to Service Desk Analysts.
+
+Service Desk Analysts should not modify a service request that has been started by a Self Service user; only the Self Service user should continue with the service request, as this could cause unexpected results from the **Request Fulfillment** workflow.
+
+You can enable or disable the **Save For Later** feature. By default, the **Save for Later** feature is automatically enabled.
+
+To disable the **Save For Later** feature, do the following:
+
+1. Log in to \{\{Primary.Product}} as an \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+2. Open the Configuration console > **Build > Global Constants** to open the **Global Constants** workspace.
+3. Open the global constant called :Link[SCDisableSaveForLater]{label="SCDisableSaveForLater" overridedLabel="SCDisableSaveForLater" spaceId docId="6CPp-wWweHGMGP37lRlsY" version="v2" docAnchorId="#SCDisableSaveForLater" loadingMethod="dynamic" newTab="false" githubPath="../Constants/Default_Global_Constants.htm#SCDisableSaveForLater" href="../Constants/Default_Global_Constants.mdx"} and set it to true. This hides the **Save for Later** button. To enable it again, set it to false.
+4. Open the global constant called :Link[SCAutoSaveTimeout]{label="SCAutoSaveTimeout" overridedLabel="SCAutoSaveTimeout" spaceId docId="6CPp-wWweHGMGP37lRlsY" version="v2" docAnchorId="#SCAutoSaveTimeout" loadingMethod="dynamic" newTab="false" githubPath="../Constants/Default_Global_Constants.htm#SCAutoSaveTimeout" href="../Constants/Default_Global_Constants.mdx"} and set it to 0. This determines how frequently service request records are automatically saved. The default is 3 minutes.
+
+<hint type="info">
+  If your application does not have these global constants, you can create them and set them as needed. Refer to [Working with Global Constants](../Constants/Defining_Global_Constant.mdx) and [List of Global Constants](../Constants/Default_Global_Constants.mdx).
+</hint>
+
+5. Click **Save**.

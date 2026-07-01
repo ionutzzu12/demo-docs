@@ -1,0 +1,69 @@
+---
+title: Example: Using the Update Object Action
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:57 GMT+0300 (Eastern European Summer Time)
+---
+
+You can use the **Update Object** action to update certain fields on a business object. For example, you can manage email statuses, as described in :Link[Example: Processing an Email Based on Incident Status]{label="Example: Processing an Email Based on Incident Status" overridedLabel="Example: Processing an Email Based on Incident Status" spaceId docId="ecLK86otJz6TTjvfBuXwM" version="v2" docAnchorId="#Example-Processing-an-Email-Based-on-Incident-Status" loadingMethod="dynamic" newTab="false" githubPath="../Email/Process an Email Based on Incident Status.htm#Example-Processing-an-Email-Based-on-Incident-Status" href="../Email/Process an Email Based on Incident Status.mdx"}.
+
+You can update the status field on a change record to implemented, as described below.
+
+See [Update Object Action](<Classical Action Designer/templates/Update Object.mdx>).
+
+<hint type="info">
+  Some of the field names given in this topic may differ in the Graphical Action Designer.
+</hint>
+
+1. From the Configuration console, click **Build > Automation Tools > Quick Actions** to open the **Actions Manager** workspace. The list of business objects that have actions appears.
+2. Click **Add/Edit** for the business object. The application displays the Action Designer selection popup.
+3. Select one of the following designers:
+   - **Graphical Action Designer**.
+   - **Classic Action Designer**.
+4. Click the **Create New Actions** tab (Classic Action Designer), or **New Actions** tab (Graphical Action Designer).
+5. Select the action type:
+   - In the Graphical Action Designer, drag and drop the **Update a record** action type onto the Design Board.
+   - In the Classic Action Designer, click the **Update Object** action type to open the **Update Object** configuration page.
+
+<hint type="info">
+  For information on using the Graphical Action Designer, see [Using the Graphical Action Designer (GAD)](<Graphical Action Designer/Using_the_Graphical_Action_Designer.mdx>).
+  For information on using the Classic Action Designer, see [Using the Classic Action Designer (CAD)](<Classical Action Designer/Using_the_Classic_Action_Designer.mdx>).
+</hint>
+
+6. Enter information into the fields.
+
+| Field                    | Description                                                                                                                                                                                                                                                                                                  |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Enter Action Name        | A name for this action.                                                                                                                                                                                                                                                                                      |
+| Enter action description | Optional. A description of this action.                                                                                                                                                                                                                                                                      |
+| Enter Category           | The category. Select from the drop-down list.                                                                                                                                                                                                                                                                |
+| Publish to               | The roles that need access to this action.                                                                                                                                                                                                                                                                   |
+| Hide when                | Hides this action under certain conditions.<br />For example, to disable the action when the change record is in the logged or closed state, enter the following command in the **Hide when** field: **$(if( (((Status == "Closed") \|\| (Status == "Resolved")) \|\| (Status == "Logged")), true, false))** |
+
+7. In the **Apply Update to** section, make a selection.
+
+<Paragraph indent="1">
+  By default, the action is applied to the change (selected object). However, you can check **Child Object** to indicate that this action should be run against a relationship. Then select a child business object from the drop-down list.
+</Paragraph>
+
+8. Complete the **Field Name** and **Field Value** sections to customize the **Update Object** action:
+
+| Field       | Value                   |
+| ----------- | ----------------------- |
+| Field Name  | Choose **Status**.      |
+| Field Value | Choose **Implemented**. |
+
+9. Click **Add&#x20;**. In the new line, enter:
+
+| Field       | Value                                                          |
+| ----------- | -------------------------------------------------------------- |
+| Field Name  | Choose **LastModBy** to update the **Last Modified By** field. |
+| Field Value | Enter **$(CurrentLoginId())**.                                 |
+
+10. Click **Add&#x20;**. In the new line, enter:
+
+| Field       | Value                                                     |
+| ----------- | --------------------------------------------------------- |
+| Field Name  | Choose **LastModBy** to update the **Modified On** field. |
+| Field Value | Enter **$(CurrentDateTime())**.                           |
+
+11. Click **Save**.

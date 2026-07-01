@@ -1,0 +1,234 @@
+---
+title: Get a Business Object by ReclD or Unique Key
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:00 GMT+0300 (Eastern European Summer Time)
+---
+
+You can fetch details of a business object such as a change, problem, or incident by its RecID or Unique Key.
+
+**Base URL:**
+
+https\://\{tenant url}/api/odata/businessobject/\{business object name}(\{'business object unique key'})
+
+<hint type="info">
+  Ensure the business object name is suffixed with an "s".
+</hint>
+
+<ExpandableHeading>
+  ## Get a Business Object by RecID or Unique Key - Example
+
+  Here is an example to get a change business object by RecID or Unique Key.
+
+  | URL                                 | https\://\{tenant url}/api/odata/businessobject/changes('02818A8426C9402E8DFE7C8D3132F783')                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+  | ----------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | <font color="#ffffff">Method</font> | GET                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+  | Header Name                         | Authorization: JWT Token/Session Key/REST API Key                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+  | Status Code                         | 200                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+  | Response Payload                    |   <ExpandableHeading>
+      ## Click to view response payload
+
+      \{
+
+      <Paragraph indent="1">
+        "@odata.context": "https\://frs-dev-tenant.saasitdev.com/api/odata/change/$metadata#changes/$entity",
+      </Paragraph>
+
+      <Paragraph indent="1">
+        "AcceptanceDueDate": "0001-01-01T00:00:00Z",
+      </Paragraph>
+
+      <Paragraph indent="1">
+        "AcceptTimeout": "0001-01-01T00:00:00Z",
+      </Paragraph>
+
+      <Paragraph indent="1">
+        "BackoutPlanAttached": false,
+      </Paragraph>
+
+      <Paragraph indent="1">
+        "BallotCount": null,
+      </Paragraph>
+
+      <Paragraph indent="1">
+        "BusinessFunction\_Valid": "",
+      </Paragraph>
+
+      <Paragraph indent="1">
+        "BusinessFunction": "",
+      </Paragraph>
+
+      <Paragraph indent="1">
+        "Category\_Valid": "E0234286776B43C39231635C7066F369",
+      </Paragraph>
+
+      <Paragraph indent="1">
+        "Category": "Software",
+      </Paragraph>
+
+      <Paragraph indent="1">
+        "ChangeNumber": 10173,
+      </Paragraph>
+
+      <Paragraph indent="1">
+        "ClosedBy": null,
+      </Paragraph>
+
+      <Paragraph indent="1">
+        "ClosedCode\_Valid": "",
+      </Paragraph>
+
+      <Paragraph indent="1">
+        "ClosedCode": "",
+      </Paragraph>
+
+      <Paragraph indent="1">
+        "ClosedDateTime": "0001-01-01T00:00:00Z",
+      </Paragraph>
+
+      <Paragraph indent="1">
+        "CompletedBy": "",
+      </Paragraph>
+
+      <Paragraph indent="1">
+        "CreatedBy": "Admin",
+      </Paragraph>
+
+      <Paragraph indent="1">
+        "RecId": "008E3506AF3F4CC190BC95523645D968",
+      </Paragraph>
+
+      <Paragraph indent="1">
+        "RiskLevel\_Valid": "3548D4C1230B491DAB1D315AA93902B5",
+      </Paragraph>
+
+      <Paragraph indent="1">
+        "RiskLevel": "Low",
+      </Paragraph>
+
+      <Paragraph indent="1">
+        "RiskCatalogLink\_Category": "",
+      </Paragraph>
+
+      <Paragraph indent="1">
+        "RiskCatalogLink\_RecID": "",
+      </Paragraph>
+
+      <Paragraph indent="1">
+        "RiskCatalogLink": null,
+      </Paragraph>
+
+      <Paragraph indent="1">
+        "ReleaseLink\_Category": "",
+      </Paragraph>
+
+      <Paragraph indent="1">
+        "ReleaseLink\_RecID": "",
+      </Paragraph>
+
+      <Paragraph indent="1">
+        "ReleaseLink": "",
+      </Paragraph>
+
+      <Paragraph indent="1">
+        "TriggerChangesToCI": "0001-01-01T00:00:00Z",
+      </Paragraph>
+
+      <Paragraph indent="1">
+        "RequesterLocation": "APAC - China",
+      </Paragraph>
+
+      <Paragraph indent="1">
+        "RequesterPhone": "+86 10 8520 0424",
+      </Paragraph>
+
+      <Paragraph indent="1">
+        "MCVoteExpirationDateTime": "0001-01-01T00:00:00Z",
+      </Paragraph>
+
+      <Paragraph indent="1">
+        "ECABVoteExpirationDateTime": "0001-01-01T00:00:00Z",
+      </Paragraph>
+
+      <Paragraph indent="1">
+        "CABVoteExpirationDateTime": "2011-10-14T01:30:36+05:30",
+      </Paragraph>
+
+      <Paragraph indent="1">
+        "SubmissionDeadLineDateTime": "2011-10-07T13:46:00+05:30",
+      </Paragraph>
+
+      <Paragraph indent="1">
+        "CABReviewDate": "2011-10-14T01:30:36+05:30",
+      </Paragraph>
+
+      <Paragraph indent="1">
+        "RiskTotalScore": null,
+      </Paragraph>
+
+      <Paragraph indent="1">
+        "ReadOnly": false,
+      </Paragraph>
+
+      <Paragraph indent="1">
+        "OwnerFullName": null,
+      </Paragraph>
+
+      <Paragraph indent="1">
+        "Cost": 182,
+      </Paragraph>
+
+      <Paragraph indent="1">
+        "TotalTimeSpent": 160,
+      </Paragraph>
+
+      <Paragraph indent="1">
+        "IsUnRead": false
+      </Paragraph>
+
+      }
+    </ExpandableHeading> |
+</ExpandableHeading>
+
+## Unsuccessful Responses
+
+<ExpandableHeading>
+  ## Empty Object ID
+
+  Scenario: To fetch a particular business object instance by its ID, the value of key provided is empty or a white space.
+
+  Example:
+
+  https://{tenant url}/api/odata/businessobject/changes(' ')
+
+  Header Name:
+
+  **Authorization: Sessionkey**
+
+  | Code                                          | ISM\_4000                                      |
+  | --------------------------------------------- | ---------------------------------------------- |
+  | Description                                   | Invalid Request Payload                        |
+  | Message                                       | \[  <br />"Key value cannot be empty"  <br />] |
+  | <font color="#ffffff">HTTP STATUS CODE</font> | 400                                            |
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Invalid Object ID
+
+  Scenario: To fetch a particular business object by its unique key, the value of key provided is random, invalid, or value of a deleted business object field.
+
+  Examples:
+
+  https\://\{tenant url}/api/odata/businessobject/changes('1234')
+
+  https\://\{tenant url}/api/odata/businessobject/changes('random')
+
+  Header Name:
+
+  **Authorization: Sessionkey**
+
+  | Code                                          | ISM\_4000                                |
+  | --------------------------------------------- | ---------------------------------------- |
+  | Description                                   | Invalid Request Payload                  |
+  | Message                                       | \[  <br />"Invalid OData query"  <br />] |
+  | <font color="#ffffff">HTTP STATUS CODE</font> | 400                                      |
+</ExpandableHeading>

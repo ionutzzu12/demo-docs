@@ -1,0 +1,118 @@
+---
+title: Working with External Contacts
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:50 GMT+0300 (Eastern European Summer Time)
+---
+
+- :Link[Viewing the External Contact List]{label="Viewing the External Contact List" overridedLabel="Viewing the External Contact List" spaceId docId="6i1fGC3c2FvJENtiXxBic" version="v2" docAnchorId="#Viewing" loadingMethod="dynamic" newTab="false" href="external_contact.mdx"}
+- :Link[Creating an External Contact]{label="Creating an External Contact" overridedLabel="Creating an External Contact" spaceId docId="6i1fGC3c2FvJENtiXxBic" version="v2" docAnchorId="#external_contact_2119026690_1283636" loadingMethod="dynamic" newTab="false" href="external_contact.mdx"}
+- :Link[Assigning an External Contact to a Role]{label="Assigning an External Contact to a Role" overridedLabel="Assigning an External Contact to a Role" spaceId docId="6i1fGC3c2FvJENtiXxBic" version="v2" docAnchorId="#Assignin" loadingMethod="dynamic" newTab="false" href="external_contact.mdx"}
+- :Link[Assigning an External Contact to a Team]{label="Assigning an External Contact to a Team" overridedLabel="Assigning an External Contact to a Team" spaceId docId="6i1fGC3c2FvJENtiXxBic" version="v2" docAnchorId="#Assignin2" loadingMethod="dynamic" newTab="false" href="external_contact.mdx"}
+- :Link[Modifying an External Contact]{label="Modifying an External Contact" overridedLabel="Modifying an External Contact" spaceId docId="6i1fGC3c2FvJENtiXxBic" version="v2" docAnchorId="#Modifyin" loadingMethod="dynamic" newTab="false" href="external_contact.mdx"}
+- :Link[Deleting an External Contact]{label="Deleting an External Contact" overridedLabel="Deleting an External Contact" spaceId docId="6i1fGC3c2FvJENtiXxBic" version="v2" docAnchorId="#Deleting" loadingMethod="dynamic" newTab="false" href="external_contact.mdx"}
+- :Link[Converting Business Objects to Contacts]{label="Converting Business Objects to Contacts" overridedLabel="Converting Business Objects to Contacts" spaceId docId="6i1fGC3c2FvJENtiXxBic" version="v2" docAnchorId="#Converti" loadingMethod="dynamic" newTab="false" href="external_contact.mdx"}
+
+## Viewing the External Contact List
+
+1. Log into the Service Desk Console.
+2. Open the **External Contact** workspace. The **External Contact** workspace shows a list of external contacts in the upper panel, and the details of the selected contact in the lower panel.
+
+## Creating an External Contact
+
+1. Log into the Service Desk Console.
+2. Open the **External Contact** workspace.
+3. Click **New External Contact**. The application displays a blank **External Contact** form.
+4. Click **Full Name...** to enter the following name information:
+
+| Field       | Description                                                                          |
+| ----------- | ------------------------------------------------------------------------------------ |
+| Prefix      | A prefix. Select from the drop-down list.                                            |
+| First Name  | The first name of the external contact.                                              |
+| Middle Name | The middle name or initial of the external contact.                                  |
+| Last Name   | The last name of the external contact.                                               |
+| Suffix      | A suffix to add to the name of the external contact. Select from the drop-down list. |
+
+5. Click **OK**.
+6. Click **Address...** to enter the following address information:
+
+| Field          | Description                                   |
+| -------------- | --------------------------------------------- |
+| Street Address | The street address of the external contact    |
+| Suite No.      | The suite address of the external contact.    |
+| City           | The mailing city of the external contact.     |
+| State          | The mailing state of the external contact.    |
+| Zip            | The mailing zip code of the external contact. |
+| Country        | The mailing country of the external contact.  |
+
+7. Enter information into the fields.
+
+| Field      | Description                                                                                                     |
+| ---------- | --------------------------------------------------------------------------------------------------------------- |
+| Department | The work department of the external contact. Select from the drop-down list.                                    |
+| Title      | The title of the external contact. Select from the drop-down list.                                              |
+| Email      | The email address of the external contact. This field is used in part to verify the external contact on log in. |
+| Phone1     | The primary phone number of the external contact.                                                               |
+| Ext        | The extension associated with the primary phone number.                                                         |
+| Phone2     | The secondary phone number of the external contact.                                                             |
+| Ext        | The extension associated with the secondary phone number.                                                       |
+
+8. Click the **Login** tab and enter the following information:
+
+| Field                       | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Login ID                    | The login ID name of the external contact. This field is used in part to verify the external contact on log in. If you use internal authentication to login external contacts, this identification is also used as the official login ID. If you use internal authentication, the login ID is limited to 30 characters. If the external contact is using NT authentication, the limit does not apply. A login ID should be meaningful, such as a role in the application (Analyst) or a first initial/last name (JSmith).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| Enable Internal Auth        | Performs login authentication for this external contact. If selected, internal authentication is available for the external contact. Otherwise, it is disabled.<br />Local authentication requires external contacts to enter an application-specific login ID and password when accessing the application. Enter a password for the login, then re-enter the password to confirm; the ID automatically fills from the login ID defined previously. LDAP authentication verifies external contact login information for external contacts imported using the LDAP Active Directory integration. External contacts enter their Active Directory external contact name (\[domain name]/\[external contact ID]) and password to log on to .<br />To use LDAP authentication, you must specify the LDAP server path to authenticate against as well as the external contact name and password required to access that server (if applicable); specify this information in the LDAPInfo.xml configuration file located in the messaging folder of your application installation directory. |
+| Enable External Auth        | Enables the external contact to access the application using operating systemm authentication.<br />Authentication is supported via Open ID, OpenID Connect, SAML/ADFS, and LDAP, which allows external contact to access the application from another website.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| Disabled                    | Disables the ability of the external contact to log in. Their information still appears in the **External Contaact** workspace.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| Disable Password Expiration | Overrides the password expiration setting specified by the administrator.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| Creation Method             | The creation method. Choose from the drop-down list:<br />Auto provisioned through Open ID<br />Auto provisioned through OpenID Connect<br />Auto provisioned through SAML<br />Created by the email listener<br />Created by LDAP Import<br />Manually created<br />The first two methods of creation are populated automatically if the external contact is created via auto provisioning. The authentication method depends on the identity provider protocol. For the created by email listener method, the external contact record is created when the user sends an incoming email. The option to create or link to an external contact must be selected for the business object, referenced in the incoming email, in the inbox settings of the tenant email configuration record. If the external contact record is created when the user is imported via LDAP, then the record is created via LDAP import.                                                                                                                                                                   |
+| Internal Auth Passwd        | The password the external contact uses to access the application using the internal login ID.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| Login for External Auth     | The external login ID. Enter a unique ID. Used if the external contact is authorized to log in from outside the organization. This value can be null (empty), but if used, the value must be unique. You can employ multiple external authentication providers. Click **Add new\...**, then provide the login for the external contact, and select a new authentication provider. In some cases (for example, Google), this may be a profile URL. The application populates this field the first time that the external contact logs in using the external authentication. External contacts cannot use the same external account for authorization purposes.                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| Is Named User               | Designates the external contact as a named user. Tracks named user licenses.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| Is Auto Provisioned         | Designates the external contact as auto provisioned. When an external contact first logs into the application using an authentication provider URL, then a new external contact record is created and this option shows selected. To add new external contacts via authentication, you must select the auto provisioning option in the authentication provider record. You also have the options to auto provision the role, status, and team of the new external contact.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+
+9. Click **Save**.
+
+## Assigning an External Contact to a Role
+
+1. Log into the Service Desk Console.
+2. Open the **External Contact** workspace.
+3. Open a record.
+4. Click the **Role** tab.
+5. From the toolbar, click **Link**. The application displays the **Link Roles** dialog box.
+6. Select a role from the list, then click **Select**. The application adds the role to the **Role** tab list.
+7. Repeat this procedure to assign additional roles.
+8. Click **Save**.
+
+## Assigning an External Contact to a Team
+
+1. Log into the Service Desk Console.
+2. Open the **External Contact** workspace.
+3. Open a record.
+4. Click the **Team** tab.
+5. From the toolbar, click **Link**. The application displays the **Link Team** dialog box.
+6. Select a team from the list, then click **Select**.
+
+## Modifying an External Contact
+
+1. Log into the Service Desk Console.
+2. Open the **External Contact** workspace.
+3. Open an external contact.
+4. Edit the fields.
+5. Click **Save**.
+
+## Deleting an External Contact
+
+1. Log into the Service Desk Console.
+2. Open the **External Contact** workspace.
+3. Highlight the external contact.
+4. Click **Delete** from the toolbar.
+5. Click **Refresh** to view the updated list.
+
+## Converting Business Objects to Contacts
+
+\{\{FRS\_VARS.ProductName}} users who have created business objects prior to \{\{FRS\_VARS.ProductName}} Release 2013.1 can convert these business objects to a contact object.
+
+Note that the text and ntext database types are not supported.
+
+To convert these fields, change the field type to Unicode and save the business object. Then change the field *back* to a non-Unicode type. This changes the database field type from text to varchar(max), which can then be included in a view.

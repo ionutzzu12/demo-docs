@@ -1,0 +1,101 @@
+---
+title: Troubleshooting Reports
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:49 GMT+0300 (Eastern European Summer Time)
+---
+
+- :Link[The Report Builder Stops Working]{label="The Report Builder Stops Working" overridedLabel="The Report Builder Stops Working" spaceId docId="Fgn15uU5Qu6_0T9fOu_gr" version="v2" docAnchorId="#Issue" loadingMethod="dynamic" newTab="false" href="Troubleshooting Reports.mdx"}
+- :Link[Cannot Open the Report Builder (Chrome, Firefox, and Internet Explorer Release 9)]{label="Cannot Open the Report Builder (Chrome, Firefox, and Internet Explorer Release 9)" overridedLabel="Cannot Open the Report Builder (Chrome, Firefox, and Internet Explorer Release 9)" spaceId docId="Fgn15uU5Qu6_0T9fOu_gr" version="v2" docAnchorId="#Cannot_Start_Application_Error_Message" loadingMethod="dynamic" newTab="false" href="Troubleshooting Reports.mdx"}
+- :Link[Cannot Open the Report Builder (Internet Explorer)]{label="Cannot Open the Report Builder (Internet Explorer)" overridedLabel="Cannot Open the Report Builder (Internet Explorer)" spaceId docId="Fgn15uU5Qu6_0T9fOu_gr" version="v2" docAnchorId="#Cannot_Open_Reports_Page" loadingMethod="dynamic" newTab="false" href="Troubleshooting Reports.mdx"}
+- :Link[Allowing Internet Explorer 9 to Automatically Prompt for Downloads]{label="Allowing Internet Explorer 9 to Automatically Prompt for Downloads" overridedLabel="Allowing Internet Explorer 9 to Automatically Prompt for Downloads" spaceId docId="Fgn15uU5Qu6_0T9fOu_gr" version="v2" docAnchorId="#Allowing_Internet_Explorer_9_to_Automatically_Prompt_for_Downloads" loadingMethod="dynamic" newTab="false" href="Troubleshooting Reports.mdx"}
+
+### The Report Builder Stops Working
+
+When trying to open the report builder using the new report template link, the report builder stops working.
+
+*Report Builder Stops Working*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/0cGz4yk_J8-pMTkrnYB9q_report-builder-stops.png" position="flex-start" size="40" initialPath="../../Resources/Images/help-images/report builder stops.png" githubPath="Content/Resources/Images/help-images/report builder stops.png" showCaption="false"></Image>
+
+To fix this, do the following:
+
+1. Download and install the Microsoft SQL Server 2008 Report Builder Release 3.0 from the following URL: [http://www.microsoft.com/downloads/en/details.aspx?FamilyID=d3173a87-7c0d-40cc-a408-3d1a43ae4e33\&displaylang=en](http://www.microsoft.com/downloads/en/details.aspx?FamilyID=d3173a87-7c0d-40cc-a408-3d1a43ae4e33\&amp;displaylang=en).
+2. If the installer requests that you install Microsoft .NET Framework Release 3.5 SP1 first, go to [http://www.microsoft.com/en-us/download/details.aspx?id=22](http://www.microsoft.com/en-us/download/details.aspx?id=22) and install it.
+
+<hint type="info">
+  - If you are on a Windows server, you must use Server Manager to enable Microsoft .NET Framework Release 3.5.
+  - If you are using Windows 7, you can enable it from **Control Panel > Programs and Features**.
+</hint>
+
+### Cannot Open the Report Builder (Chrome, Firefox, and Internet Explorer Release 9)
+
+The system displays the **Cannot Start Application** error message when launching the report builder when using Chrome or Firefox. Any attempt to edit a report results in trying to download the report builder. An error message appears stating that the report builder cannot be started.
+
+- If you are using Google Chrome, download and install the [Click Once for Google Chrome](https://chromewebstore.google.com/detail/clickonce-for-google-chro/pgdcmngmlhnfjeoebjfnfijpghagadgd) extension.
+- If you are using Microsoft Internet Explorer Release 9, you might not be able to create or edit your report templates using Microsoft SSRS.
+
+### Cannot Open the Report Builder (Internet Explorer)
+
+When launching the report builder, the system displays an error message stating that the page cannot be opened. Microsoft SSRS might not launch when using Internet Explorer because of your security settings.
+
+To fix the settings, do the following:
+
+1. In Internet Explorer, go to **Tools > Internet Options**.
+2. From the **Security** tab, go to **Trusted Sites > Sites**.
+3. Click **Add** to add the current website to your trusted site.
+4. Click **Close**.
+
+### Allowing Internet Explorer 9 to Automatically Prompt for Downloads
+
+Follow these steps if you have trouble downloading Microsoft Business Intelligence Development Studio (BIDS) as described in :Link[Getting Started with BIDS]{label="Getting Started with BIDS" overridedLabel="Getting Started with BIDS" spaceId docId="WedIhvizA1vugfhN5biqM" version="v2" docAnchorId="#Getting" loadingMethod="dynamic" newTab="false" githubPath="Creating a Report Using Microsoft Business Intelligence Development Studio.htm#Getting" href="Creating a Report Using Microsoft Business Intelligence Development Studio.mdx"}.
+
+1. From the Start menu, enter **mmc.exe** in the **Run** field.
+2. Add the **Group Policy Object** snap-in, if it is not already there.
+3. From the **File** menu, select **Add/Remove Snap-Ins**.
+4. In the window, select **Group Policy** from the list of available snap-ins and click **Add**.
+
+<Paragraph indent="1">
+  *Available Snap-Ins*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/1V7MuFhK9XsOvzE1pmaOs_rptie-9-1.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/rpt_ie-9-1.png" githubPath="Content/Resources/Images/help-images/rpt_ie-9-1.png" showCaption="false"></Image>
+
+5. Click **OK**.
+6. Click **Finish** in the group policy wizard that launches.
+7. Click **OK** to close the window.
+8. In the Windows Configuration Management Console, click **Local Computer Policy**, then navigate to the following folder: **User Configuration > Administrative Templates > Windows Components > Internet Explorer > Internet Control Panel > Security Page**
+
+<Paragraph indent="1">
+  *Local Computer Policy*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/WGpuK-WMaY8hsGPY82rXS_rptie-9-2.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/rpt_ie-9-2.png" githubPath="Content/Resources/Images/help-images/rpt_ie-9-2.png" showCaption="false"></Image>
+
+9. Select the zone in which the reporting server is located, for example, the Internet zone or the trusted sites zone.
+10. From the right column, double click **Automatic prompting for file downloads**.
+
+<Paragraph indent="1">
+  *Automatic Prompting for File Downloads*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/smGH2nr3yBfhG-iKjXPSQ_rptie-9-3.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/rpt_ie-9-3.png" githubPath="Content/Resources/Images/help-images/rpt_ie-9-3.png" showCaption="false"></Image>
+
+11. In the **Automatic prompting for file downloads** window, do the following:
+
+<Paragraph indent="1">
+  a. Select the **Enabled** option.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Under options, from the drop-down list, select **Enable**.
+</Paragraph>
+
+<Paragraph indent="2">
+  *Automatic Prompting for File Downloads*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/hcL9RaaUx-bo2l6gFqh1p_rptie-9-4.png" position="flex-start" size="40" indent="2" initialPath="../../Resources/Images/help-images/rpt_ie-9-4.png" githubPath="Content/Resources/Images/help-images/rpt_ie-9-4.png" showCaption="false"></Image>
+
+<Paragraph indent="1">
+  c. Click **OK**.
+</Paragraph>

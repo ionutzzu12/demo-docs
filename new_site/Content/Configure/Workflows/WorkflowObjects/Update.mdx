@@ -1,0 +1,36 @@
+---
+title: Update Workflow Block
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:58 GMT+0300 (Eastern European Summer Time)
+---
+
+The **Update** workflow block updates data within the context of the business object where a quick action is running. If executed at the beginning of the workflow block, the quick action updates the record causing the instance or the workflow to run.
+
+Exit ports for this workflow block allow workflow paths for successful and failed update actions.
+
+*Update Workflow Block Properties*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/HtoDlypbbhn4QJxyB4Thn_updateblock.png" position="flex-start" size="40" indent="1" initialPath="../../../Resources/Images/help-images/update_block.png" githubPath="Content/Resources/Images/help-images/update_block.png" showCaption="false"></Image>
+
+## Exit Ports
+
+| Exit Port | Description                                                                                          |
+| --------- | ---------------------------------------------------------------------------------------------------- |
+| OK        | Continue to the next block.                                                                          |
+| Failed    | General exit port for a failed integration action. A logical next step is to trigger a notification. |
+
+## Properties
+
+| Property  | Description                                    |
+| --------- | ---------------------------------------------- |
+| Title     | A unique name for the workflow block.          |
+| Value     | The value of the business object field.        |
+| Overwrite | Overwrites the default values with this value. |
+
+## Actions
+
+| Button             | Action                                                                                                                                                                                                                           |
+| ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Move Up, Move Down | Rearranges the items in the table. This changes the order in which they are processed. The order of processing can affect the creation or update of the business object, as specific values are determined to be correct or not. |
+| Save               | Commits your settings.                                                                                                                                                                                                           |
+| Cancel             | Exits without saving.                                                                                                                                                                                                            |

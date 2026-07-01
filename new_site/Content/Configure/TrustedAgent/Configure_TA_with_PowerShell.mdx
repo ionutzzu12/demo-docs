@@ -1,0 +1,502 @@
+---
+title: Configuring Trusted Agent with PowerShell
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:53 GMT+0300 (Eastern European Summer Time)
+---
+
+**Role**: Administrators.
+
+**Minimum Version**: \{\{Primary.Company}} \{\{Primary.Product}} 2024.2.
+
+You can configure an agent to automate specific tasks or workflows by executing external PowerShell scripts. Using PowerShell script an agent can receive and process requests to execute.
+
+## Prerequisites
+
+A self-signed certificate is required during the configuration procedure. The certificate is required to sign the PowerShell script so it can be executed securely. Ensure that you have completed the following prerequisites before you configure Trusted Agent for PowerShell.
+
+<hint type="info">
+  To validate the self-signed certificate, you will need a PowerShell script (.ps1) file, and locate this file on the system you are working on, taking note of the file path.
+</hint>
+
+<ExpandableHeading>
+  ## Create a Self-Signed Certificate
+
+  Self-signed certificate is required for signing the PowerShell script.
+
+  1. Open Windows PowerShell ISE, and then enter the following code in the **Script Pane** (you need to provide a name for the certificate).
+
+  <CodeblockTabs indent="1">
+    ```bash
+    #certificate  name should be provided
+    $CertificateName = "<name of certificate>"
+    #Create a Self-Signed SSL certificate
+    $Certificate = New-SelfSignedCertificate -CertStoreLocation Cert:\CurrentUser\My -Subject "CN=$CertificateName" -KeySpec Signature -Type CodeSigningCert
+    Write-host "Certificate Thumbprint:" $Certificate.Thumbprint
+    ```
+  </CodeblockTabs>
+
+  2. Run the code.
+
+  <Paragraph indent="1">
+    This creates a code signing certificate in your Personal\Certificates folder in Windows Certificate Manager.
+  </Paragraph>
+
+  3. Open the Windows Certificate Manager console (search "Manage user certificates" to locate this app), and locate the certificate file in the Personal\Certificares folder.
+  4. Copy the certificate file to the Trusted Root Certification Authorities\Certificates folder.
+  5. Copy the certificate thumbprint:
+
+  <Paragraph indent="1">
+    a. Select the certificate file in Trusted Root Certification Authorities\Certificates.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    b. Right-click, select **Open**, and then select the **Details** tab.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    c. Scroll down to find the **Thumbprint** entry, select it, and then copy it from the text field.
+  </Paragraph>
+
+  6. In Windows PowerShell ISE, run the following script, entering the thumbprint you copied in the previous step, and the file path to the PowerShell script (.ps1) file you created as mentioned in the note under "Prerequisites":
+
+  <Paragraph indent="1">
+    This verifies and signs the code signing certificate in the Trusted Root Certification Authorities\Certificates folder.
+  </Paragraph>
+
+  <CodeblockTabs indent="1">
+    ```bash
+    $thumbprint = "<enter the thumbprint you copied>"
+    $ScriptPath = "<enter the file path to the powershell script>"
+    #Get the Certificate from Cert Store$CodeSignCert = Get-ChildItem -Path Cert:\CurrentUser\My | Where-Object {$_.Thumbprint -eq $thumbprint}
+    #Sign the PS1 fileSet-AuthenticodeSignature -FilePath $ScriptPath -Certificate $CodeSignCert
+    ```
+  </CodeblockTabs>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Export the Self-signed Certificate
+
+  1. In Windows Certificate Manager, select the certificate you copied to the Trusted Root Certification Authorities\Certificates folder.
+  2. Right-click and select **All Tasks > Export**.
+
+     The Export Wizard opens.
+  3. Click **Next**, select **No, do not export the private key**, and then click **Next** again.
+  4. Select **DER encoded binary X.509 (.CER)**, and then click **Next**.
+  5. Enter a file name, click **Browse** and navigate to the folder you want to save in, and then click **Save**.
+  6. Click **Next**, check the settings are as expected, and then click **Finish**.
+</ExpandableHeading>
+
+## Configure a Script Policy and Add a PowerShell Execution
+
+Follow the procedures below to add a script only connection, and then add a new PowerShell execution.
+
+<ExpandableHeading>
+  ## Configure a Script Policy
+
+  Once you have completed the prerequisites and have a validated self-signed certificate, add a new script only policy.
+
+  1. Log in to \{\{FRS\_VARS.ProductName}} as an \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+  2. Open the Configuration console and click **Extend** >**&#x20;Integration Tools** > **Trusted Agent Connection**.
+  3. Click **New trusted agent connection** to open the **Trusted Agent Connections** form.
+
+  <hint type="info" indent="1">
+    The **New trusted agent connection** button is enabled only at the first use.
+  </hint>
+
+  4. Enter the connection settings in the **Configuration** section of the **Trusted Agent for Connections** form.
+
+  | Field                             | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+  | --------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | **Setting Name**                  | A unique name for this script policy.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+  | **Policy Type**                   | Select **Script**.  <br />When this option is selected, the **Update Validation Certificate** section is displayed.                                                                                                                                                                                                                                                                                                                                                                                                        |
+  | **Upload validation certificate** | Upload the self-signed certificate you created earlier for :Link[Prerequisites]{label="Prerequisites" overridedLabel="Prerequisites" spaceId docId="nKXYfrhJASQND9VFtbedg" version="v2" docAnchorId="#config_powershell_for_TA_Prerequisites" loadingMethod="dynamic" newTab="false" href="Configure_TA_with_PowerShell.mdx"}. Only **.cer** file type is accepted.  <br />Click **Select a File**, and then navigate to the folder where you saved the self-signed certificate, select the file, and then click **Open**. |
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/-cFVDwDlXDJXt7jU3fRPe_addscriptconnection.png" alt="screenshot of the trusted agent connection form with script only connection set" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/trustedAgents-images/add_script_connection.png" githubPath="Content/Resources/Images/trustedAgents-images/add_script_connection.png" showCaption="false"></Image>
+
+  5. Click **Push Policy Settings**.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Add a PowerShell Script
+
+  <hint type="info">
+    You must configure and push a script policy before you can add a PowerShell execution.
+  </hint>
+
+  1. Open the Configuration console and click **Extend** >**&#x20;Integration Tools** > **Trusted Agent Connection**.
+  2. Click **New PowerShell Execution** to open the **New PowerShell Execution** form.
+  3. Enter the configuration settings in the **Configuration** section of the form.
+
+  | Field                        | Description                                                                                                                                                                                                                                                              |
+  | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+  | **Setting Name**             | A unique name for this PowerShell execution.                                                                                                                                                                                                                             |
+  | **Trusted Agent**            | Select the script policy                                                                                                                                                                                                                                                 |
+  | **Upload signed PowerShell** | Click **Select a File** and upload the signed PowerShell script file for the agent. Only **.ps1** file type is accepted.  <br />If you attempt to upload a PowerShell script that is not signed, a fail message is displayed when you attempt to save the configuration. |
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/-MorWFFnNhnDV8ssJP_Kr_newpowershellexecutionconfigform.png" alt="screenshot of the new posershell execution configuration form" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/trustedAgents-images/new_powershell_execution_config_form.png" githubPath="Content/Resources/Images/trustedAgents-images/new_powershell_execution_config_form.png" showCaption="false"></Image>
+
+  4. Click **Save**.
+</ExpandableHeading>
+
+## Upgrade to a Hybrid Policy
+
+You can upgrade an existing LDAP policy to hybrid with both PowerShell and LDAP features.
+
+<hint type="info">
+  When you update an LDAP policy to hybrid, you cannot revert the policy back to LDAP only.
+</hint>
+
+<ExpandableHeading>
+  ## Upgrade to Hybrid
+
+  <hint type="info">
+    Before starting this procedure, you need to complete the procedures as described in :Link[Prerequisites]{label="Prerequisites" overridedLabel="Prerequisites" spaceId docId="nKXYfrhJASQND9VFtbedg" version="v2" docAnchorId="#config_powershell_for_TA_Prerequisites" loadingMethod="dynamic" newTab="false" href="Configure_TA_with_PowerShell.mdx"} above to provide a self-signed certificate for the hybrid configuration.
+  </hint>
+
+  1. From the Configuration console, click **Extend > Integration Tools > Trusted Agent Connection**.
+  2. Select the LDAP policy to open the **Trusted Agent Connections** form.
+  3. Click the **Policy Type** drop-down and select **Hybrid**.
+  4. Click **Select a File**, and then navigate to the folder where you saved the self-signed certificate, select the file, and then click **Open**.
+  5. Click **Update Policy Settings**.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Add a PowerShell Script
+
+  Add the PowerShell script you want to execute.
+
+  1. Click **Extend > Integration Tools > Trusted Agent Connection**.
+  2. Click **New PowerShell Execution** to open the **New PowerShell Execution** form.
+  3. Enter the configuration settings in the **Configuration** section of the form.
+
+  | Field                        | Description                                                                                                                                                                                                                                                                 |
+  | ---------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | **Setting Name**             | A unique name for this PowerShell execution.                                                                                                                                                                                                                                |
+  | **Trusted Agent**            | Select the script policy                                                                                                                                                                                                                                                    |
+  | **Upload signed PowerShell** | Click **Select a File** and upload the signed PowerShell script file for the agent. Only **.ps1** file type is accepted.  <br />If you attempt to upload a PowerShell script that is not signed, a failure message is displayed when you attempt to save the configuration. |
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/-MorWFFnNhnDV8ssJP_Kr_newpowershellexecutionconfigform.png" alt="screenshot of the new posershell execution configuration form" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/trustedAgents-images/new_powershell_execution_config_form.png" githubPath="Content/Resources/Images/trustedAgents-images/new_powershell_execution_config_form.png" showCaption="false"></Image>
+
+  4. Click **Save**.
+</ExpandableHeading>
+
+## Create a New Hybrid Policy.
+
+You can create a new hybrid policy with both PowerShell and LDAP features.
+
+<hint type="info">
+  Before starting this procedure, you need to complete the procedures as described in :Link[Prerequisites]{label="Prerequisites" overridedLabel="Prerequisites" spaceId docId="nKXYfrhJASQND9VFtbedg" version="v2" docAnchorId="#config_powershell_for_TA_Prerequisites" loadingMethod="dynamic" newTab="false" href="Configure_TA_with_PowerShell.mdx"} above to provide a self-signed certificate for the hybrid configuration.
+</hint>
+
+<ExpandableHeading>
+  ## Create a Hybrid Policy
+
+  <hint type="info">
+    This procedure must be completed prior to installing Trusted Agent as described in :Link[Install Trusted Agent]{label="Install Trusted Agent" overridedLabel="Install Trusted Agent" spaceId docId="XTiUfvyNLUQynrvlCZ-sn" version="v2" docAnchorId="#Install_Trusted_Agent" loadingMethod="dynamic" newTab="false" githubPath="Setting_up_Trusted_Agent.htm#Install_Trusted_Agent" href="Setting_up_Trusted_Agent.mdx"}. Also note that In the current version of \{\{FRS\_VARS.ProductName}}, you can add only one Trusted Agent connection.
+  </hint>
+
+  1. In the Configuration console, select **Extend > Integration Tools > Trusted Agent Connections**.
+
+  <Paragraph indent="1">
+    The **Trusted Agent Connections** form is displayed. You configure a new connection or edit an existing connection using this form.
+  </Paragraph>
+
+  2. Click **New trusted agent connection** to open the **Trusted Agent Connections** form.
+  3. Enter the connection settings in the **Configuration** section of the **Trusted Agent for Connections** form.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/ZPuPJJuR9bqMsfeJtfM8b_blanktrustedagentconnectionshybridform.png" alt="screenshot of the trusted agent connections form, with htbrid selected" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/trustedAgents-images/blank_trusted_agent_connections_hybrid_form.png" githubPath="Content/Resources/Images/trustedAgents-images/blank_trusted_agent_connections_hybrid_form.png" showCaption="false"></Image>
+
+  <table isTableHeaderOn="true">
+    <tr>
+      <td>
+        Field
+      </td>
+      <td>
+        Description
+      </td>
+    </tr>
+    <tr>
+      <td>
+        **Setting Name**
+      </td>
+      <td>
+        A unique name for this LDAP server connection.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        **Policy Type**
+      </td>
+      <td>
+        Select **Hybrid**.
+        When this option is selected, the **Update Validation Certificate** section is displayed.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        **Upload validation certificate**
+      </td>
+      <td>
+        Upload the self-signed certificate you created earlier for :Link[Prerequisites]{label="Prerequisites" overridedLabel="Prerequisites" spaceId docId="nKXYfrhJASQND9VFtbedg" version="v2" docAnchorId="#config_powershell_for_TA_Prerequisites" loadingMethod="dynamic" newTab="false" href="Configure_TA_with_PowerShell.mdx"}. Only **.cer** file type is accepted.
+        - Click **Select a File**, and then navigate to the folder where you saved the self-signed certificate, select the file, and then click **Open**.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        **Server**
+      </td>
+      <td>
+        The LDAP domain controller host IP address.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        **Base DN**
+      </td>
+      <td>
+        Optional. The distinguished name for the LDAP object in the LDAP server. This value is not case sensitive.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        **User Name**
+      </td>
+      <td>
+        If the server requires authentication, enter the LDAP domain server name.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        **Password**
+      </td>
+      <td>
+        If the server requires authentication, enter the LDAP domain server password.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        **Encryption Method**
+      </td>
+      <td>
+        Select an encryption method:
+        - **No encryption**
+        - **Use SSL encryption (ldaps\://)**
+        - **Use StartTLS extension**
+      </td>
+    </tr>
+    <tr>
+      <td>
+        **Authentication Type**
+      </td>
+      <td>
+        Select an authentication type:
+        - For **No encryption** method, select **Ntlm**.
+        - For **SSL** or **TLS** method, select **Simple (Basic) authentication**.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        **Api Key**
+      </td>
+      <td>
+        Optional: The SignalR API key required to enable external authentication.
+        The SignalR API key is required if you want to enable users to login externally, if you do not want to enable external authentication this key is not required. For information on SignalR, see [https://learn.microsoft.com/en-us/aspnet/signalr/overview/getting-started/introduction-to-signalr.](https://learn.microsoft.com/en-us/aspnet/signalr/overview/getting-started/introduction-to-signalr)
+        To generate the API key, see step 4 below.
+        Paste the generated API key into this field.
+        When the key is provided, and the LDAP settings are pushed successfully, the **Enable Authentication** switch is displayed.
+        <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/JfdbUFPyv4fGRo1OkS7RM_externalauthenticationselector.png" alt="screenshot of the external authentication selector" position="flex-start" size="40" initialPath="../../Resources/Images/trustedAgents-images/external_authentication_selector.png" githubPath="Content/Resources/Images/trustedAgents-images/external_authentication_selector.png" showCaption="false"></Image>
+        This switch can be toggled ON *after the Trusted Agent is installed*. If you toggle the switch ON before the Trusted Agent is installed a warning is displayed. Refer to :Link[Enable External Authentication]{label="Enable External Authentication" overridedLabel="Enable External Authentication" spaceId docId="qiCcju38kHr1LMAyL7lkc" version="v2" docAnchorId="#Enable_External_Authentication" loadingMethod="dynamic" newTab="false" githubPath="Configure_TA_for_LDAP_Connections.htm#Enable_External_Authentication" href="Configure_TA_for_LDAP_Connections.mdx"}.
+      </td>
+    </tr>
+  </table>
+
+  4. Optional: Generate a SignalR API Key to enable external authentication:
+
+  <hint type="info" indent="1">
+    This step is only required if you want to enable external authentication. For information on SignalR, see [https://learn.microsoft.com/en-us/aspnet/signalr/overview/getting-started/introduction-to-signalr](https://learn.microsoft.com/en-us/aspnet/signalr/overview/getting-started/introduction-to-signalr).
+  </hint>
+
+  <Paragraph indent="2">
+    a. In the Configuration Console, select **Security Controls > API Keys**.
+  </Paragraph>
+
+  <Paragraph indent="2">
+    b. In the **API Keys** workspace, select **Add Key Group**.
+  </Paragraph>
+
+  <Paragraph indent="2">
+    c. In the **Name** field, enter Signalr, and then enter a brief description in the **Description** field.
+  </Paragraph>
+
+  <Paragraph indent="2">
+    d. Click **Save Key Group**.
+  </Paragraph>
+
+  <Paragraph indent="2">
+    e. Select the Signalr group in the **Key Groups** list.
+  </Paragraph>
+
+  <Paragraph indent="2">
+    f. In the **API Keys** pane, select **Add API Key**.
+  </Paragraph>
+
+  <Paragraph indent="2">
+    g. Select the **Activated** checkbox if not already selected.
+  </Paragraph>
+
+  <Paragraph indent="2">
+    h. Enter a description, on behalf of, and role information if required.
+  </Paragraph>
+
+  <Paragraph indent="2">
+    i. Click **Save Key**.
+  </Paragraph>
+
+  <Paragraph indent="2">
+    j. Copy the generated API key identifier to the clipboard.
+  </Paragraph>
+
+  <Paragraph indent="2">
+    k. Return to the **Trusted Agent for LDAP Connections** form, and then paste the key into the **Api Key** field.
+  </Paragraph>
+
+  5. Click **Push Policy Settings**.
+
+  <Paragraph indent="1">
+    While the LDAP settings for the Trusted Agent are being processed, the **Status** is displayed as **Pending**.
+    :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/VNmSm2eiS7BtVOdh3M0CD_statuspending1.png" alt="image showing agent policy status pending" caption size="45" width="452" height="93"}
+  </Paragraph>
+
+  <hint type="info" indent="1">
+    The **Push Policy Settings** button changes to **Update Policy Settings**, and is disabled while the settings are being processed.
+  </hint>
+
+  <Paragraph indent="1">
+    The settings push can take up to 20 minutes to complete. Click **Refresh** to check if the push has completed. When completed successfully, the **Status** is displayed as **Success**. A pop-up message is also displayed.
+    :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/DGjIJ4Ry4roEh-N5l-3XM_statussuccess1.png" alt="image showing agent policy status successful" caption size="45" width="454" height="95"}
+  </Paragraph>
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/pnVPAMH43ZcDDOtfwxSc__policyconnectionsuccessmessage.png" alt="Image showing massage informong that Push LDAP Settings are successful" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/trustedAgents-images/policy_connection_success_message.png" githubPath="Content/Resources/Images/trustedAgents-images/policy_connection_success_message.png" showCaption="false"></Image>
+
+  <hint type="info" indent="1">
+    Occasionally the status may revert to **Pending**. If this happens, push the LDAP settings again by clicking **Update Policy Settings**, and then click **Refresh**. The status changes to **Success**.
+  </hint>
+
+  <Paragraph indent="1">
+    If the push fails, a **Failed** pop-up message is displayed.
+  </Paragraph>
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/1-qnmpRcf-kOnkmvM3trR_policyconnectionfailedmessage404x55.png" alt="Image showing massage informong that Push LDAP Settings have failed" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/trustedAgents-images/policy_connection_failed_message_404x55.png" githubPath="Content/Resources/Images/trustedAgents-images/policy_connection_failed_message_404x55.png" showCaption="false"></Image>
+
+  <Paragraph indent="1">
+    If a failed push occurs, check your settings are correct, and then:
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    Push the settings again.
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    If the push still fails, refresh the page in the browser, and push the settings again.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    When processing is complete, an enrollment key, comprising of the tenant ID and activation key, is displayed in the **Enrollment Key** field.
+  </Paragraph>
+
+  6. Under the **Download URL for Installer (Windows)** section, click **Download** to download the installer files.
+
+  <hint type="info" indent="1">
+    Copy the IvantiCloudAgent.exe and IvantiCloudAgent.exe.options files to the server on the private network where Trusted Agent is to be installed.
+  </hint>
+
+  **When completed successfully, proceed to installing the Trusted Agent before continuing with the remaining procedures in this topic, refer to&#x20;**:Link[Install Trusted Agent]{label="Install Trusted Agent" overridedLabel="Install Trusted Agent" spaceId docId="XTiUfvyNLUQynrvlCZ-sn" version="v2" docAnchorId="#Install_Trusted_Agent" loadingMethod="dynamic" newTab="false" githubPath="Setting_up_Trusted_Agent.htm#Install_Trusted_Agent" href="Setting_up_Trusted_Agent.mdx"}
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Add a PowerShell Script
+
+  To add a PowerShell execution script, refer to :Link[Add a PowerShell Script]{label="Add a PowerShell Script" overridedLabel="Add a PowerShell Script" spaceId docId="nKXYfrhJASQND9VFtbedg" version="v2" docAnchorId="#Add_a_PowerShell_Execution" loadingMethod="dynamic" newTab="false" href="Configure_TA_with_PowerShell.mdx"}.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Complete the Procedures to Enable and Verify the Trusted Agent
+
+  - :Link[Connect Trusted Agent to the Directory Server and Test the Connection]{label="Connect Trusted Agent to the Directory Server and Test the Connection" overridedLabel="Connect Trusted Agent to the Directory Server and Test the Connection" spaceId docId="qiCcju38kHr1LMAyL7lkc" version="v2" docAnchorId="#Test_the_Connection" loadingMethod="dynamic" newTab="false" githubPath="Configure_TA_for_LDAP_Connections.htm#Test_the_Connection" href="Configure_TA_for_LDAP_Connections.mdx"}.
+  - :Link[Configure Root Nodes, Save and Synchronize Directory Information and Enable External Authentication]{label="Configure Root Nodes, Save and Synchronize Directory Information and Enable External Authentication" overridedLabel="Configure Root Nodes, Save and Synchronize Directory Information and Enable External Authentication" spaceId docId="qiCcju38kHr1LMAyL7lkc" version="v2" docAnchorId="#Synchronize_Directory" loadingMethod="dynamic" newTab="false" githubPath="Configure_TA_for_LDAP_Connections.htm#Synchronize_Directory" href="Configure_TA_for_LDAP_Connections.mdx"}.
+  - :Link[Check the LDAP Import Log, Verify Employee Import and External Authentication]{label="Check the LDAP Import Log, Verify Employee Import and External Authentication" overridedLabel="Check the LDAP Import Log, Verify Employee Import and External Authentication" spaceId docId="qiCcju38kHr1LMAyL7lkc" version="v2" docAnchorId="#Checking_tLDAP_Import_Log" loadingMethod="dynamic" newTab="false" githubPath="Configure_TA_for_LDAP_Connections.htm#Checking_tLDAP_Import_Log" href="Configure_TA_for_LDAP_Connections.mdx"}.
+  - :Link[Synchronizing Existing LDAP Settings for Trusted Agent]{label="Synchronizing Existing LDAP Settings for Trusted Agent" overridedLabel="Synchronizing Existing LDAP Settings for Trusted Agent" spaceId docId="qiCcju38kHr1LMAyL7lkc" version="v2" docAnchorId="#Synchronizing_Existing_LDAP_Settings" loadingMethod="dynamic" newTab="false" githubPath="Configure_TA_for_LDAP_Connections.htm#Synchronizing_Existing_LDAP_Settings" href="Configure_TA_for_LDAP_Connections.mdx"}
+</ExpandableHeading>
+
+## Invoke a PowerShell operation with Trusted Agent
+
+Invoke an agent that executes with PowerShell script to update a business object.
+
+1. Log in to \{\{FRS\_VARS.ProductName}} as an \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+2. From the **Service Desk** console, open the **Incident** workspace.
+3. Open an incident, click **More**, and select **Edit Actions**.
+4. Create a quick action using \{\{FRS\_VARS.Graphical\_Action\_Designer}}.
+
+<Paragraph indent="1">
+  By default, **Start Block** is selected.
+</Paragraph>
+
+5. Enter the **Settings** details for the *mandatory* fields **Name**, **Description**, **Enter Category**,**&#x20;Publish To**, and **UI Options** in the \{\{FRS\_VARS.Graphical\_Action\_Designer}}.
+
+<hint type="info" indent="1">
+  Manually enter "Trusted Agent" or "TrustedAgent" (the white space is not required for function) if the **Trusted Agent** category is not present in the **Enter Category** option.
+</hint>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/XpKXS-uudOmD77U8iGsEq_ta-category.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/trustedAgents-images/PowerShell/TA-Category.png" githubPath="Content/Resources/Images/trustedAgents-images/PowerShell/TA-Category.png" showCaption="false"></Image>
+
+6. Drag the **Run Program** from the **Common Actions** to the block.
+   - Enter a unique name in the **Block Label** field.
+   - Select the PowerShell script in the **Connection** drop-down.
+   - In the **Arguments** field specify the argument that needs to be parsed through the Powershell script.
+
+<hint type="info" indent="2">
+  Declare arguments, for example: declare a 10, b 5 variables. You can also declare a variable and expression, for example, a 10, UserEmail $(PrimaryEmail), where UserEmail is a parameter in the script, and $(PrimaryEMail) is a field in the business object.
+</hint>
+
+<Paragraph listStyleType="disc" indent="2">
+  Select the **Output Field** to verify if the PowerShell request was successfully submitted.
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/xsZk4ljPg54h45iyzJQpi_trustedagentquickaction.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/trustedAgents-images/trusted_agent_quick_action.png" githubPath="Content/Resources/Images/trustedAgents-images/trusted_agent_quick_action.png" showCaption="false"></Image>
+
+7. Link the **Start block** to the **Run Program** block and click **Save**.
+8. Go back to the \{\{FRS\_VARS.Incident}} page, click **More** > **TrustedAgent**, and select the action you created.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/uhI-eFOGTHhyd2IA6GbJp_qa-trusted-agent.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/trustedAgents-images/PowerShell/QA-trusted-agent.png" githubPath="Content/Resources/Images/trustedAgents-images/PowerShell/QA-trusted-agent.png" showCaption="false"></Image>
+
+Now the agent will get triggered and update the associated incident as per the PowerShell script actions.
+
+## Verify Execution
+
+To verify the execution of the agent:
+
+1. From the Configuration console click **Extend > Integration Tools > Trusted Agent Monitoring**.
+2. In the **Operational Logs**, select a PowerShell executed operation and verify the **Log Entry** for the associated operation.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/I2KFIaGXExS406DUiimLd_ta-logs.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/trustedAgents-images/PowerShell/TA-logs.png" githubPath="Content/Resources/Images/trustedAgents-images/PowerShell/TA-logs.png" showCaption="false"></Image>
+
+The **Log Entry** shows whether the script executed successfully with the expected result.
+
+## Creating a workflow for PowerShell Script Execution with Trusted Agent
+
+1. Select a business object and create a [workflow](../Workflows/Using_Workflows.mdx).
+
+<hint type="info" indent="1">
+  Ensure the Run Program quick action is created and selected in the Run Program Block Properties.
+</hint>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/DpS-HEbNqX_Gp2n2AmWT8_workflow-configuration.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/trustedAgents-images/Workflow-Configuration.png" githubPath="Content/Resources/Images/trustedAgents-images/Workflow-Configuration.png" showCaption="false"></Image>
+
+2. Set the workflow configuration before saving it.
+3. In the respective business object workspace, select a record, and trigger the workflow.
+
+<Paragraph indent="1">
+  Once the workflow is executed, refresh the business object to view the powershell execution request status.
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/mp26DV7sL6LqB_082Nl42_triggering-workflow.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/trustedAgents-images/Triggering-workflow.png" githubPath="Content/Resources/Images/trustedAgents-images/Triggering-workflow.png" showCaption="false"></Image>

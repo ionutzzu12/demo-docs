@@ -1,0 +1,145 @@
+---
+title: Using Stored Expressions
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:58 GMT+0300 (Eastern European Summer Time)
+---
+
+**Role**: Administrator.
+
+**Minimum Version**: \{\{FRS\_VARS.ProductName}} 2023.4.
+
+An expression is a combination of common mathematical values and \{\{FRS\_VARS.ProductName}} proprietary functions. You can use expressions in a search, quick action, dashboard, workflow, or business rule. The power of expressions gives you more control over your results. You can enter text constants, functions, or expression delimiters.
+
+\{\{FRS\_VARS.ProductName}} allows you to store expressions for reuse in multiple ways; for example, you can use them in quick actions, searches and dashboards, and styles.
+
+<ExpandableHeading>
+  ## Using Stored Expressions in Neurons for ITSM
+
+  Use **Stored Expressions** the same way you use expressions. The key difference between using stored expressions and using traditional expressions is that stored expressions can be saved for reuse. For detailed instructions on the use of expressions in different scenarios, please refer to the online help for expressions.
+
+  - :Link[Stored Expression Grammar]{label="Stored Expression Grammar" overridedLabel="Stored Expression Grammar" spaceId docId="4_t7-8mnatsAE0wnALxRp" version="v2" docAnchorId="#UsingStoredExpressions" loadingMethod="dynamic" newTab="false" githubPath="../Expression Grammar.htm#UsingStoredExpressions" href="../Expression Grammar.mdx"}
+  - [About Using Expressions in Styles](<../Using Expressions in Styles.mdx>)
+  - [Using Expressions in Quick Actions](../Using_Expressions_in_Quick_Actions.mdx)
+  - [Using Expression to Create Survey Record](../Using-Expression-to-Create-Survey-Record.mdx)
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Using the Stored Expressions Workspace
+
+  1. Access the **Stored Expressions** workspace from the **Build** section of the **Configuration Console**.
+  2. The Stored Expressions workspace provides a list of existing stored expressions.
+  3. Select any of the headings in the workspace to sort stored expressions. These include:
+     - **Name**
+     - **Association**
+     - **Description**
+     - **Type**
+     - **Expression**
+     - **Modified By**, and
+     - **Last Modified**
+  4. Click the **Edit** icon to edit an existing stored expression.
+     - This opens the details for the stored expression.
+     - You can modify the description and the expression from this workspace.
+     - Click **Expression** to open the **Expression Editor**.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/iQqOCMbFLCTHX-mPoHX3a_expression-editor.jpg" alt="Expression editor screenshot" position="flex-start" size="40" indent="3" initialPath="i/expression-editor.jpg" githubPath="Content/Reference/Expressions/Stored Expressions/i/expression-editor.jpg" showCaption="false"></Image>
+
+  <Paragraph listStyleType="disc" listStart="3" indent="2">
+    The **Expression Editor** toolbox provides a list of relevant fields and functions used to modify the stored expression.
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" listStart="4" indent="2">
+    Write the expression and click **Simplify Expression**.
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="3">
+    Literals are not supported in stored expressions. Values must be wrapped in $() so they are evaluated correctly. For example, an expression cannot simply be True; rather, it must be $(True).
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="3">
+    See [Expression Grammar](<../Expression Grammar.mdx>) for detailed instructions on expression syntax and for syntax required for using Stored Expressions.
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" listStart="5" indent="2">
+    Click **OK** to return to the **Stored Expressions** workspace.
+  </Paragraph>
+
+  <hint type="info" indent="3">
+    When you click **OK**, the **Expression Editor** automatically validates the expression syntax.
+  </hint>
+
+  5. Click **Save** to save your edits, or click **Cancel** to discard any changes.
+
+  <hint type="info" indent="2">
+    Access additional help at [Using the Expression Editor](<../Using Expression Editor.mdx>).
+  </hint>
+
+  6. Use the **Filter Association** dropdown menu to filter existing stored expressions by their associated business objects.
+  7. Click the **Add** icon to enter the **Expression Editor** and create a new stored expression. Detailed information on creating stored expressions can be found in [Creating and Deleting Stored Expressions](<Creating and Deleting Stored Expressions.mdx>).
+  8. Click the **Refresh** icon to refresh the list of stored expressions.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Example of creating and using a Stored Expression
+
+  This example demonstrates how to create and use a Stored Expression that converts the text to uppercase and trigger it in a quick action to change the text of a description field to uppercase.
+
+  **Create a Stored Expression**
+
+  1. Log in to \{\{FRS\_VARS.ProductName}} as an Administrator.
+  2. Go to \{\{FRS\_VARS.Configuration\_console}} > **Build** > **Stored Expressions**.
+  3. Click **Add** and enter a **Name** "TextExpression" and **Description** "Change text to upper case" to the expression.
+  4. Select **No Association** from the **Association** dropdown.
+  5. Select the **Expression Type** to **Text**.
+  6. Select **Expression** to open the Expression Editor and do the following:
+
+  <Paragraph indent="1">
+    a. Double click or drag the **ToUpperCase** function in the Expression Editor.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    b. Add a text string in lowercase "*description in uppercase*" to convert to uppercase.
+  </Paragraph>
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/0vmwxg18UJb0KgbQje0Iw_stored-expression-example.jpg" position="flex-start" size="40" indent="1" initialPath="i/stored-expression-example.jpg" githubPath="Content/Reference/Expressions/Stored Expressions/i/stored-expression-example.jpg" showCaption="false"></Image>
+
+  **Using the Stored Expression in a Quick Action**
+
+  1. Go to **Incident** workspace, in the Service Desk console.
+  2. Select **More** > **Edit Actions** > **Classic Action Designer**.
+  3. Select **Create New Actions** > **Update Object**.
+
+  <Paragraph indent="1">
+    a. Enter Action Name as "TestStoredExpression" and select the **Field Name** as **Symptom (Description)**.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    b. Select the **fx** button to add the Stored Expression.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    c. In the **Expression Editor** double-click or drag the stored expression "TextExpression" listed under the **Unassociated Expressions** in the **Expressions** tab.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    d. Edit the expression to $($TextExpression()), select **OK**, and save the quick action.
+  </Paragraph>
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/MhlKHCXCwQe-rANJcfIZU_expression-editor-qa.png" position="flex-start" size="40" indent="2" initialPath="i/expression-editor-QA.png" githubPath="Content/Reference/Expressions/Stored Expressions/i/expression-editor-QA.png" showCaption="false"></Image>
+
+  **Trigger the Quick Action**
+
+  Open any \{\{FRS\_VARS.Incident}}, select **More** > **No Category** > **TestStoredExpression**.
+
+  This will trigger the quick action and update the **Description** field's text to "DESCRIPTION IN UPPERCASE".
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Z1GpJnlueynMAkKWe6uue_description-uppercase-output.png" position="flex-start" size="40" initialPath="i/Description-Uppercase-output.png" githubPath="Content/Reference/Expressions/Stored Expressions/i/Description-Uppercase-output.png" showCaption="false"></Image>
+</ExpandableHeading>
+
+## Additional Resources
+
+- [Expression Grammar](<../Expression Grammar.mdx>)
+- [Expression Examples](../Expression_Examples.mdx)
+- [Using the Expression Editor](<../Using Expression Editor.mdx>)
+- [About Using Expressions in Styles](<../Using Expressions in Styles.mdx>)
+- [Using Expressions in Quick Actions](../Using_Expressions_in_Quick_Actions.mdx)
+- [Using Expression to Create Survey Record](../Using-Expression-to-Create-Survey-Record.mdx)

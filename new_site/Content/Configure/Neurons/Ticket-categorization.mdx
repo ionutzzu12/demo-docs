@@ -1,0 +1,110 @@
+---
+title: Configure Ticket Classification using Neurons Platform
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:55 GMT+0300 (Eastern European Summer Time)
+---
+
+**Role**: Administrators.
+
+**Minimum Version**: \{\{Primary.Company}}\{\{Primary.Product}} 2024.2.
+
+<hint type="danger">
+  Ivanti plans to retire the option to configure Ticket Classification using the Neurons Platform UI in an upcoming release of Ivanti Neurons for ITSM, likely version 2025.4. Starting with version 2025.3, Ticket Classification will be configured exclusively through the [central ITSM AI Configuration Hub](../../AITSM/Configure-Ticket-Classification-using-AITSM.mdx).
+</hint>
+
+When you enable the ticket classification feature in \{\{Primary.Product}}, the application will automatically categorize the field recommendations from Ivanti Neurons for support tickets.
+
+<hint type="info">
+  - Ticket Classification functionality requires subscription to Ivanti Neurons for Healing.
+  - Currently, this feature is available in the **Incident** business object only.
+  - You can configure the ticket classification feature on your tenant by raising a Service Request to the Ivanti Operations team.
+</hint>
+
+<ExpandableHeading>
+  ## Enable the global constant
+
+  1. Log in to \{\{Primary.Product}} with the Administrator user role.
+  2. Select **Configure Application** to go to the Configuration Console.
+  3. Select **Build > Global Constants** to open the Global Constants window.
+  4. Set th&#x65;**&#x20;EnableTicketClassification** value to True.
+  5. Select **Save**.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Enable the layout to use ticket classification feature for a user role
+
+  1. From the Configuration Console, select **Build > Business Objects > Incident** to open the **Incident** Business Object.
+  2. Select th&#x65;**&#x20;Layouts** tab. The application displays a list of layouts.
+  3. Determine the layout to configure the ticket classification.
+  4. Open the layout. For example, select **IncidentLayout.ServiceDesk** for the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Analyst-Service-Desk-Analyst}} role.
+  5. Select **formView** or **FormEdit** to open the Form View Editor.
+  6. Select **Enable Ticket Classification**.
+  7. Select **Edit Ticket Classification Settings**. The application displays the **Configure Ticket Classification for Incident "formView" layout** dialog box.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/xcDk6kxAfxix0aVNS0SjR_ticket-classification.jpg" alt="The dialog box allows you to select a triggered field for which you want to map source and target fields." position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/Configure/Neurons Workflow/Ticket-classification.jpg" githubPath="Content/Resources/Images/Configure/Neurons Workflow/Ticket-classification.jpg" showCaption="false"></Image>
+
+  8. Modify the below field values for recommended field mapping.
+     - **Triggered Field** - Input to Neurons API to trigger the recommendations. In 2021.3 release, we must configure only **Subject** as the **Triggered Field** because the Machine Learning (ML) and Artificial Intelligence (AI) engine is trained based on the **Subject** field.
+     - **Source Fields** - Fields from Ivanti Neurons.
+     - **Target Fields (Ivanti Neurons for ITSM)** - Fields in \{\{Primary.Product}} to map the recommended field values. You can map **Service**, **Category** and **RecommendedCategory** fields. For more information about **Target Fields** mapping, see :Link[Mapping target fields]{label="Mapping target fields" overridedLabel="Mapping target fields" spaceId docId="3J41RUxUJnPjlwD2eTliu" version="v2" docAnchorId="#Mapping" loadingMethod="dynamic" newTab="false" href="Ticket-categorization.mdx"}.
+
+  <hint type="info" indent="1">
+    To avail default mappings for **IncidentLayout.ServiceDesk** and **Incident Layout 0** as shown in the above figure, raise a Service Request to the Ivanti Operations team.
+  </hint>
+
+  9. Select the Add icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/wTm6LJc61HOa3MNg2u86t_add-icon-green.png" alt caption size="10" width="17" height="17"} to add more fields.
+  10. Select **Save**.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Mapping target fields
+
+  Consider the following points for mapping **Source Fields** to **Target Fields**.
+
+  - If **Source Fields** "**Service** and **Category**" are mapped to **Target Fields** "**Category** and **Service**" and **Target Fields** - "**RecommendedCategory** and **RecommendedService** " are not mapped, then the application will automatically fill the recommendations in the form. However, the application will not display the "Ivanti Neurons AI recommendations applied" label and the **Apply Ivanti Neurons AI recommendations** button.
+
+  <hint type="info" indent="1">
+    **RecommendedCategory** and, **RecommendedService** fields mapping determines the visibility of the button and label.
+  </hint>
+
+  - If **Source Fields** "**Category** and **Service**" are mapped to **Target Fields** "**RecommendedCategory** and **RecommendedService**" and not to **Target Fields** "**Category**and **Service**", then you must select **Apply Ivanti Neurons AI recommendations** to fill the recommendations in the form.
+  - If **Source Fields** "**Category** and **Service**" are mapped to both **Target Fields** "**Category**, **Service**, **RecommendedCategory** and **RecommendedService**", the application will automatically fill the recommendations in the form and displays the label. If you override the recommendations, then application will display the **Apply Ivanti Neurons AI recommendations** button and you must select it to restore the recommendations.
+  - You should map the **Source Fields** to **Target Fields** as follows:
+    - Service > Service
+    - Category > Category
+    - SubCategory > SubCategory
+    - Category > RecommendedCategory
+    - Service > RecommendedService
+    - SubCategory > RecommendedSubCategory
+    - model\_probability > Accuracy
+
+  <Paragraph indent="1">
+    Any changes in the above mapping will result in a failure of the ticket classification feature. For example, you should not map **Source Fields** "**Category**" to **Target Fields** "**Service**" or **Category** to **RecommendedService**.
+  </Paragraph>
+
+  <hint type="info">
+    When mapping ensure to add Service field first and then the Category field since Category is dependent on Service.
+  </hint>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Generating the training data
+
+  You can generate the training data as a .csv file to train the ML and AI engine.
+
+  1. Log in to \{\{Primary.Product}}.
+  2. Open the **Incident** workspace.
+  3. Select **More >Form Actions > Export** to export the .csv file.
+
+
+
+  <hint type="info">
+    - Make sure to export the field values such as **Subject** and at least one of the fields (**Category** and **Service** ) to train the ML and AI engine. If you provide only one type of field value (For example, only **Subject**) in the training data, then the ML and AI engine will only predict that field.
+    - If a **Service**/**Category** field value in Ivanti Neurons is deprecated, updated, or no longer used, you must train and deploy a new model without it.
+    - If you export **ActualService** and **ActualCategory** fields, you must rename them to Service and Category to match the field prediction.
+  </hint>
+
+
+</ExpandableHeading>
+
+[<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Y4WfYOm5SkWQaKIj8jTPB_transparent.gif" size="10" alt="Related Topics Link Icon" isUploading="false" initialPath="../../../Skins/Default/Stylesheets/Images/transparent.gif" githubPath="Skins/Default/Stylesheets/Images/transparent.gif" width="16" height="16" showCaption="false"></Image>Related Topics](javascript\:void\(0\);)

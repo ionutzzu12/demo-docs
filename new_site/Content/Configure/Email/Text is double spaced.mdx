@@ -1,0 +1,19 @@
+---
+title: Example: Troubleshooting Email Text
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:51 GMT+0300 (Eastern European Summer Time)
+---
+
+In this example, the text is double-spaced after using copy and paste.
+
+When you copy and paste an email from Microsoft Outlook into a multiline HTML field, the lines become double-spaced. This occurs because Microsoft Outlook inserts a non-breaking space (\&nbsp;) into each empty line. This issue is also browser dependent, as it occurs when using Mozilla Firefox or Google Chrome, but not Microsoft Internet Explorer.
+
+For example, within Microsoft Outlook, you can view the source text of your email (right-click and select **View Source**) and observe the extra code inserted, such as:
+
+<Paragraph indent="1">
+  \<p class="MsoNormal">\<span style="color:#1F497D;mso-ansi-language: EN-US" lang="EN-US">\&nbsp;\</span>\</p>
+</Paragraph>
+
+This code does not appear in the text of the email, but it interpreted correctly when pasted into \{\{FRS\_VARS.ProductName}}.
+
+To remove the extra lines, delete them manually.

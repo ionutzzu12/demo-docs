@@ -1,0 +1,56 @@
+---
+title: Classifying Changes
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:48 GMT+0300 (Eastern European Summer Time)
+---
+
+Effective Change Enablement involves the proper processing of requests for change. Usually, a change is driven by a configuration item that has been identified in need of a change. The configuration item is usually the purpose for a change.
+
+Sometimes a graphical representation of the personnel, organization structure, and equipment can determine how a change can affect the organization. See [Working with the CI map](../ConfigurationMgmt/Working_with_the_CI_Map.mdx).
+
+Standard change templates are used for preapproved standardized types of changes. These changes bypass the approval process. \{\{FRS\_VARS.Neurons\_ITSM\_-\_Change\_Manager}}s, however, always have the option of classifying some standard changes as major or emergency, thereby making the change go through an approval process.
+
+After a non-standard change has been requested, the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Change\_Manager}} assesses the risk, the impact, the cost, and other factors that determine whether the change is feasible or not.
+
+After a change goes into the requested status, the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Change\_Manager}} can decide whether the change should go forward, get deferred, or denied. The \{\{FRS\_VARS.Neurons\_ITSM\_-\_Change\_Manager}} can determine the risk associated with the change (see [Setting the Risk Level for a Change](Setting-the-Risk-Level.mdx)). The \{\{FRS\_VARS.Neurons\_ITSM\_-\_Change\_Manager}} can also view the CI map for a visual of the services that may be impacted by or impact the change.
+
+## Changing Urgency, Impact, and Priority
+
+\{\{FRS\_VARS.Neurons\_ITSM\_-\_Change\_Manager}}s can prioritize the change based on urgency and impact. By default, \{\{FRS\_VARS.ProductName}} prioritizes change requests based on the following:
+
+- **Impact**: The extent to which the loss of service will impact the business organization. For example, if a single application is down, it will have less business impact than a server being down.
+- **Urgency**: The affected user's tolerance for a delay in the resolution. Urgency is usually time-related. For example, the loss of the Sales department's network printer before the end of the fiscal quarter might be assigned a greater urgency than at another time.
+- **Priority**: The order in which it needs to be resolved, based on the impact and urgency.
+
+<Paragraph indent="1">
+  The default priority values are calculated as follows:
+</Paragraph>
+
+|              |        | URGENCY |        |     |
+| ------------ | ------ | ------- | ------ | --- |
+|              |        | High    | Medium | Low |
+| <br />IMPACT | High   | 1       | 2      | 3   |
+|              | Medium | 2       | 3      | 4   |
+|              | Low    | 3       | 4      | 5   |
+
+<Paragraph indent="1">
+  The priority is automatically calculated by the application and appears in the change record:
+</Paragraph>
+
+<Paragraph indent="1">
+  *Change Urgency and Impact*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/9mE9mF4RISvvPQ6L49wHu_impact-urgency-priority.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/Change-Images/impact-urgency-priority.png" githubPath="Content/Resources/Images/Change-Images/impact-urgency-priority.png" showCaption="false"></Image>
+
+## Change Type Fields
+
+Based on ITIL Change Enablement categories, \{\{FRS\_VARS.ProductName}}s allow \{\{FRS\_VARS.Neurons\_ITSM\_-\_Change\_Manager}}s to categorize changes as follows:
+
+| Category    | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Minor       | Small changes that have a minor impact on the organization.                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| Emergency   | Urgent changes that must be made. Emergency changes are typically implemented first and created after the change has been made due to the urgent nature of the change. As a result, emergency changes are typically posted to the calendar after the change has been made for auditing purposes.                                                                                                                                                                                        |
+| Major       | These changes usually consist of a great number of items or dependencies and can also lead to other associated change requests.                                                                                                                                                                                                                                                                                                                                                         |
+| Significant | These changes have a large significant impact on the organization.                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| Standard    | These changes are routine, understood, and generally accepted that the entire organization understands as necessary for normal operations. As a result, the approval board does not need to meet and accept a standard change. Changes of this type are generally performed on a regular basis and are preapproved. Some of the changes that are created from a service request fall into this category. The customer is already entitled to the service, so approval is not necessary. |

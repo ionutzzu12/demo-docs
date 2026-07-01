@@ -1,0 +1,105 @@
+---
+title: Working with Ivanti Voice
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:54 GMT+0300 (Eastern European Summer Time)
+---
+
+\{\{FRS\_VARS.Company-short}} Voice is the telephony application that integrates automated call routing and management, and CTI to \{\{FRS\_VARS.Company-short}} applications such as \{\{FRS\_VARS.ProductName}}. The server components of \{\{FRS\_VARS.Company-short}} Voice are referred to as IP Communications Management (IPCM). IPCM uses the next-generation, standards-based IP communication transport, called Session Initiation Protocol (SIP). \{\{FRS\_VARS.ProductName}} and \{\{FRS\_VARS.Company-short}} Voice are typically installed and maintained on separate servers.
+
+You can use \{\{FRS\_VARS.Company-short}} Voice to make the Service Desk accessible over the phone to customers and for agent-to-agent phone communication within your organization. Using the integrated **Voice** toolbar, Service Desk Analysts or agents do not need to leave the Cloud environment to answer calls from customers, transfer calls to other agents, conference in other agents, etc.
+
+If \{\{FRS\_VARS.Company-short}} Voice is configured to automatically create incidents when customers call, the system can also create incidents in \{\{FRS\_VARS.ProductName}} from the customer phone calls.
+
+From \{\{FRS\_VARS.Company-short}} Voice, the fields that are automatically entered from the phone call can also be configured. The default fields and mapped values might differ in your environment.
+
+Using the **IPCM Agent** dashboard, Service Desk Managers or users designated as agent supervisors can route calls based on the availability and skills of individual agents, view agent status, assign calls in queue, request call recording, and so on.
+
+Before proceeding with the following tasks, ensure that you have installed and configured \{\{FRS\_VARS.Company-short}} Voice.
+
+## Ivanti Voice Deployment
+
+<ExpandableHeading>
+  ## Necessary Components for Ivanti Voice
+
+  - Your local \{\{FRS\_VARS.Company-short}} Voice server name or IP address.
+  - A valid user and password into \{\{FRS\_VARS.Company-short}} Voice.
+  - (Optional) The port configured for \{\{FRS\_VARS.Company-short}} Voice web service, if changed. The default is 2323.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Agent Login Sequence
+
+  The following demonstrates what happens when an agent logs in.
+
+
+
+  *Ivanti Voice Agent Login Sequence*
+
+
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/qN22Un1eSl852spF-7BZf_voicediagram.png" position="flex-start" size="40" initialPath="../../Resources/Images/help-images/voice_diagram.png" githubPath="Content/Resources/Images/help-images/voice_diagram.png" showCaption="false"></Image>
+
+  1. The agent logs into a secure (HTTPS) connection.
+  2. The system verifies the \{\{FRS\_VARS.Company-short}} Voice server IP address or domain name.
+  3. The system obtains the session key from the \{\{FRS\_VARS.Company-short}} Voice server IP address or domain name.
+  4. The system verifies the session key (TCP 5743).
+  5. The system makes the phone connection (SIP UDP 5060).
+  6. The system validates the session key (HTTPS).
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Incoming Call Sequence
+
+  The following shows the sequence of events for incoming calls.
+
+  *Ivanti Voice Incoming Call Sequence*
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/N-HztPvDPhy7K2O8iuJBk_voicediagramagent.png" position="flex-start" size="40" initialPath="../../Resources/Images/help-images/voice_diagram_agent.png" githubPath="Content/Resources/Images/help-images/voice_diagram_agent.png" showCaption="false"></Image>
+
+  1. The system receives a call (SIP UDP 5060).
+  2. The IVR searches and updates the record (HTTPS).
+  3. The call is forwarded to the agent (SIP UDP 5060, RTP UDP, TCP 5743).
+  4. The record appears to the agent (HTTPS).
+</ExpandableHeading>
+
+## The Ivanti Voice Toolbar
+
+If Ivanti Voice is not open, the system disables the **Dial** field and button on the toolbar.
+
+To use the **Voice** toolbar, your employee profile must have the **Enable Voice option** selected (see :Link[Enabling Voice for a User]{label="Enabling Voice for a User" overridedLabel="Enabling Voice for a User" spaceId docId="ThJ0DUMgkmmgVcGpEQJYi" version="v2" docAnchorId="#ipcm_saas_2893168369_1062468" loadingMethod="dynamic" newTab="false" githubPath="Configuring_Agent_Voice_.htm#ipcm_saas_2893168369_1062468" href="Configuring_Agent_Voice_.mdx"}) and the option **Is Voice Agent** option selected (see :Link[Configuring Voice Agent Properties]{label="Configuring Voice Agent Properties" overridedLabel="Configuring Voice Agent Properties" spaceId docId="ThJ0DUMgkmmgVcGpEQJYi" version="v2" docAnchorId="#ipcm_saas_2893168369_1063450" loadingMethod="dynamic" newTab="false" githubPath="Configuring_Agent_Voice_.htm#ipcm_saas_2893168369_1063450" href="Configuring_Agent_Voice_.mdx"}).
+
+The application invokes the **Voice** toolbar using Flash or secure web-sockets. You need to modify the value of **EnableVoiceFlash** global constant to decide the required invoking option. To set the invoking option, follow the below steps:
+
+1. Open the Configuration console.
+2. Click **Configure** > **Build** > **Global Constants** to open the **Global Constants** workspace.
+3. To invoke the **Voice** toolbar using Flash, modify the value of **EnableVoiceFlash** global constant as 1. To invoke the Voice toolbar using secure web-sockets, modify the value of **EnableVoiceFlash** global constant as 0.
+
+<hint type="info">
+  By default, the application invokes the **Voice** toolbar with secure web-sockets. For web-socket Server Certificate details, see [Server Certificate Configuration](https://help.ivanti.com/ht/help/en_US/Voice/2020.2/help/Voice-OLH/Host-Configuration/Server-Certificate-Configuration.htm?Highlight=certificate).
+</hint>
+
+4. Click **Save**.
+
+If you are using Ivanti Voice, you see the following **Voice** toolbar when you log in:
+
+*Ivanti Voice Toolbar*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/SU7NaTjLT9ESCco-uq6Qp_voice-toolbar.png" position="flex-start" size="40" initialPath="../../Resources/Images/help-images/voice/voice-toolbar.png" githubPath="Content/Resources/Images/help-images/voice/voice-toolbar.png" showCaption="false"></Image>
+
+The following describes the **Voice** toolbar parts:
+
+| Toolbar Button                                                                                                                                                                                                                                                                                                                                                  | Function                   | Description                                                                                                                                                                                                                                                                         |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Hyz1A7hCAwLVSHLgoLfxr_ipcmreadyicon23x23.jpg" position="flex-start" size="40" initialPath="../../Resources/Images/help-images/ipcm_ready_icon_23x23.jpg" githubPath="Content/Resources/Images/help-images/ipcm_ready_icon_23x23.jpg" showCaption="false"></Image>           | Ready                      | Update your status to ready, which means that you are ready to accept calls.<br /><br />**NOTE**: If this button is disabled, there might be connectivity issues with the \{\{FRS\_VARS.Company-short}} Voice server.                                                               |
+| <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/J9Wfl7NVstFN_UIQ0NqwB_ipcmnotreadyicon23x23.jpg" position="flex-start" size="40" initialPath="../../Resources/Images/help-images/ipcm_notready_icon_23x23.jpg" githubPath="Content/Resources/Images/help-images/ipcm_notready_icon_23x23.jpg" showCaption="false"></Image>  | Not Ready                  | Updates your status to not ready. Select a reason from the drop-down list.<br /><br />**NOTE**: If this button is disabled, there might be connectivity issues with the \{\{FRS\_VARS.Company-short}} Voice server.                                                                 |
+| <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/YqMIZ_Pcf1nZj3sks89Lr_ipcmanswercall23x21.jpg" position="flex-start" size="40" initialPath="../../Resources/Images/help-images/ipcm_answercall_23x21.jpg" githubPath="Content/Resources/Images/help-images/ipcm_answercall_23x21.jpg" showCaption="false"></Image>          | Answer Call                | Answers a call.<br /><br />**NOTE**: If this button is disabled, there might be connectivity issues with the \{\{FRS\_VARS.Company-short}} Voice server.                                                                                                                            |
+| <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/5ofBD8kgOBcETY2gVUAeI_ipcmalternatecall23x20.jpg" position="flex-start" size="40" initialPath="../../Resources/Images/help-images/ipcm_alternatecall_23x20.jpg" githubPath="Content/Resources/Images/help-images/ipcm_alternatecall_23x20.jpg" showCaption="false"></Image> | Alternate Call             | Switches between calls.                                                                                                                                                                                                                                                             |
+| <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/tb40lryNIWC3DhV6E41pC_ipcmholdcall.jpg" position="flex-start" size="40" initialPath="../../Resources/Images/help-images/ipcm_holdcall.jpg" githubPath="Content/Resources/Images/help-images/ipcm_holdcall.jpg" showCaption="false"></Image>                                 | Hold Call                  | Puts the current call on hold.                                                                                                                                                                                                                                                      |
+| <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/ePh3D2A-9WHKv3h-GA1Nl_ipcmretrievecall.jpg" position="flex-start" size="40" initialPath="../../Resources/Images/help-images/ipcm_retrievecall.jpg" githubPath="Content/Resources/Images/help-images/ipcm_retrievecall.jpg" showCaption="false"></Image>                     | Retrieve Call              | Retrieves a call that is on hold.                                                                                                                                                                                                                                                   |
+| <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/POyQxSPYfQwk_wK2iPqrH_ipcmdialcall.jpg" position="flex-start" size="40" initialPath="../../Resources/Images/help-images/ipcm_dialcall.jpg" githubPath="Content/Resources/Images/help-images/ipcm_dialcall.jpg" showCaption="false"></Image>                                 | Phone Number and Dial Call | Starts a call. Enter the phone number and click **Dial**. If you disable this field, the system does not open \{\{FRS\_VARS.Company-short}} Voice.                                                                                                                                  |
+| <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/bwnqpZqkWSbV7BqVKUKGS_ipcmsinglesteptransfer.jpg" position="flex-start" size="40" initialPath="../../Resources/Images/help-images/ipcm_singlesteptransfer.jpg" githubPath="Content/Resources/Images/help-images/ipcm_singlesteptransfer.jpg" showCaption="false"></Image>   | Single step transfer       | Transfers the active call to another agent in a single step. Enter the phone number and then click **Single Step Transfer**.                                                                                                                                                        |
+| <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/BwU8m1ybiKkicGBBKu4oG_ipcmsinglestepcall.jpg" position="flex-start" size="40" initialPath="../../Resources/Images/help-images/ipcm_singlestepcall.jpg" githubPath="Content/Resources/Images/help-images/ipcm_singlestepcall.jpg" showCaption="false"></Image>               | Single step conference     | Creates a conference call with the customer and another agent in a single step. Enter the phone number and then click **Single Step Conference**.                                                                                                                                   |
+| <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/IT-ErRqQh_IvbTOYON5N5_ipcmtransfercall.jpg" position="flex-start" size="40" initialPath="../../Resources/Images/help-images/ipcm_transfercall.jpg" githubPath="Content/Resources/Images/help-images/ipcm_transfercall.jpg" showCaption="false"></Image>                     | Transfer call              | Allows you to first talk to another agent and then transfer the call to another agent. Enter the phone number and click **Dial**. The system puts the original call on hold while the agents talk. To pass the call to the other agent, click **Transfer Call**.                    |
+| <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/kcx2UuDMEQULS-3drzad7_ipcmconference.jpg" position="flex-start" size="40" initialPath="../../Resources/Images/help-images/ipcm_conference.jpg" githubPath="Content/Resources/Images/help-images/ipcm_conference.jpg" showCaption="false"></Image>                           | Conference                 | Creates a conference call with the customer and another agent. Enter the phone number and click **Dial**. The system puts the original call on hold while the agents talk. To add the other agent to the conference call, click **Conference**.                                     |
+| <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/usz5DVKXHo21laFeYQNz0_ipcmhangup23x14.jpg" position="flex-start" size="40" initialPath="../../Resources/Images/help-images/ipcm_hangup_23x14.jpg" githubPath="Content/Resources/Images/help-images/ipcm_hangup_23x14.jpg" showCaption="false"></Image>                      | Hangup call                | Ends the call.                                                                                                                                                                                                                                                                      |
+| <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/eVbsljJUTKlE7Rk87l3yx_ipcmsettings22x22.jpg" position="flex-start" size="40" initialPath="../../Resources/Images/help-images/ipcm_settings_22x22.jpg" githubPath="Content/Resources/Images/help-images/ipcm_settings_22x22.jpg" showCaption="false"></Image>                | IPCM Settings              | Assigns you to a different extension. The extension you enter must be registered with \{\{FRS\_VARS.Company-short}} Voice. Your browser reloads and the system associates the new extension with your login. The new extension is active until you switch back to the original one. |

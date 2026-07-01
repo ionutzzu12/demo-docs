@@ -1,0 +1,174 @@
+---
+title: Creating a Release Request
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:48 GMT+0300 (Eastern European Summer Time)
+---
+
+Only \{\{FRS\_VARS.Neurons\_ITSM\_-\_Release\_Manager}}s and \{\{FRS\_VARS.Neurons\_ITSM\_-\_Change\_Manager}}s can create releases by using the release form, template on the release form, or within a change form.
+
+- If \{\{FRS\_VARS.Neurons\_ITSM\_-\_Change\_Manager}}s create a release, they can create the release record and set it to draft status while gathering requirements or formalizing plans and details for the release. When they are ready to submit the release record, they update its status to requested. They often create a release while working on a change.
+- If \{\{FRS\_VARS.Neurons\_ITSM\_-\_Release\_Manager}}s create a release, they can set it to any state and work on the release. They also work on requested releases and update their status to active.
+
+<hint type="info">
+  Depending on your role, you might have access to certain fields and values in the release module. The \{\{FRS\_VARS.Neurons\_ITSM\_-\_Release\_Manager}} has full permissions to work with the **Release** business object. The default application is configured to allow the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Change\_Manager}} and \{\{FRS\_VARS.Neurons\_ITSM\_-\_Release\_Manager}} to create releases. The \{\{FRS\_VARS.Neurons\_ITSM\_-\_Change\_Manager}} has access to a subset of the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Release\_Manager}}'s permissions to work on the **Release** business object.
+</hint>
+
+1. Sign in to \{\{FRS\_VARS.ProductName}} as a \{\{FRS\_VARS.Neurons\_ITSM\_-\_Release\_Manager}} or a \{\{FRS\_VARS.Neurons\_ITSM\_-\_Change\_Manager}}.
+2. Open the **Release** workspace.
+3. Select **New Release** in the toolbar to open a blank form, or select a template from the drop-down list. See :Link[../../Configure/BusinessObjects/Default\_Templates.htm#Default\_Release\_Templates]{label="../../Configure/BusinessObjects/Default_Templates.htm#Default_Release_Templates" overridedLabel="../../Configure/BusinessObjects/Default_Templates.htm#Default_Release_Templates" spaceId docId="xo3sLowOFhS6BNU69GYC9" version="v2" docAnchorId="#Default_Release_Templates" loadingMethod="dynamic" newTab="false" githubPath="../../Configure/BusinessObjects/Default_Templates.htm#Default_Release_Templates" href="../../Configure/BusinessObjects/Default_Templates.mdx"}.
+
+<Paragraph indent="1">
+  The following default tabs appear (results may vary depending on your system setup):
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  **Details**: See step 4.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  [Milestones](Working-with-Milestones/Working-with-Milestones.mdx)
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  [CI](../ConfigurationMgmt/About_Creating_a_Configuration_Item.mdx)
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  [Service](../ServiceLevelMgmt/Creating_a_Service.mdx)
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  **Related Releases**
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  **Release Package**
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  [Change](../Change/Creating-a-Change-Request.mdx)
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  [Problem](<../Problem/Creating a Problem.mdx>)
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  [Stakeholders](../Stakeholders/Identifying_stakeholders.mdx)
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  [Activity History](../ActivityHistory/Activity_History.mdx)
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  [Attachment](../../Configure/Attachments/Attachments.mdx)
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  [Related Posts](<../SocialBoard/Using Related Posts Tab.mdx>)
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  **Schedule**
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  [Announcement](../Announcements/Announcements_and_FAQs.mdx)
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  [Workflow Instance](<../WorkflowInstances/Workflow Instance.mdx>)
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  [Audit History](../../Configure/AuditHistory/Audit_History.mdx)
+</Paragraph>
+
+4. On the **Details** tab, enter information into the fields.
+
+| Field Name      | Field Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Project Name    | The name of the project to which this release is tied. If this a subset of another release, enter the overall project name.                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| Description     | A description of the release.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| Status          | Status of the request. Automatically set to draft. Only a \{\{FRS\_VARS.Neurons\_ITSM\_-\_Change\_Manager}} can set the release status to requested or canceled. The \{\{FRS\_VARS.Neurons\_ITSM\_-\_Release\_Manager}} is also not constrained by the state changes during the release lifecycle and can set other status values for the release record.                                                                                                                                                                                                                                      |
+| Type            | The type of release.<br />**Emergency**: Response to a failure or error that is often urgent. This type of release must be made quickly and is usually recorded after the fact.<br />**Major**: New projects, such as a new system or an upgrade of a major system affecting a large volume of users. This type of release has other dependencies and may require other minor releases.<br />**Minor**: Small or routine release that has a minor effect.                                                                                                                                      |
+| Scope           | The scope of the release.<br />**Master**: A release object that has related releases associated with it. These releases are phase releases. A master release does not usually contain a release package; release packages are created for the phase release. Use the **Related Releases** tab to link to the phase release records. See [Working with Related Releases](Working-with-Related-Releases.mdx).<br />**Phase**: A child of a master release. Use the **Related Releases** tab to link to the Master release record.<br />**Standalone**: A single release without child releases. |
+| Phase           | The release phase.<br />**Feature based**: Release containing an added feature rolled out to the entire organization.<br />**Location based**: Release by location.                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| Team            | The team to which the release is assigned. By default a release is assigned to the Release Management team.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| Owner           | The owner to which the team is assigned.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| Urgency         | The level of urgency required. The default value is 3. **Urgency** and **Impact** together define the **Priority** value.<br />**High**: Necessary immediately with a high degree of urgency.<br />**Medium**: Required, but can be made after higher urgency changes have been implemented.<br />**Low**: Required, but can wait for other changes of greater urgency to be implemented.                                                                                                                                                                                                      |
+| Impact          | Impact to the organization, group, or individual. The default value is 3. **Impact** and **Urgency&#x20;**&#x74;ogether define the **Priority** value.<br />**High**: Has a major impact on the organization.<br />**Low**: Does not have much effect on the organization.<br />**Medium**: Has some effect on the organization but generally not considered a large effect.                                                                                                                                                                                                                   |
+| Start Date      | The scheduled or estimated start date.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| Target End Date | The estimated or target end date.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Actual End Date | The actual end date.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| Effort          | The number of hours required for the release.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| Estimated Cost  | The estimated cost of the release.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| Total Cost      | The total cost. Automatically generated by the system based on effort and cost.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Time            | The time spent is based on the activity history, is automatically generated by the system, and is displayed in minutes.                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| Outage Required | Specifies if an outage plan is required. The outage plan can be attached to the record under the **Attachment** tab. When checked, the outage **Start** and **End** date fields become mandatory. The outage start and end dates are reflected in linked change records.                                                                                                                                                                                                                                                                                                                       |
+| Start<br />End  | The start and end dates for the outage plan.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| Duration        | The duration. Automatically generated by the system based on the difference between the outage plan end and start dates.                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+
+<Paragraph indent="1">
+  Information in the **Statistics** section is driven from Self Service.
+</Paragraph>
+
+<Paragraph indent="1">
+  Any date values here are reflected in the linked change records.
+</Paragraph>
+
+5. Select **Save**.
+   You can now create milestones.
+6. Change the status of the release from draft when you are ready to work on the release.
+
+<Paragraph indent="1">
+  The \{\{FRS\_VARS.Neurons\_ITSM\_-\_Release\_Manager}} can move a release through all states. The \{\{FRS\_VARS.Neurons\_ITSM\_-\_Change\_Manager}} can either request the release or cancel it. See [Canceling a Release](Canceling-a-Release.mdx).
+</Paragraph>
+
+## Applying a Template to an Existing Release
+
+<hint type="info">
+  If you have already filled in some of the fields, they are overwritten when you apply the template. If the release type is major, the different combinations of scope and phase, as defined in the templates, automatically create milestones.
+</hint>
+
+1. In the **Release** workspace, open a release record.
+2. Select **Action Menu** **>** **Templates**.
+
+<hint type="info" indent="1">
+  If you selected a template for a major release type, depending on the type of template you selected, \{\{FRS\_VARS.ProductName}} creates milestones for you. See [Working with Milestones](Working-with-Milestones/Working-with-Milestones.mdx). For all other types of release, you have the option of creating milestones.
+</hint>
+
+3. From the list of available templates, select a template from the list to apply it to the current release.
+
+<hint type="info" indent="1">
+  If you entered information in any of the fields, they are overwritten by the default values from the template that you selected. See :Link[About Release Milestones]{label="About Release Milestones" overridedLabel="About Release Milestones" spaceId docId="MX8V4eaqEViwUACgknNmT" version="v2" docAnchorId="#Best" loadingMethod="dynamic" newTab="false" githubPath="Working-with-Milestones/Working-with-Milestones.htm#Best" href="Working-with-Milestones/Working-with-Milestones.mdx"} for information on the milestones that are created when you select some of the available templates.
+</hint>
+
+4. Enter information in the relevant fields.
+5. Select **Save**.
+
+<hint type="info" indent="1">
+  The release is in draft state until you request it. If you are the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Release\_Manager}}, you can update the state to active if you are ready to start working on it and create milestones for the release.
+</hint>
+
+## Requesting a Release
+
+A new release request is set to draft. You can leave it in this state while gathering information. When you are ready to submit the release request, set the status to requested.
+
+As a \{\{FRS\_VARS.Neurons\_ITSM\_-\_Change\_Manager}}, you might have already linked to a release or created a release from a change.
+
+If you created a new release, you must request it.
+
+<hint type="info">
+  Follow this procedure to request a release that you created. After you have saved the release in requested status, you cannot make any other changes to it unless you have Release Manager permissions. The Release Manager can update the release from draft to active, or any other available state.
+</hint>
+
+1. In the **Release** workspace, open the release record.
+2. Select **Quick Action** **>** **Request Release**.
+   The status of the release is set to requested.
+3. Select **Save**.
+
+<Paragraph indent="1">
+  A notification of the request is sent to the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Release\_Manager}}.
+</Paragraph>

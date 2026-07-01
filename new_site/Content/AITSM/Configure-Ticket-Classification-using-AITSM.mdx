@@ -1,0 +1,67 @@
+---
+title: Configure Ticket Classification using Neurons for ITSM AI Services
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:00 GMT+0300 (Eastern European Summer Time)
+---
+
+**Role**: Administrators.
+
+**Platform**: SaaS only.
+
+**Minimum Version**: \{\{Primary.Company}} \{\{Primary.Product}} 2025.3.
+
+**Feature Eligibility**: Ivanti's \{\{FRS\_VARS.AITSM}} capabilities are available to customers who have subscribed to Premium or Enterprise Premium license. To know your eligibility, reach out to your Ivanti Account Manager.
+
+**Prerequisites**:
+
+- Raise an IT ticket to Ivanti Operations to set the *ITSMTCPredictions* feature flag in ConfigDB to **Unconditionally On**. By default, it is in Disable state. For further help, contact [Ivanti support](https://www.ivanti.com/support).
+  - *ITSMTCPredictions* in **Onconditionally On** state - The Ticket Classification feature functions through ITSM AI services.
+  - *ITSMTCPredictions* in **Disable** state - The Ticket Classification feature functions through Ivanti Neurons.
+
+The Ticket Classification feature brings intelligence to your \{\{FRS\_VARS.ITSM}} processes through IT support ticket classification powered by AI. This capability uses advanced models to deliver automatic ticket classification, ensuring that every service ticket is categorized accurately and efficiently without manual effort.
+
+When you add a Summary while creating or editing an incident, the system predicts and automatically fills the related Service and Category fields using \{\{FRS\_VARS.ITSM}}’s AI data model. Additionally, it provides Ivanti Neurons AI recommendations, helping analysts apply the most relevant classifications quickly. This automation reduces errors, speeds up ticket handling, and improves overall service desk productivity.
+
+The application uses \{\{FRS\_VARS.ITSM}}'s AI data model to predict and automatically fill the related **Service** and **Category** fields when you add a **Summary** while creating or editing an incident and prompts **Ivanti Neurons AI recommendations applied**.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/o06UXcmnL4NwMS57LASG1_ticket-classification-predictions.png" position="flex-start" size="40" initialPath="../Resources/Images/Agentic-AI-Images/ticket-classification-predictions.png" githubPath="Content/Resources/Images/Agentic-AI-Images/ticket-classification-predictions.png" showCaption="false"></Image>
+
+To learn more about Ticket Classification use cases, refer to the [Using Ticket  Classification guide](../ServiceDesk/Neurons/Ticket-classification-use-case.mdx).
+
+**To enable Ticket Classification**
+
+1. Log in to \{\{Primary.Product}} as an \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+2. Open the Configuration console > **Build** > **AI Configuration Hub**.
+3. Use the toggle to set **Ticket Classification** to **Active**.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/vBYtUnDRxSaYvUNcoQPxw_ticket-classification-active.png" alt="Toggle the ticket classification to enable it" position="flex-start" size="40" indent="1" initialPath="../Resources/Images/Agentic-AI-Images/ticket-classification-active.png" githubPath="Content/Resources/Images/Agentic-AI-Images/ticket-classification-active.png" showCaption="false"></Image>
+
+**To configure Ticket Classification**
+
+1. Log in to \{\{Primary.Product}} as an \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+2. Open the Configuration console > **Build** > **AI Configuration Hub**.
+3. Select the **Configure** option beside the toggle button.
+4. Select **Add Model**.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Al30HRcN6NuWfMZbWbooq_ticket-classification-add-model.png" alt="Add model for ticket classification" position="flex-start" size="40" indent="1" initialPath="../Resources/Images/Agentic-AI-Images/ticket-classification-add-model.png" githubPath="Content/Resources/Images/Agentic-AI-Images/ticket-classification-add-model.png" showCaption="false"></Image>
+
+5. Enter the **Name**, **Description**, choose a **Language**, and upload the **Training Data** file. Ensure the file is in .csv format only.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/S7NZLTdPzcQAb1M8hfJP8_ticket-classification-creating-model.png" alt="Adding model to train the ticket classification" position="flex-start" size="40" indent="1" initialPath="../Resources/Images/Agentic-AI-Images/ticket-classification-creating-model.png" githubPath="Content/Resources/Images/Agentic-AI-Images/ticket-classification-creating-model.png" showCaption="false"></Image>
+
+<Paragraph indent="1">
+  You can optionally upload a **Stop Words** file to train the AI Model to ignore specific words during classification. Ensure the file is in .csv format.
+</Paragraph>
+
+<hint type="info" indent="1">
+  Ensure that the .csv file you upload for **Training Data** and **Stop Words** should have only the **Subject**, **Service**, and **Category** headers. Here is the [sample .csv file](Ivanti-ITSM-generic-training-data.csv).
+</hint>
+
+6. Select **Save** to save the model as draft or select **Save and train** to train the model instantly.
+7. Select the Deploy icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/OuL9Ym2GMBY7NnbJb0Ojr_ticket-classification-deploy-icon.png" alt caption size="10" width="16" height="15"} to deploy the trained model once the model status change to **Trained**.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/NwY928lKTeMbxF5n3-J_z_ticket-classification-deploy-model-icon.png" alt="Deploying a model for Ticket Classification" position="flex-start" size="40" indent="1" initialPath="../Resources/Images/Agentic-AI-Images/ticket-classification-deploy-model-icon.png" githubPath="Content/Resources/Images/Agentic-AI-Images/ticket-classification-deploy-model-icon.png" showCaption="false"></Image>
+
+<hint type="info" indent="1">
+  You can have multiple AI models with **Trained** and **Draft** status, whereas only one model can be in **Deployed** status at once. So if you select Deploy :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/OuL9Ym2GMBY7NnbJb0Ojr_ticket-classification-deploy-icon.png" alt caption size="10" width="16" height="15"} icon to another model, the previously deployed model changes its status to **Trained**.
+</hint>

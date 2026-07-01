@@ -1,0 +1,59 @@
+---
+title: Decode
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:59 GMT+0300 (Eastern European Summer Time)
+---
+
+Compares one expression to one or more other expressions. When the base expression matches a search expression, returns the corresponding result expression. When no match is found, returns the default expression when specified, or null when it is not. This function is similar to an if-then function.
+
+## Syntax
+
+decode(expr, search, result \[, search , result]... \[, default])
+
+## Enabled For
+
+For a description of the business object categories, see :Link[Notes on "Enabled For"]{label="Notes on &#x22;Enabled For&#x22;" overridedLabel="Notes on &#x22;Enabled For&#x22;" spaceId docId="xObv2pIDrk60jkEIWs8mD" version="v2" docAnchorId="#Notes" loadingMethod="dynamic" newTab="false" githubPath="_Built_in_Functions.htm#Notes" href="_Built_in_Functions.mdx"}.
+
+| Business Object Category                                                                    | Yes/No |
+| ------------------------------------------------------------------------------------------- | ------ |
+| Business Rules: Before-Save Rules                                                           | Yes    |
+| Business Rules: Calculation Rules (After Save, with or without Also Recalculate on Load)    | Yes    |
+| Business Rules: Calculation Rules (Before Save or Always, without Also Recalculate On Load) | Yes    |
+| Business Rules: Calculation Rules (Before Save or Always, with Recalculate On Load)         | Yes    |
+| Business Rules: Editing Rules                                                               | Yes1   |
+| Business Rules: Initialization Rules                                                        | Yes    |
+| Business Rules: Read Only Rules                                                             | No     |
+| Business Rules: Required Rules                                                              | Yes1   |
+| Business Rules: Validation Rules                                                            | Yes    |
+| Client Expressions                                                                          | No     |
+| Object Permissions                                                                          | No     |
+| Services                                                                                    | Yes    |
+| LDAP                                                                                        | Yes    |
+| Mobile                                                                                      | Yes    |
+| Quick Actions (except UI Quick Actions)                                                     | Yes    |
+| UI Quick Actions                                                                            | No     |
+| Reports                                                                                     | Yes    |
+| Search/Dashboard without field references                                                   | Yes    |
+| Search/Dashboard with field references                                                      | No     |
+| 1. Except when this field appears on a form or is triggered by such a field.                |        |
+
+## Parameters
+
+This function must have at least four parameters, and can have an unlimited number of parameters.
+
+| Parameter | Description                                             |
+| --------- | ------------------------------------------------------- |
+| expr      | Expression to evaluate.                                 |
+| search    | Text to match exactly with the search expression.       |
+| result    | Value to return if the previous search text is matched. |
+| default   | Value to return if no matches are found.                |
+
+## Return Value
+
+Number value or text value.
+
+## Example
+
+$(decode(Impact, "High", 1, "Medium", 2, "No Matches"))
+
+If the field called **Impact** has the value High, then this functions returns 1. If the field called **Impact** has the value Medium, then this function returns 2. If the field called **Impact** has any other value, this function returns the text value "No Matches".

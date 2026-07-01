@@ -1,0 +1,50 @@
+---
+title: Using the Status Mapping Tab
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:51 GMT+0300 (Eastern European Summer Time)
+---
+
+<hint type="info">
+  The **Status Mapping** tab only appears if you select \{\{FRS\_VARS.Incident}} from the **Email Processor** field.
+</hint>
+
+Use status mapping to execute a \{\{FRS\_VARS.Quick\_Action}} for a specified \{\{FRS\_VARS.Incident}} record status. The \{\{FRS\_VARS.Quick\_Action}} executes only once if a given status is set at the time an email is received by the system, and \{\{FRS\_VARS.Incident}} is linked to the email inbox (the incoming email is the trigger for the \{\{FRS\_VARS.Quick\_Action}}).
+
+1. After performing the tasks in :Link[Creating an Inbox]{label="Creating an Inbox" overridedLabel="Creating an Inbox" spaceId docId="oxavypV7mXubKfaNhVDO1" version="v2" docAnchorId="#Creating-an-Inbox" loadingMethod="dynamic" newTab="false" githubPath="Inbox_Configuration.htm#Creating-an-Inbox" href="Inbox_Configuration.mdx"}, select the **Status Mapping** tab.
+2. Select **New Tenant Email Status Mapping.** The **Tenant Email Status Mapping** configuration form opens.
+3. Enter the required information.
+
+| Field                         | Description                                                                                                                                                                                                                                                                                                                                                |
+| ----------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Current Status**            | The current status for which the \{\{FRS\_VARS.Quick\_Action}} is performed. This is the status that appears in the **Status** field of an \{\{FRS\_VARS.Incident}} record, for example **Active**. The entry in this field must be a valid status for \{\{FRS\_VARS.Incident}}.                                                                           |
+| \{\{FRS\_VARS.Quick\_Action}} | The name of the \{\{FRS\_VARS.Quick\_Action}} that executes when the status you entered above is the current status of the \{\{FRS\_VARS.Incident}}. If the \{\{FRS\_VARS.Quick\_Action}} you want to perform does not exist, you can create a new \{\{FRS\_VARS.Quick\_Action}}, refer to [Using Quick Actions](../QuickActions/Using_Quick_Actions.mdx). |
+| **Enabled**                   | Enables this status mapping record. If not checked, the default status handling logic is in effect.                                                                                                                                                                                                                                                        |
+
+4. Select **Save**.
+
+<hint type="info">
+  Alternatively, you can configure an advanced email monitor to achieve the same result as status mapping. Using an advanced email monitor offers more flexibility and options than staus mapping. Refer to [About Advanced Email Monitoring](About_Advanced_Email_Monitoring.mdx)
+</hint>
+
+## Example
+
+In this example the status mapping is configured to perform a \{\{FRS\_VARS.Quick\_Action}} (**SendStatusEmail**) to send an email when the system receives an incoming email, and the current status of an \{\{FRS\_VARS.Incident}} record is **Waiting for Customer**. For example, send an email to the customer to inform them that they need to respond to the \{\{FRS\_VARS.Incident}}.
+
+1. Select the **Status Mapping** tab.
+2. Select **New Tenant Email Status Mapping.**
+3. Enter **Waiting for Customer** in the **Current Status** field.
+4. Enter **SendStatusEmail** in the \{\{FRS\_VARS.Quick\_Action}} field.
+
+<hint type="info" indent="2">
+  The \{\{FRS\_VARS.Quick\_Action}} must be configured to send the email to the relevant recipients, and the message body you want to include. You can create a \{\{FRS\_VARS.Quick\_Action}} to do this, refer to [Using Quick Actions](../QuickActions/Using_Quick_Actions.mdx).
+</hint>
+
+<Paragraph indent="1">
+  Select **Enabled**.
+</Paragraph>
+
+6. Click **Save**.
+
+*Tenant Email Status Mapping*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/wTrWl18QBPHB5s395lX_N_emailstatusmappingexample.png" alt="Image of configured status mapping form." position="flex-start" size="40" initialPath="../../Resources/Images/help-images/email_status_mapping_example.png" githubPath="Content/Resources/Images/help-images/email_status_mapping_example.png" showCaption="false"></Image>

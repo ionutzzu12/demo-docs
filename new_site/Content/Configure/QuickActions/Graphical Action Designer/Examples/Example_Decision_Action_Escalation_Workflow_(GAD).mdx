@@ -1,0 +1,163 @@
+---
+title: Example: Creating an Escalation Workflow using the Decision Quick Action (GAD)
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:56 GMT+0300 (Eastern European Summer Time)
+---
+
+Decision Actions enable you to create advanced workflows. For example, a subsection of actions can be executed based on the Escalation feature continually checking on the Status of an Incident record.
+
+This is an example of an escalation workflow. The first Decision \{\{FRS\_VARS.Quick\_Action}} conditionally checks the Status of an Incident record and determines which pathway to execute. The second Decision \{\{FRS\_VARS.Quick\_Action}} (**Decision - Waiting for Customer**) Is used by the Escalation Schedule to check if the Incident response and resolution targets have been breached. If they have, it updates the record to the Closed state before jumping back to the first Decision \{\{FRS\_VARS.Quick\_Action}} ready for processing another record.
+
+<hint type="info">
+  This example uses the \{\{FRS\_VARS.Graphical\_Action\_Designer}} (GAD). The Decision \{\{FRS\_VARS.Quick\_Action}} is not available in the \{\{FRS\_VARS.Classic\_Action\_Designer}} (CAD).
+</hint>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/KzFPJ-s0agcEyJgkQ-ZyA_brancheddecisioneditorexampleescalation.png" alt="Complex workflow showing the escalation of an incident that can be achieved with the Decision Action." position="flex-start" size="40" initialPath="../../quick-actions-images/Branched_Decision_Editor_Example_Escalation.png" githubPath="Content/Configure/QuickActions/quick-actions-images/Branched_Decision_Editor_Example_Escalation.png" showCaption="false"></Image>
+
+## Prerequisite
+
+<hint type="info">
+  To use this \{\{FRS\_VARS.Quick\_Action}}, set the global constant **EnableActionService&#x20;**&#x74;o **True**. If **EnableActionService&#x20;**&#x69;s not available in the global constants list (this may be the case for upgraded instances), Administrators can manually add the constant.
+</hint>
+
+This example assumes you have administrator-level access to the **Configuration console** and are familiar with creating business objects and \{\{FRS\_VARS.Quick\_Action}}s. If you do not have administrator-level access, see :Link[Notes on roles and permissions]{label="Notes on roles and permissions" overridedLabel="Notes on roles and permissions" spaceId docId="T_2hq2qRJzWxiHLCfgn-7" version="v2" docAnchorId="#Notes_on_roles_and_permissions" loadingMethod="dynamic" newTab="false" githubPath="../Using_the_Graphical_Action_Designer.htm#Notes_on_roles_and_permissions" href="../Using_the_Graphical_Action_Designer.mdx"} and :Link[Open the Graphical Action Designer]{label="Open the Graphical Action Designer" overridedLabel="Open the Graphical Action Designer" spaceId docId="T_2hq2qRJzWxiHLCfgn-7" version="v2" docAnchorId="#To_open_the_Graphical_Action_Designer" loadingMethod="dynamic" newTab="false" githubPath="../Using_the_Graphical_Action_Designer.htm#To_open_the_Graphical_Action_Designer" href="../Using_the_Graphical_Action_Designer.mdx"}
+
+## Creating the Escalation Composite Action
+
+1. Go to the **Configuration Console&#x20;**> **Build&#x20;**>**Business Objects&#x20;**> **Incident&#x20;**> **Quick Actions&#x20;**> **Graphical Action Designer**.
+2. Under **Advanced Actions**, find the **Decision** \{\{FRS\_VARS.Quick\_Action}} and drag it on to the Designer Board.
+3. In the **Common&#x20;**&#x53;ettings tab, set a name for the whole Composite Action such as **My Escalation Workflow**.
+4. In the **Block**Settings tab for the **Decision** block, enter a block name in the **Name&#x20;**&#x66;ield, for example, **Decision - Status**.
+5. Drag all the other actions on to the Designer Board until your board resembles the image above. The action types used are as follows:
+
+| Action Type     | Used For                                                                                               |
+| --------------- | ------------------------------------------------------------------------------------------------------ |
+| Decision        | Decision – Status<br />Decision – Waiting For Customer                                                 |
+| Send an Email   | Response Threshold Breach<br />Resolution Threshold Breach<br />Closed Notification<br />Send Reminder |
+| Show a Popup    | Delete Confirmation                                                                                    |
+| Go to Action    | Jump to Decision - Status                                                                              |
+| Update a Record | Update Status – Closed                                                                                 |
+| Delete a Record | Delete Incident                                                                                        |
+
+6. The first **Decision&#x20;**\{\{FRS\_VARS.Quick\_Action}} continually checks the **Status&#x20;**&#x6F;f an Incident record and determines which of three pathways to execute.
+
+<Paragraph indent="1">
+  Select **Decision - Status** and then click **Decision Editor**. Enter the following expressions and select **Response Threshold Breach** as the default action.
+</Paragraph>
+
+| Action                          | Expression                                                  | Default option |
+| ------------------------------- | ----------------------------------------------------------- | -------------- |
+| Response Threshold Breach       | Deliberately left empty                                     | True           |
+| Resolution Threshold Breach     | $(Status in ("Active", "Logged", "Waiting for Resolution")) | False          |
+| Delete Confirmation             | $(Status == “Closed”)                                       | False          |
+| Decision - Waiting for Customer | $(Status == “Waiting for Customer”)                         | False          |
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/MGvx4y99LGqHbKAOTOikN_brancheddecisioneditorexamplestatus.png" alt="Values for three branches or paths that join on to Decision Status action." position="flex-start" size="40" indent="1" initialPath="../../quick-actions-images/Branched_Decision_Editor_Example_Status.png" githubPath="Content/Configure/QuickActions/quick-actions-images/Branched_Decision_Editor_Example_Status.png" showCaption="false"></Image>
+
+7. The second **Decision&#x20;**\{\{FRS\_VARS.Quick\_Action}}, (**Decision - Waiting for Customer**), conditionally checks if the Escalation period has been breached. If so, it updates the record to the **Closed&#x20;**&#x73;tate before jumping back to the first **Decision&#x20;**\{\{FRS\_VARS.Quick\_Action}} ready for processing another record.
+8. Select **Decision - Waiting for Customer** and then click **Decision Editor**. Enter the following expressions and select **Send Reminder** as the default action.
+
+| Action              | Expression                                                                   | Default option |
+| ------------------- | ---------------------------------------------------------------------------- | -------------- |
+| Closed Notification | $(\[Frs\_data\_escalation\_watch#.IncidentAssocWaitingEscWatch]BreachPassed) | False          |
+| Send Reminder       |                                                                              | True           |
+
+9. Here are the field values for all the other actions used in this example:
+
+<Paragraph indent="1">
+  **Closed Notification**
+</Paragraph>
+
+| Field          | Value                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Log in Journal | All                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| From Address   | Enter an ITSM email address that can send out emails to customers.                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| To Address     | Email                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| Subject        | $("Incident# " + IncidentNumber + " has been closed")                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| Compose Email  | <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/ou6rOjlgH9TTP02bdooeB_brancheddecisioneditorexamplecomposeemail.png" alt="Fields for an email to inform customer of incident closure." position="flex-start" size="40" initialPath="../../quick-actions-images/Branched_Decision_Editor_Example_compose_email.png" githubPath="Content/Configure/QuickActions/quick-actions-images/Branched_Decision_Editor_Example_compose_email.png" showCaption="false"></Image> |
+
+<Paragraph indent="1">
+  **Update Status - Closed**
+</Paragraph>
+
+| Field  | Value  |
+| ------ | ------ |
+| Status | Closed |
+
+<Paragraph indent="1">
+  **Jump to...**
+</Paragraph>
+
+| Field                                       | Value             |
+| ------------------------------------------- | ----------------- |
+| Target Action                               | Decision - Status |
+| Max Number of Iterations (between 1 and 10) | 1                 |
+
+<Paragraph indent="1">
+  **Send Reminder**
+</Paragraph>
+
+| Field          | Value                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Log in Journal | All                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| From Address   | Enter an ITSM email address that can send out emails to customers.                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| To Address     | Email                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| Bcc            | Email                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| Subject        | $("Incident# " + IncidentNumber + " Reminder: Additional Information request")                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| Compose Email  | <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/7xInUD2FjPoBsydx0RtP5_brancheddecisioneditorexamplecomposeemailreminder.png" alt="Reminder Email to customer " position="flex-start" size="40" initialPath="../../quick-actions-images/Branched_Decision_Editor_Example_compose_email_reminder.png" githubPath="Content/Configure/QuickActions/quick-actions-images/Branched_Decision_Editor_Example_compose_email_reminder.png" showCaption="false"></Image> |
+
+<Paragraph indent="1">
+  **Response Threshold Breach**
+</Paragraph>
+
+| Field          | Value                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Log in Journal | All                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| From Address   | Enter an ITSM email address that can send out emails to customers.                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| To Address     | Email                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| Subject        | $("Incident# " + IncidentNumber + " - Response Threshold has been breached")                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Compose Email  | <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/XRVaOT_FlDCjvEwU_1DLi_brancheddecisioneditorexamplecomposeemailbreach.png" alt="Email message for breach of response time for an Incident" position="flex-start" size="40" initialPath="../../quick-actions-images/Branched_Decision_Editor_Example_compose_email_breach.png" githubPath="Content/Configure/QuickActions/quick-actions-images/Branched_Decision_Editor_Example_compose_email_breach.png" showCaption="false"></Image> |
+
+<Paragraph indent="1">
+  **Resolution Threshold Breach**
+</Paragraph>
+
+| Field          | Value                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Log in Journal | All                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| From Address   | Enter an ITSM email address that can send out emails to customers.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| To Address     | Email                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| Subject        | $("Incident# " + IncidentNumber + " - Resolution Threshold has been breached")                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| Compose Email  | <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/FgmJkDXWeTkMH7ir34zfP_brancheddecisioneditorexamplecomposeemailbreachresolution.png" alt="Email telling customer that Incident has breached Resolution Threshold" position="flex-start" size="40" initialPath="../../quick-actions-images/Branched_Decision_Editor_Example_compose_email_breach_resolution.png" githubPath="Content/Configure/QuickActions/quick-actions-images/Branched_Decision_Editor_Example_compose_email_breach_resolution.png" showCaption="false"></Image> |
+
+<Paragraph indent="1">
+  **Delete Confirmation**
+</Paragraph>
+
+| Field    | Value                                                                  |
+| -------- | ---------------------------------------------------------------------- |
+| Title    | $("Delete Incident# " + IncidentNumber + "?")                          |
+| Contents | $("Are you sure you want to delete Incident# " + IncidentNumber + "?") |
+| Buttons  | Ok and Cancel                                                          |
+
+<Paragraph indent="1">
+  **Delete Incident**
+</Paragraph>
+
+<Paragraph indent="1">
+  No properties to be set for this action.
+</Paragraph>
+
+## Setting up an Escalation
+
+Using \{\{FRS\_VARS.ITSM}} Escalations, create an escalation schedule that uses the Composite Action created in this example.
+
+Here our Composite Action has been renamed t&#x6F;**&#x20;Auto Close Waiting for Customer** and will be called when service targets are breached.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/TkBF89KOXRmFOwzTqBJ1O_brancheddecisioneditorexampleescsetup1.png" alt="Escalation schedule showing example composite action being called when breaches are exceeded." position="flex-start" size="40" initialPath="../../quick-actions-images/Branched_Decision_Editor_Example_Esc_Setup_1.png" githubPath="Content/Configure/QuickActions/quick-actions-images/Branched_Decision_Editor_Example_Esc_Setup_1.png" showCaption="false"></Image>
+
+The same action can then be renamed again to **Waiting for Customer Reminder&#x20;**&#x61;nd also used for Escalation Level 1 when a reminder needs to be sent out to the customer.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/EDUBbcI06lYD4bsnFdYbt_brancheddecisioneditorexampleescsetup2.png" alt="Escalation for Level 1 showing the example action being used again." position="flex-start" size="40" initialPath="../../quick-actions-images/Branched_Decision_Editor_Example_Esc_Setup_2.png" githubPath="Content/Configure/QuickActions/quick-actions-images/Branched_Decision_Editor_Example_Esc_Setup_2.png" showCaption="false"></Image>
+
+For more information: [Working with Escalations](../../../Escalations/Escalations.mdx).

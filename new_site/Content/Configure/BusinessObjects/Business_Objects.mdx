@@ -1,0 +1,94 @@
+---
+title: Working with Business Objects
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:54 GMT+0300 (Eastern European Summer Time)
+---
+
+Administrators can create business objects. They are defined by sets of metadata stored in a business object definition. A business object is created by defining the fundamental properties such as name and purpose, and then you edit it to assemble the required components for it to be used, such as forms, layouts, and business rules.
+
+\{\{FRS\_VARS.ProductName}} includes several default business objects, designed for your business needs. As an administrator, you can use these business objects, edit them, delete them, or create your own.
+
+You may be limited in how you can customize some business objects. Some definitions are restricted from editing to prevent the modification or removal of required items. If you attempt to edit a restricted business object, you receive an error message.
+
+Contact \{\{FRS\_VARS.Company}} IT Support if you need to remove the restriction on the business object. This can only be done by \{\{FRS\_VARS.Company}} IT Support.
+
+<hint type="info">
+  **Important:** Edit and read-only permissions for metadata components including fields, relationships, forms, lists, layouts, triggered actions, saved searches and pick lists are indicated by a green pencil :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/nwLpfIFVoYvGaMaSmIs1O_metadatacomponentediticon.png" alt caption size="10" width="16" height="16"} or red dot :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/wwSQ_hhUXiNWa811VafNy_metadatacomponentread-onlyicon.png" alt caption size="10" width="16" height="16"} icon in the \{\{FRS\_VARS.Configuration\_console}}. Components indicating a green pencil icon can be edited; components indicating a red dot icon are read-only. Components with no icon displayed can be edited and deleted. You can duplicate a read-only component and then edit it. Metadata components marked with a yellow pencil :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/QH3uT3a7ussVhR8rs8m0S_metadatacomponentsoftlockicon.png" alt caption size="10" width="16" height="16"} icon indicate a soft lock, meaning they have limited edit permissions. For more information on Soft lock, see :Link[Modifying a Business Object with Soft lock]{label="Modifying a Business Object with Soft lock" overridedLabel="Modifying a Business Object with Soft lock" spaceId docId="z5Hl_JIl1C8b9P5aZK1aD" version="v2" docAnchorId="#Modifying_a_Business_Object_with_Soft_lock" loadingMethod="dynamic" newTab="false" githubPath="Using Business Objects.htm#Modifying_a_Business_Object_with_Soft_lock" href="Using Business Objects.mdx"}.
+</hint>
+
+<ExpandableHeading>
+  ## Business Object Properties
+
+  A business object's properties are established by a business object definition and are stored in a \{\{FRS\_VARS.ProductName}} system table in the database using record associated with the business object.
+
+  These properties control how the business object is identified and how it operates. When you create a business object, you define fundamental properties such as name and purpose. You can define more complex properties, such as indexing and annotations, and modify existing properties by editing the business object. Refer to :Link[Business Object Tabs]{label="Business Object Tabs" overridedLabel="Business Object Tabs" spaceId docId="z5Hl_JIl1C8b9P5aZK1aD" version="v2" docAnchorId="#Tabs" loadingMethod="dynamic" newTab="false" githubPath="Using Business Objects.htm#Tabs" href="Using Business Objects.mdx"} for a description of these properties.
+
+  In addition to properties, a business object has business rules, forms, lists, layouts, and so on.  Together these form the business object.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Business Object Records
+
+  The business object data are stored in records. Each record is of the same type as the business object that stores it. For example, employee records are stored in the **Employee** business object and notes records are stored in the **Notes** business object. As a result, a record (such as the **Birthdate** field) is subject to the same rule as its associated business object.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Business Object Relationships
+
+  A business object relationship lets two business objects collaborate through the records in the business objects. In a relationship, business objects either can belong to other business objects or simply be associated with other business objects.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Amj8A7nRZj5il1oxja3uX_business-object-relationships.png" alt="Business objects may be grouped together or associated through relationships." position="flex-start" size="40" initialPath="../../Resources/Diagrams/Business Object Relationships.png" githubPath="Content/Resources/Diagrams/Business Object Relationships.png" showCaption="false"></Image>
+
+  Each relationship contains a:
+
+  - **Parent business object**: The center of a relationship with one or more child business objects.
+  - **Child business object**: The supplier of additional data to a parent business object.
+
+  For example, the **Incident** business object can have a relationship with the **Notes** business object so that you can track notes pertaining to a specific incident. Incident becomes the parent business object to the child business object.
+
+  <hint type="info">
+
+  </hint>
+
+  - When you create a business object relationship between two business objects, you define the fundamental properties that tell the relationship how to operate. Plan a relationship before you create it. Thoughtful design alleviates complications.
+  - The application restricts the modification and removal of some business object relationships to prevent modifying or removing mandatory items. The default constraint (**ParentLink** field) can only be used in one relationship. Relationships using the **ParentLink** field allow the child business object (for example, Notes) to be part of several parent business objects (for example, incident and problem).
+  - \{\{FRS\_VARS.ProductName}} uses a relationship string to specify a field, business object, or group of business objects. A relationship string is defined in the context of a specific base business object. Refer to [Expression Grammar](<../../Reference/Expressions/Expression Grammar.mdx>) for more information about syntax.
+
+
+
+  Refer to [Using Relationships](../Relationships/Adding_a_Relationship_to.mdx) for more information about relationships.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Viewing Business Objects
+
+  You can view business objects in three ways - you can view common, other and all business objects.
+
+  **Viewing common business objects**
+
+  1. From the Configuration console, select **Build > Business Objects**.
+  2. Select a business object to view its features. The application displays business objects here if the **Commonly Used** field is checked for the business object.
+
+  **Viewing other business objects**
+
+  1. From the Configuration console, select **Build > Business Objects**.
+  2. In the **Find** box, enter the name of a business object (for example, employee), then select **Go**.
+  3. Select a business object from the list that appears to view its features.
+     The application uses the type ahead feature and displays business object names as you type.
+
+  **Viewing all business objects**
+
+  1. From the Configuration console, select **Build&#x20;**>**&#x20;Business Objects** > select **View All**.
+  2. Select a business object to view its features.
+
+  <hint type="info">
+    The value in the **Object Name** column is the name of the business object stored in the \{\{FRS\_VARS.ProductName}} database and the value in the **Display Name** column is how it appears in \{\{FRS\_VARS.ProductName}}.
+  </hint>
+</ExpandableHeading>
+
+The following additional actions can be performed from the **Business Objects** workspace:
+
+- :Link[Creating a Business Object]{label="Creating a Business Object" overridedLabel="Creating a Business Object" spaceId docId="z5Hl_JIl1C8b9P5aZK1aD" version="v2" docAnchorId="#Create_a_Business_Object" loadingMethod="dynamic" newTab="false" githubPath="Using Business Objects.htm#Create_a_Business_Object" href="Using Business Objects.mdx"}
+- [Using Validation Business Objects](../PickLists/Validation_Objects.mdx)
+- [Using Workflows](../Workflows/Using_Workflows.mdx)
+- [Using Counters](../Counters/Counters.mdx)

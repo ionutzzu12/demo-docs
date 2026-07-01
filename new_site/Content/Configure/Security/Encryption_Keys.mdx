@@ -1,0 +1,118 @@
+---
+title: Working with Encryption Keys
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:57 GMT+0300 (Eastern European Summer Time)
+---
+
+- :Link[About Encryption Keys]{label="About Encryption Keys" overridedLabel="About Encryption Keys" spaceId docId="eOvogZdqxCSxzZX3hS8yO" version="v2" docAnchorId="#About" loadingMethod="dynamic" newTab="false" href="Encryption_Keys.mdx"}
+- :Link[Viewing Encryption Keys]{label="Viewing Encryption Keys" overridedLabel="Viewing Encryption Keys" spaceId docId="eOvogZdqxCSxzZX3hS8yO" version="v2" docAnchorId="#ViewingEK" loadingMethod="dynamic" newTab="false" href="Encryption_Keys.mdx"}
+- :Link[Viewing Public Keys]{label="Viewing Public Keys" overridedLabel="Viewing Public Keys" spaceId docId="eOvogZdqxCSxzZX3hS8yO" version="v2" docAnchorId="#ViewingPK" loadingMethod="dynamic" newTab="false" href="Encryption_Keys.mdx"}
+- :Link[Creating a Symmetric Key]{label="Creating a Symmetric Key" overridedLabel="Creating a Symmetric Key" spaceId docId="eOvogZdqxCSxzZX3hS8yO" version="v2" docAnchorId="#CreatingSK" loadingMethod="dynamic" newTab="false" href="Encryption_Keys.mdx"}
+- :Link[Creating an Asymmetric Key]{label="Creating an Asymmetric Key" overridedLabel="Creating an Asymmetric Key" spaceId docId="eOvogZdqxCSxzZX3hS8yO" version="v2" docAnchorId="#CreatingASK" loadingMethod="dynamic" newTab="false" href="Encryption_Keys.mdx"}
+- :Link[Testing the Symmetric and Asymmetric Keys]{label="Testing the Symmetric and Asymmetric Keys" overridedLabel="Testing the Symmetric and Asymmetric Keys" spaceId docId="eOvogZdqxCSxzZX3hS8yO" version="v2" docAnchorId="#Testing" loadingMethod="dynamic" newTab="false" href="Encryption_Keys.mdx"}
+
+## About Encryption Keys
+
+Encryption is a process that makes information unreadable by anyone except those who have a key that allows them to change the information to its original, readable form. Encryption allows users to securely protect sensitive data that they do not want others to access, such as passwords, social security numbers, and so on.
+
+Use encryption only on the fields to secure. Too much encryption creates a performance impact because it requires additional processing for encrypting or decrypting the data.
+
+If encryption is symmetric, then the same key is used for encryption and decryption, so the encrypted data can be decrypted when needed. However, if the data has been asymmetrically encrypted, then the public key is used for encrypting the data, but the private key is used for decrypting the data. Only the public key is stored in \{\{FRS\_VARS.ProductName}}; it is used solely for encrypting the data, so the user must know the private key to decrypt the data.
+
+Encrypted fields are decrypted and show as readable text in a form, but always show encrypted in a list.
+
+## Viewing Encryption Keys
+
+1. Log into the Service Desk Console.
+2. Open the **Encryption Key** workspace. The list of keys appears.
+3. Open a key record to view details.
+
+## Viewing Public Keys
+
+1. Log into the Service Desk Console.
+2. Open the **Public Key** workspace. The list of keys appears.
+3. Open a key record to view details.
+
+## Creating a Symmetric Key
+
+1. Log into the Service Desk Console.
+2. Open the **Encryption Key** workspace. The list of keys appears.
+3. Click **New Encryption Key**. The application displays the **Encryption Keys** workspace.
+4. Enter information into the fields.
+
+| Field     | Description                          |
+| --------- | ------------------------------------ |
+| Name      | A unique name that appears to users. |
+| Key IV    | Enter the Key IV.                    |
+| Key Value | Enter the key value.                 |
+
+5. Click **Save**.
+
+## Creating an Asymmetric Key
+
+1. Log into the Service Desk Console.
+2. Open the **Public Key** workspace. The list of keys appears.
+3. Click **New Public Key**. The **Encryption Public Keys** page appears.
+4. Enter information into the fields.
+
+| Field        | Description                                              |
+| ------------ | -------------------------------------------------------- |
+| Name         | A user friendly name.                                    |
+| Key Strength | The strength of the key. Select from the drop-down list. |
+| Modulus      | The modulus.                                             |
+| Exponent     | The exponent.                                            |
+
+5. Click **Save**.
+
+## Testing the Symmetric and Asymmetric Keys
+
+To test the keys, you first need to create a business object, then add a symmetrically-encrypted field and an asymmetrically-encrypted field. After saving the business object, make it available to the user role in the client application. Open the workspace and test the fields. See below for details:
+
+1. :Link[Creating a New Stand-Alone Business Object]{label="Creating a New Stand-Alone Business Object" overridedLabel="Creating a New Stand-Alone Business Object" spaceId docId="eOvogZdqxCSxzZX3hS8yO" version="v2" docAnchorId="#Creating1" loadingMethod="dynamic" newTab="false" href="Encryption_Keys.mdx"}
+2. :Link[Creating the Symmetrically-Encrypted Field]{label="Creating the Symmetrically-Encrypted Field" overridedLabel="Creating the Symmetrically-Encrypted Field" spaceId docId="eOvogZdqxCSxzZX3hS8yO" version="v2" docAnchorId="#Creating2" loadingMethod="dynamic" newTab="false" href="Encryption_Keys.mdx"}
+3. :Link[Creating the Asymmetrically-Encrypted Field]{label="Creating the Asymmetrically-Encrypted Field" overridedLabel="Creating the Asymmetrically-Encrypted Field" spaceId docId="eOvogZdqxCSxzZX3hS8yO" version="v2" docAnchorId="#Creating3" loadingMethod="dynamic" newTab="false" href="Encryption_Keys.mdx"}
+4. :Link[Testing the Encryption Fields]{label="Testing the Encryption Fields" overridedLabel="Testing the Encryption Fields" spaceId docId="eOvogZdqxCSxzZX3hS8yO" version="v2" docAnchorId="#Testing4" loadingMethod="dynamic" newTab="false" href="Encryption_Keys.mdx"}
+
+### Creating a New Stand-Alone Business Object
+
+1. From the Configuration Console, click **Build > Business Objects**. The application displays the **Business Objects** workspace.
+2. From the right panel in the **Create an Object** pane, click **New Object**. The **Adding Business Object** page appears.
+3. Click **Stand-alone Business Object**. The **Business Object Create New** page appears.
+
+See :Link[Creating a Stand-Alone Business Object]{label="Creating a Stand-Alone Business Object" overridedLabel="Creating a Stand-Alone Business Object" spaceId docId="z5Hl_JIl1C8b9P5aZK1aD" version="v2" docAnchorId="#Create_a_Stand-alone_Business_Object" loadingMethod="dynamic" newTab="false" githubPath="../BusinessObjects/Using Business Objects.htm#Create_a_Stand-alone_Business_Object" href="../BusinessObjects/Using Business Objects.mdx"} for more details.
+
+### Creating the Symmetrically-Encrypted Field
+
+1. Click the **Fields** tab.
+2. Click **Add New\...**.
+3. Click **SymmetricallyEncryptedString**.
+4. Enter information into the fields.
+
+| Field                | Description                                                                                  |
+| -------------------- | -------------------------------------------------------------------------------------------- |
+| Property             | The field name.                                                                              |
+| Maximum Length       | A number for the maximum string length.                                                      |
+| Crypt Key            | The key that you created in the **Encryption Key** workspace.                                |
+| Encryption Algorithm | The encryption algorithm. Choose from the drop-down list: DES, RC2, Rinjdael, and TripleDES. |
+
+5. Click **Save**.
+
+### Creating the Asymmetrically-Encrypted Field
+
+1. Click the **Fields** tab.
+2. Click **Add New\...**.
+3. Click **AsymmetricallyEncryptedString**.
+4. Enter a field name.
+5. Click **not set** next to the **Public Crypt Key** entry.
+6. In the **Set Expression for Encryption Public Key** window, enter an expression.
+   - To define the public key for the whole **AssymetricallyEncrptedString** field, enter the name of the key.
+   - Open the **Public Key** workspace and select the record to view the **Name** field, if necessary.
+   - Click **Save**.
+7. Click **Save**.
+
+### Testing the Encryption Fields
+
+1. Log into the Service Desk Console.
+2. Open the workspace for the business object that you created.
+3. Click the new business object to open a new record.
+4. Enter a value in the field that you asymmetrically encrypted. The value that you entered appears encrypted.

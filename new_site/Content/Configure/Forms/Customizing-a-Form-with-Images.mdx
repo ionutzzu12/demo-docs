@@ -1,0 +1,167 @@
+---
+title: Customizing a Form with Images
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:56 GMT+0300 (Eastern European Summer Time)
+---
+
+A business object can use several forms for different purposes and audiences. For instance, by assigning forms to roles, one form can be used for managers and another for technicians. When designing forms, first customize the default panel, the brief panel, and then add new forms if necessary.
+
+Forms employ a tabular layout with rows of cells. Customizing forms involves:
+
+- **Adding fields**: Clicking and dragging business object fields from the navigator bar to a form cell.
+- **Editing field position and appearance**: Aligning fields and refining their aesthetic properties to enhance form usability.
+
+You can make the following customizations to forms:
+
+- :Link[Adding an Icon to a Form Button]{label="Adding an Icon to a Form Button" overridedLabel="Adding an Icon to a Form Button" spaceId docId="qpTGkiqsTU814AeIcYD01" version="v2" docAnchorId="#AddingIconToForm" loadingMethod="dynamic" newTab="false" href="Customizing-a-Form-with-Images.mdx"}
+- :Link[Adding a Conditional Image to a Form]{label="Adding a Conditional Image to a Form" overridedLabel="Adding a Conditional Image to a Form" spaceId docId="qpTGkiqsTU814AeIcYD01" version="v2" docAnchorId="#AddingConditionalImageToForm" loadingMethod="dynamic" newTab="false" href="Customizing-a-Form-with-Images.mdx"}
+- :Link[Adding a Logo to a Form]{label="Adding a Logo to a Form" overridedLabel="Adding a Logo to a Form" spaceId docId="qpTGkiqsTU814AeIcYD01" version="v2" docAnchorId="#AddingLogoToForm" loadingMethod="dynamic" newTab="false" href="Customizing-a-Form-with-Images.mdx"}
+- :Link[Adding a Picture to a Form]{label="Adding a Picture to a Form" overridedLabel="Adding a Picture to a Form" spaceId docId="qpTGkiqsTU814AeIcYD01" version="v2" docAnchorId="#AddingPictureToForm" loadingMethod="dynamic" newTab="false" href="Customizing-a-Form-with-Images.mdx"}
+
+## Adding an Icon to a Form Button
+
+Buttons that support icons include **Address Book**, **Command**, **Cancel**, **Declare Master Incident**, **Resolve Incident**, and **URL**.
+
+1. From the Configuration console, click **Build > Business Objects**.
+2. Open a business object.
+3. Click the **Forms** tab.
+4. Open the form to edit.
+5. Under **Control Properties**, in the **Image** field, click the **function** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/nkqElOFXdxvDGVcRO7D1F_function.png" alt caption size="10" width="16" height="16"}.
+6. In the **Expression Editor**, click **Image Manager**.
+7. In the **Image Manager**, click the icon to use and then click **Select**.
+8. In the **Expression Editor**, click **Save**.
+9. In the **Form Editor**, click **Save**.
+10. To verify that the icon appears, do the following:
+
+<Paragraph indent="1">
+  a. Log in to the application.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Refresh the browser.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. Select a record associated with the business object from the list.
+</Paragraph>
+
+<Paragraph indent="1">
+  The icon that you selected now appears on that button in the form.
+</Paragraph>
+
+## Adding a Conditional Image to a Form
+
+You can specify expression to show an image that corresponds to the value of a particular field. In this example, we add a status icon. If the incident status is active, the icon is red. For any other status, the icon is green.
+
+1. From the Configuration console, click **Build > Business Objects**.
+2. Open a business object.
+3. Click the **Forms** tab.
+4. Open the form to edit.
+5. From the **Related Objects** list, choose **Other** folder and drag **Picture** to a cell in the form.
+6. Click the **Picture** field to select it.
+7. Under **Control Properties**, in the **Image** field, click the **function** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/nkqElOFXdxvDGVcRO7D1F_function.png" alt caption size="10" width="16" height="16"}.
+8. In the **Expression Editor**, enter an expression to create the desired behavior.
+
+<Paragraph indent="1">
+  For example, enter the following: **$(if Status == "Active" then "red\_light.png" else "green\_light.png")**.
+</Paragraph>
+
+9. Click **Save**.
+10. In the **Form Editor**, click **Save**.
+11. To verify that the image appears, do the following:
+
+<Paragraph indent="1">
+  a. Log in to the application.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Refresh the browser.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. Select a record associated with the business object from the list.
+</Paragraph>
+
+<Paragraph indent="1">
+  An image now appears according to the value set for its field. Since the status of this incident is *active*, the **red\_light.png** image is displayed.
+</Paragraph>
+
+## Adding a Logo to a Form
+
+Before performing this procedure, save the logo.
+
+1. From the Configuration console, click **Build > Business Objects**.
+2. Open a business object.
+3. Click the **Forms** tab.
+4. Open the form to edit.
+5. From the **Related Objects** list, choose **Other** folder and drag **Picture** to a cell in the form.
+6. Click the **Picture** field to select it.
+7. Under Control Properties, in the **Image** field, click the **function** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/nkqElOFXdxvDGVcRO7D1F_function.png" alt caption size="10" width="16" height="16"}.
+8. In the Expression Editor, click **Image Manager**.
+9. In the Image Manager, click **Add**.
+10. Navigate to the logo to use and double-click the logo.
+11. In the Image Manager, click the logo and then click **Select**.
+12. In the Expression Editor, click **Save**.
+13. In the Form Editor, click **Save**.
+14. To verify that the logo appears, do the following:
+
+<Paragraph indent="1">
+  a. Log in to the application.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Refresh the browser.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. Select a record associated with the business object from the list.
+</Paragraph>
+
+<Paragraph indent="1">
+  The logo you added now appears in the form.
+</Paragraph>
+
+## Adding a Picture to a Form
+
+- :Link[Creating an Image Field]{label="Creating an Image Field" overridedLabel="Creating an Image Field" spaceId docId="qpTGkiqsTU814AeIcYD01" version="v2" docAnchorId="#Creating_an_Image_Field" loadingMethod="dynamic" newTab="false" href="Customizing-a-Form-with-Images.mdx"}
+- :Link[Adding the Image Field to a Form]{label="Adding the Image Field to a Form" overridedLabel="Adding the Image Field to a Form" spaceId docId="qpTGkiqsTU814AeIcYD01" version="v2" docAnchorId="#Adding_the_Image_Field_to_a_Form" loadingMethod="dynamic" newTab="false" href="Customizing-a-Form-with-Images.mdx"}
+- :Link[Adding a Picture to a Business Object that Uses the Form]{label="Adding a Picture to a Business Object that Uses the Form" overridedLabel="Adding a Picture to a Business Object that Uses the Form" spaceId docId="qpTGkiqsTU814AeIcYD01" version="v2" docAnchorId="#Adding_a_Picture_to_a_Business_Object_that_Uses_the_Form" loadingMethod="dynamic" newTab="false" href="Customizing-a-Form-with-Images.mdx"}
+
+This procedure adds an image field to a form, so that you can add a picture to an incident. This example uses an incident but the procedure applies to other business objects.
+
+### Creating an Image Field
+
+1. From the Configuration console, click **Build > Business Objects**.
+2. Open a business object.
+3. Click the **Forms** tab.
+4. Click **Add new\...**.
+5. Click **Binary**.
+6. Under **Setting Field Details**, enter a field name and a display name.
+7. Click **Add This Field**. The application displays the new field in the list and is marked with "(new)".
+8. In the **Fields** list, click **Save**.
+
+### Adding the Image Field to a Form
+
+1. From the Configuration console, click **Build > Business Objects**.
+2. Open a business object.
+3. Click the **Forms** tab.
+4. Open the form to edit.
+5. From the **Related Objects** list, choose **Incident > Fields** folder, find the field that you just created, and drag it to a cell in the form.
+6. Click the field to select it.
+7. Under Control Properties, click **Control Type** and choose **Image Uploader/Viewer**.
+8. Under Control Properties, click **Height** and input the value appropriate for the picture.
+9. Under Control Properties, click **Label** and input the value appropriate for the picture.
+10. Click **Save**.
+
+### Adding a Picture to a Business Object that Uses the Form
+
+1. Perform the procedure in :Link[Adding the Image Field to a Form]{label="Adding the Image Field to a Form" overridedLabel="Adding the Image Field to a Form" spaceId docId="qpTGkiqsTU814AeIcYD01" version="v2" docAnchorId="#Adding_the_Image_Field_to_a_Form" loadingMethod="dynamic" newTab="false" href="Customizing-a-Form-with-Images.mdx"}.
+2. Log in to the application.
+3. Refresh the browser.
+4. Select a record from the list.
+5. In the record, click the newly added image field. The field displays "No image".
+6. Below the image, click **Browse**.
+7. Navigate to the picture file and double-click it. The picture that you selected now appears in the record.
+8. Click **Save**.
+9. To delete the picture, click **Remove**.
+10. To change the picture, click **Browse** and choose the picture file you want. The new picture replaces the previous one.

@@ -1,0 +1,1907 @@
+---
+title: Understanding the Search Results
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:01 GMT+0300 (Eastern European Summer Time)
+---
+
+The return value of the **Search** web method is a list of **WebServiceBusinessobject** objects in a two-dimensional array. The previous section provided simple search examples, where the records were returned against a single business object. When performing searches against the current object and related objects, each item in the two-dimensional array represents the matching parent-child combination.
+
+This section contains the following topics:
+
+- :Link[Search Result Scenarios]{label="Search Result Scenarios" overridedLabel="Search Result Scenarios" spaceId docId="qaUIgpLD_U3WAjtgSwhSg" version="v2" docAnchorId="#Search-Result-Scenarios" loadingMethod="dynamic" newTab="false" href="Understanding Search Results.mdx"}
+- :Link[Related Search Examples]{label="Related Search Examples" overridedLabel="Related Search Examples" spaceId docId="qaUIgpLD_U3WAjtgSwhSg" version="v2" docAnchorId="#Related" loadingMethod="dynamic" newTab="false" href="Understanding Search Results.mdx"}
+- :Link[Grouping the Rule Criteria]{label="Grouping the Rule Criteria" overridedLabel="Grouping the Rule Criteria" spaceId docId="qaUIgpLD_U3WAjtgSwhSg" version="v2" docAnchorId="#Grouping_the_Rule_Criteria" loadingMethod="dynamic" newTab="false" href="Understanding Search Results.mdx"}
+- :Link[About Full-Text Searching]{label="About Full-Text Searching" overridedLabel="About Full-Text Searching" spaceId docId="qaUIgpLD_U3WAjtgSwhSg" version="v2" docAnchorId="#About_Full-Text_Searching" loadingMethod="dynamic" newTab="false" href="Understanding Search Results.mdx"}
+- :Link[Formal Description of the Classes used by the Search Web Method]{label="Formal Description of the Classes used by the Search Web Method" overridedLabel="Formal Description of the Classes used by the Search Web Method" spaceId docId="qaUIgpLD_U3WAjtgSwhSg" version="v2" docAnchorId="#Formal_Description_of_the_Classes_used_by_the_Search_Web_Method" loadingMethod="dynamic" newTab="false" href="Understanding Search Results.mdx"}
+
+## Search Result Scenarios
+
+- :Link[Scenario 1: Searching Against a Single Business Object, Returning an Exact Match]{label="Scenario 1: Searching Against a Single Business Object, Returning an Exact Match" overridedLabel="Scenario 1: Searching Against a Single Business Object, Returning an Exact Match" spaceId docId="qaUIgpLD_U3WAjtgSwhSg" version="v2" docAnchorId="#Scenario" loadingMethod="dynamic" newTab="false" href="Understanding Search Results.mdx"}
+- :Link[Scenario 2: Searching Against a Single Business Object, Returning Several Matches]{label="Scenario 2: Searching Against a Single Business Object, Returning Several Matches" overridedLabel="Scenario 2: Searching Against a Single Business Object, Returning Several Matches" spaceId docId="qaUIgpLD_U3WAjtgSwhSg" version="v2" docAnchorId="#Scenario2" loadingMethod="dynamic" newTab="false" href="Understanding Search Results.mdx"}
+- :Link[Scenario 3: Searching Against a Single Business Object and its Related Child Objects, Returning One Exact Match for the Parent Business Object]{label="Scenario 3: Searching Against a Single Business Object and its Related Child Objects, Returning One Exact Match for the Parent Business Object" overridedLabel="Scenario 3: Searching Against a Single Business Object and its Related Child Objects, Returning One Exact Match for the Parent Business Object" spaceId docId="qaUIgpLD_U3WAjtgSwhSg" version="v2" docAnchorId="#Scenario3" loadingMethod="dynamic" newTab="false" href="Understanding Search Results.mdx"}
+- :Link[Scenario 4: Searching Against a Single Business Object and its Related Child Business Objects, Returning Several Matches for the Parent Business Object]{label="Scenario 4: Searching Against a Single Business Object and its Related Child Business Objects, Returning Several Matches for the Parent Business Object" overridedLabel="Scenario 4: Searching Against a Single Business Object and its Related Child Business Objects, Returning Several Matches for the Parent Business Object" spaceId docId="qaUIgpLD_U3WAjtgSwhSg" version="v2" docAnchorId="#Scenario4" loadingMethod="dynamic" newTab="false" href="Understanding Search Results.mdx"}
+
+### Scenario 1: Searching Against a Single Business Object, Returning an Exact Match
+
+In this scenario, the search is defined against a single business object and the search result returns one exact record. **objList\[0]\[0]** contains the matching incident record.
+
+ObjectQueryDefinition query = new ObjectQueryDefinition();
+
+FieldClass\[] fieldObjects = new FieldClass\[] \{
+
+new FieldClass()
+
+                \{
+
+                    Name = "IncidentNumber",
+
+                    Type = "Text"
+
+                },
+
+new FieldClass()
+
+                \{
+
+                    Name = "Status",
+
+                    Type = "Text"
+
+                }
+
+            };
+
+            query.Select = new SelectClass();
+
+            query.Select.Fields = fieldObjects;
+
+            query.From = new FromClass();
+
+            query.From.Object = "Incident";
+
+            query.Where = new RuleClass\[] \{
+
+new RuleClass()
+
+                \{
+
+                    Field = "IncidentNumber",
+
+                    Condition = "=",
+
+                    Value = "10001"
+
+                }
+
+            };
+
+FRSHEATIntegrationSearchResponse searchResponse = frSvc.Search(authSessionKey, tenantId, query);
+
+if (searchResponse.status == "Success")
+
+            \{
+
+WebServiceBusinessObject\[]\[] objList = searchResponse.objList;
+
+foreach (WebServiceBusinessObject\[] objOuterList in objList)
+
+                \{
+
+foreach (WebServiceBusinessObject obj in objOuterList)
+
+                    \{
+
+WebServiceFieldValue\[] objFieldList = obj.FieldValues;
+
+Console.WriteLine("\{\{0}} with \{\{1}} \\"\{\{2}}\\" matches the selection criteria", obj.BusinessObjectName, objFieldList\[0].Name, objFieldList\[0].Value);
+
+                    }
+
+                }
+
+            }
+
+        }
+
+Here we are searching specifically for incident 10001 in the tenant. If the record exists in the tenant, it is available in the **objList\[0]\[0]** array.
+
+### Scenario 2: Searching Against a Single Business Object, Returning Several Matches
+
+In this scenario, the search is defined against a single business object and the search result returns *n* matching records. The matching records can be accessed from **objList\[0]\[0]** through **objList\[*****n*****-1]\[0]**.
+
+For example, assume the search returns ten incident records.  The incident records can be accessed from **objList\[0]\[0]** through **objList\[9]\[0]**. The first index in the two-dimensional array changes, but the second index remains at 0.
+
+ObjectQueryDefinition query = new ObjectQueryDefinition();
+
+FieldClass\[] fieldObjects = new FieldClass\[] \{
+
+new FieldClass()
+
+                \{
+
+                    Name = "IncidentNumber",
+
+                    Type = "Text"
+
+                },
+
+new FieldClass()
+
+                \{
+
+                    Name = "Status",
+
+                    Type = "Text"
+
+                }
+
+            };
+
+            query.Select = new SelectClass();
+
+            query.Select.Fields = fieldObjects;
+
+            query.From = new FromClass();
+
+            query.From.Object = "Incident";
+
+            query.Where = new RuleClass\[] \{
+
+new RuleClass()
+
+                \{
+
+                    Field = "IncidentNumber",
+
+                    Condition = "\<=",
+
+                    Value = "10010"
+
+                }
+
+            };
+
+            query.OrderBy = new OrderByClass\[] \{
+
+new OrderByClass()
+
+                \{
+
+                    Name = "IncidentNumber",
+
+                    Direction = "ASC"
+
+                }
+
+            };
+
+FRSHEATIntegrationSearchResponse searchResponse = frSvc.Search(authSessionKey, tenantId, query);
+
+if (searchResponse.status == "Success")
+
+            \{
+
+WebServiceBusinessObject\[]\[] objList = searchResponse.objList;
+
+foreach (WebServiceBusinessObject\[] objOuterList in objList)
+
+                \{
+
+foreach (WebServiceBusinessObject obj in objOuterList)
+
+                    \{
+
+WebServiceFieldValue\[] objFieldList = obj.FieldValues;
+
+Console.WriteLine("\{\{0}} with \{\{1}} \\"\{\{2}}\\" matches the selection criteria", obj.BusinessObjectName, objFieldList\[0].Name, objFieldList\[0].Value);
+
+                    }
+
+                }
+
+            }
+
+        }
+
+Compared to the code from scenario 1, only the following has been updated:
+
+            query.Where = new RuleClass\[] \{
+
+new RuleClass()
+
+                \{
+
+                    Field = "IncidentNumber",
+
+                    Condition = "\<=",
+
+                    Value = "10010"
+
+                }
+
+            };
+
+We are searching for incident records where the incident number is less than or equal to 10010. If the tenant has incident records starting from 10001 through 10010, then incident 10001 can be accessed via **objList\[0]\[0]**, incident 10002 can be accessed via **objList\[1]\[0]**, up to incident 10010 that can be accessed via **objList\[9]\[0]**.
+
+This topic illustrates how each of the items in the collection can be accessed individually, via the two dimensional array of search results. Because there are no child objects to search against, all of the items can be accessed using **objList\[n]\[0]**.
+
+*Scenario 2 Search Results*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/JmOzIDpcRNaDjYrBSEiEg_03000005.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/03000005.png" githubPath="Content/Resources/Images/help-images/03000005.png" showCaption="false"></Image>
+
+### Scenario 3: Searching Against a Single Business Object and its Related Child Objects, Returning One Exact Match for the Parent Business Object
+
+In this scenario, we are searching for incidents with matching **Journal.Email** records. The search returns one matching incident record that contains four related **Journal.Email** records.
+
+When performing searches against the current object and related objects, it is important to note that each item in the two-dimensional array represents the matching parent-child combination. In this scenario, since there is only one matching parent incident record, the search results contain the same parent record four times, one for each matching **Journal.Email** record.
+
+The parent incident record can be accessed using either **objList\[0]\[0]**, **objList\[1]\[0]**, **objList\[2]\[0]**, or **objList\[3]\[0]**. Here, the first index value varies, and the second index value is 0 (denoting the main object).
+
+Each individual matching **Journal.Email** child record can be accessed using **objList\[0]\[1]**, **objList\[1]\[1]**, **objList\[2]\[1]**, and **objList\[3]\[1]**. The first index value varies (to correspond to each matching **Journal.Email** record), and the second index is 1 (denoting the first child object).
+
+ObjectQueryDefinition query = new ObjectQueryDefinition();
+
+FieldClass\[] fieldObjects = new FieldClass\[] \{
+
+new FieldClass()
+
+                \{
+
+                    Name = "IncidentNumber",
+
+                    Type = "Text"
+
+                },
+
+new FieldClass()
+
+                \{
+
+                    Name = "Journal.Subject",
+
+                    Type = "Text"
+
+                }
+
+            };
+
+            query.Select = new SelectClass();
+
+            query.Select.Fields = fieldObjects;
+
+            query.From = new FromClass();
+
+            query.From.Object = "Incident";
+
+            query.From.Links = new FromLinkClass\[] \{
+
+new FromLinkClass \{
+
+                    Relation = "",
+
+                    Object = "Journal#Email"
+
+                }
+
+            };
+
+            query.Where = new RuleClass\[] \{
+
+new RuleClass()
+
+                \{
+
+                    Field = "IncidentNumber",
+
+                    Condition = "=",
+
+                    Value = "10001"
+
+                },
+
+new RuleClass()
+
+                \{
+
+                    Field = "Journal.Category",
+
+                    Condition = "=",
+
+                    Value = "Incoming Email"
+
+                },
+
+            };
+
+            query.OrderBy = new OrderByClass\[] \{
+
+new OrderByClass()
+
+                \{
+
+                    Name = "IncidentNumber",
+
+                    Direction = "ASC"
+
+                },
+
+new OrderByClass()
+
+                \{
+
+                    Name = "Journal.Subject",
+
+                    Direction = "ASC"
+
+                }
+
+            };
+
+FRSHEATIntegrationSearchResponse searchResponse = frSvc.Search(authSessionKey, tenantId, query);
+
+if (searchResponse.status == "Success")
+
+            \{
+
+WebServiceBusinessObject\[]\[] objList = searchResponse.objList;
+
+foreach (WebServiceBusinessObject\[] objOuterList in objList)
+
+                \{
+
+foreach (WebServiceBusinessObject obj in objOuterList)
+
+                    \{
+
+WebServiceFieldValue\[] objFieldList = obj.FieldValues;
+
+Console.WriteLine("\{\{0}} with \{\{1}} \{\{2}} matches the selection criteria", obj.BusinessObjectName, objFieldList\[0].Name, objFieldList\[0].Value);
+
+                    }
+
+                }
+
+            }
+
+We are searching for incident records where the incident number is equal to 10001, and has associated **Journal.Email** records with a category of "Incoming Email" (that is, emails attached to the incident record, via the email listener).
+
+Because the search needs to consider not only the top level object (incident), but also the related **Journal.Email** records, we need to write additional lines of code.
+
+The **FromLinkClass** class needs to be specified:
+
+            query.From.Links = new FromLinkClass\[] \{
+
+new FromLinkClass \{
+
+                    Relation = "",
+
+                    Object = "Journal#Email"
+
+                }
+
+            };
+
+Here, we create a new instance of the **FromLinkClass** class, which designates the relationship from incident to Journal.Email. The existing **IncidentContainsJournal** relationship (which points to the journal base object) can be used to associate the incident with the child journal records.
+
+Because the relationship has no value specified for the internal reference name parameter, the **Relation** value is left as an empty string, in the **Relation** member above. The actual object to be searched against (in this case, Journal.Email) needs to be specified above in the **Object** member.
+
+With the **Links** property specified for the **FromClass** class, the fields from the related business object can be accessed. For example, besides accessing the incident number field of the incident, the subject of the Journal.Email can be accessed:
+
+FieldClass\[] fieldObjects = new FieldClass\[] \{
+
+new FieldClass()
+
+                \{
+
+                    Name = "IncidentNumber",
+
+                    Type = "Text"
+
+                },
+
+new FieldClass()
+
+                \{
+
+                    Name = "Journal.Subject",
+
+                    Type = "Text"
+
+                }
+
+            };
+
+To reference the subject field in the **Journal.Email** business object, the field name needs to be specified as "Journal.Subject".
+
+To specify the rule condition using fields in the **Journal.Email** business object (for example, category), the field name needs to be specified as "Journal.Category":
+
+            query.Where = new RuleClass\[] \{
+
+new RuleClass()
+
+                \{
+
+                    Field = "IncidentNumber",
+
+                    Condition = "=",
+
+                    Value = "10001"
+
+                },
+
+new RuleClass()
+
+                \{
+
+                    Field = "Journal.Category",
+
+                    Condition = "=",
+
+                    Value = "Incoming Email"
+
+                },
+
+            };
+
+In the example scenario, assume that incident 10001 exists in the tenant, with four Journal.Emails attached to it, with subject values of "Email 1", "Email 2", "Email 3", and "Email 4".
+
+Running the above sample code yields the following results in the console window:
+
+Incident with IncidentNumber "10001" matches the selection criteria
+
+Journal.Email with Journal.Subject "Email 1" matches the selection criteria
+
+Incident with IncidentNumber "10001" matches the selection criteria
+
+Journal.Email with Journal.Subject "Email 2" matches the selection criteria
+
+Incident with IncidentNumber "10001" matches the selection criteria
+
+Journal.Email with Journal.Subject "Email 3" matches the selection criteria
+
+Incident with IncidentNumber "10001" matches the selection criteria
+
+Journal.Email with Journal.Subject "Email 4" matches the selection criteria
+
+The results are returned for each parent-child combination. Because the four **Journal.Email** records are associated with the same incident record (incident 10001), this same incident record shows up four times, once for each **Journal.Email** child record associated with it.
+
+The figure below illustrates how each of the items in the parent-child combination can be accessed individually, via the two-dimensional array of search results.
+
+*Scenario 3 Search Results*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/fiLSV_7Tg7ftfBIcvzxlB_03000006.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/03000006.png" githubPath="Content/Resources/Images/help-images/03000006.png" showCaption="false"></Image>
+
+### Scenario 4: Searching Against a Single Business Object and its Related Child Business Objects, Returning Several Matches for the Parent Business Object
+
+Assume we are searching for incidents with matching **Journal.Email** records. Assume that the search returns two matching incident records, which contains six related **Journal.Email** records: four for the first incident record (such as incident 10001), and two for the second incident record (such as incident 10008).
+
+When performing searches against the current object and related objects, each item in the two-dimensional array represents the matching parent-child combination.
+
+In this scenario, since there are two matching parent incident records, and six related **Journal.Email** records, the search returns six results.
+
+The first incident record shows up using either **objList\[0]\[0]**, **objList\[1]\[0]**, **objList\[2]\[0]**, and **objList\[3]\[0]**, and its corresponding **Journal.Email** records show up via **objList\[0]\[1]**, **objList\[1]\[1]**, **objList\[2]\[1]**, and **objList\[3]\[1]**.
+
+The second incident record shows up using either **objList\[4]\[0]** and **objList\[5]\[0]** and its corresponding **Journal.Email** records will show up via **objList\[4]\[1]** and **objList\[5]\[1]**.
+
+ObjectQueryDefinition query = new ObjectQueryDefinition();
+
+FieldClass\[] fieldObjects = new FieldClass\[] \{
+
+new FieldClass()
+
+                \{
+
+                    Name = "IncidentNumber",
+
+                    Type = "Text"
+
+                },
+
+new FieldClass()
+
+                \{
+
+                    Name = "Journal.Subject",
+
+                    Type = "Text"
+
+                }
+
+            };
+
+            query.Select = new SelectClass();
+
+            query.Select.Fields = fieldObjects;
+
+            query.From = new FromClass();
+
+            query.From.Object = "Incident";
+
+            query.From.Links = new FromLinkClass\[] \{
+
+new FromLinkClass \{
+
+                    Relation = "",
+
+                    Object = "Journal#Email"
+
+                }
+
+            };
+
+            query.Where = new RuleClass\[] \{
+
+new RuleClass()
+
+                \{
+
+                    Field = "IncidentNumber",
+
+                    Condition = "\<=",
+
+                    Value = "10010"
+
+                },
+
+new RuleClass()
+
+                \{
+
+                    Field = "Journal.Category",
+
+                    Condition = "=",
+
+                    Value = "Incoming Email"
+
+                },
+
+            };
+
+            query.OrderBy = new OrderByClass\[] \{
+
+new OrderByClass()
+
+                \{
+
+                    Name = "IncidentNumber",
+
+                    Direction = "ASC"
+
+                },
+
+new OrderByClass()
+
+                \{
+
+                    Name = "Journal.Subject",
+
+                    Direction = "ASC"
+
+                }
+
+            };
+
+FRSHEATIntegrationSearchResponse searchResponse = frSvc.Search(authSessionKey, tenantId, query);
+
+if (searchResponse.status == "Success")
+
+            \{
+
+WebServiceBusinessObject\[]\[] objList = searchResponse.objList;
+
+foreach (WebServiceBusinessObject\[] objOuterList in objList)
+
+                \{
+
+foreach (WebServiceBusinessObject obj in objOuterList)
+
+                    \{
+
+WebServiceFieldValue\[] objFieldList = obj.FieldValues;
+
+Console.WriteLine("\{\{0}} with \{\{1}} \{\{2}} matches the selection criteria", obj.BusinessObjectName, objFieldList\[0].Name, objFieldList\[0].Value);
+
+                    }
+
+                }
+
+            }
+
+Compared to the code from scenario 3, only the following has been updated:
+
+            query.Where = new RuleClass\[] \{
+
+new RuleClass()
+
+                \{
+
+                    Field = "IncidentNumber",
+
+                    Condition = "\<=",
+
+                    Value = "10010"
+
+                }
+
+            };
+
+We are searching for incident records where the incident number is less than or equal to 10010, and has associated **Journal.Email** records with a category of Incoming Email (that is, emails attached to the incident record, via the email listener).
+
+So in the example scenario, assume that incident 10001 exists in the tenant, with four **Journal.Email** records attached to it, with subject values of "Email 1", "Email 2", "Email 3", and "Email 4".
+
+Assume that incident 10008 also exists in the tenant, with two **Journal.Email** records attached to it, with subject values of "Email 5" and "Email 6".
+
+Running the above sample code yields the following results in the console window:
+
+Incident with IncidentNumber "10001" matches the selection criteria
+
+Journal.Email with Journal.Subject "Email 1" matches the selection criteria
+
+Incident with IncidentNumber "10001" matches the selection criteria
+
+Journal.Email with Journal.Subject "Email 2" matches the selection criteria
+
+Incident with IncidentNumber "10001" matches the selection criteria
+
+Journal.Email with Journal.Subject "Email 3" matches the selection criteria
+
+Incident with IncidentNumber "10001" matches the selection criteria
+
+Journal.Email with Journal.Subject "Email 4" matches the selection criteria
+
+Incident with IncidentNumber "10008" matches the selection criteria
+
+Journal.Email with Journal.Subject "Email 5" matches the selection criteria
+
+Incident with IncidentNumber "10008" matches the selection criteria
+
+Journal.Email with Journal.Subject "Email 6" matches the selection criteria
+
+The results are returned for each parent-child combination.
+
+Because there are four **Journal.Email** records associated with incident 10001, this same incident record shows up four times, once for each of the four **Journal.Email** child records associated with it. Afterward, there are two **Journal.Email** records associated with incident 10008, so this same incident shows up two times, once for each of the two **Journal.Email** child records associated with it.
+
+In total, there are six such parent-child combinations, so there are twelve object records returned (six for the incident, and six for the distinct **Journal.Email** records).
+
+The figure below illustrates how each of the items in the parent-child combination can be accessed individually, via the two dimensional array of search results.
+
+*Scenario 4 Search Results*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/LYV5h8cJWS_mnU17t1o7L_03000007.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/03000007.png" githubPath="Content/Resources/Images/help-images/03000007.png" showCaption="false"></Image>
+
+## Related Search Examples
+
+This section provides full code examples which expand on the related search capability as described in the previous section. The example code below illustrates how to search for roles which are associated with the specified employee by login ID.
+
+string loginID = "Admin";
+
+ObjectQueryDefinition query = new ObjectQueryDefinition();
+
+// Here, we are querying for related role records for the current employee. When querying
+
+// against specific fields from related business objects, the field name should be
+// specified first with the business object name, followed by a period, then followed by
+// the name of the field. e.g. "Frs\_def\_role.RoleID"
+
+// In this example, we are querying for the RoleID and DisplayName fields from the related
+
+// "Frs\_def\_role"business object
+
+// Note that when querying for fields against the current business object
+
+//(e.g. "Employee"), it
+
+// is not necessary in the field name to preface the business object (e.g. "LoginID"
+// instead of "Employee.LoginID")
+
+FieldClass\[] fieldObjects = new FieldClass\[] \{
+
+<Paragraph indent="1">
+  new FieldClass()
+</Paragraph>
+
+<Paragraph indent="1">
+  \{
+</Paragraph>
+
+<Paragraph indent="2">
+  Name = "Frs\_def\_role.RoleID",
+</Paragraph>
+
+<Paragraph indent="2">
+  Type = "Text"
+</Paragraph>
+
+<Paragraph indent="1">
+  },
+</Paragraph>
+
+<Paragraph indent="1">
+  new FieldClass()
+</Paragraph>
+
+<Paragraph indent="1">
+  \{
+</Paragraph>
+
+<Paragraph indent="2">
+  Name = "Frs\_def\_role.DisplayName",
+</Paragraph>
+
+<Paragraph indent="2">
+  Type = "Text"
+</Paragraph>
+
+<Paragraph indent="1">
+  }
+</Paragraph>
+
+};
+
+query.Select = new SelectClass();
+
+query.Select.Fields = fieldObjects;
+
+// Here we specify employee as the business object to query against, and
+// specify the relationship to search against via the FromLinkClass
+
+// Besides specifying the object, the value for the relation property should
+// be the internal reference name of the relationship.
+
+// In the case of the relationship between employee and Frs\_def\_role,
+// the internal reference name is empty, so it should be specified as an
+// empty string here
+
+query.From = new FromClass();
+
+query.From.Object = "Profile.Employee";
+
+query.From.Links = new FromLinkClass\[] \{
+
+<Paragraph indent="1">
+  new FromLinkClass \{
+</Paragraph>
+
+<Paragraph indent="1">
+  Relation = "",
+</Paragraph>
+
+<Paragraph indent="1">
+  Object = "Frs\_def\_role#"
+</Paragraph>
+
+<Paragraph indent="1">
+  }
+</Paragraph>
+
+};
+
+// Specify the criteria for querying the specific employee record
+// (e.g. employee with login ID of "Admin")
+
+query.Where = new RuleClass\[] \{
+
+<Paragraph indent="1">
+  new RuleClass()
+</Paragraph>
+
+<Paragraph indent="1">
+  \{
+</Paragraph>
+
+<Paragraph indent="2">
+  Field = "LoginID",
+</Paragraph>
+
+<Paragraph indent="2">
+  Condition = "=",
+</Paragraph>
+
+<Paragraph indent="2">
+  Value = loginID
+</Paragraph>
+
+<Paragraph indent="1">
+  }
+</Paragraph>
+
+};
+
+FRSHEATIntegrationSearchResponse searchResponse = frSvc.Search(authSessionKey, tenantId, query);
+
+if (searchResponse.status == "Success")
+
+\{
+
+<Paragraph indent="1">
+  // Assuming the search is successful, the objList search result is
+  // returned via a two-dimensional array. Each item in the result corresponds
+</Paragraph>
+
+<Paragraph indent="1">
+  // to a specific parent-child combination. So in this example, each returned
+</Paragraph>
+
+<Paragraph indent="1">
+  // result in objList is a matching \<Employee, Role> combination
+</Paragraph>
+
+<Paragraph indent="1">
+  WebServiceBusinessObject\[]\[] objList = searchResponse.objList;
+</Paragraph>
+
+<Paragraph indent="1">
+  // For each of the items in objList, the first item is the parent
+  // object, and the second object is the child object. So in this example,
+  // objOuterList\[0] corresponds to employee, whereas
+</Paragraph>
+
+<Paragraph indent="1">
+  // objOuterlist\[1] corresponds to role
+</Paragraph>
+
+<Paragraph indent="1">
+  Console.WriteLine("\nThe following roles are associated with the \\"\{\{0}}\\" user:\n", loginID);
+</Paragraph>
+
+<Paragraph indent="1">
+  foreach (WebServiceBusinessObject\[] objOuterList in objList)
+</Paragraph>
+
+<Paragraph indent="1">
+  \{
+</Paragraph>
+
+<Paragraph indent="2">
+  WebServiceBusinessObject obj = objOuterList\[1];
+</Paragraph>
+
+<Paragraph indent="2">
+  // Here obj is pointing to the role record, so objFieldList contains the list of
+</Paragraph>
+
+<Paragraph indent="2">
+  // available fields from the matching role record. In this example,
+</Paragraph>
+
+<Paragraph indent="2">
+  // two fields from the Role are queried against - the RoleID and the DisplayName
+</Paragraph>
+
+<Paragraph indent="2">
+  WebServiceFieldValue\[] objFieldList = obj.FieldValues;
+</Paragraph>
+
+<Paragraph indent="2">
+  Console.WriteLine("\* \{\{0}} (\{\{1}})", objFieldList\[0].Value, objFieldList\[1].Value);
+</Paragraph>
+
+<Paragraph indent="1">
+  }
+</Paragraph>
+
+}
+
+The example code below illustrates how to search for teams that are associated with the specified employee by login ID.
+
+string loginID = "Admin";
+
+ObjectQueryDefinition query = new ObjectQueryDefinition();
+
+// Here, we are querying for related team records for the current employee
+
+// When querying against specific fields from related business objects, the field name should
+
+// be specified first with the business object name, followed by a period, then followed by the
+
+// name of the field e.g. "StandardUserTeam.Team"
+
+// In this example, we are querying for the team and TeamEmail fields from the related
+
+// "StandardUserrTeam" business object
+
+// Note that when querying for fields against the current business object (e.g. "Employee"), it is not
+
+// necessary in the field name to preface the business object (e.g. "LoginID" instead of
+
+// "Employee.LoginID")
+
+<Paragraph indent="1">
+  FieldClass\[] fieldObjects = new FieldClass\[] \{
+</Paragraph>
+
+<Paragraph indent="2">
+  new FieldClass()
+</Paragraph>
+
+<Paragraph indent="2">
+  \{
+</Paragraph>
+
+<Paragraph indent="3">
+  Name = "StandardUserTeam.Team",
+</Paragraph>
+
+<Paragraph indent="3">
+  Type = "Text"
+</Paragraph>
+
+<Paragraph indent="2">
+  },
+</Paragraph>
+
+<Paragraph indent="2">
+  new FieldClass()
+</Paragraph>
+
+<Paragraph indent="2">
+  \{
+</Paragraph>
+
+<Paragraph indent="3">
+  Name = "StandardUserTeam.TeamEmail",
+</Paragraph>
+
+<Paragraph indent="3">
+  Type = "Text"
+</Paragraph>
+
+<Paragraph indent="2">
+  }
+</Paragraph>
+
+<Paragraph indent="1">
+  };
+</Paragraph>
+
+<Paragraph indent="1">
+  query.Select = new SelectClass();
+</Paragraph>
+
+<Paragraph indent="1">
+  query.Select.Fields = fieldObjects;
+</Paragraph>
+
+// Here we specify employee as the business object to query against, and specify the relationship to
+
+// search against via the FromLinkClass. Besides specifying the object,
+
+// the value for the relation property should be the internal reference name
+
+// of the relationship.
+
+// In the case of the relationship between wmployee and StandardUserTeam, the internal reference
+
+// name is "Rev2"
+
+<Paragraph indent="1">
+  query.From = new FromClass();
+</Paragraph>
+
+<Paragraph indent="1">
+  query.From.Object = "Profile.Employee";
+</Paragraph>
+
+<Paragraph indent="1">
+  query.From.Links = new FromLinkClass\[] \{
+</Paragraph>
+
+<Paragraph indent="2">
+  new FromLinkClass \{
+</Paragraph>
+
+<Paragraph indent="3">
+  Relation = "Rev2",
+</Paragraph>
+
+<Paragraph indent="3">
+  Object = "StandardUserTeam#"
+</Paragraph>
+
+<Paragraph indent="2">
+  }
+</Paragraph>
+
+<Paragraph indent="1">
+  };
+</Paragraph>
+
+// Specify the criteria for querying the specific employee record (e.g. employee with login ID of
+
+// "Admin")
+
+<Paragraph indent="1">
+  query.Where = new RuleClass\[] \{
+</Paragraph>
+
+<Paragraph indent="2">
+  new RuleClass()
+</Paragraph>
+
+<Paragraph indent="2">
+  \{
+</Paragraph>
+
+<Paragraph indent="3">
+  Field = "LoginID",
+</Paragraph>
+
+<Paragraph indent="3">
+  Condition = "=",
+</Paragraph>
+
+<Paragraph indent="3">
+  Value = loginID
+</Paragraph>
+
+<Paragraph indent="2">
+  }
+</Paragraph>
+
+<Paragraph indent="1">
+  };
+</Paragraph>
+
+FRSHEATIntegrationSearchResponse searchResponse = frSvc.Search(authSessionKey, tenantId, query);
+
+<Paragraph indent="1">
+  if (searchResponse.status == "Success")
+</Paragraph>
+
+<Paragraph indent="1">
+  \{
+</Paragraph>
+
+<Paragraph indent="1">
+  // Assuming the search is successful, the objList search result is returned via a two-
+</Paragraph>
+
+<Paragraph indent="1">
+  // dimensional array. Each item in the result corresponds to a specific parent-child
+</Paragraph>
+
+<Paragraph indent="1">
+  // combination. So in this example, each returned result
+</Paragraph>
+
+<Paragraph indent="1">
+  // in objList is a matching \<Employee, Team> combination
+</Paragraph>
+
+<Paragraph indent="1">
+  WebServiceBusinessObject\[]\[] objList = searchResponse.objList;
+</Paragraph>
+
+<Paragraph indent="1">
+  // For each of the items in objList, the first item is the parent object, and the second
+</Paragraph>
+
+<Paragraph indent="1">
+  // object is the child object. So in this example, objOuterList\[0] corresponds
+</Paragraph>
+
+<Paragraph indent="1">
+  // to employee, whereas objOuterlist\[1] corresponds to team
+</Paragraph>
+
+<Paragraph indent="1">
+  Console.WriteLine("\nThe following teams are associated with the \\"\{\{0}}\\" user, with the corresponding team email address:\n", loginID);
+</Paragraph>
+
+<Paragraph indent="1">
+  foreach (WebServiceBusinessObject\[] objOuterList in objList)
+</Paragraph>
+
+<Paragraph indent="1">
+  \{
+</Paragraph>
+
+<Paragraph indent="2">
+  WebServiceBusinessObject obj = objOuterList\[1];
+</Paragraph>
+
+<Paragraph indent="2">
+  // Here obj is pointing to the role record, so objFieldList contains the list of
+</Paragraph>
+
+<Paragraph indent="2">
+  // available fields from the matching role record. In this example, two
+</Paragraph>
+
+<Paragraph indent="2">
+  // fields from the role are queried against - the team and the TeamEmail
+</Paragraph>
+
+<Paragraph indent="2">
+  WebServiceFieldValue\[] objFieldList = obj.FieldValues;
+</Paragraph>
+
+<Paragraph indent="2">
+  Console.WriteLine("\* \{\{0}} (\{\{1}})", objFieldList\[0].Value, objFieldList\[1].Value);
+</Paragraph>
+
+<Paragraph indent="1">
+  }
+</Paragraph>
+
+}
+
+## Grouping the Rule Criteria
+
+The previous section describes how to search for records based on the current business object (incident) and its related child business objects (Journal.Email). The earlier examples describe how to formulate queries such as the following:
+
+Retrieve all incident records with an incident number less than 10010, containing related Journal.Email records with a category of "Incoming Email".
+
+The **Search** web method is actually flexible enough to express searches through the grouping of the rule criteria. For example, the **Search** web method allows one to express queries such as the following:
+
+Retrieve all Incident records with IncidentNumber less than 10010, containing related Journal.Email records where
+
+(The Category of the Journal.Email is "Incoming Email"
+
+OR
+
+The Subject of the Journal.Email is "Urgent Request")
+
+The above search allows the user to search for incidents containing **Journal.Email** records, either if the Journal.Email has a category of "Incoming Email" (that is, it was created via the email listener), OR the subject of the Journal.Email has a subject line of "Urgent Request" regardless if the email has a category of "Incoming Email" or "Outgoing Email".
+
+To express the above search, consider the following code sample:
+
+ObjectQueryDefinition query = new ObjectQueryDefinition();
+
+FieldClass\[] fieldObjects = new FieldClass\[] \{
+
+new FieldClass()
+
+                \{
+
+                    Name = "IncidentNumber",
+
+                    Type = "Text"
+
+                },
+
+new FieldClass()
+
+                \{
+
+                    Name = "Journal.Category",
+
+                    Type = "Text"
+
+                }
+
+            };
+
+            query.Select = new SelectClass();
+
+            query.Select.Fields = fieldObjects;
+
+            query.From = new FromClass();
+
+            query.From.Object = "Incident";
+
+            query.From.Links = new FromLinkClass\[] \{
+
+new FromLinkClass
+
+                \{
+
+                    Relation = "",
+
+                    Object = "Journal#Email"
+
+                }
+
+            };
+
+            query.Where = new RuleClass\[] \{
+
+new RuleClass
+
+                \{
+
+                    Join = "AND",
+
+                    Field = "IncidentNumber",
+
+                    Condition = "\<=",
+
+                    Value = "10010"
+
+                },
+
+new RuleClass
+
+                \{
+
+                    Rules = new RuleClass\[] \{
+
+new RuleClass
+
+                        \{
+
+                            Field = "Journal.Category",
+
+                            Condition = "=",
+
+                            Value = "Outgoing Email"
+
+                        },
+
+new RuleClass
+
+                        \{
+
+                            Join = "OR",
+
+                            Field = "Journal.Subject",
+
+                            Condition = "=",
+
+                            Value = "Urgent Request"
+
+                        }
+
+                    }
+
+                }
+
+            };
+
+FRSHEATIntegrationSearchResponse searchResponse = frSvc.Search(authSessionKey, tenantId, query);
+
+if (searchResponse.status == "Success")
+
+            \{
+
+WebServiceBusinessObject\[]\[] objList = searchResponse.objList;
+
+foreach (WebServiceBusinessObject\[] objOuterList in objList)
+
+                \{
+
+foreach (WebServiceBusinessObject obj in objOuterList)
+
+                    \{
+
+WebServiceFieldValue\[] objFieldList = obj.FieldValues;
+
+Console.WriteLine("\{\{0}} with \{\{1}} \\"\{\{2}}\\" matches the selection criteria", obj.BusinessObjectName, objFieldList\[0].Name, objFieldList\[0].Value);
+
+                    }
+
+                }
+
+            }
+
+This code sample is a variation of the samples from the earlier section, with several important differences. Notice the update to the **Where** property for the **ObjectQueryDefinition** object:
+
+            query.Where = new RuleClass\[] \{
+
+new RuleClass
+
+                \{
+
+                    Join = "AND",
+
+                    Field = "IncidentNumber",
+
+                    Condition = "\<=",
+
+                    Value = "10010"
+
+                },
+
+new RuleClass
+
+                \{
+
+                    Rules = new RuleClass\[] \{
+
+new RuleClass
+
+                        \{
+
+                            Field = "Journal.Category",
+
+                            Condition = "=",
+
+                            Value = "Outgoing Email"
+
+                        },
+
+new RuleClass
+
+                        \{
+
+                            Join = "OR",
+
+                            Field = "Journal.Subject",
+
+                            Condition = "=",
+
+                            Value = "Urgent Request"
+
+                        }
+
+                    }
+
+                }
+
+            };
+
+At the top level are two **RuleClass** objects" one for expression the condition to search for incident records with an incident number less than or equal to 10010, as illustrated in the previous sections.
+
+new RuleClass
+
+                \{
+
+                    Join = "AND",
+
+                    Field = "IncidentNumber",
+
+                    Condition = "\<=",
+
+                    Value = "10010"
+
+                },
+
+The second **RuleClass** object is used solely to populate the **Rules** member of the **RuleClass** class:
+
+new RuleClass
+
+                \{
+
+                    Rules = new RuleClass\[] \{
+
+                        ...
+
+                        ...
+
+                        ...
+
+                    }
+
+                }
+
+Inside the second **RuleClass** class, another **RuleClass** array is being instantiated with two inner **RuleClass** classes:
+
+new RuleClass
+
+                        \{
+
+                            Field = "Journal.Category",
+
+                            Condition = "=",
+
+                            Value = "Outgoing Email"
+
+                        },
+
+new RuleClass
+
+                        \{
+
+                            Join = "OR",
+
+                            Field = "Journal.Subject",
+
+                            Condition = "=",
+
+                            Value = "Urgent Request"
+
+                        }
+
+So the inner **RuleClass** array essentially allows one to express the following portion of the search:
+
+Retrieve the related Journal.Email records where either
+
+(The Category of the Journal.Email is "Incoming Email"
+
+OR
+
+The Subject of the Journal.Email is "Urgent Request")
+
+To express the following related query:
+
+Retrieve the related Journal.Email records where either
+
+(The Category of the Journal.Email is "Incoming Email"
+
+AND
+
+The Subject of the Journal.Email is "Urgent Request")
+
+the **Join** member needs to be changed from "OR" to "AND", as follows:
+
+new RuleClass
+
+                        \{
+
+                            Field = "Journal.Category",
+
+                            Condition = "=",
+
+                            Value = "Outgoing Email"
+
+                        },
+
+new RuleClass
+
+                        \{
+
+                            Join = "AND",
+
+                            Field = "Journal.Subject",
+
+                            Condition = "=",
+
+                            Value = "Urgent Request"
+
+                        }
+
+The above example shows how rules can be grouped together, by populating the **Rules** member of the **RuleClass** object. The **RuleClass** class uses composition to allow **RuleClass** classes to be arbitrarily grouped together, using AND or OR operators via the **Join** property.
+
+## About Full-Text Searching
+
+Besides regular Microsoft SQL-style searches, the **Search** web method also supports performing full-text searches against a business object.  An example is searching for records containing the terms "Email Down", against the full text catalog of the incident business object.
+
+The **RuleClass** class contains a member called **ConditionType**, which is of type SearchConditionType. This is an enumeration with two permissible values:
+
+- ByField - 0 (regular Microsoft SQL search)
+- ByText - 1 (full-text Microsoft SQL search)
+
+public enum SearchConditionType
+
+    \{
+
+        ByField = 0,
+
+        ByText = 1
+
+    }
+
+Regular searches are performed by setting **SearchConditionType** to **ByField**.  This is the default mode for searching, so it is not necessary to have this explicitly set during the **RuleClass** instantiation. To perform full-text searches, it is necessary to explicitly set the condition type of the **RuleClass** class to **ByText**:
+
+new RuleClass()
+
+                \{
+
+                    Join = "AND",
+
+                    Condition = "=",
+
+                    ConditionType = SearchConditionType.ByText,
+
+                    Value = "Email Down"
+
+                }
+
+The **Field** member (which was present in the earlier search examples) is not specified in the **RuleClass** class" since the search is now performed against the full-text catalog (by virtue of the **ConditionType** value of **ByText**), it is an error to also specify **Field** member in the **RuleClass** class.
+
+The following code sample illustrates how to search for incident records with the matching terms "Email Down":
+
+ObjectQueryDefinition query = new ObjectQueryDefinition();
+
+            query.Select = new SelectClass();
+
+// Retrieve just the IncidentNumber field value from the Incident,
+
+// when invoking the search
+
+FieldClass\[] incidentFieldObjects = new FieldClass\[] \{
+
+new FieldClass()
+
+                \{
+
+                    Name = "IncidentNumber",
+
+                    Type = "Text"
+
+                },
+
+new FieldClass()
+
+                \{
+
+                    Name = "Service",
+
+                    Type = "Text"
+
+                }
+
+            };
+
+            query.Select.Fields = incidentFieldObjects;
+
+            query.From = new FromClass();
+
+            query.From.Object = "Incident";
+
+            query.Where = new RuleClass\[] \{
+
+new RuleClass()
+
+                \{
+
+                    Join = "AND",
+
+                    Condition = "=",
+
+                    ConditionType = SearchConditionType.ByText,
+
+                    Value = "Email Down"
+
+                },
+
+            };
+
+FRSHEATIntegrationSearchResponse searchResponse = frSvc.Search(authSessionKey, tenantId, query);
+
+if (searchResponse.status == "Success")
+
+            \{
+
+WebServiceBusinessObject\[]\[] incidentList = searchResponse.objList;
+
+foreach (WebServiceBusinessObject\[] incidentOuterList in incidentList)
+
+                \{
+
+foreach (WebServiceBusinessObject incident in incidentOuterList)
+
+                    \{
+
+// Since we are just retrieving one field in the selection criteria
+
+// (i.e. IncidentNumber), this corresponds to
+
+// incident.FieldValues\[0].Value when retrieving the results
+
+Console.WriteLine("Incident \{\{0}} matches the selection criteria", incident.FieldValues\[0].Value);
+
+                    }
+
+                }
+
+            }
+
+## Formal Description of the Classes used by the Search Web Method
+
+To execute the **Search** web method properly, you must properly create and populate objects from several classes before the web method is called.
+
+- :Link[About the ObjectQueryDefinition Class]{label="About the ObjectQueryDefinition Class" overridedLabel="About the ObjectQueryDefinition Class" spaceId docId="qaUIgpLD_U3WAjtgSwhSg" version="v2" docAnchorId="#About_the_ObjectQueryDefinitionClass" loadingMethod="dynamic" newTab="false" href="Understanding Search Results.mdx"}
+- :Link[About the FromClass Class]{label="About the FromClass Class" overridedLabel="About the FromClass Class" spaceId docId="qaUIgpLD_U3WAjtgSwhSg" version="v2" docAnchorId="#About_the_FromClass_Class" loadingMethod="dynamic" newTab="false" href="Understanding Search Results.mdx"}
+- :Link[About the SelectClass Class]{label="About the SelectClass Class" overridedLabel="About the SelectClass Class" spaceId docId="qaUIgpLD_U3WAjtgSwhSg" version="v2" docAnchorId="#About_the_SelectClass_Class" loadingMethod="dynamic" newTab="false" href="Understanding Search Results.mdx"}
+- :Link[About the RuleClass Class]{label="About the RuleClass Class" overridedLabel="About the RuleClass Class" spaceId docId="qaUIgpLD_U3WAjtgSwhSg" version="v2" docAnchorId="#About_the_RuleClass_Class" loadingMethod="dynamic" newTab="false" href="Understanding Search Results.mdx"}
+- :Link[About the OrderByClass Class]{label="About the OrderByClass Class" overridedLabel="About the OrderByClass Class" spaceId docId="qaUIgpLD_U3WAjtgSwhSg" version="v2" docAnchorId="#About_the_OrderByClass_Class" loadingMethod="dynamic" newTab="false" href="Understanding Search Results.mdx"}
+
+### About the ObjectQueryDefinition Class
+
+The **ObjectQueryDefinition** class is defined as follows:
+
+class ObjectQueryDefinition
+
+    \{
+
+int Top;
+
+bool Distinct;
+
+        FromClass From;
+
+        SelectClass Select;
+
+        List\<RuleClass> Where;
+
+        List\<OrderByClass> OrderBy;
+
+    }
+
+The **ObjectQueryDefinition** class is used to model the various portions of a typical Microsoft SQL SELECT statement, specifically:
+
+- **FROM**: Class FromClass
+- **SELECT**: Class SelectClass
+- **WHERE**: Class RuleClass (implemented as a list)
+- **ORDER BY**: Class OrderByClass (implemented as a list)
+
+With the exception of the **RuleClass** class (which is used to model the WHERE clause in the Microsoft SQL SELECT statement), the other classes are named according to the corresponding clause in the Microsoft SQL SELECT statement.
+
+Besides these classes, there is also an integer member called **Top**. This can be used to constrain the number of records being returned by the **Search** web method. For example, you may want to only return the first 1000 matching results.
+
+There is also a Boolean member called **Distinct**. This can be used to return the distinct results, to eliminate the repeated values in the search results.
+
+### About the FromClass Class
+
+The **FromClass** class is used to model the FROM clause in a typical Microsoft SQL SELECT statement, and is defined as follows:
+
+class FromClass
+
+    \{
+
+string Object;
+
+        List\<FromLinkClass> Links;
+
+    }
+
+The **Object** member needs to be populated with the name of the business object to search against:
+
+            query.From = new FromClass();
+
+            query.From.Object = "Incident";
+
+If the saved search needs to be performed relative to specific child objects, the **Links** member also needs to be populated, using a list of **FromLinkClass** objects:
+
+class FromLinkClass
+
+    \{
+
+string Relation;
+
+string Object;
+
+    }
+
+The **FromLinkClass** class contains two member variables:
+
+- **Relation**: Specifies the internal reference name of the relationship between the parent and child object. For example, for the **IncidentContainsJournal** relationship, the internal reference name of the relationship is blank, so to use this relationship, populate the **Object** member with the name of the child business object, and leave the **Relation** member as an empty string.
+- **Object**: Specifies the name of the child business object (such as Journal#Email).
+
+To search for **Journal.Email** records related to the current business object, the **Links** member of the **FromClass** class needs to be populated as follows:
+
+            query.From.Links = new FromLinkClass\[] \{
+
+new FromLinkClass \{
+
+                    Relation = "",
+
+                    Object = "Journal#Email"
+
+                }
+
+            };
+
+### About the SelectClass Class
+
+Use the **SelectClass** class to model the SELECT clause in a typical Microsoft SQL SELECT statement.  It is defined as follows:
+
+class SelectClass
+
+    \{
+
+bool All;
+
+        List\<FieldClass> Fields;
+
+    }
+
+To select all the fields in the business object, create a new **SelectClass** object and set the **All** member variable of the object to true:
+
+            query.Select = new SelectClass();
+
+            query.Select.All = true;
+
+If the search is against the main business object (incident) and its related child business objects (Journal.Email), setting the **All** member variable to true returns all the fields in the main business object and all the fields in the child business object.
+
+To restrict the set of fields to be returned by the **Search** web method, create a new list of **FieldClass** objects and initialize it with **FieldClass** objects that correspond to the fields of interest.
+
+To return the incident number field of the incident business object, and the category field of the child **Journal.Email** object, use the following statements:
+
+FieldClass\[] fieldObjects = new FieldClass\[] \{
+
+new FieldClass()
+
+                \{
+
+                    Name = "IncidentNumber",
+
+                    Type = "Text"
+
+                },
+
+new FieldClass()
+
+                \{
+
+                    Name = "Journal.Category",
+
+                    Type = "Text"
+
+                }
+
+            };
+
+            query.Select = new SelectClass();
+
+            query.Select.Fields = fieldObjects;
+
+For fields from the main business object, the names of the fields can be provided as is, whereas for fields in the child business objects, the name of the field needs to be prefixed with the name of the child business object in the relationship.
+
+For example, if you use the **IncidentContainsJournal** relationship, the relationship is defined against the incident and journal (base) object. Specify the category field as "Journal.Category".
+
+### About the RuleClass Class
+
+The **RuleClass** class is used to model the WHERE clause in a typical Microsoft SQL SELECT statement, and is defined as follows:
+
+class RuleClass
+
+\{
+
+string Join;
+
+string Condition;
+
+SearchConditionType ConditionType;
+
+string Field;
+
+Bool IsClosingBracket();
+
+Int BracketLevel;
+
+string Value;
+
+List\<RuleClass> Rules;
+
+}
+
+**IsClosingBracket** -The IsClosingBracket function is used to check if a character is a closing bracket. This function typically returns a boolean value: true if the character is a closing bracket (like ), }, or ]), and false otherwise.
+
+**BracketLevel** - The bracketLevel function is used to track the depth of square brackets in a string. When bracketLevel is 0, it means the current character is outside of any brackets.
+
+The **Field** member specifies the name of the field and the **Value** member specifies the value corresponding to the field.
+
+For fields from the main business object, the names of the fields can be provided as is, whereas for fields in the child business objects, the name of the field needs to be prefixed with the name of the child business object in the relationship. For example, if you use the **IncidentContainsJournal** relationship, the relationship is defined against the incident and journal (base) object.  Specify the category field as "Journal.Category".
+
+For example, use the following statement to search for incident records with a priority value equal to 1, where the category value of the related **Journal.Email** records is equal to "Incoming Email":
+
+query.Where = new RuleClass\[] \{
+
+new RuleClass()
+
+       \{
+
+Join = "AND",
+
+              Condition = "=",
+
+              Field = "Priority",
+
+              Value = "1"
+
+},
+
+new RuleClass()
+
+       \{
+
+Join = "AND",
+
+              Condition = "=",
+
+              Field = "Journal.Category",
+
+              Value = "Incoming Email"
+
+}
+
+};
+
+The **Join** property can contain a value of either "AND" / "OR", for specifying how the **RuleClass** objects are to be related to one another.
+
+The **Condition** member specifies the comparison operator used for relating the field and the specified value. The allowable values for the **Condition** member include the following:
+
+| Operator | Meaning                  |
+| -------- | ------------------------ |
+| =        | Equal to                 |
+| !=       | Not equal to             |
+| >        | Greater than             |
+| \<       | Less than                |
+| >=       | Greater than or equal to |
+| \<=      | Less than or equal to    |
+
+For grouping the rule criteria together, within the **RuleClass** class, there is a **Rules** member that can optionally hold a list of **RuleClass** objects. You can use the **Rules** member to group related **RuleClass** objects together, by composing the **RuleClass** objects.
+
+            query.Where = new RuleClass\[] \{
+
+new RuleClass
+
+                \{
+
+                    Join = "AND",
+
+                    Field = "IncidentNumber",
+
+                    Condition = "\<=",
+
+                    Value = "10010"
+
+                },
+
+new RuleClass
+
+                \{
+
+                    Rules = new RuleClass\[] \{
+
+new RuleClass
+
+                        \{
+
+                            Field = "Journal.Category",
+
+                            Condition = "=",
+
+                            Value = "Outgoing Email"
+
+                        },
+
+new RuleClass
+
+                        \{
+
+                            Join = "OR",
+
+                            Field = "Journal.Subject",
+
+                            Condition = "=",
+
+                            Value = "Urgent Request"
+
+                        }
+
+                    }
+
+                }
+
+            };
+
+Inside the second **RuleClass** class at the top level, the **Rules** member is initialized with another, inner list of **RuleClass** objects, where the criteria for Journal.Email is expressed.
+
+Normal Microsoft SQL-style searches are performed, where the condition type is set to the enumeration value of **SearchConditionType.ByField**.  This is the default mode for searches and does not need to be explicitly specified in the **RuleClass** instantiation.
+
+To support full-text searches, set the condition type to the enumeration value of **SearchConditionType.ByText** and do not include the **Field** member when instantiating the rule class.
+
+### About the OrderByClass Class
+
+The **OrderByClass** class is used to model the **Order By** clause in a typical Microsoft SQL SELECT statement, and is defined as follows:
+
+class OrderByClass
+
+    \{
+
+public string Name;
+
+public string Direction;
+
+    }
+
+The **Name** member specifies the field to be ordered against, and the **Direction** member specifies whether the records should be specified in ascending or descending order, using the values of "ASC" or "DESC", respectively.
+
+For example, assume that the search returns the incident and related **Journal.Email** records. If the incident records should be sorted in ascending order based on the incident number, and the related **Journal.Subject** records should be sorted in ascending order based on subject, the following code can be used for this:
+
+            query.OrderBy = new OrderByClass\[] \{
+
+new OrderByClass()
+
+                \{
+
+                    Name = "IncidentNumber",
+
+                    Direction = "ASC"
+
+                },
+
+new OrderByClass()
+
+                \{
+
+                    Name = "Journal.Subject",
+
+                    Direction = "ASC"
+
+                }
+
+            };

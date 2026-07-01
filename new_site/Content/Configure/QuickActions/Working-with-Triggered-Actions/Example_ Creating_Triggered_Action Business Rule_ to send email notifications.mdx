@@ -1,0 +1,150 @@
+---
+title: Example: Creating a Triggered Action Business Rule to send email notifications when an incident status is changed
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:57 GMT+0300 (Eastern European Summer Time)
+---
+
+This example shows how to trigger an email notification when the status of an incident is changed from Active to Closed.
+
+**Prerequisite**
+
+This example assumes you have administrator-level access to the **Configuration console** and are familiar with creating business objects.
+
+**To create a triggered action:**
+
+1. Click **Incident&#x20;**&#x74;o open the Incident business object.
+2. In the Graphical Action Designer, under Common Actions, drag a **Send an email&#x20;**&#x61;ction block on the page.
+3. In the **Block** tab, enter the following details:
+
+<table isTableHeaderOn="true">
+  <tr>
+    <td>
+      Field
+    </td>
+    <td>
+      Description
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Log In Journal
+    </td>
+    <td>
+      Specifies which emails to keep. Select one of the following:
+      - All: Default. Keeps all emails.
+      - Failed: Keeps only failed emails.
+      By default, **All** option is selected.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      From
+    </td>
+    <td>
+      The address from which the email is sent. Can only contain one entry. Click **Add&#x20;**&#x74;o enter the address.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      To
+    </td>
+    <td>
+      The address or addresses to which the email is sent. This field can contain multiple entries. Click **Add&#x20;**&#x6F;r **Address book&#x20;**&#x74;o enter the addresses.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Subject
+    </td>
+    <td>
+      The subject of the email. In this example, enter the subject as Incident Closure Notification Alert.
+    </td>
+  </tr>
+</table>
+
+3. Click **Compose email&#x20;**&#x74;o add the email body contents.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/BrHBCjEFuwz0xFLtDa7t7_block-tabexample-triiger.JPG" position="flex-start" size="40" indent="2" initialPath="../../../Resources/Images/help-images/Block Tab_Example Triiger.JPG" githubPath="Content/Resources/Images/help-images/Block Tab_Example Triiger.JPG" showCaption="false"></Image>
+
+4. In th&#x65;**&#x20;Common** tab, enter the following details:
+
+<table isTableHeaderOn="true">
+  <tr>
+    <td>
+      Field
+    </td>
+    <td>
+      Description
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Action Type
+    </td>
+    <td>
+      Action Type. The options are follows.
+      - Regular Action
+      - Triggered Action
+      In this example, select Triggered Action.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Name
+    </td>
+    <td>
+      Mandatory. A unique name for the triggered action business rule.
+      In this example, enter Incident Closure Notification.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Description
+    </td>
+    <td>
+      Optional. A description of what the triggered action business rule does.
+      In this example, enter Trigger Action Rule to notify incident closure.
+    </td>
+  </tr>
+</table>
+
+5. Clic&#x6B;**&#x20;Save**.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/TOJb2APRZ3_HRlWUWSBkv_common-tabexample-triiger.JPG" position="flex-start" size="40" indent="1" initialPath="../../../Resources/Images/help-images/Common Tab_Example Triiger.JPG" githubPath="Content/Resources/Images/help-images/Common Tab_Example Triiger.JPG" showCaption="false"></Image>
+
+6. Click **Add Rules**. In the **Events** tab, enter the following details:
+
+| Field        | Description                                                                                                                                                               |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Object Event | The trigger is based on one of the events or a combination of events, such as business object events (insert, delete, or update).<br />In this example, select On Update. |
+| Field Event  | The trigger is based on one of the field events (initialize or update). Select the field from the drop-down list.<br />In this example, select On Update.                 |
+| Field        | In this example, select Status.                                                                                                                                           |
+| Condition    | In this example, select is changed from.                                                                                                                                  |
+| Field        | In this example, select Active.                                                                                                                                           |
+
+7. Click :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/bu2En7XEb_L4LQYxEpsC2_enable-disable26x20.png" alt caption size="10" width="26" height="20"} to select the condition change as **is changed to** and **Closed** from the **Field** drop-down list.
+8. Click **Ok**.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/oR542hR0EWMtxUWCtNRkp_add-rulesexample-triiger.JPG" position="flex-start" size="40" indent="1" initialPath="../../../Resources/Images/help-images/Add Rules_Example Triiger.JPG" githubPath="Content/Resources/Images/help-images/Add Rules_Example Triiger.JPG" showCaption="false"></Image>
+
+## Testing the Triggered Action Rule
+
+1. From the incident workspace, select an active incident and modify the following fields:
+
+<Paragraph indent="1">
+  a. **Status**: Change the status to **Closed**
+</Paragraph>
+
+<Paragraph indent="1">
+  b. **Resolution**. Mandatory. Enter the description
+</Paragraph>
+
+<Paragraph indent="1">
+  c. **Cause Code**: Mandatory. Select the Cause Code option from the drop-down list
+</Paragraph>
+
+2. Click **Save**.
+
+<Paragraph indent="1">
+  You can view the email notification that is triggered based on the rule created.
+</Paragraph>

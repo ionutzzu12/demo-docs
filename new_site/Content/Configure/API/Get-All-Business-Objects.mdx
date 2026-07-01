@@ -1,0 +1,122 @@
+---
+title: Get All Business Objects
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:00 GMT+0300 (Eastern European Summer Time)
+---
+
+Fetches all records for the specified business object type.
+
+**Base URL:**
+
+https\://\{tenant url}/api/odata/businessobject/\{business object name}
+
+<hint type="info">
+  Ensure the business object name is suffixed with an "s".
+</hint>
+
+<ExpandableHeading>
+  ## Get All Business Objects - Example
+
+  Here is an example to fetch all business objects of incident type.
+
+  | URL                                           | https\://\{tenant url}/api/odata/businessobject/incidents                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+  | --------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | <font color="#ffffff">Method</font>           | GET                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+  | Header Name                                   | Authorization: JWT Token/Session Key/REST API Key                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+  | <font color="#ffffff">Status Code</font>      | 200                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+  | <font color="#ffffff">Response Payload</font> |   <ExpandableHeading>
+      ## Click to view response payload
+
+      \{
+
+      "@odata.context": "https\://\{tenant url}/api/odata/$metadata#incidents",
+
+      "@odata.count": 44,
+
+      "value": \[
+
+      \{
+
+      "ActualCategory\_Valid": "14348C1FFA044D8AB1E93005B4A0A287",
+
+      "ActualCategory": "Missing Item",
+
+      "Category\_Valid": "14348C1FFA044D8AB1E93005B4A0A287",
+
+      "Category": "Missing Item",
+
+      "CauseCode\_Valid": "E2489F3F7DA34B898CCD9569CA5541F2",
+
+      "CauseCode": "Other",
+
+      "ClosedBy": "JClerk",
+
+      "CreatedBy": "JClerk",
+
+      "RecId": "003B58C0B4554E4BAA30DFD88876582A",
+
+      "LoginId": "KDavidson",
+
+      "Owner\_Valid": "5918944FE08C4F088C5E02E27DB7C6E3",
+
+      },
+
+      \{
+
+      "ActualCategory\_Valid": "71754AC55675467B8BEDE187DEC5D392",
+
+      "ActualCategory": "Backup",
+
+      "Category\_Valid": "71754AC55675467B8BEDE187DEC5D392",
+
+      "Category": "Backup",
+
+      "CauseCode\_Valid": null,
+
+      "CauseCode": null,
+
+      "ClosedBy": null,
+
+      "CreatedBy": "FRS\_QA",
+
+      "RecId": "013CCF80552C43F881BE6741981CFEB7",
+
+      "LoginId": "AGreen",
+
+      },
+    </ExpandableHeading> |
+</ExpandableHeading>
+
+<hint type="info">
+  The data displayed in the Response Payload is only a sample data, it does not contain the full list of responses but only a few are shown for sample.
+</hint>
+
+## Unsuccessful Response
+
+<ExpandableHeading>
+  ## Invalid URL
+
+  Scenario: Trying to fetch business objects of type incidents with invalid url.
+
+  Valid URL:
+
+  https\://\{tenant url}/api/odata/businessobjects/incidents
+
+  Invalid URL Examples:
+
+  https\://\{tenant url}/api/odata/businessobjects/incident
+
+  https\://\{tenant url}/api/odata/businessobjects/ incident
+
+  https\://\{tenant url}/api/odata/businessobjects/ incidents
+
+  Header Name:
+
+  **Authorization: Sessionkey**
+
+  | Code                                          | ISM\_4004                                         |
+  | --------------------------------------------- | ------------------------------------------------- |
+  | Description                                   | Not Found                                         |
+  | Message                                       | \[  <br />"Requested resource not found"  <br />] |
+  | <font color="#ffffff">HTTP STATUS CODE</font> | **404**                                           |
+</ExpandableHeading>

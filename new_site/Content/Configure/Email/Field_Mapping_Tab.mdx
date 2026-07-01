@@ -1,0 +1,46 @@
+---
+title: Using the Field Mapping Tab
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:51 GMT+0300 (Eastern European Summer Time)
+---
+
+<hint type="info">
+  The **Field Mapping** tab only appears if you check **Method 2 (for Custom BO)**.
+</hint>
+
+If you create a new business object, you can map certain fields to appear in an email.
+
+1. After performing the tasks in :Link[Creating an Inbox]{label="Creating an Inbox" overridedLabel="Creating an Inbox" spaceId docId="oxavypV7mXubKfaNhVDO1" version="v2" docAnchorId="#Creating-an-Inbox" loadingMethod="dynamic" newTab="false" githubPath="Inbox_Configuration.htm#Creating-an-Inbox" href="Inbox_Configuration.mdx"}, select the **Field Mapping** tab.
+2. Select **New Tenant Email Mailbox Mapping**. The application displays the **Tenant Email Mailbox Mapping** workspace.
+3. Enter the field to map.
+
+| Field     | Description                                         |
+| --------- | --------------------------------------------------- |
+| Map Field | The name of the field to map, such as PrimaryEmail. |
+| Map Value | The field value, such as @From:                     |
+
+### Field Mapping Values
+
+| Map Field           | Map Value    |
+| ------------------- | ------------ |
+| FRS\_Knowledge Type | Document     |
+| Title               | @Subject     |
+| Details             | @Body        |
+| Collection          | IT Knowledge |
+| Category            | Mobile       |
+| Keywords            | @From        |
+| Status              | Draft        |
+
+### Tokens for Field Values
+
+| Tokens for Field Values |                                                                                                                                                                                                                                                                     |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| @From                   | The email address from which the mapping occurs.                                                                                                                                                                                                                    |
+| @To\[N]                 | The email address for the nth value to which the mapping occurs.<br />Indexing starts from 1, so the first email recipient is addressed as **@to\[1]**. If the index is missing, then just the @to is used or the first recipient is less than 1 (or, **@to\[0]**). |
+| @CC\[N]                 | The carbon copy email address for the nth value to which the mapping occurs.                                                                                                                                                                                        |
+| @FirstName              | The first name associated with the email from which the mapping occurs.                                                                                                                                                                                             |
+| @LastName               | The last name associated with the email from which the mapping occurs.                                                                                                                                                                                              |
+| @Subject                | The subject of the email.                                                                                                                                                                                                                                           |
+| @Body                   | The body of the email.                                                                                                                                                                                                                                              |
+
+4. Select **Save**.

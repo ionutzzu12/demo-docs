@@ -1,0 +1,112 @@
+---
+title: Example: Highlighting Certain Incidents in a List
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:56 GMT+0300 (Eastern European Summer Time)
+---
+
+This example explains how to highlight incidents in a list where the incident or a child business object has been modified by someone who is not the owner. This lets the owner quickly see where there is something they need to review.
+
+This procedure involves several steps:
+
+- :Link[Creating a Quick Action for the Incident Business Object]{label="Creating a Quick Action for the Incident Business Object" overridedLabel="Creating a Quick Action for the Incident Business Object" spaceId docId="aDsazQ2imz3e-kzTJsUjn" version="v2" docAnchorId="#Creating-a-Quick-Action-for-the-Incident-Business-Object" loadingMethod="dynamic" newTab="false" href="Highlight Incidents in a List.mdx"}
+- :Link[Creating the Triggered Action Business Rule on the Child Business Objects]{label="Creating the Triggered Action Business Rule on the Child Business Objects" overridedLabel="Creating the Triggered Action Business Rule on the Child Business Objects" spaceId docId="aDsazQ2imz3e-kzTJsUjn" version="v2" docAnchorId="#Creating2" loadingMethod="dynamic" newTab="false" href="Highlight Incidents in a List.mdx"}
+- :Link[Creating a Formatting Style]{label="Creating a Formatting Style" overridedLabel="Creating a Formatting Style" spaceId docId="aDsazQ2imz3e-kzTJsUjn" version="v2" docAnchorId="#Creating3" loadingMethod="dynamic" newTab="false" href="Highlight Incidents in a List.mdx"}
+- :Link[Creating the List Formatting Rule]{label="Creating the List Formatting Rule" overridedLabel="Creating the List Formatting Rule" spaceId docId="aDsazQ2imz3e-kzTJsUjn" version="v2" docAnchorId="#Creating4" loadingMethod="dynamic" newTab="false" href="Highlight Incidents in a List.mdx"}
+
+## Creating a Quick Action for the Incident Business Object
+
+This example creates a quick action on the incident business object to update the appropriate fields (such as **LastModBy** and optionally **LastModDateTime**). See Creating a New Quick Action with :Link[Creating a New Quick Action]{label="Creating a New Quick Action" overridedLabel="Creating a New Quick Action" spaceId docId="T_2hq2qRJzWxiHLCfgn-7" version="v2" docAnchorId="#Creating_a_New_" loadingMethod="dynamic" newTab="false" githubPath="../QuickActions/Graphical Action Designer/Using_the_Graphical_Action_Designer.htm#Creating_a_New_" href="../QuickActions/Graphical Action Designer/Using_the_Graphical_Action_Designer.mdx"} or [Using the Classic Action Designer (CAD)](<../QuickActions/Classical Action Designer/Using_the_Classic_Action_Designer.mdx>).
+
+1. Log in to \{\{FRS\_VARS.ProductName}}.
+2. Open the **Incident** workspace.
+3. From the Action Menu, choose **Edit Actions**. The application displays the Quick Action Editor.
+4. Under **Create New Actions**, click **Update Object**.
+5. Enter information into the fields.
+
+| Field                    | Description                                          |
+| ------------------------ | ---------------------------------------------------- |
+| Enter action name        | Force Update LastModX                                |
+| Enter action description | Quick action for highlighting incidents.             |
+| Enter category           | Assign a category as needed.                         |
+| Field Name               | From the drop-down list, select **LastModBy**.       |
+| Field Value              | Enter **$(CurrentUserDisplayName())**.               |
+| Field Name               | From the drop-down list, select **LastModDateTime**. |
+| Field Value              | Enter **$(CurrentDateTime())**.                      |
+
+<hint type="info">
+  To add additional field names and values, click the **add** :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/JtIxGMfjslfCSitXWBu4o_addgreen.png" alt caption size="10" width="17" height="15"} icon.
+</hint>
+
+6. Click **Save**.
+
+*Update LastModX Quick Action*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/EACWYnq9wgLiz71ZXoeUD_grid-quick-action.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/grid quick action.png" githubPath="Content/Resources/Images/help-images/grid quick action.png" showCaption="false"></Image>
+
+7. Close the Quick Action Editor and test the quick action.
+
+## Creating the Triggered Action Business Rule on the Child Business Objects
+
+This procedure describes how to create business rules on each of the child business objects to run the quick action on an incident when a record is created or updated.
+
+1. From the Configuration Console, click **Build > Business Objects** to open the **Business Objects** workspace.
+2. Open the business object called **Task.Assignment**.
+3. Click the **Business Rules** tab.
+4. Expand the **Triggered Actions** header and click **Add Trigger**.
+5. Enter a unique name for the triggered action business rule, such as **IncidentTAForceUpdateLastModX**.
+6. Choose events (for example, On Initialize, On Insert, On Update), add any applicable values, and click **Next**.
+7. Select **Configure new action** and select **Run for Child** from the drop-down list.
+8. Click **Next**.
+9. In the **Child object and relationship** field, select **IncidentAssocTaskAssignment**.
+10. In the **Action to run** field, select the quick action that you created previously, such as **Force Update LastModX**.
+11. Click **Save**.
+12. Test the business rule in all use cases.
+13. Repeat these steps for each child business object to affect the row highlighting.
+
+## Creating a Formatting Style
+
+1. From the Configuration Console, click **Build > User Interface Styles > Highlighter Styles** to open the **Highlighter Styles** workspace.
+2. Click **Add new\...**. The application displays the **New Style** workspace.
+3. Enter a name and description for the style.
+4. Drag and drop any styles to format. For example, drag the **border-color** property onto the **Dynamic Style Definition** area, then from the **Value** drop-down list, select light yellow (#FFFF99).
+
+*Example Highlighter Styles*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/ebuVJD6M516ncSTXOR-iA_grid-highlighter.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/grid highlighter.png" githubPath="Content/Resources/Images/help-images/grid highlighter.png" showCaption="false"></Image>
+
+5. Click **Save**.
+
+## Creating the List Formatting Rule
+
+1. From the Configuration Console, click **Build > Business Objects** to open the **Business Objects** workspace.
+2. Open the **Incident** business object.
+3. Click the **Layouts** tab. The application displays a list of layouts.
+4. Select the layout to apply the format to, ensuring that it is related to the appropriate role. For example, select **IncidentLayout.ServiceDesk**.
+5. Click **gridView** to open the form in the List View Editor.  
+6. Click **Edit** (next to **Add New List**) to modify the list.
+
+*List View Editor*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/UUsZevInpdRY32Mvw2FYn_grid-view-edit.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/grid view edit.png" githubPath="Content/Resources/Images/help-images/grid view edit.png" showCaption="false"></Image>
+
+7. The application only applies styles to the columns that are defined in the list, so add any additional fields as columns to the list, if they are missing.
+
+<Paragraph indent="1">
+  For this example, we want to highlight the **LastModBy** and **LastModDateTime** fields, so ensure that both of these fields are displayed as column headers on the list.
+</Paragraph>
+
+*Adding the LastModBy Field to the List Layout*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/DXpxWa7oaprTsM_ZYBJbM_layout-add-field.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/layout add field.png" githubPath="Content/Resources/Images/help-images/layout add field.png" showCaption="false"></Image>
+
+8. While the column is highlighted, on the right, from the Style field, select the new style that you created in :Link[Creating a Formatting Style]{label="Creating a Formatting Style" overridedLabel="Creating a Formatting Style" spaceId docId="aDsazQ2imz3e-kzTJsUjn" version="v2" docAnchorId="#Creating3" loadingMethod="dynamic" newTab="false" href="Highlight Incidents in a List.mdx"}.
+9. Click **Save**.
+10. Test the rule in your **Incident** workspace.
+
+<Paragraph indent="1">
+  Whenever anyone modifies an incident or an affected child business object of the incident, the application updates the **LastModBy** field of the incident. If the value of the **LastModBy** field is not the same as the value of the **Owner** field, the application highlights it.
+</Paragraph>
+
+*List Highlight Results*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/WIQz8aE0s1VfpE6sSuCVl_grid-highlight-results.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/grid highlight results.png" githubPath="Content/Resources/Images/help-images/grid highlight results.png" showCaption="false"></Image>

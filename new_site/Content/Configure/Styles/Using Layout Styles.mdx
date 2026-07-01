@@ -1,0 +1,88 @@
+---
+title: Using Layout Styles
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:57 GMT+0300 (Eastern European Summer Time)
+---
+
+- :Link[About Dynamic Layout Styles]{label="About Dynamic Layout Styles" overridedLabel="About Dynamic Layout Styles" spaceId docId="1NI1eqwaEL3x5XvlN-jj1" version="v2" docAnchorId="#About" loadingMethod="dynamic" newTab="false" href="Using Layout Styles.mdx"}
+- :Link[Adding a Dynamic Layout Style]{label="Adding a Dynamic Layout Style" overridedLabel="Adding a Dynamic Layout Style" spaceId docId="1NI1eqwaEL3x5XvlN-jj1" version="v2" docAnchorId="#Create_a_Style" loadingMethod="dynamic" newTab="false" href="Using Layout Styles.mdx"}
+- :Link[Editing a Dynamic Layout Style]{label="Editing a Dynamic Layout Style" overridedLabel="Editing a Dynamic Layout Style" spaceId docId="1NI1eqwaEL3x5XvlN-jj1" version="v2" docAnchorId="#Editing_and_Deleting_a_Dynamic_Layout_Style" loadingMethod="dynamic" newTab="false" href="Using Layout Styles.mdx"}
+- :Link[Deleting a Dynamic Layout Style]{label="Deleting a Dynamic Layout Style" overridedLabel="Deleting a Dynamic Layout Style" spaceId docId="1NI1eqwaEL3x5XvlN-jj1" version="v2" docAnchorId="#Deleting__a_Dynamic_Layout_Style" loadingMethod="dynamic" newTab="false" href="Using Layout Styles.mdx"}
+- :Link[Viewing Dynamic Layout Style Usage Statistics]{label="Viewing Dynamic Layout Style Usage Statistics" overridedLabel="Viewing Dynamic Layout Style Usage Statistics" spaceId docId="1NI1eqwaEL3x5XvlN-jj1" version="v2" docAnchorId="#Viewing_Layout_Style_Usage_Statistics" loadingMethod="dynamic" newTab="false" href="Using Layout Styles.mdx"}
+
+## About Dynamic Layout Styles
+
+You can create custom styles for layouts. You can use these styles to highlight changes to individual records as they are listed in the layout when certain conditions apply, or to emphasize certain fields within a layout. Styles include text font, size, style, alignment, and color, as well as backgrounds and borders.
+
+The styles created in the **Layout Styles** workspace follow standard \{\{CSS}} guidelines. See [http://www.w3schools.com/css/](http://www.w3schools.com/css/default.asp) for more information on CSS syntax.
+
+## Adding a Dynamic Layout Style
+
+1. From the Configuration Console, click **Build > User Interface Styles > Layout Styles** to open the **Layout Styles** workspace. The list of layout styles appears, if any.
+2. Click **Add new\...**. The **New Style** page appears.
+3. Under the **Dynamic Style Definition** pane, the following default fields appear:
+
+| Field       | Description                                                                                                     |
+| ----------- | --------------------------------------------------------------------------------------------------------------- |
+| Name        | A unique name that only contains alphanumeric characters.<br />Spaces and special characters are not permitted. |
+| Description | The purpose of the layout style.                                                                                |
+
+4. Drag and drop items from the **Style Properties** pane onto the **Dynamic Style Definition** pane, then enter standard CSS syntax to define each style.
+
+<ExpandableHeading>
+  ## --styles--
+
+  | Style            | Description                                                                                                                                                                                                                                                                    |
+  | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+  | background-color | The list cell background. Use standard CSS syntax, such as purple or #533b75. Choose from the pop-up window.                                                                                                                                                                   |
+  | border-color     | The color of the field border. Choose from the pop-up window.                                                                                                                                                                                                                  |
+  | border-style     | The type of border. See [http://www.tizag.com/cssT/border.php](http://www.tizag.com/cssT/border.php) for examples of each border style.  <br />none  <br />hidden  <br />dotted  <br />dashed  <br />solid  <br />double  <br />groove  <br />ridge  <br />inset  <br />outset |
+  | border-width     |                                                                                                                                                                                                                                                                                |
+  | color            | The color of the text. Choose from the pop-up window.                                                                                                                                                                                                                          |
+  | font-family      | The text font family. Choose from the drop-down list.                                                                                                                                                                                                                          |
+  | font-size        | The text font size. Enter the font size according to standard CSS guidelines, or choose from the drop-down list.                                                                                                                                                               |
+  | font-style       | The text font style, either normal or italic.                                                                                                                                                                                                                                  |
+  | font-weight      | The text font weight, such as bold or normal or a number value.  <br />  <br />**NOTE**: 400 is the same as normal and 700 is the same as bold.                                                                                                                                |
+  | padding          | The amount of padding around the field. Enter the padding according to standard CSS guidelines.                                                                                                                                                                                |
+  | text-align       | How the text is aligned. Choose from the drop-down list:  <br />left  <br />right  <br />center  <br />justify                                                                                                                                                                 |
+  | SelectorFormat   | Defines an attribute for the style. For example if you set:  <br />**Font-size**: x-small  <br />**SelectorFormat**.\{\{0}}\:hover  <br />this shrinks the font when you mouse over the style.                                                                                 |
+  | MediaQuery       |                                                                                                                                                                                                                                                                                |
+  | width            |                                                                                                                                                                                                                                                                                |
+  | min-width        |                                                                                                                                                                                                                                                                                |
+  | max-width        |                                                                                                                                                                                                                                                                                |
+  | height           |                                                                                                                                                                                                                                                                                |
+  | min-height       |                                                                                                                                                                                                                                                                                |
+  | max-height       |                                                                                                                                                                                                                                                                                |
+  | float            |                                                                                                                                                                                                                                                                                |
+  | clear            |                                                                                                                                                                                                                                                                                |
+</ExpandableHeading>
+
+<Paragraph indent="1">
+  The **Preview** section shows the results of your custom list style.
+</Paragraph>
+
+1. Click **Save**. The layout style appears on the page. You might need to click the **refresh** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/85bBZ5gsPcufovXgtjmFo_refresh-old.png" alt caption size="10" width="18" height="14"} to see the style.
+
+<Paragraph indent="1">
+  After creating the layout style, you can apply it to any form, list, or control, by choosing the style from a drop-down list.
+</Paragraph>
+
+## Editing a Dynamic Layout Style
+
+1. From the Configuration Console, click **Build > User Interface Styles > Layout Styles** to open the **Layout Styles** workspace. The list of layout styles appears, if any.
+2. Click the name of a dynamic layout style to edit it.
+3. Make changes to the dynamic style.
+4. Click **Save** in the **Dynamic Style Definition** pane.
+
+## Deleting a Dynamic Layout Style
+
+1. From the Configuration Console, click **Build > User Interface Styles > Layout Styles** to open the **Layout Styles** workspace. The list of layout styles appears, if any.
+2. On the line with the dynamic layout style, click the **delete** :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/USPl9Egu4Y2Blx7HKC3mA_deleteredx.png" alt caption size="10" width="14" height="13"} icon. The application displays a confirmation dialog box.
+3. Click **Yes**.
+
+## Viewing Dynamic Layout Style Usage Statistics
+
+You can see the \{\{business object}}s to which layout styles have been applied.
+
+1. From the Configuration Console, click **Build > User Interface Styles > Layout Styles** to open the **Layout Styles** workspace.
+2. Click **Get usage statistics**. A list of the layout styles and where they are being used appears. If a layout style does not have a description, it is not being used.

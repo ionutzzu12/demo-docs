@@ -1,0 +1,148 @@
+---
+title: Mapping SCCM Fields
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:52 GMT+0300 (Eastern European Summer Time)
+---
+
+- :Link[About SCCM Field Mapping]{label="About SCCM Field Mapping" overridedLabel="About SCCM Field Mapping" spaceId docId="M0CTCq0GpI9tbnaGYqy1Z" version="v2" docAnchorId="#About" loadingMethod="dynamic" newTab="false" href="About-Field-Mapping.mdx"}
+- :Link[Example 1: Mapping CI Type]{label="Example 1: Mapping CI Type" overridedLabel="Example 1: Mapping CI Type" spaceId docId="M0CTCq0GpI9tbnaGYqy1Z" version="v2" docAnchorId="#CI_Type_Mapping_Example" loadingMethod="dynamic" newTab="false" href="About-Field-Mapping.mdx"}
+- :Link[Example 2: Mapping CI Type]{label="Example 2: Mapping CI Type" overridedLabel="Example 2: Mapping CI Type" spaceId docId="M0CTCq0GpI9tbnaGYqy1Z" version="v2" docAnchorId="#CI_Type2_Mapping_Example" loadingMethod="dynamic" newTab="false" href="About-Field-Mapping.mdx"}
+- :Link[Example 3: Switch Function]{label="Example 3: Switch Function" overridedLabel="Example 3: Switch Function" spaceId docId="M0CTCq0GpI9tbnaGYqy1Z" version="v2" docAnchorId="#Switch_Function" loadingMethod="dynamic" newTab="false" href="About-Field-Mapping.mdx"}
+- :Link[Example 4: Mapping Type AssetIdentifier to Serial Number]{label="Example 4: Mapping Type AssetIdentifier to Serial Number" overridedLabel="Example 4: Mapping Type AssetIdentifier to Serial Number" spaceId docId="M0CTCq0GpI9tbnaGYqy1Z" version="v2" docAnchorId="#Mapping_AssetIdentifier_to_SerialNumber" loadingMethod="dynamic" newTab="false" href="About-Field-Mapping.mdx"}
+
+## About SCCM Field Mapping
+
+The asset identifiers and their mapped fields are stored in the **Asset Data Mapping** workspace. This workspace controls how incoming asset data gets processed by the asset processor and to which business object this data is mapped.
+
+1. Log into the \{\{FRS\_VARS.ProductName}} Application.
+2. Open the **Asset Data Mapping** workspace. A list of business objects defined for the configuration item appears.
+3. Double-click the configuration item business object to which to map the SCCM field, such as CI.Workstation. The **Asset Data Mapping** page appears.
+4. Select the **Field Mappings** tab. The list of asset identity or property appears on the **SCCM Configuration Field Mapping** page and on the corresponding field name on the asset data mapping record.
+
+*Asset Data Mapping Example*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/dEHIDWmqtswR2cW7mDYi2_assetdatamapping.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/asset_data_mapping.png" githubPath="Content/Resources/Images/help-images/asset_data_mapping.png" showCaption="false"></Image>
+
+## Example 1: Mapping CI Type
+
+The SCCM row for Computer\_System\_Data.Roles0 contains the data:
+
+<Paragraph indent="1">
+  *LM\_Workstation, LM\_Server, SQLServer, Backup\_Domain\_Controller, Timesource, Print, NT, Backup\_Browser, Master\_Browser, DFS*
+</Paragraph>
+
+The mapping is defined in pairs, except the last value.
+
+| Value           | Paired With                          |
+| --------------- | ------------------------------------ |
+| LM\_Server      | Server                               |
+| Server\_NT      | Server                               |
+| SQLServer       | Server                               |
+| LM\_Workstation | Workstation                          |
+| Workstation     | If no match, uses this default value |
+
+*Field Mapping Example - Configuration Items*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/J1OIPWmAcxOAdO1rCO475_citypemap.png" position="flex-start" size="40" initialPath="../../Resources/Images/Configure/citype_map.png" githubPath="Content/Resources/Images/Configure/citype_map.png" showCaption="false"></Image>
+
+The first match of the **Value** column above is mapped to the value in the **Paired With** column and is saved as the CI.Type.
+
+In this example, the CI.Type is "Server" since there is a match in the Roles0 value for "LM\_Server".
+
+<Paragraph indent="1">
+  If role = **LM\_Workstation**, returns **Workstation**.
+</Paragraph>
+
+<Paragraph indent="1">
+  If role = **SQLServer**, returns **Server**.
+</Paragraph>
+
+<Paragraph indent="1">
+  If role is not defined or does not exist, the default value is **Workstation**.
+</Paragraph>
+
+## Example 2: Mapping CI Type
+
+The SCCM row for Computer\_System\_Data.Roles0 contains the following data:
+
+<Paragraph indent="1">
+  *LM\_Workstation, LM\_Server, SQLServer, Backup\_Domain\_Controller, Timesource, Print, NT, Backup\_Browser, Master\_Browser, DFS*
+</Paragraph>
+
+The SCCM row for Computer\_System\_Data.Model0 contains the *Virtual* Model Regex pattern data.
+
+The mappings are defined as shown.
+
+| Value           | Paired With |
+| --------------- | ----------- |
+| LM\_Server      | Server      |
+| Server\_NT      | Server      |
+| SQLServer       | Server      |
+| LM\_Workstation | Workstation |
+
+*CIType2 Field Mapping Example - Configuration Items*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/_OT4HQEj3fAEBIxmOqvVc_citype2.png" position="flex-start" size="40" initialPath="../../Resources/Images/Configure/citype2.png" githubPath="Content/Resources/Images/Configure/citype2.png" showCaption="false"></Image>
+
+The first match of the **Value** column above is mapped to the value in the **Paired With** column and is saved as the CI.Type.
+
+If the Model Regex pattern matches the Model0 value, the application prepends the word "Virtual" to the previously identified CIType. Therefore, if a pattern match occurs for LM\_Server, then the final CIType is VirtualServer.
+
+<Paragraph indent="1">
+  If role = **LM\_Workstation**, the CIType match is **Workstation**.
+</Paragraph>
+
+<Paragraph indent="1">
+  If role = **SQLServer**, the CIType match is **Server**.
+</Paragraph>
+
+<Paragraph indent="1">
+  If role is not defined or does not exist, the default value assigned is the last defined CIType, in this case, **Workstation**.
+</Paragraph>
+
+## Example 3: Switch Function
+
+The switch structure is built on the usual switch/case statement structure. The last entry acts as default.
+
+**Pseudo Code Example**
+
+switch (VirtualMachineType)
+
+<Paragraph indent="1">
+  case '1': ExecutionEnvironment = Physical
+</Paragraph>
+
+<Paragraph indent="1">
+  case '2': ExecutionEnvironment = VMWare
+</Paragraph>
+
+<Paragraph indent="1">
+  case '3': ExecutionEnvironment = Virtual
+</Paragraph>
+
+1. In the SCCM tool, add a switch by selecting the **+** icon.
+2. At the initial drop-down list, select database fields to map the source and target in the drop-down lists.
+3. Add switch case information for as many items as needed, as shown below. For example 2\:VMWare. If the mapping finds **2** in the **Source database** field, it enters **VMWare** within the database field selected in the target.
+
+*Field Mapping Example for Switch Function*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/VHHGSrJEV-ERP6X90eRsc_fieldmapui.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/Field_Map_UI.png" githubPath="Content/Resources/Images/help-images/Field_Map_UI.png" showCaption="false"></Image>
+
+## Example 4: Mapping Type AssetIdentifier to Serial Number
+
+Setting up a mapping from asset identifier type to serial number can be achieved by using the following method. The mapping type asset identifier works by creating a unique string as seen below, which should not be changed: SCCM-\<*first\_8\_hex\_chars\_of\_machine\_ID*>-\<*rest\_of\_the\_machine\_ID\_in\_hex\_chars*>-\<*first\_8\_hex\_chars\_of\_instance\_key*>-\<*rest\_of\_the\_instance\_key\_in\_hex\_chars*>.
+
+In Discovery, the following criteria are used to match an asset to an existing configuration item in the order listed.
+
+1. Client ID and fully qualified domain name (FQDN)
+2. Host name (may not be fully qualified)
+3. MAC address
+
+Since serial number is not one of the fields that is used to match, the best way to set this up is to use the host name. This can be achieved by using one of the following two methods:
+
+- Change the field mappings in the import so that the serial number is stored in the host name and vice versa. The issue with this method is that data is stored in fields that are not named correctly.
+- Add a new field called **NewName** to the configuration item business object that has the same properties as the **Name** field. Add a new asset data mapping tos each configuration item business object required to store the host name in this new field (such as Server, Virtual Server, Workstation, and so on.)
+
+Now that a mapping exists to store the host name, change the asset data mapping to store the serial number in the **Name** field. The forms for the appropriate business objects should also be changed to display the data in the **NewName** field as the host name and the name data as the serial number.
+
+### [<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Y4WfYOm5SkWQaKIj8jTPB_transparent.gif" size="10" alt="Related Topics Link Icon" isUploading="false" initialPath="../../../Skins/Default/Stylesheets/Images/transparent.gif" githubPath="Skins/Default/Stylesheets/Images/transparent.gif" width="16" height="16" showCaption="false"></Image>Related Topics](javascript\:void\(0\);)

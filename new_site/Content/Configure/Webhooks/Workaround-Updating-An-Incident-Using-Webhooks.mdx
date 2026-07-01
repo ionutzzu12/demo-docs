@@ -1,0 +1,243 @@
+---
+title: Workaround: Updating an Incident using Webhooks
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:01 GMT+0300 (Eastern European Summer Time)
+---
+
+## Scenario
+
+This is a proof-of-concept for a workaround to enable you to use Action types other than **Insert Object** with the initial webhooks implementation. This is a complex workaround for advanced users, so if you can wait for the full implementation in a future release of \{\{Primary.Company}} \{\{FRS\_VARS.ProductName}}, we encourage you to do so.
+
+We will use a webhook to update the description for an Incident record; we can do this automatically by using a staging business object and triggered actions.
+
+<hint type="info">
+  **Important**: During testing, using triggered actions to automatically delete the staging business object didn't work. Hence you must manually delete staging records that have the **Done&#x20;**&#x66;ield set to **True**, or set up an action/workflow to run on schedule to do this for you.
+</hint>
+
+### Prerequisites
+
+To recreate this example, you need to be an \{\{FRS\_VARS.ITSM}} Administrator, and have access to an external API tool such as Postman.
+
+## How it Works
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/nsXNoMUrSF9LjO1sFaAbH_workaround-webhook-creation1.png" position="flex-start" size="40" initialPath="images/workaround-webhook-creation1.png" githubPath="Content/Configure/Webhooks/images/workaround-webhook-creation1.png" showCaption="false"></Image>
+
+1. Using Postman or a similar tool, send a request via the \{\{FRS\_VARS.ITSM}} webhook to the **WebhookStaging** business object. This request carries the **RecID** of the Incident record to be updated, as well as the new description, all in the request body.
+2. Receipt of the request causes the **WebhookStaging** business object to run the **Create a New Record** Action (called **Create Staging** in our example) that creates a new record, and puts all the data from the request body into the **DataField**.
+3. In the same Action (**Create a New Record**), an expression extracts the **RecID&#xA0;**&#x66;rom the request body and puts it into an ID field in the newly created **WebhookStaging&#x20;**&#x6F;bject record.
+4. The creation of the **WebhookStaging&#x20;**&#x72;ecord causes a Triggered Action to run the **Update a Record** Action that changes the value in the **Done** field from **false** to **true**.
+5. Simultaneously, the **Run for Child** Action is configured to run the **Update a Record** Action against the Incident record which takes the description out of the **DataField&#x20;**&#x61;nd updates the **Description&#x20;**&#x66;ield in the Incident record.
+
+<ExpandableHeading>
+  ## Create the WebhookStaging Business Object
+
+  1. In \{\{FRS\_VARS.ITSM}}, create a business object called **WebhookStaging**.
+  2. Create the following extra fields in the business object:
+
+  | Field     | Display Name | Type      | Nullable | Stored   |
+  | --------- | ------------ | --------- | -------- | -------- |
+  | DataField | DataField    | Text(Max) | Selected | Selected |
+  | Done      | Done         | Boolean   | Selected | Selected |
+  | RecordID  | RecordID     | Link      | Selected | Selected |
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/1z9D5aiV-FzQ5ZUAdeMWE_workaround-bo-creation1.png" position="flex-start" size="40" indent="1" initialPath="images/workaround-bo-creation1.png" githubPath="Content/Configure/Webhooks/images/workaround-bo-creation1.png" showCaption="false"></Image>
+
+  3. Click on **Relationships** for the **WebhookStaging&#x20;**&#x62;usiness object and set up the relationship between the staging business object and the Incident business object as shown.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/4yRzgXvPyIGjdAo-u2tEJ_workaround-bo-creation2.png" position="flex-start" size="40" indent="1" initialPath="images/workaround-bo-creation2.png" githubPath="Content/Configure/Webhooks/images/workaround-bo-creation2.png" showCaption="false"></Image>
+
+  <Paragraph indent="1">
+    The staging business object is related to the Incident business object **(zero or many** contained i&#x6E;**&#x20;zero or one**), storing the Incident RecID in the **Link&#x20;**&#x66;ield.
+  </Paragraph>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Create the "CreateStaging" Action in ITSM
+
+  **CreateStaging** is based on a **Create a New Record** Action block and is used to create a staging object to dump the data sent to the webhook into, as well as the **RecID&#x20;**&#x6F;f the record to update.
+
+  1. Open the **Graphical Action Designer**.
+
+  <Paragraph indent="1">
+    See: [Using the Graphical Action Designer (GAD)](<../QuickActions/Graphical Action Designer/Using_the_Graphical_Action_Designer.mdx>).
+  </Paragraph>
+
+  <hint type="info">
+    **Tip:&#x20;**&#x59;ou can use the **Classic Action Designer** if you prefer.
+  </hint>
+
+  2. Create a new block using the **Update Variables and Stored Values** Action block type. This block updates the stored values and variables used in your Action.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/ukxvmC7CBmueiRW1jsOvG_workaround-qa-creation1.png" position="flex-start" size="40" indent="1" initialPath="images/workaround-qa-creation1.png" githubPath="Content/Configure/Webhooks/images/workaround-qa-creation1.png" showCaption="false"></Image>
+
+  <Paragraph indent="1">
+    For more help see: [Update Stored Values and Variables Quick Action](<../QuickActions/Graphical Action Designer/Advanced Actions/Update Stored Values and Variables.mdx>)
+  </Paragraph>
+
+  3. Configure the **Update Variables and Stored Values** Action block to store the data given to the webhook endpoint in the required variable **WebhookBody**. Edit the values as follows:
+
+  | Field         | Value       |
+  | ------------- | ----------- |
+  | Variable Type | Variable    |
+  | Name          | WebhookBody |
+  | Data Type     | JSON        |
+  | Value         | \{}         |
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Wb_axOg4Vv-rjaI_NsF3t_csm-eg-itsm-qa1.png" position="flex-start" size="40" indent="1" initialPath="images/csm-eg-itsm-qa1.png" githubPath="Content/Configure/Webhooks/images/csm-eg-itsm-qa1.png" showCaption="false"></Image>
+
+  4. Create a new block using the **Create a New Record** Action block type, and attach it to the **Update Variables and Stored Values** Action block.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/a0oqLdKqTD5kxH-NbmRdW_workaround-webhook-creation2.png" position="flex-start" size="40" indent="1" initialPath="images/workaround-webhook-creation2.png" githubPath="Content/Configure/Webhooks/images/workaround-webhook-creation2.png" showCaption="false"></Image>
+
+  5. Edit the **Create a new record** block.
+
+  <Paragraph indent="1">
+    For EACH field, create an expression using the **Simplified Expression Editor&#x20;**&#x74;o use the variable to populate that particular field. The **DataField&#x20;**&#x61;nd **RecordID&#x20;**&#x66;ields are populated from the webhook data. For **RecordID**, the expression retrieves a value for the JSON path and uses it to populate the field. Use this expression to populate the **RecordID** field:
+  </Paragraph>
+
+  <Paragraph indent="1">
+    $(JSONPathValue(Variable("WebhookBody"), "$.incidentRecId"))
+  </Paragraph>
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/muvPR4lG9PSuGMAOyRp9i_workaround-webhook-creation3.png" position="flex-start" size="40" indent="1" initialPath="images/workaround-webhook-creation3.png" githubPath="Content/Configure/Webhooks/images/workaround-webhook-creation3.png" showCaption="false"></Image>
+
+  <Paragraph indent="1">
+    The target business object (Incident) is set in the **RecordId\_Category** field.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    For help, see: [Using the Simplified Expression Editor](<../../Reference/Expressions/Simplified Expression Editor.mdx>)
+  </Paragraph>
+
+  6. Save your Action as **Create Staging**.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Create the Webhook in ITSM
+
+  Create a webhook to trigger the **Create a New Record** Action to put webhook data and the RecID into the staging business object **WebhookStaging**.
+
+  1. In the **Settings&#x20;**&#x6D;enu, click on **Webhooks Manager** in the **Build&#x20;**&#x73;ection.
+
+  <Paragraph indent="1">
+    The **Webhooks Manager** opens.
+  </Paragraph>
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/HuxjsOA-IYsC8Mf6Qn3qw_creatingwebhook.png" position="flex-start" size="40" indent="1" initialPath="images/creating_webhook.png" githubPath="Content/Configure/Webhooks/images/creating_webhook.png" showCaption="false"></Image>
+
+  2. Click **Add a Webhook**.
+  3. Enter this information into the fields:
+
+  | Field                  | Value                                                                                                                      |
+  | ---------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+  | Name                   | Update Incident Description                                                                                                |
+  | Description            | This webhook creates a staging object, which in turn runs a Triggered Action to update the related Incident's description. |
+  | Endpoint Extension     | UpdateIncident  <br />**Note:** The endpoint extension is case-sensitive.                                                  |
+  | Full Endpoint          | https\://\{tenant url}/api/rest/Webhooks/Execute?extension=UpdateIncident                                                  |
+  | Select Business Object | WebhookStaging (WebhookStaging)                                                                                            |
+  | Select Action          | CreateStaging (Composite Action)                                                                                           |
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/nsXNoMUrSF9LjO1sFaAbH_workaround-webhook-creation1.png" position="flex-start" size="40" indent="1" initialPath="images/workaround-webhook-creation1.png" githubPath="Content/Configure/Webhooks/images/workaround-webhook-creation1.png" showCaption="false"></Image>
+
+  4. Click **Save**.
+
+  <Paragraph indent="1">
+    A confirmation message appears saying **Webhook successfully created**. Your webhook appears in the list and is enabled by default.
+  </Paragraph>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Create the Update a Record Action
+
+  The **Update a Record** Action runs from the **Run for Child** Action, and updates the description of the target object by taking the data dumped into the related **WebhookStaging&#x20;**&#x6F;bject.
+
+  1. Open the **Graphical Action Designer**.
+
+  <Paragraph indent="1">
+    See: [Using the Graphical Action Designer (GAD)](<../QuickActions/Graphical Action Designer/Using_the_Graphical_Action_Designer.mdx>).
+  </Paragraph>
+
+  2. Create a new block using the **Update Description** block type. Name it **Update a record**.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/NtWDFIoZX5YTDzDhyPf8e_workaround-2ndqa-creation1.png" position="flex-start" size="40" indent="1" initialPath="images/workaround-2ndQA-creation1.png" githubPath="Content/Configure/Webhooks/images/workaround-2ndQA-creation1.png" showCaption="false"></Image>
+
+  3. Edit the **Update a record** block.
+
+  <Paragraph indent="1">
+    Create an expression using the Simplified Expression Editor to take the content from the **DataField&#x20;**&#x61;nd parse it into the Incident **Description&#x20;**&#x66;ield. Use this expression:
+  </Paragraph>
+
+  <Paragraph indent="1">
+    $(JSONPathValue(\[WebhookStaging#.WebhookStaginAssocIncident]DataField, "$.description"))
+  </Paragraph>
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/MUlhANBfwBmt-zxs9fLrQ_workaround-2ndqa-creation2.png" position="flex-start" size="40" indent="1" initialPath="images/workaround-2ndQA-creation2.png" githubPath="Content/Configure/Webhooks/images/workaround-2ndQA-creation2.png" showCaption="false"></Image>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Set up the Triggered Actions in ITSM
+
+  Set up two Triggered Actions against the **WebhookStaging&#x20;**&#x62;usiness object. One of these has an Action as part of it based on **Run for Child**.
+
+  1. With the **WebhookStaging** business object open, click **Business Rules**.
+  2. Click **Triggered Actions**.
+  3. Create two triggered actions as follows:
+
+  <hint type="info">
+    **Tip:** Click **Next&#x20;**&#x74;o move to the next screen to find all the fields shown in the tables for each triggered action.
+  </hint>
+
+  | Trigger 1                                    | Value                                      |
+  | -------------------------------------------- | ------------------------------------------ |
+  | Name                                         | Set Done to True                           |
+  | Object Event                                 | On Insert                                  |
+  | Action that will be executed by this trigger | Action: Update Object                      |
+  | Target Object Field                          | Done = $(true)  <br />Overwrite = selected |
+
+  | Trigger 2                                    | Value                       |
+  | -------------------------------------------- | --------------------------- |
+  | Name                                         | Trigger Incident Update     |
+  | Object Event                                 | On Insert                   |
+  | Action that will be executed by this trigger | Run For Child               |
+  | **Run for Child Configuration**              |                             |
+  | Child Object and relationship                | WebhookStagingAssocIncident |
+  | Add New > Action to run                      | Update Description          |
+
+  <Paragraph indent="1">
+    The **Run for Child&#x20;**&#x41;ction is triggered on creation of the staging object, and runs the third action using the relationship between the staging business object and the target record.
+  </Paragraph>
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/v-RzU4jxCU43e9wmIJaiB_workaround-rfcqa-creation1.png" position="flex-start" size="40" indent="1" initialPath="images/workaround-rfcQA-creation1.png" githubPath="Content/Configure/Webhooks/images/workaround-rfcQA-creation1.png" showCaption="false"></Image>
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/qqrGdsAFOyrV7lh3PKSBl_workaround-rfcqa-creation2.png" position="flex-start" size="40" indent="1" initialPath="images/workaround-rfcQA-creation2.png" githubPath="Content/Configure/Webhooks/images/workaround-rfcQA-creation2.png" showCaption="false"></Image>
+
+  <Paragraph indent="1">
+    Create the Triggered Action using the following fields:
+  </Paragraph>
+
+  | Field         | Value                       |
+  | ------------- | --------------------------- |
+  | Name          | Run for Child               |
+  | Relationship  | WebhookStagingAssocIncident |
+  | Action to run | Update Description          |
+
+  4. Click **Save**.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Sending a Request to Update a Record Description
+
+  1. This is the target Incident record with the description that we want to update.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/OqxLt3kTehFXqSK8O5KiG_workaround-demo1.png" position="flex-start" size="40" indent="1" initialPath="images/workaround-demo1.png" githubPath="Content/Configure/Webhooks/images/workaround-demo1.png" showCaption="false"></Image>
+
+  2. Using Postman or a similar tool, send the **RecID** of the target Incident and the new **Description** in the request.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/h6tNC4gIXHEZe2CHVPCpB_workaround-demo2.png" position="flex-start" size="40" indent="1" initialPath="images/workaround-demo2.png" githubPath="Content/Configure/Webhooks/images/workaround-demo2.png" showCaption="false"></Image>
+
+  3. Click **Send&#x20;**&#x69;n Postman.
+  4. Click **Refresh&#x20;**&#x69;n the \{\{FRS\_VARS.ITSM}} Incident record page.
+  5. The **Description&#x20;**&#x66;ield has been updated with your new value.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/t0f6p0ytTZ242EjNOVvei_workaround-demo3.png" position="flex-start" size="40" indent="1" initialPath="images/workaround-demo3.png" githubPath="Content/Configure/Webhooks/images/workaround-demo3.png" showCaption="false"></Image>
+</ExpandableHeading>

@@ -1,0 +1,41 @@
+---
+title: Assigning Incidents
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:47 GMT+0300 (Eastern European Summer Time)
+---
+
+When a user calls the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Console}} to report an incident, the application automatically sets the incident owner to the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Analyst-Service-Desk-Analyst}} who logs the incident and sets the team to the team that the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Analyst-Service-Desk-Analyst}} belongs to. If the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Analyst-Service-Desk-Analyst}} can resolve the incident for the user, it is considered a first call resolution and the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Analyst-Service-Desk-Analyst}} and his team remain the owner and team to whom the incident is issued.
+
+If the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Analyst-Service-Desk-Analyst}} needs to reassign the incident to another team, the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Analyst-Service-Desk-Analyst}} must manually change the team and owner of the incident.
+
+When an end user submits an incident through the \{\{FRS\_VARS.Self\_Service\_Portal-Self-Service}} portal or through email, the application puts it into the logged state. The \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Manager}} uses saved searches, such as the saved searches called **All Incidents Waiting for Analyst** or **All incidents Breaching in the Next 24 Hours**, to find unassigned incidents and assigns them to owners.
+
+After the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Manager}} assigns the incident, the application notifies the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Analyst-Service-Desk-Analyst}} that the incident has been assigned to him and notifies the end user that the incident is being worked on .
+
+1. Log in to the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Console}} console.
+2. Open the **Incident** workspace.
+3. Open an incident.
+4. From the toolbar, click **Assign**.
+
+<Paragraph indent="1">
+  *Assign Incident to Me*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/yRgw4eiapWEBARbhtNnhR_assigningincidents.jpg" alt="Assigning an Incident to yourself" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/assigning_incidents.jpg" githubPath="Content/Resources/Images/help-images/assigning_incidents.jpg" showCaption="false"></Image>
+
+<Paragraph indent="1">
+  The application displays the owner name as your login ID.
+</Paragraph>
+
+## Reassigning an Incident
+
+<hint type="info">
+  The escalation clock for the incident does not stop when an incident is reassigned.
+</hint>
+
+1. Log in to the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Console}} console.
+2. Open the **Incident** workspace.
+3. Open an incident.
+4. From the **Team** drop-down list, select the team to reassign the incident to.
+5. From the **Owner** drop-down list, select the person to reassign the incident to.
+6. Click **Save**.

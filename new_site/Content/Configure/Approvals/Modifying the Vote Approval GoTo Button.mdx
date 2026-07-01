@@ -1,0 +1,55 @@
+---
+title: Modifying the Vote Approval Go To Button
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:51 GMT+0300 (Eastern European Summer Time)
+---
+
+Before HEAT Release 2014.3, users would click **Go to** on the **Approval** form, which would open the grandparent business object (such as service request, change, or knowledge) in a new browser window or tab, causing multiple instances of the application to be open simultaneously. As of HEAT Release 2014.3, the record opens a new tab within the application in the current window. Users upgrading from older versions might need to manually configure this button to work as needed.
+
+These procedures only apply to users upgrading to HEAT Release 2014.3 and not to new users.
+
+Manually configuring this feature consists of three phases:
+
+- :Link[Step 1: Creating a Quick Action]{label="Step 1: Creating a Quick Action" overridedLabel="Step 1: Creating a Quick Action" spaceId docId="nHbBUyNu1_fa3szT3M-T4" version="v2" docAnchorId="#Step1" loadingMethod="dynamic" newTab="false" href="Modifying the Vote Approval GoTo Button.mdx"}
+- :Link[Step 2: Updating the Form]{label="Step 2: Updating the Form" overridedLabel="Step 2: Updating the Form" spaceId docId="nHbBUyNu1_fa3szT3M-T4" version="v2" docAnchorId="#Step2" loadingMethod="dynamic" newTab="false" href="Modifying the Vote Approval GoTo Button.mdx"}
+- :Link[Step 3: Testing the Process]{label="Step 3: Testing the Process" overridedLabel="Step 3: Testing the Process" spaceId docId="nHbBUyNu1_fa3szT3M-T4" version="v2" docAnchorId="#Step3" loadingMethod="dynamic" newTab="false" href="Modifying the Vote Approval GoTo Button.mdx"}
+
+## Step 1: Creating a Quick Action
+
+1. Create a **UI Action** quick action. Refer to [UI Action Quick Action](<../QuickActions/Classical Action Designer/templates/UI Action.mdx>).
+2. Enter the following values:
+
+| Field        | Value                                                                                                                                                                                                           |
+| ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Name         | Go to grandparent.                                                                                                                                                                                              |
+| Scope        | ObjectWorkspace                                                                                                                                                                                                 |
+| Command Id   | Search                                                                                                                                                                                                          |
+| Confirmation | null (do not include any quotes)                                                                                                                                                                                |
+| Command Data | \{ 'ObjectType':'$(PrimaryParentObject)#', 'SearchCriteria':\[ \{'ObjectId':'$(PrimaryParentObject)#','FieldName':'RecId','Condition':'=', 'FieldValue':'$(PrimaryParentRecId)'} ], 'FillSearchPanel':'false' } |
+
+3. From the **Publish** drop-down menu, choose **All**. This allows all available roles to execute the quick action.
+4. **Save**.
+
+## Step 2: Updating the Form
+
+1. From the Configuration Console, click **Build > Business Object** to open the **Business Objects** workspace.
+2. Open the **Approval Vote Tracking** business object.
+3. Click **Forms**.
+4. Click **FRS\_ApprovalVoteTracking**. The **Approval Vote Tracking** form page appears.
+5. Delete the **Go to** button.
+6. Drag a **Command Button** onto the form in its place. (Refer to [About the "Other" Form Controls](<../Forms/Other Form Controls.mdx>)).
+7. Enter the following values:
+
+| Field  | Value                                                              |
+| ------ | ------------------------------------------------------------------ |
+| Action | Choose the **Go To Grandparent** quick action you created earlier. |
+| Label  | Go to                                                              |
+| Width  | 6 em                                                               |
+
+<Paragraph indent="1">
+  The remaining values can stay as they are.
+</Paragraph>
+
+## Step 3: Testing the Process
+
+From the **Approval Vote Tracking** form of a record, click **Go To**. The grandparent record should open in a new tab within the application and not in a new browser window or tab.

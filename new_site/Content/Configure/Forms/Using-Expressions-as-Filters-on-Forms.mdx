@@ -1,0 +1,48 @@
+---
+title: Using Expressions as Filters on a Form
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:56 GMT+0300 (Eastern European Summer Time)
+---
+
+- :Link[Using Hidden Expressions on a Form]{label="Using Hidden Expressions on a Form" overridedLabel="Using Hidden Expressions on a Form" spaceId docId="PpXNc5IT_9iDG4AaMujvU" version="v2" docAnchorId="#Using" loadingMethod="dynamic" newTab="false" href="Using-Expressions-as-Filters-on-Forms.mdx"}
+- :Link[About Using Expressions as Filters on a Form]{label="About Using Expressions as Filters on a Form" overridedLabel="About Using Expressions as Filters on a Form" spaceId docId="PpXNc5IT_9iDG4AaMujvU" version="v2" docAnchorId="#About_Using_Expressions_as_Filters_on_a_Form" loadingMethod="dynamic" newTab="false" href="Using-Expressions-as-Filters-on-Forms.mdx"}
+- :Link[Example: Adding an Expression Filter to the Customer Field for Incidents]{label="Example: Adding an Expression Filter to the Customer Field for Incidents" overridedLabel="Example: Adding an Expression Filter to the Customer Field for Incidents" spaceId docId="PpXNc5IT_9iDG4AaMujvU" version="v2" docAnchorId="#ExampleAdding_an_ExpressionFilter_to_the_Customer_Field_for_Incidents" loadingMethod="dynamic" newTab="false" href="Using-Expressions-as-Filters-on-Forms.mdx"}
+
+### Using Hidden Expressions on a Form
+
+1. From the Configuration console, click **Build > Business Objects**.
+2. Open a business object.
+3. Click the **Forms** tab.
+4. Open a form.
+5. Highlight a field and click the **Control Properties** tab.
+6. Click the **Visible Expression** field and click the **expression** button. The application displays the Expression Editor.
+7. Enter an expression such as **$(if Status == "Logged" then true else false)**.
+8. Click **Save**.
+9. Save the form.
+
+### About Using Expressions as Filters on a Form
+
+Each link field on a form displays a specific business object that you select in the **Display Field** field under the **Control Properties** tab. Any business object supports a selection of fields by which you can filter instances of the business object. In some cases, however, the business object does not support the field that you need.
+
+For example, when you create a new incident, you click the **search** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/DCktoY3n_ar1MeDwY8XFe_searchmag.png" alt caption size="10" width="14" height="13"} on the **Customer** field to view a list of customers (or users). By default, all customers appear in this list whether their status is set to *active* or otherwise. If you only want to see active customers, you need a way to filter the list. You do that by adding an expression to the **Customer** field.
+
+### Example: Adding an Expression Filter to the Customer Field for Incidents
+
+To add an expression filter to the **Customer** field of an **Incident** form, do the following:
+
+1. From the Configuration console, click **Build > Business Objects**.
+2. Open the **Incident** business object.
+3. Click the **Forms** tab.
+4. Open the **Incident.CustomerOwnershipForm** form.
+5. Highlight the **Customer** field and click the **Control Properties** tab.
+6. Click th&#x65;**&#x20;Filter Expression** field and enter **$(\[OtherObject]Status == "Active")**.
+7. Click **Save**.
+8. From the application, click **Refresh** on the **Incident** workspace to refresh the **Incident** workspace.
+
+<Paragraph indent="1">
+  Now, when you search for a customer name in a new incident, only the names of active customers appear in the list.
+</Paragraph>
+
+<hint type="info" indent="1">
+  In the expression editor you can use any case to define expression. For example, writing \`ToString\` or \`tostring\` expression perform the same action.
+</hint>

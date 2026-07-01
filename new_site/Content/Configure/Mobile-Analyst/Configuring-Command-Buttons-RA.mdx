@@ -1,0 +1,77 @@
+---
+title: Configuring Command buttons in the Mobile Analyst Form
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:50 GMT+0300 (Eastern European Summer Time)
+---
+
+You can configure the \{\{FRS\_VARS.Mobile\_Analyst}} form to include Command buttons for performing Quick Actions.
+
+To configure a Command Button in the Incident form for \{\{FRS\_VARS.Mobile\_Analyst}}:
+
+1. From the Configuration console > **Build** > **Business Objects**.
+2. Select the **Incident Business Objects**, click on **Forms** and then select the appropriate form for \{\{FRS\_VARS.Mobile\_Analyst}}.
+
+<Paragraph indent="1">
+  The form is displayed in edit mode.
+</Paragraph>
+
+3. Expand the **Other** section in the **Controls** section. A list of controls is displayed.
+4. Scroll to find the **Command Button** control. Drag and drop it in the form section.
+5. Click on the Button you just dropped and configure it in the **Control Properties** as needed.
+
+For more information on the configuring the Form Controls, see [About the "Other" Form Controls](<../Forms/Other Form Controls.mdx>).
+
+## Configuring Upload Control in Mobile Analyst Form
+
+You can configure the \{\{FRS\_VARS.Mobile\_Analyst}} form to include an Upload Control field.
+
+To configure the Upload Control field:
+
+1. Log in to Neurons \{\{FRS\_VARS.ITSM}} as an Administrator.
+2. Click the Settings :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/iYSaSr9aEReOMXTxoOB5P_settingsicon-configure22x22.png" alt caption size="10" width="22" height="22"} icon and navigate to **Build** > **Business Object** > **Incident** > **Fields**.
+3. In the **Field** section, click **ADD NEW**.
+4. Then click **Binary**.
+5. Click **not set**, to enter **Field Name**, **Display Name**, and **Description**.
+6. At the bottom, click **Add This Field** to continue.
+7. Navigate to **Forms** > **Incident.ResponsiveAnalyst\_formEdit**.
+8. On the **Incident.ResponsiveAnalyst\_formEdit** page, navigate to **Incident** folder > **Fields** folder.
+9. Expand **Field** folder, it displays your newly created field.
+10. Drag and drop the newly created binary field on the right panel and adjust it according to your preference.
+11. Click **Save**.
+
+## Configuring Date and Currency functions in Mobile Analyst Form
+
+You can add date and currency functions in the Create New Incident form in \{\{FRS\_VARS.Mobile\_Analyst}}.
+
+To configure the date and currency functions:
+
+1. Log in to Neurons \{\{FRS\_VARS.ITSM}} as an Administrator.
+2. Click the Settings :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/iYSaSr9aEReOMXTxoOB5P_settingsicon-configure22x22.png" alt caption size="10" width="22" height="22"} icon and navigate to **Build** > **Business Object** > **Incident** > **Layouts**.
+3. In the Layouts section, click **IncidentLayout.ResponsiveAnalyst**.
+4. On the **IncidentLayouts.ResponsiveAnalyst** page, navigate to **Views in this layout** and click **responsive.analyst.new**.
+5. On the **Edit Layout** page, click **Edit**.
+6. Click **Description**, under **Control Properties**, click **Label Expression**.
+7. In **Label Expression**, click **fx**.
+8. The **Edit Expression** dialog box appears, enter $(AddHours(3)) to configure Date function or enter $(Currency(20, "INR") to configure Currency function, and click **Ok**.
+9. Click **Save**.
+
+## Configuring toolbar for child panels and tabs in Mobile Analyst Form
+
+You can configure the toolbar functions for child panels and tabs for the \{\{FRS\_VARS.Mobile\_Analyst}} role. It gives the analyst the capability to run the action within the child tab for different workspace.
+
+To configure toolbar for child tab:
+
+1. Log in to Neurons \{\{FRS\_VARS.ITSM}} as an Administrator.
+2. Click the Settings :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/iYSaSr9aEReOMXTxoOB5P_settingsicon-configure22x22.png" alt caption size="10" width="22" height="22"} icon and navigate to **Build** > **Business Object**.
+3. Open Business Object "Task.assignment" view.
+4. Navigate to **Quick Actions** > **Classic Action Designer**.
+5. Navigate to **Create New Actions** tab > **Composite Action**.
+6. Click **Enter action name**to enter the name.
+7. In the **Add new action** field, use the drop-down list to select an action type.
+8. In the **Publish to** field, use the drop-down list to select **Mobile Analyst**.
+9. Click **Save**.
+10. Navigate to **Business Object** > **Incident** > **Layouts** >**IncidentLayout.ResponsiveAnalyst**.
+11. On the **IncidentLayout.ResponsiveAnalyst** page, navigate to **Views in this layout** and click **formView**.
+12. On the **Edit Layout** page, navigate to **Child Panels** and click **Edit** in the **Task** row.
+13. The **Toolbar Editor** dialog box appears, drag and drop the created action, and click **Save**.
+14. On the **Edit Layout** page, click **Save**.

@@ -1,0 +1,85 @@
+---
+title: PromptHtml
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:59 GMT+0300 (Eastern European Summer Time)
+---
+
+Displays an HTML editor for the user to enter HTML text, and returns the text that the user entered.
+
+## Syntax
+
+PromptHtml(message, fieldAreaWidth, fieldAreaHeight, required, defaultValue)
+
+## Enabled For
+
+For a description of the business object categories, see :Link[Notes on "Enabled For"]{label="Notes on &#x22;Enabled For&#x22;" overridedLabel="Notes on &#x22;Enabled For&#x22;" spaceId docId="xObv2pIDrk60jkEIWs8mD" version="v2" docAnchorId="#Notes" loadingMethod="dynamic" newTab="false" githubPath="_Built_in_Functions.htm#Notes" href="_Built_in_Functions.mdx"}.
+
+| Business Object Category                                                                    | Yes/No |
+| ------------------------------------------------------------------------------------------- | ------ |
+| Business Rules: Before-Save Rules                                                           | Yes1   |
+| Business Rules: Calculation Rules (After Save, with or without Also Recalculate on Load)    | Yes    |
+| Business Rules: Calculation Rules (Before Save or Always, without Also Recalculate On Load) | Yes1   |
+| Business Rules: Calculation Rules (Before Save or Always, with Recalculate On Load)         | Yes    |
+| Business Rules: Editing Rules                                                               | Yes2   |
+| Business Rules: Initialization Rules                                                        | Yes1   |
+| Business Rules: Read Only Rules                                                             | No     |
+| Business Rules: Required Rules                                                              | Yes2   |
+| Business Rules: Validation Rules                                                            | Yes1   |
+| Client Expressions                                                                          | No     |
+| Object Permissions                                                                          | No     |
+| Services                                                                                    | Yes    |
+| LDAP                                                                                        | Yes    |
+| Mobile                                                                                      | Yes    |
+| Quick Actions (except UI Quick Actions)                                                     | Yes1   |
+| UI Quick Actions                                                                            | No     |
+| Reports                                                                                     | Yes1   |
+| Search/Dashboard without field references                                                   | Yes1   |
+| Search/Dashboard with field references                                                      | No     |
+
+**Legends**
+
+1. Except in services.
+2. Except in services and when this field appears on a form or is triggered by such a field.
+
+## Parameters
+
+This function takes a minimum of one and a maximum of five parameters.
+
+| Parameter       | Description                                                                                           |
+| --------------- | ----------------------------------------------------------------------------------------------------- |
+| message         | The message that shows as a prompt.                                                                   |
+| fieldAreaWidth  | (Optional) The width of the text area in pixels.                                                      |
+| fieldAreaHeight | (Optional) The height of the text area in pixels.                                                     |
+| required        | (Optional) Can be either true or false.<br />If true, the user must enter a value in the HTML editor. |
+| defaultValue    | (Optional) The text value to return if the user does not enter anything or select a value.            |
+
+## Return Value
+
+HTML text
+
+Returns HTML text displayed as formatted content in an HTML field. When switched to a non-HTML field (example: text field), it is displayed as plain text. For example, the content "Here is a test description" is displayed as follows:
+
+- In an HTML field: Here is a test description
+- In a plain text field: \<b style="color: rgb(38, 38, 38); font-family: 'Times New Roman';">Here is a test description\&nbsp;\</b>
+
+## Examples
+
+The following are the examples of using this function in a quick action:
+
+**Example 1**:
+
+$(PromptHtml("Enter value"))
+
+Returns a prompt to enter a value in the HTML editor text field.
+
+**Example 2**:
+
+$(PromptHtml("Enter value",,,true))
+
+Returns a prompt to enter a required value in the HTML editor text field. The field cannot be left blank as the required parameter is set to true. If left blank the text field is shaded red, and the HTML editor remains open when **OK** is selected.
+
+**Example 3**:
+
+$(PromptHtml("Enter value", 500, 350, true, "Some default value"))
+
+Returns a prompt to enter a value in the HTML editor text field that is 500 pixels in width and 350 pixels in height, and that contains default text "Some default value". If the user does not enter a value, then "Some default value" is the value returned.

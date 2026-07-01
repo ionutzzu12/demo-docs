@@ -1,0 +1,52 @@
+---
+title: Setting up ITSM users for authentication via the Neurons Platform
+slug: setting-up-itsm-users-for-authentication-via-the-neurons-platform
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:03 GMT+0300 (Eastern European Summer Time)
+---
+
+<hint type="success">
+  This feature is **Early Access** only and may not be available in your environment. For more information, please contact your Customer Success Manager.
+</hint>
+
+## How it works
+
+Referring to the image shown below, a standalone \{\{Primary.Company}}\{\{Primary.Product}} tenant uses a direct connection to the authentication provider.
+
+In the case of an \{\{FRS\_VARS.ITSM}} tenant which has been setup to benefit from access to globally available features (example: Portfolio Landing Page, Global Announcements), the \{\{FRS\_VARS.ITSM}} tenant ALWAYS uses OpenID Connect (OIDC) authentication to connect to the \{\{FRS\_VARS.Neurons\_platform}}. This means that, regardless of which authentication method you wish to use for your users (SAML with Entra ID, Okta or PingOne for version 2024.4, or LDAP, PingFederate in the future), \{\{FRS\_VARS.ITSM}}connects to the Login App within the \{\{FRS\_VARS.Neurons\_platform}} using OIDC.
+
+Unless access is explicitly granted in both products, it is expected that the \{\{FRS\_VARS.Neurons\_platform}} administrator sets up the authentication providers on the \{\{FRS\_VARS.Neurons\_platform}} and the \{\{FRS\_VARS.ITSM}} administrator ensures that \{\{FRS\_VARS.ITSM}} users are enabled to use external authentication via OIDC on their tenant as described below.
+
+## Prerequisites
+
+- Users need a converged tenant that has access to all available products. The Site Reliability Engineering (SRE) team sets up your tenant for you so that OIDC authentication is already available.
+- To verify that OIDC is set up, open the **Configuration&#x20;**&#x63;onsole, and select **Security Controls > Authentication Providers**. You should see an entry similar to this:
+
+
+<hint type="danger">
+  Do not change anything in this Authentication Provider record.
+</hint>
+
+**To enable authentication for a single&#x20;**\{\{FRS\_VARS.ITSM}}**&#x20;user:**
+
+1. Open the **Configuration&#x20;**&#x63;onsole and select **User and Permissions > Users**.
+2. Select the user.
+3. Select **Enable External Auth**.
+4. Select **Add New** to the right of **Login for External Auth**.
+5. Enter the user's email address as their **Login**.
+6. Start to type Uni and select from the list of providers that appears or select the search icon.
+7. Select **Unified Ivanti Login** from the **Find Authentication Provider** screen.
+8. Click **Use Selected Authentication Provider**.
+9. Click **Save**.
+
+<Paragraph indent="1">
+  The user now has access to all the \{\{FRS\_VARS.unified\_product\_experience}} features.
+</Paragraph>
+
+<hint type="info">
+  If you have a brand new tenant with no users, as each user logs in and verifies themself with the authentication provider, they are automatically added to \{\{FRS\_VARS.ITSM}} via auto-provisioning.
+</hint>
+
+**To enable authentication for multiple&#x20;**\{\{FRS\_VARS.ITSM}}**&#x20;users:**
+
+You can invite several users to log in to a new authentication provider by sending out a URL in an email. Refer to [Logging in or Accessing Records Using URLs](Content/Configure/LogIn/Log_In_Using_URLs.mdx).

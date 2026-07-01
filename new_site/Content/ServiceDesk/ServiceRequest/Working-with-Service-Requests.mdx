@@ -1,0 +1,129 @@
+---
+title: Working with Service Requests
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:47 GMT+0300 (Eastern European Summer Time)
+---
+
+Self Service users typically create their own service requests from the Self-Service Portal. However, a Service Desk Analyst or Change Manager can create a new service request on behalf of a requester using the **Service Request** workspace. The **Request Offering** workspace is available to the Change Manager.
+
+From the **Service Request** workspace, you can create an incident or a request for change. Refer to :Link[Creating an Incident from a Service Request]{label="Creating an Incident from a Service Request" overridedLabel="Creating an Incident from a Service Request" spaceId docId="kfew166RQFjswGroLwxWu" version="v2" docAnchorId="#Create_an_Incident_from_a_Service_Request" loadingMethod="dynamic" newTab="false" href="Working-with-Service-Requests.mdx"}.
+
+After you enter the customer name, the templates listed are filtered to show only the request templates in which the organizational unit of the customer is entitled.
+
+## Creating a Service Request
+
+1. Log in to the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Console}} console.
+2. Open the **Service Request** workspace.
+3. From the toolbar, click **New Service Request**. A blank service request record appears with the following tabs:
+   - **Parameters**: Refer to :Link[Service Request Parameters]{label="Service Request Parameters" overridedLabel="Service Request Parameters" spaceId docId="kfew166RQFjswGroLwxWu" version="v2" docAnchorId="#Parameters" loadingMethod="dynamic" newTab="false" href="Working-with-Service-Requests.mdx"}.
+   - **Resolution Details** Refer to [About Resolution Details](<../../Configure/Escalations/Resolution Details.mdx>).
+   - **Activity History** Refer to [About Activity History](../ActivityHistory/Activity_History.mdx).
+   - **Approval**: Refer to [About Approving Service Requests](Approving_Service_Request.mdx).
+   - **Task**: Refer to [Working with Tasks](../Tasks/Tasks.mdx).
+   - **External Task**: Refer to [Using External Tasks](<../Tasks/External Tasks.mdx>).
+   - **Fulfillment Item**: Refer to [Working with Fulfillment Items](<MultiItemRequests/Fulfillment Items.mdx>).
+   - **Cost Item**: Refer to [Working with Cost Items](../Financial/Working-with-Cost-Items.mdx).
+   - **Attachment**: To attach a file or URL, refer to [Working With Attachments and URLs](../../Configure/Attachments/Attachments.mdx).
+   - **Escalation Watch**: Refer to [Watching Escalations](<../../Configure/Escalations/Escalation Watch.mdx>).
+   - **Workflow Instance**: Refer to [Working with Workflow Instances](<../WorkflowInstances/Workflow Instance.mdx>).
+   - **Survey Results**
+   - **DSM Task**
+   - **Audit History**: Refer to [Accessing the Audit History](../../Configure/AuditHistory/Audit_History.mdx).
+4. Enter information into the fields.
+
+| Field                          | Description                                                                                                            |
+| ------------------------------ | ---------------------------------------------------------------------------------------------------------------------- |
+| Customer                       | The customer name.                                                                                                     |
+| Location<br />Email<br />Phone | Automatically generated from the customer or employee record.                                                          |
+| Reported By                    | The name of the reporting person.                                                                                      |
+| Status                         | The status. The service request is set to active by default. Choose another status from the drop-down list, if needed. |
+| Urgency                        | Set to low by default.                                                                                                 |
+| Team                           | Automatically set to the team of the current logged in user.                                                           |
+| Owner                          | Automatically set to the ID of the current logged in user.                                                             |
+| Comments                       | Comments about the service request.                                                                                    |
+
+<Paragraph indent="1">
+  Service requests are automatically created in the active state.
+</Paragraph>
+
+5. Link the configuration item under the **CI** tab at this time, if needed.
+6. Link the service request to a change (under the **Change** tab) or release (under the **Release** tab) at this time, if needed. Once linked, the service request is accessible from the change or release records.
+7. Click **Save**.
+
+## Service Request Parameters
+
+The **Parameters** tab shows customer information according to which service level agreements are valid. When you enter the customer name in the service request, \{\{FRS\_VARS.ProductName}} finds only those service offerings that are valid for that customer. These service level agreement parameters are managed by templates. Templates provide only those fields that are needed to comply with the service level agreement.
+
+From the **Parameters** tab, check **Use Logged in user access rights** to allow a Service Desk Analyst to submit a request on behalf of a customer or another user.
+
+*Service Offering Parameters List*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/I7_dWh0qtIh8UonFapTVA_parameterstab.png" alt="Service Offering Parameters list" position="flex-start" size="40" initialPath="../../Resources/Images/help-images/parameters_tab.png" githubPath="Content/Resources/Images/help-images/parameters_tab.png" showCaption="false"></Image>
+
+Under the **Parameters** tab, select a template. Each template has different required fields, depending on what issues it addresses. The template fields appear under the tab. For example, you could choose **All Categories** from the left list and **All Eligible Service Level Agreements** in the main area.
+
+- When you enter the information into the template fields and save the record, the status of the service request becomes active.
+- The customer is notified that a service request has been created.
+- The service request is fulfilled according to the request fulfillment workflow.
+- An approval is generated to the manager of the requester team if the catalog request item needs approval.
+- Tasks are created if they are defined for the request. If approval is required, the task is created after the request is approved. Check the **Task** tab to view any task records for the request.
+
+## About Linking a Source Incident to a Service Request
+
+You can link an existing incident to a service request you are creating through **Related Items**. Refer to [Using Related Items and Object Matching](<../Search/Related Items.mdx>) for more information on how to do this.
+
+## Creating an Incident from a Service Request
+
+Use this procedure to create a new incident record, as opposed to linking to an existing incident record.
+
+1. Log in to the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Console}} console.
+2. Open a service request.
+3. From the Action Menu, go to **System > New Incident from this Service Request**. The application creates the incident and places it under the **Related Incident** tab.
+
+<Paragraph indent="1">
+  *Service Request Related Incident*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/dSL7RQWx1mMWZyR99n1SR_sr-related-incident.png" alt="Service Request Related Incident" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/sr related incident.png" githubPath="Content/Resources/Images/help-images/sr related incident.png" showCaption="false"></Image>
+
+### Updating the Service Request Status
+
+1. Log in to the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Console}} console.
+2. Open a service request.
+3. From the **Status** menu, select the status that best meets the current state of the service request.
+4. If you are canceling a service request, check to make sure that all associated tasks are canceled and the workflow is stopped.
+
+<Paragraph indent="1">
+  a. Click the **Task** tab, and select all tasks records that are not in complete or rejected state.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Click **Complete Quick Action** from the **Task** toolbar.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. Click the **Workflow Instance** tab, and select all the records that are in the waiting state.
+</Paragraph>
+
+<Paragraph indent="1">
+  d. Click **Abort Quick Action** from the **Task** toolbar.
+</Paragraph>
+
+5. Click **Save**.
+
+### Assigning a Service Request
+
+The default owner team for service requests created from the Self-Service portal is **Service Desk**, while the default owner and owner team for service requests created from \{\{FRS\_VARS.ProductName}} is the login name and team of the logged-in user.
+
+After a service request has gone through its approval process, make sure that the unassigned service requests are appropriately assigned.
+
+1. Log in to the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Console}} console.
+2. Open the **Service Request** workspace. The list of service requests appears.
+3. Double click the service request to assign.
+4. From the **Team** field, select the team from the drop-down list.
+5. From the **Owner** field, select the owner from the drop-down list.
+6. Click **Save**.
+
+<Paragraph indent="1">
+  The owner is notified of the assignment through email. If the owner team is updated, the individual members of the team are also notified.
+</Paragraph>

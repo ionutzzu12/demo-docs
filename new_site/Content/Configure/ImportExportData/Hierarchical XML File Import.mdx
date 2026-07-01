@@ -1,0 +1,105 @@
+---
+title: Hierarchical XML File Import Notes
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:52 GMT+0300 (Eastern European Summer Time)
+---
+
+This topic provides notes on using hierarchical XML import when creating a new record in a different business object and then linking it to an imported business object that was created by a value and not by a RecID.
+
+See below for a sample XML file. This sample XML file inserts an incident, inserts a task, then links the task to the incident.
+
+- When creating a record, the incident number is not required in the field list, but is required for updating. However, it needs to be in the unique key list since the processing logic needs to know the unique identifier for the business object.
+- **ProfileLink** is a required field for the incident business object (it is the **Customer** field in the **Incident** workspace).
+- In the workspace, the combo is using the value of the **DisplayName** field for the display, but saves the value of the **RecID** in the **Incident** business object.
+- For the XML file, if you know the ProfileLink\_RecID, then you can pull the unique customer information. However, you will not know the RecID, so using the **DisplayName** field lets the Integration Server pull the required customer information. The **DisplayName** is not unique, so the current logic pulls the first record that matches.
+- Lacking the user interface logic, the XML file might need a special default unique customer information, since it cannot pull login user ID to the workspace.
+
+### Sample XML File
+
+<font color="#0000ff"></font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">BusinessObjectList xsi:noNamespaceSchemaLocation</font><font color="#0000ff">="</font>**HierarchicalObjects-1.0.xsd**<font color="#0000ff">"</font> <font color="#ff0000">xmlns:xsi</font><font color="#0000ff">="</font>**http\://www\.w3.org/2001/XMLSchema-instance**<font color="#0000ff">"</font> <font color="#b22222">SchemaVersion</font><font color="#0000ff">="</font>**1.0**<font color="#0000ff">"&gt;</font>
+
+<font color="#0000ff"></font><font color="#808080"> Insert</font><font color="#0000ff"> --&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">BusinessObject Name</font><font color="#0000ff">="</font>**Incident**<font color="#0000ff">"&gt;</font>
+
+<font color="#0000ff"></font> <font color="#808080">Parent business object insert</font><font color="#0000ff"> --&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Transaction</font><font color="#0000ff">&gt;</font>**Insert**<font color="#0000ff"></font><font color="#b22222">Transaction</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">UniqueKeyList</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">UniqueKey</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Field Name</font><font color="#0000ff">="</font>**IncidentNumber**<font color="#0000ff">"/&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">UniqueKey</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">UniqueKeyList</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">FieldList</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Field Name</font><font color="#0000ff">="</font>**Subject**<font color="#0000ff">"&gt;</font>**Test Subject for Incident**<font color="#0000ff"></font><font color="#b22222">Field</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Field Name</font><font color="#0000ff">="</font>**Symptom**<font color="#0000ff">"&gt;</font>**Description**<font color="#0000ff"></font><font color="#b22222">Field</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Field Name</font><font color="#0000ff">="</font>**Status**<font color="#0000ff">"&gt;</font>**Logged**<font color="#0000ff"></font><font color="#b22222">Field</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Field Name</font><font color="#0000ff">="</font>**Service**<font color="#0000ff">"&gt;</font>**Service Desk**<font color="#0000ff"></font><font color="#b22222">Field</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Field Name</font><font color="#0000ff">="</font>**Owner**<font color="#0000ff">"&gt;</font>**Alan Taylor**<font color="#0000ff"></font><font color="#b22222">Field</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Field Name</font><font color="#0000ff">="</font>**OwnerTeam**<font color="#0000ff">"&gt;</font>**Service Desk**<font color="#0000ff"></font><font color="#b22222">Field</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Field Name</font><font color="#0000ff">="</font>**Impact**<font color="#0000ff">"</font> <font color="#b22222">Type</font><font color="#0000ff">="</font>**System.String**<font color="#0000ff">"&gt;</font>**Low**<font color="#0000ff"></font><font color="#b22222">Field</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Field Name</font><font color="#0000ff">="</font>**Urgency**<font color="#0000ff">"</font> <font color="#b22222">Type</font><font color="#0000ff">="</font>**High**<font color="#0000ff"></font><font color="#b22222">Field</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Field Name</font><font color="#0000ff">="</font>**Source**<font color="#0000ff">"</font> <font color="#b22222">Type</font><font color="#0000ff">="</font>**System.String**<font color="#0000ff">"&gt;</font>**Email**<font color="#0000ff"></font><font color="#b22222">Field</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Field Name</font><font color="#0000ff">="</font>**Category**<font color="#0000ff">"</font> <font color="#b22222">Type</font><font color="#0000ff">="</font>**System.String**<font color="#0000ff">"&gt;</font>**Service Desk**<font color="#0000ff"></font><font color="#b22222">Field</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Field Name</font><font color="#0000ff">="</font>**ProfileLink**<font color="#0000ff">"&gt;</font>**John M Doe**<font color="#0000ff"></font><font color="#b22222">Field</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">FieldList</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">RelatedBusinessObjectList</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff"></font><font color="#808080">Child business object insert and link</font><font color="#0000ff">--&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">RelatedBusinessObject Relationship</font><font color="#0000ff">="</font>**IncidentAssocTaskAssignment**<font color="#0000ff">"&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">BusinessObject Name</font><font color="#0000ff">="</font>**Task#Assignment**<font color="#0000ff">"&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Transaction</font><font color="#0000ff">&gt;</font>**Insert**<font color="#0000ff"></font><font color="#b22222">Transaction</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">LinkTransaction</font><font color="#0000ff">&gt;</font>**Link**<font color="#0000ff"></font><font color="#b22222">LinkTransaction</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">UniqueKeyList</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">UniqueKey</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Field Name</font><font color="#0000ff">="</font>**AssignmentID**<font color="#0000ff">"/&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">UniqueKey</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">UniqueKeyList</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">FieldList</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Field Name</font><font color="#0000ff">="</font>**Subject**<font color="#0000ff">"</font> <font color="#b22222">Type</font><font color="#0000ff">="</font>**System.String**<font color="#0000ff">"&gt;</font>**Do the work**<font color="#0000ff"></font><font color="#b22222">Field</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#b22222">Field Name</font><font color="#0000ff">="</font>**OwnerTeam**<font color="#0000ff">"</font> <font color="#b22222">Type</font><font color="#0000ff">="</font><font color="#000000">System.String</font><font color="#0000ff">"&gt;</font><font color="#000000">Service Desk</font><font color="#0000ff"></font><font color="#b22222">Field</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">FieldList</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">BusinessObject</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">RelatedBusinessObject</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">RelatedBusinessObjectList</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">BusinessObject</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff"></font><font color="#b22222">BusinessObjectList</font><font color="#0000ff">&gt;</font>

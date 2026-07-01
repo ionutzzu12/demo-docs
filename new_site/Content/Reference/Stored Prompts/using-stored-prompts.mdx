@@ -1,0 +1,86 @@
+---
+title: Example of Stored Prompts Usage
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:58 GMT+0300 (Eastern European Summer Time)
+---
+
+A prompt is a display window that requires users to provide information before proceeding with a process or action (example: Specify the reason for putting an Incident into Pending status). A stored prompt can be used multiple times within \{\{Primary.Company}} \{\{FRS\_VARS.ProductName}} anywhere that a Quick Action or an expression is used that involves user interaction.
+
+An an example, this set of steps shows you how to use a prompt to ask a user to update an Incident record description:
+
+## Create a Stored Prompt
+
+1. From the **Configuration** console's **Build** list, select **Stored Prompts**.
+2. From the **Stored Prompts** workspace, click **Add**.
+3. Enter these field values for the stored prompt:
+
+| Field                        | Value                                             |
+| ---------------------------- | ------------------------------------------------- |
+| Name                         | Update Description for Incident Record            |
+| Prompt                       | Enter a new description for this Incident record. |
+| Association                  | Incident                                          |
+| Type                         | Text                                              |
+| Character Limit              | Not available when Multi-Line is selected.        |
+| Multi-Line                   | Selected                                          |
+| Default Value                | Can be left blank                                 |
+| Re-Prompt on each occurrence | Selected                                          |
+| Max-Prompt Dimension         | 800 X 800                                         |
+
+4. Click the **Save** icon.
+
+## Create a Quick Action
+
+1. Open the **Graphical Action Designer**.
+
+<Paragraph indent="1">
+  See: [Using the Graphical Action Designer (GAD)](<../../Configure/QuickActions/Graphical Action Designer/Using_the_Graphical_Action_Designer.mdx>).
+</Paragraph>
+
+<hint type="info">
+  **Tip:&#x20;**&#x59;ou can use the **Classic Action Designer** if you prefer.
+</hint>
+
+2. Create a new block using the **Update a Record** block type, and name it whatever you choose.
+3. In **Settings**, select the **Block&#x20;**&#x74;ab.
+4. Select **Symptom (Description)** from the drop-down list.
+5. Select :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/oi6cTpDlT2f6LGybZadLJ_function.png" alt caption size="10" width="16" height="16"} in **Field Value** to open the **Simplified Expression Editor**.
+
+<Paragraph indent="1">
+  For help, see: [Using the Simplified Expression Editor](<../Expressions/Simplified Expression Editor.mdx>)
+</Paragraph>
+
+6. Drag the **Stored Prompt** (**Update Incident Description**), listed under Incident into the Expression Editor.
+
+<hint type="info">
+  **Tip:** If a stored prompt can be used with any business object, it will be listed under an **Unassociated&#x20;**&#x73;ection under Stored Prompts.
+</hint>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/d1N46nNXsEVT1n4JfgVk7_stored-prompt-expression.png" position="flex-start" size="40" indent="1" initialPath="images/Stored-Prompt-Expression.png" githubPath="Content/Reference/Stored Prompts/images/Stored-Prompt-Expression.png" showCaption="false"></Image>
+
+<hint type="info">
+  **Note:&#x20;**&#x53;tored Prompts are not supported in services such as workflows and escalations that run in the background with no user intervention. Make sure your expression isn't evaluated by one of those services.
+</hint>
+
+7. Check that this is the expression for calling your stored prompt: $(StoredPrompt("Update Description")).
+
+<hint type="info">
+  **Tip:** Use the rules in [Expression Grammar](<../Expressions/Expression Grammar.mdx>) to help you to write expressions.
+</hint>
+
+8. Click **OK**.
+9. Save your Quick Action.
+
+## Verify your Stored Prompt Works
+
+1. Open an Incident record.
+2. Click **More > No Category > Update Incident Description** (Name of Quick Action).
+3. Your stored prompt appears.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/aLZ124XraeAYk4pbT6mpu_verify-prompt.png" position="flex-start" size="40" indent="1" initialPath="images/Verify-Prompt.png" githubPath="Content/Reference/Stored Prompts/images/Verify-Prompt.png" showCaption="false"></Image>
+
+4. Enter a new description.
+5. Click **OK**.
+
+<Paragraph indent="1">
+  The contents of the **Description** field are replaced with those you just entered.
+</Paragraph>

@@ -1,0 +1,104 @@
+---
+title: Creating a Gantt Chart
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:48 GMT+0300 (Eastern European Summer Time)
+---
+
+Gantt charts were introduced to \{\{FRS\_VARS.ProductName}} in Release 2015.2.   Starting in \{\{FRS\_VARS.ProductName}} Release 2016.1, you can now use Gantt charts with any workspace or business object.
+
+You can create milestones and tasks for a release using the **Schedule** tab of any release record. The **Schedule** tab contains a Gantt chart view of the project that you can set up and manage from the Gantt chart itself.
+
+If you are using release templates to create a release, the system displays defined milestones associated with the release template under the **Milestones** tab, and under the **Schedule** tab of the release record. When you update the status of the release record to active, the system creates tasks for the milestones. You can view these tasks by going to each milestone record and selecting the **Task** tab, or from the **Schedule** tab of the release record, where each task for the milestone is listed under the milestone that it is associated with.
+
+Gantt charts are a way to graphically show the progress of a project. Project management may be easier if it is viewed as small manageable items, where the dependencies are visually illustrated and the overall progress is tracked. The tasks of a project can be complex and depend on each other. With a project management tool such as the Gantt chart, you can graphically view all milestones and their tasks.
+
+For Gantt charts, the system displays the milestone and its tasks for the release project on the y-axis, and displays the timeline on the x-axis. The bars show when a task should start and when it will be finished. Blue bars show tasks that have been completed or the progression towards completion. Yellow bars show work that still must be done.
+
+The system tracks the progress of a task as a percentage of the task and displays it in the chart. You can also filter the tasks to show tasks that are not completed. The system also visually indicates any task dependencies.
+
+When you create a new milestone using a Gantt chart, the system does not associate any workflows or approvals with its tasks. If you need an approval process for the new milestone, work with the administrator.
+
+You can create and use Gantt charts with any business object. An example of a business object that uses a Gantt chart is the **Project** business object.
+
+1. From the \{\{FRS\_VARS.Configuration\_console}}, select **Build > Charts and Graphs > Gantt Charts**.
+2. Select **Add**.
+3. On the **Add Gantt Chart** page, enter information into the fields.
+
+<hint type="info">
+  You can only add one task business object to each milestone, but each task business object can be made up of multiple task records.
+</hint>
+
+| Field Name                 | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **General**                |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Business Object            | The business object that this Gantt chart applies to.                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| Gantt Chart Name           | The name of the Gantt chart.                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| Display Name               | The name of the Gantt chart as displayed in the system.                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| Description                | A description of the Gantt chart.                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| **Milestone Object**       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Business Object            | The business object for the milestone. This business object must have a relationship with the business object that applies to the Gantt chart.<br />The system only displays the list of related business objects if the object contains the necessary fields for a Gantt chart. The business object must contain *two* DateTime fields, one each for the start date and end date, and at least one (1) number (percent) field in order to display in the list for creating the Gantt chart. |
+| Label                      | The label for this milestone.                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Add/Edit Form              | The form to add this milestone to. The drop-down list contains the forms associated with the business object relationship.                                                                                                                                                                                                                                                                                                                                                                   |
+| Header Expression          | An expression to use for the milestone header. Select the **function**:inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/nkqElOFXdxvDGVcRO7D1F_function.png" alt caption size="10" width="16" height="16"} icon to open the Expression Editor.                                                                                                                                                                                                      |
+| Image Expression           | An expression to use for the milestone image. Select the **function**:inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/nkqElOFXdxvDGVcRO7D1F_function.png" alt caption size="10" width="16" height="16"} icon to open the Expression Editor.                                                                                                                                                                                                       |
+| Successor Relationship     | Contains a link to the same business object type (self). It explains the dependency.  For example, the milestone that comes before the current milestone.                                                                                                                                                                                                                                                                                                                                    |
+| Predecessor Relationship   | Contains a link to the same business object type (self). It explains the dependency.  For example, the milestone that after the current milestone.                                                                                                                                                                                                                                                                                                                                           |
+| Start Date Field Ref       | The field that contains the start date of this milestone.                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| End Date Field Ref         | The field that contains the end date of this milestone.                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| Percent Complete Field Ref | The field that contains the percent complete for this milestone.                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| Sequence Order Field Ref   | The field that contains the sequence order of this milestone in relation to other milestones.                                                                                                                                                                                                                                                                                                                                                                                                |
+| **Task Object**            |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Business Object            | The business object for the task.  This business object must have a relationship with the milestone business object.<br />The system only displays the list of related business objects if it contains the necessary fields for a Gantt chart. The business object must contain *two* Date/Time fields, one each for the start date and end date, and at least one (1) number (percent) field in order to display in the list for creating the Gantt chart.                                  |
+| Label                      | The label for this task.                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| Add/Edit Form              | The form to add this task to. The drop-down list contains the forms associated with the task.                                                                                                                                                                                                                                                                                                                                                                                                |
+| Header Expression          | An expression to use for the task header. Select the **function**:inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/nkqElOFXdxvDGVcRO7D1F_function.png" alt caption size="10" width="16" height="16"} icon to open the Expression Editor.                                                                                                                                                                                                           |
+| Successor Relationship     | Contains a link to the same business object type (self). It explains the dependency.  For example, the milestone that comes before the current milestone.                                                                                                                                                                                                                                                                                                                                    |
+| Predecessor Relationship   | Contains a link to the same business object type (self). It explains the dependency.  For example, the milestone that after the current milestone.                                                                                                                                                                                                                                                                                                                                           |
+| Start Date Field Ref       | The field that contains the start date of this milestone.                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| End Date Field Ref         | The field that contains the end date of this milestone.                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| Percent Complete Field Ref | The field that contains the percent complete for this milestone.                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| Right Label                | The label for the right side of the Gantt chart.                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+
+4. Select **Save**.
+
+## Adding a Gantt Chart to a Business Object
+
+1. From the \{\{FRS\_VARS.Configuration\_console}}, select **Build > Business Objects**.
+2. Open the business object to add the Gantt chart to.
+
+<hint type="info" indent="1">
+  This must be the same business object that you created the Gantt chart for.
+</hint>
+
+3. Select the **Layouts** tab.
+   The system displays the layouts associated with the business object.
+4. Open the layout to add the Gantt chart to.
+5. Under the **Views in this layout** header, select **formView**.
+6. Near the bottom, select **Add Custom Child Panel** to add a new tab to the business object.
+7. For the new tab, in the **Display Name** field, enter a name for the tab that the user will select to see the Gantt chart.
+   We recommend entering **Gantt Chart**.
+8. For the **Plugin** field, select **\<Not Set>**, and then select **Gantt Chart** in the drop-down list.
+9. For the **Gantt Chart Name** field, select **\<Not Set>**, and the select the name of the Gantt chart that you created from the drop-down list.
+
+<hint type="info" indent="1">
+  The system only displays the Gantt charts that you created for that particular business object and not for all Gantt charts.
+</hint>
+
+10. Select **Save**.
+11. To verify that the system added the Gantt chart to the business object:
+
+<Paragraph indent="1">
+  a. Go to the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Console}} and refresh it.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Open the business object workspace.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. Open a record.
+</Paragraph>
+
+<Paragraph indent="1">
+  d. Ensure that there is a tab showing the Gantt chart.
+</Paragraph>

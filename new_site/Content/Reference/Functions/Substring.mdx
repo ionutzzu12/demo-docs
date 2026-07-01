@@ -1,0 +1,71 @@
+---
+title: Substring
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:00 GMT+0300 (Eastern European Summer Time)
+---
+
+Returns a string containing a substring of consecutive characters from another string.
+
+## Syntax
+
+Substring(text,startPosition,length)
+
+## Enabled For
+
+For a description of the business object categories, see :Link[Notes on "Enabled For"]{label="Notes on &#x22;Enabled For&#x22;" overridedLabel="Notes on &#x22;Enabled For&#x22;" spaceId docId="xObv2pIDrk60jkEIWs8mD" version="v2" docAnchorId="#Notes" loadingMethod="dynamic" newTab="false" githubPath="_Built_in_Functions.htm#Notes" href="_Built_in_Functions.mdx"}.
+
+| Business Object Category                                                                    | Yes/No |
+| ------------------------------------------------------------------------------------------- | ------ |
+| Business Rules: Before-Save Rules                                                           | Yes    |
+| Business Rules: Calculation Rules (After Save, with or without Also Recalculate on Load)    | Yes    |
+| Business Rules: Calculation Rules (Before Save or Always, without Also Recalculate On Load) | Yes    |
+| Business Rules: Calculation Rules (Before Save or Always, with Recalculate On Load)         | Yes    |
+| Business Rules: Editing Rules                                                               | Yes    |
+| Business Rules: Initialization Rules                                                        | Yes    |
+| Business Rules: Read Only Rules                                                             | Yes    |
+| Business Rules: Required Rules                                                              | Yes    |
+| Business Rules: Validation Rules                                                            | Yes    |
+| Client Expressions                                                                          | Yes    |
+| Object Permissions                                                                          | Yes    |
+| Services                                                                                    | Yes    |
+| LDAP                                                                                        | Yes    |
+| Mobile                                                                                      | Yes    |
+| Quick Actions (except UI Quick Actions)                                                     | Yes    |
+| UI Quick Actions                                                                            | Yes    |
+| Reports                                                                                     | Yes    |
+| Search/Dashboard without field references                                                   | Yes    |
+| Search/Dashboard with field references                                                      | Yes    |
+
+## Parameters
+
+| Parameter     | Description                                                                                               |
+| ------------- | --------------------------------------------------------------------------------------------------------- |
+| text          | The text from which to extract the substring.                                                             |
+| startPosition | The position of the first character to include in the output. The first character starts with position 1. |
+| length        | (Optional) The length of the substring.                                                                   |
+
+## Return Value
+
+<Paragraph indent="1">
+  Text value.
+</Paragraph>
+
+## Example
+
+$(Substring(Symptom, 21, 7))
+
+<Paragraph indent="1">
+  If the **Symptom** field in the current business object contains the following:
+</Paragraph>
+
+<Paragraph indent="1">
+  *Printer seems to be working fine for others. His setup for the printer is fine.*
+</Paragraph>
+
+<Paragraph indent="1">
+  It returns the substring starting with the 21st character and continues for 7 characters. The result of this function in this example is *working*.
+</Paragraph>
+
+<Paragraph indent="1">
+  See also [Substring0](Substring0.mdx)().
+</Paragraph>

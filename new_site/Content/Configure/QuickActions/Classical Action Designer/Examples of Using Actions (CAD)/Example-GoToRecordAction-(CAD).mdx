@@ -1,0 +1,74 @@
+---
+title: Example: Updating a Record using the Go to Record Quick Action (CAD)
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:57 GMT+0300 (Eastern European Summer Time)
+---
+
+This example shows you how to provide input criteria for a Go to Record \{\{FRS\_VARS.Quick\_Action}} so it redirects to another record for the same business object. The Update Object \{\{FRS\_VARS.Quick\_Action}} is then used to update that second record that the Go to Record \{\{FRS\_VARS.Quick\_Action}} redirected to. A real-world use could be that of a customer using the CI business object and an external system which sends data about these CI records to \{\{FRS\_VARS.ITSM}}. Using the Go to Record \{\{FRS\_VARS.Quick\_Action}}, incoming CI data can be used to update existing records, but if the external system finds some new CI and sends that as part of the data, the **Create Record if not Found** option automatically creates a record in \{\{FRS\_VARS.ITSM}} for the new item.
+
+This example uses the Classic Action Designer (CAD). Examples using the GAD are here: [Examples of Using Actions (GAD)](<../../Graphical Action Designer/Examples/Examples_of_Using_Actions_(GAD).mdx>).
+
+<hint type="info">
+  To use Go to Record \{\{FRS\_VARS.Quick\_Action}}, set the global constant **EnableActionService&#x20;**&#x74;o **True**.
+</hint>
+
+**Prerequisite**
+
+This example assumes you have administrator-level access to the **Configuration console** and are familiar with creating business objects and \{\{FRS\_VARS.Quick\_Action}}s.
+
+**Steps:**
+
+1. Identify two Incidents you can use for this exercise where the **Summary** field can be usefully changed in the second record. Let's call these Incidents 10928 and 10413. At the end of this example, we will run the action from 10928 and it will change the Summary field of 10413.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/4phk37QtM4uHMuiFxCCXQ_examplegadgotorecupdaterecord1.png" alt="Image 1 of example showing 2 selected record to use with Go to Record and Update Record Actions" position="flex-start" size="40" indent="1" initialPath="../../quick-actions-images/example_GAD_GotoRec_UpdateRecord_1.png" githubPath="Content/Configure/QuickActions/quick-actions-images/example_GAD_GotoRec_UpdateRecord_1.png" showCaption="false"></Image>
+
+2. Find the **Record Id** from 10413 (for later use) as follows:
+
+<Paragraph indent="1">
+  a. Log in to the **Service Desk** console.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Go to the **Service Request** workspace > **Incidents&#x20;**&#x6C;ist view.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. Open the **Developer&#x20;**&#x74;ool by pressing **F12** and go to **Network&#x20;**&#x74;ab.
+</Paragraph>
+
+<Paragraph indent="1">
+  d. Double click on the incident 10413.
+</Paragraph>
+
+<Paragraph indent="1">
+  e. In the **Network&#x20;**&#x74;ab, find **GetContentForList&#x20;**&#x69;tem & go to its **Payload&#x20;**&#x74;ab.
+</Paragraph>
+
+<Paragraph indent="1">
+  f. **ParentRecId&#x20;**&#x69;s the RecId of the selected record. It will look something like this in length, for example, AB1AC111A1CD111B1B1CB1111111AAA.
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/mxG2t-SlUTed5RAqagoLW_examplegadgotorecupdaterecord2.png" alt="Image 2 for Go To Record and Update record example showing how to find the RecId of an Incident record using Developer Tools" position="flex-start" size="40" indent="2" initialPath="../../quick-actions-images/example_GAD_GotoRec_UpdateRecord_2.png" githubPath="Content/Configure/QuickActions/quick-actions-images/example_GAD_GotoRec_UpdateRecord_2.png" showCaption="false"></Image>
+
+3. Go back to the **Configuration Console&#x20;**> **Build&#x20;**>**Business Objects&#x20;**> **Incident&#x20;**> **Quick Actions&#x20;**> **Classic Action Designer**.
+4. Under **Create New Actions**, find **Composite Action** and select it.
+5. Enter a name in the **Action Name&#x20;**&#x66;ield, for example, **GTR-Action2**.
+6. Select the **Go to Record** action from the drop-down list and click the **+&#x20;**&#x69;con next to the field.
+7. For the **Field Value**, enter the **RecID&#xA0;**&#x79;ou previously saved for record 10413.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/3qQkLBCIWgMFKJacpqlbJ_examplecadgotorecupdaterecord3.png" alt="Third image for CAD example of Go to Record showing RecId being inserted" position="flex-start" size="40" indent="1" initialPath="../../quick-actions-images/example_CAD_GotoRec_UpdateRecord_3.png" githubPath="Content/Configure/QuickActions/quick-actions-images/example_CAD_GotoRec_UpdateRecord_3.png" showCaption="false"></Image>
+
+8. Click **Save**.
+9. To add the next part of the Composite Action, select **Append Action** button (top right) and select **Update Object** from the drop-down list.
+10. Enter values for th&#x65;**&#x20;Update Object** action. For example, **Field Name = Subject (Summary)** and **Field Value = Printer Error 14 - Toner Cartridge needs changing**. The field value was previously **Printer error 10**.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Ievj5wVK8-EbgLFBxIale_examplecadgotorecupdaterecord4.png" alt="Image 4 for adding the Update Object action and values for it." position="flex-start" size="40" indent="1" initialPath="../../quick-actions-images/example_CAD_GotoRec_UpdateRecord_4.png" githubPath="Content/Configure/QuickActions/quick-actions-images/example_CAD_GotoRec_UpdateRecord_4.png" showCaption="false"></Image>
+
+11. Click **Save**.
+12. Go to **Service Desk Analyst&#x20;**&#x77;orkspace > **Incidents&#x20;**&#x6C;ist view.
+13. Go to the Incident record 10928. Select the created action **GTR-Action1** and execute it.
+14. Check the summary of the other incident record 10413.
+
+<Paragraph indent="1">
+  The summary should have changed to **Printer Error 14 - Toner Cartridge needs changing** as specified.
+</Paragraph>

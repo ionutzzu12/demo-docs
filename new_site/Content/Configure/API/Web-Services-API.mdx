@@ -1,0 +1,131 @@
+---
+title: Working with the Web API
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:00 GMT+0300 (Eastern European Summer Time)
+---
+
+- :Link[About the Web Services API]{label="About the Web Services API" overridedLabel="About the Web Services API" spaceId docId="4uMINgX8IkEBkQJYaozlw" version="v2" docAnchorId="#About-the-Web-API" loadingMethod="dynamic" newTab="false" href="Web-Services-API.mdx"}
+- :Link[Creating a Link to a Request Offering]{label="Creating a Link to a Request Offering" overridedLabel="Creating a Link to a Request Offering" spaceId docId="4uMINgX8IkEBkQJYaozlw" version="v2" docAnchorId="#Creating-a-Link-to-a-Request-Offering" loadingMethod="dynamic" newTab="false" href="Web-Services-API.mdx"}
+- :Link[About Timeouts]{label="About Timeouts" overridedLabel="About Timeouts" spaceId docId="4uMINgX8IkEBkQJYaozlw" version="v2" docAnchorId="#About-Timeouts" loadingMethod="dynamic" newTab="false" href="Web-Services-API.mdx"}
+- :Link[Cloud Connect API Methods]{label="Cloud Connect API Methods" overridedLabel="Cloud Connect API Methods" spaceId docId="4uMINgX8IkEBkQJYaozlw" version="v2" docAnchorId="#Cloud-Connect-API-Methods" loadingMethod="dynamic" newTab="false" href="Web-Services-API.mdx"}
+- :Link[Working with API Keys]{label="Working with API Keys" overridedLabel="Working with API Keys" spaceId docId="4uMINgX8IkEBkQJYaozlw" version="v2" docAnchorId="#Working-with-API-Keys" loadingMethod="dynamic" newTab="false" href="Web-Services-API.mdx"}
+
+## About the Web Services API
+
+The \{\{FRS\_VARS.ProductName}} Web API module is a framework with sample methods that can be used to integrate external web applications with the Self-Service Portal and the Service Catalog. Developers can retrieve data from the \{\{FRS\_VARS.ProductName}} database and publish navigation links to specific \{\{FRS\_VARS.ProductName}} application pages. It can also offer pass-through authentication for external users.
+
+This API is a self-contained developer tool and includes instructions on how to load the \{\{FRS\_VARS.ProductName}} Web APIs into the external application page, how to authenticate, and more.
+
+## Creating a Link to a Request Offering
+
+1. From the Configuration Console, click **Extend** > **Web Services API** to go to the \{\{FRS\_VARS.Company}}**&#x20;HEAT API** workspace.
+2. From the left pane, click **SearchOfferings**. The application displays a list of available request offerings.
+
+<Paragraph indent="1">
+  \{\{FRS\_VARS.Company}}*&#x20;HEAT API*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/RjIAxggL8vFJ6H1_PW8Ej_ivanti-heat-api.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/Ivanti-HEAT-API.png" githubPath="Content/Resources/Images/help-images/Ivanti-HEAT-API.png" showCaption="false"></Image>
+
+3. Click a service from the list. A web page opens with the link in the URL area. For example:
+
+https\://heatsoftware.com/?Scope=SelfService
+
+\&CommandId=New
+
+\&Tab=ServiceCatalog
+
+\&Template=AE3E70C3BBFF470597EA1134FECE464D
+
+\&frameless=false
+
+\&role=Admin#1390514684377
+
+4. Remove the role from the link. The remainder is what you can send to users as a link to the service offering.
+
+## About Timeouts
+
+While making web service calls, note the following:
+
+- A Microsoft SQL timeout exception occurs when any query takes more than 60 seconds.
+- A request timeout occurs when the API call runs for more than 90 seconds in the \{\{FRS\_VARS.ProductName}} Application Server.
+
+## Cloud Connect API Methods
+
+The following methods have been added to the \{\{FRS\_VARS.ProductName}} Web API to enable the manipulation of service requests.
+
+| Method                            | Description                                                                                           |
+| --------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| GetCategories                     | Returns the list of available categories for the Service Catalog.                                     |
+| GetCategoryTemplates              | Returns the list of request offerings in the Service Catalog, which belong to the indicated category. |
+| GetAllTemplates                   | Returns the full list of request offerings in the Service Catalog.                                    |
+| GetSubscriptionId                 | Fetches the subscription ID that corresponds to the request offering for the current user.            |
+| GetPackageData                    | Retrieves the details of the indicated request offering.                                              |
+| UserCanAccessRequestOffering      | Checks whether the current user is entitled to access the request offering.                           |
+| SubmitRequest                     | Creates and submits the service request, on behalf of a user.                                         |
+| GetRequestData                    | Retrieves the data for the service request.                                                           |
+| FetchServiceReqValidationListData | Fetches the allowable validation list data for the service request parameter.                         |
+
+## Working with API Keys
+
+- :Link[About API Keys]{label="About API Keys" overridedLabel="About API Keys" spaceId docId="4uMINgX8IkEBkQJYaozlw" version="v2" docAnchorId="#About3" loadingMethod="dynamic" newTab="false" href="Web-Services-API.mdx"}
+- :Link[Viewing Your API Keys]{label="Viewing Your API Keys" overridedLabel="Viewing Your API Keys" spaceId docId="4uMINgX8IkEBkQJYaozlw" version="v2" docAnchorId="#Determin" loadingMethod="dynamic" newTab="false" href="Web-Services-API.mdx"}
+- :Link[Adding a Key Group]{label="Adding a Key Group" overridedLabel="Adding a Key Group" spaceId docId="4uMINgX8IkEBkQJYaozlw" version="v2" docAnchorId="#Adding" loadingMethod="dynamic" newTab="false" href="Web-Services-API.mdx"}
+- :Link[Linking an API Key to the API Key Group]{label="Linking an API Key to the API Key Group" overridedLabel="Linking an API Key to the API Key Group" spaceId docId="4uMINgX8IkEBkQJYaozlw" version="v2" docAnchorId="#Linking" loadingMethod="dynamic" newTab="false" href="Web-Services-API.mdx"}
+- :Link[Deactivating an API Key]{label="Deactivating an API Key" overridedLabel="Deactivating an API Key" spaceId docId="4uMINgX8IkEBkQJYaozlw" version="v2" docAnchorId="#Deactiva" loadingMethod="dynamic" newTab="false" href="Web-Services-API.mdx"}
+- :Link[Deleting an API Key]{label="Deleting an API Key" overridedLabel="Deleting an API Key" spaceId docId="4uMINgX8IkEBkQJYaozlw" version="v2" docAnchorId="#Deleting" loadingMethod="dynamic" newTab="false" href="Web-Services-API.mdx"}
+
+### About API Keys
+
+You can link user groups to one or more API (application programming interface) keys, which are codes that authenticate access and can be used to track API usage. API keys are not tied to user sessions with expiration times.
+
+When using Desktop and Server Management (DSM) you can use the API key to grant access for a specific user trying to access the DSM application installed on a specific computer.
+
+You must link an API key to a specific key group to grant user access. Use key groups to structure API key access. For example, you can restrict API key usage to specific users, or to groups of users logging in under a specific role.
+
+### Viewing Your API Keys
+
+1. From the Configuration Console, click **Configure&#x20;**>**&#xA0;Security Controls&#x20;**>**&#xA0;API Keys** to open the **API Keys** workspace. The application displays the API keys.
+
+<Paragraph indent="1">
+  *API Keys Workspace*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/JVv1CtDceV_2v9aChDR5I_deactivateapikey.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/deactivate_API_key.png" githubPath="Content/Resources/Images/help-images/deactivate_API_key.png" showCaption="false"></Image>
+
+### Adding a Key Group
+
+1. From the Configuration Console, click **Configure&#x20;**>**&#xA0;Security Controls&#x20;**>**&#xA0;API Keys** to open the **API Keys** workspace. The list of API keys appears.
+2. Click **Add Key Group**. A blank key group form appears.
+3. Enter information in the fields.
+   - **Name**: A unique name for this API key group.
+   - **Description**: A brief description of this API key group.
+4. Click **Save Key Group**. The API key group now appears on the list.
+
+### Linking an API Key to the API Key Group
+
+1. From the Configuration Console, click **Configure&#x20;**>**&#xA0;Security Controls&#x20;**>**&#xA0;API Keys** to open the **API Keys** workspace.
+2. Click **Add API Key**. The application displays the **New API Key** workspace.
+3. Enter information in the fields.
+
+| Field        | Description                                                                                                                                                                                                          |
+| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Reference ID | Automatically generated by the application. Is associated only with this key group.                                                                                                                                  |
+| Activated    | Specifies that this API key has been activated. This option is selected by default. Uncheck this option to disable this group as an active key group. If not checked, this key cannot be used until it is activated. |
+| Description  | A description of the API key.                                                                                                                                                                                        |
+| On behalf of | The employee on whose behalf you are creating the new API key. You can restrict the employee to one or more specific addresses. Choose an employee from the list, then click **Select**.                             |
+| In Role      | The role to associate with this employee.                                                                                                                                                                            |
+
+4. By default, this user can access the API from any IP address. To restrict the employee to one or more specific addresses, click **Add new IP**. Enter a valid IP address and click **OK**.
+5. Click **Save Key**.
+6. Click **Back** to return to the main **Manage API Keys** page.
+
+### Deactivating an API Key
+
+1. From the Configuration Console, click **Configure&#x20;**>**&#xA0;Security Controls&#x20;**>**&#xA0;API Keys** to open the **API Keys** workspace.
+2. Click **Deactivate** next to the key to deactivate. The link changes to activate.
+
+### Deleting an API Key
+
+1. From the Configuration Console, click **Configure&#x20;**>**&#xA0;Security Controls&#x20;**>**&#xA0;API Keys** to open the **API Keys** workspace.
+2. Click **Delete** next to the key to delete. The key no longer appears.

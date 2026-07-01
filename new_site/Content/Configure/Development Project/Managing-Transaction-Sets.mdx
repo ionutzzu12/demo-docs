@@ -1,0 +1,67 @@
+---
+title: Managing Transaction Sets
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:54 GMT+0300 (Eastern European Summer Time)
+---
+
+Every time you add, delete, or modify the \{\{FRS\_VARS.ProductName}} configuration, the application records the changes.  These recorded changes are called a transaction set. For example, every time that you save changes for a business object, the application records the changes in a transaction set. The application tracks every change and assigns each change a sequential number.
+
+<ExpandableHeading>
+  ## Creating a Transaction Set
+
+  Follow these steps, to create a transaction set:
+
+  1. From the Configuration Console, click **Build > Development Project > Projects** to display the **Projects** workspace. The application displays a list of all the projects.
+  2. From the **Project** drop-down menu in the toolbar, select the project to which the changes you are going to make will belong.
+  3. Make changes to \{\{FRS\_VARS.ProductName}} as normal. For example, you can create a new business object, form, or list.
+
+
+
+  <hint type="info">
+    - In certain cases, when you make changes to Neurons for ITSM, you must enter your user name and password. When you create and later export the transaction set as part of a package, the package file exposes the user name and password.
+    - To avoid exposing this potentially sensitive information, we recommend that when setting the user name and password for an integration connection, instead of entering a value, you use a global constant. See :Link[Using Global Constants to Hide Login ID and Password Information]{label="Using Global Constants to Hide Login ID and Password Information" overridedLabel="Using Global Constants to Hide Login ID and Password Information" spaceId docId="hdqjMZ0xNIIUp-39YljO9" version="v2" docAnchorId="#Using_the_Login_ID_and_Password_Global_Constants" loadingMethod="dynamic" newTab="false" githubPath="../Constants/Defining_Global_Constant.htm#Using_the_Login_ID_and_Password_Global_Constants" href="../Constants/Defining_Global_Constant.mdx"} for information. See :Link[Viewing, Editing, Cloning, and Deleting Incoming Web Service Connections]{label="Viewing, Editing, Cloning, and Deleting Incoming Web Service Connections" overridedLabel="Viewing, Editing, Cloning, and Deleting Incoming Web Service Connections" spaceId docId="FdCBQbHhR6rvSknbFTcBX" version="v2" docAnchorId="#Viewing" loadingMethod="dynamic" newTab="false" githubPath="../ImportExportData/Using-Web-Services.htm#Viewing" href="../ImportExportData/Using-Web-Services.mdx"} for an example of using a global constant in this situation.
+    - If you do not use a global constant for the user name and password, the application removes that information from the transaction set.
+  </hint>
+
+
+
+
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Viewing Transaction Sets
+
+  From the **Transaction Sets** page, you can view the relevant changes that are linked to a transaction set. You can search by transaction set ID. Use the transaction set ID when creating a package.
+
+  1. From the Configuration Console, click **Build > Development Project > Transaction Sets** to open the **Transaction Sets** workspace. The application displays a list of all the transaction sets.
+
+  <Paragraph indent="1">
+    The application displays the following information:
+  </Paragraph>
+
+  | Field        | Description                                                                                                                                                                                |
+  | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+  | ID           | The ID for this transaction set.                                                                                                                                                           |
+  | Created On   | The date when the transaction set was created.                                                                                                                                             |
+  | User ID      | The ID of the user who created the transaction set.                                                                                                                                        |
+  | Session ID   | The ID of the session when the transaction set was created.                                                                                                                                |
+  | DB Revision  | The database revision.                                                                                                                                                                     |
+  | Source       | Specifies where the transaction was made. *AdminUI* means that the change was made in the Configuration Console, and a tenant URL means that the change was made from a package migration. |
+  | Project Name | The name of the \{\{FRS\_VARS.ProductName}} development project to which this transaction set is attached.                                                                                 |
+
+  2. Double click a transaction set and click the **Transaction Detail** tab to see the following information:
+
+  | Field               | Description                                                                                                                                                                                                             |
+  | ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | Project Name        | The name of the \{\{FRS\_VARS.ProductName}} development project to which this transaction set is attached.                                                                                                              |
+  | Transaction Set ID  | A sequential number linked to the change. A transaction set may contain zero or more changes. (A zero change indicates the change was aborted, and was not recorded.)                                                   |
+  | Detail ID           | A sequential number linked to the change. A detail may contain zero or more changes. (A zero change indicates the change was aborted, and was not recorded.)                                                            |
+  | User ID             | The ID of the user who created the transaction set.                                                                                                                                                                     |
+  | Operation Date Time | The date and time when the change was recorded.                                                                                                                                                                         |
+  | Operation Type      | The type of operation. Can be **C** for new record, **U** for modification, or **D** for deleted.                                                                                                                       |
+  | Object Type         | The type for which the change applies. The values can be **BusinessObject** for a business object change, **Form** for a form change, or a business object name such as **AccountStatus#** for change in its data, etc. |
+  | Business Object     | The name of the business object to which the change is linked, if any.                                                                                                                                                  |
+  | Entity Name         | The key for the business object record itself. In some cases, it is the GUID and in other case, it is a name, such as a business object name, a form name, or a role name.                                              |
+  | Source ID           | The key for the business object record itself. In some cases, it is the GUID and in other case, it is a name, such as a business object name, a form name, or a role name.                                              |
+  | To Publish          | Specifies if this transaction set can be published:  <br />**Y**: The change is packaged.  <br />**N**: This change is a side effect of another change that is published.                                               |
+</ExpandableHeading>

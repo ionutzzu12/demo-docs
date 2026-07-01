@@ -1,0 +1,77 @@
+---
+title: Approving a Knowledge Article
+slug: approving-a-knowledge-article
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:03 GMT+0300 (Eastern European Summer Time)
+---
+
+If a knowledge article has to be approved by a group, depending on your settings, the article is approved if either all the approvers approve it or if only 51% of them do. By default, 51% of approvers must approve the article. In all cases, a Knowledge Manager can cast the decisive vote and approve a knowledge article.
+
+If you are an approver for a knowledge collection, you are notified when the status for an article belonging to that specific collection is pending approval. See :Link[About the Knowledge Approval Workflow]{label="About the Knowledge Approval Workflow" overridedLabel="About the Knowledge Approval Workflow" spaceId docId="kPiaiR6C0y-UX4tn8oG-a" version="v2" docAnchorId="#KnowledgeApprovalWorkflow" loadingMethod="dynamic" newTab="false" href="approving-a-knowledge-article.mdx"} for more information about the knowledge approval process.
+
+You can approve an article approval request through email or from the Self-Service portal.
+
+The **Approval Vote Tracking** record for the approval instance of the knowledge article is updated to show your response.
+
+## Responding to a Knowledge Article Approval Request by Email
+
+You can accept or reject a knowledge article by responding to it directly through email. When you are notified of an article approval request through email:
+
+1. Click **Reply**. Do not modify the subject line of the email when sending your response through email.
+2. In the body of the message, type **approved** or **denied** to indicate your acceptance or rejection of the article approval request.
+   - The approval keywords are configured in the **FRS Approval Status Keyword** tab records in the **Email Configuration form**. By default, the keywords to approve or reject through email are approved and denied.
+   - If you reject the article approval request, enter the reason for rejecting it in the second line of the body of the message.
+3. Click **Send**.
+
+## Responding to a Knowledge Article Approval Request Using the Self-Service Portal
+
+You can either click the link that appears in the email to go to the Self-Service Portal or log directly into the Self-Service Portal. If you use the Self-Service Portal for approvals, you must be logged in as a Self Service user. Contact your administrator to add the Self Service role to your employee profile if you are not able to log into the Self-Service Portal.
+
+1. Log into the **Self-Service** portal.
+2. Open the **My Items** workspace.
+3. Click any item listed with the **Approval** status.
+4. Approve or deny the article approval request.
+   - If you approve the request, click **Approve**, then click **Approve** again to dismiss the approval confirmation message and confirm the approval.
+   - If you deny the request, click **Deny**, then enter the reason for denying the request in the **Deny Approval-Reason** field and click **Submit**.
+
+## Viewing Approvals for Knowledge Articles
+
+1. Log in to the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Console}} console as a \{\{FRS\_VARS.Neurons\_ITSM\_-\_Knowledge\_Manager}}.
+2. Open the **Approval Vote Tracking** workspace. The pending and approved items are listed.
+3. Sort the **Name** column for knowledge approvals.
+4. Select the desired knowledge article and double-click it to view the form.
+5. Click **Go to** to navigate to the knowledge article.
+6. The **Approval** tab on the form shows the names of the approvers and the status of their approval (pending, approved, or denied).
+7. The **Email** tab on the form shows the email records (if the approval vote was cast through email).
+
+## Viewing Approvals Linked to a Specific Article
+
+1. Log in to the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Console}} console as a \{\{FRS\_VARS.Neurons\_ITSM\_-\_Knowledge\_Manager}}.
+2. Open a knowledge article approval request.
+3. Click the **Approvals** tab.
+4. To view a tally of the votes, open the knowledge article approval request by selecting and double-clicking it.
+
+## Knowledge Approval Workflow
+
+When the status of a knowledge article is updated to "In Review", a task is created in the logged status and the knowledge approval process starts. The system sends a notification that the knowledge article is ready for review to the appropriate group for the collection.
+
+- If the task is rejected, the status of the entire knowledge article is updated to "Rejected" and the system emails the article owner that the article is rejected.
+- If the task is marked completed, the knowledge article is updated to "Pending", and the system emails the appropriate approval board.
+
+After the knowledge article has been approved, the system emails the knowledge article owner and changes the status to "Reviewed". By default, 51% of approvers must approve the article. In all cases, a Knowledge Manager can cast the decisive vote and approve a knowledge article.
+
+The Knowledge Manager updates the status to "Published" when the article is ready to be published. See [Knowledge State Transitions Reference](Knowledge-State-Transitions-Reference.htm) for information about the states of a knowledge article.
+
+### Knowledge Article Collections
+
+Each knowledge article is grouped under a collection, during the article creation. Depending on the collection in which the knowledge article is grouped under, the task is assigned to a defined corresponding group for approval. For example:
+
+| Collection                   | The Article is Sent to this Group: |
+| ---------------------------- | ---------------------------------- |
+| Company Policy and Procedure | Company Policy and Procedure       |
+| Customer Knowledge           | Customer Knowledge                 |
+| Internal Knowledge           | Internal Knowledge                 |
+| IT Knowledge                 | IT Knowledge                       |
+| Service Desk                 | Service Desk                       |
+
+When a new knowledge collection is created, articles grouped in the collection are sent to a contact group called **Default Knowledge**.

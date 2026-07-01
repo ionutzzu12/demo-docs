@@ -1,0 +1,35 @@
+---
+title: Example: Giving Users in the Self-Service Portal Access to Submitted Incidents
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:50 GMT+0300 (Eastern European Summer Time)
+---
+
+Users in the Self-Service Portal want access to the incidents that they have submitted to the Service Desk for tracking purposes. You can restrict incident access by the **Customer Name** and/or **Reported By** fields.
+
+Do the following to define access to incidents:
+
+1. From the Configuration Console, click **Configure > Users and Permissions > Roles and Permissions** to open the **Roles and Permissions** workspace.
+2. Click **Service Desk Analyst**.
+3. Click the **Object Permissions** tab.
+4. Navigate to the incident business object and click **Edit**.
+5. The **Service Desk accessing Incident Availability** page opens. Click the button to add a table row for adding a case.
+6. Select **Update and view** from the drop-down list.
+7. Select the **Employee (via ProfileLink link)** relationship as the first operator to constrain from the drop-down list. The **ProfileLink** link is used to access profile data.
+8. Skip to the third drop-down list and select **is** as the first negation.
+9. From the fourth drop-down list, select **the logged in user** as a matching value.
+10. Check **or the logged in user's subordinates**.
+11. Save your changes.
+
+<Paragraph indent="1">
+  The case is saved, and is the display changes to read:
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  Update and View Records where
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  Incident's \[link#ProfileLink] is the logged in user or the logged in user's subordinates
+</Paragraph>
+
+Upon logging into the Self-Service Portal, you see the list of incidents that you have submitted in the **My Items** list.

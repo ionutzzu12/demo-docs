@@ -1,0 +1,63 @@
+---
+title: Using the GetRequestData Web Method
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:01 GMT+0300 (Eastern European Summer Time)
+---
+
+Returns the data for the specified service request.
+
+## Request Syntax
+
+public FRSHEATGetRequestDataResponse GetRequestData(string sessionKey, string tenantId, string strReqNumber)
+
+## Parameters
+
+- **sessionKey**: The session key from the **Connect** web method.
+- **tenantId**: The tenant for which the session key is authenticated.
+- **strReqNumber**: The numeric ID of the service request.
+
+## Return Value
+
+**FRSHEATGetRequestDataResponse** object, defined as follows:
+
+public class FRSHEATGetRequestDataResponse
+
+    \{
+
+public string status \{ get; set; }
+
+public string exceptionReason \{ get; set; }
+
+public FRSHEATServiceReqRequest reqData \{ get; set; }
+
+    }
+
+The **FRSHEATGetRequestDataResponse** class has the following fields:
+
+- **status** Contains a status indicating whether the web method was successful. If the session key (returned from the **Connect** web method) is valid, this field returns a value of success.
+- **exceptionReason**: Contains exception information, if the application throws an exception when running this web method.
+- **reqData**: Contains an **FRSHEATServiceReqRequest** object containing the service request that is successfully submitted.
+
+The following table lists the available status values and describes how to interpret them.
+
+| <font color="#FFFFFF">Status</font> | <font color="#FFFFFF">Explanation</font>                                                                                                                           |
+| ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Success**                         | Successfully retrieved the service request with the specified numeric ID. This is available in the **reqData** field.                                              |
+| **NotFound**                        | The tenant does not contain a service request with the specified numeric ID. Ensure that the numeric ID is spelled correctly.                                      |
+| **Error**                           | An error was encountered during the execution of this web method.  Inspect the corresponding **exceptionReason** field to determine why the web method has failed. |
+
+## Example
+
+FRSHEATGetRequestDataResponse getRequestDataResponse = frSvc.GetRequestData(authSessionKey, tenantId, strReqRecId);
+
+FRSHEATServiceReqRequest srRequest;
+
+if (getRequestDataResponse.status == "Success")
+
+            \{
+
+                srRequest = getRequestDataResponse.reqData;
+
+// Go ahead and access the relevant properties of interest from the service request.
+
+            }

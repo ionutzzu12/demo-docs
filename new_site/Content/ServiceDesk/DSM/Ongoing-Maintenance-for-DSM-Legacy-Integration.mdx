@@ -1,0 +1,35 @@
+---
+title: Performing Ongoing Maintenance for DSM Legacy
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:49 GMT+0300 (Eastern European Summer Time)
+---
+
+After you configure the \{\{FRS\_VARS.ProductName}}- DSM legacy environment, perform ongoing maintenance to address the following scenarios.
+
+## Activating a Computer
+
+A new computer must be activated in DSM before being provisioned from \{\{FRS\_VARS.ProductName}}.
+
+1. In DSM, choose the **Computers & Users** tab.
+2. Right-click the computer and select **Activate Computer**.
+
+To configure DSM so that new computers are automatically activated when added to DSM, refer to the documentation provided with DSM.
+
+## Creating a New Software Package in DSM and making it installable from Neurons for ITSM
+
+The DSM administrator must create a software package on the DSM system. The package must have a property of **ITSM Only** or **DSM and ITSM** in the DSM console. See :Link[Software Properties in DSM]{label="Software Properties in DSM" overridedLabel="Software Properties in DSM" spaceId docId="3Ri12sDwLYjSOoP3SITWv" version="v2" docAnchorId="#Software_Properties" loadingMethod="dynamic" newTab="false" githubPath="About-DSM.htm#Software_Properties" href="About-DSM.mdx"}.
+
+1. Synchronize the software package. See [About Synchronizing Software Packages and Sets](Synchronizing-Software-Packages-and-Sets.mdx).
+2. Change package parameters. See :Link[Viewing and Editing Default Installation Parameters]{label="Viewing and Editing Default Installation Parameters" overridedLabel="Viewing and Editing Default Installation Parameters" spaceId docId="UptjATS8q-bxPXaH7-2VR" version="v2" docAnchorId="#ViewingAndEditingDefaultistallationParameters" loadingMethod="dynamic" newTab="false" githubPath="Synchronizing-Software-Packages-and-Sets.htm#ViewingAndEditingDefaultistallationParameters" href="Synchronizing-Software-Packages-and-Sets.mdx"}.
+3. Specify approval requirements or availability in the Self-Service Portal, and then activate the software package. See :Link[Specifying Approval for Software Packages]{label="Specifying Approval for Software Packages" overridedLabel="Specifying Approval for Software Packages" spaceId docId="UptjATS8q-bxPXaH7-2VR" version="v2" docAnchorId="#SpecifyingApprovalForSoftwarePackages" loadingMethod="dynamic" newTab="false" githubPath="Synchronizing-Software-Packages-and-Sets.htm#SpecifyingApprovalForSoftwarePackages" href="Synchronizing-Software-Packages-and-Sets.mdx"}.
+4. Add the package to a \{\{FRS\_VARS.ProductName}} record so that the package is grouped together with other similar packages and displays in a filtered list when the \{\{FRS\_VARS.ProductName}} record is selected. See [Linking Software Packages to Neurons for ITSM Software Records](Linking-Software-Packages-to-Records.mdx).
+
+## Adding a Computer to DSM
+
+- If the new computer does not yet have a fully qualified domain name or a running DSM client agent, map a configuration item to the new computer.
+- If the existing computer has a fully qualified domain name and a running DSM client agent, and has already been linked to a user, map a configuration item to the new computer. See [Configuring the DSM Legacy Integration](Configuring-the-DSM-Legacy-Integration.mdx).
+
+## Changing the Recurring Schedule for Software Synchronization
+
+- Software packages can be synchronized on a daily or weekly schedule.
+- Configuration items can be mapped to computers by running **Identify Computers** on a daily or weekly basis. (We recommend that you run it daily.) See :Link[About Scheduled Synchronization]{label="About Scheduled Synchronization" overridedLabel="About Scheduled Synchronization" spaceId docId="UptjATS8q-bxPXaH7-2VR" version="v2" docAnchorId="#ScheduledSynchronization" loadingMethod="dynamic" newTab="false" githubPath="Synchronizing-Software-Packages-and-Sets.htm#ScheduledSynchronization" href="Synchronizing-Software-Packages-and-Sets.mdx"}.

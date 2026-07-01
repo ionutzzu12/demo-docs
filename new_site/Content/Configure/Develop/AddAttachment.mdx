@@ -1,0 +1,165 @@
+---
+title: Using the AddAttachment Web Method
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:01 GMT+0300 (Eastern European Summer Time)
+---
+
+Adds an attachment to the specified business object record.
+
+## Request Syntax
+
+Use the following syntax in preparing your request:
+
+FRSHEATIntegrationAddAttachmentResponse
+
+AddAttachment(string sessionKey, string tenantId, ObjectAttachmentCommandData commandData)
+
+## Parameters
+
+Provide these parameters in your request:
+
+<Paragraph indent="1">
+  **sessionKey**: The session key from the **Connect** web method.
+</Paragraph>
+
+<Paragraph indent="1">
+  **tenantId**: The tenant for which the session key is authenticated.
+</Paragraph>
+
+<Paragraph indent="1">
+  **commandData**: A structure containing information about the creation request.
+</Paragraph>
+
+<Paragraph indent="2">
+  public class ObjectAttachmentCommandData
+</Paragraph>
+
+<Paragraph indent="2">
+  \{
+</Paragraph>
+
+<Paragraph indent="2">
+  public string ObjectId;
+</Paragraph>
+
+<Paragraph indent="2">
+  public string ObjectType;
+</Paragraph>
+
+<Paragraph indent="2">
+  public string fileName;
+</Paragraph>
+
+<Paragraph indent="2">
+  public Byte\[] fileData;
+</Paragraph>
+
+<Paragraph indent="2">
+  public Boolean ForceSaveInDatabase;
+</Paragraph>
+
+<Paragraph indent="2">
+  }
+</Paragraph>
+
+<Paragraph indent="1">
+  Include the following attributes for the ObjectAttachmentCommandData:
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="3">
+  **ObjectId**: The RecID of the new attachment.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="3">
+  **ObjectType**: The type of the main business object to which this attachment is attached in the object reference notation.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="3">
+  **fileName**: Name of the file.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="3">
+  **fileData**: Actual file bytes.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="3">
+  **ForceSaveInDatabase**: Saves the attachment to the database regardless of client configuration. This attribute is false by default.
+</Paragraph>
+
+## Return Value
+
+**FRSHEATIntegrationAddAttachmentResponse** object, defined as follows:
+
+public class FRSHEATIntegrationAddAttachmentResponse
+
+    \{
+
+public string status \{ get; set; }
+
+public string exceptionReason \{ get; set; }
+
+    }
+
+The **FRSHEATIntegrationAddAttachmentResponse** class has the following fields:
+
+- **status**: Provides a status about the state of the connection. The table below contains a full description of the available status values.
+- **exceptionReason**: Contains exception information, if the application throws an exception when running this web method.
+
+The following table lists the available status values and describes how to interpret them.
+
+| <font color="#FFFFFF">Status</font> | <font color="#FFFFFF">Explanation</font>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Success**                         | Successfully added the attachment to the business object record.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| **Error**                           | Cannot add the attachment to the business object record. The exception information is stored in the **exceptionReason** field.<br />The following are common errors:<br />The file that is uploaded is a restricted file extension. Please contact your System Administrator for a list of allowed file extensions for upload.<br />The attachment has a file extension that is not allowed for the specified tenant.<br />Attachment upload finished unsuccessfully.<br />The application cannot find the business object record.<br />The definition for business object \<Business Object># was not found.<br />The specified business object does not exist in the tenant. |
+
+## Example
+
+The following example reads in a sample image from the local file application of the user, and attaches the file to the specified incident record.
+
+const string fileName = "C:\\\Temp\\\sample.jpg";
+
+using (FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read))
+
+\{
+
+using (BinaryReader r = new BinaryReader(fs))
+
+\{
+
+byte\[] AttachmentData = new byte\[fs.Length];
+
+for (int i = 0; i \< fs.Length; i++)
+
+\{
+
+AttachmentData\[i] = r.ReadByte();
+
+}
+
+ObjectAttachmentCommandData data = new ObjectAttachmentCommandData()
+
+\{
+
+ObjectId = "9981FBEBAA8B4EE2820364505855ABC2",
+
+ObjectType = "Incident#",
+
+fileName = "sample.png",
+
+fileData = AttachmentData
+
+};
+
+FRSHEATIntegrationAddAttachmentResponse response = frSvc.AddAttachment(authSessionKey, tenantId, data);
+
+if (response.status != "Success")
+
+\{
+
+Console.WriteLine("Encountered the following error while adding the attachment to the record: " + response.exceptionReason);
+
+}
+
+}
+
+}

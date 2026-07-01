@@ -1,0 +1,38 @@
+---
+title: Resolving Incidents
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:47 GMT+0300 (Eastern European Summer Time)
+---
+
+You can resolve an incident when you are finished working on it and its associated tasks are complete. After you resolve the incident, the application notifies the requester of the resolution and either closes the incident or waits for a defined period of time before automatically closing it.
+
+When an incident is resolved, the application updates the cost of the incident by rolling up the cost of all the associated tasks. Along with the cost, the application also rolls up the time specified in the **Actual Effort** field of each completed task to show the total time spent on the incident, as shown in the **Time** field.
+
+1. Log in to the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Console}} console.
+2. Open the **Incident** workspace.
+3. Open the incident to resolve.
+4. Do the following:
+
+<Paragraph indent="1">
+  a. Link any related matching incidents, problems, or Knowledge Base articles. Refer to [Using Related Items and Object Matching](<../Search/Related Items.mdx>).
+</Paragraph>
+
+<Paragraph indent="1">
+  b. After reviewing the details of the matching record and determining that it is a match, click **Link**. The the matching record is linked to the current incident and populates the information in the workspace of the applicable business object.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. If the matching record resolves the incident, click **Link and Resolve**. The **Status** field for the incident is changed to resolved and the information is populated in the business object tab.
+</Paragraph>
+
+5. If you have not resolved the incident by matching it with another incident, problem, or Knowledge Base article, select **Resolved** from the **Status** drop-down list.
+6. Enter information into the fields.
+
+| Field           | Description                                                                                                                                                                                                                        |
+| --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Resolution      | Describe the actions taken to resolve this incident.                                                                                                                                                                               |
+| Cause Code      | The cause of the incident.<br />Configuration<br />Documentation Request<br />Hardware<br />Install Request<br />Installation<br />Linked Problem<br />Other<br />Reference Request<br />Session Reset<br />Software<br />Training |
+| Actual Service  | The application automatically fills in the value for this field, although it can be edited, if required.                                                                                                                           |
+| Actual Category | The application automatically fills in the value for this field, although it can be edited, if required.                                                                                                                           |
+
+7. Click **Save**. The incident is resolved and an email is sent to the requester.

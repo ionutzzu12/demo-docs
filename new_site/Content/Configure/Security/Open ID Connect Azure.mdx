@@ -1,0 +1,142 @@
+---
+title: Setting Up authentication for OpenID Connect with Microsoft Azure
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:57 GMT+0300 (Eastern European Summer Time)
+---
+
+## Adding a Microsoft Azure Application
+
+1. Log into [https://portal.azure.com](https://portal.azure.com/)
+2. Select Azure Active Directory.
+3. Create a new Active Directory or use an existing Active Directory.
+4. From **App Registration**, create a new Application Registration and provide the following information:
+   1. **Name**: A contextual name for the application, such as \{\{FRS\_VARS.ProductName}} Prod.
+   2. **Redirect URI**: Select the option Web and enter the \{\{FRS\_VARS.ProductName}} tenant URL in the format - https\://\{\{tenant\_url}}/handlers/sso/OIDC/AuthResultHandler.ashx.
+
+## Configuring a Microsoft Azure Application
+
+1. Open the Microsoft Azure application you just created in the previous section and provide the following information:
+
+<table isTableHeaderOn="true">
+  <tr>
+    <td>
+      Field
+    </td>
+    <td>
+      Description
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Branding
+    </td>
+    <td>
+      Name - displays the application name you provided when you created the application in the previous section.
+    </td>
+  </tr>
+  <tr>
+    <td>
+    </td>
+    <td>
+      Home page URL - enter the \{\{FRS\_VARS.ProductName}} tenant url. The format should be - https\://(\{\{FRS\_VARS.ProductName}} tenant url)/handlers/sso/OIDC/AuthResultHandler.ashx
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Authentication
+    </td>
+    <td>
+      Redirect URIs - same as the Home page URL.
+      All other fields in this section are set by default, change them as required.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Certificates and secrets
+    </td>
+    <td>
+      Create a new client secret. After creating, copy the secret key and save it somewhere. You will need this key while configuring OpenID Connect in \{\{FRS\_VARS.ProductName}} and this secret key will be hidden after this step is completed.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      API Permissions
+    </td>
+    <td>
+      Add a new permission of type Microsoft Graph and delegate the following permission for it:
+      - Directory.Read.All
+      - User.ManageIdentities.All
+      - User.Read
+      - User.Read.All
+      After delegating permissions, select Grant Admin Consent.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Expose an API
+    </td>
+    <td>
+      Application ID URI - provide the \{\{FRS\_VARS.ProductName}} tenant ID in the format - https\://(\{\{FRS\_VARS.ProductName}} tenant ID)/OIDC
+    </td>
+  </tr>
+</table>
+
+<hint type="info">
+  Once the above configuration is done, go to **Overview** > **Endpoints**, you need to refer to these endpoints while configuring OpenID Connect in \{\{FRS\_VARS.ProductName}}.
+</hint>
+
+For more information on Microsoft Azure setup, refer to [Microsoft help documents](https://docs.microsoft.com/).
+
+## Creating a Neurons for ITSM Authentication Provider
+
+<hint type="info">
+  To set up \{\{FRS\_VARS.ITSM}} users for authentication via the \{\{FRS\_VARS.Neurons\_platform}}, refer to [Setting up ITSM users for authentication via the Neurons Platform](../../../setting-up-itsm-users-for-authentication-via-the-neurons-platform.mdx) and [Authentication](https://help.ivanti.com/ht/help/en_US/CLOUD/vNow/authentication.htm). This feature is **Early Access** only and may not be available in your environment. For more information, please contact your Customer Success Manager.
+</hint>
+
+1. From the \{\{FRS\_VARS.Configuration\_console}}, click **Configure** > **Security Controls** > **Authentication Providers** to open the **Authentication Providers** workspace.
+2. From the **New Record Menu** drop-down list, select **New OpenID Connect**.
+3. Enter data into the fields:
+
+| Field                               | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Default                             | Specifies if this authentication provider is called.<br />Automatically set by the application. You change this in the list. To make this authentication provider as the default value, you must first change the default setting for all other authentication providers to false and then change the default setting for this authentication provider to true.                                                                                                                                                                                                                                                     |
+| Disabled                            | Specifies if this authentication provider is disabled.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Name                                | The name of the OpenID Connect provider. This can be any value you want and will get displayed to the end users on the login page.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| Authentication URL                  | Enter the value from the OAUTH 2.0 **Authorization Endpoint** from the Microsoft Azure application created in the above section.<br />\{\{FRS\_VARS.ProductName}} must be able to initiate an outbound HTTPS (port 443) connection to this URL.                                                                                                                                                                                                                                                                                                                                                                     |
+| Token Verification URL              | Enter the value from the OAUTH 2.0 **Token Endpoint** from the Microsoft Azure application created in the above section.<br />**Note**: \{\{FRS\_VARS.ProductName}} must be able to initiate an outbound HTTPS (port 443) connection to this URL.                                                                                                                                                                                                                                                                                                                                                                   |
+| Logout URL                          | Enter: [https://login.microsoftonline.com//oauth2/logout](https://login.microsoftonline.com/\{Active-Directory-ID}/oauth2/logout).<br />\{\{Active-Directory-ID}} - get this input from the Azure Active Directory properties created in :Link[Adding a Microsoft Azure Application]{label="Adding a Microsoft Azure Application" overridedLabel="Adding a Microsoft Azure Application" spaceId docId="rfE72FYUocnRUwkKpie_R" version="v2" docAnchorId="#AddingMSAzureApp" loadingMethod="dynamic" newTab="false" href="Open ID Connect Azure.mdx"} section.                                                        |
+| Session Renewal URL                 | The URL to request to renew the session. If this field is empty, the application uses the value of the **Authentication URL** field. For Azure AD, this can normally be left blank.<br />**Note**: \{\{FRS\_VARS.ProductName}} must be able to initiate an outbound HTTPS (port 443) connection to this URL.                                                                                                                                                                                                                                                                                                        |
+| Client ID                           | Enter the Microsoft Azure client ID. Get this information from the **Application ID** field of the Microsoft Azure application created in the above .                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| Client Secret                       | Enter the secret key that you copied and saved while configuring certificates and Secrets for the Microsoft Azure application created in the above section.                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| OIDC Hosted Domain                  | Not applicable.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| OIDC Realm                          | Not Applicable.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| Certificate URL                     | The URL of the certificate used to verify the signature of the authentication response. <br />Currently, Azure uses this URL: [https://login.microsoftonline.com/common/discovery/keys](https://login.microsoftonline.com/common/discovery/keys)<br />**Note**: \{\{FRS\_VARS.ProductName}} must be able to initiate an outbound HTTPS (port 443) connection to this URL.                                                                                                                                                                                                                                           |
+| Certificate Issuer                  | The name of the certificate authority who issued the certificate. Enter this hyperlink: [https://sts.windows.net/\{Active Directory ID}/](<https://sts.windows.net/Active Directory ID/>). \{\{Active-Directory-ID}} - get this input from the Azure Active Directory properties created in the :Link[Adding a Microsoft Azure Application]{label="Adding a Microsoft Azure Application" overridedLabel="Adding a Microsoft Azure Application" spaceId docId="rfE72FYUocnRUwkKpie_R" version="v2" docAnchorId="#AddingMSAzureApp" loadingMethod="dynamic" newTab="false" href="Open ID Connect Azure.mdx"} section. |
+| Expiration Date                     | The expiration date of the certificate.<br />Not used in this release of \{\{FRS\_VARS.ProductName}}.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| Auto Provisioning                   | Check to enable.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| Profile Information URL             | Not used for Microsoft Azure.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| Auto Provision Role                 | Role associated with the new user.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| Auto Provision Status               | Status of the new user.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| Auto Provision Team                 | Team associated with the new user.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| Auto Provision User Business Object | Type of user record to create. Can be either employee or external contact.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+
+4. Optional. To be redirected to an application URL after successful logout, append **?post\_logout\_redirect\_uri=\{Redirect URI}** to the logout URL. For example, enter **https\://login.microsoftonline.com/****\{\{Active-Directory-ID}}****/oauth2/logout?post\_logout\_redirect\_uri=https\://my\_tenant1.saasitdev.com/handlers/sso/OIDC/AuthResultHandler.ashx**.
+5. Click **Save**. Your \{\{FRS\_VARS.ProductName}} auth provider page should look similar to the image below:
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/NTak5Vh6j8Q3OGOL5-55H_creating-a-service-manager-authentication-provider-1.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/Configure/creating-a-service-manager-authentication-provider-1.png" githubPath="Content/Resources/Images/Configure/creating-a-service-manager-authentication-provider-1.png" showCaption="false"></Image>
+
+6. To verify the authentication, click **Test Authentication**. (note you must have an Employee record with an appropriate External Auth linking it to this provider before the test will be fully successful).
+   - If a line appears stating "Receiving External Login", use Sub as external login as e-mail is not available at this step."
+   - You may also be prompted to consent to the needed access and will need to log in as an Azure AD admin to accept on behalf of your organization.
+   - A successful test will look similar to the following screenshot:
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/MmPZSjeRJ_KicTCOphDwz_creating-a-service-manager-authentication-provider-2.png" position="flex-start" size="40" indent="2" initialPath="../../Resources/Images/Configure/creating-a-service-manager-authentication-provider-2.png" githubPath="Content/Resources/Images/Configure/creating-a-service-manager-authentication-provider-2.png" showCaption="false"></Image>
+
+## Security Considerations When Using Microsoft Azure
+
+\{\{FRS\_VARS.ProductName}} application servers must be able to initiate outbound connections to the following endpoints:
+
+- Token verification URL
+- Certificate URL
+
+All URLs have the following URL pattern: https\://login.microsoftonline.com/\*.

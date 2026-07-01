@@ -1,0 +1,511 @@
+---
+title: Configuring SAP® Solution Manager Settings
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:53 GMT+0300 (Eastern European Summer Time)
+---
+
+This topic describes the SAP Solution Manager (SolMan) settings used when integrating \{\{FRS\_VARS.ProductName}} with SAP Solution Manager Release 7.1.  This topic contains these sections:
+
+- :Link[About the SAP Solution Manager]{label="About the SAP Solution Manager" overridedLabel="About the SAP Solution Manager" spaceId docId="yUNRuxRtIg1LCHCxGgM4B" version="v2" docAnchorId="#About" loadingMethod="dynamic" newTab="false" href="SAP_SolMan_Integration.mdx"}
+- :Link[Installing the Required Components]{label="Installing the Required Components" overridedLabel="Installing the Required Components" spaceId docId="yUNRuxRtIg1LCHCxGgM4B" version="v2" docAnchorId="#Installi" loadingMethod="dynamic" newTab="false" href="SAP_SolMan_Integration.mdx"}
+- :Link[Setting Up the SAP Solution Manager]{label="Setting Up the SAP Solution Manager" overridedLabel="Setting Up the SAP Solution Manager" spaceId docId="yUNRuxRtIg1LCHCxGgM4B" version="v2" docAnchorId="#Setting" loadingMethod="dynamic" newTab="false" href="SAP_SolMan_Integration.mdx"}
+
+The information in this topic is from **OneResource** and is included in the \{\{FRS\_VARS.ProductName}} online help as a courtesy.
+
+If after reviewing this topic, you need assistance with integrating \{\{FRS\_VARS.ProductName}} with SAP Solution Manager, \{\{FRS\_VARS.Company}} recommends using **OneResource**. **OneResource** has experience in this area and would be happy to be of assistance.
+
+\{\{FRS\_VARS.Company}} strongly recommends using the secure protocol HTTPS instead of HTTP within the \{\{FRS\_VARS.ProductName}} platform to ensure data security and integrity.
+
+## About the SAP Solution Manager
+
+The SAP Solution Manager is a central support and application management suite that can include many SAP and non-SAP systems. \{\{FRS\_VARS.ProductName}} is one such non-SAP application. Use this integration to manage incidents.
+
+Before performing the procedures in this topic, install and configure the SAP Solution Manager Release 7.1 according to their documentation. Older versions of SAP Solution Manager may work with this integration but they have not been tested.
+
+## Installing the Required Components
+
+Install the following SAP Solution Manager components:
+
+| Component    | SAP Version  | Patch Level |
+| ------------ | ------------ | ----------- |
+| SAP\_BASIS   | 702          | 15          |
+| SAP\_ABA     | 702          | 15          |
+| CTS\_PLUG    | 200          | 13          |
+| PI\_BASIS    | 702          | 15          |
+| ST-PI        | 2008\_1\_700 | 10          |
+| BI\_CONT     | 707          | 7           |
+| GW\_CORE     | 200          | 8           |
+| SAP\_BS\_FND | 702          | 13          |
+| SAP\_BW      | 702          | 15          |
+| UISAPUI5     | 100          | 7           |
+| UI\_INFRA    | 100          | 7           |
+| IW\_GIL      | 100          | 4           |
+| SAP\_AP      | 700          | 31          |
+| WEBCUIF      | 701          | 12          |
+| BBPCRM       | 701          | 12          |
+| CPRXRPM      | 500\_702     | 11          |
+| IW\_BEP      | 200          | 8           |
+| IW\_FND      | 250          | 8           |
+| ST           | 710          | 12          |
+| ST-BCO       | 710          | 10          |
+| RTCISM       | 100          | 0           |
+| SOCO         | 101          | 3           |
+| ST-A/PI      | 01R\_700     | 0           |
+| ST-ICC       | 200          | 0           |
+| ST-ICO       | 150\_700     | 41          |
+| ST-SER       | 701\_2010\_1 | 23          |
+
+Older versions of these components may work with this integration but they have not been tested.
+
+## Setting Up the SAP Solution Manager
+
+To set up the SAP Solution Manager, follow the guided procedures in the "IT Service Management" section of the SAP Solution Manager Implementation Guide.
+
+Under IT Service Management, configure the following tabs:
+
+<Paragraph indent="1">
+  2.1 Configure Manually
+</Paragraph>
+
+*Configure Manually*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/4dF6E8OD2ZD37Bix6FcXh_sapsolman1.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/SAP_SolMan_1.png" githubPath="Content/Resources/Images/help-images/SAP_SolMan_1.png" showCaption="false"></Image>
+
+<Paragraph indent="1">
+  2.2 Maintain Transaction Types
+</Paragraph>
+
+*Maintain Transaction Types*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/FWcvyWcH6l07ga5xPzaPp_sapsolman2.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/SAP_SolMan_2.png" githubPath="Content/Resources/Images/help-images/SAP_SolMan_2.png" showCaption="false"></Image>
+
+<Paragraph indent="1">
+  2.5 Create Template Users
+</Paragraph>
+
+*Create Template Users*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/6t_5g-YUElVaKU0d4jV-g_sapsolman3.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/SAP_SolMan_3.png" githubPath="Content/Resources/Images/help-images/SAP_SolMan_3.png" showCaption="false"></Image>
+
+Be sure to name the SMIN incident with a customer-specific nomeclature so that it does not get confused with the SAP Solution Manager incidents during an upgrade. For example, you might name your SMIN incident (Z)SMIN.
+
+For the networking department, you must open the HTTP ports in both directions. \{\{FRS\_VARS.ProductName}} uses HTTP port 80, whereas the SAP Solution Manager uses port 8000. If there are any firewalls or VPN tunnels in between, ensure that both parties can connect bi-directionally to each other.
+
+## Configuring the SAP Solution Manager
+
+- :Link[About the SAP Solution Manager Web Service API]{label="About the SAP Solution Manager Web Service API" overridedLabel="About the SAP Solution Manager Web Service API" spaceId docId="yUNRuxRtIg1LCHCxGgM4B" version="v2" docAnchorId="#AboutWSAPI" loadingMethod="dynamic" newTab="false" href="SAP_SolMan_Integration.mdx"}
+- :Link[Authorizing the Web Service API]{label="Authorizing the Web Service API" overridedLabel="Authorizing the Web Service API" spaceId docId="yUNRuxRtIg1LCHCxGgM4B" version="v2" docAnchorId="#Authorizing" loadingMethod="dynamic" newTab="false" href="SAP_SolMan_Integration.mdx"}
+- :Link[Activating the Web Service API]{label="Activating the Web Service API" overridedLabel="Activating the Web Service API" spaceId docId="yUNRuxRtIg1LCHCxGgM4B" version="v2" docAnchorId="#Activating" loadingMethod="dynamic" newTab="false" href="SAP_SolMan_Integration.mdx"}
+- :Link[Administering the Web Service API]{label="Administering the Web Service API" overridedLabel="Administering the Web Service API" spaceId docId="yUNRuxRtIg1LCHCxGgM4B" version="v2" docAnchorId="#Administering" loadingMethod="dynamic" newTab="false" href="SAP_SolMan_Integration.mdx"}
+- :Link[Setting Up the Service Provider]{label="Setting Up the Service Provider" overridedLabel="Setting Up the Service Provider" spaceId docId="yUNRuxRtIg1LCHCxGgM4B" version="v2" docAnchorId="#SettingUpSP" loadingMethod="dynamic" newTab="false" href="SAP_SolMan_Integration.mdx"}
+- :Link[Setting Up the Consumer Proxy]{label="Setting Up the Consumer Proxy" overridedLabel="Setting Up the Consumer Proxy" spaceId docId="yUNRuxRtIg1LCHCxGgM4B" version="v2" docAnchorId="#SettingUpProxy" loadingMethod="dynamic" newTab="false" href="SAP_SolMan_Integration.mdx"}
+- :Link[Configuring the Backend External Service Desk Configuration]{label="Configuring the Backend External Service Desk Configuration" overridedLabel="Configuring the Backend External Service Desk Configuration" spaceId docId="yUNRuxRtIg1LCHCxGgM4B" version="v2" docAnchorId="#Configuring" loadingMethod="dynamic" newTab="false" href="SAP_SolMan_Integration.mdx"}
+- :Link[Configuring Post Processing Framework]{label="Configuring Post Processing Framework" overridedLabel="Configuring Post Processing Framework" spaceId docId="yUNRuxRtIg1LCHCxGgM4B" version="v2" docAnchorId="#ConfiguringAutoFor" loadingMethod="dynamic" newTab="false" href="SAP_SolMan_Integration.mdx"}
+- :Link[Adding Business Rules]{label="Adding Business Rules" overridedLabel="Adding Business Rules" spaceId docId="yUNRuxRtIg1LCHCxGgM4B" version="v2" docAnchorId="#Adding" loadingMethod="dynamic" newTab="false" href="SAP_SolMan_Integration.mdx"}
+
+### About the SAP Solution Manager Web Service API
+
+The SAP Solution Manager contains a web service API to make the integration with outside applications, such as \{\{FRS\_VARS.ProductName}} easier. See <font color="#4169e1">https://support.sap.com/content/dam/library/SAP%20Support%20Portal/support-programs-services/solution-manager/knowledge-transfer/White%20Papers/ITSMWebSerAPI-2a.pdf</font> for more information about it.
+
+Execute the procedures described in the "Web Service-Based Configuration" topic in the SAP Solution Manager Implementation Guide.
+
+### Authorizing the Web Service API
+
+In the SAP user interface, to access the workcenter (to get access to the IT Service Management functionality) execute the SM\_WORKCENTER transaction. This gives you authorization to view and edit the workcenter in a browser. You must have the following roles to log in to the IT Service Management user interface:
+
+- SAP\_SM\_CRM\_UIU\_SOLMANPRO
+- ZSAP\_SMWORK\_BASIC
+- SAP\_SMWORK\_INCIDENT\_MAN
+- SAP\_SUPPDESK\_ADMIN
+- SAP\_SM\_CRM\_UIU\_SOLMANREQU (only for closing incidents)
+
+To call the web service API as an application user, you must have the following roles:
+
+- SAP\_SUPPDESK\_INTERFACE
+- SAP\_SUPPDESK\_ADMIN
+
+We recommend that you create a separate application user for calling the web service API, to limit authorization when logging in to the SAP Solution Manager user interface.
+
+To edit user authorizations, call the SAP SU01 transaction and enter the authorizations under the **Roles** tab.
+
+*SAP Solutions Manager Roles Tab*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/mfqNeUXsqO0ebc5no1h6o_sapsolman4.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/SAP_SolMan_4.png" githubPath="Content/Resources/Images/help-images/SAP_SolMan_4.png" showCaption="false"></Image>
+
+### Activating the Web Service API
+
+To activate the web service API, do the following:
+
+1. Call the SICF transaction.
+
+*SICF Transaction*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/6QD3W-F6zafE8Pd29myNR_sapsolman5.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/SAP_SolMan_5.png" githubPath="Content/Resources/Images/help-images/SAP_SolMan_5.png" showCaption="false"></Image>
+
+2. Click the green arrow to execute the transaction.  The application displays the **Maintain service** screen.
+3. Drill down to the service name called ICT\_SERVICE\_DESK\_API. Right click and click **Activate Service**.
+
+*Maintain Service Screen*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/4TlRnEqUn-PFzTmCV0kmg_sapsolman6.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/SAP_SolMan_6.png" githubPath="Content/Resources/Images/help-images/SAP_SolMan_6.png" showCaption="false"></Image>
+
+4. In the resulting dialog box, click the second **Yes** button to activate the web service and all of its subnodes.
+
+*Activate the Web Service and Subnodes*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/xPoqbEfzpWZwFj05WHMIH_sapsolman7.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/SAP_SolMan_7.png" githubPath="Content/Resources/Images/help-images/SAP_SolMan_7.png" showCaption="false"></Image>
+
+### Administering the Web Service API
+
+Follow these steps to administer the web service API. These steps are performed in the SOA Management application.
+
+1. Open the SOA Management application.
+
+*SOA Management Application*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/ZtsyYPsAbdzK8DUA3GgtT_sapsolman8.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/SAP_SolMan_8.png" githubPath="Content/Resources/Images/help-images/SAP_SolMan_8.png" showCaption="false"></Image>
+
+2. Click **Web Service Configuration**, then click **Link Web Service Configuration**.
+3. Click the **Configuration Search** tab.
+
+*Web Service Configuration*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/qhUgGFAoR6srX8-AK1d5d_sapsolman9.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/SAP_SolMan_9.png" githubPath="Content/Resources/Images/help-images/SAP_SolMan_9.png" showCaption="false"></Image>
+
+4. For the object name, enter **ICT\_SERVICE\_DESK\_API** and click **Search**.
+
+### Setting Up the Service Provider
+
+Follow these steps to set up the service provider, which in this case is \{\{FRS\_VARS.ProductName}}. The service provider accepts the web service call. You need to create a new logical port.
+
+1. Click the **Configurations** tab.
+2. In the **Define Services and Bindings** section, click **Create Service**.
+3. Select the ICT\_SERVICE\_DESK\_API service.
+
+*Configuration Tab -- Creating a Service*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/fd1jGDnXkyG6DYhQ9-uFC_sapsolman10.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/SAP_SolMan_10.png" githubPath="Content/Resources/Images/help-images/SAP_SolMan_10.png" showCaption="false"></Image>
+
+4. Click the **New Service/Binding** icon.
+5. On the **Service and Binding Name** screen, enter a name for the new binding, such as ICT\_SERVICE\_DESK and click **Next**.
+
+*Service and Binding Name Screen*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/ykwNE18OlE_qOFTjD46Fp_sapsolman11.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/SAP_SolMan_11.png" githubPath="Content/Resources/Images/help-images/SAP_SolMan_11.png" showCaption="false"></Image>
+
+6. On the Provider Security screen, for the **Transport Level Security** section, select **None (http)**. In the **Transport Channel Authentication** section, select **User ID/Password**.
+
+*Provider Security Screen*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/MVLasYRhF6LykzBiKcE0D_sapsolman12.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/SAP_SolMan_12.png" githubPath="Content/Resources/Images/help-images/SAP_SolMan_12.png" showCaption="false"></Image>
+
+7. Leave the other settings as is. Click **Next** until you finish the configuration.
+
+### Setting Up the Consumer Proxy
+
+Follow these steps to create a new logical port for the consumer proxy.
+
+1. Click the **Configuration Search** tab.
+2. For the object name, enter **CO\_PCICT\_SERVICE\_DESK\_API** and click **Search**.
+3. Click the **Configurations** tab.
+4. In the **Define Logical Ports** section, click **Create**.
+5. Select the HEAT\_ICT\_SERVICE\_DESK\_API\_LOG logical port.
+
+*Configuration Tab -- Creating a Logical Port*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/1UUxEDkS2uzBDAhKRwLN0_sapsolman13.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/SAP_SolMan_13.png" githubPath="Content/Resources/Images/help-images/SAP_SolMan_13.png" showCaption="false"></Image>
+
+6. On the **Logical Port Name** screen, enter a name for the logical port and an optional description and click **Next**.
+
+*Logical Port Name Screen*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/esG6DFuW2aqPHeSTISvCn_sapsolman14.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/SAP_SolMan_14.png" githubPath="Content/Resources/Images/help-images/SAP_SolMan_14.png" showCaption="false"></Image>
+
+7. On the **Consumer Security** screen, under **Authentication Settings**, select **User ID / Password**. Under the **User ID/Password** section, enter a user name and a password. Because SAP Solution Manager uses HTTP basic authentication, you must enter a user name and password. Click **Next**.
+
+*Consumer Security Screen*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/1i25PY_L5NbuE6YIu_MGt_sapsolman15.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/SAP_SolMan_15.png" githubPath="Content/Resources/Images/help-images/SAP_SolMan_15.png" showCaption="false"></Image>
+
+8. On the **HTTP Settings** screen, enter information into the fields. Click **Next**.
+
+*HTTP Settings Screen*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/O3pdCQoMQIQCC1KO6oeYU_sapsolman16.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/SAP_SolMan_16.png" githubPath="Content/Resources/Images/help-images/SAP_SolMan_16.png" showCaption="false"></Image>
+
+9. On the SOAP Protocol screen, for the **Data transfer scope** field, enter **Minimal Data Transfer**. For the **Transfer protocol** field, enter **Transfer via HTTP header**.
+
+*SOAP Protocol Screen*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/hLHg_cGktw88p9744saSA_sapsolman17.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/SAP_SolMan_17.png" githubPath="Content/Resources/Images/help-images/SAP_SolMan_17.png" showCaption="false"></Image>
+
+10. Leave the other settings as is. Click **Next** until you finish the configuration.
+
+### Configuring the Backend External Service Desk Configuration
+
+Follow these steps to configure the ICTCONF transaction by creating a new external service desk application entry.
+
+1. Log in to the SAP Solution Manager user interface.
+2. Go to the ICTCONF transaction.
+3. Click the **add** icon.
+
+*SAP Solution Manager Add Icon*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/pJ3c9hQriVGU4MF4vsFA7_sapsolman18.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/SAP_SolMan_18.png" githubPath="Content/Resources/Images/help-images/SAP_SolMan_18.png" showCaption="false"></Image>
+
+4. For the new entry, enter details. For the **Logical Port** field, enter the logical port that you created in :Link[Setting Up the Consumer Proxy]{label="Setting Up the Consumer Proxy" overridedLabel="Setting Up the Consumer Proxy" spaceId docId="yUNRuxRtIg1LCHCxGgM4B" version="v2" docAnchorId="#SettingUpProxy" loadingMethod="dynamic" newTab="false" href="SAP_SolMan_Integration.mdx"}. Check **Automatically synchronize** to ensure that the incidents get updated automatically when linked to \{\{FRS\_VARS.ProductName}}.
+
+*New Service Desk Entry Details*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/oDpcnS1Ln_88HvwRqPDzW_sapsolman19.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/SAP_SolMan_19.png" githubPath="Content/Resources/Images/help-images/SAP_SolMan_19.png" showCaption="false"></Image>
+
+5. Click the **Generate Default Mapping** icon.
+
+*Generate Default Mapping Icon*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/-akLsUwCdUtTuswYPhk6W_sapsolman20.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/SAP_SolMan_20.png" githubPath="Content/Resources/Images/help-images/SAP_SolMan_20.png" showCaption="false"></Image>
+
+6. Click the **Check** icon to check the configuration. The application displays a message with information.
+
+*Check Icon*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/vD60apfh8DJGT8WOG4Uqo_sapsolman21.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/SAP_SolMan_21.png" githubPath="Content/Resources/Images/help-images/SAP_SolMan_21.png" showCaption="false"></Image>
+
+### Configuring Post Processing Framework
+
+You configure these business rules for scenario-specific settings, such as when an incident should be forwarded from the SAP Solution Manager to \{\{FRS\_VARS.ProductName}}.
+
+1. Log in to the SAP Solution Manager user interface.
+2. Go to the SPPFCADM transaction.
+3. Highlight the CRM\_ORDER application and click **Define Action Profile and Actions**.
+
+*SPPFCADM Transaction*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/goSdB-3j30nlkTN2XEVd9_sapsolman22.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/SAP_SolMan_22.png" githubPath="Content/Resources/Images/help-images/SAP_SolMan_22.png" showCaption="false"></Image>
+
+4. Search for the SMIN\_STD action profile.
+
+*SMIN\_STD Action Profile*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/5a5zMUl5nCsBFVKdIL8uV_sapsolman23.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/SAP_SolMan_23.png" githubPath="Content/Resources/Images/help-images/SAP_SolMan_23.png" showCaption="false"></Image>
+
+5. Double-click the SMIN\_STD action profile to display its action profiles.
+
+*Action Profiles Screen*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/2rh6sxikz_fAv5l9tlpya_sapsolman24.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/SAP_SolMan_24.png" githubPath="Content/Resources/Images/help-images/SAP_SolMan_24.png" showCaption="false"></Image>
+
+6. Check the following actions: SMIN\_STD\_CLOSE\_THIRD, SMIN\_STD\_SEND\_THIRD, SMIN\_STD\_SOL\_THIRD, and SMIN\_STD\_SYNC\_THIRD. Double-click on them to bring up the **Action Definition** screen.
+
+*Action Definition Screen*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/0Mc9iHgC8UhZRNKOSyCjh_sapsolman25.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/SAP_SolMan_25.png" githubPath="Content/Resources/Images/help-images/SAP_SolMan_25.png" showCaption="false"></Image>
+
+7. Go to the SPPFCADM transaction, highlight the CRM\_ORDER application, and click **Condition Configuration (Transportable Conditions)**.
+8. Click **Technical Names** to display the technical names.
+
+*Technical Names*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/UYEfgKzD_os413qEDS48t_sapsolman26.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/SAP_SolMan_26.png" githubPath="Content/Resources/Images/help-images/SAP_SolMan_26.png" showCaption="false"></Image>
+
+9. Under the **Scheduling of Actions** header, highlight SMIN\_STD and select the corresponding action definition on the right.
+
+*Corresponding Actions*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/MVcBt-CHGuSP2GuoM9_nC_sapsolman27.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/SAP_SolMan_27.png" githubPath="Content/Resources/Images/help-images/SAP_SolMan_27.png" showCaption="false"></Image>
+
+10. Click the **Overview** tab. Make sure that for the **Schedule Condition** field, you select **Schedule Automatically**.
+
+### Adding Business Rules
+
+To add a business rule, click the **Schedule Condition** tab. The application displays the condition editor. In the condition editor, you can set a customer-specific rule (according to status schema, service teams, and so on) to process messages.
+
+*Condition Editor*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/69qNzva4F3HIs3_BDyZc3_sapsolman28.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/SAP_SolMan_28.png" githubPath="Content/Resources/Images/help-images/SAP_SolMan_28.png" showCaption="false"></Image>
+
+In the following example, the message is being triggered due to a combination of a certain status and a certain business partner entered in the service team.
+
+*Condition Editor Example*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/5yZWmF1yxJ6xK3-JF_ocO_sapsolman29.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/SAP_SolMan_29.png" githubPath="Content/Resources/Images/help-images/SAP_SolMan_29.png" showCaption="false"></Image>
+
+As a best practice, we suggest implementing a business rule that sends incidents from the SAP Solution Manager to \{\{FRS\_VARS.ProductName}}. The business rule checks whether the service team consists of a particular item that needs to be sent to the \{\{FRS\_VARS.ProductName}} Service Desk for further processing. To create this business rule, you must have a certain business partner setup, such as a "BP" transaction for business partners or a "PPOMA\_CRM" transaction for setting up organizational units, which resemble business partners.
+
+1. From the **Conditions for Actions** screen, under the **Scheduling of Actions** header, select **SMIN\_STD** and on the right side, select **SMIN\_STD\_SEND\_THIRD**.
+
+*Conditions for Actions Screen*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/bXIPtQvuyIOxiictpa3Wq_sapsolman30.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/SAP_SolMan_30.png" githubPath="Content/Resources/Images/help-images/SAP_SolMan_30.png" showCaption="false"></Image>
+
+2. Click the **Schedule Condition** tab and then click **Edit Condition** to go into edit condition mode.
+3. Click the condition definition to open the editor.
+4. Add a logical expression to the condition. For example, select the business partner of the service team for the left side of the expression, select an operator such as =, and select the specific business partner.
+
+*Adding a Logical Expression*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/2gbB4ShFCF0sW4UGm3qH8_sapsolman31.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/SAP_SolMan_31.png" githubPath="Content/Resources/Images/help-images/SAP_SolMan_31.png" showCaption="false"></Image>
+
+5. Limit the transfer to normal status, but not when closing incidents from the SAP Solution Manager. Exclude that particular close scenario by entering the following:
+
+*Condition Definition*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/79p1IbWhHBq76qBugwTiA_sapsolman32.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/SAP_SolMan_32.png" githubPath="Content/Resources/Images/help-images/SAP_SolMan_32.png" showCaption="false"></Image>
+
+<Paragraph indent="1">
+  The result of the condition is this:
+</Paragraph>
+
+*Condition Result*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/O19THkvnWwvtWEryONNWF_sapsolman33.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/SAP_SolMan_33.png" githubPath="Content/Resources/Images/help-images/SAP_SolMan_33.png" showCaption="false"></Image>
+
+Note the following:
+
+- If any of the stated business partners is assigned to the support team, the application transfers the incident to \{\{FRS\_VARS.ProductName}}. To automatically transfer the incident to \{\{FRS\_VARS.ProductName}}, regardless of the status, use this support team.
+- If you reject a solution provided by \{\{FRS\_VARS.ProductName}}, the SAP Solution Manager also rejects the solution if the SAP Solution Manager changes the incident. To avoid this, specifically include or exclude these situations by not rejecting incidents very often.
+- If you change any settings in the SPPFCADM transaction, log in again to ensure that the most up-to-date settings are active.
+- Exchanged business partners (especially those who are reporters) must include email information for proper processing by \{\{FRS\_VARS.ProductName}}.
+
+## Troubleshooting the SAP Solution Manager Integration
+
+- :Link[Viewing Error Details]{label="Viewing Error Details" overridedLabel="Viewing Error Details" spaceId docId="yUNRuxRtIg1LCHCxGgM4B" version="v2" docAnchorId="#Viewing" loadingMethod="dynamic" newTab="false" href="SAP_SolMan_Integration.mdx"}
+- :Link[Analyzing Web Service Errors]{label="Analyzing Web Service Errors" overridedLabel="Analyzing Web Service Errors" spaceId docId="yUNRuxRtIg1LCHCxGgM4B" version="v2" docAnchorId="#Analyzing" loadingMethod="dynamic" newTab="false" href="SAP_SolMan_Integration.mdx"}
+- :Link[Viewing Technical Logs]{label="Viewing Technical Logs" overridedLabel="Viewing Technical Logs" spaceId docId="yUNRuxRtIg1LCHCxGgM4B" version="v2" docAnchorId="#ViewingLogs" loadingMethod="dynamic" newTab="false" href="SAP_SolMan_Integration.mdx"}
+- :Link[Problems Closing Incidents]{label="Problems Closing Incidents" overridedLabel="Problems Closing Incidents" spaceId docId="yUNRuxRtIg1LCHCxGgM4B" version="v2" docAnchorId="#Problems" loadingMethod="dynamic" newTab="false" href="SAP_SolMan_Integration.mdx"}
+- :Link[Locked Messages]{label="Locked Messages" overridedLabel="Locked Messages" spaceId docId="yUNRuxRtIg1LCHCxGgM4B" version="v2" docAnchorId="#Locked" loadingMethod="dynamic" newTab="false" href="SAP_SolMan_Integration.mdx"}
+
+### Viewing Error Details
+
+The SAP Solution Manager displays error messages on the top of the screen.  If there is a **Details** link, click it for more information.
+
+*Error Message*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/ZxhJGg7hzZKMPCB6e186d_sapsolman34.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/SAP_SolMan_34.png" githubPath="Content/Resources/Images/help-images/SAP_SolMan_34.png" showCaption="false"></Image>
+
+### Analyzing Web Service Errors
+
+To analyze web service runtime errors, do the following:
+
+1. Run the SRTUTIL transaction.
+
+*SRTUTIL Transaction*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/uDfJqMo3qshsg17rumsJH_sapsolman35.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/SAP_SolMan_35.png" githubPath="Content/Resources/Images/help-images/SAP_SolMan_35.png" showCaption="false"></Image>
+
+2. Click **Error Log**.
+3. Double-click a log entry to view more details about the error. The application displays additional information.
+
+### Viewing Technical Logs
+
+For information about viewing technical logs, see <font color="#4169e1">HTTP://service.sap.com/sap/support/notes/1163386</font>. You must have S user credentials.  This article describes tracing options. The following contains a summary of some of the information in that article.
+
+You can also analyze the actual HTTP network traffic with tools like Microsoft Network Monitor. See <font color="#4169e1">http://www.microsoft.com/en-us/download/details.aspx?id=4865</font>.
+
+### Cause
+
+Communication and data exchange between an SAP Solution Manager Service Desk and an external service desk can be monitored at the following levels:
+
+- Message data (in XML format), for which the SAP Solution Manager Service Desk uses the interface to do the following:
+  - Receive the data from an external service desk.
+  - Send the data to an external service desk.
+- Service desk web service (SOAP runtime in SAP NetWeaver) tracing
+
+To analyze problems concerning the exchange of messages between two service desks using the web service interface, do the following:
+
+- Activate tracing for both service desks. For the SAP Solution Manager service desk, the procedure is described below (see the section below concerning tracing data sent and received in SAP Solution Manager). To connect a service desk of another manufacturer, inquire about the existing trace options.
+- If there are problems with the exchange of messages, note the message number (in the source and target application), the exact time, and possible error messages in the source application.
+- Check in the target application if an XML file has arrived (for the service desk in the SAP Solution Manager, see the section below concerning tracing data sent and received in SAP Solution Manager). If an XML file was created in the target application, you must check the data transferred to the XML file, and if required, the customizing settings of the service desk.
+- If no XML file was created for the message for the event in the SAP Solution Manager, the SAP Solution Manager service desk has not received or sent any data. In this case, check the web service to see if an error occurred during communication (see the section concerning tracing for the service desk web service called ICT\_SERVICE\_DESK\_API).
+- If no errors are displayed for the web service, network problems could be the cause. Check the relevant error messages in the source application.
+
+### Solution: Trace the Data Sent and Received (XML Files) in the SAP Solution Manager
+
+Activate the trace function for the service desk interface as follows:
+
+- Call transaction SM31 and enter the table ICT\_CUSTOM.
+- Select **Maintain**.
+- Select **New Entries** and add the following new entries: TRACE\_IN and TRACE\_OUT.
+- Save the new entries.
+
+When you make these settings, the application logs and saves each message received or sent by the service desk using the web service interface, in the SAP Solution Manager.
+
+You can download and analyze these messages for each message that was exchanged using the interface, as XML files in the local file application. To download the data in XML format, do the following:
+
+- Call transaction SE38 and start the program ICT\_DOWNLOAD\_SNAPSHOT.
+- Use the F4 input help to select the application GUID of the external service desk.
+- Enter the transaction number (message number in the local application). If known, you can enter the ID (GUID) of the message in the **Message number** field.
+- As a download path, enter the directory in which the XML file is to be saved.
+- Execute the program. This starts the download in XML format.
+
+The application saves the XML files in the directory specified and you can use a browser to view them. Each file name contains the exact time when the message was received or sent.
+
+### Solution: Trace the Service Desk Web Service ICT\_SERVICE\_DESK\_API
+
+If an external service desk has sent a message to the SAP Solution Manager service desk, but no incoming XML file has been saved in the SAP Solution Manager, there may have been a problem at the web service level. You can also activate a trace here:
+
+- Activating the web service trace:
+  - Call transaction WSADMIN.
+  - Navigate to the web service ICT\_SERVICE\_DESK\_API.
+  - Double-click ICT\_SERVICE\_DESK\_API.
+  - In change mode, select the relevant trace and log settings (for example, "full trace" and "full log").
+  - Save your changes.
+- Viewing trace files:
+  - Call transaction SM59.
+  - Select **RFC > Display trace**.
+  - Search for the text ICT\_SERVICE\_DESK\_API or for the time.
+
+### Problems Closing Incidents
+
+If you cannot close incidents, do the following:
+
+1. Install the SAP GUI. See :Link[Installing the SAP GUI]{label="Installing the SAP GUI" overridedLabel="Installing the SAP GUI" spaceId docId="yUNRuxRtIg1LCHCxGgM4B" version="v2" docAnchorId="#Installing" loadingMethod="dynamic" newTab="false" href="SAP_SolMan_Integration.mdx"}.
+2. Run transaction SU01.
+3. Select the user to log in.
+4. Ensure that the SAP\_SM\_CRM\_UIU\_SOLMANREQU role is set to active for the user.
+
+<Paragraph indent="1">
+  You should now see the **Confirm** button within an incident.
+</Paragraph>
+
+5. In the confirmation dialog box, click **Yes**.
+
+### Locked Messages
+
+Errors can occur when users lock incidents.
+
+*Incident Locked Error Message*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/HCezTu9lphYls--0TJgDx_sapsolman37.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/SAP_SolMan_37.png" githubPath="Content/Resources/Images/help-images/SAP_SolMan_37.png" showCaption="false"></Image>
+
+To unlock the incident, save the message and them navigate to another screen.
+
+## Reference Information
+
+- :Link[Installing the SAP GUI]{label="Installing the SAP GUI" overridedLabel="Installing the SAP GUI" spaceId docId="yUNRuxRtIg1LCHCxGgM4B" version="v2" docAnchorId="#Installing" loadingMethod="dynamic" newTab="false" href="SAP_SolMan_Integration.mdx"}
+- :Link[Navigating in the ITSM Web GUI]{label="Navigating in the ITSM Web GUI" overridedLabel="Navigating in the ITSM Web GUI" spaceId docId="yUNRuxRtIg1LCHCxGgM4B" version="v2" docAnchorId="#Navigating" loadingMethod="dynamic" newTab="false" href="SAP_SolMan_Integration.mdx"}
+
+### Installing the SAP GUI
+
+Install the SAP GUI so that you can access the SAP Solution Manager Backend. From the SAP Solution Manager Backend, you can configure settings and monitor items.
+
+You need the installation CD or the SAP GUI download package, or go to <font color="#4169e1">http://service.sap.com/~form/handler?_APP=00200682500000001943&amp;EVENT=DISPHIER&amp; HEADER=Y&amp; FUNCTIONBAR=N&amp;EVENT=TREE&amp;NE= NAVIGATE&amp;ENR= 67837800100200024791&amp;V=INST</font>. For more information, see <font color="#4169e1">https://scn.sap.com/docs/DOC-59053</font>.
+
+1. Click **Installation**.
+2. Click the object to download.
+3. Run the executable file.
+4. Extract the file.
+5. Configure the software, such as entering a description.
+6. Log in with the user ID of FRNTRNG\_USR and set the language to English.
+
+### Navigating in the ITSM Web GUI
+
+Ensure that popups are enabled.
+
+1. Go to <font color="#4169e1">http://server:port/sap/bc/webdynpro/sap/ags_workcenter?sap-language=EN</font>.
+2. Under the **Common Tasks** section, click **IT Service Management**.
+3. See the layout:
+
+*SAP Solution Manager IT Service Management*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/fYhynbodeHwTfaMwYbvdN_sapsolman36.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/SAP_SolMan_36.png" githubPath="Content/Resources/Images/help-images/SAP_SolMan_36.png" showCaption="false"></Image>

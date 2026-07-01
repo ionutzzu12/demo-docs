@@ -1,0 +1,36 @@
+---
+title: Troubleshooting Webhooks
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:01 GMT+0300 (Eastern European Summer Time)
+---
+
+## How do I handle backslashes in my JSON data?
+
+When creating an Action associated with a webhook, if you have blackslashes in your JSON data values, they need to be double-escaped.
+
+For example, your data may look like this:
+
+\{ "devicename": "ABC-P12345", "Console User": **"ABC-P12345\SmithF"**, "Device Manufacturer": "LENOVO", "Device Model": "XYX", "Device Asset Tag": "No Asset Information", "Battery Manufacturer": "LGC", "Battery Name": "12586ZZ", "Battery Full Capacity Percentage": "101", "Battery Count": "1", "Category": "excellent"}
+
+The \SmithF needs to be double escaped in order for it to be actioned successfully.
+
+The double-escaping for this example is show below in the **Value** field:
+
+| Field         | Value                                                |
+| ------------- | ---------------------------------------------------- |
+| Variable Type | Variable                                             |
+| Name          | WebhookBodyC                                         |
+| Data Type     | JSON                                                 |
+| Value         | $(Replace(Variable(“WebhookBody”),”\\\”, “\\\\\\\”)) |
+
+## What if I my third party product doesn't handle underscores in Authorization headers?
+
+If you want to use, for example, Azure DevOps, with \{\{FRS\_VARS.ITSM}} webhooks, there is an alternative format of REST API key that you can use in your authorisation header.
+
+1. Create a new request in the **Postman&#x20;**&#x61;pplication.
+2. Enter the following information in the **Header&#x20;**&#x74;ab:
+   - Select the **Authorization&#x20;**&#x63;heck box.
+   - Enter the Reference ID (REST API Key) generated for the tenant in the **Value&#x20;**&#x63;olumn in the format - rest\_api\_key=\{Reference ID} OR api-key \{Reference ID}.
+3. In the same endpoint request window, enter the endpoint request payload details and click the **Send&#x20;**&#x62;utton or press the **ENTER&#x20;**&#x6B;ey.
+
+For more information, see: [Using the REST API Key](../API/Using-REST-API-Key.mdx)

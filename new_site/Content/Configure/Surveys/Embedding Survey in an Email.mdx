@@ -1,0 +1,766 @@
+---
+title: Embedding Survey in an Email
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:54 GMT+0300 (Eastern European Summer Time)
+---
+
+**Role:** Administrator
+
+**Minimum Version:**\{\{Primary.Company}} \{\{Primary.Product}}*&#x20;2024.2.**&#x20;and above.*
+
+The ISM application sends a survey via email to customers whose **Incident**, **Service Request**, etc., have been resolved and closed.
+
+The intended user / customer should be able to submit their survey response directly from the email, rather than having to navigate to a survey link within the email.
+
+The following steps will allow you to configure how to embed a survey within an email.
+
+### Pre-requisites
+
+This is the step where you configure your Microsoft account with the connector using **Actionable Email Developer Dashboard**.
+
+Configure the Provider/Connector using the **Actionable Email Developer Dashboard** by signing in to your Outlook account. Navigate to the link https\://outlook.office.com/connectors/oam/publish
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/uuUw-e0-YYjdKBwFMeh-3_3f2ad96a-a9d7-48d7-a25d-7f6490405f16.png" position="flex-start" size="40" initialPath="../../Resources/Images/3f2ad96a-a9d7-48d7-a25d-7f6490405f16.png" githubPath="Content/Resources/Images/3f2ad96a-a9d7-48d7-a25d-7f6490405f16.png" showCaption="false"></Image>
+
+<hint type="info">
+  Embedding a survey in an email is supported only in Outlook accounts.
+</hint>
+
+<hint type="info">
+  Refer to the [Microsoft Documentation](https://learn.microsoft.com/en-us/outlook/actionable-messages/email-dev-dashboard) for more details.
+</hint>
+
+## **New Provider**
+
+Click on **New Provider** link and provide the following details:
+
+- **Friendly** **Name** : Provide a user friendly connector name.
+- **Provider** **ID** : This field is auto populated. Remember to keep the provider id handy while configuring the **ISM** application.
+- **Organization** **Info** : This field is auto populated.
+- **Sender Email Address** : Email address from which the email with the embedded survey is sent.
+- **Target URLs** : This endpoint submits the survey response. It refers to the API URL where you send the survey data.
+
+<Paragraph indent="2">
+  Follow the steps below to learn how to obtain the Target URL:
+</Paragraph>
+
+<Paragraph indent="1">
+  a. Go to *https\://**\{\{tenant-url}}**/Data/Designer.Workspaces.xml*.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. In the XML document, search for **Survey**.
+
+</Paragraph>
+
+<Paragraph indent="2">
+  Workspace Id="Survey#" Searchable="false" Name="Survey" Link="\{Target URL}/Account/Login?sessionKey=\{\{0}}" RecentList="false" Visible="false" Default="false" VisibleInMainMenu="false" Closable="true" AdminRoleRequired="true"/>
+</Paragraph>
+
+<Paragraph indent="1">
+  This is how the entry appears in the XML text.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. Copy the Survey Tenant URL value.
+</Paragraph>
+
+<Paragraph indent="1">
+  d. Append /api/takesurvey/SaveEmailResponse.
+</Paragraph>
+
+<Paragraph indent="1">
+  **Example:** *https\://\{Survey Tenant URL}/api/takesurvey/SaveEmailResponse*.
+</Paragraph>
+
+<Paragraph indent="1">
+  *New Provider*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/DwYg_Tw7tFDME1Vvv5NLK_7ddd804d-2354-4dc5-aa73-ca51b83a8abb1.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/7ddd804d-2354-4dc5-aa73-ca51b83a8abb1.png" githubPath="Content/Resources/Images/7ddd804d-2354-4dc5-aa73-ca51b83a8abb1.png" showCaption="false"></Image>
+
+## **Scope of Submission**
+
+This is where you provide the scope submission of provider or connector.
+
+- **Test User** : This is for testing purpose to test your providers on users from same tenant.
+- **Organization** : This will send embedded survey notification to users within an organization which needs to be approved by Exchange administrator of the organizatio&#x6E;**. E.g.**\<email\_address>@organization.com
+- **Global** : This will send an embedded survey notification to users worldwide.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/hpo6wzBNccT11jb4Y77w5_image7.png" position="flex-start" size="40" initialPath="../../Resources/Images/image7.png" githubPath="Content/Resources/Images/image7.png" showCaption="false"></Image>
+
+## **Contact Info**
+
+This is where you provide the contact information of provider or connector
+
+- Provide the Name, Email Address, Phone Number, Address, City, State, Postal Code, etc of the sender.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/unwJwrgMCp2aFcQD25-35_image8.png" position="flex-start" size="40" initialPath="../../Resources/Images/image8.png" githubPath="Content/Resources/Images/image8.png" showCaption="false"></Image>
+
+## **Publisher Information**
+
+This is where you provide the details of the publisher such as their display name, website, etc.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/EYiD412LQEPnUliErq1dG_image5.png" position="flex-start" size="40" initialPath="../../Resources/Images/image5.png" githubPath="Content/Resources/Images/image5.png" showCaption="false"></Image>
+
+## **Scenario**
+
+This is where you provide the details of the **scenario** such as the action you plan to add to your email, the daily number of emails you expect to send, etc.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/cNtLQGyf04q5-6AkUXeYy_image6.png" position="flex-start" size="40" initialPath="../../Resources/Images/image6.png" githubPath="Content/Resources/Images/image6.png" showCaption="false"></Image>
+
+## **Information to verify your actionable messages**
+
+ Provide the information about actionable message.
+
+<Paragraph listStyleType="disc" indent="2">
+  **Detailed instruction to test your actionable message**: Provide an actionable message.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  **Card Payloads** : How the HTML message should render in the email body. You can add one or more payloads. These are surveys in JSON template.
+  Here is the card payload sample.
+</Paragraph>
+
+<CodeblockTabs indent="3">
+  Sample-card-payload.json
+
+  ```bash
+  {
+
+  "type": "AdaptiveCard",
+
+  "version": "1.0",
+
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+
+  "padding": "None",
+
+  "hideOriginalBody": true,
+
+  "body": [
+
+  {
+
+  "type": "ColumnSet",
+
+  "columns": [
+
+  {
+
+  "type": "Column",
+
+  "items": [
+
+  {
+
+  "type": "TextBlock",
+
+  "text": "Test Survey",
+
+  "wrap": true,
+
+  "size": "ExtraLarge",
+
+  "weight": "Bolder",
+
+  "horizontalAlignment": "Left"
+
+  }
+
+  ],
+
+  "style": "emphasis",
+
+  "spacing": "None",
+
+  "padding": {
+
+  "top": "Default",
+
+  "bottom": "Default",
+
+  "left": "Default",
+
+  "right": "None"
+
+  },
+
+  "width": 80
+
+  },
+
+  {
+
+  "type": "Column",
+
+  "items": [
+
+  {
+
+  "type": "Image",
+
+  "altText": "survey logo image",
+
+  "horizontalAlignment": "Right",
+
+  "url": "data:image/jpeg;base64,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",
+
+  "size": "Small"
+
+  }
+
+  ],
+
+  "style": "emphasis",
+
+  "width": 20,
+
+  "spacing": "None",
+
+  "padding": {
+
+  "top": "Small",
+
+  "bottom": "Small",
+
+  "left": "None",
+
+  "right": "Default"
+
+  }
+
+  }
+
+  ],
+
+  "padding": "None"
+
+  },
+
+  {
+
+  "type": "Container",
+
+  "items": [
+
+  {
+
+  "type": "TextBlock",
+
+  "text": "The survey will take just a minute.",
+
+  "wrap": true,
+
+  "size": "Medium"
+
+  }
+
+  ],
+
+  "separator": true,
+
+  "spacing": "None",
+
+  "padding": "Default"
+
+  },
+
+  {
+
+  "type": "Container",
+
+  "items": [
+
+  {
+
+  "type": "TextBlock",
+
+  "text": "1\\. How satisfied were you with the overall resolution process for your recent IT service request? *",
+
+  "wrap": true,
+
+  "weight": "Bolder"
+
+  }
+
+  ],
+
+  "separator": true,
+
+  "spacing": "None",
+
+  "padding": "Default"
+
+  },
+
+  {
+
+  "type": "Container",
+
+  "items": [
+
+  {
+
+  "type": "Input.ChoiceSet",
+
+  "choices": [
+
+  {
+
+  "title": "Very Satisfied",
+
+  "value": "verysatisfied"
+
+  },
+
+  {
+
+  "title": "Satisfied",
+
+  "value": "satisfied"
+
+  },
+
+  {
+
+  "title": "Neutral",
+
+  "value": "neutral"
+
+  },
+
+  {
+
+  "title": "Dissatisfied",
+
+  "value": "dissatisfied"
+
+  },
+
+  {
+
+  "title": "Very Dissatisfied",
+
+  "value": "verydissatisfied"
+
+  }
+
+  ],
+
+  "style": "expanded",
+
+  "label": "How satisfied were you with the overall resolution process for your recent IT service request?",
+
+  "id": "rbtn1",
+
+  "isRequired": true,
+
+  "errorMessage": "This field is required."
+
+  }
+
+  ],
+
+  "padding": {
+
+  "top": "None",
+
+  "bottom": "Default",
+
+  "left": "Default",
+
+  "right": "Default"
+
+  },
+
+  "spacing": "None"
+
+  },
+
+  {
+
+  "type": "Container",
+
+  "items": [
+
+  {
+
+  "type": "TextBlock",
+
+  "text": "2\\. Did the IT support team meet your expectations in terms of response time?",
+
+  "wrap": true,
+
+  "weight": "Bolder"
+
+  }
+
+  ],
+
+  "separator": true,
+
+  "spacing": "None",
+
+  "padding": "Default"
+
+  },
+
+  {
+
+  "type": "Container",
+
+  "items": [
+
+  {
+
+  "type": "Input.ChoiceSet",
+
+  "choices": [
+
+  {
+
+  "title": "Exceeded Expectations",
+
+  "value": "exceededexpectations"
+
+  },
+
+  {
+
+  "title": "Met Expectations",
+
+  "value": "metexpectations"
+
+  },
+
+  {
+
+  "title": "Somewhat Below Expectations",
+
+  "value": "somewhatbelowexpectations"
+
+  },
+
+  {
+
+  "title": "Well Below Expectations",
+
+  "value": "wellbelowexpectations"
+
+  }
+
+  ],
+
+  "style": "expanded",
+
+  "label": "Did the IT support team meet your expectations in terms of response time?",
+
+  "id": "rbtn2"
+
+  }
+
+  ],
+
+  "padding": {
+
+  "top": "None",
+
+  "bottom": "Default",
+
+  "left": "Default",
+
+  "right": "Default"
+
+  },
+
+  "spacing": "None"
+
+  },
+
+  {
+
+  "type": "Container",
+
+  "items": [
+
+  {
+
+  "type": "TextBlock",
+
+  "text": "3\\. Please select all the aspects of the IT service that you were satisfied with: *",
+
+  "wrap": true,
+
+  "weight": "Bolder"
+
+  }
+
+  ],
+
+  "separator": true,
+
+  "spacing": "None",
+
+  "padding": "Default"
+
+  },
+
+  {
+
+  "type": "Container",
+
+  "items": [
+
+  {
+
+  "type": "Input.ChoiceSet",
+
+  "choices": [
+
+  {
+
+  "title": "Timeliness of Response",
+
+  "value": "timelinessofresponse"
+
+  },
+
+  {
+
+  "title": "Clarity of Communication",
+
+  "value": "clarityofcommunication"
+
+  },
+
+  {
+
+  "title": "Effectiveness of Solution",
+
+  "value": "effectivenessofsolution"
+
+  },
+
+  {
+
+  "title": "Overall Customer Service",
+
+  "value": "overallcustomerservice"
+
+  }
+
+  ],
+
+  "style": "expanded",
+
+  "isMultiSelect": true,
+
+  "label": "Please select all the aspects of the IT service that you were satisfied with:",
+
+  "id": "chkBxb1",
+
+  "isRequired": true,
+
+  "errorMessage": "This field is required."
+
+  }
+
+  ],
+
+  "padding": {
+
+  "top": "None",
+
+  "bottom": "Default",
+
+  "left": "Default",
+
+  "right": "Default"
+
+  },
+
+  "spacing": "None"
+
+  },
+
+  {
+
+  "type": "Container",
+
+  "items": [
+
+  {
+
+  "type": "TextBlock",
+
+  "text": "4\\. Please provide details",
+
+  "wrap": true,
+
+  "weight": "Bolder"
+
+  }
+
+  ],
+
+  "separator": true,
+
+  "spacing": "None",
+
+  "padding": "Default"
+
+  },
+
+  {
+
+  "type": "Container",
+
+  "items": [
+
+  {
+
+  "type": "Input.Text",
+
+  "label": "Please provide details",
+
+  "id": "txtBx1"
+
+  }
+
+  ],
+
+  "padding": {
+
+  "top": "None",
+
+  "bottom": "Default",
+
+  "left": "Default",
+
+  "right": "Default"
+
+  },
+
+  "spacing": "None"
+
+  },
+
+  {
+
+  "type": "Container",
+
+  "items": [
+
+  {
+
+  "type": "ActionSet",
+
+  "actions": [
+
+  {
+
+  "type": "Action.Http",
+
+  "headers": [
+
+  {
+
+  "name": "Authorization",
+
+  "value": " "
+
+  },
+
+  {
+
+  "name": "Content-type",
+
+  "value": "application/json"
+
+  }
+
+  ],
+
+  "id": "btnSubmitSurvey",
+
+  "title": "Submit Survey",
+
+  "method": "POST",
+
+  "isPrimary": true,
+
+  "style": "positive",
+
+  "url": "https://<survey-url>/api/takesurvey/SaveEmailResponse",
+
+  "body": "{\"tenantId\":\"<tenant-url>\",\"surveyId\":\"<survey-id>\",\"ot\":\"<object-type>\",\"oId\":\"<object-rec-id>\",\"responses\":[{\"id\":\"rbtn1\",\"value\":\"{{rbtn1.value}}\"},{\"id\":\"rbtn2\",\"value\":\"{{rbtn2.value}}\"},{\"id\":\"chkBx1\",\"value\":\"{{chkBx1.value}}\"},{\"id\":\"txtBx1\",\"value\":\"{{txtBx1.value}}\"}]}"
+
+  }
+
+  ],
+
+  "horizontalAlignment": "Left"
+
+  }
+
+  ],
+
+  "padding": {
+
+  "top": "Small",
+
+  "bottom": "Small",
+
+  "left": "Default",
+
+  "right": "Default"
+
+  },
+
+  "separator": true,
+
+  "spacing": "None"
+
+  }
+
+  ]
+
+  }
+  ```
+</CodeblockTabs>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/wV2XMJVxni0ZrP0frGWqy_836a93dd-7e19-40e9-af86-42188caa2eda.png" position="flex-start" size="40" initialPath="../../Resources/Images/836a93dd-7e19-40e9-af86-42188caa2eda.png" githubPath="Content/Resources/Images/836a93dd-7e19-40e9-af86-42188caa2eda.png" showCaption="false"></Image>
+
+## **Configure a provider**
+
+in ISM application from **Modern Survey.**
+
+- Login to ISM Application using Administrator.
+- Go to **Configuration console**.
+- Select **Surveys** under **Communication Templates** from left Navigation pane. Remember to use **Modern Survey**.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/PHOxpnKSGVhR1S-y9RbGm_2d24d8b5-7e4a-4d4e-b5e4-3e7ef3eef585.png" position="flex-start" size="40" initialPath="../../Resources/Images/2d24d8b5-7e4a-4d4e-b5e4-3e7ef3eef585.png" githubPath="Content/Resources/Images/2d24d8b5-7e4a-4d4e-b5e4-3e7ef3eef585.png" showCaption="false"></Image>
+
+## **Configure Embed Survey**
+
+- Click **Configure Embed Survey** and enter the **Provider** or **Connector ID** created in Step 1, then click **Save**.
+- Click **Add a New Survey** to create a new survey or select an existing one.
+- Send the survey using a trigger or workflow action, then drill down into the selected survey, click **Publish**, and choose either **Web Link** or **Embed as Email**.
+- Specify the relevant **Business Object**, provide the appropriate action.
+  A message will appear confirming that the template has been copied to the clipboard.
+- You can configure the copied template in the workflow email or trigger action email to ensure the survey is sent to users.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/NqVmjovoIvpSCegCSJypI_a4559e9b-1eaf-4a89-9767-3d5df1470218.png" position="flex-start" size="40" initialPath="../../Resources/Images/a4559e9b-1eaf-4a89-9767-3d5df1470218.png" githubPath="Content/Resources/Images/a4559e9b-1eaf-4a89-9767-3d5df1470218.png" showCaption="false"></Image>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/7g0vqMv0H8VA8nfOfJWgC_star-rating-survey-ivanti-help-doc.JPG" position="flex-start" size="40" initialPath="../../Resources/Images/Star Rating Survey Ivanti Help Doc.JPG" githubPath="Content/Resources/Images/Star Rating Survey Ivanti Help Doc.JPG" showCaption="false"></Image>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/IBEEDU8PYI7gC2qOfwEjG_star-rating-submit-survey-ivanti-help-doc.JPG" position="flex-start" size="40" initialPath="../../Resources/Images/Star Rating Submit Survey Ivanti Help Doc.JPG" githubPath="Content/Resources/Images/Star Rating Submit Survey Ivanti Help Doc.JPG" showCaption="false"></Image>
+
+### Limitations of Embedding Survey in an Email
+
+The following types of survey are not supported to embed in an email.
+
+- Surveys with questions featuring dynamic condition sets.
+- Surveys consisting of multiple smiley rating questions.
+- Surveys consisting of multiple star rating questions.

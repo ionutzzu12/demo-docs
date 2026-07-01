@@ -1,0 +1,57 @@
+---
+title: NumberFromElement
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:59 GMT+0300 (Eastern European Summer Time)
+---
+
+Returns a numerical value from a specified JSON element.
+
+## Syntax
+
+NumberFromElement(jsonString, nodeName, position, fieldName)
+
+## Enabled For
+
+For a description of the business object categories, see :Link[Notes on "Enabled For"]{label="Notes on &#x22;Enabled For&#x22;" overridedLabel="Notes on &#x22;Enabled For&#x22;" spaceId docId="xObv2pIDrk60jkEIWs8mD" version="v2" docAnchorId="#Notes" loadingMethod="dynamic" newTab="false" githubPath="_Built_in_Functions.htm#Notes" href="_Built_in_Functions.mdx"}.
+
+| Business Object Category                                                                                                                                                                                                                                                                             | Yes/No |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| Business Rules: Before-Save Rules                                                                                                                                                                                                                                                                    | Yes    |
+| Business Rules: Calculation Rules (After Save, with or without Also Recalculate on Load)                                                                                                                                                                                                             | Yes1   |
+| Business Rules: Calculation Rules (Before Save or Always, without Also Recalculate On Load)                                                                                                                                                                                                          | Yes    |
+| Business Rules: Calculation Rules (Before Save or Always, with Recalculate On Load)                                                                                                                                                                                                                  | Yes1   |
+| Business Rules: Editing Rules                                                                                                                                                                                                                                                                        | Yes2   |
+| Business Rules: Initialization Rules                                                                                                                                                                                                                                                                 | Yes    |
+| Business Rules: Read Only Rules                                                                                                                                                                                                                                                                      | No     |
+| Business Rules: Required Rules                                                                                                                                                                                                                                                                       | Yes2   |
+| Business Rules: Validation Rules                                                                                                                                                                                                                                                                     | Yes    |
+| Client Expressions                                                                                                                                                                                                                                                                                   | No     |
+| Object Permissions                                                                                                                                                                                                                                                                                   | No     |
+| Services                                                                                                                                                                                                                                                                                             | No     |
+| LDAP                                                                                                                                                                                                                                                                                                 | No     |
+| Mobile                                                                                                                                                                                                                                                                                               | No     |
+| Quick Actions (except UI Quick Actions)                                                                                                                                                                                                                                                              | Yes    |
+| UI Quick Actions                                                                                                                                                                                                                                                                                     | No     |
+| Reports                                                                                                                                                                                                                                                                                              | Yes    |
+| Search/Dashboard without field references                                                                                                                                                                                                                                                            | No     |
+| Search/Dashboard with field references                                                                                                                                                                                                                                                               | No     |
+| 1. Not fully supported in calculation rules that have a condition of **After Save** or the **Also Recalculate on Load** option selected. It may fail if the rule's field is used in a grid, form, or saved search.<br />2. Except when this field appears on a form or is triggered by such a field. |        |
+
+## Parameters
+
+| Parameter  | Description       |
+| ---------- | ----------------- |
+| jsonString | Input JSON string |
+| nodeName   | NodeName          |
+| position   | Position          |
+| fieldName  | FieldName         |
+
+## Return Value
+
+Returns a numerical value from a specified JSON element.
+
+## Example
+
+$(NumberFromElement('\{"book":\[\{"category":"reference","author":"Nigel Rees","title":"Sayings of the Century","price":8.95},\{"category":"fiction","author":"Evelyn Waugh","title":"Sword of Honour","price":12.99},\{"category":"fiction","author":"Herman Melville","title":"Moby Dick","isbn":"0-553-21311-3","price":8.99},\{"category":"fiction","author":"J. R. R. Tolkien","title":"The Lord of the Rings","isbn":"0-395-19395-8","price":22.99}]}', "book", 0, "price"))
+
+Returns this value: 8.95

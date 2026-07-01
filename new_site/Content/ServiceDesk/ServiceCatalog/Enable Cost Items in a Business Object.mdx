@@ -1,0 +1,94 @@
+---
+title: Example: Enabling Cost Items in a Business Object
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:47 GMT+0300 (Eastern European Summer Time)
+---
+
+This example shows how to enable the **Cost Item** field within a business object, so that users can access it.
+
+1. From the Configuration Console, click **Build > Business Object** to open the **Business Objects** workspace.
+2. Open the business object to which to add the **Cost Item** field.
+3. Create the relationship (see [Using Relationships](../../Configure/Relationships/Adding_a_Relationship_to.mdx)) by doing the following:
+
+<Paragraph indent="1">
+  a. From the **Relationships** tab, add a relationship to Frs\_ITFM\_Transaction (if one does not already exist).
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Set the parameters as shown:
+</Paragraph>
+
+*Frs\_ITFM\_Transaction Parameters*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/mbmgytTmU7WZh0OGuVsH7_frsitfmtransaction-settings.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/frs_ITFM_transaction settings.png" githubPath="Content/Resources/Images/help-images/frs_ITFM_transaction settings.png" showCaption="false"></Image>
+
+4. To add the tab to the workspace, do the following:
+
+<Paragraph indent="1">
+  a. Click **Layouts**.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Select the form to use.
+</Paragraph>
+
+5. Click **formView**. The **Form View Editor** appears.
+6. Near the bottom of the page, click **Add Child Panel**.
+7. Add the information for **Cost Item**.
+
+*Sample Cost Item Child Panel Settings*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/xfB8ma21IdZ0dGKedWxXS_cost-item-child-panel.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/cost item child panel.png" githubPath="Content/Resources/Images/help-images/cost item child panel.png" showCaption="false"></Image>
+
+| Field         | Value                                  |
+| ------------- | -------------------------------------- |
+| Display Name  | Cost Item                              |
+| Object        | Frs\_ITFM\_Transaction                 |
+| Relationships | ServiceReqAssocFrs\_ITFM\_Transaction  |
+| Display       | List                                   |
+| List          | Frs\_ITFM\_Transaction.DefaultGrid     |
+| Forms         | Frs\_ITFM\_Transaction.ManualEntryForm |
+| Placement     | Tab                                    |
+
+8. Click **Save**.
+9. To define the rollup cost relationships (see [Data Rollups](../../Configure/Layouts/Data_Rollup.mdx)), do the following:
+
+<Paragraph indent="1">
+  a. Click **Frs\_ITFM\_Transaction** from the list.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Set the following in the **FormView Child Panel Relationship Editor**. See :Link[About Tracking Cost Relationships in a Service Request]{label="About Tracking Cost Relationships in a Service Request" overridedLabel="About Tracking Cost Relationships in a Service Request" spaceId docId="Nbp4yjy0Dxq0xq6NE1AAd" version="v2" docAnchorId="#More_on_Cost_Items_Relationships" loadingMethod="dynamic" newTab="false" href="Enable Cost Items in a Business Object.mdx"}.
+</Paragraph>
+
+| Display Name             | Rollup Chain                                                                   |
+| ------------------------ | ------------------------------------------------------------------------------ |
+| Task Cost Item           | ServiceReq -> Task -> Frs\_ITFM\_Transaction                                   |
+| Parameter Cost Item      | ServiceReq -> ServiceReqParam -> Frs\_ITM\_Transaction                         |
+| Parameter Link Cost Item | ServiceReq -> ServiceReqParam -> ServiceReqParamLink -> Frs\_ITFM\_Transaction |
+
+*Sample Form View Child Panel Rollups*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/vB430YHvfdEN5jmgq26CP_formview-child-relationship-editor.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/formview child relationship editor.png" githubPath="Content/Resources/Images/help-images/formview child relationship editor.png" showCaption="false"></Image>
+
+10. Check **Show Summary screen for transactions** to add the cost summary panel.
+
+*Sample Cost Summary Panel*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/-Jv8VMZsdCVZcspgTS4LS_cost-summary-panel.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/cost summary panel.png" githubPath="Content/Resources/Images/help-images/cost summary panel.png" showCaption="false"></Image>
+
+11. Click **Edit Summary Settings** to define what appears in the cost summary panel.
+
+*Sample Transaction Summary Settings*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/3i1t3Cu1MHyHVuA-y88iH_edit-transaction-summary-settings.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/edit transaction summary settings.png" githubPath="Content/Resources/Images/help-images/edit transaction summary settings.png" showCaption="false"></Image>
+
+12. Click **Save**.
+
+## About Tracking Cost Relationships in a Service Request
+
+Each service request has a task and a ServiceReqParam attached, each having their own cost items. The ServiceReqParam has attached to it ServiceReqParamLink, which has its own cost item. And the service request itself has a cost item. The following diagram illustrates the relationship given in the above example.
+
+*Cost Relationship*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/ySpZF2Ye0Ebsm4Vdub-VP_cost-relationship.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Diagrams/Cost Relationship.png" githubPath="Content/Resources/Diagrams/Cost Relationship.png" showCaption="false"></Image>

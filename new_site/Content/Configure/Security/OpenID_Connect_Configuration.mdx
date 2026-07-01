@@ -1,0 +1,138 @@
+---
+title: Neurons for ITSM OpenID Connect Configuration
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:57 GMT+0300 (Eastern European Summer Time)
+---
+
+The \{\{FRS\_VARS.ProductName}} OpenID Connect (OIDC) configuration is based on the IdentityServer3 library.
+
+The steps to enable the \{\{FRS\_VARS.ProductName}} OIDC are as follows:
+
+- Adding the necessary Metadata (new Business Objects in ConfigDB and TenantDBs)
+- Updating \{\{FRS\_VARS.ProductName}} AppServer Web.Config Settings
+- Adding a Token Signing Certificate to ConfigDB
+- Adding an OIDC\_Client record to ConfigDB for the Client Application
+
+## Adding Metadata
+
+The \{\{FRS\_VARS.ProductName}} OIDC requires new business objects to be added to ConfigDB and TenantDBs, which will be included in the 2019.1 out-of-the-box databases and upgrade packages. However, they are also available in the following standalone packages in the Git SM.UpgradePackageFiles repository:
+
+- OpenIDConnect/OpenIDConnect\_ConfigDB.MetadataPatch
+- OpenIDConnect/OpenIDConnect\_Tenant.MetadataPatch
+
+OpenIDConnect\_ConfigDB.MetadataPatch adds the following metadata to ConfigDB:
+
+- OIDC\_Client business object and associated workspace
+- OIDC\_Claim business object (child object of OIDC\_Client)
+- OIDC\_Secret business object (child object of OIDC\_Client)
+- OIDC\_Flow business object and validation list
+- OIDC\_TokenUsage business object and validation list
+- OIDC\_TokenExpiration business object and validation list
+- OIDC\_AccessTokenType business object and validation list
+- OIDC\_Token business object (stores OIDC refresh tokens and other token types)
+- "OIDCTokenSign" Certificate Category (added to FRS\_Certificate\_Category validation list)
+
+OpenIDConnect/OpenIDConnect\_Tenant.MetadataPatch adds the following metadata to a Tenant DB:
+
+- OIDC\_Consent business object (stores OIDC consent choices made by users)
+
+## Updating Web.Config Settings
+
+The following \{\{FRS\_VARS.ProductName}} AppServer Web.Config settings are available:
+
+\<appSettings>
+
+\<add key="EnableOpenIDConnectAuthentication" value="true" />
+
+\<add key="OIDCLegalUrl" value="https\://www\.ivanti.com/company/legal" />
+
+\<add key="OIDCPatentsUrl" value="https\://www\.ivanti.com/company/legal/ivanti-patents" />
+
+\<add key="OIDCHTMLFolder" value="ISM" />
+
+\<add key="OIDCSiteName" value="Ivanti Cloud" />
+
+\</appSettings>
+
+EnableOpenIDConnectAuthentication - Required to enable \{\{FRS\_VARS.ProductName}} OIDC. Default value is "false".
+
+OIDCLegalUrl - Optional. The legal URL link displayed on the OIDC login page. Default value is "https\://www\.ivanti.com/company/legal".
+
+OIDCPatentsUrl - Optional. The patents URL link displayed on the OIDC login page. Default value is "https\://www\.ivanti.com/company/legal/ivanti-patents".
+
+OIDCHTMLFolder - Optional. Controls the look and feel of the OIDC login page etc. Default is "ISM". Other options are "Uno" and "app" (generic).
+
+OIDCSiteName - Optional. Controls the title text displayed on the OIDC login page etc. Default is "Ivanti Cloud".
+
+## Adding a Token Signing Certificate
+
+\{\{FRS\_VARS.ProductName}} OIDC requires a Token Signing Certificate. You can create a self-signed certificate using the following command line tools:
+
+makecert.exe -r -pe -n "CN=OIDCSign1" -b 01/01/2017 -e 01/01/2025 -sky signature -a sha256 -len 2048 -sv OIDCSign1.pvk OIDCSign1.cer
+
+pvk2pfx.exe -pvk OIDCSign1.pvk -spc OIDCSign1.cer -pfx OIDCSign1.pfx -po Password12
+
+makecert.exe will ask you for a private key password. You can select "none".
+
+The above will result in a OIDCSign1.pfx certificate file with a password "Password12"
+
+Add the certificate to the ConfigDB Certificates table as shown below:
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/oCA5oy1LJ7AjG4Ogj8K7Z_certificate-tab.png" position="flex-start" size="40" initialPath="../../Resources/Images/OpenID/Certificate-Tab.png" githubPath="Content/Resources/Images/OpenID/Certificate-Tab.png" showCaption="false"></Image>
+
+The Certificate ID must be "OIDCTokenSigningCertificate". The Certificate Category must be "OIDCTokenSign".
+
+## Adding OIDC Client Configuration
+
+Each OIDC Client Application must have a corresponding OIDC\_Client record in ConfigDB that specifies its configuration and maps it to an \{\{FRS\_VARS.ProductName}} Tenant and corresponding users (usually Employee records).
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/cFOl2GO5JszKiRVj_IcDB_oidc-client-tab.png" position="flex-start" size="40" initialPath="../../Resources/Images/OpenID/OIDC-Client-Tab.png" githubPath="Content/Resources/Images/OpenID/OIDC-Client-Tab.png" showCaption="false"></Image>
+
+The configuration for the "MVC OWIN Hybrid Client" example client application is shown in the following screenshot:
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Q9qih2DGQC9179l41Q6Hu_oidc-client-tab-2.png" position="flex-start" size="40" initialPath="../../Resources/Images/OpenID/OIDC-Client-Tab-2.png" githubPath="Content/Resources/Images/OpenID/OIDC-Client-Tab-2.png" showCaption="false"></Image>
+
+Field descriptions are as follows:
+
+| Field                                       | Description                                                                                                                                                                                                                                       |
+| ------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Enabled                                     | Specifies if the client record is enabled                                                                                                                                                                                                         |
+| Client Name                                 | Client display name (used for logging and consent screen)                                                                                                                                                                                         |
+| Client ID                                   | Login ID of the employee of the tenant used for generating the JWT Token.<br />Open the Employee workspace to get the Login ID.                                                                                                                   |
+| Tenant                                      | \{\{FRS\_VARS.ProductName}} Tenant Mapping for the Client                                                                                                                                                                                         |
+| Flow                                        | Specifies allowed flow for client (either AuthorizationCode, Implicit, Hybrid, ResourceOwner, ClientCredentials or Custom).<br />If you want to generate JWT Token using the OIDC Login API, ensure you select the **Flow** as **ResourceOwner**. |
+| Client URI                                  | URI to further information about client (used on consent screen)                                                                                                                                                                                  |
+| Require Consent                             | Specifies whether a consent screen is required                                                                                                                                                                                                    |
+| Allow Remember Consent                      | Specifies whether user can choose to store consent decisions                                                                                                                                                                                      |
+| Redirect URIs                               | Specifies the allowed URIs to return tokens or authorization codes to (comma separated list)                                                                                                                                                      |
+| Post Logout URIs                            | Specifies allowed URIs to redirect to after logout (comma separated list)                                                                                                                                                                         |
+| Logout URI                                  | Specifies logout URI at client for HTTP based logout (required for Single-Sign-Out)                                                                                                                                                               |
+| Require Sign Out Prompt                     | Specifies if the client will always show a confirmation page for sign-out                                                                                                                                                                         |
+| Logout Session Required                     | Specifies if the user’s session ID should be sent to the Logout URI                                                                                                                                                                               |
+| Allow Access To All Scopes / Allowed Scopes | By default a client has no access to any scopes. Either specify the scopes explicitly here (recommended) or set **AllowAccessToAllScopes** to "true".                                                                                             |
+
+Additional claims can be added to the JWT that's generated using the OIDC\_Claim child object:
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/NrLlclADCDxv2KF__y5OW_new-oidc-claim.png" position="flex-start" size="40" initialPath="../../Resources/Images/OpenID/New-OIDC-Claim.png" githubPath="Content/Resources/Images/OpenID/New-OIDC-Claim.png" showCaption="false"></Image>
+
+Some OIDC Flows (e.g. Hybrid) require a "secret" value that the Client must supply. Secrets are adding using the OIDC\_Secret child object:
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/c0iKZCdsF2RCh0Bh15q-K_edit-oidc-secret.png" position="flex-start" size="40" initialPath="../../Resources/Images/OpenID/Edit-OIDC-Secret.png" githubPath="Content/Resources/Images/OpenID/Edit-OIDC-Secret.png" showCaption="false"></Image>
+
+<hint type="info">
+  Only the **Value** field is required. The other fields are optional.
+</hint>
+
+The OIDC\_Client business object supports all the IdentityServer3 Client settings. The remaining settings are available via the Advanced Settings Form.
+
+The configuration for the "MVC OWIN Implicit Client" example client is as follows.
+
+<hint type="info">
+  Implicit Flow does not require a secret.
+</hint>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/U1P8TAczoKPLiOvfG7mV7_advanced-settings-tab.png" position="flex-start" size="40" initialPath="../../Resources/Images/OpenID/Advanced-Settings-Tab.png" githubPath="Content/Resources/Images/OpenID/Advanced-Settings-Tab.png" showCaption="false"></Image>
+
+<hint type="info">
+  To set up \{\{FRS\_VARS.ITSM}} users for authentication via the \{\{FRS\_VARS.Neurons\_platform}}, refer to [Setting up ITSM users for authentication via the Neurons Platform](../../../setting-up-itsm-users-for-authentication-via-the-neurons-platform.mdx) and [Authentication](https://help.ivanti.com/ht/help/en_US/CLOUD/vNow/authentication.htm). This feature is **Early Access** only and may not be available in your environment. For more information, please contact your Customer Success Manager.
+</hint>

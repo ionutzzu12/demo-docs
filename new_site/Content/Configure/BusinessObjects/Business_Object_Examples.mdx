@@ -1,0 +1,44 @@
+---
+title: Business Object Examples
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:55 GMT+0300 (Eastern European Summer Time)
+---
+
+These examples show how to configure business objects in various scenarios.
+
+## Displaying Change Attachments in Incident Record
+
+The main incident layout contains an attachment child panel. This panel shows only the attachments directly linked to an incident record. You can define a roll-up relationship to show attachments linked to all changes associated with the incident.
+
+1. From the Configuration console, select **Build** > **Business Object** to open the **Business Object** workspace.
+2. Select **Incident** to open the **Incident** business object.
+3. Select the **Layouts** tab.
+4. Open a layout from the list. The **Layout Editor** appears.
+5. Select **formview**. The **Form View Editor** appears.
+6. In the child panels table, select an item under the **Object** column. The **Child Panel Relationship Editor** opens.
+7. Select **Use only rollup relationships to grandchild object(s)**.
+8. Select **Add New Rollup Sequence**. The **Add New Rollup Chain** window appears.
+9. Enter information into the fields.
+
+| Field                          | Description                                                                                                                                                                         |
+| ------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Display Name                   | A unique name for the rollup chain.                                                                                                                                                 |
+| Show rollup records by default | Automatically shows rollup records when opening the form. In this case, any associated change records with attachments appear under the **Attachments** tab of the parent incident. |
+
+10. Select the first interim relationship. In this example, select the **Change (viaIncidentAssociatesChange)** relationship.
+11. Select **Add** and select the second interim relationship, **Attachment (via ChangeContainsAttachment)**.
+12. Select **Save** to close the rollup chain editor. The rollup sequence appears in the relationship editor.
+13. Select **Save** to close the child panel relationship editor. The toolbar for the child panels table in the attachments row now reads **To Rollups Only**.
+
+## Displaying Problem Attachments as a Separate Child Panel for Parent Incident
+
+You can add a separate child panel to the incident layout to display the attachments for all problems associated with the current incident.
+
+1. From the Configuration console, select **Build > Business Objects** to open the **Business Objects** workspace.
+2. Select **Incident** to open the **Incident** business object.
+3. Select the **Layouts** tab.
+4. Open a layout from the list. The **Layout Editor** appears.
+5. Add a new child panel to the incident layout called **ProblemsAttachment**.
+6. Define a rollup relationship without a direct relationship.
+7. Define a list and form for the new child panel.
+8. Save the layout. From the new **ProblemsAttachment** tab, select the attachments for the associated problem from a dropdown menu on the toolbar.

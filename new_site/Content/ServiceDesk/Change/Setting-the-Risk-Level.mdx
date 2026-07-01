@@ -1,0 +1,140 @@
+---
+title: Setting the Risk Level
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:48 GMT+0300 (Eastern European Summer Time)
+---
+
+One of the key responsibilities of the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Change\_Manager}} is to assess the risk of the change. Using the risk calculator, the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Change\_Manager}}\{\{FRS\_VARS.Neurons\_ITSM\_-\_Change\_Manager}} answers questions that determine the overall risk level for a specific change.
+
+Before setting the risk level for a change, the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Change\_Manager}} must set up the risk calculator.
+
+## Risk Assessment
+
+Effective Change Enablement involves assessing the risks involved with a change. You must determine the risk to the organization before authorizing a change. Any change has the potential for risk. The type of change plays a role in the type of risk assessment. A standard change, involving a single user, has a lower potential for risk than a significant change, involving a number of users. Risk assessment should be considered for:
+
+- A single change.
+- A group of changes implemented at the same time.
+- Impact and conflicts to other scheduled changes and releases.
+
+Risk assessment includes:
+
+- Identifying high-impact, high-risk configuration items that could affect other configuration items and services in the organization.
+- Analyzing the priority and value of the proposed change to IT.
+- Analyzing the priority and value of the proposed change to the business.
+- Weighing the business or organizational risk to the value of the change.
+
+## Risk Calculation
+
+The application uses a survey dedicated to changes to assess the risk of a change by creating numerical data or quantitative analysis of the risk, or assessing the risk based on qualitative assessment of the risk and associating a number with that qualitative assessment.
+
+You can configure questions that, when answered, determine the level of total risk associated with each change. Each question can have multiple answers to choose from. Each answer is assigned a specific number associated with risk analysis. If a change has five questions for example, and each question has two or more possible answers associated with it, the numerical equivalent of the answers are then totaled in order to provide a total numerical risk analysis to the change. This total risk analysis figure is helpful in determining the ultimate approval, denial, deferment, or cancellation of the change.
+
+## Risk Level Survey
+
+Change Managers can create a survey for each change to help determine the risk level. You can change your answers and immediately see how the risk level is affected.
+
+The default risk levels are:
+
+| Risk Level | Weight |
+| ---------- | ------ |
+| Low        | 0-33   |
+| Medium     | 34-66  |
+| High       | 67-100 |
+
+You can modify or add more levels.
+
+1. Log in to \{\{FRS\_VARS.ProductName}} as a \{\{FRS\_VARS.Neurons\_ITSM\_-\_Change\_Manager}}.
+2. Open the **Risk Level** workspace.
+3. Click **New**. The application displays the **Risk Level** workspace.
+4. Enter information into the fields.
+
+| Field      | Description                                                                                                                                                                                                                                                                                                                                                                                                       |
+| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Risk Level | A unique name for the risk level.                                                                                                                                                                                                                                                                                                                                                                                 |
+| Min Point  | The minimum number of points that can be awarded for this risk level. Adjust the values in the other risk level records accordingly. For example, for a medium-high risk level, you might want to enter a minimum value of 70. However, if the medium risk level maximum is 66 and the high risk level minimum is 67, then you need to adjust the values in both these records to accommodate the new risk level. |
+| Max Point  | The maximum number of points that can be awarded for this risk level. Adjust the values in the other risk level records accordingly.                                                                                                                                                                                                                                                                              |
+| Sort Order | The numeric order of importance this level appears in the list. Adjust the sort order values in the other risk level records accordingly. For example, for a med high risk level, you might want to enter a sort order of 3. However, the high risk sort order is 3. You then need to adjust the sort order to 4 in the high record to accommodate the new risk level.                                            |
+
+5. Click **Save**.
+
+## Modifying the Risk Level Survey
+
+The risk level survey appears in all change records, regardless of state. The application provides a list of survey questions and answers, but you can add, delete, or modify these to accommodate your organization.
+
+1. Open the **Risk Calculator** workspace. A list of default questions. is displayed
+2. Click **Add question**. A blank line is displayed at the bottom of the list of questions.
+3. Add a new question by doing the following:
+
+<Paragraph indent="1">
+  a. Double-click the line under the **Question** header.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Enter a question.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. Double-click the line under the **Points** header.
+</Paragraph>
+
+<Paragraph indent="1">
+  d. Assign a points value to the question. A higher number gives the question more weight. To give equal weight to all questions, assign each question the same number of points. The points range is automatically reflected in the **Risk Level** pane.
+</Paragraph>
+
+4. On the bottom pane, click **Add Answer&#x20;**&#x6F;r next to a question, click the **add answer** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/JtIxGMfjslfCSitXWBu4o_addgreen.png" alt caption size="10" width="17" height="15"}.
+
+<Paragraph indent="1">
+  A blank line is displayed at the bottom in the **Answers** area.
+</Paragraph>
+
+5. Add a new answer.
+
+<Paragraph indent="1">
+  a. Double-click the line under the **Answer** header.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Enter an answer.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. Double-click the line under the **Weights (%)** header.
+</Paragraph>
+
+<Paragraph indent="1">
+  d. Assign a weight to the question. A higher number increases the risk level, whereas a lower number decreases the risk level. Zero does not affect the risk level.
+</Paragraph>
+
+6. Repeat to add more answers to the question.
+7. Check **Default** to assign an answer as the default for the question.
+8. Click **Save**.
+9. Repeat the above steps to add questions and answers to the survey.
+10. To remove a question from the list, click the **delete** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/USPl9Egu4Y2Blx7HKC3mA_deleteredx.png" alt caption size="10" width="14" height="13"} next to the question.
+
+<Paragraph indent="1">
+  The number of answers associated with a specific question is displayed under the **Answers** column on the same row as the question.
+</Paragraph>
+
+## Risk Level Pane
+
+1. Open the **Risk Calculator** workspace. A list of questions is displayed on the left and the **Risk level** pane on the right.
+2. To modify the range, click in the **Low**, **Medium**, or **High** fields in the **Risk Level** pane. The **Total Points** field is displayed, showing the total from the **Points** column.
+
+## Setting the Risk Level
+
+1. Open the **Change** workspace.
+2. Open a change.
+3. Click the **Risk Level** tab.
+4. Answer the questions.
+5. Click **Save**. The risk level meter is automatically adjusted based on your answers.
+
+## Localizing the Risk Calculator Questions
+
+The English value is shown by default, and appears when there is no localized content. When localized content is added, the first language used becomes the default.
+
+Have your administrator set the language in \{\{FRS\_VARS.ProductName}}. See [Working with Localization](../../Configure/Localization/Localization.mdx).
+
+1. Open the **Risk Calculator** workspace.
+2. Enter the content in your chosen language.
+3. Click **Save**.
+4. Repeat this process to add content in other languages.

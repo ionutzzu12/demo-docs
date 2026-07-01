@@ -1,0 +1,120 @@
+---
+title: Working with Timesheets
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:47 GMT+0300 (Eastern European Summer Time)
+---
+
+Timesheets provide a way to track Resources' time against all Project Tasks. They enable Resource Capacity tracking and reporting and have a preset date based on a Sunday-Saturday calendar. Timesheets are generated weekly on Sunday by default, but \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}s can configure them using the **Auto-generate Timesheet Schedule Entry**.
+
+## Create Timesheet - Automated
+
+\{\{FRS\_VARS.Neurons\_ITSM\_-\_Project\_Manager}}s and \{\{FRS\_VARS.Neurons\_ITSM\_-\_Portfolio\_Manager}}s configure Employee records to automatically generate a Timesheet for each employee on a weekly basis.
+
+1. Go to the Employee record.
+2. Select the box next to **Auto-Create Timesheet** in the **Overview** section.
+3. Click **Save**.
+
+On the **TIMESHEET** tab in the menu bar, you see an entry for each Employee record that you configured to create a Timesheet.
+
+## Create Timesheet - Manual
+
+From version 2024.4 onwards, the capability to create Timesheets manually is provided. By default, \{\{FRS\_VARS.Neurons\_ITSM\_-\_Project\_Manager}}, \{\{FRS\_VARS.Neurons\_ITSM\_-\_Portfolio\_Manager}}, and \{\{FRS\_VARS.Demand\_Manager}} roles have access to **Timesheet** workspace. However, \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}} can configure the Timesheet BO for other roles if required.
+
+**To create a Timesheet**
+
+1. From the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Console}} console, open the **Timesheet** workspace.
+2. Click **New Timesheet**.
+3. Select the week for which you wish to create the timesheet in the **Weekly Timesheet** field.
+4. Select the **Resource**.
+5. Save and exit.
+
+<hint type="info">
+  The **Time Entries**, **Tasks**, and **Employee** tabs are not available by default, this is a limitation in version 2024.4. Save the Timesheet and reopen it for the tabs to be visible.
+</hint>
+
+<Paragraph indent="1">
+  If Project Tasks are available for the employee for the week of this Timesheet, the following details wil be available:
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  **Time Entries** tab - Displays the Time Entry details for the employee.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  **Task** tab - Displays the task associated with the Time Entry and Timesheet.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  **Employee** tab - Displays Employee details.
+</Paragraph>
+
+<Paragraph indent="1">
+  *Creating a Timesheet Manually*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/sP80VKRb8LFMUuosNkGQk_timesheet-manual.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/ServiceDesk/Timesheet-Manual.png" githubPath="Content/Resources/Images/ServiceDesk/Timesheet-Manual.png" showCaption="false"></Image>
+
+<Paragraph indent="1">
+  ### Limitations:
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  The **Time Entries**, **Tasks**, and **Employee** tabs are not available by default, save and exit the Timesheet to view these tabs.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  Currently, duplicate Timesheets can be created for an employee for the same week which will be fixed in the future release where creating duplicate Timesheets will not be allowed and the user will be notified of the duplicate entry.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  Timesheets cannot be deleted at the moment. But in future release, option to purge and delete will be provided.
+</Paragraph>
+
+## Track Tasks and Time within a Timesheet
+
+Tasks are added to a Timesheet automatically when employees create a Time Entry for a Task.
+
+Employees add Tasks to their Timesheet using the Time Entry business object. When a Time Entry is created and attached to a task, the time spent on the task is added to the Timesheet for the entered date, and the total time logged (across all Time Entries) is displayed for each day. **Total Hours** are calculated for each Timesheet.
+
+On the Employee Timesheet, the Time Entries tab displays all Time Entries. Click on the Tasks tab to see the Tasks for which Time Entries were logged and the total amount of time spent per Task in a given week.
+
+## Create Time Entry Records for a Task
+
+1. Go to the Tasks workspace.
+2. Find the Task you worked on and double click on it.
+3. If you haven't already accepted the Task, click **Accept**.
+4. Click the **Time Entries** tab.
+5. Click **New Time Entry** and complete the fields in the **New Time Entry** dialog:
+
+<Paragraph indent="1">
+  a. **Title**: Enter a title for the work you completed.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. **Resource Name (to be linked later)**: The application automatically enters this information and links it to the employee
+</Paragraph>
+
+<Paragraph indent="1">
+  c. **Billable**: Check this box if the time worked can be billed to the customer.
+</Paragraph>
+
+<Paragraph indent="1">
+  d. **Date**: Click the calendar icon to select the date.
+</Paragraph>
+
+<Paragraph indent="1">
+  e. **Effort (Minutes)**: Enter the number of minutes you worked on this task.
+</Paragraph>
+
+6. Click **Save** to return to the **Time Entries** tab.
+
+## Submit Timesheet
+
+1. Open the Timesheet you want to submit.
+2. Click the **Request Approval** button to send the Timesheet to the Manager for approval, or use the **Create Time Entry** \{\{FRS\_VARS.Quick\_Action}} from the **Action Menu**.
+
+## Approve Timesheet
+
+1. Navigate to the Approval workspace.
+2. Go to the Timesheet requiring Approval.
+3. Under **Approval Vote Tracking**, click **Approve** or **Deny**.

@@ -1,0 +1,33 @@
+---
+title: Example: Giving a Service Desk Analyst Access to Incidents Assigned to an Organizational Unit
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:50 GMT+0300 (Eastern European Summer Time)
+---
+
+In this case, the Service Desk Analyst should be able to begin work on an incident which is in the unassigned queue for his organizational unit (My Team). At the same time, the Service Desk Analyst should be able to view incidents that are assigned to other members of the team without being able to update them.
+
+1. From the Configuration Console, click **Configure > Users and Permissions > Roles and Permissions** to open the **Roles and Permissions** workspace.
+2. Click **Service Desk Analyst**.
+3. Click the **Object Permissions** tab.
+4. Navigate to the incident business object and click **Edit**.
+5. The **Service Desk accessing Incident Availability** page opens. Click the button to add a table row for adding a case.
+6. Select **Update and view** from the drop-down list.
+7. Select **Employee (via IncidentOwnerEmployee)** as the first operator to constrain from the drop-down list.
+8. In the second drop-down list, select **OrganizationalUnit**.
+9. Skip to the third drop-down list and select **is** as the first negation.
+10. From the fourth drop-down list, select **same as logged in user** as a matching value.
+11. Save your changes.
+
+<Paragraph indent="1">
+  The case is saved, and is the display changes to read:
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  Update and view Records where
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  Incident's \[Profile#Employee.Owner]OrganizationalUnit is same as logged in user's OrganizationalUnit
+</Paragraph>
+
+Upon logging in as a Service Desk Analyst who belongs to the Sales and Marketing organizational unit, the incident list displays all of the incidents assigned to Sales and Marketing employees (owners).

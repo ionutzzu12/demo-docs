@@ -1,0 +1,251 @@
+---
+title: Microsoft Entra Integration
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:52 GMT+0300 (Eastern European Summer Time)
+---
+
+**Role**: Administrators.
+
+**Minimum Version**: \{\{Primary.Company}} \{\{Primary.Product}} 2024.3.
+
+The Entra ID Import feature allows you to manage your organization's workforce both full-time employees and contractors by maintaining user identities and access control. It also provides flexibility to customize the configuration according to your business needs.
+
+Watch this video for a visual walkthrough of configuring and using the Microsoft Entra ID Import.
+
+<embed url="https://www.youtube.com/watch?v=gEl_7Hsk9qU">
+  [Configuring Microsoft Entra ID Import (5:55)](https://www.youtube.com/watch?v=gEl_7Hsk9qU)
+</embed>
+
+<hint type="info">
+  Importing from Microsoft Entra ID is currently not supported in FedRAMP environments, as the User Management Service is not available in these deployments.
+</hint>
+
+**Prerequisite**
+
+Before you configure the import, make sure you have the required details, which you can get from Microsoft Entra ID with the following Microsoft Graph API permissions,  **Group.Read.All**, **User.Read.All**, and **AdministrativeUnit.Read.All**.
+
+You need the following information:
+
+- Client ID
+- Tenant ID
+- Client secret
+
+## Configuring Azure AD in ITSM
+
+1. Log in to \{\{FRS\_VARS.ITSM}} as an \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+2. Open the Configuration console, scroll and select **LDAP Integration** > **Entra ID Import**.
+
+<Paragraph indent="1">
+  The **Entra ID Import Connections** page is displayed.
+</Paragraph>
+
+3. Click **Setup new Entra ID connection**.
+4. Enter information in the following tabs:
+
+<ExpandableHeading indent="1">
+  ## Configuration tab
+
+  This tab captures the configuration required to connect ITSM with Entra ID. The remaining tabs are disabled until this step is complete.
+
+  <Paragraph indent="1">
+    a. Select the **Enabled** checkbox.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    b. Enter the following information:
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="3">
+    **Connection Name** - Enter appropriate name (minimum of 5 characters).
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="3">
+    **Client ID**, **Tenant ID**, and **Client secret** - Enter appropriate details provided by Microsoft Entra.
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="3">
+    **Graph API endpoint** - Use the default or enter custom URL to connect to import users from the Azure portal by interfacing with Azure Active Directory (Azure AD).
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="3">
+    **Token endpoint** - Use the default or enter custom URL to request authentication tokens for secure access.
+  </Paragraph>
+
+  <Paragraph indent="2">
+    Use only supported URLs when configuring endpoints to match your domain requirements.
+  </Paragraph>
+
+  <hint type="info" indent="2">
+    Only URLs listed in the [Microsoft Graph national cloud deployments ](https://learn.microsoft.com/en-us/graph/deployments)are supported. If you enter unsupported URLs, the test connection will fail and display an error.
+  </hint>
+
+  <Paragraph listStyleType="disc" indent="3">
+    **Select primary key** - Select an option from Entra ID, UPN, and Email as the unique identifiers. You can also apply advanced query filters using the Azure AD HTTP request string.
+  </Paragraph>
+
+  <Paragraph indent="2">
+    For an example:
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="3">
+    endsWith(userPrincipalName,'@ivanti.com') and accountEnabled eq true
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="3">
+    (accountEnabled eq true and department eq 'IT') or city eq 'London'
+  </Paragraph>
+
+  <Paragraph indent="1">
+    c. Click **Test Connection** to validate the provided information.
+  </Paragraph>
+
+  <Paragraph indent="2">
+    A success message confirms the connection details are correct.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    d. Click **Save**.
+  </Paragraph>
+
+  <Paragraph indent="2">
+    This saves the configuration, but the connection remains inactive until further steps are completed.
+  </Paragraph>
+</ExpandableHeading>
+
+<ExpandableHeading indent="1">
+  ## Filter Management tab
+
+  The **Filter Management** tab is used to setdefine and apply filter conditions using Entra ID fields to retrieve specific users or groups based on custom criteria. You can apply And, OR, and HttpString predicates.
+
+  <hint type="info">
+    Microsoft Graph SDK is used to connect to APIs. For more information, refer to [Make API calls using the Microsoft Graph SDKs](https://learn.microsoft.com/en-us/graph/sdks/create-requests?tabs=csharp).
+  </hint>
+
+  - AND predicate - In a filter query, AND predicate is used when you want the results to satisfy all filter conditions.
+
+  <Paragraph indent="1">
+    For example, if the filer query is set as,
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    Condition 1 - AccountEnabled Equals True
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    Condition 2 - City Equals London
+  </Paragraph>
+
+  <Paragraph indent="2">
+    The results will include only users whose account is enabled and whose city is London.
+  </Paragraph>
+
+  - OR predicate - In a filter query use OR predicate is used when you want the results to satisfy any one of the filter conditions.
+
+  <Paragraph indent="1">
+    For example, if the filter query is set as,
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    Condition 1 - AccountEnabled Equals True
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    Condition 2 - City Equals London
+  </Paragraph>
+
+  <Paragraph indent="2">
+    The results will include users who meet either condition users with account enabled, or users located in London.
+  </Paragraph>
+
+  - HttpString predicate - Use the HttpString predicate to define filter conditions using a string-based HTTP request.
+
+  <Paragraph indent="1">
+    For example, startsWith('S', displayName) and accountEnabled eq true.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    The results will include users whose display name starts with "S" and whose account is enabled.
+  </Paragraph>
+
+  **View and Manage Groups and Users**
+
+  To filter and view data using the User filter type:
+
+  1. Select the **User** from the **Filter type** dropdown.
+  2. In the **Filter Condition** dropdown, select And, or OR, or HttpString predicates based on your requirement.
+  3. Enter the appropriate details and click **Preview**.
+
+  <Paragraph indent="1">
+    The **Preview Entra ID import** window appears, showing all users that match the selected filter criteria.
+  </Paragraph>
+
+  To filter and view users by groups:
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/u2J2fPfnBvWX08rmT81jt_entra-id-group-filter.png" position="flex-start" size="40" initialPath="../../Resources/Images/Integration-images/entra-id-group-filter.png" githubPath="Content/Resources/Images/Integration-images/entra-id-group-filter.png" showCaption="false"></Image>
+
+  1. Select the **Group** from the **Filter type** dropdown.
+  2. In the **Filter Condition** dropdown, enter or select the desired one or more groups then click **Ok**.
+
+  <Paragraph indent="1">
+    A link appears showing the number of selected groups.
+  </Paragraph>
+
+  3. Click this link to view the selected group names.
+     - To remove a group, click **Close** icon next to it.
+  4. To add more filters, use the And, or OR, or HttpString predicate, define your filter query and then click **Preview**.
+
+  <hint type="info" indent="1">
+    If you select **User** as the filter type, the queue displays progress messages immediately. If you select **Group**, the system adds messages to the queue only after it finishes retrieving all users from Azure portal.
+  </hint>
+
+  <hint type="info" indent="1">
+    The system updates user information and its relationships only when the user belongs to any of the selected group.
+  </hint>
+
+  For more information on filter queries and predicates, refer to [Microsoft Graph - Use the $filter query parameter](https://learn.microsoft.com/en-us/graph/filter-query-parameter?tabs=http) and [Microsoft Graph - Advanced query capabilities on Microsoft Entra ID objects](https://learn.microsoft.com/en-us/graph/aad-advanced-queries?tabs=http).
+</ExpandableHeading>
+
+<ExpandableHeading indent="1">
+  ## Field Mapping tab
+
+  This tab is used to set the field mappings from \{\{FRS\_VARS.ITSM}} to Entra ID. It consists of both existing and new field mappings for a connection.
+
+  <Paragraph indent="1">
+    a. Click **Add Mapping**.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    b. Select appropriate mappings from **ISM Employee Field** and map it to **Entra ID Fields**.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    c. Choose the **Mapping Type**:
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="3">
+    **Map** - Choose from available options.
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="3">
+    **Fixed Value** - Enter a static value.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    d. To prevent a field from being updated during import, select the **Do not update** checkbox next to the mapping.
+  </Paragraph>
+</ExpandableHeading>
+
+<ExpandableHeading indent="1">
+  ## Schedule and Import tab
+
+  This tab allows you to set a schedule or initiate an immediate import. You can also enable the import of administrative units.
+
+  - Choose a schedule from the **Schedule list** to run the import as per the time in the selected schedule.
+
+  <Paragraph indent="2">
+    or
+  </Paragraph>
+
+  - Choose **Save and Import** to run the import immediately.
+  - Select the **Import Administrative Units** checkbox to import administrative units in the database.
+</ExpandableHeading>

@@ -1,0 +1,47 @@
+---
+title: Resolving a Problem
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:48 GMT+0300 (Eastern European Summer Time)
+---
+
+A problem can be resolved with a temporary workaround. However, entering a resolution does not always mean that the problem is closed.
+
+### Adding a Root Cause to a Problem
+
+Root cause analysis is fundamental to problem management. We recommend that when setting a problem status to **Resolved**, you add a root cause for the problem.
+
+A problem should have only one root cause.
+
+1. From the problem record, find the related knowledge article, then click **Update to Known Error**. See [Working with Problems](<Creating a Problem.mdx>).
+
+<Paragraph indent="1">
+  *Problem Record*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/__RLffJQbjgw6j-op7diB_updatetoknownerror.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/update_to_Known_error.png" githubPath="Content/Resources/Images/help-images/update_to_Known_error.png" showCaption="false"></Image>
+
+<Paragraph indent="1">
+  The problem type is set to **Known Error**, the status is set to identified, and the **Root Cause** field appears. The default description is "Refer to linked knowledge article". If appropriate, create a new reference document. See [Creating a Knowledge Article](../Knowledge/Creating-a-Knowledge-Article.htm).
+</Paragraph>
+
+2. Click **Save**.
+
+### Resolving a Problem
+
+A **validation on save** rule that states that a problem cannot be marked resolved or closed unless all associated change records are in the implemented, closed, canceled, denied, or deferred states (or the change is **not** in the logged, requested, pending approval, or scheduled states) is disabled by default.
+
+If you need to enable this validation rule, ask your administrator to enable it for the problem business object.
+
+Follow these steps to set a problem to the resolved state:
+
+1. Within a problem record under the **Details** tab, do one of the following:
+   - In the **Resolution** field, enter a description of how the problem was resolved, then click **Resolve via Resolution** from the toolbar.
+   - In the **Workaround** field, enter a description of the workaround, then click **Resolve via Workaround** from the toolbar. Once the workaround information is documented, this information is accessible to all roles and modules with access to the problem record.
+2. Under the **Resolution** tab, in the **Closure Category** field, choose the category for the resolution from the drop-down list.
+3. Click **Save**.
+
+The system creates a new FAQ. The information from the **Error Message** field of the problem is the FAQ question and the information from the **Resolution** field is the FAQ answer.
+
+- The **Issue and Resolution Article** button on the toolbar is enabled from where you have the option of creating a knowledge article.
+- The cost is updated by rolling up the cost of the associated tasks.
+- The time specified in the **Actual Effort** field of each completed task is also rolled up to show the total time spent on the problem, as shown in the **Time** field on the **Details** tab.

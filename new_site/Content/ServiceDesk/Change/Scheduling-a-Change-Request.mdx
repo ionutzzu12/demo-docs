@@ -1,0 +1,109 @@
+---
+title: Scheduling a Change Request
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:48 GMT+0300 (Eastern European Summer Time)
+---
+
+After a change request is approved, you can schedule it, view a lockout period and change window for a configuration item, and create tasks for the change request. Scheduled changes appear in the change calendar. See [Using the Change Calendar](Using-the-Change-Calendar.mdx).
+
+You can request that the change be a part of a release or link the change to an existing release. If you link the change to a release, the Release Manager can begin the process of preparing and planning for the release and the change schedule is driven by the release outage dates.
+
+1. Log in to \{\{FRS\_VARS.ProductName}} as a \{\{FRS\_VARS.Neurons\_ITSM\_-\_Change\_Manager}}.
+2. Open the **Change** workspace.
+3. Open the change record to schedule.
+4. In the **Schedule** section, enter a start and end date.
+   - If the change request is linked to a release, the start date and end date are filled in with the outage dates from the release and become read-only. Ensure that the change is not scheduled during a change lockout period. See :Link[Viewing a Change Lockout Period and Change Window]{label="Viewing a Change Lockout Period and Change Window" overridedLabel="Viewing a Change Lockout Period and Change Window" spaceId docId="onPK-StNc691Zx7ib0WYD" version="v2" docAnchorId="#ViewingChangeLockoutPeriod" loadingMethod="dynamic" newTab="false" href="Scheduling-a-Change-Request.mdx"}.
+   - The release name, along with the current status of the release, appears below the release field.
+   - The schedule start and end date of the change cannot be updated from the **Change Schedule** tab.
+5. From the **Status** field, select **Scheduled**. If the change request requires approval, the status is not updated to scheduled until after it is approved. See [Approving a Change Request](Approving-a-Change-Request.mdx).
+6. Click **Save**.
+
+After saving the change request:
+
+- The application sends an email to the change requester and the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Change\_Manager}} informing them that the change has been scheduled.
+- If the associated configuration item is configured to run a baseline, a baseline is created in the **Baseline Comparison** tab of the configuration item record and in the **Baseline** tab of the change record.
+
+## Using the Change Scheduler
+
+When a configuration item is linked to the change request, the change calendar is enabled and shows the dates that appear on the **Scheduled Start Date** and **Scheduled End Date** fields of the change request. You can directly update the dates from the change scheduler.
+
+If the configuration item already has lockout dates and an available change window, those dates also appear in the change scheduler. See :Link[Viewing a Change Lockout Period and Change Window]{label="Viewing a Change Lockout Period and Change Window" overridedLabel="Viewing a Change Lockout Period and Change Window" spaceId docId="onPK-StNc691Zx7ib0WYD" version="v2" docAnchorId="#ViewingChangeLockoutPeriod" loadingMethod="dynamic" newTab="false" href="Scheduling-a-Change-Request.mdx"}.
+
+If the change request is linked to a release, the change schedule becomes read-only and you cannot update the schedule. The dates from the release outage overwrite the dates in the change request.
+
+## Updating the Change Start and End Dates using the Change Scheduler
+
+You can only update the **Start Date** and **End Date** fields for the change request if:
+
+- The **Scheduled Start Date** and **Scheduled End Date** fields for the change request are already filled in on the **Change Details** tab.
+- The change request is already linked to a configuration item.
+- The change request is not linked to a release. When a change request is linked to a release, the **Start Date** and **End Date** fields are filled in from the outage schedule of the release.
+
+1. Log in to \{\{FRS\_VARS.ProductName}} as a \{\{FRS\_VARS.Neurons\_ITSM\_-\_Change\_Manager}}.
+2. Open the **Change** workspace.
+3. Open the change record to schedule.
+4. Click the **Change Schedule** tab.
+5. Hover your mouse over the schedule to view information about the change.
+6. Do one of the following to search for a configuration item:
+   - If several configuration items are linked to a change request, you can enter the name or partial name of one of the configuration items in the **Search for Resource** field to view the schedule for that configuration item only.
+   - Enter the name or the first few letters of one of the configuration items linked to the change request in the **Search for Resource** field.
+
+<Paragraph indent="1">
+  Only the configuration item that you entered remains and the other configuration items are cleared from the list. To view the other configuration items again, click the drop-down arrow.
+</Paragraph>
+
+7. To update the change request schedule:
+   - Click and drag your mouse over the schedule to span a new date and time range.
+
+<Paragraph indent="1">
+  \--or--
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  Right-click and select **Edit**.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  In the **Edit Event** window, enter a new start date and time in the **Start at** and **End at** fields.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  Change the display text by entering it in the **Title** field.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  Enter some details about the schedule in the **Description** field.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  Click **Save**.
+</Paragraph>
+
+<Paragraph indent="1">
+  On the **Details** tab, the **Schedule Start Date** and the **Schedule End Date** fields are updated with the new dates and times that you entered.
+</Paragraph>
+
+## Viewing a Change Lockout Period and Change Window
+
+The \{\{FRS\_VARS.Neurons\_ITSM\_-\_Configuration\_Manager}} can create a change lockout period and a change window for a configuration item.
+
+- A change lockout period indicates that changes should not be made during this time. They can be overridden by the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Change\_Manager}}, if necessary. By default, a change lockout period is not enforced; it is only there to caution the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Change\_Manager}} not to implement the specific change for the configuration item during that time.
+- A change window indicates to the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Change\_Manager}} that this is a preferred time to implement a change for the configuration item.
+
+The \{\{FRS\_VARS.Neurons\_ITSM\_-\_Configuration\_Manager}} can also associate configuration items to a change window or change lockout period, which means that when the configuration item is associated with the change request, the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Change\_Manager}} can view the change lockout period and the change window for the configuration item in the **Change Schedule** tab of the change request record. See [Using the Change Scheduler](Using-the-Change-Calendar.mdx). Locking out a configuration item and setting up a change window for the configuration item is done by the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Configuration\_Manager}} from the **Change Lockout** tab of a configuration item record. As the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Change\_Manager}}, you can only view the change lockout and change window; you cannot make any modifications to them.
+
+1. Log in to \{\{FRS\_VARS.ProductName}} as a \{\{FRS\_VARS.Neurons\_ITSM\_-\_Change\_Manager}}.
+2. Open the **Change** workspace.
+3. Open the change request record to view.
+4. Within the change request record, click the **Change Schedule** tab.
+   - The change lockout period appears in red.
+   - The change window appears in green.
+
+<Paragraph indent="1">
+  *Change Window and Change Lockout Period*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/B8cAMlNxHhoxohx6zaJpy_chglockoutwin.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/chg_lockout_win.png" githubPath="Content/Resources/Images/help-images/chg_lockout_win.png" showCaption="false"></Image>
+
+5. Mouse over the change lockout period and the change window to view their details.
+6. Click **Next Window** to view another change window for the configuration item.

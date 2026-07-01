@@ -1,0 +1,44 @@
+---
+title: About Team Costing
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:48 GMT+0300 (Eastern European Summer Time)
+---
+
+You can view and track transactional costs for a single service request, incident, change, problem, or release, or view the costing information in a report.
+
+The system tracks costing by adding up the individual costs of all the tasks associated with a single business object. Then the cost of all tasks are rolled up in the costing reports. The system does not calculate costing for business objects with no associated tasks.
+
+When you select an owner team for a task and fill in the actual effort field (after the task is completed), the system populates the **Cost** field in the task form by multiplying the team's average cost per minute by the task's actual effort.
+
+To view and track cost for incidents, the owner teams to whom tasks are assigned must have the average cost per minutes data set up in their team profile.
+
+If you are an administrator, you can set up costing for an owner team. However, if you are a \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Manager}}, you can only view the average cost per minute for the teams.
+
+## Setting Up Costing for an Owner Team
+
+1. Log into the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Console}} console.
+2. Open the **Employee Team** workspace.
+3. Double-click the team record of the team for which to set up costing.
+
+<Paragraph indent="1">
+  *Employee Team Workspace*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/16RhYuf_1tKi13txtb4qx_userteamcosting.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/user_team_costing.png" githubPath="Content/Resources/Images/help-images/user_team_costing.png" showCaption="false"></Image>
+
+4. In the **Average Cost per Minute** field, enter or modify the dollar amount per minute that is charged by this team.
+5. Click **Save**.
+
+## Calculating the Cost
+
+The system calculates costs by rolling up the cost of all the associated tasks for the business object. The system does not calculate costing for business objects with no associated tasks.
+
+The system calculates the cost of each task by multiplying the actual effort of the task by the average cost per minute of the owner team to whom the task is assigned. The owner teams to whom tasks are assigned must first have the average cost per minutes data set up in their team profile. See :Link[Setting up Costing for an Owner Team]{label="Setting up Costing for an Owner Team" overridedLabel="Setting up Costing for an Owner Team" spaceId docId="1V_walYgp3YKG6wL8dYvT" version="v2" docAnchorId="#SettingUpCosting" loadingMethod="dynamic" newTab="false" href="About-Team-Costing.mdx"}.
+
+Calculating the cost of the business object while it is still open gives you the option of assessing whether the associated costs are on track.
+
+1. Log into the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Console}} console.
+2. Open an active incident, change, problem, or release, and select the **Tasks** tab.
+3. Set one or more tasks to completed.
+4. Select the **Details** tab, then from the Action Menu, choose **Form Actions > Calculate Cost**.
+5. View the cost in the **Cost** field of the **Details** tab. The actual effort is multiplied by the average cost per minute of the owner team assigned to a task. The **Time** field is also populated with the sum of the times specified in the **Actual Effort** field of each completed task.

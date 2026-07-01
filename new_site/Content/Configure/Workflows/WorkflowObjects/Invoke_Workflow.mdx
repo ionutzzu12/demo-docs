@@ -1,0 +1,36 @@
+---
+title: Invoke Workflow Block
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:58 GMT+0300 (Eastern European Summer Time)
+---
+
+The **Invoke** workflow block invokes another workflow created within this business object. The exit ports allow for paths contingent upon the workflow being started, completed, and failing.
+
+*Invoke Workflow Block Properties*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/x1k2I09a6usiaRpLZ0zNZ_invokeworkflowblock.png" position="flex-start" size="40" indent="1" initialPath="../../../Resources/Images/help-images/invoke_workflow_block.png" githubPath="Content/Resources/Images/help-images/invoke_workflow_block.png" showCaption="false"></Image>
+
+## Exit Ports
+
+| Exit Port | Description                                                                                          |
+| --------- | ---------------------------------------------------------------------------------------------------- |
+| Started   | Continue to the next block when the workflow starts.                                                 |
+| Completed | Continue to the next block when the workflow is completed.                                           |
+| Failed    | General exit port for a failed integration action. A logical next step is to trigger a notification. |
+
+## Properties
+
+| Property                    | Description                                                                                                            |
+| --------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| Title                       | A unique name for the workflow block.                                                                                  |
+| Current Context BO          | Specifies if workflows created for this business object are available in the workflow. Choose from the drop-down list. |
+| Relationship Name           | Specifies if workflows defined for the child object in a relationship are available. Choose from the drop-down list.   |
+| Workflow Name               | The workflow to invoke. Choose from the drop-down list.                                                                |
+| Wait for workflow to finish | Waits for the workflow to complete before exiting the block.                                                           |
+
+## Actions
+
+| Button | Action                 |
+| ------ | ---------------------- |
+| Save   | Commits your settings. |
+| Cancel | Exits without saving.  |

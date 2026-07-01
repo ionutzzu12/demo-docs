@@ -1,0 +1,98 @@
+---
+title: Configuring Group Voice
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:54 GMT+0300 (Eastern European Summer Time)
+---
+
+You can configure agent groups for the purpose of organizing agents and specifying group settings. You can also configure skill groups for the purpose of matching agents with skills. After you configure agents at the group level, you can override the group settings at the agent level.
+
+## Creating Agent Groups
+
+You create new agent groups and specify properties for each group. Later on, when you assign agents to these groups, as described in :Link[Configuring Voice Agent Properties]{label="Configuring Voice Agent Properties" overridedLabel="Configuring Voice Agent Properties" spaceId docId="ThJ0DUMgkmmgVcGpEQJYi" version="v2" docAnchorId="#ipcm_saas_2893168369_1063450" loadingMethod="dynamic" newTab="false" githubPath="Configuring_Agent_Voice_.htm#ipcm_saas_2893168369_1063450" href="Configuring_Agent_Voice_.mdx"}, you have the option of using the group properties or overriding them by specifying properties for the individual agent employee records.
+
+1. Log into the Service Desk Console.
+2. Open the **Voice - Agent Group** workspace.
+3. Click **New Voice - Agent Group**. The **Voice - Agent Group** page appears.
+4. Enter information into the fields.
+
+| Field                     | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Name                      | A unique name for the agent group to create.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| Not Ready Reason Required | The reason why agents are not ready, if all agents in the group must indicate a reason when they select the not ready state.<br />**Required**: A reason is required when the agent is in the not ready state.<br />**Not Required**: No reason is required for the not ready state.<br />**Server Defined**: Uses the global setting defined on the \{\{FRS\_VARS.Company-short}} Voice server via the \{\{FRS\_VARS.Company-short}} Voice Management Portal.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| Wrapup Timeout            | The automatic wrapup timeout for all agents in the group after one call ends and before the ready status is enabled for the next call.<br />**Not Required**: An automatic wrapup time is not required.<br />**Server Defined**: Uses the global setting defined on the \{\{FRS\_VARS.Company-short}} Voice server via the \{\{FRS\_VARS.Company-short}} Voice Management Portal.<br />**Group Defined**: The wrapup timeout value entered is applied to all agents in the group.<br />To specify the wrapup timeout setting at the agent level, see :Link[Configuring Voice Agent Properties]{label="Configuring Voice Agent Properties" overridedLabel="Configuring Voice Agent Properties" spaceId docId="ThJ0DUMgkmmgVcGpEQJYi" version="v2" docAnchorId="#ipcm_saas_2893168369_1063450" loadingMethod="dynamic" newTab="false" githubPath="Configuring_Agent_Voice_.htm#ipcm_saas_2893168369_1063450" href="Configuring_Agent_Voice_.mdx"}. |
+| Wrapup (Seconds)          | The wrapup timeout time in seconds. Appears if you select **Group Defined** for the **Wrapup Timeout** field.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| Initial Agent Status      | The initial agent status upon login.<br />**Ready**: The agent is ready to take calls.<br />**Not Ready**: The agent is not ready to take calls. Select an initial not ready reason.<br />**Server Defined**: Uses the global setting defined on the \{\{FRS\_VARS.Company-short}} Voice server via the \{\{FRS\_VARS.Company-short}} Voice Management Portal.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| Initial Not Ready Reason  | The initial reason for the not ready status that appears when the agents in the group first log in. This field is enabled if you enter not ready or server defined for the **Initial Agent Status** field.<br />**Server Defined**: Uses the global setting defined on the \{\{FRS\_VARS.Company-short}} Voice server via the \{\{FRS\_VARS.Company-short}} Voice Management Portal.<br />**\<no reason>**:Does not enter a default reason.<br />**Pick from group defined reason**: The system applies the value entered to all agents in the group when they are in the initial not ready state.                                                                                                                                                                                                                                                                                                                                               |
+| Audit Group Agents        | Specifies if agents in the group are audited. The audit option allows you to record agent state changes from the **Agent** dashboard.<br />**True**: Audit all of the agents in the group.<br />**False**: Does not audit all of the agents in the group. You can also configure agent auditing at the individual level, as described in the procedure :Link[Configuring Voice Agent Properties]{label="Configuring Voice Agent Properties" overridedLabel="Configuring Voice Agent Properties" spaceId docId="ThJ0DUMgkmmgVcGpEQJYi" version="v2" docAnchorId="#ipcm_saas_2893168369_1063450" loadingMethod="dynamic" newTab="false" githubPath="Configuring_Agent_Voice_.htm#ipcm_saas_2893168369_1063450" href="Configuring_Agent_Voice_.mdx"}.<br />**Server Defined**: Uses the global setting defined on the \{\{FRS\_VARS.Company-short}} Voice server via the \{\{FRS\_VARS.Company-short}} Voice Management Portal.                     |
+
+<Paragraph indent="1">
+  The **Voice** toolbar enables agents to manually indicate when they are in the ready state (available to handle calls) or the not ready state (unavailable to handle calls). If an agent switches to the not ready state, the toolbar allows the agent to select a defined not ready reason. To specify the not ready reason at the agent level, see :Link[Configuring Voice Agent Properties]{label="Configuring Voice Agent Properties" overridedLabel="Configuring Voice Agent Properties" spaceId docId="ThJ0DUMgkmmgVcGpEQJYi" version="v2" docAnchorId="#ipcm_saas_2893168369_1063450" loadingMethod="dynamic" newTab="false" githubPath="Configuring_Agent_Voice_.htm#ipcm_saas_2893168369_1063450" href="Configuring_Agent_Voice_.mdx"}.
+</Paragraph>
+
+5. Click **Save**.
+
+## Creating Skill Groups
+
+Skills are organized in skill groups. The default skill groups are technical skills, \{\{FRS\_VARS.ProductName}} products, and language. You can use these default skill groups and the skills they include or create new skills under the skill groups. You can also modify the skill groups, delete the default skill groups, and create new skill groups.
+
+When you configure agent skill properties (as described in :Link[Configuring Voice Agent Skills]{label="Configuring Voice Agent Skills" overridedLabel="Configuring Voice Agent Skills" spaceId docId="ThJ0DUMgkmmgVcGpEQJYi" version="v2" docAnchorId="#ipcm_saas_2893168369_1063352" loadingMethod="dynamic" newTab="false" githubPath="Configuring_Agent_Voice_.htm#ipcm_saas_2893168369_1063352" href="Configuring_Agent_Voice_.mdx"}), you use the skill groups created here to assign agents to skill groups.
+
+1. Log into the Service Desk Console.
+2. Open the **Voice - Skill Group** workspace.
+
+<Paragraph indent="1">
+  *Voice Skill Group Workspace*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/97ZgIItinXH5NvapHbnWm_voiceskillgroup.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/voice_skill_group.png" githubPath="Content/Resources/Images/help-images/voice_skill_group.png" showCaption="false"></Image>
+
+3. Click **New Voice - Skill Group**. The **Skill Group** page appears.
+4. In the **Name** field, enter a unique skill name. For example, you might want to enter a skill group name called hardware if it does not exist.
+5. Click **Save**.
+6. In the bottom of the window, click **New Voice - Skill**. The **New Voice - Skill** window appears.
+
+<Paragraph indent="1">
+  *New Voice Skill Window*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/0JAwkMZN-TSZBdIaQlo1v_voiceskillgroup02.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/voice_skill_group_02.png" githubPath="Content/Resources/Images/help-images/voice_skill_group_02.png" showCaption="false"></Image>
+
+7. Enter a skill name for the skill group in the **Name** field. For example, for the skill group called hardware, you might want to enter a skill called **telecom devices**.
+8. Click **Save**. The skill is added to the list.
+
+<Paragraph indent="1">
+  *Voice Skill Group*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/WBuOoLgnGr8HqyCPNunIm_voiceskillgroup03.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/voice_skill_group_03.png" githubPath="Content/Resources/Images/help-images/voice_skill_group_03.png" showCaption="false"></Image>
+
+9. Repeat this procedure to create other skills.
+
+## Synchronizing the Voice Status
+
+Synchronization between \{\{FRS\_VARS.ProductName}} and \{\{FRS\_VARS.Company-short}} Voice occurs via a service running on the \{\{FRS\_VARS.Company-short}} Voice server. The service polls the configured \{\{FRS\_VARS.ProductName}}  server on a defined basis. If the service finds the **Sync Status** field set to start, it copies values from \{\{FRS\_VARS.ProductName}} to \{\{FRS\_VARS.Company-short}} Voice.
+
+1. Log into the Service Desk Console.
+2. Open the **Voice - Synch Status** workspace. The default sync record appears. There is only one **IPCM Synch Status** record at a time.
+3. Double-click the record to see the record details.
+4. Ensure that **EnableSync** is selected, then enter the following:
+
+| Field                 | Description                                               |
+| --------------------- | --------------------------------------------------------- |
+| Sync Period (seconds) | The number of seconds after which synchronization starts. |
+| Start Synch           | Starts synchronization.                                   |
+| Notes                 | Additional information about this record.                 |
+
+<Paragraph indent="1">
+  The system hides the **Start Synch** button when a synchronization is scheduled or in progress.
+</Paragraph>
+
+5. Click **Start Sync** to set the sync status to start, which causes the synchronization service to run. The **Synch Status** record also shows the last synch date and result.
+
+<Paragraph indent="1">
+  You can find additional details in the audit table. A backup of the host configuration and SIP server configuration files is automatically attached.
+</Paragraph>
+
+<hint type="info">
+  For security reasons, the \{\{FRS\_VARS.ProductName}} user password is not accessible to the \{\{FRS\_VARS.Company-short}} Voice synchronization service, and therefore cannot be used to see the user's password in \{\{FRS\_VARS.Company-short}} Voice. If the user logs into \{\{FRS\_VARS.Company-short}} Voice through the **Voice** toolbar, the \{\{FRS\_VARS.Company-short}} Voice password for the user is not required and does not need to be set in \{\{FRS\_VARS.Company-short}} Voice. If you need to log into \{\{FRS\_VARS.Company-short}} Voice-specific applications, such as the management portal, agent dashboard, or web statistics console, you must open the \{\{FRS\_VARS.Company-short}} Voice Management Portal and manually set the user password there.
+</hint>

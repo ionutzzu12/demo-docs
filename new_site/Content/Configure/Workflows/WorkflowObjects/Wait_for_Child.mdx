@@ -1,0 +1,76 @@
+---
+title: Wait for Child Workflow Block
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:58 GMT+0300 (Eastern European Summer Time)
+---
+
+*Wait for Child Workflow Block Properties*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/7aBFWzYIMitd8_8vIyn19_waitforchildblock.png" position="flex-start" size="40" indent="1" initialPath="../../../Resources/Images/help-images/wait_for_child_block.png" githubPath="Content/Resources/Images/help-images/wait_for_child_block.png" showCaption="false"></Image>
+
+The **Wait for Child** workflow block waits for one of the following: a condition specified in the block to become true for a child business object, or for a timer to expire. By default, exit ports for this block allow for separate workflow paths based on these events.
+
+Do not use the **Wait for Child** workflow block with approvals, because approvals have their own wait functionality.
+
+The timeout behavior is as follows:
+
+- If value-based timer (such as duration) is specified by values:
+
+| days | ==  | null && hours == null && minutes == null, | then infinite timeout or never times out                                                                                                                                                                             |
+| ---- | --- | ----------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| days | ==  | -1 && hours == -1 && minutes == -1,       | then infinite timeout or never times out<br />Negative values are not allowed. If you enter a negative value and try saving, a validation error is displayed with the message - "Timeout values cannot be negative". |
+| days | \<= | 0 && hours \<= 0 && minutes \<= 0,        | then Immediately times out and timeout exit is used                                                                                                                                                                  |
+| days | >   | 0 && hours > 0 && minutes > 0,            | then combined value is set as the timeout and exit timeout is used when the time passes.                                                                                                                             |
+
+<hint type="info">
+  The maximum number of days allowed is 30, if it exceeds 30, a validation error is displayed.
+</hint>
+
+- If field-based timer:
+
+| fieldvalue | ==  | null,   | then infinite timeout or never times out                                                |
+| ---------- | --- | ------- | --------------------------------------------------------------------------------------- |
+| fieldvalue | \<= | UtcNow, | then immediately times out and timeout exit used                                        |
+| fieldvalue | >   | UtcNow, | then combined value is set as the timeout and exit timeout is used when the time passes |
+
+## Exit Ports
+
+You can define additional exit ports under the **Exits Configuration** tab. See :Link[Exits Configuration]{label="Exits Configuration" overridedLabel="Exits Configuration" spaceId docId="SaUQJmfwFZ-PqnlodqGKY" version="v2" docAnchorId="#Exits_Configuration" loadingMethod="dynamic" newTab="false" githubPath="Switch.htm#Exits_Configuration" href="Switch.mdx"}.
+
+| Exit Port | Description                                                                                          |
+| --------- | ---------------------------------------------------------------------------------------------------- |
+| OK        | Continue to the next block.                                                                          |
+| Timed Out | General exit port for a failed integration action. A logical next step is to trigger a notification. |
+
+## Properties
+
+| Property                                    | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| ------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Title                                       | A unique name for the workflow block.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| Relationship Name                           | An available relationship for the child business object. Select from the drop-down list.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| How many children should satisfy conditions | **All**: All children must satisfy the conditions.<br />**Any**: Any child can satisfy the conditions.<br />**At least**: The minimum number of children that must satisfy the conditions.                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| Timeout                                     |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| Field                                       | The due date is generated relative to the field selected from the drop-down list.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| Duration                                    | Defines the due date according to the interval defined in the **Days**, **Hrs** (hours), and **Mins** (minutes) fields.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| Child Conditions                            |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| AND / OR                                    | The child filter condition.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| Field                                       | The operand. Select from the drop-down list.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| Operator                                    | An additional operator. Select from the drop-down list.<br />**Equal to**: The value in **Field** matches the value in **Criteria**.<br />**Not Equal to**: The value in **Field** does not match the value in **Criteria**.<br />**Begin with**: The value in **Field** starts with the value in **Criteria**.<br /><br />**Contains**: The value in **Field** contains the string value in **Criteria**.<br />**Does Not Contain**: The value in **Field** does not contain the string value in **Criteria**.<br />**Is Empty**: **Field** does not contain any values.<br />**Is Not Empty**: **Field** contains something (is not empty).<br /> |
+| Value                                       | Adds a value. Depending on the child business object, this can be a drop-down list or calendar selection.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+
+## Actions
+
+| Button                                                                                                                                                                                                                                                                                                                      | Action                                    |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------- |
+| <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/TsW33ptQCQZi49zfSiIIi_add.png" size="10" isUploading="false" initialPath="../../../Resources/Images/buttons/add.png" githubPath="Content/Resources/Images/buttons/add.png" width="20" height="16" showCaption="false"></Image>          | Adds an expression to the workflow block. |
+| <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/uN-MJlNAhdQXruh5k_EsW_delete.png" size="10" isUploading="false" initialPath="../../../Resources/Images/buttons/delete.png" githubPath="Content/Resources/Images/buttons/delete.png" width="19" height="16" showCaption="false"></Image> | Removes an expression from the list.      |
+| Save                                                                                                                                                                                                                                                                                                                        | Commits your settings.                    |
+| Cancel                                                                                                                                                                                                                                                                                                                      | Exits without saving.                     |
+
+## Example
+
+See [Example: Using Task Status with the WaitForChild Workflow Block](<../Using Task Status with WaitForChild.mdx>).
+
+## Troubleshooting
+
+See [Troubleshooting the WaitForChild Workflow Block](<../WaitForChild Block Does Not Execute.mdx>).

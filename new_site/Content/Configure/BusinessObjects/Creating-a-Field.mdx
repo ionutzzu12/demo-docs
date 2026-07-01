@@ -1,0 +1,41 @@
+---
+title: Creating a Field
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:55 GMT+0300 (Eastern European Summer Time)
+---
+
+1. From the Configuration console, select **Build > Business Objects**.
+2. Open a business object. The application opens the workspace for the selected business object.
+3. Select the **Fields** tab. The application displays a list of fields.
+4. Select **Add new**. The application displays a list of field types. See [Form Field Types](Form-Field-Types.mdx).
+
+<hint type="info" indent="1">
+  The number of fields in a business object is limited to 300 to ensure optimal performance. In case you need to add more fields, do so in a different Business Object and link them using the [Relationship table](<../Relationships/Using Relationships in a Grid.mdx>).
+</hint>
+
+5. Select a field type. The application displays the **Setting Field Details** workspace.
+6. Enter information in the fields. Depending on the type of field that you create, the application displays different fields. Fields unique to a field are listed under that field type; fields that are common to all fields are listed here.
+
+| Field                                            | Description                                                                                                                                                                                                                                                                                     |
+| ------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Field Name                                       | A unique name without spaces or special characters.<br />You cannot ad&#x64;**&#x20;Field Name** as "other".                                                                                                                                                                                    |
+| Display Name                                     | The name that appears to users.                                                                                                                                                                                                                                                                 |
+| Description                                      | An optional description of the field.                                                                                                                                                                                                                                                           |
+| Field Type                                       | Automatically set by the application based on the field type that you select. You can only make changes to this value for the **Number** and **Text** field types.                                                                                                                              |
+| Permissions                                      | These permissions are set internally and cannot be configured.                                                                                                                                                                                                                                  |
+| Field Annotations                                |                                                                                                                                                                                                                                                                                                 |
+| Field Annotations (not used for **Guid** fields) | Optional. You can select an annotation from the list to specify a field type. This is not commonly used. You can select from the following annotations:<br />EmailAddress<br />Url<br />PhoneNumber<br />OrgUnitName                                                                            |
+| Field Attributes                                 |                                                                                                                                                                                                                                                                                                 |
+| Unique (not used for **link** fields)            | Specifies if you can assign a unique ID to a record. This ID is unique across all instances (records) in the business object table. This is the same as the unique index used in a Microsoft SQL database.                                                                                      |
+| Nullable (not used for **link** fields)          | Specifies if you can enter a NULL value in the field. Values are not enforced in this field, but when they are defined, they must be unique (even though **Unique** is not checked).                                                                                                            |
+| Hidden in UI                                     | Specifies that the application does not display this field in the user interface. If you check this, you cannot use this field when creating a form. This option is typically activated by default and is of particular use in group and member business objects.                               |
+| Searched                                         | Specifies if this field can be searched. For example, number fields often produce unexpected results when performing a text search. You can check this field to make your field search correctly. An example is the **IncidentNumber** field in the **Incident** business object.               |
+| Stored (not used for **link** fields)            | Specifies if the application stores the value of the field in the database. If unchecked, the application evaluates the value of the field at runtime but does not store its value.                                                                                                             |
+| Audited                                          | Specifies that changes to this field are audited in the audit stream. Disabling this audit type removes the previously audited data.<br />Clearing the **Audited** checkbox deletes all existing audit history. To retain this data, back up the audit history before disabling the audit flag. |
+| Commonly Used                                    | Shows the business object in the **Common Objects** area of the main **Business Objects** page.                                                                                                                                                                                                 |
+
+7. Select **Save**.
+
+<hint type="info">
+  If you try to add or edit a field for a business object that has more than one million records, you get an error message. Contact Ivanti SRE (Site Reliability Engineering) via your portal and raise a ticket. They can edit the database directly to make the change for you.
+</hint>

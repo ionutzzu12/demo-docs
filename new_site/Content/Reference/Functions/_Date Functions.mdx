@@ -1,0 +1,85 @@
+---
+title: Date Functions
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:58 GMT+0300 (Eastern European Summer Time)
+---
+
+## About the Methods Used to Calculate Time Periods
+
+There are two ways to calculate when a time period has passed: the boundary crossing method and the whole interval method.
+
+With the boundary crossing method, the application considers a time period has passed whenever you cross over the boundary. For example, if you are calculating days, the boundary is midnight. If you start a process at 11:58 PM and end at 12:02 AM the next day, using the boundary crossing method, the application considers that a day has passed, even though the process took only four minutes.
+
+With the whole interval method, the application considers a time period has passed whenever a whole interval has passed. For example, if you are calculating days, the whole interval is one full day, or 24 hours.  If you start a process at 11:58 PM today, the application only considers a day to pass after 11:58 PM tomorrow. That is, after 24 hours have passed.
+
+When calculating months, if you are going from a longer month (such as August, which has 31 days) to a shorter month (such as September which has 30 days), and you start the interval on a day of the month in the longer month that does not exist in the shorter month (for example, if you start the interval on August 31), the application considers the interval to have passed on the last day of the next month (for example, on September 30).
+
+Microsoft SQL Server rules use the boundary crossing method.
+
+## About Time Zones
+
+Many date functions have a **timeZone** parameter. This parameter specifies time zones as they appear in the IANA time zone database format. See [Working with Dates, Times, and Time Zones](<../../ServiceDesk/Dates/Working with Dates Times and Time Zones.mdx>) for more information.
+
+Rarely, the result of certain functions can vary depending on your time zone. For the **DiffDays()**, **DiffHours()**, **DiffMinutes()**, **DiffMonths()**, **DiffQuarters()**, **DiffSeconds()**, **DiffWeeks()**, and **DiffYears()** functions, the functions calculate the number of whole intervals in the current time zone, even though it returns UTC. Normally, a day is 24 hours, but occasionally there are 23 or 25 hour days when daylight savings time begins or ends. So on those days, you would need to pass 23 or 25 hours to pass a whole interval.
+
+## List of Functions
+
+- [AddDays](AddDays.mdx)
+- [AddHours](AddHours.mdx)
+- [AddMinutes](AddMinutes.mdx)
+- [AddMonths](AddMonths.mdx)
+- [AddQuarters](AddQuarters.mdx)
+- [AddSeconds](AddSeconds.mdx)
+- [AddWeeks](AddWeeks.mdx)
+- [AddYears](AddYears.mdx)
+- [BeginningOfDay](BeginningOfDay.mdx)
+- [BeginningOfHour](BeginningOfHour.mdx)
+- [BeginningOfMinute](BeginningOfMinute.mdx)
+- [BeginningOfMonth](BeginningOfMonth.mdx)
+- [BeginningOfQuarter](BeginningOfQuarter.mdx)
+- [BeginningOfWeek](BeginningOfWeek.mdx)
+- [BeginningOfYear](BeginningOfYear.mdx)
+- [CTimeToDateTime](CTimeToDateTime.mdx)
+- [CurrentDate](CurrentDate.mdx)
+- [CurrentDateStr](CurrentDateStr.mdx)
+- [CurrentDateTime](CurrentDateTime.mdx)
+- [DateDiffSQL](DateDiffSQL.mdx)
+- [DateTimeToCTime](DateTimeToCTime.mdx)
+- [Day](Day.mdx)
+- [DiffDays](DiffDays.mdx)
+- [DiffHours](DiffHours.mdx)
+- [DiffMinutes](DiffMinutes.mdx)
+- [DiffMonths](DiffMonths.mdx)
+- [DiffQuarters](DiffQuarters.mdx)
+- [DiffSeconds](DiffSeconds.mdx)
+- [DiffWeeks](DiffWeeks.mdx)
+- [DiffYears](DiffYears.mdx)
+- [EndOfDay](EndOfDay.mdx)
+- [EndOfHour](EndOfHour.mdx)
+- [EndOfMinute](EndOfMinute.mdx)
+- [EndOfMonth](EndOfMonth.mdx)
+- [EndOfQuarter](EndOfQuarter.mdx)
+- [EndOfWeek](EndOfWeek.mdx)
+- [EndOfYear](EndOfYear.mdx)
+- [FormatDate](FormatDate.mdx)
+- [Interval](Interval.mdx)
+- [IsValidDate](IsValidDate.mdx)
+- [IsValidDateTime](IsValidDateTime.mdx)
+- [LocalDay](LocalDay.mdx)
+- [LocalDayOfWeek](LocalDayOfWeek.mdx)
+- [LocalDayOfYear](LocalDayOfYear.mdx)
+- [LocalHour](LocalHour.mdx)
+- [LocalMinute](LocalMinute.mdx)
+- [LocalMonth](LocalMonth.mdx)
+- [LocalQuarter](LocalQuarter.mdx)
+- [LocalSecond](LocalSecond.mdx)
+- [LocalWeek](LocalWeek.mdx)
+- [LocalYear](LocalYear.mdx)
+- [Month](Month.mdx)
+- [Now](Now.mdx)
+- [Quarter](Quarter.mdx)
+- [RelativeDate](RelativeDate.mdx)
+- [SecondsToTime](SecondsToTime.mdx)
+- [ToLocal](ToLocal.mdx)
+- [Week](Week.mdx)
+- [Year](Year.mdx)

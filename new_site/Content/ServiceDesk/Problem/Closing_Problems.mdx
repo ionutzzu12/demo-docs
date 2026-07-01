@@ -1,0 +1,55 @@
+---
+title: Closing a Problem
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:48 GMT+0300 (Eastern European Summer Time)
+---
+
+A **validation on save** rule that states that a problem cannot be marked resolved or closed unless all associated change records are in the implemented, closed, canceled, denied, or deferred states (or the change is not in the logged, requested, pending approval, or scheduled states) is disabled by default.
+
+If you need to enable this validation rule, ask your administrator to enable it for the **Problem** business object.
+
+After a problem is set to resolved, you can close the record. Only Problem Managers can change a problem status to closed.
+
+1. Log in to the application as a Problem Manager.
+2. Open the **Problem** workspace.
+3. Open the problem that you want to close.
+4. Update the fields as needed.
+
+| Field                  | Description                                                                     |
+| ---------------------- | ------------------------------------------------------------------------------- |
+| Resolution Action      | The action that resolved the problem. Select from the drop-down list.           |
+| Resolution Description | A description of how the problem was resolved.                                  |
+| Workaround             | Optional. If a workaround was found, enter its description and the steps taken. |
+| Status                 | The new status of the problem. Select **closed** from the drop-down list.       |
+
+5. Major problems require a problem review at this time.
+
+<Paragraph indent="1">
+  To conduct a problem review, do the following:
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  Create a major problem review task.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  Select a Problem Review Board.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  Upon completion of the review, document the review result and attach the document to the problem record.
+</Paragraph>
+
+<Paragraph indent="1">
+  For more information, see [Working with the Problem Review Board](Problem_Review_Board.mdx).
+</Paragraph>
+
+6. Click **Save**.
+
+<Paragraph indent="1">
+  All linked incidents are set to resolved status. After a problem is set to closed, the cost of the problem is updated by rolling up the cost of all associated tasks.
+</Paragraph>
+
+<Paragraph indent="1">
+  The time specified in the **Actual Effort** field of each completed task is rolled up to show the total time spent on the problem in the **Time** field.
+</Paragraph>

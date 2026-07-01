@@ -1,0 +1,743 @@
+---
+title: Working with ADFS/SAML
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:57 GMT+0300 (Eastern European Summer Time)
+---
+
+- :Link[Sample Data Flow in ADFS/SAML Authentication]{label="Sample Data Flow in ADFS/SAML Authentication" overridedLabel="Sample Data Flow in ADFS/SAML Authentication" spaceId docId="9Lz_ULb-0gfqtGeevv7qo" version="v2" docAnchorId="#Sample" loadingMethod="dynamic" newTab="false" href="ADFS SAML.mdx"}
+- :Link[Setting Up ADFS Authentication in Ivanti Neurons for ITSM]{label="Setting Up ADFS Authentication in Ivanti Neurons for ITSM" overridedLabel="Setting Up ADFS Authentication in Ivanti Neurons for ITSM" spaceId docId="9Lz_ULb-0gfqtGeevv7qo" version="v2" docAnchorId="#Setting" loadingMethod="dynamic" newTab="false" href="ADFS SAML.mdx"}
+- :Link[Setting Up Authentication for ADFS/SAML]{label="Setting Up Authentication for ADFS/SAML" overridedLabel="Setting Up Authentication for ADFS/SAML" spaceId docId="9Lz_ULb-0gfqtGeevv7qo" version="v2" docAnchorId="#security_settings_1070403104_1181173" loadingMethod="dynamic" newTab="false" href="ADFS SAML.mdx"}
+- :Link[About ADFS/SAML Diagnostics]{label="About ADFS/SAML Diagnostics" overridedLabel="About ADFS/SAML Diagnostics" spaceId docId="9Lz_ULb-0gfqtGeevv7qo" version="v2" docAnchorId="#About" loadingMethod="dynamic" newTab="false" href="ADFS SAML.mdx"}
+- :Link[About Provisioning Attributes]{label="About Provisioning Attributes" overridedLabel="About Provisioning Attributes" spaceId docId="9Lz_ULb-0gfqtGeevv7qo" version="v2" docAnchorId="#About2" loadingMethod="dynamic" newTab="false" href="ADFS SAML.mdx"}
+- :Link[Exporting Ivanti Neurons for ITSM Relying Party Metadata]{label="Exporting Ivanti Neurons for ITSM Relying Party Metadata" overridedLabel="Exporting Ivanti Neurons for ITSM Relying Party Metadata" spaceId docId="9Lz_ULb-0gfqtGeevv7qo" version="v2" docAnchorId="#Exporting_HEATRelying_Party_Metadata" loadingMethod="dynamic" newTab="false" href="ADFS SAML.mdx"}
+- :Link[Adding an Authentication Provider by Importing Metadata]{label="Adding an Authentication Provider by Importing Metadata" overridedLabel="Adding an Authentication Provider by Importing Metadata" spaceId docId="9Lz_ULb-0gfqtGeevv7qo" version="v2" docAnchorId="#Adding_anAuthentication_Provider_by_Importing_Metadata" loadingMethod="dynamic" newTab="false" href="ADFS SAML.mdx"}
+
+# Sample Data Flow in ADFS/SAML Authentication
+
+*Sample Data Flow*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/N9cSDHQbwv1vtQN5PNZtO_adfs-saml-authentication.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/adfs-saml-authentication.png" githubPath="Content/Resources/Images/help-images/adfs-saml-authentication.png" showCaption="false"></Image>
+
+1. The user browses to their URL, such as *tenant*.saasit.com, enters their user name, and clicks **login**. The user does not enter a password.
+2. \{\{FRS\_VARS.ProductName}} sends a redirect to the browser pointing to the identity provider (ADFS) based on the information configured in the SAML authentication provider record.
+3. The user lands on their ADFS endpoint for logging in. This is a different page than is hosted on the side of the customer.
+4. On successful authentication through ADFS, ADFS renders a page to the user that does nothing but post the SAML assertion to \{\{FRS\_VARS.ProductName}}'s SAML.
+5. The browser posts the SAML response back to the \{\{FRS\_VARS.ProductName}} endpoint with the SAML assertion, and a session for the user is created.
+6. \{\{FRS\_VARS.ProductName}} sends a redirect to the browser of the user pointing them at the home page of the application (as if they had logged in as usual).
+7. The browser of the user asks for the resource.
+
+## Setting Up ADFS Authentication in Ivanti Neurons for ITSM
+
+<hint type="info">
+  To set up \{\{FRS\_VARS.ITSM}} users for authentication via the \{\{FRS\_VARS.Neurons\_platform}}, refer to [Setting up ITSM users for authentication via the Neurons Platform](../../../setting-up-itsm-users-for-authentication-via-the-neurons-platform.mdx) and [Authentication](https://help.ivanti.com/ht/help/en_US/CLOUD/vNow/authentication.htm). This feature is **Early Access** only and may not be available in your environment. For more information, please contact your Customer Success Manager.
+</hint>
+
+The \{\{FRS\_VARS.ProductName}} online help does not explain how to install and configure the ADFS server. Refer to [Active Directory Federation Services](https://docs.microsoft.com/en-us/windows-server/identity/active-directory-federation-services) for information about installing and configuring ADFS. We have included some general guidelines here but not complete information.
+
+Before you begin, ensure the following:
+
+- You have installed ADFS Release 2.0 or later.
+- You have valid certificates for the \{\{FRS\_VARS.ProductName}} application server and for the ADFS server.
+- The websites for both servers use SSL site binding (HTTPS, 443).
+
+Follow the steps in these sections to set up authentication:
+
+1. :Link[Step 1: Exporting the ADFS Server Certificate with Public Key]{label="Step 1: Exporting the ADFS Server Certificate with Public Key" overridedLabel="Step 1: Exporting the ADFS Server Certificate with Public Key" spaceId docId="9Lz_ULb-0gfqtGeevv7qo" version="v2" docAnchorId="#Step1" loadingMethod="dynamic" newTab="false" href="ADFS SAML.mdx"}
+2. :Link[Step 2: Uploading the Certificate to the Ivanti Neurons for ITSM Application Server]{label="Step 2: Uploading the Certificate to the Ivanti Neurons for ITSM Application Server" overridedLabel="Step 2: Uploading the Certificate to the Ivanti Neurons for ITSM Application Server" spaceId docId="9Lz_ULb-0gfqtGeevv7qo" version="v2" docAnchorId="#Configur" loadingMethod="dynamic" newTab="false" href="ADFS SAML.mdx"}
+3. :Link[Step 3: Setting Up the SAML Server]{label="Step 3: Setting Up the SAML Server" overridedLabel="Step 3: Setting Up the SAML Server" spaceId docId="9Lz_ULb-0gfqtGeevv7qo" version="v2" docAnchorId="#use_cases_282280956_1252792" loadingMethod="dynamic" newTab="false" href="ADFS SAML.mdx"}
+4. :Link[Step 4: Getting the Certificate]{label="Step 4: Getting the Certificate" overridedLabel="Step 4: Getting the Certificate" spaceId docId="9Lz_ULb-0gfqtGeevv7qo" version="v2" docAnchorId="#use_cases_282280956_1248807" loadingMethod="dynamic" newTab="false" href="ADFS SAML.mdx"}
+5. :Link[Step 5: Configuring the Ivanti Neurons for ITSM Site Certificate]{label="Step 5: Configuring the Ivanti Neurons for ITSM Site Certificate" overridedLabel="Step 5: Configuring the Ivanti Neurons for ITSM Site Certificate" spaceId docId="9Lz_ULb-0gfqtGeevv7qo" version="v2" docAnchorId="#security_settings_1070403104_1210373" loadingMethod="dynamic" newTab="false" href="ADFS SAML.mdx"}
+6. :Link[Step 6: Supplying the Ivanti Neurons for ITSM Certificate File]{label="Step 6: Supplying the Ivanti Neurons for ITSM Certificate File" overridedLabel="Step 6: Supplying the Ivanti Neurons for ITSM Certificate File" spaceId docId="9Lz_ULb-0gfqtGeevv7qo" version="v2" docAnchorId="#security_settings_1070403104_1190168" loadingMethod="dynamic" newTab="false" href="ADFS SAML.mdx"}
+
+### Step 1: Exporting the ADFS Server Certificate with Public Key
+
+1. From the ADFS server, open the Microsoft IIS Manager.
+2. Double-click to open **Server Certificates** in features view. Click the certificate that is assigned to Microsoft IIS. Ensure this certificate has a private key.
+
+*Server Certificates*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/f4xGDuKPV1m6ycA3CJel8_adfsserverkey.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/adfs_server_key.png" githubPath="Content/Resources/Images/help-images/adfs_server_key.png" showCaption="false"></Image>
+
+3. Click the **Details** tab, then click **Copy to File**.
+4. Click **Next**.
+5. Select **No, do not export the private key**, then click **Next**.
+6. Select **DER encoded binary X.509**, then click **Next**.
+7. Enter the file name with the full path, then click **Next**.
+8. Click **Finish**.
+9. Copy this certificate and paste it into the \{\{FRS\_VARS.ProductName}} application server, which sets up the authentication provider.
+
+### Step 2: Uploading the Certificate to the Ivanti Neurons for ITSM Application Server
+
+Upload the \{\{FRS\_VARS.ProductName}} application server certificate for the Ivanti SM tenant. The certificate should include the private key; usually the file extension is .pfx. You download this certificate later for setting the ADFS signature.
+
+1. Log into the \{\{FRS\_VARS.ProductName}} configuration database and open the **Tenants** workspace. The application displays a list of tenants. Refer to the Configuration Database Guide for \{\{Primary.Company}} \{\{FRS\_VARS.ProductName}} for information about using the ConfigDB.
+2. Open the tenant to add a certificate to.
+3. Click **Add Certificate**.
+
+*Add Certificate*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/PNd9J6JOKt1YVmZpYGu32_configdb-adfs.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/configdb adfs.png" githubPath="Content/Resources/Images/help-images/configdb adfs.png" showCaption="false"></Image>
+
+4. Navigate to the certificate location. This certificate is the same one that was used to set up SSL in Microsoft IIS.
+5. Highlight the certificate and click **Open**.
+6. Enter the password for the certificate in the **Certificate Password** field.
+7. Click **Save**.
+8. Check to ensure that the certificate has a private key in the **Actions** pane in Microsoft IIS.
+
+*Check the Certificate Private Key*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/umbtMT9gPCoiHflEKj00t_servercertificates.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/server_certificates.png" githubPath="Content/Resources/Images/help-images/server_certificates.png" showCaption="false"></Image>
+
+### Step 3: Setting Up the SAML Server
+
+The process for setting up ADFS to work with \{\{FRS\_VARS.ProductName}} is as follows:
+
+1. :Link[Step A: Installing the ADFS Server]{label="Step A: Installing the ADFS Server" overridedLabel="Step A: Installing the ADFS Server" spaceId docId="9Lz_ULb-0gfqtGeevv7qo" version="v2" docAnchorId="#Step" loadingMethod="dynamic" newTab="false" href="ADFS SAML.mdx"}
+2. :Link[Step B: Ensuring that the ADFS Form is on Microsoft IIS Authentication Types]{label="Step B: Ensuring that the ADFS Form is on Microsoft IIS Authentication Types" overridedLabel="Step B: Ensuring that the ADFS Form is on Microsoft IIS Authentication Types" spaceId docId="9Lz_ULb-0gfqtGeevv7qo" version="v2" docAnchorId="#Step2" loadingMethod="dynamic" newTab="false" href="ADFS SAML.mdx"}
+3. :Link[Step C: Setting Forms-Based Authentication Mode for ADFS]{label="Step C: Setting Forms-Based Authentication Mode for ADFS" overridedLabel="Step C: Setting Forms-Based Authentication Mode for ADFS" spaceId docId="9Lz_ULb-0gfqtGeevv7qo" version="v2" docAnchorId="#Step3" loadingMethod="dynamic" newTab="false" href="ADFS SAML.mdx"}
+4. :Link[Step D: Adding a New Relying Party to the ADFS Manager]{label="Step D: Adding a New Relying Party to the ADFS Manager" overridedLabel="Step D: Adding a New Relying Party to the ADFS Manager" spaceId docId="9Lz_ULb-0gfqtGeevv7qo" version="v2" docAnchorId="#Step4" loadingMethod="dynamic" newTab="false" href="ADFS SAML.mdx"}
+5. :Link[Step E: Adding a Claim Rule]{label="Step E: Adding a Claim Rule" overridedLabel="Step E: Adding a Claim Rule" spaceId docId="9Lz_ULb-0gfqtGeevv7qo" version="v2" docAnchorId="#Step5" loadingMethod="dynamic" newTab="false" href="ADFS SAML.mdx"}
+6. :Link[(Optional) If your ADFS application is not configured specifically to support SHA-256 digital signatures, which by default it is not, do the following:]{label="(Optional) If your ADFS application is not configured specifically to support SHA-256 digital signatures, which by default it is not, do the following:" overridedLabel="(Optional) If your ADFS application is not configured specifically to support SHA-256 digital signatures, which by default it is not, do the following:" spaceId docId="9Lz_ULb-0gfqtGeevv7qo" version="v2" docAnchorId="#Step6" loadingMethod="dynamic" newTab="false" href="ADFS SAML.mdx"}
+7. :Link[Step G: Setting the Properties of the Relying Party]{label="Step G: Setting the Properties of the Relying Party" overridedLabel="Step G: Setting the Properties of the Relying Party" spaceId docId="9Lz_ULb-0gfqtGeevv7qo" version="v2" docAnchorId="#Step7" loadingMethod="dynamic" newTab="false" href="ADFS SAML.mdx"}
+
+### Step A: Installing the ADFS Server
+
+The \{\{FRS\_VARS.ProductName}} online help does not explain how to install and configure the ADFS server. Refer to [https://msdn.microsoft.com/en-us/library/bb897402.aspx](https://msdn.microsoft.com/en-us/library/bb897402.aspx) for information about installing and configuring ADFS. We have included some general guidelines here but not complete information.
+
+Install the ADFS server on the tenant. Ensure that you do the following:
+
+- Install ADFS Release 2.0 or later. For ADFS Release 2.0, you install it from a downloadable package. For ADFS Release 3.0, you install it by using the **Add Roles** Wizard from the server manager.
+- Install ADFS as a federation server.
+
+### Step B: Ensuring that the ADFS Form is on Microsoft IIS Authentication Types
+
+This step is only for ADFS Release 2.0 and is not needed for ADFS Release 3.0.
+
+Ensure that the ADFS form is located in your Microsoft IIS Manager. Choose **Start > Control Panel > AdministrativeTools > ADFS 2.0 Management Wizard**.
+
+### Step C: Setting Forms-Based Authentication Mode for ADFS
+
+Forms-based authentication means that a forms-based .aspx page is presented to the user containing the user name and password fields. You can customize this page to add new sign-in logic or page customizations (such as logos, style sheets, and so on).
+
+1. Open Microsoft IIS Manager, select the adfs virtual directory, and click **Explore**.
+
+*Microsoft IIS Manager Window*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/oEGyLVryqXYbJh0b9ONpd_adfsconfig1.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/adfs_config1.png" githubPath="Content/Resources/Images/help-images/adfs_config1.png" showCaption="false"></Image>
+
+2. From the \adfs\ls folder, select **web.config**, then select **Edit** in Notepad.
+3. Find \<localAuthenticationTypes>.
+
+<Paragraph indent="1">
+  There are four lines below \<localAuthenticationTypes>. Each line represents one of the local authentication types.
+</Paragraph>
+
+4. Cut the entire **Forms** line and paste it to the top of the list under \<localAuthenticationTypes>:
+
+\<localAuthenticationTypes>
+
+     \<add name="Forms" page="FormsSignIn.aspx" />
+
+     \<add name="Integrated" page="auth/integrated/" />
+
+     \<add name="TlsClient" page="auth/sslclient/" />
+
+     \<add name="Basic" page="auth/basic/" />
+
+\</localAuthenticationTypes>
+
+5. Save and close the web.config file.
+
+### Step D: Adding a New Relying Party to the ADFS Manager
+
+You can do this in one of two ways: either by manually entering data or by importing data from a file.
+
+- :Link[Adding Relying Party Data Manually]{label="Adding Relying Party Data Manually" overridedLabel="Adding Relying Party Data Manually" spaceId docId="9Lz_ULb-0gfqtGeevv7qo" version="v2" docAnchorId="#Adding_Relying_Party_Data_Manually" loadingMethod="dynamic" newTab="false" href="ADFS SAML.mdx"}
+- :Link[Importing Relying Party Data]{label="Importing Relying Party Data" overridedLabel="Importing Relying Party Data" spaceId docId="9Lz_ULb-0gfqtGeevv7qo" version="v2" docAnchorId="#Importing_Relying_Party_Data" loadingMethod="dynamic" newTab="false" href="ADFS SAML.mdx"}
+
+### Adding Relying Party Data Manually
+
+Register \{\{FRS\_VARS.ProductName}} as a relying party at ADFS by creating a relying party trust under the **Trust Relationships** node.
+
+1. Select **Trust Relationships**, right-click **Relying Party Trusts**, then select **Add Relying Party Trust...**.
+
+*Add Relying Party Trust*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/rVVowYxKbmkQdvlwrtlz5_adfsconfig2.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/adfs_config2.png" githubPath="Content/Resources/Images/help-images/adfs_config2.png" showCaption="false"></Image>
+
+2. Click **Start** to begin the wizard.
+3. Select **Enter data about the relying party manually**.
+
+*Enter Data about the Relying Party Manually*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/_PaYwyVuPaa2n_ZGKcr7F_adfsconfig3.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/adfs_config3.png" githubPath="Content/Resources/Images/help-images/adfs_config3.png" showCaption="false"></Image>
+
+4. Click **Next** to set the display name.
+5. Enter a display name, such as **Ivanti SM ADFS**.
+6. Click **Next** to choose your profile.
+7. Click **Next** to configure the certificate.
+
+<Paragraph indent="1">
+  Configuring the certificate is an optional step. Only the login name is transferred to \{\{FRS\_VARS.ProductName}} for authentication, which is also not normally required to be encrypted. However, you can encrypt it by adding the \{\{FRS\_VARS.Company-short}} SaaS.cer certificate file.
+</Paragraph>
+
+8. Click **Next** to configure the URL.
+9. On the **Configure URL** page, do the following:
+   - Check **Enable support for the SAML 2.0 WebSSO protocol**.
+   - In the **Relying party SAML 2.0 SSO service URL** field, enter the \{\{FRS\_VARS.ProductName}} SAML Release 2.0 endpoint, which is https\://tenant/handlers/sso/SamlAssertionConsumerHandler.ashx.
+
+*Enter the Tenant URL*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/gbgDSVIKNzwmFs1IkQiug_adfsconfig4.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/adfs_config4.png" githubPath="Content/Resources/Images/help-images/adfs_config4.png" showCaption="false"></Image>
+
+10. Click **Next** to configure the identifiers. In the **Relying party trust identifier** field, enter **tenant.saasit.com/** and click **Add**. Be sure to enter the forward slash at the end.
+
+*Enter the Identifier in the Relying Party Trust Identifier Field*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Nldu3b2HLaP_qvhIxQVyo_adfsconfig5.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/adfs_config5.png" githubPath="Content/Resources/Images/help-images/adfs_config5.png" showCaption="false"></Image>
+
+11. In the **Relying party trust identifiers** text box, you can add multiple URLs, as shown:
+
+*Add Multiple URLs*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/4lL7dn0I3YWdPK--815CE_adfsconfig6.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/adfs_config6.png" githubPath="Content/Resources/Images/help-images/adfs_config6.png" showCaption="false"></Image>
+
+You can add additional URLs after you complete the wizard by selecting **Properties** and then clicking the **Identifiers** tab.
+
+12. Click **Next** to choose the issuance authorization rules..
+13. Select **Permit all users to access this relying party**.
+14. Verify your settings and click **Ok**. The application displays a new entry under **Relying Party Trusts** in the ADFS Manager.
+
+### Importing Relying Party Data
+
+You can import the data about the relying party from a file. Before you begin, get the XML file from the \{\{FRS\_VARS.ProductName}} metadata endpoint.
+
+1. Select **Trust Relationships**, right-click **Relying Party Trusts**, then select **Add Relying Party Trust...**.
+2. Click **Start** to begin the wizard.
+3. Select **Import data about the relying party from a file**.
+4. Upload the XML file and click **Continue**.
+5. Select a display name, such as **saas-dev**.
+6. Select **Permit all users to access this relying party**.
+7. To not support encryption, ensure that you remove the certificate from the **Encryption** tab.
+
+### Step E: Adding a Claim Rule
+
+1. Right-click the new entry that you just created in the ADFS Manager.
+2. Select **Edit Claim Rules**.
+
+*Edit Claim Rules*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/T9qCwoVM5JN1nA3A-POcN_adfsconfig7.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/adfs_config7.png" githubPath="Content/Resources/Images/help-images/adfs_config7.png" showCaption="false"></Image>
+
+3. Click **Add Rule**.
+4. In the **Claim rule template** field, select **Send LDAP Attributes as Claims**.
+
+*Send LDAP Attributes as Claims*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/PkmEvrzHVUbFAhPNgUiLd_adfsconfig8.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/adfs_config8.png" githubPath="Content/Resources/Images/help-images/adfs_config8.png" showCaption="false"></Image>
+
+5. In the **Claim rule name** field, set a rule name, for example, UPN.
+6. For attribute store, select **Active Directory**.
+7. In the **Mapping of LDAP attributes to outgoing claim types** section,
+   - For **LDAP Attribute**, select **User-Principal-Name**.
+   - For **Outgoing Claim Type**, select **UPN**.
+
+*Mapping of LDAP Attributes to Outgoing Claim Types*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/CyReFakKP6Q6qp1ViRS8q_adfsconfig9.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/adfs_config9.png" githubPath="Content/Resources/Images/help-images/adfs_config9.png" showCaption="false"></Image>
+
+8. Click **Ok**.
+9. Add a second rule to map UPN and NAMEID.
+   - Click **Add Rule**.
+   - In the **Claim rule template** field, select **Transform an Incoming Claim**.
+
+*Map UPN and NAMEID*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/I1r3i8CPX38liyfz7j9nB_adfsconfig10.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/adfs_config10.png" githubPath="Content/Resources/Images/help-images/adfs_config10.png" showCaption="false"></Image>
+
+<Paragraph listStyleType="disc" indent="2">
+  In the **Claim rule name** field, set a rule name, for example, "UPN and NameID".
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  **Incoming claim type**: Select **UPN**.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  **Outgoing claim type**: Select **Name****ID**.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  **Outgoing name ID format**: Select **UPN**.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  Select **Pass through all claim values**.
+</Paragraph>
+
+<Paragraph indent="1">
+  To enable the auto provisioning feature, the following claims should be issued: email address, first name, and last name.
+</Paragraph>
+
+*Client Rule Name Window*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/mgDV5n-B38QCtRDExvizX_adfsconfig11.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/adfs_config11.png" githubPath="Content/Resources/Images/help-images/adfs_config11.png" showCaption="false"></Image>
+
+10. Click **Ok**.
+
+### Step F: Getting the Certificate
+
+This is the certificate that you got in \{\{FRS\_VARS.ProductName}}, as described in :Link[Step 6: Supplying the Ivanti Neurons for ITSM Certificate File]{label="Step 6: Supplying the Ivanti Neurons for ITSM Certificate File" overridedLabel="Step 6: Supplying the Ivanti Neurons for ITSM Certificate File" spaceId docId="9Lz_ULb-0gfqtGeevv7qo" version="v2" docAnchorId="#security_settings_1070403104_1190168" loadingMethod="dynamic" newTab="false" href="ADFS SAML.mdx"}.
+
+1. In the ADFS Manager, double-click **Service**, then open **Certificates**.
+2. Select the token-signing certificate for your site. This can be a valid public certificate or a private self-signed certificate.
+3. Click **Copy to file**. Leave **No, do not export private key** as the default. Do not select **Yes, export private key**. You should not be asked for a password during copying.
+4. Select **DER coded binary X.509 (.CER)**.
+5. Navigate to a folder to save to. If you are remotely connected to another computer, copy the file locally.
+6. Click **Finish**.
+7. Double-click and open the certificate, click the **Details** tab, and note the serial number of the certificate. You will need this number later.
+
+### Step G: Setting the Properties of the Relying Party
+
+Before doing this procedure, ensure that you have the \{\{FRS\_VARS.ProductName}} certificate file.
+
+1. Double-click the newly created relying party, or right-click and select **Properties**.
+2. Click the **Signature** tab.
+3. Click **Add**.
+4. Select and open the saas.cer file that you just downloaded.
+5. Ensure that you have the correct certificate, otherwise this does not work and it is difficult to troubleshoot. To verify that you have the correct certificate, do the following:
+
+<Paragraph indent="1">
+  a. Select **View**.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Click the **Details** tab.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. View the certificate serial number: 21 a6 74 1f 94 cc 59 b0 8c d4 33 aa d7 01 e1 4e.
+</Paragraph>
+
+<Paragraph indent="1">
+  This certificate has the public key used to encrypt the message to \{\{FRS\_VARS.ProductName}} for which the user is permitted.
+</Paragraph>
+
+6. (Optional) If your ADFS application is not configured specifically to support SHA-256 digital signatures, which by default it is not, do the following:
+
+<Paragraph indent="1">
+  a. Double-click the newly created relying party, or right-click and select **Properties**.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Click the **Advanced** tab.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. For secure hash algorithm, select **SHA-1**.
+</Paragraph>
+
+<Paragraph indent="1">
+  d. Click **Apply**.
+</Paragraph>
+
+7. Add the logout feature:
+
+<Paragraph indent="1">
+  a. In the **Properties** window, click the **Endpoints** tab.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Click **Add**.
+</Paragraph>
+
+*Endpoint Properties*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/1wB1cFfgFae5snZ3rNyQX_adfsconfig12.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/adfs_config12.png" githubPath="Content/Resources/Images/help-images/adfs_config12.png" showCaption="false"></Image>
+
+<Paragraph indent="1">
+  c. For endpoint type, select **SAML Logout**.
+</Paragraph>
+
+<Paragraph indent="1">
+  d. For binding, select **POST**.
+</Paragraph>
+
+<Paragraph indent="1">
+  e. For the URL, enter **https\://tenant/handlers/sso/SamlLogoutHandler.ashx?message=LogoutRequest**.
+</Paragraph>
+
+<Paragraph indent="1">
+  f. For the **ResponseURL** field, enter **https\://tenant/handlers/sso/SamlLogoutHandler.ashx?message=LogoutResponse**.
+</Paragraph>
+
+<Paragraph indent="1">
+  g. Click **Ok**.
+</Paragraph>
+
+<Paragraph indent="1">
+  h. Repeat to add a separate entry for each URL.
+</Paragraph>
+
+<Paragraph indent="1">
+  For example, for the heatsoftware.saasit.com, heatsoftware-stg.saasit.com, and heatsoftware-plt.saasit.com URLs, your endpoints configurations should look as follows:
+</Paragraph>
+
+*Sample Endpoint Configurations*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/d73wXYpRvfiTSdt4YeJxW_adfsconfig13.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/adfs_config13.png" githubPath="Content/Resources/Images/help-images/adfs_config13.png" showCaption="false"></Image>
+
+8. Click **Ok**.
+
+### Step 4: Getting the Certificate
+
+1. Click the **Sign On** tab.
+
+*Sign On Tab*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/IAHfoRJCjBcTEwxrfopKF_ssooktaconfig5.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/sso_okta_config5.png" githubPath="Content/Resources/Images/help-images/sso_okta_config5.png" showCaption="false"></Image>
+
+2. Click **SAML 2.0 setup instructions for SAML Service Provider** to view the instructions.
+3. Click **CLICKING HERE** to download the certificate from the identity provider.
+
+*Download the Certificate*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/aZKQE8YWxY2vvwU5kvmSC_ssooktaconfig6.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/sso_okta_config6.png" githubPath="Content/Resources/Images/help-images/sso_okta_config6.png" showCaption="false"></Image>
+
+4. Download and save your certificate.
+5. Rename the file extension to .cer.
+6. In the Configuration Console, go to **Settings > System > Attachment Extensions** and ensure that .cer is a valid file extension. If not, add it to the application. See [Working with Attachment Types](../Attachments/Attachment_Types.mdx).
+
+### Step 5: Configuring the Ivanti Neurons for ITSM Site Certificate
+
+ADFS authentication requires configuring a public-private key pair on the tenant. Ensure that ADFS Release 2.0 or later is installed on the ADFS server.
+
+- :Link[Obtaining a Certificate File with a Private Key (.pfx file).]{label="Obtaining a Certificate File with a Private Key (.pfx file)." overridedLabel="Obtaining a Certificate File with a Private Key (.pfx file)." spaceId docId="9Lz_ULb-0gfqtGeevv7qo" version="v2" docAnchorId="#Obtainin" loadingMethod="dynamic" newTab="false" href="ADFS SAML.mdx"}
+- :Link[Installing the Certificate on the Tenant]{label="Installing the Certificate on the Tenant" overridedLabel="Installing the Certificate on the Tenant" spaceId docId="9Lz_ULb-0gfqtGeevv7qo" version="v2" docAnchorId="#Installi" loadingMethod="dynamic" newTab="false" href="ADFS SAML.mdx"}
+
+### Obtaining a Certificate File with a Private Key (.pfx file).
+
+1. On the ADFS server, where ADFS is installed, from the **Start** menu, click **Run** and enter **mmc.exe**, which is the name of the executable file.
+2. From the **File** menu, select **Add/Remove Snap-ins**.
+3. Select **Certificates** and click **Add**.
+4. Select the default **My user account** option to add the certificates snap-in for the current user, and then click **Finish**.
+5. Select the created certificate from personal certificates, click **All Tasks** > **Export**.
+6. Select **Yes, Export private key** and enter your password.
+
+<Paragraph indent="1">
+  You can also create a new .cer file, without a private key, to use on the ADFS computer, if your original file contains a private key.
+</Paragraph>
+
+7. On the tenant computer, define the HTTPS binding for Microsoft IIS and add the .pfx file IIS > Default Web Site>Edit Binding>Configure HTTPS.
+
+### Installing the Certificate on the Tenant
+
+Before you begin, ensure that the application allows .pfx attachments to be uploaded. See [Working with Attachment Types](../Attachments/Attachment_Types.mdx).
+
+1. Log in to the \{\{FRS\_VARS.ProductName}} configuration database (ConfigDB) and open the **Tenants** workspace. The application displays a list of available tenants. See the Configuration Database Guide for \{\{Primary.Company}} \{\{FRS\_VARS.ProductName}} for information about using the ConfigDB.
+2. Open the **Tenant** workspace for that tenant.
+3. Click **Add Certificate** to add the ADFS private certificate for this tenant.
+4. Browse to the certificate, highlight it, and click **Open**.
+5. Enter the password for the certificate.
+
+### Step 6: Supplying the Ivanti Neurons for ITSM Certificate File
+
+Before getting the certificate, ensure that you have configured your ADFS/SAML server.
+
+Give the \{\{FRS\_VARS.ProductName}} certificate to the ADFS administrator. You can use the public key on the ADFS computer if your original one contains the private key. Prior to supplying the \{\{FRS\_VARS.ProductName}} certificate, ensure that you have followed the procedure described in :Link[Step 5: Configuring the Ivanti Neurons for ITSM Site Certificate]{label="Step 5: Configuring the Ivanti Neurons for ITSM Site Certificate" overridedLabel="Step 5: Configuring the Ivanti Neurons for ITSM Site Certificate" spaceId docId="9Lz_ULb-0gfqtGeevv7qo" version="v2" docAnchorId="#security_settings_1070403104_1210373" loadingMethod="dynamic" newTab="false" href="ADFS SAML.mdx"}.
+
+1. From the Configuration Console, in the center pane, under the **System Security** topic, click **ADFS Certificate**.  
+
+<hint type="info">
+  Some pop-up blockers might prevent the file from downloading. The link gives you the ability to download the Ivanti Software saasit.com.cer file. Temporarily save this file to your desktop. If for some reason the file does not download, contact \{\{FRS\_VARS.Company-short}} Support and they can provide the file to you.
+</hint>
+
+2. Continue to configure the server.
+
+### Setting Up Authentication for ADFS/SAML
+
+Before setting up an authentication provider, make sure that you have configured your ADFS/SAML server and downloaded the certificate. Refer to [Working with Single Sign-On authentication](<Single Sign On.mdx>).
+
+1. From the Configuration Console, click **Configure > Security Controls > Authentication Providers** to open the **Authentication Providers** workspace.
+2. From the **New Record Menu** drop-down list, select **New ADFS/SAML**.
+
+*ADFS/SAML Workspace*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Bbf9S7NBxRSrE_ZSMRbW2_newadfssamlpage489x394.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/fedRAMP/new_adfs_saml_page_489x394.png" githubPath="Content/Resources/Images/fedRAMP/new_adfs_saml_page_489x394.png" showCaption="false"></Image>
+
+3. Enter data into the fields.
+
+<table isTableHeaderOn="true">
+  <tr>
+    <td>
+      Field
+    </td>
+    <td>
+      Description
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Default
+    </td>
+    <td>
+      Specifies if this authentication provider is called.
+      Automatically set by the application. You change this in the list. To make this authentication provider the default, you must first change the default setting for all other authentication providers to false and then change the default setting for this authentication provider to true.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Disabled
+    </td>
+    <td>
+      Specifies if this authentication provider is disabled.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Name
+    </td>
+    <td>
+      The tenant ADFS/SAML name.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Identity Server URL
+    </td>
+    <td>
+      The URL for the tenant ADFS or SAML. Normally, this is https\://tenant/adfs/ls.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Logout URL
+    </td>
+    <td>
+      The URL to which users are directed when logging out of the authentication provider. This is defined on the ADFS computer as the SAML endpoint. Normally, this is https\://tenant/adfs/ls.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Session Renewal URL
+    </td>
+    <td>
+      Specifies the URL to display when the session expires and the user clicks **Renew**. If you do not enter a value, the application uses the URL specified in the **Identity Server URL** field.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Binding
+    </td>
+    <td>
+      Specifies how application requests are made against the identity provider endpoint. The binding settings for \{\{FRS\_VARS.ProductName}} and the identity provider should match.  With ADFS, you can use the same endpoint for both HTTP POST and HTTP redirect.
+      A SAML binding describes how an identity provider interacts with \{\{FRS\_VARS.ProductName}}. There are a number of SAML binding types, but the two supported by \{\{FRS\_VARS.ProductName}} are **HTTP Redirect** and **HTTP POST**.
+      For the **Identity Server URL**, **Logout URL**, and **Session Renewal URL** fields, select a binding from the drop-down list:
+      **HTTP Redirect**: Does the binding as specified in the SAML specification.
+      **HTTP POST**
+      **None - Simple Redirect**: This is not a SAML binding, but a link that is treated as a simple address with no SAML request parameter attached.
+      The **HTTP redirect** and **HTTP POST** binding parameters are described in the SAML specification at [https://wiki.oasis-open.org/security/FrontPage](https://wiki.oasis-open.org/security/FrontPage).
+      By default, the application uses HTTP redirect binding unless you check **Don't send parameters, just redirect**.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Don't send parameters, just redirect
+    </td>
+    <td>
+      We recommend that you do not use this parameter. Keep it unchecked.  If you do check it, the application uses **None - Simple Redirect** for all bindings.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Use SHA-256 signing algorithm
+    </td>
+    <td>
+      Adds a unique signature using this algorithm only if you did not follow the procedures in :Link[(Optional) If your ADFS application is not configured specifically to support SHA-256 digital signatures, which by default it is not, do the following:]{label="(Optional) If your ADFS application is not configured specifically to support SHA-256 digital signatures, which by default it is not, do the following:" overridedLabel="(Optional) If your ADFS application is not configured specifically to support SHA-256 digital signatures, which by default it is not, do the following:" spaceId docId="9Lz_ULb-0gfqtGeevv7qo" version="v2" docAnchorId="#Step6" loadingMethod="dynamic" newTab="false" href="ADFS SAML.mdx"} of :Link[Step G: Setting the Properties of the Relying Party]{label="Step G: Setting the Properties of the Relying Party" overridedLabel="Step G: Setting the Properties of the Relying Party" spaceId docId="9Lz_ULb-0gfqtGeevv7qo" version="v2" docAnchorId="#Step7" loadingMethod="dynamic" newTab="false" href="ADFS SAML.mdx"}.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Force authentication
+    </td>
+    <td>
+      Forces users to re-enter their password when signing in. This option requires users to relogin each time they access the login page, even if they have a valid cookie.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Force Login
+    </td>
+    <td>
+      The **Force Login** option is applicable to users reaching concurrent session limits, in the case of external authentication.
+      - If the option is selected, when users reach a concurrent session limit, the application terminates all existing sessions and devices and automatically logs them into a new session.
+      - If the option is not selected, when users reach a concurrent session limit, an error message will appear on the page, and the users will need to logout of existing sessions or devices, and then try logging in again.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Sort Order
+    </td>
+    <td>
+      Specifies the sort order of this provider in relation to other providers assigned to a user. A value of 1 means that this provider is used first for authentication when logging in. If a login failure occurs (such as a server failure or incorrect password), the application uses the next provider in the sort order. The last successfully authenticated login is highlighted in the **Enable External Auth** area of the employee record. Use this field only if multiple authentication providers are configured.
+      ADFS/SAML must be the last or only entry in the sort order. After the application redirects to the ADFS site, the application does not have a way of knowing if ADFS failed, so there is no fallback to a different authentication method.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Certificate of customer's ADFS/SAML server (public certificate only)
+    </td>
+    <td>
+      Click **Browse** to locate a secure signing certificate providing a digital signature for this provider.
+      This is the public part of the identity provider signing certificate. You must request this from the identity provider. This helps to validate that it came from the exact identity provider and not from a fake one.
+      In previous releases, \{\{FRS\_VARS.ProductName}} required this certificate. However, the signature verification certificate is no longer required, although it is strongly recommended. If there is no certificate, \{\{FRS\_VARS.ProductName}} cannot verify the identity of the identity provider; this could be a security issue.
+      If you do not upload a certificate here, the authentication succeeds, but the application gives the following error in the \{\{FRS\_VARS.ProductName}} log: "Verification certificate is not set for 'ProviderName' provider. Unable to verify request signature."
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Expiration Date
+    </td>
+    <td>
+      Specifies the date that the certificate expires. This field merely stores the date so that you can see when the current one expires and get another certificate before or when it expires.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Auto Provisioning
+    </td>
+    <td>
+      Adds new users via authentication. You have the option to auto provision the role, status, and team for the new user. If selected, the application creates an employee record if a user logs in using authentication and does not already have an employee record.
+      The employee record created shows the **Is Auto Provisioned** checkbox selected and the creation method as **Auto Provisioned through SAML** by default.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Auto Provision Role
+    </td>
+    <td>
+      Only displays if you check **Auto Provisioning**.
+      The role associated with the new user.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Auto Provision Status
+    </td>
+    <td>
+      Only displays if you check **Auto Provisioning**.
+      The status of the new user.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Auto Provision Team
+    </td>
+    <td>
+      Only displays if you check **Auto Provisioning**.
+      The team associated with the new user.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Auto Provision User Business Object
+    </td>
+    <td>
+      Only displays if you check **Auto Provisioning**.
+      The type of user record to create. Can be either employee or external contact.
+    </td>
+  </tr>
+</table>
+
+4. Click **Test Authentication** to test the authentication. Refer to :Link[About ADFS/SAML Diagnostics]{label="About ADFS/SAML Diagnostics" overridedLabel="About ADFS/SAML Diagnostics" spaceId docId="9Lz_ULb-0gfqtGeevv7qo" version="v2" docAnchorId="#About" loadingMethod="dynamic" newTab="false" href="ADFS SAML.mdx"}.
+5. Specify custom attribute names for the email address, first name, and last name. Refer to :Link[About Provisioning Attributes]{label="About Provisioning Attributes" overridedLabel="About Provisioning Attributes" spaceId docId="9Lz_ULb-0gfqtGeevv7qo" version="v2" docAnchorId="#About2" loadingMethod="dynamic" newTab="false" href="ADFS SAML.mdx"}. Do the following:
+
+<Paragraph indent="1">
+  a. Click the **Provisioning Attributes** tab.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Click **New SAML Attribute Value**. The application displays the **New SAML Attribute Value** dialog box.
+</Paragraph>
+
+<Paragraph indent="1">
+  *New SAML Attribute Value*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/T2uQrJ79NVprKhTCRlYL4_samlattribute.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/saml_attribute.png" githubPath="Content/Resources/Images/help-images/saml_attribute.png" showCaption="false"></Image>
+
+<Paragraph indent="1">
+  c. Select an attribute (email address, first name, last name, or user principal name \[UPN]) from the drop-down list. (Note that once you add an attribute, you cannot edit it. To change the attribute, delete it and add a new one.)
+</Paragraph>
+
+<Paragraph indent="1">
+  d. Enter a value for the attribute. The following are the default values. These standard SAML attribute names are defined by the SAML specification (refer to [http://saml.xml.org/saml-specifications](http://saml.xml.org/saml-specifications)) and are in the form below:
+</Paragraph>
+
+| \{\{Primary.Company}} \{\{FRS\_VARS.ProductName}} User Property | SAML Attribute Name                                                                                                                      |
+| --------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| LoginID                                                         | [http://schemas.xmlsoap.org/ws/2005/05/identity/claims/upn](http://schemas.xmlsoap.org/ws/2005/05/identity/claims/upn)                   |
+| First Name                                                      | [http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname](http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname)       |
+| Last Name                                                       | [http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname](http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname)           |
+| Primary Email                                                   | [http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress](http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress) |
+
+<Paragraph indent="1">
+  e. Click **Save**.
+</Paragraph>
+
+6. Click **Save**.
+
+### About ADFS/SAML Diagnostics
+
+You can only test the connection after you save the configuration. To run the ADFS/SAML diagnostics from somewhere other than this workspace, enter the URL directly. For example, if you provider name is "Local ADFS", enter **https\://tenant.com/handlers/sso/diagnostics/SsoProviderLog.aspx?ProviderName=Local+ADFS**
+
+<hint type="info">
+  Ensure that your browser does not block pop-ups.
+</hint>
+
+1. Click **Test Authentication**. The application displays any diagnostic messages.
+
+*Authentication Request Messages*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Qg5P7HHwT17OkONlFaaQA_samldiagnostics.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/SAML_diagnostics.png" githubPath="Content/Resources/Images/help-images/SAML_diagnostics.png" showCaption="false"></Image>
+
+2. To see the authentication request log, click **Redirecting** to pause sending the request to the server. This cancels the immediate redirection and the browser is not redirected until you click **Redirecting** again. If you do not click **Redirecting**, the application redirects you to the identity provider URL and you do not see the messages until authentication succeeds.
+
+<Paragraph indent="1">
+  After logging into the identity provider, both the authentication request and response log messages are available.
+</Paragraph>
+
+*Request and Response Messages*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/4pq-3fvwuytIGVF9kzj_X_req-response.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/req-response.png" githubPath="Content/Resources/Images/help-images/req-response.png" showCaption="false"></Image>
+
+3. Click on a log line to display a preview window:
+
+*SAML Diagnostics Preview Window*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/RbhUQ2Ga802xIYREZNVR6_saml-diag-1.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/saml-diag-1.png" githubPath="Content/Resources/Images/help-images/saml-diag-1.png" showCaption="false"></Image>
+
+### About Provisioning Attributes
+
+If you enable auto provisioning, the SAML attributes for login ID, first name, last name, and primary email must be in the identity provider response. This is because if you create a user record, you must fill in the required properties. These attributes can either have a default value (as shown in the table above) or can be customized by using the **Provisioning Attributes** tab. These values depend on your identity provider. Check with your identity provider administrator to make sure that they are not using different values.
+
+The **LoginID** field does not have to be in the form user\@domain, but it usually is. The value of the **LoginID** field cannot contain angle brackets.
+
+### Exporting \{\{Primary.Company}} \{\{FRS\_VARS.ProductName}} Relying Party Metadata
+
+You can use the information from the SAML endpoint to configure the \{\{FRS\_VARS.ProductName}} relying party. \{\{FRS\_VARS.ProductName}} exposes SAML endpoint configuration through a metadata endpoint, such as at [https://system\_URL/handlers/sso/Metadata/SamlRelyingPartyMetadata.ashx](https://frs-dev-tenant1.saasitdev.com/handlers/sso/Metadata/SamlImportIdP.html). You can use it directly or to produce an XML file with metadata.
+
+You cannot use the metadata endpoint directly with ADFS due to certificate errors.
+
+### Adding an Authentication Provider by Importing Metadata
+
+If a SAML identity provider exposes metadata through an endpoint or a separate file, you can create an authentication provider record from the supplied XML.
+
+1. Open [https://system\_URL/handlers/sso/Metadata/SamlImportIdP.html](https://tenant.saasit.com/handlers/sso/Metadata/SamlImportIdP.html). The application displays the **Import SAML Metadata** page.
+
+*Import SAML Metadata*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/_N_nK98eE16yT0mxSauX8_import-saml-metadata.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/import-saml-metadata.png" githubPath="Content/Resources/Images/help-images/import-saml-metadata.png" showCaption="false"></Image>
+
+2. Enter information into the form. You can enter a URL, a file name, or XML. An example of the XML to supply is at [https://wiki.shibboleth.net/confluence/display/SHIB2/MetadataExample](https://wiki.shibboleth.net/confluence/display/SHIB2/MetadataExample).
+3. Click **Submit**. The application creates an authentication provider record including a link.

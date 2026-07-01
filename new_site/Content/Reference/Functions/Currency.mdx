@@ -1,0 +1,94 @@
+---
+title: Currency
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:59 GMT+0300 (Eastern European Summer Time)
+---
+
+Converts the input parameter or parameters into a currency value. A currency value is a combination of the actual number value and the currency code, such as 3 USD.
+
+## Syntax
+
+Currency(value,currencyCode)
+
+## Enabled For
+
+For a description of the business object categories, see :Link[Notes on "Enabled For"]{label="Notes on &#x22;Enabled For&#x22;" overridedLabel="Notes on &#x22;Enabled For&#x22;" spaceId docId="xObv2pIDrk60jkEIWs8mD" version="v2" docAnchorId="#Notes" loadingMethod="dynamic" newTab="false" githubPath="_Built_in_Functions.htm#Notes" href="_Built_in_Functions.mdx"}.
+
+| Business object category                                                                    | Yes/No |
+| ------------------------------------------------------------------------------------------- | ------ |
+| Business Rules: Before-Save Rules                                                           | Yes    |
+| Business Rules: Calculation Rules (After Save, with or without Also Recalculate on Load)    | Yes    |
+| Business Rules: Calculation Rules (Before Save or Always, without Also Recalculate On Load) | Yes    |
+| Business Rules: Calculation Rules (Before Save or Always, with Recalculate On Load)         | Yes    |
+| Business Rules: Editing Rules                                                               | Yes    |
+| Business Rules: Initialization Rules                                                        | Yes    |
+| Business Rules: Read Only Rules                                                             | Yes    |
+| Business Rules: Required Rules                                                              | Yes    |
+| Business Rules: Validation Rules                                                            | Yes    |
+| Client Expressions                                                                          | Yes    |
+| Object Permissions                                                                          | No     |
+| Services                                                                                    | Yes    |
+| LDAP                                                                                        | Yes    |
+| Mobile                                                                                      | Yes    |
+| Quick Actions (except UI Quick Actions)                                                     | Yes    |
+| UI Quick Actions                                                                            | Yes    |
+| Reports                                                                                     | Yes    |
+| Search/Dashboard without field references                                                   | Yes    |
+| Search/Dashboard with field references                                                      | No     |
+
+## Parameters
+
+| Parameter    | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| value        | The value to be converted.<br /><hint type="info">
+  If you include the optional **currencyCode** parameter, then this **value** parameter cannot be a currency image (which includes the currency code) because then you would specify the currency code twice; once here and once in the **currencyCode** parameter. If you include the optional **currencyCode** parameter, the **value** parameter must be a number or text value.
+
+  If you do not include the optional **currencyCode** parameter, this **value** parameter may or may not contain the currency code. The **value** parameter can be a currency image, or a number or text value.
+
+  If you do not include the optional **currencyCode** parameter and the **value** parameter does not contain the currency code, (that is, it is a number or text value), the application returns the value with the default currency code as specified in your user profile.
+
+  For example, to enter 21 USD, you could either enter **$(Currency (21, USD)** or **$(Currency ("21 USD")**.
+</hint> |
+| currencyCode | (Optional) The code value of the currency. See [http://www.xe.com/iso4217.php](http://www.xe.com/iso4217.php) for a list of ISO 4217 currency codes. You can only use this parameter if the **value** parameter does not contain a currency code.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+
+## Return Value
+
+<Paragraph indent="1">
+  Currency value (a combination of the actual number value and the currency code, such as 3 USD).
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  If you only include the **value** parameter:
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="3">
+  Returns a currency value if the **value** parameter is a currency image, such as "3USD" or "3.25JPY".
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="3">
+  Returns a currency value with the default currency code if the **value** parameter is a number or text value, such as "4". The default currency code is set on the **Application Setup** page in the Configuration Console. See [Entering Account Information](<../../Configure/SetUpWizard/Entering Account Information.mdx>).
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  If you include both parameters:
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="3">
+  Returns a currency value.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  Returns an error if the **value** parameter is another type, such as DateTime, or if either of the input parameters are invalid.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="2">
+  Returns null if the **value** parameter is null.
+</Paragraph>
+
+### Example
+
+$(Currency(Cost + 10,USD))
+
+<Paragraph indent="1">
+  If the value of the **Cost** field is 25, the above example returns "35 USD".
+</Paragraph>

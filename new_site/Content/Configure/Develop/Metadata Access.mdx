@@ -1,0 +1,29 @@
+---
+title: Metadata Access
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:01 GMT+0300 (Eastern European Summer Time)
+---
+
+- :Link[About Metadata Access]{label="About Metadata Access" overridedLabel="About Metadata Access" spaceId docId="FxpOW2_digBrGPCbbW6MC" version="v2" docAnchorId="#About-Metadata-Access" loadingMethod="dynamic" newTab="false" href="Metadata Access.mdx"}
+- :Link[Using the GetSchemaForObject Web Method]{label="Using the GetSchemaForObject Web Method" overridedLabel="Using the GetSchemaForObject Web Method" spaceId docId="GrHHgvow-tr8fTVmfMRkD" version="v2" docAnchorId="#Using-the-GetSchemaForObject-Web-Method" loadingMethod="dynamic" newTab="false" githubPath="GetSchemaForObject.htm#Using-the-GetSchemaForObject-Web-Method" href="GetSchemaForObject.mdx"}
+- :Link[Using the GetAllSchemaForObject Web Method]{label="Using the GetAllSchemaForObject Web Method" overridedLabel="Using the GetAllSchemaForObject Web Method" spaceId docId="Ts_1r3pGHAJpbVjj25gkF" version="v2" docAnchorId="#Using-the-GetAllSchemaForObject-Web-Method" loadingMethod="dynamic" newTab="false" githubPath="GetAllSchemaForObject.htm#Using-the-GetAllSchemaForObject-Web-Method" href="GetAllSchemaForObject.mdx"}
+- :Link[Using the GetAllAllowedObjectNames Web Method]{label="Using the GetAllAllowedObjectNames Web Method" overridedLabel="Using the GetAllAllowedObjectNames Web Method" spaceId docId="BDvToRj4dvOmC1FVO_IoO" version="v2" docAnchorId="#Using-the-GetAllAllowedObjectNames-Web-Method" loadingMethod="dynamic" newTab="false" githubPath="GetAllAllowedObjectNames.htm#Using-the-GetAllAllowedObjectNames-Web-Method" href="GetAllAllowedObjectNames.mdx"}
+
+### About Metadata Access
+
+You can import an existing set of business objects into the tenant using the Business Object Uploader tool. The tool communicates with the \{\{FRS\_VARS.ProductName}} Application Server using public web services to facilitate user logins, population of data-entry forms, and the upload of business object data.
+
+The workflow in the Business Object Uploader is as follows:
+
+1. Log into an instance.
+2. Load the list of all allowable business objects.
+3. Select a business object.
+4. Load the metadata for the selected object.
+5. Complete the data for the fields being imported, if needed.
+6. Submit the new object to the application.
+
+When designing your API, to know what objects you can create, get a list of allowed objects by using the **GetAllAllowedObjectNames** web method.
+
+To know what fields you want to submit to the create object call, you need to obtain the metadata, by using the **GetSchemaForObject** web method.
+
+To upload objects even with "special" fields visible (like RecID), use the **GetAllSchemaForObject** web method.

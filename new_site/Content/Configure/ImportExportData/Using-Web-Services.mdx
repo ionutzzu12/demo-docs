@@ -1,0 +1,435 @@
+---
+title: Working with Incoming Web Service Connections
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:52 GMT+0300 (Eastern European Summer Time)
+---
+
+<hint type="info">
+  If you are creating an incoming web service connection to use with DSM, do NOT use this workspace!  
+
+  Instead, configure the DSM integration from the DSM workspace. See [Configuring the New DSM Integration](../../ServiceDesk/DSM/Configuring-the-New-DSM-Integration.mdx) for complete information about configuring an incoming web service for DSM.
+</hint>
+
+- :Link[Viewing, Editing, Cloning, and Deleting Incoming Web Service Connections]{label="Viewing, Editing, Cloning, and Deleting Incoming Web Service Connections" overridedLabel="Viewing, Editing, Cloning, and Deleting Incoming Web Service Connections" spaceId docId="FdCBQbHhR6rvSknbFTcBX" version="v2" docAnchorId="#Viewing" loadingMethod="dynamic" newTab="false" href="Using-Web-Services.mdx"}
+- :Link[Adding an Incoming Service]{label="Adding an Incoming Service" overridedLabel="Adding an Incoming Service" spaceId docId="FdCBQbHhR6rvSknbFTcBX" version="v2" docAnchorId="#Adding3" loadingMethod="dynamic" newTab="false" href="Using-Web-Services.mdx"}
+- :Link[Adding an Incoming Service Reference]{label="Adding an Incoming Service Reference" overridedLabel="Adding an Incoming Service Reference" spaceId docId="FdCBQbHhR6rvSknbFTcBX" version="v2" docAnchorId="#Adding2" loadingMethod="dynamic" newTab="false" href="Using-Web-Services.mdx"}
+- :Link[Testing the Incoming Web Service Connection]{label="Testing the Incoming Web Service Connection" overridedLabel="Testing the Incoming Web Service Connection" spaceId docId="FdCBQbHhR6rvSknbFTcBX" version="v2" docAnchorId="#Testing" loadingMethod="dynamic" newTab="false" href="Using-Web-Services.mdx"}
+
+## Viewing, Editing, Cloning, and Deleting Incoming Web Service Connections
+
+<hint type="success">
+  \{\{FRS\_VARS.Company}} strongly recommends using the secure protocol HTTPS instead of HTTP within the \{\{FRS\_VARS.ProductName}} platform to ensure data security and integrity.
+</hint>
+
+1. From the Configuration Console, click **Extend** > **Integration Tools** > **Web Service Connections (BETA)** to open the **Web Service Connection Manager (BETA)** workspace.
+
+*Web Service Connections (BETA) Workspace*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/75z-KKi7sef8pPNEkrFcT_web-service-connection-manager-1.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/ImportExportData/web-service-connection-manager-1.png" githubPath="Content/Resources/Images/ImportExportData/web-service-connection-manager-1.png" showCaption="false"></Image>
+
+<Paragraph indent="1">
+  The **Web Service Connection Manager (BETA)** workspace has two sections: outgoing (see :Link[Working with Outgoing Web Service Connections]{label="Working with Outgoing Web Service Connections" overridedLabel="Working with Outgoing Web Service Connections" spaceId docId="FdCBQbHhR6rvSknbFTcBX" version="v2" docAnchorId="#Working" loadingMethod="dynamic" newTab="false" href="Using-Web-Services.mdx"}) and incoming. The incoming web services section contains the following fields:
+</Paragraph>
+
+| Field                                                 | Description                                                                                                                                                                                                                                             |
+| ----------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Calls from external web services to Ivanti (incoming) |                                                                                                                                                                                                                                                         |
+| Service                                               | The name of the external service that calls \{\{FRS\_VARS.ProductName}}, such as SalesForce.                                                                                                                                                            |
+| Service Reference                                     | The name of the service action that the external service performs on \{\{FRS\_VARS.ProductName}}. An example is **Update Employee**.                                                                                                                    |
+| Service Address (URL)                                 | The service address URL. The URL must be in the following format: https\:// *HEAT\_SM\_server*:*Port*/InboundWebservice/*Tenant\_URL*/*Web\_service\_page*.asmx. An example is https\://heatdev.solys.local/InboundWebservice/HEATDEV/ServiceTest.asmx. |
+| Last Transfer                                         | The date and time of the last request received by \{\{FRS\_VARS.ProductName}} from the external service.                                                                                                                                                |
+
+2. To edit an existing service or service reference, click the **edit**:inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/WTLKbMa5PI7qeazzbj0FD_edit-old.png" alt caption size="10" width="16" height="16"} icon next to its name.
+3. To clone a service, including all of its service references, do the following:
+
+<Paragraph indent="1">
+  a. Click the **clone**<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/ebLr38hnYNATpWSNvpVXz_copygrid.png" size="10" isUploading="false" initialPath="../../Resources/Images/buttons/copy_grid.png" githubPath="Content/Resources/Images/buttons/copy_grid.png" width="17" height="17" showCaption="false"></Image> icon next to its name.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. In the confirmation message, click **OK**. The application displays the new service in the list.
+</Paragraph>
+
+4. To activate or deactivate a service or service reference, click the **activate toggle**:inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/MVsOCWjTYWhE2u1kU_45Z_activate23x10.png" alt caption size="10" width="23" height="10"} icon next to its name. This makes the web service connection active or inactive. When it is inactive, the application cannot process the web service.
+5. To delete a service or service reference, do the following:
+
+<Paragraph indent="1">
+  a. Click the **delete**<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/USPl9Egu4Y2Blx7HKC3mA_deleteredx.png" size="10" isUploading="false" initialPath="../../Resources/Images/buttons/delete_red_x.png" githubPath="Content/Resources/Images/buttons/delete_red_x.png" width="14" height="13" showCaption="false"></Image> icon next to its name.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. In the confirmation message, click **Yes**.
+</Paragraph>
+
+If there are any mappings associated with this data import connection, the application displays a second confirmation message.  
+
+<Paragraph indent="1">
+  c. Click **OK**. The application removes the service or service reference and its name no longer appears on the list.
+</Paragraph>
+
+6. To edit a service reference, do the following:
+
+<Paragraph indent="1">
+  a. Click the **expand**<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/9SKkTHEVfabOeACXWkky6_addblue.png" size="10" isUploading="false" initialPath="../../Resources/Images/buttons/add_blue.png" githubPath="Content/Resources/Images/buttons/add_blue.png" width="16" height="12" showCaption="false"></Image> icon next to the name of a service to expand the list of service references associated with it.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Click the **edit**<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/WTLKbMa5PI7qeazzbj0FD_edit-old.png" size="10" isUploading="false" initialPath="../../Resources/Images/buttons/edit-old.png" githubPath="Content/Resources/Images/buttons/edit-old.png" width="16" height="16" showCaption="false"></Image> icon next to the service reference to edit. The application displays the **Edit Service Reference** dialog box.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. Modify the following information as needed:
+</Paragraph>
+
+| Field                                       | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| ------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| External BO Name or Integration Name        | Automatically populated and cannot be changed. Contains the name of the business object that the service reference is associated with, or the name of the integration.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| Service Reference                           | The name of the service reference. Either enter a name or select a service reference from the drop-down list (populated from the entries in the **WSDL and Script Repository** workspace).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| Service Address (URL) or WSDL Description   | The service address URL.<br /><br />If you selected an entry from the **WSDL and Script Repository** workspace for the **Service Reference** field, the application changes the name of this field from **Service Address (URL)** to **WSDL Description** and automatically populates this field.                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| Use global constants for login and password | Specifies if the login and password information are global constants. If you check this option, you must create the login and password global constants before you can use them. See :Link[Using Global Constants to Hide Login ID and Password Information]{label="Using Global Constants to Hide Login ID and Password Information" overridedLabel="Using Global Constants to Hide Login ID and Password Information" spaceId docId="hdqjMZ0xNIIUp-39YljO9" version="v2" docAnchorId="#Using_the_Login_ID_and_Password_Global_Constants" loadingMethod="dynamic" newTab="false" githubPath="../Constants/Defining_Global_Constant.htm#Using_the_Login_ID_and_Password_Global_Constants" href="../Constants/Defining_Global_Constant.mdx"}. |
+| Login                                       | The login ID used to log in to the service reference. Either enter a value (if you did not check **Use global constants for login and password**) or select a value from the drop-down list (if you checked **Use global constants for login and password**).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Password                                    | The password used to log in to the service reference. Either enter a value (if you did not check **Use global constants for login and password**) or select a value from the drop-down list (if you checked **Use global constants for login and password**).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+
+<Paragraph indent="1">
+  d. Click **Save**.
+</Paragraph>
+
+### Adding an Incoming Service
+
+1. From the Configuration Console, click **Extend** > **Integration Tools** > **Web Service Connections (BETA)** to open the **Web Service Connection Manager (BETA)** workspace.
+2. Under the **Calls from external web services to System (Incoming)** section at the bottom of the page, click **New Service**. The application displays the **Integration** page.
+3. Enter information into the fields.
+
+| Field                   | Description                                                                                                |
+| ----------------------- | ---------------------------------------------------------------------------------------------------------- |
+| Integration Name        | A unique name for the incoming web service connection.                                                     |
+| Description             | A brief description.                                                                                       |
+| Response XML (optional) | Contains a message to display. Used if an associated service reference does not have response XML defined. |
+
+4. Click **Next**. The application displays the **Integration Script** page.
+5. Enter information into the fields.
+
+| Field             | Description                                                                                                                                                                                                                                                                                                                                                                                                      |
+| ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Service Reference | Select a service reference from the drop-down list, or click **Add new\...** to add a new service reference. See :Link[Adding an Incoming Service Reference]{label="Adding an Incoming Service Reference" overridedLabel="Adding an Incoming Service Reference" spaceId docId="FdCBQbHhR6rvSknbFTcBX" version="v2" docAnchorId="#Adding2" loadingMethod="dynamic" newTab="false" href="Using-Web-Services.mdx"}. |
+| Request Data      | The request data sent from the external application.<br /><br />To get the request data, go to the external application and send an HTTP request to the service address from the service reference that you just created. After the application receives the request, the application displays it in this field.                                                                                                 |
+| Script Snippet    | A application-generated script snippet. The script displayed here is based on request data.<br /><br />This information is displayed to help you create the script; however, this information is not the actual script. The actual script to be used is displayed in the **Scripts** field.                                                                                                                      |
+| Scripts           | The script that is executed.<br /><br />Copy and paste it from the script snippet or click **Append** to populate this field. See :Link[Sample Script]{label="Sample Script" overridedLabel="Sample Script" spaceId docId="FdCBQbHhR6rvSknbFTcBX" version="v2" docAnchorId="#Sample" loadingMethod="dynamic" newTab="false" href="Using-Web-Services.mdx"} for a sample script.                                  |
+
+6. Click **Save**.
+
+## Adding an Incoming Service Reference
+
+You can have one or more service references for each integration. You can create new service references either from the main **Web Service Connections (BETA)** page or from the **Integration Script** page, which is the second page you see when creating an incoming service.
+
+1. From the Configuration Console, click **Extend** > **Integration Tools** > **Web Service Connections (BETA)** to open the **Web Service Connection Manager (BETA)** workspace.
+2. Highlight an existing service under the **Calls from external web services to System (Incoming)** section at the bottom of the page.
+3. Click **New Service Reference**. The application displays the **Create Service Reference** dialog box.
+4. Enter information into the fields.
+
+| Field                 | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Integration Name      | Automatically populated. Contains the name of the business object that the service reference is associated with, or the name of the integration.                                                                                                                                                                                                                                                                                                                                                                                                 |
+| Service Reference     | The name of the service reference. Either enter a name or select a service reference from the drop-down list (populated from the entries in the **WSDL and Script Repository** workspace).                                                                                                                                                                                                                                                                                                                                                       |
+| Service Address (URL) | The service address URL. The URL must be in the following format: https\:// *HEAT\_SM\_server*:*Port*/InboundWebservice/*Tenant\_URL*/*Web\_service\_page*.asmx. An example is https\://heatdev.solys.local/InboundWebservice/HEATDEV/ServiceTest.asmx.<br /><br />**NOTE**: If you are configuring the DSM integration, we highly recommend that you use the **DSM Integration** workspace instead of this workspace. See [Configuring the New DSM Integration](../../ServiceDesk/DSM/Configuring-the-New-DSM-Integration.mdx) for information. |
+
+5. Click **Save**.
+
+## Testing the Incoming Web Service Connection
+
+Follow these steps to test an incoming web service connection that you have already created (see :Link[Adding an Incoming Service Reference]{label="Adding an Incoming Service Reference" overridedLabel="Adding an Incoming Service Reference" spaceId docId="FdCBQbHhR6rvSknbFTcBX" version="v2" docAnchorId="#Adding2" loadingMethod="dynamic" newTab="false" href="Using-Web-Services.mdx"}).  
+
+Before you begin, do the following:
+
+1. Create an incoming web service connection, including a service reference. See :Link[Adding an Incoming Service]{label="Adding an Incoming Service" overridedLabel="Adding an Incoming Service" spaceId docId="FdCBQbHhR6rvSknbFTcBX" version="v2" docAnchorId="#Adding3" loadingMethod="dynamic" newTab="false" href="Using-Web-Services.mdx"} and :Link[Adding an Incoming Service Reference]{label="Adding an Incoming Service Reference" overridedLabel="Adding an Incoming Service Reference" spaceId docId="FdCBQbHhR6rvSknbFTcBX" version="v2" docAnchorId="#Adding2" loadingMethod="dynamic" newTab="false" href="Using-Web-Services.mdx"}.
+
+Add the client IP address into the list of trusted hosts. See :Link[Setting the Trusted IP Addresses]{label="Setting the Trusted IP Addresses" overridedLabel="Setting the Trusted IP Addresses" spaceId docId="KwnvB4RB_9eQ0euWXsSNc" version="v2" docAnchorId="#Setting-the-Trusted-IP-Addresses" loadingMethod="dynamic" newTab="false" githubPath="Accept-Messages.htm#Setting-the-Trusted-IP-Addresses" href="Accept-Messages.mdx"} for information.
+
+Follow these steps to test the incoming web service connection.
+
+1. Install the Postman tool. See [https://www.getpostman.com/](https://www.getpostman.com/) for more information.
+2. From the **GET** drop-down list, select **POST**.
+3. In the **Enter request URL** field, enter the service address URL and add the API key at the end. For example, enter https\://heatdev.solys.local/InboundWebservice/HEATDEV/ServiceTest.asmx?APIKey=E076BD94D61F4141B16FFA88D0E0A45C.  See :Link[Configuring the API Key]{label="Configuring the API Key" overridedLabel="Configuring the API Key" spaceId docId="KwnvB4RB_9eQ0euWXsSNc" version="v2" docAnchorId="#Configuring-the-API-Key" loadingMethod="dynamic" newTab="false" githubPath="Accept-Messages.htm#Configuring-the-API-Key" href="Accept-Messages.mdx"} for information about API keys and how to generate them.
+4. Click **Body**, and then select enter **raw**.
+5. Enter the following:
+
+\<?xml version="1.0"?>
+
+\<InboundWebServiceTest>This is a test\</InboundWebServiceTest>
+
+*Using the Postman Tool*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/hwFZa7RRypZ3gzue7dOQu_postman-tool.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/Postman-tool.png" githubPath="Content/Resources/Images/help-images/Postman-tool.png" showCaption="false"></Image>
+
+6. Click **Send**.
+
+The application should display the response text that you entered in the **Response XML** field.
+
+## Working with Outgoing Web Service Connections
+
+- :Link[Viewing, Editing, Cloning, and Deleting Incoming Web Service Connections]{label="Viewing, Editing, Cloning, and Deleting Incoming Web Service Connections" overridedLabel="Viewing, Editing, Cloning, and Deleting Incoming Web Service Connections" spaceId docId="FdCBQbHhR6rvSknbFTcBX" version="v2" docAnchorId="#Viewing" loadingMethod="dynamic" newTab="false" href="Using-Web-Services.mdx"}
+- :Link[Adding an Outgoing Web Service Connection Integration]{label="Adding an Outgoing Web Service Connection Integration" overridedLabel="Adding an Outgoing Web Service Connection Integration" spaceId docId="FdCBQbHhR6rvSknbFTcBX" version="v2" docAnchorId="#Adding" loadingMethod="dynamic" newTab="false" href="Using-Web-Services.mdx"}
+- :Link[Adding an Outgoing External Business Object Integration]{label="Adding an Outgoing External Business Object Integration" overridedLabel="Adding an Outgoing External Business Object Integration" spaceId docId="FdCBQbHhR6rvSknbFTcBX" version="v2" docAnchorId="#Adding_an_External_Business_Object_Integration" loadingMethod="dynamic" newTab="false" href="Using-Web-Services.mdx"}
+- :Link[Adding an Incoming Service Reference]{label="Adding an Incoming Service Reference" overridedLabel="Adding an Incoming Service Reference" spaceId docId="FdCBQbHhR6rvSknbFTcBX" version="v2" docAnchorId="#Adding2" loadingMethod="dynamic" newTab="false" href="Using-Web-Services.mdx"}
+- :Link[Troubleshooting Time Out Issues]{label="Troubleshooting Time Out Issues" overridedLabel="Troubleshooting Time Out Issues" spaceId docId="FdCBQbHhR6rvSknbFTcBX" version="v2" docAnchorId="#Troubles" loadingMethod="dynamic" newTab="false" href="Using-Web-Services.mdx"}
+
+### Viewing, Editing, Cloning, and Deleting Outgoing Web Service Connections
+
+1. From the Configuration Console, click **Extend** > **Integration Tools** > **Web Service Connections (BETA)** to open the **Web Service Connection Manager (BETA)** workspace.
+
+*Web Service Connections (BETA) Workspace*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/75z-KKi7sef8pPNEkrFcT_web-service-connection-manager-1.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/ImportExportData/web-service-connection-manager-1.png" githubPath="Content/Resources/Images/ImportExportData/web-service-connection-manager-1.png" showCaption="false"></Image>
+
+<Paragraph indent="1">
+  The **Web Service Connection Manager (BETA)** workspace has two sections: outgoing and incoming (see :Link[Working with Incoming Web Service Connections]{label="Working with Incoming Web Service Connections" overridedLabel="Working with Incoming Web Service Connections" spaceId docId="FdCBQbHhR6rvSknbFTcBX" version="v2" docAnchorId="#top" loadingMethod="dynamic" newTab="false" href="Using-Web-Services.mdx"}). The outgoing web services section contains the following fields:
+</Paragraph>
+
+| Field                                                 | Description                                                                                                                                                   |
+| ----------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Calls from Ivanti to external web services (outgoing) |                                                                                                                                                               |
+| Integration                                           | The name of the web service connection. Click on the expand icon to the left of the name to expand the integration and see any associated service references. |
+| Service Reference                                     | A web service name that the integration (connection) can access. Each integration can have one or more service references associated with it.                 |
+| URL                                                   | The web service address.                                                                                                                                      |
+| User                                                  | The user ID used to access the web service.                                                                                                                   |
+
+2. To edit an existing integration or external business object integration, click the **edit**:inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/WTLKbMa5PI7qeazzbj0FD_edit-old.png" alt caption size="10" width="16" height="16"} icon next to its name.
+3. To clone an existing integration or external business object integration, including all of its service references, do the following:
+
+<Paragraph indent="1">
+  a. Click the **clone**<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/ebLr38hnYNATpWSNvpVXz_copygrid.png" size="10" isUploading="false" initialPath="../../Resources/Images/buttons/copy_grid.png" githubPath="Content/Resources/Images/buttons/copy_grid.png" width="17" height="17" showCaption="false"></Image> icon next to its name.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. In the confirmation message, click **OK**. The application displays the new integration or external business object integration in the list.
+</Paragraph>
+
+4. To run an integration or external business object integration, click the **run**:inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/AxeqAIWfGFZtDkQwJ5ZPB_run.png" alt caption size="10" width="15" height="14"} icon next to its name. This submits the web service job for processing.
+5. To activate or deactivate an integration or external business object integration, click the **activate toggle**:inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/MVsOCWjTYWhE2u1kU_45Z_activate23x10.png" alt caption size="10" width="23" height="10"} icon next to its name. This makes the web service connection active or inactive. When it is inactive, the application cannot process the web service.
+6. To delete an integration, external business object integration, or service reference, do the following:
+
+<Paragraph indent="1">
+  a. Click the **delete**<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/USPl9Egu4Y2Blx7HKC3mA_deleteredx.png" size="10" isUploading="false" initialPath="../../Resources/Images/buttons/delete_red_x.png" githubPath="Content/Resources/Images/buttons/delete_red_x.png" width="14" height="13" showCaption="false"></Image> icon next to its name.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. In the confirmation message, click **Yes**. If there are any mappings associated with this data import connection, the application displays a second confirmation message.  
+</Paragraph>
+
+<Paragraph indent="1">
+  c. Click **OK**. The application removes the integration, external business object integration, or service reference and its name no longer appears on the list.
+</Paragraph>
+
+7. To edit a service reference associated with an integration or external business object integration, do the following:
+
+<Paragraph indent="1">
+  a. Click the **expand**<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/9SKkTHEVfabOeACXWkky6_addblue.png" size="10" isUploading="false" initialPath="../../Resources/Images/buttons/add_blue.png" githubPath="Content/Resources/Images/buttons/add_blue.png" width="16" height="12" showCaption="false"></Image> icon next to an integration or external business object integration to expand the list of service references associated with it.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Click the **edit**<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/WTLKbMa5PI7qeazzbj0FD_edit-old.png" size="10" isUploading="false" initialPath="../../Resources/Images/buttons/edit-old.png" githubPath="Content/Resources/Images/buttons/edit-old.png" width="16" height="16" showCaption="false"></Image> icon next to the name of the service reference to edit. The application displays the **Edit Service Reference** dialog box.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. Modify the following information as needed:
+</Paragraph>
+
+| Field                                       | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| ------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| External BO Name or Integration Name        | Automatically populated. Contains the name of the business object that the service reference is associated with, or the name of the integration.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| Service Reference                           | The name of the service reference. Either enter a name or select a service reference from the drop-down list (populated from the entries in the **WSDL and Script Repository** workspace).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| Service Address (URL) or WSDL Description   | The service address URL.<br /><br />If you selected an entry from the **WSDL and Script Repository** workspace for the **Service Reference** field, the application changes the name of this field from **Service Address (URL)** to **WSDL Description** and automatically populates this field.                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| Use global constants for login and password | Specifies if the login and password information are global constants. If you check this option, you must create the login and password global constants before you can use them. See :Link[Using Global Constants to Hide Login ID and Password Information]{label="Using Global Constants to Hide Login ID and Password Information" overridedLabel="Using Global Constants to Hide Login ID and Password Information" spaceId docId="hdqjMZ0xNIIUp-39YljO9" version="v2" docAnchorId="#Using_the_Login_ID_and_Password_Global_Constants" loadingMethod="dynamic" newTab="false" githubPath="../Constants/Defining_Global_Constant.htm#Using_the_Login_ID_and_Password_Global_Constants" href="../Constants/Defining_Global_Constant.mdx"}. |
+| Login                                       | The login ID used to log in to the service reference. Either enter a value (if you did not check **Use global constants for login and password**) or select a value from the drop-down list (if you checked **Use global constants for login and password**).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Password                                    | The password used to log in to the service reference. Either enter a value (if you did not check **Use global constants for login and password**) or select a value from the drop-down list (if you checked **Use global constants for login and password**).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+
+<Paragraph indent="1">
+  d. Click **Save**.
+</Paragraph>
+
+### Adding an Outgoing Web Service Connection Integration
+
+1. From the Configuration Console, click **Extend** > **Integration Tools** > **Web Service Connections (BETA)** to open the **Web Service Connection Manager (BETA)** workspace.
+2. Click **New Integration**. The application displays the **Integration Detail** page.
+
+*Web Service Connections (BETA) Setup Sequence*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/npDZRWHvYbOgUdYNOVMmy_web-service-flow.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/web service flow.png" githubPath="Content/Resources/Images/help-images/web service flow.png" showCaption="false"></Image>
+
+3. Enter information into the fields.
+
+| Field            | Description                        |
+| ---------------- | ---------------------------------- |
+| Integration Name | A unique name for the integration. |
+| Description      | A brief description.               |
+
+4. Click **Next**. The application displays the **Integration Script** page.
+5. Enter information into the fields.
+
+| Field                        | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| ---------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Service Reference            | Select a service reference from the drop-down list, or click **Add new\...** to add a new service reference. See :Link[Adding an Incoming Service Reference]{label="Adding an Incoming Service Reference" overridedLabel="Adding an Incoming Service Reference" spaceId docId="FdCBQbHhR6rvSknbFTcBX" version="v2" docAnchorId="#Adding2" loadingMethod="dynamic" newTab="false" href="Using-Web-Services.mdx"}.                                                                                                                                                  |
+| Web Service List             | Displays the available web services from the service reference URL. Choose a web service from the drop-down list.                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| Method List                  | Displays the available methods from the selected web service list. Choose a method from the drop-down list. This is displayed to help you create the script.                                                                                                                                                                                                                                                                                                                                                                                                      |
+| Method Input                 | The input parameters for the method. The information displayed here is based on the method that you select.<br /><br />This information is displayed to help you create the script; however, this information is not the actual script. The actual script to be used is displayed in the **Scripts** field.                                                                                                                                                                                                                                                       |
+| Method Output & Return Value | The output and return values for the method. The information displayed here is based on the method that you select.<br /><br />This information is displayed to help you create the script; however, this information is not the actual script. The actual script to be used is displayed in the **Scripts** field.                                                                                                                                                                                                                                               |
+| Script Snippet               | An application-generated script snippet. The information displayed here is based on the method that you select. See :Link[Sample Script]{label="Sample Script" overridedLabel="Sample Script" spaceId docId="FdCBQbHhR6rvSknbFTcBX" version="v2" docAnchorId="#Sample" loadingMethod="dynamic" newTab="false" href="Using-Web-Services.mdx"} for a sample script.<br /><br />This information is displayed to help you create the script; however, this information is not the actual script. The actual script to be used is displayed in the **Scripts** field. |
+| Scripts                      | This is the script that is executed.<br /><br />Copy and paste it from the script snippet or click **Append** to populate this field. See :Link[Sample Script]{label="Sample Script" overridedLabel="Sample Script" spaceId docId="FdCBQbHhR6rvSknbFTcBX" version="v2" docAnchorId="#Sample" loadingMethod="dynamic" newTab="false" href="Using-Web-Services.mdx"} for a sample script.                                                                                                                                                                           |
+
+*Adding a Web Service Connection Integration*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/3O0DHNWW3SE7vf4MzAUPE_webservicesbeta2.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/web_services_beta2.png" githubPath="Content/Resources/Images/help-images/web_services_beta2.png" showCaption="false"></Image>
+
+6. Click **Next**. The application displays the **Schedule** page.
+
+<Paragraph indent="1">
+  For information about using the **Schedule** page, see :Link[Setting the Data Import or Web Service Connection Schedule]{label="Setting the Data Import or Web Service Connection Schedule" overridedLabel="Setting the Data Import or Web Service Connection Schedule" spaceId docId="z2z90_aQskfSDzXRA7Lii" version="v2" docAnchorId="#Setting2" loadingMethod="dynamic" newTab="false" githubPath="Data-Import-Connections.htm#Setting2" href="Data-Import-Connections.mdx"}.
+</Paragraph>
+
+7. Click **Next**. The application displays the **Review and Publish** page.
+
+<Paragraph indent="1">
+  For information about using the **Review and Publish** page, see :Link[Reviewing and Publishing Import or Web Service Connection Data]{label="Reviewing and Publishing Import or Web Service Connection Data" overridedLabel="Reviewing and Publishing Import or Web Service Connection Data" spaceId docId="z2z90_aQskfSDzXRA7Lii" version="v2" docAnchorId="#Reviewin" loadingMethod="dynamic" newTab="false" githubPath="Data-Import-Connections.htm#Reviewin" href="Data-Import-Connections.mdx"}.
+</Paragraph>
+
+### Sample Script
+
+The following is a sample script that can be used when creating a web service connection integration.
+
+// --------------------------------------------------------------------
+
+// Demo integration script
+
+// --------------------------------------------------------------------
+
+// prepare service call
+
+console.info("Script starts: Demo integration.Internal service.Address -FRSHEATIntegration - GetRolesForUser");
+
+var wsdlAddress = "Demo integration.Internal service.Address";
+
+var userId = "Demo integration.Internal service.Login";
+
+var pwd = "Demo integration.Internal service.Password";
+
+var serviceCall = "FRSHEATIntegration";
+
+var serviceInstance = GetWebServiceFromUrl(wsdlAddress,serviceCall, "", "");
+
+var tenantId;
+
+var sessionKey;
+
+var authResponse = serviceInstance.InvokeMethod("AuthenticateUser", \[userId, pwd, tenantId]);
+
+if (authResponse.authenticationStatus != "Success")
+
+console.info("Script error: Access Denied Demointegration.Internal service.Address - FRSHEATIntegration -GetRolesForUser");
+
+else
+
+\{
+
+<Paragraph indent="1">
+  // call web service
+</Paragraph>
+
+<Paragraph indent="1">
+  sessionKey = authResponse.authenticationSessionKey;
+</Paragraph>
+
+<Paragraph indent="1">
+  console.info("Script executes: Demo integration.Internalservice.Address - FRSHEATIntegration - GetRolesForUser");
+</Paragraph>
+
+<Paragraph indent="1">
+  var methodCall = "GetRolesForUser";
+</Paragraph>
+
+<Paragraph indent="1">
+  var paramValues = \[sessionKey, tenantId ];
+</Paragraph>
+
+<Paragraph indent="1">
+  // result "hover" on "Script Snippet" or "Script" label for info
+</Paragraph>
+
+<Paragraph indent="1">
+  var result = serviceInstance.InvokeMethod(methodCall, paramValues);
+</Paragraph>
+
+<Paragraph indent="1">
+  console.info("Script result: " + result.roleList\[0].Name + "Demointegration.Internal service.Address - FRSHEATIntegration -GetRolesForUser");
+</Paragraph>
+
+}
+
+See [Web Service Methods](Web-Service-Methods.mdx) for more information.
+
+### Adding an Outgoing External Business Object Integration
+
+Before you add an external business object integration, you must create an external business object (see :Link[Creating a Stand-Alone Business Object]{label="Creating a Stand-Alone Business Object" overridedLabel="Creating a Stand-Alone Business Object" spaceId docId="z5Hl_JIl1C8b9P5aZK1aD" version="v2" docAnchorId="#Create_a_Stand-alone_Business_Object" loadingMethod="dynamic" newTab="false" githubPath="../BusinessObjects/Using Business Objects.htm#Create_a_Stand-alone_Business_Object" href="../BusinessObjects/Using Business Objects.mdx"}) and add the new business object to a role (see [Defining Top Level Tabs](../../ServiceDesk/Roles/roles.mdx)).
+
+1. From the Configuration Console, click **Extend > Integration Tools > Web Service Connections (BETA)** to open the **Web Service Connection Manager (BETA)** workspace.
+2. Click **New External BO Integration**. The application displays the **Integration Detail** page.
+3. In the **External BO Name** field, select the external business object that you created and optionally add a description in the **Description** field.
+4. Click **Next**. The application displays the **Integration Script** page.
+5. Enter information into the fields.
+
+| Field                        | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| ---------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Service Reference            | The web service to use with the external business object. Select a service reference from the drop-down list, or click **Add new\...** to add a new service reference. See :Link[Adding an Incoming Service Reference]{label="Adding an Incoming Service Reference" overridedLabel="Adding an Incoming Service Reference" spaceId docId="FdCBQbHhR6rvSknbFTcBX" version="v2" docAnchorId="#Adding2" loadingMethod="dynamic" newTab="false" href="Using-Web-Services.mdx"}.                                                                                        |
+| Web Service List             | The available web services from the service reference URL. Choose a web service from the drop-down list. This provides the mechanism for communicating with the external application.                                                                                                                                                                                                                                                                                                                                                                             |
+| Method List                  | The available methods from the selected web service list. Choose a method from the drop-down list. This is displayed to help you create the script.                                                                                                                                                                                                                                                                                                                                                                                                               |
+| Method Input                 | The input parameters for the method. The information displayed here is based on the method that you select.<br /><br />This information is displayed to help you create the script; however, this information is not the actual script. The actual script to be used is displayed in the **Scripts** field.                                                                                                                                                                                                                                                       |
+| Method Output & Return Value | The output and return values for the method. The information displayed here is based on the method that you select.<br /><br />This information is displayed to help you create the script; however, this information is not the actual script. The actual script to be used is displayed in the **Scripts** field.                                                                                                                                                                                                                                               |
+| Script Snippet               | An application-generated script snippet. The information displayed here is based on the method that you select. See :Link[Sample Script]{label="Sample Script" overridedLabel="Sample Script" spaceId docId="FdCBQbHhR6rvSknbFTcBX" version="v2" docAnchorId="#Sample" loadingMethod="dynamic" newTab="false" href="Using-Web-Services.mdx"} for a sample script.<br /><br />This information is displayed to help you create the script; however, this information is not the actual script. The actual script to be used is displayed in the **Scripts** field. |
+| Scripts                      | The script that is executed to feed the external data into \{\{FRS\_VARS.ProductName}}. The script uses Java script and does not support browser-based elements.<br /><br />Copy and paste it from the script snippet or click **Append** to populate this field. See :Link[Sample Script]{label="Sample Script" overridedLabel="Sample Script" spaceId docId="FdCBQbHhR6rvSknbFTcBX" version="v2" docAnchorId="#Sample" loadingMethod="dynamic" newTab="false" href="Using-Web-Services.mdx"} for a sample script.                                               |
+
+6. Click **Next**. The application displays the **Schedule Setting** page.
+
+<Paragraph indent="1">
+  For information about using the **Schedule** page, see :Link[Setting the Data Import or Web Service Connection Schedule]{label="Setting the Data Import or Web Service Connection Schedule" overridedLabel="Setting the Data Import or Web Service Connection Schedule" spaceId docId="z2z90_aQskfSDzXRA7Lii" version="v2" docAnchorId="#Setting2" loadingMethod="dynamic" newTab="false" githubPath="Data-Import-Connections.htm#Setting2" href="Data-Import-Connections.mdx"}.
+</Paragraph>
+
+7. Click **Next**. The application displays the **Review and Publish** page.
+
+<Paragraph indent="1">
+  For information about using the **Review and Publish** page, see :Link[Reviewing and Publishing Import or Web Service Connection Data]{label="Reviewing and Publishing Import or Web Service Connection Data" overridedLabel="Reviewing and Publishing Import or Web Service Connection Data" spaceId docId="z2z90_aQskfSDzXRA7Lii" version="v2" docAnchorId="#Reviewin" loadingMethod="dynamic" newTab="false" githubPath="Data-Import-Connections.htm#Reviewin" href="Data-Import-Connections.mdx"}.
+</Paragraph>
+
+### Adding an Outgoing Service Reference
+
+You can have one or more service references for each integration. You can create new service references either from the main **Web Service Connections (BETA)** page or from the **Integration Script** page.
+
+1. From the Configuration Console, click **Extend** > **Integration Tools** > **Web Service Connections (BETA)** to open the **Web Service Connection Manager (BETA)** workspace.
+2. Highlight an integration.
+3. Click **New Service Reference**. The application displays the **Create Service Reference** dialog box.
+4. Enter information into the fields.
+
+| Field                                       | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| ------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| External BO Name or Integration Name        | Automatically populated. Contains the name of the business object that the service reference is associated with, or the name of the integration.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| Service Reference                           | The name of the service reference. Either enter a name or select a service reference from the drop-down list (populated from the entries in the **WSDL and Script Repository** workspace).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| Service Address (URL) or WSDL Description   | The service address URL. The URL must be in the following format: https\:// *HEAT\_SM\_server*:*Port*/InboundWebservice/*Tenant\_URL*/*Web\_service\_page*.asmx. An example is https\://heatdev.solys.local/InboundWebservice/HEATDEV/ServiceTest.asmx.<br /><br />If you are configuring the DSM integration, we highly recommend that you use the **DSM Integration** workspace instead of this workspace. See [Configuring the New DSM Integration](../../ServiceDesk/DSM/Configuring-the-New-DSM-Integration.mdx) for information.                                                                                                                                                                                                       |
+| Use global constants for login and password | Specifies if the login and password information are global constants. If you check this option, you must create the login and password global constants before you can use them. See :Link[Using Global Constants to Hide Login ID and Password Information]{label="Using Global Constants to Hide Login ID and Password Information" overridedLabel="Using Global Constants to Hide Login ID and Password Information" spaceId docId="hdqjMZ0xNIIUp-39YljO9" version="v2" docAnchorId="#Using_the_Login_ID_and_Password_Global_Constants" loadingMethod="dynamic" newTab="false" githubPath="../Constants/Defining_Global_Constant.htm#Using_the_Login_ID_and_Password_Global_Constants" href="../Constants/Defining_Global_Constant.mdx"}. |
+| Login                                       | The login ID used to log in to the service reference. Either enter a value (if you did not check **Use global constants for login and password**) or select a value from the drop-down list (if you checked **Use global constants for login and password**).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Password                                    | The password used to log in to the service reference. Either enter a value (if you did not check **Use global constants for login and password**) or select a value from the drop-down list (if you checked **Use global constants for login and password**).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+
+5. Click **Save**.
+
+### Troubleshooting Time Out Issues
+
+<hint type="info">
+  The following troubleshooting tip is for on-premise customers only and does not apply to Cloud customers.
+</hint>
+
+Starting in \{\{FRS\_VARS.ProductName}} Release 2016.2, if your application times out while working with web services, you can change the settings in the app.config file located at ...\Program Files\HEAT Software\HEAT\IntegrationServer\IntegrationServiceHost. Open the file with a text editor and update the following settings, which are both measured in seconds: 
+
+\<appSettings>
+
+\<add key="ScriptActionHostSendTimeoutSeconds" value="180" />
+
+\<add key="ScriptActionHostReceiveTimeoutSeconds" value="300" />
+
+\</appSettings>

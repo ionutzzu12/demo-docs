@@ -1,0 +1,25 @@
+---
+title: Change State Transitions Reference
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:48 GMT+0300 (Eastern European Summer Time)
+---
+
+Administrators can create additional statuses to meet the business needs of your organization.
+
+| From State       | To State         | When ...                                                                                                                                                                                     |
+| ---------------- | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ---              | Logged           | The change is created.                                                                                                                                                                       |
+| Logged           | Requested        | The change requester requests change by updating the status to requested (or done by quick action).                                                                                          |
+| Logged           | Canceled         | The change requester cancels the change by updating the status to canceled (or done by quick action).                                                                                        |
+| Proposed         |                  | Use when the change require financial approval. Attach business cases and scope of change documents when in this state.                                                                      |
+| Requested        | Pending Approval | The \{\{FRS\_VARS.Neurons\_ITSM\_-\_Change\_Manager}} reviews the change and updates the status to pending approval, which triggers the change approval workflow (for certain change types). |
+| Requested        | Denied           | The \{\{FRS\_VARS.Neurons\_ITSM\_-\_Change\_Manager}} reviews the change and updates the status to denied.                                                                                   |
+| Requested        | Canceled         | The \{\{FRS\_VARS.Neurons\_ITSM\_-\_Change\_Manager}} cancels the change request.<br />(The change cannot be canceled by the requester after it is requested.)                               |
+| Pending Approval | Denied           | The change is denied by the approvers (depends on the **Get Approval** block for the approval, if all approvers must approve for a change to be approved).                                   |
+| Pending Approval | Canceled         | The \{\{FRS\_VARS.Neurons\_ITSM\_-\_Change\_Manager}} cancels the change.<br />(The change cannot be canceled by the requester after it is requested.)                                       |
+| Pending Approval | Scheduled        | The change is approved.                                                                                                                                                                      |
+| Pending Approval | Deferred         | The \{\{FRS\_VARS.Neurons\_ITSM\_-\_Change\_Manager}} defers the change.                                                                                                                     |
+| Scheduled        | Implemented      | The change is implemented (all tasks completed).                                                                                                                                             |
+| Scheduled        | Canceled         | The \{\{FRS\_VARS.Neurons\_ITSM\_-\_Change\_Manager}} cancels the change.<br />(Change cannot be canceled by the requester after it is requested.)                                           |
+| Implemented      | Closed           | The change is closed. Post-implementation review is conducted.                                                                                                                               |
+| Deferred         | Requested        | The change requester requests a previously requested change that is in deferred state.                                                                                                       |

@@ -1,0 +1,122 @@
+---
+title: Mapping Configuration Items to DSM-Managed Computers
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:49 GMT+0300 (Eastern European Summer Time)
+---
+
+Before you begin this process, ensure that DSM, the \{\{FRS\_VARS.ProductName}} inventory management application, or another Discovery product is able to export configuration items for managed computers to \{\{FRS\_VARS.ProductName}} so that the configuration items are available in \{\{FRS\_VARS.ProductName}} prior to starting this procedure. If this is not the case, you must manually create a configuration item for each HEAT DSM-managed computer before performing the following procedures.
+
+<hint type="info">
+  We recommend that all new computers enable network boot prior to provisioning.
+</hint>
+
+When configuration items are first created or discovered in \{\{FRS\_VARS.ProductName}}, they do not contain DSM ID or DSM platform information. These fields are auto-filled during the mapping procedures described in this section; you cannot enter or edit information in these fields manually.
+
+After these fields are populated, their information is used as follows:
+
+- To provision a computer from \{\{FRS\_VARS.ProductName}}, the **DSM ID** field must be populated.
+- To install software packages on the computer from \{\{FRS\_VARS.ProductName}}, the **DSM ID** and **DSM Platform** fields must be populated.
+
+### Manually Creating a Configuration Item Computer Record and Mapping to DSM
+
+<hint type="info">
+  Before you perform this procedure, the new computer must be identified in DSM by a DSM administrator. We recommend that the new computer have network boot enabled, or press F12 during the boot sequence.
+</hint>
+
+1. Log in to the application as a \{\{FRS\_VARS.Neurons\_ITSM\_-\_Discovery\_Manager}}.
+2. Open the **CI** workspace.
+3. Click **New** and select the appropriat&#x65;**&#x20;New&#x20;*****CI Type***, such as workstation or server.
+4. Enter information into the fields.
+
+| Field       | Description                                                                                                                                                                                                                                           |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Name        | The name of the computer to which you are mapping. The name you provide must be the NetBIOS name of the computer (for example, (http\://xyz.abc.com/kb/1234). The name can have a maximum of 15 characters and cannot contain any special characters. |
+| Domain      | The domain name of the computer to which you are mapping.                                                                                                                                                                                             |
+| MAC Address | The MAC address of the computer. The MAC address must contain 12 characters and no dashes (for example, 0286BCF423F0).                                                                                                                                |
+| Owner       | An owner for this computer.                                                                                                                                                                                                                           |
+
+5. Manually map the configuration item to computer as follows:
+
+<Paragraph indent="1">
+  a. Log into the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Console}} console.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Open the **DSM On-Demand Sync Request - Legacy** workspace.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. Click **New DSM Sync Request**.
+</Paragraph>
+
+<Paragraph indent="1">
+  d. In the **Sync Request Type** field, select **Identify Computers**.
+</Paragraph>
+
+<Paragraph indent="1">
+  e. Click **Save**.
+</Paragraph>
+
+<Paragraph indent="1">
+  After the sync is successful, the application populates the **DSM ID** and **DSM Platform** fields in the configuration item record based on the MAC address that you specified.
+</Paragraph>
+
+<hint type="info">
+  Instead of performing the configuration item-to-computer mapping manually, you can wait until the mapping is executed on a recurring basis when the **DSM Computer Sync** workflow runs. To view or set up a mapping schedule, see :Link[About Scheduled Synchronization]{label="About Scheduled Synchronization" overridedLabel="About Scheduled Synchronization" spaceId docId="UptjATS8q-bxPXaH7-2VR" version="v2" docAnchorId="#ScheduledSynchronization" loadingMethod="dynamic" newTab="false" githubPath="Synchronizing-Software-Packages-and-Sets.htm#ScheduledSynchronization" href="Synchronizing-Software-Packages-and-Sets.mdx"}.
+</hint>
+
+### Mapping a Discovered Computer to DSM
+
+1. Install the gateway on the client computer, if this has not been done before.
+2. Log into the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Console}} console.
+3. Open the **Gateway** workspace, and then open the record.
+4. Click **Scan Active Directory**.
+5. At the prompt, click **Yes**. The application starts the scanning process. The application lists the unmanaged computers when the scan is complete.
+6. Click the task link to open the **Agent Tasks** tab from where you can view the progress of the scan.
+
+<Paragraph indent="1">
+  The scan is displayed as an agent task, with a status (pending or complete). When the Active Directory scan has finished, all the unmanaged computers are listed.
+</Paragraph>
+
+7. Click the **Configuration Item** tab, then select the devices to which to deploy the agent, and click **Deploy Agent**.
+8. Click **Yes** to confirm that you want to deploy to the selected computers.
+9. Click **Audit Inventory**.
+10. Click **Yes** to confirm that you want to proceed.
+
+<Paragraph indent="1">
+  The application creates an audit task. It can take a while for the agent to receive the task and act on it (up to 30 minutes with the default settings), and then a while longer for the resulting data to be processed into the CMDB. When the audit has finished, any changes since the last audit are recorded. If there are no changes since the last inventory, no additional information is recorded.
+</Paragraph>
+
+<Paragraph indent="1">
+  You can continue to work while the audit is being processed.
+</Paragraph>
+
+<hint type="info">
+  You must install the DSM client agent on all the computers to manage via DSM. Refer to the DSM documentation for more information.
+</hint>
+
+11. Map the configuration item to the computer as follows:
+
+<Paragraph indent="1">
+  a. Log into the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Console}} console.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Open the **DSM On-Demand Sync Request - Legacy** workspace.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. Click **New DSM Sync Request**.
+</Paragraph>
+
+<Paragraph indent="1">
+  d. In the **Sync Request Type** field, select **Identify Computers**.
+</Paragraph>
+
+<Paragraph indent="1">
+  e. Click **Save**.
+</Paragraph>
+
+<Paragraph indent="1">
+  After the sync is successful, the application populates the **DSM ID** and **DSM Platform** fields in the configuration item record.
+</Paragraph>

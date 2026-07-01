@@ -1,0 +1,25 @@
+---
+title: Null Check for Picklist to Prevent DB Timeout
+slug: null-check-for-picklist-to-prevent-db-timeout
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:03 GMT+0300 (Eastern European Summer Time)
+---
+
+A common cause of database timeouts is the creation of records like **Incidents**, **Service Requests**, **Changes**, or **Tasks**, where the **Display Name** (Owner) is limited by the **Field Name** (OwnerTeam) in the system.
+
+This issue arises when the **Picklist: DisplayName of Employee with LoginID value** by **Team** is used. If the Team value is missing or null, the system may experience delays, resulting in a timeout during the record creation process.
+
+To fix this issue, the **Picklist** configuration must be updated to include a null check for the **Field Name** (OwnerTeam). This ensures that the system handles missing or empty values, preventing performance issues and avoiding database timeouts when the query is executed.
+
+The updated configuration should align with the Out-of-the-Box (OOTB) setup, which already incorporates this null check to prevent timeouts.
+
+Steps to update the **Picklist** configuration:
+
+1. Open **Configuration Console** and select **Picklists**.
+2. Locate the **Picklist** titled **DisplayName of Employee with LoginID value by Team** and **Click** to edit.
+3. Add the following constraint to check for null values in the **OwnerTeam** field:
+   - \[StandardUserTeam#.Rev2]Team = $(NVL(\[ValidationList]OwnerTeam, "Empty"))
+4. Save the **Picklist**.
+   *Null check for Picklist*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/A-VOrAoWt2BJPN09jd2uS_a64e3e90-a611-420d-855b-b86e0dd29fb6.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/a64e3e90-a611-420d-855b-b86e0dd29fb6.png" githubPath="Content/Resources/Images/a64e3e90-a611-420d-855b-b86e0dd29fb6.png" showCaption="false"></Image>

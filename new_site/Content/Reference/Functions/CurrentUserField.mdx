@@ -1,0 +1,64 @@
+---
+title: CurrentUserField
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:58 GMT+0300 (Eastern European Summer Time)
+---
+
+Returns the value for the specified field for the current session.
+
+This function always reads raw field values from the current user database record. Therefore, the current user field returned by this function is not initialized or calculated when the field is accessed, even if it has an initialization or calculation rule assigned.
+
+## Syntax
+
+CurrentUserField(field)
+
+## Enabled For
+
+For a description of the business object categories, see :Link[Notes on "Enabled For"]{label="Notes on &#x22;Enabled For&#x22;" overridedLabel="Notes on &#x22;Enabled For&#x22;" spaceId docId="xObv2pIDrk60jkEIWs8mD" version="v2" docAnchorId="#Notes" loadingMethod="dynamic" newTab="false" githubPath="_Built_in_Functions.htm#Notes" href="_Built_in_Functions.mdx"}.
+
+| Business Object Category                                                                    | Yes/No |
+| ------------------------------------------------------------------------------------------- | ------ |
+| Business Rules: Before-Save Rules                                                           | Yes1   |
+| Business Rules: Calculation Rules (After Save, with or without Also Recalculate on Load)    | Yes1   |
+| Business Rules: Calculation Rules (Before Save or Always, without Also Recalculate On Load) | Yes1   |
+| Business Rules: Calculation Rules (Before Save or Always, with Recalculate On Load)         | Yes1   |
+| Business Rules: Editing Rules                                                               | Yes1   |
+| Business Rules: Initialization Rules                                                        | Yes1   |
+| Business Rules: Read Only Rules                                                             | Yes1   |
+| Business Rules: Required Rules                                                              | Yes1   |
+| Business Rules: Validation Rules                                                            | Yes1   |
+| Client Expressions                                                                          | Yes    |
+| Object Permissions                                                                          | Yes    |
+| Services                                                                                    | Yes    |
+| LDAP                                                                                        | Yes    |
+| Mobile                                                                                      | Yes    |
+| Quick Actions (except UI Quick Actions)                                                     | Yes1   |
+| UI Quick Actions                                                                            | No     |
+| Reports                                                                                     | No     |
+| Search/Dashboard without field references                                                   | Yes1   |
+| Search/Dashboard with field references                                                      | Yes1   |
+| 1. Except in services.                                                                      |        |
+
+## Parameter
+
+| Parameter | Description                                                 |
+| --------- | ----------------------------------------------------------- |
+| field     | The name of the field that contains the information to see. |
+
+## Returns
+
+<Paragraph indent="1">
+  Text value. Returns the value of the field.
+</Paragraph>
+
+## Example
+
+<Paragraph indent="1">
+  Any field on the **Employee** business object can be accessed by passing this expression.
+</Paragraph>
+
+$(CurrentUserField("CostCentre"))
+
+*CurrentUserField() Example*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/w8Fx2OUSslDRUHVlz3s-g_currentuserfield.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/currentUserField.png" githubPath="Content/Resources/Images/help-images/currentUserField.png" showCaption="false"></Image>

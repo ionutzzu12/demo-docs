@@ -1,0 +1,34 @@
+---
+title: Adding a warning for opened records
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:55 GMT+0300 (Eastern European Summer Time)
+---
+
+The system displays a warning message at the top of the screen when you open the record, indicating that another user is viewing or editing the same record. You can use this feature for any business object.
+
+**Enabling warning messages:**
+
+1. Enable the global constant:
+   1. Log in to \{\{Primary.Product}} with the Administrator user role.
+   2. Select **Configure Application** to go to the Configuration console.
+   3. Select **Build > Global Constants** to open the Global Constants window.
+   4. Set th&#x65;**&#x20;EnableRecordLocking** value to True to turn on the warning message.
+   5. Set the **RecordLockingTimeOutValue** value. For example, 30 (minutes).
+   6. Select **Save**.
+2. Enable RecordLocking checkbox for a business object:
+   1. From the Configuration Console, select **Build > Business Objects > Incident** to open the **Incident** Business Object window.
+   2. Select th&#x65;**&#x20;Details** tab.
+   3. Under the **Special Purpose Fields** section, select **Enable RecordLocking**.
+      1. Select **Save**.
+3. Enable the permissions to use Record Locking for a role:
+   1. From the Configuration Console, select **Configure > Users and Permissions > Roles and Permissions** to open the **Roles and Permissions** workspace.
+   2. Select **Delete&#x20;**&#x70;ermission for **ivnt\_RecordLocking** business object. For more information about object permissions, refer to [Setting up Roles](../Roles/Setting-up-Roles.mdx).
+   3. Select **Save**.
+4. Refresh the browser for the feature to take effect
+
+<hint type="info">
+
+</hint>
+
+- Record locking and additional configurations are planned for later releases.
+- **On-premise customers:** This feature uses the Redis server if available in the \{\{FRS\_VARS.ProductName}} infrastructure. If Redis server is not available, record locking will use the existing \{\{Primary.Product}} database.

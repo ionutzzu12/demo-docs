@@ -1,0 +1,39 @@
+---
+title: Using the Metadata Index
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:55 GMT+0300 (Eastern European Summer Time)
+---
+
+## About the Metadata Index
+
+The metadata index links referable items (called definition points) in the metadata with where they are referenced (called reference points). The index allows the application to validate metadata modifications without having to search for reference points, which improves performance when saving metadata changes.
+
+## Using the Metadata Index
+
+The metadata index table is populated initially. The application automatically maintains the metadata index whenever changes are made to the metadata through the Configuration console.
+
+In exceptional circumstances, if you believe the metadata index is not up-to-date, you can rebuild it by following these steps:
+
+1. To access the metadata index, do one of the following:
+   - In \{\{FRS\_VARS.ProductName}} application, select **More...** to open the workspace selector. The application displays the list of available workspaces. In the **Search Objects** field, enter **Metadata Validation Config**.
+   - From the Configuration Console, select **Build > Automation Tools > Metadata Validation Config**.
+
+<Paragraph indent="1">
+  The application displays the **Metadata Validation Config** workspace.
+</Paragraph>
+
+2. Select **Rebuild Metadata Index**. The application displays an informational message stating that the application rebuilds the metadata index in the background and can take several minutes to complete.
+3. Select **Yes** to continue. The application logs informational messages and errors.
+4. To review the status, do the following:
+
+<Paragraph indent="1">
+  a. Log in to \{\{FRS\_VARS.ProductName}}.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Open the **Logs** workspace.
+</Paragraph>
+
+<Paragraph indent="1">
+  If there was an error, the application displays an error-level log entry. If there are no problems, the application displays an information-level log entry.
+</Paragraph>

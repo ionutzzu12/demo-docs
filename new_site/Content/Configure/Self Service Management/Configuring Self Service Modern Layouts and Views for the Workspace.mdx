@@ -1,0 +1,271 @@
+---
+title: Configuring Self Service Modern Layouts and Views for the Workspace
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:50 GMT+0300 (Eastern European Summer Time)
+---
+
+**Role**: Administrator
+
+**Minimum Version**: Ivanti \{\{FRS\_VARS.ProductName}} 2026.2.
+
+**Status**: Beta in ITSM 2026.2.
+
+In Self Service UI V3, modern layouts provide a structured, grid and gallery based design that improves usability while safeguarding existing workflows. These layouts replace legacy views with **Grid** and **Gallery** views. Self Service modern layouts currently support only the Knowledge and Announcements workspaces. For information about other modern layouts see [Configure and Assign Views and Layouts Using the Modern Page Designer.](<../../Working with the Analyst/Configure and Assign Views and Layouts Using the Modern Page Designer.mdx>)
+
+## Enable the Modern layout
+
+1. Log in to \{\{FRS\_VARS.ProductName}} as Administrator.
+2. From the Configuration console , go to **Build** > **Global Constant**.
+3. Set **EnableNova** to **True**.
+
+## Prerequisites
+
+Before configuring modern layouts, ensure the following:
+
+- Ensure Self Service UI V3 is enabled. For more information, see [Getting Started with Self-Service Management Portal V3.](<Getting Started with Self-Service Management Portal V3.mdx>)
+- Ensure that the **EnableNova** global constant is set to **True**.
+
+<ExpandableHeading>
+  ## Creating a Layout
+
+  1. In \{\{FRS\_VARS.Configuration\_console}}, go to **Build** > **Business Objects.**
+  2. In **Find** text field, enter a workspace name and then open the workspace (for example, Announcement).
+  3. In the workspace, select **Layouts** tab and click **Add New Layout**.
+
+  A pop up window appears.
+
+  4. In the window, select **Try Modern Designer**.
+
+  <Paragraph indent="1">
+    The **Modern Designer** window opens in a new tab.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    An onboarding dialog appears, you can select **Skip** or walk through the tour or select **Do not show again** checkbox to hide it in future sessions.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    By default, the **Announcement** workspace is selected in the top dropdown.
+  </Paragraph>
+
+  5. To enable the Self Service modern layout feature, add the experimental flag exp=4 to the end of the URL’s query string.
+
+  <Paragraph indent="1">
+    Example – \[tenant url]/admin-ui/layout-designer?bo=Announcement%23exp=4
+  </Paragraph>
+
+  6. In the Modern Designer window, select **Add New Layout**.
+
+  <Paragraph indent="1">
+    The **Create Layout** window is displayed.
+  </Paragraph>
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/wE211u16DKCgZECm6LGg8_create-modern-layout.png" position="flex-start" size="40" indent="2" initialPath="../../Resources/Images/SelfServiceMgmt-images/create-modern-layout.png" githubPath="Content/Resources/Images/SelfServiceMgmt-images/create-modern-layout.png" showCaption="false"></Image>
+
+  7. Select **Self Service** checkbox to enable layout creation for Self Service UI.
+  8. Enter a name, select the required options in **Search configuration** section, and hover over the information icon to review option details.
+  9. Select **Save**.
+
+  <Paragraph indent="1">
+    A confirmation message indicates that the layout is created.
+  </Paragraph>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Creating a View
+
+  1. In the main window, select **Add New View**.
+  2. In the **Create new view** window, choose one of the following types:
+     - **Data grid** – Displays records in a grid format
+     - **Gallery view** – Displays records in a gallery format
+  3. Configure the selected view type:
+     - For a grid view, see :Link[Configuring Grid Views]{label="Configuring Grid Views" overridedLabel="Configuring Grid Views" spaceId docId="-ePBsJkTmk99XnItlfjIN" version="v2" docAnchorId="#Configure_Grid_Views" loadingMethod="dynamic" newTab="false" href="Configuring Self Service Modern Layouts and Views for the Workspace.mdx"}
+     - For a gallery view, see :Link[Configuring Gallery Views]{label="Configuring Gallery Views" overridedLabel="Configuring Gallery Views" spaceId docId="-ePBsJkTmk99XnItlfjIN" version="v2" docAnchorId="#Configure_Gallery_Views" loadingMethod="dynamic" newTab="false" href="Configuring Self Service Modern Layouts and Views for the Workspace.mdx"}
+
+  <Paragraph indent="1">
+    After you configure the required grid or gallery view, continue to step 4.
+  </Paragraph>
+
+  4. Select **Preview** to review your changes.
+
+  <hint type="info" indent="1">
+    Ensure the view is set to Gallery or Grid before saving and publishing the changes in Manage Views.
+  </hint>
+
+  5. Select **Save and Publish** to apply the configuration.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Configuring Grid Views
+
+  1. In the **Select view type** tab, select **data grid** from **View type** dropdown.
+  2. Enter a name for grid view and click **Save**.
+
+  The **Properties** tab is enabled.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/5LHTOXfWhgmy2VRtNwTZ-_create-grid-view.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/SelfServiceMgmt-images/create-grid-view.png" githubPath="Content/Resources/Images/SelfServiceMgmt-images/create-grid-view.png" showCaption="false"></Image>
+
+  3. Enter a display name and select style in dropdown, choose one:
+     - Default – Uses default text styles
+     - Highlighter style – Select a predefined style
+     - Expression editor – Define custom formatting
+  4. Configure page options for workspace, dashboard, dialog, and search.
+  5. Select additional options as required and select **Save**.
+
+  <Paragraph indent="1">
+    The data grid view is created.
+  </Paragraph>
+
+  6. In the workspace section (for example, Announcement), select the created grid view and then select **configure data grid**.
+
+  <Paragraph indent="1">
+    The **available fields** are displayed.
+  </Paragraph>
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/MevH1rXqlXMz6xuLfyW2v_grid-view-customize.png" position="flex-start" size="40" indent="2" initialPath="../../Resources/Images/SelfServiceMgmt-images/grid-view-customize.png" githubPath="Content/Resources/Images/SelfServiceMgmt-images/grid-view-customize.png" showCaption="false"></Image>
+
+  7. To add a field, select a field from **Available Fields** column and select **Add Selected**.
+  8. To reorder columns, drag and drop the columns, and then click **Reorder columns**.
+  9. In the configure section, modify the field details such as title, column width, Renderer style, or add an image and other modification, toggle on the required options.
+
+  <Paragraph indent="1">
+    In the Self Service modern layout, the following options are supported for Renderer dropdown:
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    **Bulleted inline list** for text fields
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    **Star rating** for number fields.
+  </Paragraph>
+
+  10. To remove the column, select the required column and click **Remove column**.
+  11. To preview your changes, select **Preview** in the main window.
+  12. To save and apply all customized options, select **Save and Publish**.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Configuring Gallery Views
+
+  1. In the **Select view type** tab, select **gallery view** from **View type** dropdown.
+  2. Enter a name for gallery view and click **Save**.
+
+  <Paragraph indent="1">
+    The **Properties** tab is enabled.
+  </Paragraph>
+
+  3. Enter a name and appropriate description then select the required options and click **Save**.
+  4. In the **Announcement** section, select **configure the gallery view** and select required options to customize.
+
+  <Paragraph indent="1">
+    The **Available fields** are displayed.
+  </Paragraph>
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/YIbUiFHNs-t-N9D38AURy_customize-gallery-view.png" position="flex-start" size="40" indent="2" initialPath="../../Resources/Images/SelfServiceMgmt-images/customize-gallery-view.png" githubPath="Content/Resources/Images/SelfServiceMgmt-images/customize-gallery-view.png" showCaption="false"></Image>
+
+  5. To add fields, drag and drop the required fields from available fields column into the **Selected Fields** area.
+  6. Select the Edit icon next to a field to modify its title, style, renderer type, or to add images or hyperlinks, toggle on the required options.
+
+  <Paragraph indent="1">
+    In the Self Service modern layout, the following options are supported for renderer dropdown:
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    **Bulleted inline** list for text fields
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    **Star rating** for number fields.
+  </Paragraph>
+
+  7. To remove a field, select it and click **Remove column**.
+  8. Select **Preview** to review the layout.
+  9. Select **Save and Publish** to apply the changes.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Customizing the Toolbar for Layouts and Views
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/GUj8LE50nS6B5fpdyu7cs_tab-title-window.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/SelfServiceMgmt-images/tab-title-window.png" githubPath="Content/Resources/Images/SelfServiceMgmt-images/tab-title-window.png" showCaption="false"></Image>
+
+  In the **Tab Title** section, you can design and edit the toolbar after creating layouts and views.
+
+  <hint type="info">
+    Under the **Tab title** section, the **Select a saved filter** and **Filter By** dropdown options are not editable.
+  </hint>
+
+  To customize layouts and views:
+
+  1. Select **Show Control Borders** to display editable regions.
+  2. Select **menu**.
+
+  <Paragraph indent="1">
+    The **Configure** section is enabled.
+  </Paragraph>
+
+  3. Select **Edit toolbar** to view and modify the tool list.
+
+  <hint type="info">
+    Only the **refresh** action can be added to the left or right section of the toolbar.
+  </hint>
+
+  4. Select the **Edit** icon next to a tool to modify its name or options, then select **Ok**.
+  5. To preview your changes, select **Preview** in the main window.
+  6. To save and apply all customized options, select **Save and Publish**.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Assigning layouts and views
+
+  1. In the **Announcement** section, from the layout dropdown, select the created layout.
+  2. In the **Views** dropdown, select ellipsis icon adjacent to views field and then select **Manage** views.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/hR98R85gza1hjxTdWX9Y6_manage-views.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/SelfServiceMgmt-images/manage-views.png" githubPath="Content/Resources/Images/SelfServiceMgmt-images/manage-views.png" showCaption="false"></Image>
+
+  3. To select the views to display, toggle on the status column for any of the view and select the created layout from dropdown.
+  4. To set the required view as initial view, select the required checkbox in the initial view column.
+  5. In the main window, select **Preview** to review, then select **Save and publish** to save.
+
+  <hint type="info">
+    Ensure that a default view is set for the selected initial view so that the Announcement workspace detail view renders correctly in the Self Service UI.
+  </hint>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Enabling modern layout in the workspace
+
+  1. In the Configuration console, go to **Configure** > **Users and Permissions** > **Roles and Permissions**.
+  2. Select **SelfService Mobile**.
+  3. In the window, select **Top level tabs** and select **Announcement** workspace.
+  4. Select the created layout from the layout dropdown.
+  5. Select **Save**.
+
+  <Paragraph indent="1">
+    The system applies the selected layout and views to Self Service UI V3.
+  </Paragraph>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Setting a default or fallback view
+
+  To view the Detail section for the Announcement workspace in the Self Service UI, ensure that a default view is set for all the customized views, or at minimum, for the view selected as the initial view.
+
+  1. In the **Announcement** section, select **configure the gallery view** or **configure the grid view**.
+  2. Click ellipsis icon and select **Edit**.
+
+  <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/kO0ueMKQDQlwVj5AYIj9N_default-view.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/SelfServiceMgmt-images/default-view.png" githubPath="Content/Resources/Images/SelfServiceMgmt-images/default-view.png" showCaption="false"></Image>
+
+  3. Select the **Use form view from existing layout** checkbox.
+  4. In the **Select another layout** dropdown list, select the layout that was previously set or customized layout, other than modern layout.
+  5. Select **Form View** for **On request Create new object** and **On request to Edit existing object** dropdown.
+  6. Select **Save** to apply the changes.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Limitations of Self Service Modern Layout
+
+  - The Knowledge detail view does not support fallback.
+  - The Announcement detail view supports fallback only when configured for the initial view. To display the Detail section in the Self Service UI, ensure that a default view is defined, at minimum, for the initial view.
+  - To view the modern layout in \{\{FRS\_VARS.Self\_Service\_Portal-Self-Service}} UI for a \{\{FRS\_VARS.Self\_Service\_Mobile\_portal}} role, add the experimental flag “exp=4” to the end of the Self Service URL’s query string.
+</ExpandableHeading>

@@ -1,0 +1,25 @@
+---
+title: Working with Single Sign-On authentication
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:57 GMT+0300 (Eastern European Summer Time)
+---
+
+## About Single Sign-On Authentication
+
+The goal of federated single sign-on authentication is to enable users to maintain secure access across a range of external systems and web applications. \{\{FRS\_VARS.ProductName}} supports the use of various protocols that help organizations accomplish this goal. Through the use of Microsoft Active Directory Federation Services (ADFS) and Security Assertion Markup Language (SAML), \{\{FRS\_VARS.ProductName}} customers can use their existing Windows Integrated Security credentials to sign on to their \{\{FRS\_VARS.ProductName}} tenant without having to enter a new password.
+
+Single sign-on authentication was originally designed to handle identity management within a network domain or other closed application, allowing users to log in once to get into their application and carry those credentials through to other systems within their environment. However, with \{\{FRS\_VARS.ProductName}}, single sign-on authentication has become more difficult to manage as users typically access many systems and applications that cross different companies and domains.
+
+Many companies have designed proprietary protocols to meet the challenge of web browser single sign-on, leading to interoperability between providers. There must be trust established between the principal (user), the identity provider (initial authentication source), and the service provider (web application).
+
+Open source security protocols seek to exchange authorization and authentication between security domains, such as an identity provider (that is, the customer domain) and the service provider (that is, \{\{FRS\_VARS.ProductName}}). At the request of the user, credentials are passed to the application. This type of protocol is not concerned with how the user was authenticated initially.
+
+ADFS is a claims-based identity tool, using Active Directory Domain Services to authenticate the user and issue a token that contains identity information. Federation servers located within both security domains exchange tokens without storing any user names or passwords. The user has to only enter their user name and access is granted without direct authentication to the application.
+
+SAML uses an identity provider and a service provider to grant access to an application through a web browser. The identity provider in this case is ADFS running on the domain of the customer.
+
+<hint type="info">
+  To set up \{\{FRS\_VARS.ITSM}} users for authentication via the \{\{FRS\_VARS.Neurons\_platform}}, refer to [Setting up ITSM users for authentication via the Neurons Platform](../../../setting-up-itsm-users-for-authentication-via-the-neurons-platform.mdx) and [Authentication](https://help.ivanti.com/ht/help/en_US/CLOUD/vNow/authentication.htm). This feature is **Early Access** only and may not be available in your environment. For more information, please contact your Customer Success Manager.
+</hint>
+
+[<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Y4WfYOm5SkWQaKIj8jTPB_transparent.gif" size="10" alt="Related Topics Link Icon" isUploading="false" initialPath="../../../Skins/Default/Stylesheets/Images/transparent.gif" githubPath="Skins/Default/Stylesheets/Images/transparent.gif" width="16" height="16" showCaption="false"></Image>Related Topics](javascript\:void\(0\);)

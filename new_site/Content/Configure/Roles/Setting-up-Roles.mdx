@@ -1,0 +1,611 @@
+---
+title: Setting up Roles
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:50 GMT+0300 (Eastern European Summer Time)
+---
+
+**Role**: Administrators.
+
+A role consists of device or function-specific application access to various workspaces, business objects, and fields. When you create users, you assign them to a specific role. These roles are available to the user upon logging in. When a role is selected, it determines the default set of user interfaces (forms, dashboards, and their controls) available to the user.
+
+\{\{FRS\_VARS.ProductName}} contains a default set of roles organized by common user functions, including administrator, Service Desk Analyst, and various manager roles. Access to modules and features (security rights) and access to business objects and fields (business object rights) are based on the user's role. You can customize these roles or create entirely new ones.
+
+For example, a user logging into \{\{FRS\_VARS.ProductName}} as a Change Manager might view a layout of the change form that differs from the change form seen by a technician, in addition to dashboards displaying change request data recorded by the system over the last day and trending information for the week. The role can also be linked to a specific device, letting users log on in a role that views dashboard data for layouts for that machine.
+
+<ExpandableHeading>
+  ## Viewing Roles
+
+  1. To view a list of roles, do one of the following:
+     - From the Configuration Console, click **Configure > Users and Permissions > Roles** to open the **Roles** workspace. The system displays the list of available roles.
+     - Log in to the application and open the **Roles** workspace.
+  2. To view the roles associated with a business object, do the following:
+
+  <Paragraph indent="1">
+    a. From the Configuration Console, click **Build > Business Objects** to open the **Business Objects** workspace.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    b. Open a business object. 
+  </Paragraph>
+
+  <Paragraph indent="1">
+    c. From the toolbar, click **Roles**.
+  </Paragraph>
+
+  3. Double-click a role name to view the list of users assigned to that particular role.
+
+  <Paragraph indent="1">
+    The list of available roles appears with the following information:
+  </Paragraph>
+
+  | Field        | Description                                                                                                                                                                                                  |
+  | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+  | Role Name    | The name of the role as stored within the business object.                                                                                                                                                   |
+  | Display Name | The name of the role as displayed in the \{\{FRS\_VARS.ProductName}} interface and in pick lists.                                                                                                            |
+  | Tabs         | A list of the available tabs (user interfaces) available for display for users assigned to this role. Hover over a table cell to display a complete pop-up list of the tabs assigned to the particular role. |
+  | Users        | Click **Find Users** on any row to open the **Roles** workspace, from where you can view the list of employees who are in that particular role.                                                              |
+  | Action       | Click **Clone** to create another role with the same attributes. You must provide a unique name for the new role.                                                                                            |
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Creating a Role
+
+  You can create roles that appear within the application role lists, such as when defining a quick action. New roles do not appear in the main login drop-down list. Therefore, users must be associated with one of the default roles before they can be linked to a created role.
+
+  1. From the Configuration Console, click **Configure > Users and Permissions > Roles and Permissions**.
+  2. Click **Add new\...**.
+
+  <Paragraph indent="1">
+    The **Role Details** tab is displayed. The following default tabs appear (results may vary depending on your system setup):
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    **Translation Tool**: Refer to [Using the Ivanti Translation Tool](<../Localization/Using the Translation Tool.mdx>).
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    **Role Details**: Continue to the next step.
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    **Top Level Tabs**: Refer to :Link[Defining Top Level Tabs]{label="Defining Top Level Tabs" overridedLabel="Defining Top Level Tabs" spaceId docId="iUGD9ji_VgJkk9DVIGvHo" version="v2" docAnchorId="#DefiningTopLevelTabs" loadingMethod="dynamic" newTab="false" href="Setting-up-Roles.mdx"}
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    **Object Permissions**: Refer to :Link[Assigning Business Object Permissions]{label="Assigning Business Object Permissions" overridedLabel="Assigning Business Object Permissions" spaceId docId="iUGD9ji_VgJkk9DVIGvHo" version="v2" docAnchorId="#roles_1236189643_1266912" loadingMethod="dynamic" newTab="false" href="Setting-up-Roles.mdx"}
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    **System Permissions**: Refer to :Link[Assigning System Permissions]{label="Assigning System Permissions" overridedLabel="Assigning System Permissions" spaceId docId="iUGD9ji_VgJkk9DVIGvHo" version="v2" docAnchorId="#roles_1236189643_1266963" loadingMethod="dynamic" newTab="false" href="Setting-up-Roles.mdx"}
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    **Permissions to Grant Roles**: Refer to :Link[Assigning Permissions to Grant Roles]{label="Assigning Permissions to Grant Roles" overridedLabel="Assigning Permissions to Grant Roles" spaceId docId="iUGD9ji_VgJkk9DVIGvHo" version="v2" docAnchorId="#roles_1236189643_1267018" loadingMethod="dynamic" newTab="false" href="Setting-up-Roles.mdx"}
+  </Paragraph>
+
+  3. Enter **Role** and a **Display Name** for the role. Select the following settings as needed.
+
+  | Option                                                                                                                   | Description                                                                                                                                                        |
+  | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+  | **Show 'Talk with Agent' button (applicable for&#x20;**\{\{FRS\_VARS.Self\_Service\_Portal-Self-Service}}**&#x20;only)** | Displays a **Talk with Agent** button in the header bar of the role interface. This only applies in the \{\{FRS\_VARS.Self\_Service\_Portal-Self-Service}} Portal. |
+  | **Show "Report an Issue" button**                                                                                        | Displays a **Report an Issue** button in the header bar of the role interface.                                                                                     |
+  | **Overwrite default branding options with the options listed below**                                                     | Enables selections within the **Branding Options** section.  <br />  <br />This option is not recommended for admin roles.                                         |
+
+  4. Branding Options, enables automatically when you select the **Overwrite default branding options with the options listed below** option:
+
+  | Option                                                           | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+  | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | **Logout Button**                                                | Shows the **logout**:inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/OdAVL_XlyP2C44BX7PQzL_logout.png" alt caption size="10" width="16" height="16"} button.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+  | **Change Password Button**                                       | Shows the **change password** button.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+  | **Change Role Button**                                           | Shows a down arrow icon that allows you to change roles. The option is enabled for all roles by default. For example, a user can have both Knowledge Manager and \{\{FRS\_VARS.Self\_Service\_Portal-Self-Service}} user roles and switch between the two roles as needed.  <br />  <br />If you do not select **Change Role Button**, you cannot the user to other roles.  <br />                                                                                                                                                                                                                                                                                                          |
+  | **Enable "Chat with support" button**                            | Enables the chat feature buttons in the \{\{FRS\_VARS.Self\_Service\_Portal-Self-Service}} for the role.  <br />Ensure you enable the **Chat with support** and/or the **Chatbot** option checkbox in the **Global Settings** menu in the \{\{FRS\_VARS.Self\_Service\_Portal-Self-Service}} portal to display these buttons. Refer to :Link[Chat Support]{label="Chat Support" overridedLabel="Chat Support" spaceId docId="6Koe9IOtjrLanGmsyFOFZ" version="v2" docAnchorId="#Chat_Support" loadingMethod="dynamic" newTab="false" githubPath="../Self Service Management/Configuring Global Settings.htm#Chat_Support" href="../Self Service Management/Configuring Global Settings.mdx"} |
+  | **New Window Button**                                            | To open a new window                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+  | **Select Workspace Button**                                      | Shows the **Workspace**:inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/4ttpBFlTepMuzrkXoCTSV_addblack.png" alt caption size="10" width="19" height="16"}icon on the left side of the top header bar.                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+  | **Enable Chat as Analyst Button**                                | Allows the role to use the chat feature.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+  | \{\{FRS\_VARS.Self\_Service\_Portal-Self-Service}}**&#x20;Role** | Select this option to assign \{\{FRS\_VARS.Self\_Service\_Portal-Self-Service}} permissions to the role. Users with this role can access ITSM without using a concurrent user license.  <br />Use this option only for roles that are limited to \{\{FRS\_VARS.Self\_Service\_Portal-Self-Service}} functionality.                                                                                                                                                                                                                                                                                                                                                                          |
+
+  <hint type="success" indent="1">
+    While we do not recommend selecting the **Overwrite default branding options with the options listed below** for Admin user. If you decide to overwrite, ensure that the **Logout Button**, **Change Password Button**, and **Change Role Button** are selected.
+  </hint>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Set up a Self Service role
+
+  You can create and configure a custom \{\{FRS\_VARS.Self\_Service\_Portal-Self-Service}} role with required permission, do the following:
+
+  1. From the Configuration Console, click **Configure > Users and Permissions > Roles and Permissions**.
+  2. Click **Add new\...**.
+
+  <Paragraph indent="1">
+    The **Role Details** tab is displayed.
+  </Paragraph>
+
+  3. In the **Role Details** tab, enter a **Role Name** and **Display Name**.
+     - **Show 'Talk with Agent' button (applicable for&#x20;**\{\{FRS\_VARS.Self\_Service\_Portal-Self-Service}}**&#x20;only)** - Displays a **Talk with Agent** button in the \{\{FRS\_VARS.Self\_Service\_Portal-Self-Service}} portal header.
+     - Show **Report an Issue button** - Displays a **Report an Issue** button in the header bar of the role interface.
+  4. In the Branding Options, select the following options as required:
+     - **Logout Button** - Displays the logout button.
+     - **Change Password Button** - Displays the change password button.
+     - **Enable "Chat with support" button** - Displays chat support buttons in the Self-Service portal.
+     - **New Window Button** - Opens links in a new window.
+     - \{\{FRS\_VARS.Self\_Service\_Portal-Self-Service}}**&#x20;Role** - To assign \{\{FRS\_VARS.Self\_Service\_Portal-Self-Service}} permissions.
+  5. Click **Save**.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Changing the Logo for a Role
+
+  You can select a different logo for any role. By default, each role uses the original logo defined for the application.
+
+  1. From the Configuration Console, click **Configure > Users and Permissions > Roles and Permissions** to open the **Roles and Permissions** workspace.
+  2. Click **Add New\...**. The **Role Details** page appears.
+  3. Click **Change Logo**. The file navigation window appears.
+  4. Navigate to a logo and click **Open**. The updated logo appears.
+  5. Click **Save**. Users of that role will see the logo in the top left corner of their window.
+  6. To revert to the original default logo, click **Reset Logo**.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Defining External Links
+
+  You can define external links to be visible at the top of the pages in the Self-Service Portal. For example, you can direct customers to pages to download software updates or to access an external Knowledge Base.
+
+  1. From the Configuration Console, click **Configure > Users and Permissions > Roles and Permissions** to open the **Roles and Permissions** workspace.
+  2. Click **Add New\...**. The **Role Details** page appears.
+  3. Click the **add item** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/JtIxGMfjslfCSitXWBu4o_addgreen.png" alt caption size="10" width="17" height="15"} to add a table row for defining a top link. This icon only appears when you check **Overwrite default branding options with the options listed below**.
+  4. Enter information into the fields.
+
+  | Field                    | Description                                                                                          |
+  | ------------------------ | ---------------------------------------------------------------------------------------------------- |
+  | Title                    | The display name for the link.                                                                       |
+  | URL                      | A valid URL to be used as the link target, such as [https://www.ivanti.com](http://www.ivanti.com/). |
+  | New Window               | Displays the link in a new browser window.                                                           |
+  | Pass Single Sign-on Info | Passes single sign-on information if working within a secured environment.                           |
+
+  5. Click **Save**.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Defining Top Level Tabs
+
+  In \{\{FRS\_VARS.ProductName}}, the top-level tabs contain user interfaces available to the user upon logging in. These user interfaces are also known as workspaces. User interfaces, shown as additional tabs at the top of the Service Desk Console, combine forms for recording information for your company, the dashboards that display the compiled metrics, and their controls.
+
+  For example, an Incident Manager can view a **Home** tab containing several dashboards displaying metrics for incidents according to status and ownership. In addition, the **Incidents** tab contains a list that lists existing incidents, a record display area with details for a selected incident, and a toolbar allowing the Incident Manager to create a new incident, change its status, or take additional actions.
+
+  For more information on editing options in **Top Level Tabs**, refer to [Configuring Workspace Options](../Layouts/Configure_Workspace_Options.mdx).
+
+  1. From the Configuration console, click **Configure > Users and Permissions > Roles and Permissions** to open the **Roles and Permissions** workspace.
+  2. Click **Add New\...**. The system displays the **Role Details** page.
+  3. Click **Top Level Tabs**.
+  4. Click **Add New Tab**. The system displays a list of workspace types.
+  5. Click a workspace type. The system displays the tab preferences page.
+  6. Select options.
+
+  <table isTableHeaderOn="true">
+    <tr>
+      <td>
+        Options
+      </td>
+      <td>
+        Description
+      </td>
+    </tr>
+    <tr>
+      <td>
+        The Tab Is Available
+      </td>
+      <td>
+        Gives this role access to this workspace, but the tab might not be initially visible.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        The Tab Is Initially Visible
+      </td>
+      <td>
+        Gives this role access to this workspace and the tab is initially visible.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        The Tab Can Be Closed By User
+      </td>
+      <td>
+        Gives this role access to this workspace, and the tab contains a **Close** button (X).
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Hidden Expression
+      </td>
+      <td>
+        Specifies if the workspace is hidden. Click **none** to open the **Expression Editor**. Enter an expression such as **$(if Status == "Logged" then true else false)** and click **Save**. When the expression evaluates to **true**, the system hides the workspace.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Search Tags
+      </td>
+      <td>
+        - Specifies one or more tags (commands or navigation shortcuts) that refer to a workspace. These are usually created for workspaces that are not business object workspaces. You can assign multiple search tags to the same workspace by separating them with a comma.
+        - Only used for the following workspaces (and their known search tag):
+          - Dashboard (Home)
+          - Agreements (SLA Agreements)
+          - My Items (MyItems)
+          - Report (report)
+          - \{\{FRS\_VARS.Self\_Service\_Portal-Self-Service}} Search (Search)
+          - Service Catalog (ServiceCatalog)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Show Toolbar
+      </td>
+      <td>
+        Allows this role to see the search toolbar. Only applies to the following workspaces:
+        - Admin dashboard
+        - Configuration Management Aspect Mapping
+        - Dashboard
+        - Report
+        - Report Template
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Calendar
+      </td>
+      <td>
+        - Specifies the calendar to use.
+        - Only applies to the **Calendar** workspace.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Saved Search
+      </td>
+      <td>
+        - Specifies the saved search to use.  Choose from the list of saved searches that correspond to the calendar that you selected above. The saved searches restrict the amount of data that is shown in the calendar.
+        - Only applies to the **Calendar** workspace.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Default View
+      </td>
+      <td>
+        - Specifies the default view. Can be Day, Week, or Month.
+        - Only applies to the **Calendar** workspace.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Enable Issue Templates
+      </td>
+      <td>
+        - Specifies a predefined incident template whenever a user creates a new incident in the **My Items** workspace.
+        - Only applies to the **My Items** workspace.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Object
+      </td>
+      <td>
+        - Specifies the business object to display in the tab.
+        - Only applies to the **Object**, **Process Wizard**, and **Risk Calculator** workspaces.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Layout
+      </td>
+      <td>
+        - Specifies the layout to display in the tab.
+        - Only applies to the **Object** and **Process Wizard** workspaces.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Option to provide feedback
+      </td>
+      <td>
+        Specifies if the workspace displays the fields for leaving feedback for a knowledge article.
+        Only applies to the \{\{FRS\_VARS.Self\_Service\_Portal-Self-Service}}**&#x20;Knowledge** workspace.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Execute action when creating feedback
+      </td>
+      <td>
+        - Specifies the action to execute after a user leaves feedback for a knowledge article. Click **Action Menu** to select an action.
+        - Only applies to the \{\{FRS\_VARS.Self\_Service\_Portal-Self-Service}}**&#x20;Knowledge** workspace.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Search for matches in
+      </td>
+      <td>
+        - Specifies the business object (which must have full-text search configured) for which to search for matches. After selecting a business object, click **Edit Preview (Not Set)** to define the preview and click **Edit Filter** to edit the filter.
+        - Only applies to the \{\{FRS\_VARS.Self\_Service\_Portal-Self-Service}}**&#x20;Search** workspace.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Configure Confirmation dialog
+      </td>
+      <td>
+        - Allows you to configure the text and actions in the confirmation dialog box.
+        - Only applies to the **My Items** and **Service Catalog** workspaces.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Workspace actions
+      </td>
+      <td>
+        - Specifies the user interface actions for the Service Catalog. Click **Edit** to add buttons to the Service Catalog toolbar.
+        - Only applies to the **Service Catalog** workspace.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Navigation Settings
+      </td>
+      <td>
+        - Specifies the default category that is displayed when the Service Catalog is opened. Click **Select Category** to select the category.
+        - Check **Enable predefined category 'All Categories'** to make the "All Categories" predefined category visible.
+        - Check **Enable predefined category 'Most Popular'** to make the "Most Popular" predefined category visible. Select whether to sort by popularity or to sort alphabetically.
+        - Only applies to the **Service Catalog** workspace.
+        - This section is hidden when the **New&#x20;**\{\{FRS\_VARS.Self\_Service\_Portal-Self-Service}}**&#x20;UI** check box is selected for \{\{FRS\_VARS.Self\_Service\_Portal-Self-Service}}**&#x20;Mobile** role.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Disable Chat
+      </td>
+      <td>
+        - Specifies if the **Chat** feature is disabled. (Note that you can disable the **Chat** feature while still keeping the Social Board enabled.)
+        - Only applies to the **Social Board** workspace.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Url
+      </td>
+      <td>
+        - Specifies a URL that can be used as a tab or workspace. Click **Preview** to ensure that the URL can be displayed in \{\{FRS\_VARS.ProductName}}. Refer to [Working With Attachments and URLs](../Attachments/Attachments.mdx) for more information about using URLs.
+        - Only applies to the **Url** workspace.
+      </td>
+    </tr>
+  </table>
+
+  7. Clic&#x6B;**&#x20;Add this Tab**.
+  8. Click **Save**. The system saves the settings.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Assigning Business Object Permissions
+
+  Specify the view for a role view and read-access rights for business objects. Unlike regular business object permissions, the **Object Permissions** workspace allows you to apply data-segregation security constraints. You can specify security rights based on the data and relations within the business object and within the business object of the current user.
+
+  For example, administrators may be able to view and modify data in any record, while members of the support role may not be able to view private information such as a social security number.
+
+  <hint type="info">
+    The application of the data-segregation security organizational unit constraint to a role can affect your saved searches. You may need to modify your search parameters to reflect these constraints.
+  </hint>
+
+  1. From the console, click **Configure > Users and Permissions > Roles and Permissions** to open the **Roles and Permissions** workspace.
+  2. Click **Add new\...**. The system displays the **Role Details** page.
+  3. Click **Object Permissions**.
+  4. Select the business object (for example, **Address**) for which to change permissions. The system displays the list of permission selections.
+  5. Check the permissions for the role for the business object.
+
+  | Permission | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+  | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | Add        | Allows the role to add data to the business object.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+  | View       | Allows the role to view data in the business object.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+  | Edit       | Allows the role to manipulate data in the business object.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+  | Delete     | Allows the role to delete data in the business object.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+  | Lifecycle  | Click **Edit**, then check **Allow Editing** to enable the role user to edit the business object in the final state.  <br />For more specific rights, you can expand a business object in the table and set rights for specific business object components:  <br />Business object fields.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+  | Access     | Click **Edit**, then click the **add a new case...**:inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/b7rloObup94VB9A6PNi5V_add-grey.png" alt caption size="10" width="16" height="16"} icon to define advanced security criteria. For example, you can create a definition to make an incident be view-only when it is closed. The match can be based on literal, validated, or numeric input. You also can specify a match when the field is empty.  <br />  <br />You can match against:  <br />Your own **Employee** business object.  <br />Multiple business objects (one-to-many relations of the **Employee** business objects).  <br />A hierarchy of business objects (relation to a hierarchical business object).  <br />  <br />If one role has both **Update and View** and also **View** permissions for the same business object, the system gives you **Update and View** permission.  <br />  <br /><Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/Y3CfCWbK6CJXD1-NkyHBd_object-permissions.png" alt="Image of the Update and View permission for a role." position="flex-start" size="40" initialPath="../../Resources/Images/help-images/object permissions.png" githubPath="Content/Resources/Images/help-images/object permissions.png" showCaption="false"></Image>  <br />  <br />Enter the criteria, then click **Update**. |
+
+  6. Click **Save**.
+
+  ### Sample Scenarios
+
+  **Use Case 1**
+
+  Let's consider a scenario where, an HR Recruiter user should be able to view HR Cases related only to Recruitment and HR Operations team and not core HR functions.
+
+  1. Log in to \{\{FRS\_VARS.ITSM}} as an \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+  2. Open the Configuration console.
+  3. Select **Configure** > **Users and Permissions** > **Roles and Permissions**.
+  4. Select the \{\{FRS\_VARS.HR\_Recruiter}} role from the list.
+
+  <Paragraph indent="1">
+    The **Role Details** page is displayed.
+  </Paragraph>
+
+  5. Select **Object Permissions**.
+
+  <Paragraph indent="1">
+    Type ivnt\_HRCase in the **Find** bar and select the **ivnt\_HRCase** BO.
+  </Paragraph>
+
+  6. For the **IVNT\_HRCase** record, click **Edit** in the **Access** column.
+
+  <Paragraph indent="1">
+    The **Object Permission ivnt\_HRCase** page is displayed.
+  </Paragraph>
+
+  7. Click the **Add New Case** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/rpBDczF3yN3AFQKOs7Ohm_add-new-case-icon.png" alt caption size="10" width="16" height="16"}.
+  8. Enter the following details in the fields:
+     - **Records where** - **Update and View**.
+     - **ivnt\_HRCase's** - **OwnerTeam**.
+     - set the conditions - **is** and **equal to**.
+     - **fx** - select **HR Operation**s from the dropdown list.
+  9. Repeat steps 7 and 8 to create one more condition. In the **fx** field select **Recruitment**.
+  10. Click **Update**.
+
+  Now, an \{\{FRS\_VARS.HR\_Recruiter}} role can only access cases that are assigned to the Recruitment and HR Operations team.
+
+  **Use Case 2**
+
+  Let's consider another scenario where, a \{\{FRS\_VARS.Self\_Service\_Portal-Self-Service}} user should be able to view service tickets and incidents that are submitted only by them and no other users' service tickets or incidents should be listed in their My Items.
+
+  1. Log in to \{\{FRS\_VARS.ITSM}} as an \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+  2. Open the Configuration console.
+  3. Select **Configure** > **Users and Permissions** > **Roles and Permissions**.
+  4. Select the \{\{FRS\_VARS.Self\_Service\_Portal-Self-Service}} role from the list.
+
+  <Paragraph indent="1">
+    The **Role Details** page is displayed.
+  </Paragraph>
+
+  5. Select **Object Permissions**.
+  6. Type Incident in the **Find** bar and select the **Incident** BO.
+  7. For the **Incident** record, click **Edit** in the **Access** column.
+
+  <Paragraph indent="1">
+    The **Object Permission Incident** page is displayed.
+  </Paragraph>
+
+  8. Click the **Add New Case** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/rpBDczF3yN3AFQKOs7Ohm_add-new-case-icon.png" alt caption size="10" width="16" height="16"}.
+  9. Enter the following details in the fields:
+     - **Records where** - **Update and View**.
+     - **Incident's** - **CreatedBy**.
+     - set the conditions as - **is** and **equal to**.
+     - **fx** - $(CurrentLoginId()). Either type in the expression or click the **fx** button > **Incident** > **Functions** > **Current User Functions** > select **CurrentLoginID**.
+  10. Click **Update**.
+  11. Create another condition for Business Object - **FRS\_MyItem** > click **Edit** in the **Access** column > **Add New Case** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/rpBDczF3yN3AFQKOs7Ohm_add-new-case-icon.png" alt caption size="10" width="16" height="16"}.
+  12. Enter the following details in the fields:
+      - **Records where** - **Update and View**.
+      - **FRS\_MyItem's** - **CustomerRecId**.
+      - set the conditions as - **is** and **equal to**.
+      - **fx** - $(CurrentUserRecid()). Either type in the expression or click the **fx** button > **Functions** > **Current User Functions** > select **CurrentUserRecID**.
+  13. Click **Update**.
+
+  Now, a \{\{FRS\_VARS.Self\_Service\_Portal-Self-Service}} role can only view service requests and incidents submitted by the logged in user, unlike for a \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Console}} user where you would want all service requests, and incidents to be displayed.
+
+  You could also define access permissions to Service Desk users where, Service Desk Analyst user role can only view and handle tickets and incidents of a certain category or of a certain timezone.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Assigning System Permissions
+
+  You can assign default permissions for sharing items with other roles. By publishing permissions, you can define dashboards, quick actions, or searches within one role and allow assigned users to share them with another role.
+
+  1. From the Configuration Console, click **Configure > Users and Permissions > Roles and Permissions** to open the **Roles and Permissions** workspace.
+  2. Click **Add New\...**. The **Role Details** page appears.
+  3. Click **System Permissions**.
+  4. If you are working in a Managed Service Provider (MSP) environment, select **Apply MSP Security** to apply a combination of the user's tenant and organizational unit security access to this object when logging in with this role.
+
+  <hint type="info" indent="1">
+    This option is visible only to MSP providers who have had the MSP database enabled by \{\{FRS\_VARS.Company-short}}.
+  </hint>
+
+  5. Select options for the role.
+
+  <hint type="info" indent="1">
+    If a role does not have permission to create quick actions, saved searches, or dashboards (and its parts), users in that role cannot create them. If a role does not have permission to edit quick actions, saved searches, or dashboards (and its parts), users in that role cannot edit them.
+  </hint>
+
+  |              | Create (For Self)                                                                                               | Edit (For All)                                                                                                                                                                                                                                                                                                                  | Delete (For All)                                                                                                                                                                |
+  | ------------ | --------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | Quick Action | Create, edit, and delete quick actions created by the user.                                                     | Create personal quick actions and edit quick actions created by other users.                                                                                                                                                                                                                                                    | Delete quick actions created by other users. You also need to enable **Edit (For All)** to enable this permission.                                                              |
+  | Search       | Create, edit, and delete saved searches created by the user.  <br />The user cannot publish to any other roles. | Create personal searches and edit saved searches created by other users. The user can publish to other roles.  <br />  <br />The system displays an **Edit** button next to the saved search.  <br />  <br />The user can view dependencies (to see if the saved search is being used in other areas, such as dashboard parts). | Delete saved searches created by other users.  <br />  <br />The user can view dependencies (to see if the saved search is being used in other areas, such as dashboard parts). |
+  | Dashboard    | Create, edit, and delete dashboard and dashboard parts created by the user.                                     | Create and edit dashboard and dashboard parts created by other users.                                                                                                                                                                                                                                                           | Delete dashboard and dashboard parts created by other users.                                                                                                                    |
+
+  6. Select the roles that have permissions to publish (or save) from the **Allow Publishing** drop-down lists:
+     - Quick actions
+     - Searches
+     - Dashboards
+     - Reports
+
+  <hint type="info" indent="1">
+    Publishing to other roles is enabled only if edit permissions are selected for the role.
+  </hint>
+
+  7. Click **Save**.
+
+  <hint type="info" indent="1">
+    The system permissions are in effect for the user role after they log out then log back in.
+  </hint>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Assigning Permissions to Grant Roles
+
+  You can assign the ability to link a role to another user. For example, a Service Desk Manager may need the ability to assign supporting roles within the service organization, such as \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Analyst-Service-Desk-Analyst}}.
+
+  1. From the Configuration Console, click **Configure > Users and Permissions > Roles and Permissions** to open the **Roles and Permissions** workspace.
+  2. Click **Add New\...**. The **Role Details** page appears.
+  3. Click **Permissions to Grant Roles**.
+  4. Check the linked roles.
+  5. If needed, check **This role can log into administration tool** to permit users with this role to log into the Configuration Console. For example, a management-level employee may need access to the Configuration Console to edit a form or layout. In this case, you need to apply additional restrictions to this role.
+
+  <hint type="info" indent="1">
+    Because it provides access to the Configuration Console, we recommend that you severely restrict the use of this permission. In a default installation, the system limits this permission to administrators.
+  </hint>
+
+  6. Click **Save**.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Modifying Roles
+
+  1. From the Configuration Console, click **Configure > Users and Permissions > Roles and Permissions** to open the **Roles and Permissions** workspace.
+  2. Select the role to modify.
+  3. Edit the role using the options described above.
+  4. Click **Save**.
+
+  <hint type="info">
+    To modify or change a role to \{\{FRS\_VARS.Self\_Service\_Portal-Self-Service}} role, ensure that you select \{\{FRS\_VARS.Self\_Service\_Portal-Self-Service}}**&#x20;Role** in the :Link[Branding Options]{label="Branding Options" overridedLabel="Branding Options" spaceId docId="iUGD9ji_VgJkk9DVIGvHo" version="v2" docAnchorId="#branding-options" loadingMethod="dynamic" newTab="false" href="Setting-up-Roles.mdx"}.
+  </hint>
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Deleting Roles
+
+  You can delete any role, including \{\{FRS\_VARS.ProductName}} default roles.
+
+  Do not delete the administrator role, as this could prevent access to the Configure Console.
+
+  1. From the Configuration Console, click **Configure > Users and Permissions > Roles and Permissions** to open the **Roles and Permissions** workspace.
+  2. From the far right column, click the **delete** icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/USPl9Egu4Y2Blx7HKC3mA_deleteredx.png" alt caption size="10" width="14" height="13"} in the row of the role to delete.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Cloning Roles
+
+  You can create a copy of an existing role. For example, you could clone the basic settings for a \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Analyst-Service-Desk-Analyst}}, then customize the role by changing its associated dashboards or security settings.
+
+  1. From the Configuration Console, click **Configure > Users and Permissions > Roles and Permissions** to open the **Roles and Permissions** workspace.
+  2. Click **Clone** corresponding to the role to clone. The **Clone Role** dialog box appears.
+  3. Enter a unique name for the role.
+  4. Click **OK**.
+
+  The new role appears in the role list.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Linking Users to a Role
+
+  For information on adding users to a role, or linking and unlinking users, refer to :Link[Linking Roles to an Employee]{label="Linking Roles to an Employee" overridedLabel="Linking Roles to an Employee" spaceId docId="gO65DKWOS0RTWm_hpdz38" version="v2" docAnchorId="#employees_2653137062_1197004" loadingMethod="dynamic" newTab="false" githubPath="../Users/Working_with_employees.htm#employees_2653137062_1197004" href="../Users/Working_with_employees.mdx"}.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Finding Users Assigned to a Role
+
+  You can view a list of users assigned to a specific role by doing the following:
+
+  1. From the Configuration Console, click **Configure > Users and Permissions > Roles and Permissions** to open the **Roles and Permissions** workspace. The list of available roles appears.
+  2. Click **Find Users** corresponding to the role. The list of users linked to this role appears.
+  3. Click **New** to create a new user record to link to this role.
+  4. To remove a user from a role, select the user on the list, then click **Delete**.
+  5. Click **Link** to link the selected user to another user. Select the other user from the list, then click **Select**.
+  6. Click **Unlink** to break the link between the selected user and the role.
+</ExpandableHeading>

@@ -1,0 +1,69 @@
+---
+title: CurrentUserTeamNames
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:58 GMT+0300 (Eastern European Summer Time)
+---
+
+Returns the full set of team names for the user associated with the current session, as defined under the **Teams** tab on the **Employee Details** form.
+
+<hint type="info">
+  Use this function to return a list of all the team names.
+
+  Use the [CurrentUserTeamIds](CurrentUserTeamIds.mdx) function to return a list of the team IDs for all the teams.
+
+  Use the [CurrentUserTeam](CurrentUserTeam.mdx) function to return the name of the primary team.
+</hint>
+
+## Syntax
+
+CurrentUserTeamNames()
+
+## Enabled For
+
+For a description of the business object categories, see :Link[Notes on "Enabled For"]{label="Notes on &#x22;Enabled For&#x22;" overridedLabel="Notes on &#x22;Enabled For&#x22;" spaceId docId="xObv2pIDrk60jkEIWs8mD" version="v2" docAnchorId="#Notes" loadingMethod="dynamic" newTab="false" githubPath="_Built_in_Functions.htm#Notes" href="_Built_in_Functions.mdx"}.
+
+| Business Object Category                                                                     | Yes/No |
+| -------------------------------------------------------------------------------------------- | ------ |
+| Business Rules: Before-Save Rules                                                            | Yes1   |
+| Business Rules: Calculation Rules (After Save, with or without Also Recalculate on Load)     | Yes1   |
+| Business Rules: Calculation Rules (Before Save or Always, without Also Recalculate On Load)  | Yes1   |
+| Business Rules: Calculation Rules (Before Save or Always, with Recalculate On Load)          | Yes1   |
+| Business Rules: Editing Rules                                                                | Yes1   |
+| Business Rules: Initialization Rules                                                         | Yes1   |
+| Business Rules: Read Only Rules                                                              | Yes1   |
+| Business Rules: Required Rules                                                               | Yes1   |
+| Business Rules: Validation Rules                                                             | Yes2   |
+| Client Expressions                                                                           | Yes    |
+| Object Permissions                                                                           | Yes    |
+| Services                                                                                     | Yes    |
+| LDAP                                                                                         | Yes    |
+| Mobile                                                                                       | Yes    |
+| Quick Actions (except UI Quick Actions)                                                      | Yes1   |
+| UI Quick Actions                                                                             | Yes    |
+| Reports                                                                                      | Yes1   |
+| Search/Dashboard without field references                                                    | Yes1   |
+| Search/Dashboard with field references                                                       | Yes1   |
+| 1. Except in services.                                                                       |        |
+| 2. Except in services and when this field appears on a form or is triggered by such a field. |        |
+
+## Parameters
+
+None.
+
+## Return Value
+
+<Paragraph indent="1">
+  List of text items. Lists of text items are only valid in certain places that accept lists, such as the in list operator in saved searches.
+</Paragraph>
+
+## Example
+
+$(CurrentUserTeamNames())
+
+<Paragraph indent="1">
+  The following example finds the active incidents assigned to the team (including the primary team and all other teams) for the user associated with the current session.
+</Paragraph>
+
+*CurrentUserTeamNames() Example*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/kX1PgdPFt-iS_BMy5cpvz_currentuserteamnames.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/currentUserTeamNames.png" githubPath="Content/Resources/Images/help-images/currentUserTeamNames.png" showCaption="false"></Image>

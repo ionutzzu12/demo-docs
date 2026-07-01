@@ -1,0 +1,327 @@
+---
+title: Quick-Actions
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:01 GMT+0300 (Eastern European Summer Time)
+---
+
+Performs quick actions for a business object. For example, close, clone or resolve an incident or a problem.
+
+For more information on quick actions and viewing a list of quick actions, see :Link[Viewing a List of Quick Actions for a Business Object]{label="Viewing a List of Quick Actions for a Business Object" overridedLabel="Viewing a List of Quick Actions for a Business Object" spaceId docId="L1rMpfFaNyzNJyXZb8B_j" version="v2" docAnchorId="#Viewing-a-List-of-Quick-Actions-for-a-Business-Object" loadingMethod="dynamic" newTab="false" githubPath="../QuickActions/Using_Quick_Actions.htm#Viewing-a-List-of-Quick-Actions-for-a-Business-Object" href="../QuickActions/Using_Quick_Actions.mdx"}.
+
+**Base URL:**
+
+https\://\{tenant url}/api/odata/businessobject/\{business object name}('\{business object unique key}')/\{quick action name}
+
+<hint type="info">
+  - Ensure the business object name is suffixed with an "s".
+  - You can get the quick action ID from the [Metadata API](Metadata.mdx).
+</hint>
+
+<ExpandableHeading>
+  ## Quick Action Example - Close an Incident
+
+  <Paragraph indent="2">
+    Here is an example to close an incident using a quick action.
+  </Paragraph>
+
+  | URL                                          | https\://\{tenant url}/api/odata/businessobject/incidents('\{Incident Rec ID}')/Close\_Incident                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+  | -------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | <font color="#ffffff">Method</font>          | POST                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+  | Header Name                                  | Authorization: JTW Token/Session Key/REST API Key                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+  | <font color="#ffffff">Request Payload</font> |   <ExpandableHeading>
+      ## Click to view the request payload
+
+      \{
+
+      "ActionId":"3492dbcc-e502-44fd-9790-e3e45cb26c45",
+
+      "ShouldSave"\:true,
+
+      "ActionParams":\{
+
+      "FormParams":\{
+
+      "actionId":"3492dbcc-e502-44fd-9790-e3e45cb26c45",
+
+      "actualObjectType":"Incident#",
+
+      "objectId":"CAA8B29A4D24464FA68DBF281D7505B9"
+
+      },
+
+      "GridParams"\:null
+
+      },
+
+      "PromptParams":\[
+
+      \{
+
+      "\_\_type":"DataLayer.PromptData",
+
+      "ActionId"\:null,
+
+      "ActionObjectId"\:null,
+
+      "PromptObjectId":"CAA8B29A4D24464FA68DBF281D7505B9",
+
+      "ActionObjectType":"Incident#",
+
+      "PromptObjectType":"Incident#",
+
+      "Value":"Closed",
+
+      "FieldName":"Status",
+
+      "IsNewPrompt"\:true
+
+      },
+
+      \{
+
+      "\_\_type":"DataLayer.PromptData",
+
+      "Label":"Select Cause Code",
+
+      "ActionId":"3492dbcc-e502-44fd-9790-e3e45cb26c45",
+
+      "ActionObjectId":"CAA8B29A4D24464FA68DBF281D7505B9",
+
+      "PromptObjectId":"CAA8B29A4D24464FA68DBF281D7505B9",
+
+      "ActionObjectType":"Incident#",
+
+      "PromptObjectType":"Incident#",
+
+      "Value":"Documentation Request",
+
+      "ValidList":"Incident Cause Code",
+
+      "FieldName":"CauseCode",
+
+      "FieldType":"list",
+
+      "FieldLength":40,
+
+      "Precision":0,
+
+      "FieldAreaWidth":400,
+
+      "FieldAreaHeight":200,
+
+      "Password"\:false,
+
+      "Required"\:true,
+
+      "DefaultValue":"",
+
+      "Hidden"\:false,
+
+      "IsNewPrompt"\:true
+
+      },
+
+      \{
+
+      "\_\_type":"DataLayer.PromptData",
+
+      "Label":"Is first call resolution?",
+
+      "ActionId":"3492dbcc-e502-44fd-9790-e3e45cb26c45",
+
+      "ActionObjectId":"CAA8B29A4D24464FA68DBF281D7505B9",
+
+      "PromptObjectId":"CAA8B29A4D24464FA68DBF281D7505B9",
+
+      "ActionObjectType":"Incident#",
+
+      "PromptObjectType":"Incident#",
+
+      "Value"\:null,
+
+      "ValidList":"",
+
+      "FieldName":"FirstCallResolution",
+
+      "FieldType":"boolean",
+
+      "FieldLength":0,
+
+      "Precision":0,
+
+      "FieldAreaWidth":0,
+
+      "FieldAreaHeight":0,
+
+      "Password"\:false,
+
+      "Required"\:false,
+
+      "DefaultValue"\:null,
+
+      "Hidden"\:false,
+
+      "IsNewPrompt"\:true
+
+      },
+
+      \{
+
+      "\_\_type":"DataLayer.PromptData",
+
+      "Label":"Resolution",
+
+      "ActionId":"3492dbcc-e502-44fd-9790-e3e45cb26c45",
+
+      "ActionObjectId":"CAA8B29A4D24464FA68DBF281D7505B9",
+
+      "PromptObjectId":"CAA8B29A4D24464FA68DBF281D7505B9",
+
+      "ActionObjectType":"Incident#",
+
+      "PromptObjectType":"Incident#",
+
+      "Value":"test",
+
+      "ValidList":"",
+
+      "FieldName":"Resolution",
+
+      "FieldType":"text",
+
+      "FieldLength":4000,
+
+      "Precision":0,
+
+      "FieldAreaWidth":400,
+
+      "FieldAreaHeight":200,
+
+      "Password"\:false,
+
+      "Required"\:true,
+
+      "DefaultValue":"",
+
+      "Hidden"\:false,
+
+      "IsNewPrompt"\:true
+
+      }
+
+      ]
+
+      }
+    </ExpandableHeading> |
+  | <font color="#ffffff">Status Code</font>     | 200                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Quick Action Example - Assign an Incident
+
+  Here is an example to assign an incident using a quick action.
+
+  | URL                                          | https\://\{tenant url}/api/odata/businessobject/incidents('\{Incident Rec ID')/Assign\_Incident                                                                                                                                                                                                                                                                                                                                                           |
+  | -------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | <font color="#ffffff">Method</font>          | POST                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+  | Header Name                                  | Authorization: JTW Token/Session Key/REST API Key                                                                                                                                                                                                                                                                                                                                                                                                         |
+  | <font color="#ffffff">Request Payload</font> |   <ExpandableHeading>
+      ## Click to view the request payload
+
+      \{
+
+      "ActionId": "ec205b17-09ab-4405-87aa-246f2dce3960",
+
+      "ShouldSave": true,
+
+      "ActionParams": \{
+
+      "GridParams": null,
+
+      "FormParams": \{
+
+      "actionId": "ec205b17-09ab-4405-87aa-246f2dce3960",
+
+      "objectId": "C1B35DCEA41542E1AD0ED58775795ABA",
+
+      "actualObjectType": "Incident#"
+
+      }
+
+      },
+
+      "promptParams": null
+
+      }
+    </ExpandableHeading> |
+  | <font color="#ffffff">Status Code</font>     | 200                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Quick Action Example - Accept a Task
+
+  Here is an example to accept a task using a quick action.
+
+  | URL                                          | https\://\{tenant url}/api/odata/businessobject/tasks('\{Task Rec ID}')/Accept\_Task                                                                                                                                                                                                                                                                                                                                                                                                                 |
+  | -------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | <font color="#ffffff">Method</font>          | POST                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+  | Header Name                                  | Authorization: JTW Token/Session Key/REST API Key                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+  | <font color="#ffffff">Request Payload</font> |   <ExpandableHeading>
+      ## Click to view the request payload
+
+      \{
+
+      "ActionId": "e383dc0e-28b4-4e7a-9ac2-66248f991d71",
+
+      "ShouldSave": true,
+
+      "ActionParams": \{
+
+      "GridParams": \{
+
+      "actionId": "e383dc0e-28b4-4e7a-9ac2-66248f991d71",
+
+      "recordIds": \[
+
+      \{
+
+      "RecordId": "C6CCA4CEC8094724900EF60993662A44",
+
+      "ObjectType": "Task#Assignment"
+
+      }
+
+      ]
+
+      },
+
+      "FormParams": null
+
+      },
+
+      "PromptParams": null
+
+      }
+    </ExpandableHeading> |
+  | <font color="#ffffff">Status Code</font>     | 200                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+</ExpandableHeading>
+
+## Unsuccessful Response
+
+<ExpandableHeading>
+  ## Missing Mandatory Information
+
+  Scenario: Trying to close an incident without providing the mandatory fields' information.
+
+  https\://\{tenant url}/api/odata/businessobject/incidents('E44D7F1B97534363B5FAD9DAAAFAECF1')/Close\_Incident
+
+  Header Name:
+
+  **Authorization: Sessionkey**
+
+  | Code                                          | ISM\_4000                                                                                                                                                                                                                                                           |
+  | --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | Description                                   | Invalid Request Payload                                                                                                                                                                                                                                             |
+  | Message                                       | \[  <br />"Required Prompt Paramter 'Status' is missing",  <br />"Required Prompt Paramter 'CauseCode' is missing",  <br />"Required Prompt Paramter 'FirstCallResolution' is missing",  <br />"Required Prompt Paramter 'Resolution' is missing"  <br />"  <br />] |
+  | <font color="#ffffff">HTTP STATUS CODE</font> | **400**                                                                                                                                                                                                                                                             |
+</ExpandableHeading>

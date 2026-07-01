@@ -1,0 +1,42 @@
+---
+title: Example: Updating Field Values in Related Business Objects
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:55 GMT+0300 (Eastern European Summer Time)
+---
+
+A use case involving a business rule can involve linking an incident to a problem so that configuration items associated with the incident are also linked to the problem.
+
+To facilitate this process, you must create a business rule in the **Problem** business object, triggered by the creation of a **ProblemAssociatesIncident** relationship with the **Incident** business object.
+
+1. From the Configuration Console, click **Build > Business Object** to open the **Business Object** workspace.
+2. Open the **Problem** business object.
+3. Click the **Business Rules** tab on the toolbar. The **Business Rules** page appears.
+4. Under **Triggered Actions**, click **Add Trigger**. The **Create Triggered Action** window appears.
+5. Check **On Creation of Specific Relationship**.
+6. From the **Relationship** drop-down menu, select **ProblemAssociatesIncident**.
+
+*Create Triggered Action Window - ProblemAssociatesIncident*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/4gdBuWCm2AHIrYzgD4fHk_quickactionexample1.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/QuickAction_example1.png" githubPath="Content/Resources/Images/help-images/QuickAction_example1.png" showCaption="false"></Image>
+
+7. Click **Next**.
+8. Enter a name and description for this triggered action.
+9. Check **Configure new action** and choose **Search and Link** from the **New Action Type** drop-down menu.
+
+*Create Triggered Action Window - New Action Type*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/qyAnyZNIEPb4DP6_RY7_y_quickactionexample2.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/QuickAction_example2.png" githubPath="Content/Resources/Images/help-images/QuickAction_example2.png" showCaption="false"></Image>
+
+10. Click **Next**.
+11. Define the linking criteria.  From the **Relationship** drop-down menu, select **CIAssociatesProblem**.
+12. For the four **where** fields, enter **CI** in the first field, enter **'\[Incident#]RecID'** in the second field, select **Equal to** from the drop-down menu in the third field, and in the fourth field enter **'$(\[OtherObject]RecId)'**. Because you are defining this rule for the problem object, to obtain the RecID of the incident, you must enter the \[OtherObject] prefix.
+
+*Creating Business Rule Window - Linking Criteria*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/ARRcuxL14lynVFLdrTorD_quickactionexample3.png" position="flex-start" size="40" indent="1" initialPath="../../Resources/Images/help-images/QuickAction_example3.png" githubPath="Content/Resources/Images/help-images/QuickAction_example3.png" showCaption="false"></Image>
+
+13. Click **Save**.
+
+<Paragraph indent="1">
+  As a result, upon the creation of the **ProblemAssociatesIncident** relationship, this quick action links configuration items to problem records using the **CIAssociatesProblem** relationship. The search condition of this quick action finds configuration items linked to an incident with a RecID equal to the RecID of the incident linked to this problem.
+</Paragraph>

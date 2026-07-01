@@ -1,0 +1,25 @@
+---
+title: Ongoing Maintenance for the New DSM Integration
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:49 GMT+0300 (Eastern European Summer Time)
+---
+
+## Changing the Synchronization Interval
+
+To change how often the application synchronizes the data between DSM and \{\{FRS\_VARS.ProductName}}, which is defined as the refresh interval, do the following:
+
+1. From the \{\{FRS\_VARS.Configuration\_console}}, click **Build > Business Objects** to open the **Business Objects** workspace.
+2. Open the **FRS\_WS\_DSM\_Software** business object.
+3. Adjust the value of the **Refresh Interval** parameter.
+
+## Resetting the Cache
+
+The cache reset interval specifies how often to reset the cache. However, you may need to reset the DSM cache immediately without waiting for the entire time period to pass. For example, if new software is added to the DSM Console and you want to view it without waiting for the data to synchronize, you can reset the cache.
+
+To reset the DSM cache, do the following:
+
+1. From the \{\{FRS\_VARS.Configuration\_console}}, click **Configure > Cache Management** to open the **Cache Management** workspace.
+2. From the **Business objects that marked as external synchronized** drop-down list, select **FRS\_WS\_DSM\_Software**.
+3. Click **Invalidate synchronized data**.
+4. From the **Business objects that marked as external synchronized** drop-down list, select **FRS\_WS\_DSM\_SoftwareRevision**.
+5. Click **Invalidate synchronized data**.

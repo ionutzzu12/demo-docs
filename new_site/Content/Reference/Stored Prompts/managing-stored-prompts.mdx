@@ -1,0 +1,91 @@
+---
+title: Managing Stored Prompts
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:58 GMT+0300 (Eastern European Summer Time)
+---
+
+## Using the Stored Prompts Workspace
+
+The **Stored Prompts** workspace is used to create, delete, and edit stored prompts. You can access it from the **Build** list in the **Configuration** console.
+
+<ExpandableHeading>
+  ## Creating Stored Prompts
+
+
+
+  1. From the **Configuration** console's **Build** list, select **Stored Prompts**.
+  2. From the **Stored Prompts** workspace, click **Add**.
+  3. Enter the specific details for the stored prompt:
+     - **Name**: Give the stored prompt a descriptive name, such as a shortened version of the prompt text itself.
+     - **Prompt**: The words that the user sees asking them to provide or do something. Make them clear and concise.
+     - **Association**: Select a single associated business object or leave **No association** in the drop-down list. No association means you can use the stored prompt with any business object.
+     - **Type**: Set the type of prompt you want to use:
+
+  | Type      | Fields related to Prompt Type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+  | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | Text      | **Character Limit:** If the **Multi-Line** option isn't selected, enter a maximum character limit for the length of the field to be filled by the user.  <br />**Multi-Line:&#x20;**&#x53;elect this option to allow multiple lines of text to be entered into the stored prompt field by the user.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+  | Number    | **Precision:** If **Currency&#x20;**&#x69;sn't selected, enter the number of degrees of precision for a numerical value. For example, 2 represents 0.00.  <br />**Currency:** Select this option to make the field into a currency field.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+  | Date/Time | If selected, the user sees a date/time picker when they are prompted to fill in the field.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+  | Boolean   | Choose this option to use a value of either **True&#x20;**&#x6F;r **False**.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+  | Table     | **Select a Table:** Choose a table to pick a value from.  <br />**Note:&#x20;**&#x54;his list is restricted to those tables used by the associated business object.  <br />**Select a Field:** Choose a field from your selected table.  <br />**User can only choose values from the list:** If selected, the user can only choose values from the drop-down list when prompted. If not selected, the user can enter their own value.  <br />**Return value from different field:** If **User can only choose values from the list** is selected, the user can select this field but use a different value. For example, use this option to select a user by name but write the ID for that user into the prompt field.  <br />**List of Fields:** When the above two fields are selected, this is where you would select the ID field in the above example from the drop-down list during set-up.  <br />**Constraints:** Choose **Field**, **Operator**, and **Value&#x20;**(latter can be an expression) fields to, for example, restrict Incident Owners to a specific team. You can add multiple constraints. |
+  | Pick List | **Pick List:** Choose a list for the user to select from when prompted.  <br />**User can only choose values from the list:** If selected, the user can only choose values from the drop-down list. If not selected, the user can enter their own value.  <br />**Return value from different field:** If **User can only choose values from the list** is selected, the user can select this field but use a different value. For example, use this option to select a user by name but write the ID for that user into the prompt field.  <br />**List of Fields:** When the above two fields are selected, this is where you would select the ID field in the above example from the drop-down list during set-up.                                                                                                                                                                                                                                                                                                                                                                                               |
+
+
+
+  <Paragraph listStyleType="disc" indent="2">
+    **Value**: Default value which varies dependent on the selected prompt type. If you select **Value Expression**, the **Simplified Expression Editor&#x20;**&#x6F;pens so you can create an expression.
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    **Re-prompt on each occurrence**: If selected, the prompt appears for every record processed by the Quick Action. If cleared, the prompt appears once.
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    **Max Prompt Dimension**: Choose a maximum size in pixels for your stored prompt window. The maximum height is only visible if the prompt text requires it so ensure you make use of the preview to confirm that the size is big enough.
+  </Paragraph>
+
+  4. Click **Preview&#x20;**&#x74;o see what your prompt will look like.
+  5. Click **Save**.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Editing Stored Prompts
+
+  The \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}} edits stored prompts from the **Stored Prompts** workspace.
+
+  1. Open the **Configuration** console and select **Stored Prompts** from the **Build** list.
+  2. Use the column headings to sort and filter the stored prompts and select the one you want to edit.
+  3. Click the pencil icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/fd4ArOAhd4lVTqvn8Y-YZ_edit.png" alt caption size="10" width="15" height="16"} and make your changes.
+
+  <hint type="info" indent="2">
+    **Note:** The **Name&#x20;**&#x61;nd **Associated&#x20;**&#x62;usiness object cannot be changed during editing. Create a new stored prompt if you need to change these fields.
+  </hint>
+
+  5. Click the **Save** icon.
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Deleting Stored Prompts
+
+  The \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}} can delete stored prompts from the **Stored Prompts** workspace.
+
+  1. Open the **Configuration** console and select **Stored Prompts** from the **Build** list.
+  2. Use the workspace column headings to sort and filter the stored prompts and select the one you want to delete.
+  3. Click the delete icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/jeLbVpR6bzU6uwpUUkR8G_delete-button-self-service-catalog.png" alt caption size="10" width="16" height="18"}.
+
+  <hint type="info" indent="2">
+    You can't delete a stored value if it is in use anywhere in \{\{FRS\_VARS.ProductName}}.
+  </hint>
+
+  <Paragraph listStyleType="disc" indent="2">
+    On the pop-up window, click **Yes** to confirm deletion.
+  </Paragraph>
+
+  <Paragraph listStyleType="disc" indent="2">
+    If the stored prompt is in use, \{\{FRS\_VARS.ProductName}} shows an error message. Click **See More** to see where the stored prompt is in use.
+  </Paragraph>
+
+  <Paragraph indent="1">
+    Click the **Save** icon.
+  </Paragraph>
+</ExpandableHeading>

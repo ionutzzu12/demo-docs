@@ -1,0 +1,225 @@
+---
+title: AI Configuration Hub
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:00 GMT+0300 (Eastern European Summer Time)
+---
+
+**Role**: Administrators.
+
+**Platform**: SaaS only.
+
+**Minimum Version**: \{\{Primary.Company}} \{\{Primary.Product}} 2024.2.
+
+**Feature Eligibility**: Ivanti's \{\{FRS\_VARS.AITSM}} capabilities are available to customers who have subscribed to Premium or Enterprise Premium license. To know your eligibility, reach out to your Ivanti Account Manager.
+
+The AI Configuration Hub is a centralized AI ITSM workspace where you can manage all AI capabilities within Ivanti Neurons for \{\{FRS\_VARS.ITSM}}. This hub provides configuration options for advanced features such as the AI content generator, knowledge base AI, and intelligent automation tools that enhance your IT service management experience.
+
+In addition to content generation, the hub supports language translation and AI translation, enabling seamless translation and localization of knowledge articles, tickets, and user communications. Administrators can now configure custom translation models, choosing from providers such as OpenAI (custom hosted), Azure OpenAI, Google Translate, Azure Translate, and DeepL.
+
+By consolidating these powerful tools into a single knowledge base platform, the AI Configuration Hub empowers administrators to configure, customize, and optimize AI-driven processes for better efficiency and service quality.
+
+## Accessing the AI Configuration Hub
+
+1. Log in to \{\{Primary.Product}} as an \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}.
+2. Open the Configuration console, scroll to select **AI Configuration Hub**.
+
+<Paragraph indent="1">
+  *AI Configuration Hub*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/5K6pXOi7kdBVtA1Oxohzw_ai-config-hub.png" position="flex-start" size="40" indent="1" initialPath="../Resources/Images/Agentic-AI-Images/AI-Config-Hub.png" githubPath="Content/Resources/Images/Agentic-AI-Images/AI-Config-Hub.png" showCaption="false"></Image>
+
+### Business Object Summarization
+
+AI-powered summarization enables analysts to instantly capture the key details of any business object, minimizing the time required to review and understand information. This accelerates triage, prioritization, and decision-making across diverse use cases.
+
+To enable the this capability, set **Business object summarization** to **Active** using the toggle button.
+
+Refer to [Business Object Summarization](Business-Object-Summarization.mdx) for more information.
+
+### Customizing Business object summarization
+
+You can enable localization of AI content and edit/add fields to generate AI content.
+
+1. Click the **Configure** option beside the toggle button.
+2. Set the **Enable Localization** option to **Active** using the toggle button.
+
+<Paragraph indent="1">
+  When this option is selected, the AI content is generated in the selected locale of the application.
+</Paragraph>
+
+3. Under the **Select the Business Object** section, select the preferred business object from the dropdown.
+4. Under the **Select the form fields** section, select fields from the dropdown and enter their labels.
+
+<Paragraph indent="1">
+  You can use form fields to display additional information on the AI-generated summary. This information appears as a static data just above the AI-generated content.
+</Paragraph>
+
+5. Under the **Select the fields to generate AI content** section, enter the following details. The AI uses these details to generate the summary.
+   - **Field**: Click the **Field** dropdown and select the field from the Business Object.
+   - **Display Name**: Enter the field's internal name (not the display name).
+   - **Description**: Enter details about what the field contains. For example, its purpose - to help AI understand the data in this field.
+6. Optionally, click the Add icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/n7jVffB7coo5bs3AuNfzI_add-icon.png" alt caption size="10" width="17" height="16"} to include more fields for generating AI content. You can add up to 10 additional fields.
+7. Select or clear the checkbox to enable or disable an additional field.
+8. Click the Delete icon :inlineImage[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/NQiZXqhVNHvBTTyhbiGxQ_delete-icon.png" alt caption size="10" width="15" height="16"} beside any additional field to delete it.
+
+<hint type="info" indent="1">
+  You can enable/disable and delete only the additional fields. The default fields cannot be disabled or deleted.
+</hint>
+
+9. Click **Save**.
+
+<Paragraph indent="1">
+  *Customizing Fields*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/rvJ2EAN0LWBJiZXN9QtYs_custom-fields.png" position="flex-start" size="40" indent="1" initialPath="../Resources/Images/Agentic-AI-Images/Custom-fields.png" githubPath="Content/Resources/Images/Agentic-AI-Images/Custom-fields.png" showCaption="false"></Image>
+
+### Ticket Summarization
+
+To enable Ticket Summarization, set **Ticket Summarization** to **Active** using the toggle button.
+
+### Customize the Ticket Summarization Capability
+
+1. Click the **Configure** option beside the toggle button.
+
+<Paragraph indent="1">
+  The **Ticket Summarization** edit page is displayed.
+</Paragraph>
+
+2. Enable or disable the following features:
+   - **Predict Urgency**: Use the toggle button to enable or disable urgency prediction for incidents raised by \{\{FRS\_VARS.Self\_Service\_Portal-Self-Service}}users.
+   - **Show user interaction history to end user**: Turn on/off the toggle button to show or hide the interaction history to the \{\{FRS\_VARS.Self\_Service\_Portal-Self-Service}} users. If you disable this option, the user interaction history is displayed only for the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Analyst-Service-Desk-Analyst}} team.
+3. Click **Back** to exit.
+
+### Knowledge Base Creation
+
+To enable Knowledge Base Creation, set **Knowledge Base Creation** to **Active** using the toggle button.
+
+### Customize the Knowledge Base Creation Capability
+
+Click the **Configure** option beside the toggle button.
+
+The **Knowledge Base Creation** edit page is displayed. The Knowledge Base Creation page has the following tabs:
+
+### Configuration
+
+You can enable localization, set the temperature, and select/add fields to generate AI content.
+
+1. Enable localization:
+   - Set the **Enable Localization** option to **Active** using the toggle button.
+
+<Paragraph indent="2">
+  When this option is selected, the AI content is generated in the selected locale of the application.
+</Paragraph>
+
+2. Set the Temperature:
+   - Adjust the temperature by moving the **Select the temperature** slider to the left to decrease or to the right to increase the temperature. The range is 0 (lowest) to 100 (highest).
+3. Customize fields used for generating the AI content:
+
+<Paragraph indent="1">
+  a. Under the **Select the fields to generate AI content** section, enter the following details:
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="3">
+  **Field**: Click the **Field** dropdown and select the field from the Business Object.
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="3">
+  **Display Name**: Enter the field's internal name (not the display name).
+</Paragraph>
+
+<Paragraph listStyleType="disc" indent="3">
+  **Description**: Enter details about what the field contains. For example, its purpose - to help AI understand the data in this field.
+</Paragraph>
+
+<Paragraph indent="1">
+  b. Optionally, click the Add icon <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/n7jVffB7coo5bs3AuNfzI_add-icon.png" size="10" isUploading="false" initialPath="../Resources/Images/Add-icon.png" githubPath="Content/Resources/Images/Add-icon.png" width="17" height="16" showCaption="false"></Image> to include more fields for generating AI content. You can add up to 10 additional fields.
+</Paragraph>
+
+<Paragraph indent="1">
+  c. Enable or disable the additional fields by selecting or clearing the checkbox beside the additional fields.
+</Paragraph>
+
+<Paragraph indent="1">
+  d. Click the Delete icon <Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/NQiZXqhVNHvBTTyhbiGxQ_delete-icon.png" size="10" isUploading="false" initialPath="../Resources/Images/Agentic-AI-Images/Delete-icon.png" githubPath="Content/Resources/Images/Agentic-AI-Images/Delete-icon.png" width="15" height="16" showCaption="false"></Image> beside any additional field to delete it.
+</Paragraph>
+
+<hint type="info" indent="2">
+  You can enable/disable and delete only the additional fields. The default fields cannot be disabled or deleted.
+</hint>
+
+4. Click **Save**.
+
+### User Feedback
+
+The User Feedback tab displays the feedback received in both grid and chart formats, allowing easy visualization and analysis of user responses over time.
+
+Key elements of User Feedback:
+
+- **Feedback Grid**: Displays individual comments along with attributes like helpfulness and feedback date, providing detailed insights into user sentiments and experiences.
+- **Overall Feedback Stats**: A dynamic chart that reflects feedback trends over selectable time periods, helping to track changes in user satisfaction and identify areas for enhancement.
+
+<Paragraph indent="1">
+  *User Feedback*
+</Paragraph>
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/kqVJDpmJhRZX-Izy8C3bH_user-feedback.png" position="flex-start" size="40" indent="1" initialPath="../Resources/Images/Agentic-AI-Images/User-Feedback.png" githubPath="Content/Resources/Images/Agentic-AI-Images/User-Feedback.png" showCaption="false"></Image>
+
+### Ticket Classification
+
+Refer [Configure Ticket Classification using Neurons for ITSM AI Services](Configure-Ticket-Classification-using-AITSM.mdx) for more information.
+
+### Neurons AI
+
+To enable Neurons AI, set **Neurons AI** to **Active** using the toggle button.
+
+With the Neurons AI feature, you can create customized, visually appealing reports and widgets in the application by entering your prompt in simple text-based input.
+
+<hint type="info">
+  The Neurons AI feature is available only for customers using Dashboard V2.
+</hint>
+
+### Translation Service
+
+The **Translation Service** feature converts all UI elements and user-generated content into the user's preferred language or locale. For example, in an Incident Summarization, if an end user located in Germany requests the summary in their local language (German), the Translation Service can perform the translation and deliver the output in that language.
+
+*User entered content and UI elements in&#x20;*\{\{Primary.Product}}*&#x20;renders in German*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/I2-sIQNTGtIcqOP1mYnR-_locale-converted-ux.png" position="flex-start" size="40" initialPath="../Resources/Images/Agentic-AI-Images/locale-converted-ux.png" githubPath="Content/Resources/Images/Agentic-AI-Images/locale-converted-ux.png" showCaption="false"></Image>
+
+Refer :Link[Translation Service]{label="Translation Service" overridedLabel="Translation Service" spaceId docId="350XMpw4GbKM1zn3gXbCL" version="v2" docAnchorId="#top" loadingMethod="dynamic" newTab="false" githubPath="Translation-Service.htm#top" href="Translation-Service.mdx"} for more information.
+
+### Auto-Translation
+
+The Auto-translation capability is an independent feature that enables AI-based translation of content based on user's selected locale. It functions in the following areas:
+
+- Localization Workbench
+- Field-Level Translation
+
+<hint type="info">
+  Localization Workbench works with both Ivanti-hosted translation model and Custom Translation Model. However, the translation is limited to 20 strings per call for Ivanti-hosted translation model. If Custom translation model is configured, the translation capacity increases to 100 strings per call.
+</hint>
+
+Refer [Auto-Translation](Auto-Translation.mdx) for more information.
+
+### Write Assist
+
+The **Write Assist** feature provides AI-powered assistance for enhancing and generating content. It is accessible through **AI Configuration Hub** and includes two sub-features:
+
+- Field-Level Write Assist
+- Email Assist
+
+Refer [Write Assist](Write-Assist.mdx) for more information.
+
+### Expression Assist
+
+The Expression Assist feature enables you to enter queries in natural language in the expression editor and convert them into valid expressions.
+
+Refer [Expression Assist](Expression-Assist.mdx) for more information.
+
+### Track your AI Performance
+
+This dashboard displays the number of incident summaries, knowledge articles, and widgets you created using the built-in AI capabilities within the selected time frame: **Last 7 days**, **Last 30 days**, or **Last Year**.
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/CZUvB-EtKmtpdyfXixtXh_track-ai-performance.png" alt="Tracking the performance of AI" position="flex-start" size="40" initialPath="../Resources/Images/Agentic-AI-Images/track-ai-performance.png" githubPath="Content/Resources/Images/Agentic-AI-Images/track-ai-performance.png" showCaption="false"></Image>

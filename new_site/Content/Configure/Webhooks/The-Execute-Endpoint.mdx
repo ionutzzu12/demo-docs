@@ -1,0 +1,91 @@
+---
+title: EXECUTE Endpoint
+docTags: 
+createdAt: Tue Jun 30 2026 17:17:01 GMT+0300 (Eastern European Summer Time)
+---
+
+You can execute a webhook, invoking the Action that the webhook is configured to execute, with data given in the request.
+
+The details of the Method, Request Body, and Headers to execute the Execute Webhook API are as shown:
+
+| Base URL                                  | https\://\{tenant url}/api/rest/Webhooks/Execute?extension=\{endpoint extension}<br />**Note:** The endpoint extension is case-sensitive.                                                                                                                                                                                      |
+| ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| <font color="#ffffff">Method</font>       | POST                                                                                                                                                                                                                                                                                                                           |
+| Header Name                               | Authorization: REST API Key                                                                                                                                                                                                                                                                                                    |
+| <font color="#ffffff">Request Body</font> | Key	Value&#xA;Value Format	Value&#xA;Body	&#xA;&#xA;Text (JSON or XML)&#xA;&#xA; &#xA;&#xA; &#xA;&#xA; &#xA;&#xA;&#x9;&#xA;&#xA;The body of the request, for example, the data to be provided to the configured Action.&#xA;&#xA;Note: The Body parameter in the request is limited to a maximum length of 100,000 characters. |
+|                                           |                                                                                                                                                                                                                                                                                                                                |
+
+<ExpandableHeading>
+  ## EXECUTE Webhook - Example
+
+  Here is an example demonstrating how a webhook can be executed using the Rest API. For this example, we assume that a webhook has been configured with an Endpoint Extension value of *MyTestWebhook*. The Action that the webhook is configured to execute should have a variable called **WebhookBody** as part of the **Update Variables and Stored Values** block.
+
+  | URL                                       | https\://\{tenant url}/api/rest/Webhooks/Execute?extension=MyTestWebhook                                                                                                                                                                                                                                                                                                                                          |
+  | ----------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | <font color="#ffffff">Method</font>       | POST                                                                                                                                                                                                                                                                                                                                                                                                              |
+  | Header Name                               | Authorization: REST API Key                                                                                                                                                                                                                                                                                                                                                                                       |
+  | <font color="#ffffff">Request Body</font> | Key	Value&#xA;Value Format	Value&#xA;Body	Text (JSON or XML)	&#xA;&#xA;\{&#xA;&#xA;“someData”:“someDataValue”,&#xA;&#xA;“otherData”:“otherDataValue”&#xA;&#xA;}&#xA;&#xA; &#xA;&#xA;For XML, you need a parent node, such as WebhookBody, so the Action can process the request correctly:&#xA;&#xA;\<WebhookBody>&#xA;&#xA;\<name>Project\</name>&#xA;&#xA;\<summary>Summary\</summary>&#xA;&#xA;\</WebhookBody> |
+  | <font color="#ffffff">Status Code</font>  | 200                                                                                                                                                                                                                                                                                                                                                                                                               |
+
+
+</ExpandableHeading>
+
+### Unsuccessful Responses
+
+<ExpandableHeading>
+  ## Webhook Not Found or Missing Extension
+
+  Scenario: You try to use a webhook that doesn't exist. or you omit the extension part of the URL.
+
+  | URL                                       | https\://\{tenant url}/api/rest/Webhooks/Execute?extension=NonExistentWebhook  <br />OR  <br />https\://\{tenant url}/api/rest/Webhooks/Execute                                                                                                                                                                                                                                                                                               |
+  | ----------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | <font color="#ffffff">Method</font>       | POST                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+  | Header Name                               | Authorization: REST API Key                                                                                                                                                                                                                                                                                                                                                                                                                   |
+  | <font color="#ffffff">Request Body</font> | Key	Value&#xA;Value Format	Value&#xA;Body	Text (JSON or XML)	&#xA;&#xA;\{&#xA;&#xA;“someData”:“someDataValue”,&#xA;&#xA;“otherData”:“otherDataValue”&#xA;&#xA;}                                                                                                                                                                                                                                                                               |
+  | <font color="#ffffff">Status Code</font>  | 400 Bad Request                                                                                                                                                                                                                                                                                                                                                                                                                               |
+  | <font color="#ffffff">Message</font>      | NON-EXISTENT WEBHOOK:  <br />\{  <br />"ErrorCode": "UnhandledSystemException-",  <br />"Message": "Unhandled system exception: Invalid Webhook Extension Provided. "  <br />}  <br />MISSING EXTENSION:  <br />\{  <br />"ErrorCode": "UnhandledSystemException-",  <br />"Message": "Unhandled system exception: Webhook validation failed for Execute operation. Errors: You must enter an endpoint extension to your base URL. "  <br />} |
+</ExpandableHeading>
+
+<ExpandableHeading>
+  ## Incorrect Authorization
+
+  Scenario: You are trying to use an incorrect or deactivated REST API key for authorization.
+
+  | URL                                       | https\://\{tenant url}/api/rest/Webhooks/Execute?extension=MyTestWebhook                                                                                        |
+  | ----------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | <font color="#ffffff">Method</font>       | POST                                                                                                                                                            |
+  | Header Name                               | Authorization: REST API Key (incorrect or deactivated)                                                                                                          |
+  | <font color="#ffffff">Request Body</font> | Key	Value&#xA;Value Format	Value&#xA;Body	Text (JSON or XML)	&#xA;&#xA;\{&#xA;&#xA;“someData”:“someDataValue”,&#xA;&#xA;“otherData”:“otherDataValue”&#xA;&#xA;} |
+  | <font color="#ffffff">Status Code</font>  | 401 Unauthorized                                                                                                                                                |
+  | <font color="#ffffff">Message</font>      | \{  <br />"code": "ISM\_4001",  <br />"description": "Invalid Session key or Authentication token",  <br />"message": "",  <br />"help": ""  <br />}            |
+
+  <ExpandableHeading>
+    ## Body is too Long
+
+    Scenario: You are trying to use a Request Body that is longer than 100,000 characters.
+
+    | URL                                       | https\://\{tenant url}/api/rest/Webhooks/Execute?extension=MyTestWebhook                                                                                                                                  |
+    | ----------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+    | <font color="#ffffff">Method</font>       | POST                                                                                                                                                                                                      |
+    | Header Name                               | Authorization: REST API Key                                                                                                                                                                               |
+    | <font color="#ffffff">Request Body</font> | Key	Value&#xA;Value Format	Value&#xA;Body	Text (JSON or XML)	&#xA;&#xA;\{&#xA;&#xA;“someData”:“someDataValue”,&#xA;&#xA;“otherData”:“otherDataValue”&#xA;&#xA;}&#xA;&#xA;Greater than 100,000 characters. |
+    | <font color="#ffffff">Status Code</font>  | 400 Bad Request                                                                                                                                                                                           |
+    | <font color="#ffffff">Message</font>      | \{    <br />"ErrorCode": "UnhandledSystemException-",    <br />"Message": "Unhandled system exception: Request Body must be less than or equal to 100,000 characters"    <br />}                          |
+
+    <ExpandableHeading>
+      ## Incorrect Endpoint or Wrong Case
+
+      Scenario: You are trying to use a webhook extension that was incorrectly typed.
+
+      | URL                                       | https\://\{tenant url}/api/rest/Webhooks/Execute?extension=blahblahWebhook                                                                                      |
+      | ----------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+      | <font color="#ffffff">Method</font>       | POST                                                                                                                                                            |
+      | Header Name                               | Authorization: REST API Key                                                                                                                                     |
+      | <font color="#ffffff">Request Body</font> | Key	Value&#xA;Value Format	Value&#xA;Body	Text (JSON or XML)	&#xA;&#xA;\{&#xA;&#xA;“someData”:“someDataValue”,&#xA;&#xA;“otherData”:“otherDataValue”&#xA;&#xA;} |
+      | <font color="#ffffff">Status Code</font>  | 400 Bad Request                                                                                                                                                 |
+      | <font color="#ffffff">Message</font>      | \{      <br />"ErrorCode": "UnhandledSystemException-",      <br />"Message": "Unhandled system exception: This webhook extension doesn't exist."      <br />}  |
+
+
+    </ExpandableHeading>
+  </ExpandableHeading>
+</ExpandableHeading>

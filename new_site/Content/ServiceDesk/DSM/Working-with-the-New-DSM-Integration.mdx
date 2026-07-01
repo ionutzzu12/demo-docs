@@ -1,0 +1,145 @@
+---
+title: Working with the New DSM Integration
+docTags: 
+createdAt: Tue Jun 30 2026 17:16:49 GMT+0300 (Eastern European Summer Time)
+---
+
+The new DSM integration was introduced in \{\{FRS\_VARS.ProductName}} Release 2015.2. It was designed using the concept of external business objects and web services. See [Using Web Services with External Data Sources](../../Configure/ImportExportData/Using-Web-Services-with-External-Data-Sources.mdx) for complete information about using external business objects and web services in \{\{FRS\_VARS.ProductName}}.
+
+After you initially configure the new DSM integration, you do not need to synchronize or activate the software or computers. The system uses a web services script to synchronize the computers and software automatically. When you select a computer to update, the system checks DSM to see if it is a managed computer. If it is, DSM returns an ID associated with the computer.
+
+## Available and Optional Software
+
+Available software is the set of software packages on DSM that are listed as assignable to ITSM.
+
+<hint type="info">
+  In DSM, there is no entry for \{\{FRS\_VARS.ProductName}}, only an option for ITSM. Whenever you see ITSM in this usage, you can assume it means \{\{FRS\_VARS.ProductName}}.
+</hint>
+
+Optional software is any available software that the \{\{FRS\_VARS.ProductName}} administrator has made available to \{\{FRS\_VARS.ProductName}} end users.
+
+End users can request software from the Service Catalog.
+
+## Designating Software as Available in the DSM Console
+
+For complete information about using the DSM Console, see the DSM documentation set.
+
+1. Log in to the DSM console.
+2. Highlight a software item.
+3. Under the **Properties** tab on the right, under the **Properties for the ITSM integration** header, for the **Assignable via** field, select either **DSM and ITSM** or **ITSM**.
+
+<Paragraph indent="1">
+  The DSM application makes this software item available for use in \{\{FRS\_VARS.ProductName}}.
+</Paragraph>
+
+## Viewing the Available Software in Neurons for ITSM
+
+1. Log into the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Console}} console.
+2. Open the **DSM Package** workspace. The application displays a list of all of the software in DSM. For each software item, it lists the following:
+
+| Field             | Description                                                                                                                                                                                                                                                                                                                                                                             |
+| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Software Name     | The name of the software package, taken from DSM.                                                                                                                                                                                                                                                                                                                                       |
+| Optional Software | Specifies if this software has been published to \{\{FRS\_VARS.ProductName}} end users.                                                                                                                                                                                                                                                                                                 |
+| Approval Required | Specifies if the user needs manager approval to purchase and download this software.                                                                                                                                                                                                                                                                                                    |
+| Cost              | The cost of the software.                                                                                                                                                                                                                                                                                                                                                               |
+| Currency          | The currency used for the cost.                                                                                                                                                                                                                                                                                                                                                         |
+| SM Software Type  | The type of software. Can be one of the following:<br />**Available**: Means this software is available in DSM but has not been published to, and therefore is not available to, \{\{FRS\_VARS.ProductName}} end users.<br />**Optional**: Means this software has been published to, and therefore is available to, \{\{FRS\_VARS.ProductName}} end users through the Service Catalog. |
+
+## Viewing the Available Software for a Platform
+
+You can view the software available for a particular platform by doing the following:
+
+1. Log into the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Console}} console.
+2. Open the **CI** workspace.
+3. Open the record associated with the platform. For example, to see the software available for the virtual workstation called Win7, open the **Win7** record.
+4. Click the **Managed Software** tab.
+5. To reinstall a software item, highlight it and click **Reinstall Software**. You do not need approval to reinstall software even if you needed approval to originally install it.
+6. To uninstall software, highlight it and click **Uninstall Software**.
+
+<hint type="info">
+  You can only reinstall or uninstall certain software, depending on the type of software and how it is defined by DSM.
+</hint>
+
+## Specifying Approval for Software Packages
+
+If you specify approval for a software package, an approval task is created when the software is requested from the Self-Service Portal.
+
+1. Log into the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Console}} console.
+2. Open the **DSM Software Package** workspace.
+3. Open the record for which to specify approval.
+4. On the **Details** tab, check **Approval required**. The **Approval Required** column in the list view shows a value of yes.
+5. Save the record.
+
+## Changing Available Software to Optional Software
+
+You must choose from the list of available software (that is, all of the software available in DSM) which software to make available to \{\{FRS\_VARS.ProductName}} end users. Then, for each software item, follow the steps below to set it to optional (which makes it available to \{\{FRS\_VARS.ProductName}} users).
+
+1. Log in to the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Console}} console.
+2. Open the **DSM Software Package** workspace. The application displays a list of all of the software in DSM.
+3. Highlight a software item and on the toolbar, click **Make Optional Software**.
+
+After you set a software item to optional in \{\{FRS\_VARS.ProductName}}, which means that end users can request it, you cannot change it back to available (which means it is not optional), from within \{\{FRS\_VARS.ProductName}}. To change it back, you must use the DSM Console.
+
+## Setting Values for Software Items
+
+1. Log in to the \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Console}} console.
+2. Open the **DSM Software Package** workspace. The application displays a list of all of the software in DSM.
+3. Double-click a software item to open it. The application displays the **Manage Software** workspace.
+4. Enter information into the fields.
+
+| Field                     | Description                                                                                                                                    |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| DSM Software Package GUID | The unique ID for this software, set by DSM.                                                                                                   |
+| Software Name             | The name of the software. This value comes from DSM.                                                                                           |
+| Optional Software         | Specifies if this software is available to \{\{FRS\_VARS.ProductName}} users.                                                                  |
+| Software Type             | The type of software package.                                                                                                                  |
+| Schema Tag                | The schema tag associated with this software. This is the software type from the DSM Console and is used for troubleshooting.                  |
+| Approval Required         | Specifies if the user must get manager approval before installing the software.                                                                |
+| Cost                      | The cost to install the software. This is tracked in the service request. Enter a numeric value and select a currency from the drop-down list. |
+
+5. To view additional information about the software, click the **Software Revision** tab. The application displays the following read-only information:
+
+| Field             | Description                                                                                    |
+| ----------------- | ---------------------------------------------------------------------------------------------- |
+| DSM Software ID   | The ID for the software as specified by DSM.                                                   |
+| Software Name     | The name of the software as specified by DSM.                                                  |
+| Software Revision | The version of the software. For example, for Adobe Acrobat, it could be version 10.0 or 12.0. |
+| Software Type     | The type of software package.                                                                  |
+| Latest Revision   | Specifies if this is the latest revision.                                                      |
+| Reinstallable     | Specifies that users are allowed to reinstall this software.                                   |
+| Uninstallable     | Specifies that users are allowed to uninstall this software.                                   |
+
+6. Click **Save**.
+
+## DSM Integration Request Offerings
+
+As part of the new DSM integration, there are two new request offerings in the Service Catalog: **Optional Software Installation Request** and **Optional Software Multiple Installation Request**.
+
+*Optional Software Installation Request Offerings in the Service Catalog*
+
+<Image src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/OUNjFkCWq3kJuXOeX-wnF_new-dsm-request-offerings.png" position="flex-start" size="40" initialPath="../../Resources/Images/help-images/new-DSM-request-offerings.png" githubPath="Content/Resources/Images/help-images/new-DSM-request-offerings.png" showCaption="false"></Image>
+
+See [Creating a Request Offering](../RequestOfferings/Creating-a-Request-Offering.mdx) for information on creating and modifying request offerings in the Service Catalog.
+
+## Showing or Hiding the DSM Workspaces
+
+You can display DSM-related workspaces or tabs if they are used, or hide them if they are not used in your implementation.
+
+Workspaces include **DSM Package**, **DSM Request Detail**, and **DSM Software Revision**.
+
+Hiding the functionality of those workspaces also removes:
+
+- The **DSM Request Detail** tab for service requests.
+- The **Managed Software** tab for configuration item records for computers, servers, virtual servers, workstations, and virtual workstations.
+
+<hint type="info" indent="1">
+  Only the following roles are affected: \{\{FRS\_VARS.Neurons\_ITSM\_-\_Administrator-Administrator.}}, \{\{FRS\_VARS.Neurons\_ITSM\_-\_Change\_Manager}}, \{\{FRS\_VARS.Neurons\_ITSM\_-\_Configuration\_Manager}}, \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Analyst-Service-Desk-Analyst}}, and \{\{FRS\_VARS.Neurons\_ITSM\_-\_Service\_Desk\_Manager}}.
+</hint>
+
+1. From the \{\{FRS\_VARS.Configuration\_console}} console, click **Build** > **Global Constants**.
+2. Navigate to the **Show DSM Integration** feature in the **Name** column.
+3. Click in the **Value** column to change the setting:
+   - **True** enables and displays the workspaces.
+   - **False** hides the workspaces.
+4. Click **Save**.
