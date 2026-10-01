@@ -5,7 +5,7 @@ createdAt: Thu Oct 01 2026 11:01:44 GMT+0300 (Eastern European Summer Time)
 ---
 
 :::ExpandableHeading
-# Expandable heading 3
+# Expandable heading 4
 
 **text text**
 :::
@@ -115,7 +115,7 @@ Test 3
 :::
 ::::
 
-::Image[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/mr0o2XNUfYouFc0AioHoc-20261001-111659.png" size="10" width="150" height="136" position="flex-start" caption="Andrei" alt="Blondu" showCaption="true"}
+::Image[]{src="https://archbee-image-uploads-qa.s3.amazonaws.com/yzXkkCTORWlcwRG_AVHKZ/mr0o2XNUfYouFc0AioHoc-20261001-111659.png" size="10" width="800" height="725" position="flex-start" caption="Andrei" alt="Blondu" darkWidth="800" darkHeight="725" showCaption="true"}
 :::::
 ::::::
 
