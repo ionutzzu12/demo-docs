@@ -1,18 +1,132 @@
-# Tables
+---
+title: Tables
+docTags: 
+createdAt: Thu Oct 01 2026 11:01:44 GMT+0300 (Eastern European Summer Time)
+---
 
-| Syntax    | Description |
-| --------- | ----------- |
-| Header    | Title       |
-| Paragraph | Text        |
+<table isTableHeaderOn="true" columnWidths="330,331">
+  <tr>
+    <td>
+      <p>Syntax</p>
+    </td>
+    <td>
+      <p>Description</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p>Header</p>
+    </td>
+    <td>
+      <p>Title</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p>Paragraph</p>
+    </td>
+    <td>
+      <p>Text 3</p>
+    </td>
+  </tr>
+</table>
 
 ## Alignment 5
 
-| Syntax    | Description | Test Text   |
-| --------- | ----------- | ----------- |
-| Header    | Title       | Here's this |
-| Paragraph | Text        | And more    |
+<table isTableHeaderOn="true" columnWidths="220,220,221">
+  <tr>
+    <td>
+      <p>Syntax</p>
+    </td>
+    <td>
+      <p>Description</p>
+    </td>
+    <td>
+      <p>Test Text</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p>Header</p>
+    </td>
+    <td>
+      <p>Title</p>
+    </td>
+    <td>
+      <p>Here's this</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p>Paragraph</p>
+    </td>
+    <td>
+      <p>Text</p>
+    </td>
+    <td>
+      <p>And more</p>
+    </td>
+  </tr>
+</table>
 
-:::ApiMethodV2{data="{&#x22;name&#x22;:&#x22;Get Cakes&#x22;,&#x22;method&#x22;:&#x22;GET&#x22;,&#x22;url&#x22;:&#x22;https://api.cakes.com&#x22;,&#x22;description&#x22;:&#x22;Get a cake by its ID&#x22;,&#x22;tab&#x22;:&#x22;examples&#x22;,&#x22;examples&#x22;:{&#x22;languages&#x22;:[{&#x22;id&#x22;:&#x22;YWnCxVcGsfXoF8PW3pt71&#x22;,&#x22;language&#x22;:&#x22;javascript&#x22;,&#x22;code&#x22;:&#x22;var myHeaders = new Headers();\nmyHeaders.append(\&#x22;Accept\&#x22;, \&#x22;application/json\&#x22;);\nmyHeaders.append(\&#x22;Content-Type\&#x22;, \&#x22;application/json\&#x22;);\n\nvar raw = JSON.stringify({\n   \&#x22;id\&#x22;: \&#x22;String\&#x22;\n});\n\nvar requestOptions = {\n   method: 'GET',\n   headers: myHeaders,\n   body: raw,\n   redirect: 'follow'\n};\n\nfetch(\&#x22;https://api.cakes.com\&#x22;, requestOptions)\n   .then(response => response.text())\n   .then(result => console.log(result))\n   .catch(error => console.log('error', error));&#x22;,&#x22;customLabel&#x22;:&#x22;&#x22;}],&#x22;selectedLanguageId&#x22;:&#x22;YWnCxVcGsfXoF8PW3pt71&#x22;},&#x22;results&#x22;:{&#x22;languages&#x22;:[{&#x22;id&#x22;:&#x22;UpZGqUJhoOMqzL9wbv0W_&#x22;,&#x22;language&#x22;:&#x22;200&#x22;,&#x22;customLabel&#x22;:&#x22;&#x22;,&#x22;code&#x22;:&#x22;{\n  \&#x22;name\&#x22;: \&#x22;Cake's name\&#x22;,\n}&#x22;},{&#x22;id&#x22;:&#x22;3VLBlNTUPMkekx7fGjTE6&#x22;,&#x22;language&#x22;:&#x22;404&#x22;,&#x22;customLabel&#x22;:&#x22;&#x22;,&#x22;code&#x22;:&#x22;{\n  \&#x22;message\&#x22;: \&#x22;Ain't no cake like that.\&#x22;\n}&#x22;}],&#x22;selectedLanguageId&#x22;:&#x22;UpZGqUJhoOMqzL9wbv0W_&#x22;},&#x22;request&#x22;:{&#x22;pathParameters&#x22;:[],&#x22;queryParameters&#x22;:[],&#x22;headerParameters&#x22;:[],&#x22;bodyDataParameters&#x22;:[{&#x22;name&#x22;:&#x22;id&#x22;,&#x22;kind&#x22;:&#x22;required&#x22;,&#x22;type&#x22;:&#x22;string&#x22;,&#x22;description&#x22;:&#x22;id of the cake to get&#x22;}],&#x22;formDataParameters&#x22;:[]},&#x22;currentNewParameter&#x22;:{&#x22;label&#x22;:&#x22;Body Parameter&#x22;,&#x22;value&#x22;:&#x22;bodyDataParameters&#x22;}}"}
-
+:::ApiMethodV2
+```json
+{
+  "name": "Get Cakes",
+  "method": "GET",
+  "url": "https://api.cakes.com",
+  "description": "Get a cake by its ID",
+  "tab": "examples",
+  "examples": {
+    "languages": [
+      {
+        "id": "YWnCxVcGsfXoF8PW3pt71",
+        "language": "javascript",
+        "code": "var myHeaders = new Headers();\nmyHeaders.append(\"Accept\", \"application/json\");\nmyHeaders.append(\"Content-Type\", \"application/json\");\n\nvar raw = JSON.stringify({\n   \"id\": \"String\"\n});\n\nvar requestOptions = {\n   method: 'GET',\n   headers: myHeaders,\n   body: raw,\n   redirect: 'follow'\n};\n\nfetch(\"https://api.cakes.com\", requestOptions)\n   .then(response => response.text())\n   .then(result => console.log(result))\n   .catch(error => console.log('error', error));",
+        "customLabel": ""
+      }
+    ],
+    "selectedLanguageId": "YWnCxVcGsfXoF8PW3pt71"
+  },
+  "results": {
+    "languages": [
+      {
+        "id": "UpZGqUJhoOMqzL9wbv0W_",
+        "language": "200",
+        "customLabel": "",
+        "code": "{\n  \"name\": \"Cake's name\",\n}"
+      },
+      {
+        "id": "3VLBlNTUPMkekx7fGjTE6",
+        "language": "404",
+        "customLabel": "",
+        "code": "{\n  \"message\": \"Ain't no cake like that.\"\n}"
+      }
+    ],
+    "selectedLanguageId": "UpZGqUJhoOMqzL9wbv0W_"
+  },
+  "request": {
+    "pathParameters": [],
+    "queryParameters": [],
+    "headerParameters": [],
+    "bodyDataParameters": [
+      {
+        "name": "id",
+        "kind": "required",
+        "type": "string",
+        "description": "id of the cake to get"
+      }
+    ],
+    "formDataParameters": []
+  },
+  "currentNewParameter": {
+    "label": "Body Parameter",
+    "value": "bodyDataParameters"
+  },
+  "hasTryItOut": false,
+  "autoGeneratedAnchorSlug": "get-cakes",
+  "legacyHash": "6k6n-_lnRlUYCMJ-XRylO"
+}
+```
 :::
 
