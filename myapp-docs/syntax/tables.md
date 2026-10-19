@@ -133,3 +133,5 @@ createdAt: Thu Oct 01 2026 11:01:44 GMT+0300 (Eastern European Summer Time)
 
 
 Stress test line from branch p (safe to delete)
+
+e7 O1 outside edit in a nested .md file
