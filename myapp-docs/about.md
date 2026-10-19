@@ -440,3 +440,5 @@ if something
 ::typeform{url="https://ko8vze9nzlr.typeform.com/to/IaAyThBA"}
 
 ::google-docs{url="https://docs.google.com/document/d/1jTM4gUFIjvxpC88HNsAI-hWDkf7EscDzQh1r_QFlvV8/edit#heading=h.f1pso1jruysd"}
+
+e7 main edit through x
