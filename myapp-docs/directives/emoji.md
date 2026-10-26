@@ -1,6 +1,5 @@
 ---
 title: Emoji
-docTags: 
 createdAt: Thu Oct 01 2026 11:01:44 GMT+0300 (Eastern European Summer Time)
 ---
 
@@ -107,3 +106,5 @@ For security reasons, custom code is only included on a custom domain.
 </table>
 
 Stress test line from branch p (safe to delete)
+
+l9 shadow-fix edit 2
