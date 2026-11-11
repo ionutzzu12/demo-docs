@@ -1,0 +1,54 @@
+---
+title: Partial render file
+createdAt: Thu Oct 22 2026 14:41:45 GMT+0000 (Coordinated Universal Time)
+---
+
+## Directive that you can use
+
+`partial` or `use`
+
+```javascript
+::use{file="/.archbee.yaml" from="1" to="5" syntax="javascript"}
+```
+
+## Render petstore from line 9 to 12
+
+<Partial file="../petstore-2.0.yaml" from="9" to="12"></Partial>
+
+## Render .archbee.yaml
+
+<Partial file="/.archbee.yaml" from="1" to="5" syntax="javascript"></Partial>
+
+## Render file hints.md line 1
+
+### Line 5 only
+
+<Partial file="hints.md" from="5"></Partial>
+
+### From line 1 to line 5 with lang javascript
+
+<Partial file="hints.md" from="5" to="10" syntax="javascript"></Partial>
+
+## Print line 2 from .archbee.yaml
+
+<Partial file="/.archbee.yaml" from="3"></Partial>
+
+## Errors and limitations
+
+### Undefined range
+
+<Partial file="hints.md" from="5" to="10000"></Partial>
+
+### Self referencing is not allowed
+
+The output will not be rendered.
+
+***
+
+<Partial from="5"></Partial>
+
+***
+
+### Rendering entire file .archbee.yaml is not allowed
+
+<Partial file="/.archbee.yaml" syntax="javascript"></Partial>
